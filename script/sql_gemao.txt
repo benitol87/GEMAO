@@ -1,0 +1,268 @@
+/***********************
+ * Création des tables *
+ ***********************/
+
+CREATE TABLE commune (
+	idCommune MEDIUMINT NOT NULL AUTO_INCREMENT,
+	nom VARCHAR(50) NOT NULL,
+	codePostal SMALLINT,
+	avantage BIT,
+	CONSTRAINT pk_commune PRIMARY KEY(idCommune)
+);
+
+CREATE TABLE adresse (
+	idAdresse MEDIUMINT NOT NULL AUTO_INCREMENT,
+	idCommune MEDIUMINT NOT NULL,
+	numRue SMALLINT,
+	nomRue VARCHAR(50),
+	infoCompl VARCHAR(50),
+	CONSTRAINT pk_adresse PRIMARY KEY(idAdresse),
+	CONSTRAINT fk_adresse_commune FOREIGN KEY (idCommune) REFERENCES commune(idCommune)
+);
+
+CREATE TABLE personne (
+	idPersonne MEDIUMINT NOT NULL AUTO_INCREMENT,
+	idAdresse MEDIUMINT NOT NULL,
+	idCommuneNaiss MEDIUMINT NOT NULL,
+	nom VARCHAR(30) NOT NULL,
+	prenom VARCHAR(30) NOT NULL,
+	dateNaissance DATE NOT NULL,
+	tel_fixe VARCHAR(15),
+	tel_port VARCHAR(15),
+	email VARCHAR(50),
+	CONSTRAINT pk_personne PRIMARY KEY(idPersonne),
+	CONSTRAINT fk_personne_adresse FOREIGN KEY (idAdresse) REFERENCES adresse(idAdresse),
+	CONSTRAINT fk_personne_commune FOREIGN KEY (idCommuneNaiss) REFERENCES commune(idCommune)
+);
+
+-- Motif de départ de l'adhérent de l'école
+CREATE TABLE motifsortie (
+	idMotif SMALLINT NOT NULL AUTO_INCREMENT,
+	libelle VARCHAR(30) NOT NULL,
+	CONSTRAINT pk_motifsortie PRIMARY KEY(idMotif)
+);
+
+-- Responsable d'un adhérent
+CREATE TABLE responsable (
+	idResponsable SMALLINT NOT NULL AUTO_INCREMENT,
+	nom VARCHAR(30) NOT NULL,
+	prenom VARCHAR(30) NOT NULL,
+	tel VARCHAR(15) NOT NULL,
+	email VARCHAR(50),
+	CONSTRAINT pk_responsable PRIMARY KEY(idResponsable)
+);
+
+CREATE TABLE adherent (
+	idPersonne MEDIUMINT NOT NULL,
+	idMotifSortie SMALLINT,
+	idResponsable SMALLINT,
+	droitImage BIT,
+	dateEntree DATE,
+	dateSortie DATE,
+	CONSTRAINT fk_adherent_personne FOREIGN KEY (idPersonne) REFERENCES personne(idPersonne),
+	CONSTRAINT fk_adherent_motifsortie FOREIGN KEY (idMotifSortie) REFERENCES motifsortie(idMotif),
+	CONSTRAINT fk_adherent_responsable FOREIGN KEY (idResponsable) REFERENCES responsable(idResponsable)
+);
+
+-- Fonction d'un membre du personnel
+CREATE TABLE responsabilite (
+	idResponsabilite SMALLINT NOT NULL,
+	libelle VARCHAR(15),
+	CONSTRAINT pk_responsabilite PRIMARY KEY (idResponsabilite)
+);
+
+CREATE TABLE typecontrat (
+	idTypeContrat TINYINT NOT NULL,
+	libelle VARCHAR(20), -- CDI, CDD, bénévole
+	CONSTRAINT pk_typecontrat PRIMARY KEY (idTypeContrat)
+);
+
+CREATE TABLE motiffincontrat (
+	idMotif TINYINT NOT NULL,
+	libelle VARCHAR(20), -- licenciement, démission, ...
+	CONSTRAINT pk_typecontrat PRIMARY KEY (idMotif)
+);
+
+CREATE TABLE contrat (
+	idContrat SMALLINT NOT NULL,
+	idTypeContrat TINYINT NOT NULL,
+	idMotifFin TINYINT,
+	dateDebut DATE NOT NULL,
+	dateFin DATE, -- Fin théorique du contrat
+	dateRupture DATE, -- Fin réelle du contrat
+	CONSTRAINT pk_contrat PRIMARY KEY (idContrat),
+	CONSTRAINT fk_contrat_typecontrat FOREIGN KEY (idTypeContrat) REFERENCES typecontrat(idTypeContrat),
+	CONSTRAINT fk_contrat_motiffincontrat FOREIGN KEY (idMotifFin) REFERENCES motiffincontrat(idMotif)
+);
+
+CREATE TABLE personnel (
+	idPersonne MEDIUMINT NOT NULL,
+	idContrat SMALLINT,
+	login VARCHAR(20),
+	pwd VARCHAR(40),
+	pointAncienneté TINYINT,
+	CONSTRAINT fk_personnel_personne FOREIGN KEY (idPersonne) REFERENCES personne(idPersonne),
+	CONSTRAINT fk_personnel_contrat FOREIGN KEY (idContrat) REFERENCES contrat(idContrat)
+);
+
+CREATE TABLE personnelXresponsabilite (
+	idResponsabilite SMALLINT NOT NULL,
+	idPersonne MEDIUMINT NOT NULL,
+	CONSTRAINT fk_personnelXresponsabilite_responsabilite FOREIGN KEY (idResponsabilite) REFERENCES responsabilite(idResponsabilite),
+	CONSTRAINT fk_personnelXresponsabilite_personne FOREIGN KEY (idPersonne) REFERENCES personne(idPersonne)
+);
+
+-- Etat possible pour du matériel
+CREATE TABLE etat (
+	idEtat TINYINT NOT NULL,
+	libelle VARCHAR(30),
+	CONSTRAINT pk_etat PRIMARY KEY (idEtat)
+);
+
+-- Catégorie de matériel
+CREATE TABLE categorie (
+	idCategorie TINYINT NOT NULL,
+	libelle VARCHAR(30),
+	CONSTRAINT pk_categorie PRIMARY KEY (idCategorie)
+);
+
+-- Marque du matériel
+CREATE TABLE marque (
+	idMarque SMALLINT,
+	nom VARCHAR(20),
+	CONSTRAINT pk_marque PRIMARY KEY (idMarque)
+);
+
+-- Instruments, pupitres, etc...
+CREATE TABLE materiel (
+	idMateriel SMALLINT NOT NULL,
+	idEtat TINYINT,
+	idCategorie TINYINT,
+	idMarque SMALLINT,
+	designation VARCHAR(20),
+	typeMateriel VARCHAR(20),
+	numSerie VARCHAR(15),
+	dateAchat DATE,
+	valeurAchat DECIMAL(10,2),
+	valeurReapprov DECIMAL(10,2),
+	deplaceConcert BIT,
+	observation VARCHAR(30),
+	CONSTRAINT pk_materiel PRIMARY KEY (idMateriel),
+	CONSTRAINT fk_materiel_etat FOREIGN KEY (idEtat) REFERENCES etat(idEtat),
+	CONSTRAINT fk_materiel_categorie FOREIGN KEY (idCategorie) REFERENCES categorie(idCategorie),
+	CONSTRAINT fk_materiel_marque FOREIGN KEY (idMarque) REFERENCES marque(idMarque)
+);
+
+-- Fournisseurs de matériel
+CREATE TABLE fournisseur (
+	idFournisseur SMALLINT NOT NULL,
+	nom VARCHAR(50),
+	CONSTRAINT pk_fournisseur PRIMARY KEY (idFournisseur)
+);
+
+-- Entreprises effectuant la réparation ou l'entretien du matériel
+CREATE TABLE reparateur (
+	idReparateur SMALLINT NOT NULL,
+	nom VARCHAR(50),
+	CONSTRAINT pk_reparateur PRIMARY KEY (idReparateur)
+);
+
+-- Location de matériel à un adhérent
+CREATE TABLE location (
+	idPersonne MEDIUMINT NOT NULL,
+	idMateriel SMALLINT NOT NULL,
+	idEtatDebut TINYINT,
+	idEtatFin TINYINT,
+	dateEmprunt DATE,
+	dateEcheance DATE, -- date avant laquelle doit être retourné l'instrument
+	dateRetour DATE, -- date à laquelle le matériel est rendu
+	dateCertificat DATE, -- date à laquelle le contrôle de l'état (ou réparation) a été fait
+	montant DECIMAL(10,2),
+	CONSTRAINT fk_location_personne FOREIGN KEY (idPersonne) REFERENCES personne(idPersonne),
+	CONSTRAINT fk_location_materiel FOREIGN KEY (idMateriel) REFERENCES materiel(idMateriel),
+	CONSTRAINT fk_materiel_etat1 FOREIGN KEY (idEtatDebut) REFERENCES etat(idEtat),
+	CONSTRAINT fk_materiel_etat2 FOREIGN KEY (idEtatFin) REFERENCES etat(idEtat)
+);
+
+/***********************
+ * Tables d'archivage  *
+ ***********************/
+ -- Type de modification apportée à la base
+CREATE TABLE typemodif (
+	idTypeModif SMALLINT NOT NULL AUTO_INCREMENT,
+	libellé VARCHAR(20) NOT NULL,
+	CONSTRAINT pk_typemodif PRIMARY KEY(idTypeModif)
+);
+
+-- Modification apportée à la base de donnée
+CREATE TABLE modif (
+	idModif MEDIUMINT NOT NULL,
+	idTypeModif SMALLINT NOT NULL,
+	idPersonne MEDIUMINT NOT NULL,
+	dateModif DATETIME NOT NULL,
+	cause VARCHAR(30),
+	CONSTRAINT pk_modif PRIMARY KEY (idModif),
+	CONSTRAINT fk_modif_typemodif FOREIGN KEY (idTypeModif) REFERENCES typemodif(idTypeModif),
+	CONSTRAINT fk_modif_personne FOREIGN KEY (idPersonne) REFERENCES personne(idPersonne)
+);
+
+CREATE TABLE archivepersonne (
+	idModif MEDIUMINT NOT NULL,
+	idPersonne MEDIUMINT NOT NULL,
+	nom VARCHAR(30),
+	prenom VARCHAR(30),
+	dateNaissance DATE,
+	tel_fixe VARCHAR(15),
+	tel_port VARCHAR(15),
+	email VARCHAR(50),
+	CONSTRAINT pk_archivepersonne PRIMARY KEY(idModif),
+	CONSTRAINT fk_archivepersonne_modif FOREIGN KEY (idModif) REFERENCES modif(idModif),
+	CONSTRAINT fk_archivepersonne_personne FOREIGN KEY (idPersonne) REFERENCES personne(idPersonne)
+);
+
+CREATE TABLE archiveadresse (
+	idModif MEDIUMINT NOT NULL,
+	idPersonne MEDIUMINT NOT NULL,
+	idAdresse MEDIUMINT NOT NULL,
+	CONSTRAINT pk_archiveadresse PRIMARY KEY(idModif),
+	CONSTRAINT fk_archiveadresse_modif FOREIGN KEY (idModif) REFERENCES modif(idModif),
+	CONSTRAINT fk_archiveadresse_personne FOREIGN KEY( idPersonne) REFERENCES personne(idPersonne),
+	CONSTRAINT fk_archiveadresse_adresse FOREIGN KEY (idAdresse) REFERENCES adresse(idAdresse)
+);
+
+
+
+/********************
+ * Table paramètre  *
+ ********************/
+
+CREATE TABLE parametre (
+	idParam MEDIUMINT NOT NULL,
+	alloc2 DECIMAL(10,2),
+	alloc3 DECIMAL(10,2),
+	alloc4 DECIMAL(10,2),
+	alloc5 DECIMAL(10,2),
+	qf_max DECIMAL(10,2),
+	qf_min DECIMAL(10,2),
+	dateModif DATETIME, -- date d'insertion dans la table, les paramètres à prendre sont les plus récents
+	CONSTRAINT pk_parametre PRIMARY KEY (idParam)
+);
+
+/************
+ * Triggers *
+ ************/
+
+
+
+
+/**************
+ * Fonctions  *
+ **************/
+
+
+
+
+/**************
+ * Procédure  *
+ **************/
+
