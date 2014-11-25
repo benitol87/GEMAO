@@ -30,6 +30,7 @@ CREATE TABLE personne (
 	tel_fixe VARCHAR(15),
 	tel_port VARCHAR(15),
 	email VARCHAR(50),
+	qf DECIMAL(5,2), -- Quotient familial
 	CONSTRAINT pk_personne PRIMARY KEY(idPersonne),
 	CONSTRAINT fk_personne_adresse FOREIGN KEY (idAdresse) REFERENCES adresse(idAdresse),
 	CONSTRAINT fk_personne_commune FOREIGN KEY (idCommuneNaiss) REFERENCES commune(idCommune)
@@ -100,7 +101,7 @@ CREATE TABLE personnel (
 	idContrat SMALLINT,
 	login VARCHAR(20),
 	pwd VARCHAR(40),
-	pointAncienneté TINYINT,
+	pointAnciennete TINYINT,
 	CONSTRAINT fk_personnel_personne FOREIGN KEY (idPersonne) REFERENCES personne(idPersonne),
 	CONSTRAINT fk_personnel_contrat FOREIGN KEY (idContrat) REFERENCES contrat(idContrat)
 );
@@ -122,15 +123,21 @@ CREATE TABLE etat (
 -- Catégorie de matériel
 CREATE TABLE categorie (
 	idCategorie TINYINT NOT NULL,
-	libelle VARCHAR(30),
+	libelle VARCHAR(30) NOT NULL,
 	CONSTRAINT pk_categorie PRIMARY KEY (idCategorie)
 );
 
 -- Marque du matériel
 CREATE TABLE marque (
-	idMarque SMALLINT,
-	nom VARCHAR(20),
+	idMarque SMALLINT NOT NULL,
+	nom VARCHAR(20) NOT NULL,
 	CONSTRAINT pk_marque PRIMARY KEY (idMarque)
+);
+
+CREATE TABLE designation (
+	idDesignation TINYINT NOT NULL,
+	libelle VARCHAR(50) NOT NULL,
+	CONSTRAINT pk_designation PRIMARY KEY (idDesignation)
 );
 
 -- Instruments, pupitres, etc...
@@ -139,7 +146,7 @@ CREATE TABLE materiel (
 	idEtat TINYINT,
 	idCategorie TINYINT,
 	idMarque SMALLINT,
-	designation VARCHAR(20),
+	idDesignation TINYINT,
 	typeMateriel VARCHAR(20),
 	numSerie VARCHAR(15),
 	dateAchat DATE,
@@ -150,7 +157,8 @@ CREATE TABLE materiel (
 	CONSTRAINT pk_materiel PRIMARY KEY (idMateriel),
 	CONSTRAINT fk_materiel_etat FOREIGN KEY (idEtat) REFERENCES etat(idEtat),
 	CONSTRAINT fk_materiel_categorie FOREIGN KEY (idCategorie) REFERENCES categorie(idCategorie),
-	CONSTRAINT fk_materiel_marque FOREIGN KEY (idMarque) REFERENCES marque(idMarque)
+	CONSTRAINT fk_materiel_marque FOREIGN KEY (idMarque) REFERENCES marque(idMarque),
+	CONSTRAINT fk_materiel_designation FOREIGN KEY (idDesignation) REFERENCES designation(idDesignation)
 );
 
 -- Fournisseurs de matériel
@@ -190,13 +198,13 @@ CREATE TABLE location (
  -- Type de modification apportée à la base
 CREATE TABLE typemodif (
 	idTypeModif SMALLINT NOT NULL AUTO_INCREMENT,
-	libellé VARCHAR(20) NOT NULL,
+	libelle VARCHAR(20) NOT NULL,
 	CONSTRAINT pk_typemodif PRIMARY KEY(idTypeModif)
 );
 
 -- Modification apportée à la base de donnée
 CREATE TABLE modif (
-	idModif MEDIUMINT NOT NULL,
+	idModif MEDIUMINT NOT NULL AUTO_INCREMENT,
 	idTypeModif SMALLINT NOT NULL,
 	idPersonne MEDIUMINT NOT NULL,
 	dateModif DATETIME NOT NULL,
@@ -208,7 +216,7 @@ CREATE TABLE modif (
 
 CREATE TABLE archivepersonne (
 	idModif MEDIUMINT NOT NULL,
-	idPersonne MEDIUMINT NOT NULL,
+	idPersonne MEDIUMINT NOT NULL, -- Personne modifiée
 	nom VARCHAR(30),
 	prenom VARCHAR(30),
 	dateNaissance DATE,
@@ -222,7 +230,7 @@ CREATE TABLE archivepersonne (
 
 CREATE TABLE archiveadresse (
 	idModif MEDIUMINT NOT NULL,
-	idPersonne MEDIUMINT NOT NULL,
+	idPersonne MEDIUMINT NOT NULL, -- Personne dont on modifie l'adresse
 	idAdresse MEDIUMINT NOT NULL,
 	CONSTRAINT pk_archiveadresse PRIMARY KEY(idModif),
 	CONSTRAINT fk_archiveadresse_modif FOREIGN KEY (idModif) REFERENCES modif(idModif),
@@ -230,12 +238,9 @@ CREATE TABLE archiveadresse (
 	CONSTRAINT fk_archiveadresse_adresse FOREIGN KEY (idAdresse) REFERENCES adresse(idAdresse)
 );
 
-
-
 /********************
  * Table paramètre  *
  ********************/
-
 CREATE TABLE parametre (
 	idParam MEDIUMINT NOT NULL,
 	alloc2 DECIMAL(10,2),
@@ -248,21 +253,175 @@ CREATE TABLE parametre (
 	CONSTRAINT pk_parametre PRIMARY KEY (idParam)
 );
 
+
+
+
+
+
+
+
+/**************
+ * Jeux d'essai *
+ **************/
+INSERT INTO commune (idCommune, nom, codePostal, avantage) VALUES
+	(1, 'Limoges', 87000, 0),
+	(2, 'La Chapelle Saint Ursin', 18570, 1);
+
+INSERT INTO adresse (idAdresse, idCommune, numRue, nomRue, infoCompl) VALUES
+	(1, 1, 14, 'rue du puy imbert', NULL ),
+	(2, 2, 35, 'rue de l\'impasse', 'apartement 3');
+
+INSERT INTO personne (idPersonne, idAdresse, idCommuneNaiss, prenom, nom, dateNaissance, tel_fixe, tel_port, email, qf) VALUES
+	(1, 1, 1, 'Noël', 'Flantier', '1980-01-30', '0123456789', '0123456789', 'noel.flantier@gmail.com',  127.54),
+	(2, 2, 1, 'Hubert', 'Bonisseur', '1998-02-12', '0987654321', '0987654321', 'hubert.bonisseur@gmail.com', 200.12),
+	(3, 1, 1, 'Jean', 'Dupont', '1990-03-20', '0123456788', '0123456788', 'jean.dupont@gmail.com',  207.54),
+	(4, 2, 1, 'Maxime', 'Dupond', '1998-04-05', '0887654321', '0887654321', 'maxime.dupond@gmail.com', 209.12);
+
+INSERT INTO motifsortie (idMotif, libelle) VALUES
+	(1, 'Fin de scolarité');
+
+INSERT INTO responsable (idResponsable, nom, prenom, tel, email) VALUES
+	(1, 'Chirac', 'Jacques', '0555667788', 'jacques.chirac@gmail.com');
+
+INSERT INTO adherent (idPersonne, idMotifSortie, idResponsable, droitImage, dateEntree, dateSortie) VALUES
+	(2, 1, NULL, 1, '2014-09-01', NULL),
+	(4, NULL, 1, 1, '2013-09-01', '2014-06-30');
+
+INSERT INTO responsabilite (idResponsabilite, libelle) VALUES
+	(1, 'Professeur'),
+	(2, 'Secrétaire'),
+	(3, 'Comptable');
+
+INSERT INTO typecontrat (idTypeContrat, libelle) VALUES
+	(1, 'CDI'),
+	(2, 'CDD'),
+	(3, 'Bénévole');
+
+INSERT INTO motiffincontrat (idMotif, libelle) VALUES
+	(1, 'Echéance'),
+	(2, 'Démission'),
+	(3, 'Licenciement'),
+	(4, 'Rupture conventionnelle');
+
+INSERT INTO contrat (idContrat, idTypeContrat, idMotifFin, dateDebut, dateFin, dateRupture) VALUES
+	(1, 1, NULL, '2010-09-01', NULL, NULL),
+	(2, 3, NULL, '2005-09-01', NULL, NULL);
+
+INSERT INTO personnel ( idPersonne, idContrat, login, pwd,  pointAnciennete) VALUES
+	(1, 1, 'nono', 'lapin', 1),
+	(3, 2, 'jean', 'lapin', 2);
+
+INSERT INTO personnelXresponsabilite (idResponsabilite, idPersonne) VALUES
+	(1, 1),
+	(3, 2),
+	(3, 3);
+
+INSERT INTO etat (idEtat, libelle) VALUES
+	(1, 'Neuf'),
+	(2, 'En bon état'),
+	(3, 'Abimé'),
+	(4, 'Non utilisable'),
+	(5, 'En réparation');
+
+INSERT INTO categorie (idCategorie, libelle) VALUES
+	(1, 'Pianos'),
+	(2, 'Percussions'),
+	(3, 'Pupitres'),
+	(4, 'Sonorisation'),
+	(5, 'Matériel cours et administratif'),
+	(6, 'Instruments à cordes'),
+	(7, 'Instruments à vent'),
+	(8, 'Accessoires'),
+	(9, 'Partition'),
+	(10, 'Eclairage'),
+	(11, 'Divers');
+
+INSERT INTO marque (idMarque, nom) VALUES
+	(1, 'Yamaha'),
+	(2, 'Alambra');
+
+INSERT INTO designation (idDesignation, libelle) VALUES
+	(1, 'Piano'),
+	(2, 'Tabouret marron de piano'),
+	(3, 'Guitare'),
+	(4, 'Marimba'),
+	(5, 'Pupitre noir'),
+	(6, 'Pupitre pliable métal'),
+	(7, 'Pied de micro'),
+	(8, 'Tableau avec portées'),
+	(9, 'Pied de cymbale'),
+	(10, 'Maracas'),
+	(11, 'Crécelle');
+
+INSERT INTO materiel (idMateriel, idEtat, idCategorie, idMarque, idDesignation, typeMateriel, numSerie, dateAchat, valeurAchat, valeurReapprov, deplaceConcert, observation) VALUES
+	(1, 1, 1, 1, 1, 'ETERNA ER-10', 3907658, '01/09/2013', NULL, 4200, 1, NULL),
+	(2, 2, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+
+
+INSERT INTO typemodif( idTypeModif, libelle ) VALUES
+	( 1, 'modif_personne' ) ;
+
+
+
 /************
  * Triggers *
  ************/
+-- Changement de caractère de fin de commande
+delimiter //
+
+CREATE TRIGGER personne_after_update
+AFTER UPDATE
+ON personne
+FOR EACH ROW
+BEGIN
+	IF new.nom <> old.nom THEN
+		INSERT INTO modif (idModif, idTypeModif, idPersonne, dateModif) VALUES (NULL, 1, 1, now());
+		INSERT INTO archivepersonne (idModif, idPersonne, nom) VALUES (LAST_INSERT_ID(), old.idPersonne, old.nom);
+
+	END IF;
+END;//
 
 
 
 
-/**************
+
+
+
+
+
+
+
+
+
+
+
+
+
+/************
  * Fonctions  *
- **************/
+ *************/
 
 
 
 
-/**************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*************
  * Procédure  *
  **************/
 
