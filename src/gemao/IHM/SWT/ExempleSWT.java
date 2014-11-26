@@ -1,4 +1,4 @@
-package gemao.IHM;
+package gemao.IHM.SWT;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
