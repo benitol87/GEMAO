@@ -28,10 +28,10 @@ public abstract class DAOMySql<T> {
 	public abstract void delete(T obj);
 
 	/**
-	 * Mï¿½thode de mise ï¿½ jour d'un objet.
+	 * Mïéthode de mise à jour d'un objet.
 	 * @param obj
-	 * 		Objet ï¿½ mettre ï¿½ jour.
-	 * @return l'objet updatï¿½ ou null s'il n'est pas trouvï¿½ aprï¿½s la mise ï¿½ jour.
+	 * 		Objet à mettre à jour.
+	 * @return l'objet updaté ou null s'il n'est pas trouvé après la mise à jour.
 	 */
 	public abstract T update(T obj);
 

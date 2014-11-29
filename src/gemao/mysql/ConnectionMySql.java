@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class ConnectionMySql {
-	private final static String URL = "jdbc:mysql://localhost/ProjetTut?user=root&password=devsql";
+	private final static String URL = "jdbc:mysql://localhost/gemao_base?user=bd&password=bede";
 
 	private static Connection co;
 	
