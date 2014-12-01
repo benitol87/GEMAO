@@ -3,30 +3,30 @@ package gemao.IHM.SWT;
 
 
 import gemao.Config;
+import gemao.Launcher;
 import gemao.IHM.IStartingScreen;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 public class StartingScreenSWT implements IStartingScreen {
-	public static int WINDOW_DEFAULT_WIDTH = 800;
-	public static int WINDOW_DEFAULT_HEIGHT = 600;
+	// public static int WINDOW_DEFAULT_WIDTH = 800;
+	// public static int WINDOW_DEFAULT_HEIGHT = 600;
 
-	private Display display;
 	private Shell shell;
 	private Button b_connect;
 	private Label l_login, l_mdp;
 	private Text t_login, t_mdp;
 	
 	public StartingScreenSWT() {
-		display = new Display();
-		shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN | SWT.MAX);
+		shell = new Shell(Launcher.display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
 		
 		GridLayout glayout = new GridLayout();
 		glayout.numColumns = 1;
@@ -49,9 +49,17 @@ public class StartingScreenSWT implements IStartingScreen {
 		t_mdp.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true));
 		b_connect.setText("Se connecter");
 		b_connect.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true));
+
 				
-		shell.setSize(StartingScreenSWT.WINDOW_DEFAULT_WIDTH, StartingScreenSWT.WINDOW_DEFAULT_HEIGHT);
+		// shell.setSize(StartingScreenSWT.WINDOW_DEFAULT_WIDTH, StartingScreenSWT.WINDOW_DEFAULT_HEIGHT);
 		shell.setText("Connexion");
+
+		Rectangle rect = Launcher.display.getClientArea();
+		Point size = shell.getSize();
+		int x = (rect.width - size.x) / 2;
+		int y = (rect.height - size.y) / 2;
+		shell.setLocation(new Point(x, y));
+		
 		shell.pack();
 		
 		shell.open();
@@ -60,9 +68,9 @@ public class StartingScreenSWT implements IStartingScreen {
 
 	private void start() {
 		while(!shell.isDisposed()){
-			if(!display.readAndDispatch())
-				display.sleep();
+			if(!Launcher.display.readAndDispatch())
+				Launcher.display.sleep();
 		}
-		display.dispose();
+		Launcher.display.dispose();
 	}
 }

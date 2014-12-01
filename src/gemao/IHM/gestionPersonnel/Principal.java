@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Text;
 import gemao.Config;
 import gemao.IHM.IStartingScreen;
 
-public class Principal implements IStartingScreen {
+public class Principal  {
 	public static int WINDOW_DEFAULT_WIDTH = 800;
 	public static int WINDOW_DEFAULT_HEIGHT = 600;
 

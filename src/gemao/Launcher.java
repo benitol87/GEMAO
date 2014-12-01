@@ -9,7 +9,11 @@ public class Launcher {
 	public static Display display;
 
 	public static void main(String[] args) {
-		//Instanciation de la classe implémentant l'interface IStartingScreen
+		launchSWT();
+	}
+	
+	public static void launchSWT(){
+		display = new Display();
 		new StartingScreenSWT();
 	}
 
