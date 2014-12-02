@@ -14,7 +14,28 @@ public class Launcher {
 	
 	public static void launchSWT(){
 		display = new Display();
+		
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				while(true){
+					if(!Launcher.display.readAndDispatch())
+						Launcher.display.sleep();
+				}
+			}
+		});
+		
 		new StartingScreenSWT();
+	}
+	
+	/**
+	 * Méthode arrêtant l'application
+	 */
+	public static void stop(){
+		Launcher.display.dispose();
 	}
 
 }
+
+
