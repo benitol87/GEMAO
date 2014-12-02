@@ -4,15 +4,16 @@ import java.util.Date;
 
 public class Personne {
 	
-	private int idPersonne;
-	private int idAdresse;
-	private int idCommuneNaiss;
+	private long idPersonne;
+	private long idAdresse;
+	private long idCommuneNaiss;
 	private String nom;
 	private String prenom;
 	private Date dateNaissance;
 	private String telFixe;
 	private String telPort;
 	private String email;
+	private float qf;
 	
 	/**
 	 * Construit une Personne
@@ -26,9 +27,9 @@ public class Personne {
 	 * @param telPort
 	 * @param email
 	 */
-	public Personne(int idPersonne, int idAdresse, int idCommuneNaiss,
+	public Personne(long idPersonne, long idAdresse, long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
-			String telPort, String email) {
+			String telPort, String email, float qf) {
 		this.idPersonne = idPersonne;
 		this.idAdresse = idAdresse;
 		this.idCommuneNaiss = idCommuneNaiss;
@@ -38,12 +39,13 @@ public class Personne {
 		this.telFixe = telFixe;
 		this.telPort = telPort;
 		this.email = email;
+		this.qf = qf;
 	}
 
 	/**
 	 * @return the idPersonne
 	 */
-	public int getIdPersonne() {
+	public long getIdPersonne() {
 		return idPersonne;
 	}
 
@@ -57,7 +59,7 @@ public class Personne {
 	/**
 	 * @return the idAdresse
 	 */
-	public int getIdAdresse() {
+	public long getIdAdresse() {
 		return idAdresse;
 	}
 
@@ -71,7 +73,7 @@ public class Personne {
 	/**
 	 * @return the idCommuneNaiss
 	 */
-	public int getIdCommuneNaiss() {
+	public long getIdCommuneNaiss() {
 		return idCommuneNaiss;
 	}
 
@@ -166,9 +168,16 @@ public class Personne {
 		this.email = email;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+
+	public float getQf() {
+		return qf;
+	}
+
+	public void setQf(float qf) {
+		this.qf = qf;
+	}
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -176,19 +185,18 @@ public class Personne {
 		result = prime * result
 				+ ((dateNaissance == null) ? 0 : dateNaissance.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + idAdresse;
-		result = prime * result + idCommuneNaiss;
-		result = prime * result + idPersonne;
+		result = prime * result + (int) (idAdresse ^ (idAdresse >>> 32));
+		result = prime * result
+				+ (int) (idCommuneNaiss ^ (idCommuneNaiss >>> 32));
+		result = prime * result + (int) (idPersonne ^ (idPersonne >>> 32));
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result + Float.floatToIntBits(qf);
 		result = prime * result + ((telFixe == null) ? 0 : telFixe.hashCode());
 		result = prime * result + ((telPort == null) ? 0 : telPort.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -223,6 +231,8 @@ public class Personne {
 			if (other.prenom != null)
 				return false;
 		} else if (!prenom.equals(other.prenom))
+			return false;
+		if (Float.floatToIntBits(qf) != Float.floatToIntBits(other.qf))
 			return false;
 		if (telFixe == null) {
 			if (other.telFixe != null)
@@ -264,6 +274,7 @@ public class Personne {
 		builder.append("]");
 		return builder.toString();
 	}
+
 	
 	
 	

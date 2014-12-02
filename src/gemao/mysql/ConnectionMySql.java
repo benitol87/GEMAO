@@ -6,14 +6,20 @@ import java.sql.SQLException;
 
 
 public class ConnectionMySql {
-	private final static String URL = "jdbc:mysql://localhost/gemao_base?user=bd&password=bede";
-
+	
+	private static String url = "jdbc:mysql://";
+	private static String host = "localhost";
+	private static String base = "gemao";
+	private static String user = "anacrous";
+	private static String pasword = "Gemao@87!";
+	
 	private static Connection co;
 	
 	private ConnectionMySql(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			ConnectionMySql.co = DriverManager.getConnection(ConnectionMySql.URL);
+			String URL = ConnectionMySql.url + ConnectionMySql.host + "/" + ConnectionMySql.base;  
+			ConnectionMySql.co = DriverManager.getConnection(URL, ConnectionMySql.user, ConnectionMySql.pasword);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

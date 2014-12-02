@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Adherent extends Personne{
 	private int idMotif;
-	private int idResponsable;
+	private long idResponsable;
 	private boolean droitImage;
 	private Date dateEntree;
 	private Date dateSortie;
@@ -26,13 +26,14 @@ public class Adherent extends Personne{
 	 * @param droitImage
 	 * @param dateEntree
 	 * @param dateSortie
+	 * @param qf 
 	 */
-	public Adherent(int idPersonne, int idAdresse, int idCommuneNaiss,
+	public Adherent(long idPersonne, long idAdresse, long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, int idMotif, int idResponsable,
-			boolean droitImage, Date dateEntree, Date dateSortie) {
+			boolean droitImage, Date dateEntree, Date dateSortie, float qf) {
 		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
-				dateNaissance, telFixe, telPort, email);
+				dateNaissance, telFixe, telPort, email, qf);
 		this.idMotif = idMotif;
 		this.idResponsable = idResponsable;
 		this.droitImage = droitImage;
@@ -60,7 +61,7 @@ public class Adherent extends Personne{
 	/**
 	 * @return the idResponsable
 	 */
-	public int getIdResponsable() {
+	public long getIdResponsable() {
 		return idResponsable;
 	}
 
@@ -148,7 +149,7 @@ public class Adherent extends Personne{
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		long result = super.hashCode();
 		result = prime * result
 				+ ((dateEntree == null) ? 0 : dateEntree.hashCode());
 		result = prime * result
@@ -156,7 +157,7 @@ public class Adherent extends Personne{
 		result = prime * result + (droitImage ? 1231 : 1237);
 		result = prime * result + idMotif;
 		result = prime * result + idResponsable;
-		return result;
+		return (int) result;
 	}
 
 

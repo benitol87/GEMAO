@@ -41,11 +41,11 @@ public abstract class DAOMySql<T> {
 	 * 		identifiant de l'objet � rechercher.
 	 * @return l'objet correspondant � l'identifiant ou null si l'objet n'xiste pas.
 	 */
-	public abstract T find(int id);
+	public abstract T get(long id);
 	
 	/**
 	 * M�thode de recherche de toutes les lignes.
 	 * @return la liste de tous les objets.
 	 */
-	public abstract List<T> findAll();
+	public abstract List<T> getAll();
 }
