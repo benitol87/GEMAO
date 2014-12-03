@@ -78,11 +78,7 @@ public class StartingScreenSWT implements IStartingScreen {
 			public void mouseUp(MouseEvent e) {
 				if (clicInterieur) {
 					// Ouvrir la fenêtre de choix du module
-					new ModuleChooserScreen();
-
-					// Fermer la fenêtre de connexion
-					if(!shell.isDisposed())
-						shell.close();
+					new ModuleChooserScreenSWT(shell);
 				}
 			}
 

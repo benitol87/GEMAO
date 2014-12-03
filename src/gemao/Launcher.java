@@ -13,7 +13,7 @@ public class Launcher {
 	}
 	
 	public static void launchSWT(){
-		display = new Display();
+		display = Display.getDefault();
 		
 		new Thread(new Runnable() {
 			
