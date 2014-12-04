@@ -38,13 +38,13 @@ public class TestPersonneDAO {
 		Personne rs = personneDAO.create(personneAdd);
 		System.out.println(rs);
 		
-		//Pour laisser de verifier :-)
-		try {
-			Thread.sleep(10-000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		//Pour mettre à jour on passe une Personne avec l'id correspondant avec les nouvelle
+		//informations
+		rs.setNom("DuChemoile");
+		rs = personneDAO.update(rs);
+		System.out.println("\n Mise à jour !");
+		System.out.println(rs);
 		
 		liste = personneDAO.getAll();
 		System.out.println("\n Personnes : ");
@@ -55,6 +55,16 @@ public class TestPersonneDAO {
 		//Pour supprimer il suffit de passer en paramètre la personne avec l'id correspondant
 		//N.B l'objet peut être vide mis à part pour l'id
 		System.out.println("\nSuppression");
-		personneDAO.delete(rs);
+		try{
+			personneDAO.delete(rs);
+		}catch (UnsupportedOperationException uOe){
+			uOe.printStackTrace();
+		}
+		
+		liste = personneDAO.getAll();
+		System.out.println("\n Personnes : ");
+		for(Personne p : liste){
+			System.out.println(p);
+		}
 	}
 }

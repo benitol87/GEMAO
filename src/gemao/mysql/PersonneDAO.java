@@ -69,7 +69,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 
 	@Override
 	public void delete(Personne obj) {
-		if (obj == null) {
+		/*if (obj == null) {
 			throw new NullPointerException("La personne ne doit pas être null");
 		}
 		
@@ -92,13 +92,53 @@ public class PersonneDAO extends DAOMySql<Personne> {
 					e.printStackTrace();
 				}
 			}
-		}
+		}*/
+		throw new UnsupportedOperationException("Vous n'avez pas le droit de supprimer une Personne.");
 	}
 
 	@Override
 	public Personne update(Personne obj) {
-		//TODO Comportement par défaut, a modifier
-		return null;
+		if (obj == null) {
+			throw new NullPointerException("La personne ne doit pas être null");
+		}
+		
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		try {
+			String sql = "UPDATE Personne SET idAdresse = ?, idCommuneNaiss = ?, nom = ?, "
+					+ "prenom = ?, dateNaissance = ?, tel_fixe = ?, tel_port = ?, "
+					+ "email = ?, qf = ?"
+					+ "WHERE idPersonne = ?;";
+			requete = connect.prepareStatement(sql,
+					Statement.RETURN_GENERATED_KEYS);
+			requete.setLong(1, obj.getIdAdresse());
+			requete.setLong(2, obj.getIdCommuneNaiss());
+			requete.setString(3, obj.getNom());
+			requete.setString(4, obj.getPrenom());
+			requete.setDate(5, new Date(obj.getDateNaissance().getTime()));
+			requete.setString(6, obj.getTelFixe());
+			requete.setString(7, obj.getTelPort());
+			requete.setString(8, obj.getEmail());
+			requete.setFloat(9, obj.getQf());
+			requete.setLong(10, obj.getIdPersonne());
+			requete.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(requete != null){
+				try {
+					if(result != null){
+						result.close();
+					}
+					requete.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return this.get(obj.getIdPersonne());
 	}
 
 	@Override
