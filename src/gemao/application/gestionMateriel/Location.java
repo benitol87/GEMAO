@@ -1,4 +1,6 @@
-package materiel;
+package gemao.application.gestionMateriel;
+
+import gemao.entity.Personne;
 
 public class Location {
 	private final Personne personne;
@@ -9,6 +11,7 @@ public class Location {
 	private final String dateRetour;
 	private final int duree;
 	private float montant;
+
 	public Location(Personne personne, Materiel materiel, Etat etatDebut,
 			Etat etatFin, String dateEmprunt, String dateRetour, int duree,
 			float montant) {
@@ -21,30 +24,39 @@ public class Location {
 		this.duree = duree;
 		this.montant = montant;
 	}
+
 	public float getMontant() {
 		return montant;
 	}
+
 	public void setMontant(float montant) {
 		this.montant = montant;
 	}
+
 	public Personne getPersonne() {
 		return personne;
 	}
+
 	public Materiel getMateriel() {
 		return materiel;
 	}
+
 	public Etat getEtatDebut() {
 		return etatDebut;
 	}
+
 	public Etat getEtatFin() {
 		return etatFin;
 	}
+
 	public String getDateEmprunt() {
 		return dateEmprunt;
 	}
+
 	public String getDateRetour() {
 		return dateRetour;
 	}
+
 	public int getDuree() {
 		return duree;
 	}

@@ -1,4 +1,4 @@
-package materiel;
+package gemao.application.gestionMateriel;
 
 public class Marque {
 	private final int idMarque;

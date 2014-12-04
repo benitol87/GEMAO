@@ -1,4 +1,4 @@
-package materiel;
+package gemao.application.gestionMateriel;
 
 public class Etat {
 	private final int idEtat;
