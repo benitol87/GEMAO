@@ -1,6 +1,7 @@
 package gemao;
 
 import gemao.IHM.SWT.StartingScreenSWT;
+import gemao.IHM.gestionPersonnel.PrincipalSWT;
 
 import org.eclipse.swt.widgets.Display;
 
@@ -26,7 +27,8 @@ public class Launcher {
 			}
 		});
 		
-		new StartingScreenSWT();
+		// new StartingScreenSWT();
+		new PrincipalSWT();
 	}
 	
 	/**

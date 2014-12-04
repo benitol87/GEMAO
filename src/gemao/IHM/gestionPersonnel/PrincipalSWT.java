@@ -14,9 +14,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import gemao.Config;
+import gemao.Launcher;
 import gemao.IHM.IStartingScreen;
 
-public class Principal  {
+public class PrincipalSWT  {
 	public static int WINDOW_DEFAULT_WIDTH = 800;
 	public static int WINDOW_DEFAULT_HEIGHT = 600;
 
@@ -53,19 +54,25 @@ public class Principal  {
 
 	private Button button_annuler;
 	private Button button_valider;
+	/*private Button button_plus;
+	private Button button_moins;
+	private Button button_plus2;
+	private Button button_moins2;*/
 
 	private Composite haut;
 	private Composite centre;
 	private Composite bas;
 	private Composite date;
+	/*private Composite boutonPlusMoins; 
+	private Composite boutonPlusMoins2;*/
 
 	private Combo combo_jour;
 	private Combo combo_mois;
 	private Combo combo_annee;
 
-	public Principal() {
-		display = new Display();
-		shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN | SWT.MAX);
+	public PrincipalSWT() {
+		
+		shell = new Shell(Launcher.display, SWT.CLOSE | SWT.TITLE | SWT.MIN | SWT.MAX);
 
 		shell.setLayout(new GridLayout(1, true));
 
@@ -74,7 +81,7 @@ public class Principal  {
 		haut.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true));
 
 		centre = new Composite(shell, SWT.NONE);
-		centre.setLayout(new FillLayout());
+		centre.setLayout(new GridLayout(3, true));
 		centre.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true));
 
 		bas = new Composite(shell, SWT.NONE);
@@ -84,6 +91,7 @@ public class Principal  {
 		// Composite haut
 		label_nom = new Label(haut, SWT.NONE);
 		text_nom = new Text(haut, SWT.BORDER);
+		text_nom.setTextLimit(Config.MAX_CHAR_INPUT);
 		label_prenom = new Label(haut, SWT.NONE);
 		text_prenom = new Text(haut, SWT.BORDER);
 		label_naissance = new Label(haut, SWT.NONE);
@@ -138,9 +146,24 @@ public class Principal  {
 		label_diplome = new Label(groupe_professionnel, SWT.NONE);
 		label_diplome.setText("Diplôme : ");
 		text_diplome = new Text(groupe_professionnel, SWT.BORDER);
+		/*boutonPlusMoins = new Composite(groupe_professionnel, SWT.NONE);
+		boutonPlusMoins.setLayout(new FillLayout());
+		button_plus = new Button(boutonPlusMoins, SWT.NONE);
+		button_plus.setText("+");
+		button_moins = new Button(boutonPlusMoins, SWT.NONE);
+		button_moins.setText("-");
+		new Label(groupe_professionnel, SWT.NONE);*/
 		label_fonction = new Label(groupe_professionnel, SWT.NONE);
 		label_fonction.setText("*Fonction : ");
 		text_fonction = new Text(groupe_professionnel, SWT.BORDER);
+		
+		/*boutonPlusMoins2 = new Composite(groupe_professionnel, SWT.NONE);
+		boutonPlusMoins2.setLayout(new FillLayout());
+		button_plus2 = new Button(boutonPlusMoins2, SWT.NONE);
+		button_plus2.setText("+");
+		button_moins2 = new Button(boutonPlusMoins2, SWT.NONE);
+		button_moins2.setText("-");*/
+		
 
 		// Composite bas
 		button_annuler = new Button(bas, SWT.NONE);
@@ -149,8 +172,8 @@ public class Principal  {
 		button_annuler.setText("Annuler");
 		button_valider.setText("Valider");
 
-		shell.setSize(Principal.WINDOW_DEFAULT_WIDTH,
-				Principal.WINDOW_DEFAULT_HEIGHT);
+		shell.setSize(PrincipalSWT.WINDOW_DEFAULT_WIDTH,
+				PrincipalSWT.WINDOW_DEFAULT_HEIGHT);
 		shell.setText("GEMAO - Ajout de personnel 1/2");
 
 		shell.pack();
@@ -160,11 +183,11 @@ public class Principal  {
 
 	private void start() {
 		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
+			if (!Launcher.display.readAndDispatch()) {
+				Launcher.display.sleep();
 			}
 		}
-		display.dispose();
+		//display.dispose();
 	}
 
 }

@@ -1,5 +1,5 @@
 package gemao.IHM.gestionPersonnel;
 
-public class Seconde {
+public class SecondeSWT {
 
 }
