@@ -40,6 +40,26 @@ public class Adherent extends Personne{
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
 	}
+	
+	/**
+	 * Construit un Adhérent.
+	 * @param personne
+	 * @param idMotif
+	 * @param idResponsable
+	 * @param droitImage
+	 * @param dateEntree
+	 * @param dateSortie
+	 * @param qf
+	 */
+	public Adherent(Personne personne, int idMotif, int idResponsable,
+			boolean droitImage, Date dateEntree, Date dateSortie, float qf){
+		super(personne);
+		this.idMotif = idMotif;
+		this.idResponsable = idResponsable;
+		this.droitImage = droitImage;
+		this.dateEntree = dateEntree;
+		this.dateSortie = dateSortie;
+	}
 
 
 	/**

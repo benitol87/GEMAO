@@ -41,6 +41,23 @@ public class Personne {
 		this.email = email;
 		this.qf = qf;
 	}
+	
+	/**
+	 * Construit une Personne à partir d'une personne.
+	 * @param personne
+	 */
+	public Personne(Personne personne){
+		this(personne.getIdPersonne(),
+			personne.getIdAdresse(),
+			personne.getIdCommuneNaiss(),
+			personne.getNom(),
+			personne.getPrenom(),
+			personne.getDateNaissance(),
+			personne.getTelFixe(),
+			personne.getTelPort(),
+			personne.getEmail(),
+			personne.getQf());
+	}
 
 	/**
 	 * @return the idPersonne

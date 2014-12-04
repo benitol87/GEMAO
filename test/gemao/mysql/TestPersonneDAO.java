@@ -40,7 +40,7 @@ public class TestPersonneDAO {
 		
 		//Pour laisser de verifier :-)
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(10-000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
