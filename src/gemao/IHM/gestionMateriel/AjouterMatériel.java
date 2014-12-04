@@ -106,65 +106,8 @@ public class AjouterMatériel {
 		t_date_ach = new Text(compositeTop, SWT.BORDER);
 	
 	
-		compositeCenter = new Composite(shell, SWT.NONE);
-		glCenter = new GridLayout();
-		glCenter.numColumns = 3;
-		compositeCenter.setLayout(glCenter);	
-    
-    	
-	
-		compositeCO = new Composite(compositeCenter, SWT.BORDER);
-		glCenterOuest = new GridLayout();
-		glCenterOuest.numColumns = 2;
-		compositeCO.setLayout(glCenterOuest);
-	
-	
-		l_type = new Label(compositeCO, SWT.NONE|SWT.READ_ONLY);
-		l_type.setText("Type :");
-    
-		c_type = new Combo(compositeCO, SWT.NONE);
-    
-    
-		l_qte = new Label(compositeCO, SWT.NONE);
-		l_qte.setText("Quantité :");
-    
-		t_qte = new Text(compositeCO, SWT.BORDER);
-    
-		l_marque = new Label(compositeCO, SWT.NONE);
-		l_marque.setText("Marque :");
-					
-		t_marque = new Text(compositeCO, SWT.BORDER);
-    
-		l_prixU = new Label(compositeCO, SWT.NONE);
-		l_prixU.setText("Prix unitaire :");
-    
-		t_prixU = new Text(compositeCO, SWT.BORDER);
-
-	
-		compositeCE = new Composite(compositeCenter, SWT.NONE);
-		rlCenterEst = new RowLayout(SWT.VERTICAL);
-		compositeCE.setLayout(rlCenterEst);
-	
-	
-    	l_obs = new Label(compositeCE, SWT.NONE);
-    	l_obs.setText("Observations :");
-    
-    	compositeDes = new Composite(compositeCE, SWT.NONE);
-    	fl_obs = new FillLayout();
-    	compositeDes.setLayout(fl_obs);
-    				
-    	t_obs = new Text(compositeDes, SWT.BORDER|SWT.V_SCROLL);
-	
-    	compositeBottom = new Composite(shell, SWT.NONE);
-    	glBottom = new GridLayout();
-    	glBottom.numColumns = 3;
-    	compositeBottom.setLayout(glBottom);
-    		
-    	b_annuler = new Button(compositeBottom, SWT.NONE);
-    	b_annuler.setText("Annuler");
-	
-    	b_valider = new Button(compositeBottom, SWT.NONE);
-    	b_valider.setText("Valider");
+		
+		
 	
     	glPrincipal = new GridLayout();
     	shell.setLayout(glPrincipal);
@@ -175,19 +118,84 @@ public class AjouterMatériel {
 		this.typeEvent();
 		this.start();
 	}
-    
+    public void validerEvent(){
+    	b_valider
+    }
 	public void typeEvent(){
 		c_cat.addSelectionListener(new SelectionListener() {
 
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
-				System.out.println(e.widget);
+				if(((Combo)e.widget).getText().equals("Instrument")){
+					compositeCenter = new Composite(shell, SWT.NONE);
+					glCenter = new GridLayout();
+					glCenter.numColumns = 3;
+					compositeCenter.setLayout(glCenter);	
+			    
+			    	
+				
+					compositeCO = new Composite(compositeCenter, SWT.BORDER);
+					glCenterOuest = new GridLayout();
+					glCenterOuest.numColumns = 2;
+					compositeCO.setLayout(glCenterOuest);
+				
+				
+					l_type = new Label(compositeCO, SWT.NONE|SWT.READ_ONLY);
+					l_type.setText("Type :");
+			    
+					c_type = new Combo(compositeCO, SWT.NONE);
+			    
+			    
+					l_qte = new Label(compositeCO, SWT.NONE);
+					l_qte.setText("Quantité :");
+			    
+					t_qte = new Text(compositeCO, SWT.BORDER);
+			    
+					l_marque = new Label(compositeCO, SWT.NONE);
+					l_marque.setText("Marque :");
+								
+					t_marque = new Text(compositeCO, SWT.BORDER);
+			    
+					l_prixU = new Label(compositeCO, SWT.NONE);
+					l_prixU.setText("Prix unitaire :");
+			    
+					t_prixU = new Text(compositeCO, SWT.BORDER);
+
+				
+					compositeCE = new Composite(compositeCenter, SWT.NONE);
+					rlCenterEst = new RowLayout(SWT.VERTICAL);
+					compositeCE.setLayout(rlCenterEst);
+				
+				
+			    	l_obs = new Label(compositeCE, SWT.NONE);
+			    	l_obs.setText("Observations :");
+			    
+			    	compositeDes = new Composite(compositeCE, SWT.NONE);
+			    	fl_obs = new FillLayout();
+			    	compositeDes.setLayout(fl_obs);
+			    				
+			    	t_obs = new Text(compositeDes, SWT.BORDER|SWT.V_SCROLL);
+				
+			    	compositeBottom = new Composite(shell, SWT.NONE);
+			    	glBottom = new GridLayout();
+			    	glBottom.numColumns = 3;
+			    	compositeBottom.setLayout(glBottom);
+			    		
+			    	b_annuler = new Button(compositeBottom, SWT.NONE);
+			    	b_annuler.setText("Annuler");
+				
+			    	b_valider = new Button(compositeBottom, SWT.NONE);
+			    	b_valider.setText("Valider");
+			    	
+			    	shell.pack();
+				}
+				
 				
 			}
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-					
+					this.widgetDefaultSelected(e);
 				
 			}
 			
