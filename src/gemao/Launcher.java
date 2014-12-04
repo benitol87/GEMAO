@@ -27,8 +27,7 @@ public class Launcher {
 			}
 		});
 		
-		// new StartingScreenSWT();
-		new PrincipalSWT();
+		new StartingScreenSWT();
 	}
 	
 	/**
