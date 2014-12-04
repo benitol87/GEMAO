@@ -1,6 +1,5 @@
 package gemao.IHM.gestionPersonnel;
 
-
 import gemao.Launcher;
 
 import org.eclipse.swt.SWT;
@@ -12,7 +11,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-
 
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
@@ -26,7 +24,6 @@ import org.eclipse.swt.widgets.Text;
 public class SecondeSWT {
 	public static int WINDOW_DEFAULT_WIDTH = 100;
 	public static int WINDOW_DEFAULT_HEIGHT = 100;
-
 
 	/* Décalaration Shell */
 	private Shell shell;
@@ -44,13 +41,11 @@ public class SecondeSWT {
 	private Label label_slash1;
 	private Label label_slash2;
 
-
 	/* Décalaration Text */
 	private Text text_nom;
 	private Text text_prenom;
 	private Text text_duree;
 	private Text text_date_fin;
-
 
 	/* Décalaration Button */
 	private Button button_annuler;
@@ -63,7 +58,6 @@ public class SecondeSWT {
 	private Composite duree;
 	private Composite date_fin;
 	private Composite boutons;
-
 
 	/* Décalaration Combo */
 	private Combo type_contrat;
@@ -84,7 +78,6 @@ public class SecondeSWT {
 		}
 		
 		this.shell = new Shell(Launcher.display, SWT.CLOSE | SWT.TITLE | SWT.MIN | SWT.MAX);
-
 
 		shell.setLayout(new GridLayout(1, true));
 		
@@ -214,7 +207,6 @@ public class SecondeSWT {
 			 */
 			@Override
 			public void mouseDoubleClick(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
