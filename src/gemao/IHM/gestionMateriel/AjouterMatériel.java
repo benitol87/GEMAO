@@ -1,5 +1,7 @@
-package IHM;
+package gemao.IHM.gestionMateriel;
 
+
+import gemao.Launcher;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -19,15 +21,22 @@ import org.eclipse.swt.widgets.Text;
 
 public class AjouterMatériel {
 	
-	public static void main(String[] args) {
-	  
 	
-		Display display = new Display();
+	Shell shell = new Shell(Launcher.display, SWT.CLOSE | SWT.MIN);
+	shell.setSize(2000, 1000);
+	shell.setText("Menu Matériel");
 	
-		Shell shell = new Shell(display, SWT.CLOSE | SWT.MIN);
-		shell.open();
-		shell.setSize(2000, 1000);
-		shell.setText("Menu Matériel");
+	private Label l_cat;
+	private Label l_des;
+	private Label l_var_ach;
+	
+	private Text t_des;
+	private Text t_var_ach;
+	
+	private Combo c_cat;
+	
+	
+	public AjouterMatériel(){
     
 			Composite compositeTop = new Composite(shell, SWT.BORDER);
 			GridLayout glTop = new GridLayout();
@@ -136,12 +145,19 @@ public class AjouterMatériel {
     	GridLayout gridLayout = new GridLayout();
     	shell.setLayout(gridLayout);
     	shell.setLayout(new GridLayout());
+    	
     	shell.pack();
-    
-    
-    	while (!shell.isDisposed()) {
-    		if (!display.readAndDispatch())
-    			display.sleep();
-	   	}
+		shell.open();
+		this.start();
 	}
+    
+    
+    private void start() {
+    	while (!shell.isDisposed()) {
+    		if (!Launcher.display.readAndDispatch()) {
+    			Launcher.display.sleep();
+    		}
+    	}
+    		//display.dispose();
+    }
 }
