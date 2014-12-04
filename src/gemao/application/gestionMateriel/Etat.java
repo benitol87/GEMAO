@@ -16,6 +16,37 @@ public class Etat {
 	public long getIdEtat() {
 		return idEtat;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (idEtat ^ (idEtat >>> 32));
+		result = prime * result
+				+ ((libelleEtat == null) ? 0 : libelleEtat.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Etat other = (Etat) obj;
+		if (idEtat != other.idEtat)
+			return false;
+		if (libelleEtat == null) {
+			if (other.libelleEtat != null)
+				return false;
+		} else if (!libelleEtat.equals(other.libelleEtat))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Etat [idEtat=" + idEtat + ", libelleEtat=" + libelleEtat + "]";
+	}
 	
 	
 }
