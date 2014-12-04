@@ -1,10 +1,10 @@
-package materiel;
+package gemao.application.gestionMateriel;
 
 public class Marque {
-	private final int idMarque;
+	private final long idMarque;
 	private String nomMarque;
 	
-	public Marque(int idMarque, String nomMarque) {
+	public Marque(long idMarque, String nomMarque) {
 		this.idMarque = idMarque;
 		this.nomMarque = nomMarque;
 	}
@@ -17,7 +17,7 @@ public class Marque {
 		this.nomMarque = nomMarque;
 	}
 
-	public int getIdMarque() {
+	public long getIdMarque() {
 		return idMarque;
 	}
 	

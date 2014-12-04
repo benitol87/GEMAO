@@ -1,22 +1,22 @@
-package materiel;
+package gemao.application.gestionMateriel;
 
 public class Materiel {
 
-	private final int idMateriel;
+	private final long idMateriel;
 	private Etat etat;
 	private final Categorie categorie;
 	private final Marque marque;
 	private final String designation;
 	private String typeMat;
-	private final int numSerie;
+	private final long numSerie;
 	private final String dateAchat;
 	private final float valeurAchat;
 	private final float valeurReap;
 	private boolean deplacable;
 	private String observation;
 
-	public Materiel(int idMateriel, Etat etat, Categorie categorie,
-			Marque marque, String designation, String typeMat, int numSerie,
+	public Materiel(long idMateriel, Etat etat, Categorie categorie,
+			Marque marque, String designation, String typeMat, long numSerie,
 			String dateAchat, float valeurAchat, float valeurReap,
 			boolean deplacable, String observation) {
 		this.idMateriel = idMateriel;
@@ -31,6 +31,21 @@ public class Materiel {
 		this.valeurReap = valeurReap;
 		this.deplacable = deplacable;
 		this.observation = observation;
+	}
+	
+	public Materiel(Materiel m){
+		this(m.getIdMateriel(),
+				m.getEtat(),
+				m.getCategorie(),
+				m.getMarque(),
+				m.getDesignation(),
+				m.getTypeMat(),
+				m.getNumSerie(),
+				m.getDateAchat(),
+				m.getValeurAchat(),
+				m.getValeurReap(),
+				m.isDeplacable(),
+				m.getObservation());
 	}
 
 	public Etat getEtat() {
@@ -73,7 +88,7 @@ public class Materiel {
 		this.observation = observation;
 	}
 
-	public int getIdMateriel() {
+	public long getIdMateriel() {
 		return idMateriel;
 	}
 
@@ -81,7 +96,7 @@ public class Materiel {
 		return designation;
 	}
 
-	public int getNumSerie() {
+	public long getNumSerie() {
 		return numSerie;
 	}
 

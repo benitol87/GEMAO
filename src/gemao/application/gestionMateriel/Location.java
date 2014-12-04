@@ -1,4 +1,6 @@
-package materiel;
+package gemao.application.gestionMateriel;
+
+import gemao.entity.Personne;
 
 public class Location {
 	private final Personne personne;
@@ -9,6 +11,7 @@ public class Location {
 	private final String dateRetour;
 	private final int duree;
 	private float montant;
+	
 	public Location(Personne personne, Materiel materiel, Etat etatDebut,
 			Etat etatFin, String dateEmprunt, String dateRetour, int duree,
 			float montant) {
