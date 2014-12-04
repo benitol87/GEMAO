@@ -181,21 +181,25 @@ public class SecondeSWT {
 		button_annuler.addMouseListener(new MouseListener() {
 			
 			/**
-			 * Redéfinition de la 
+			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris relaché
 			 */
 			@Override
 			public void mouseUp(MouseEvent arg0) {
 				fenetrePersonnelle1.setVisible(true);
 				shell.dispose();
-				
 			}
 			
+			/**
+			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris enfoncé
+			 */
 			@Override
 			public void mouseDown(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 			
+			/**
+			 * Redéfinition de la méthode de l'écouteur sur le double clic
+			 */
 			@Override
 			public void mouseDoubleClick(MouseEvent arg0) {
 				// TODO Auto-generated method stub
@@ -205,25 +209,35 @@ public class SecondeSWT {
 		
 		button_valider.addMouseListener(new MouseListener() {
 			
+			/**
+			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris relaché
+			 */
 			@Override
 			public void mouseUp(MouseEvent arg0) {
 				
 			}
 			
+			/**
+			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris enfoncé
+			 */
 			@Override
 			public void mouseDown(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 			
+			/**
+			 * Redéfinition de la méthode de l'écouteur sur le double clic
+			 */
 			@Override
 			public void mouseDoubleClick(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
 	}
 
+	/**
+	 * Méthode qui permet de mettre en pause le Launcher
+	 */
 	private void start() {
 		while (!shell.isDisposed()) {
 			if (!Launcher.display.readAndDispatch()) {
