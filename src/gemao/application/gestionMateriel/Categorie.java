@@ -1,7 +1,7 @@
 package gemao.application.gestionMateriel;
 
 public class Categorie {
-	private final long idCategorie;
+	private final int idCategorie;
 	private final String libelleCat;
 	
 	/**
@@ -10,7 +10,7 @@ public class Categorie {
 	 * @param l the l
 	 * @param libelleCat the libelle cat
 	 */
-	public Categorie(long l, String libelleCat) {
+	public Categorie(int l, String libelleCat) {
 		this.idCategorie = l;
 		this.libelleCat = libelleCat;
 	}
@@ -29,7 +29,7 @@ public class Categorie {
 	 *
 	 * @return the id categorie
 	 */
-	public long getIdCategorie() {
+	public int getIdCategorie() {
 		return idCategorie;
 	}
 
