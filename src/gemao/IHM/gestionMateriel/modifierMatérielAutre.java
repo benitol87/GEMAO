@@ -1,5 +1,4 @@
-package IHM;
-
+package gemao.IHM.gestionMaterielq;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
