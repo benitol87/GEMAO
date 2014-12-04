@@ -1,6 +1,8 @@
 package gemao.IHM.gestionPersonnel;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -178,9 +180,53 @@ public class PrincipalSWT  {
 
 		shell.pack();
 		shell.open();
+		this.dispatchEvents();
 		this.start();
 	}
 
+	private void dispatchEvents(){
+		button_annuler.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseUp(MouseEvent arg0) {
+				shell.dispose();
+				
+			}
+			
+			@Override
+			public void mouseDown(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseDoubleClick(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		button_valider.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseUp(MouseEvent arg0) {
+				new SecondeSWT(shell);
+				
+			}
+			
+			@Override
+			public void mouseDown(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseDoubleClick(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
 	private void start() {
 		while (!shell.isDisposed()) {
 			if (!Launcher.display.readAndDispatch()) {
