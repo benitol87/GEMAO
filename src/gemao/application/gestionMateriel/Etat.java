@@ -1,7 +1,7 @@
 package gemao.application.gestionMateriel;
 
 public class Etat {
-	private final long idEtat;
+	private final int idEtat;
 	private String libelleEtat;
 	
 	/**
@@ -10,7 +10,7 @@ public class Etat {
 	 * @param idEtat the id etat
 	 * @param libelleEtat the libelle etat
 	 */
-	public Etat(long idEtat, String libelleEtat) {
+	public Etat(int idEtat, String libelleEtat) {
 		this.idEtat = idEtat;
 		this.libelleEtat = libelleEtat;
 	}
@@ -38,7 +38,7 @@ public class Etat {
 	 *
 	 * @return the id etat
 	 */
-	public long getIdEtat() {
+	public int getIdEtat() {
 		return idEtat;
 	}
 	

@@ -1,7 +1,7 @@
 package gemao.application.gestionMateriel;
 
 public class Marque {
-	private final long idMarque;
+	private final int idMarque;
 	private String nomMarque;
 	
 	/**
@@ -10,7 +10,7 @@ public class Marque {
 	 * @param idMarque the id marque
 	 * @param nomMarque the nom marque
 	 */
-	public Marque(long idMarque, String nomMarque) {
+	public Marque(int idMarque, String nomMarque) {
 		this.idMarque = idMarque;
 		this.nomMarque = nomMarque;
 	}
@@ -38,7 +38,7 @@ public class Marque {
 	 *
 	 * @return the id marque
 	 */
-	public long getIdMarque() {
+	public int getIdMarque() {
 		return idMarque;
 	}
 
