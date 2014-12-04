@@ -1,12 +1,17 @@
 package gemao.IHM.gestionPersonnel;
 
+import gemao.Launcher;
+
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
+
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -20,10 +25,12 @@ public class SecondeSWT {
 	public static int WINDOW_DEFAULT_WIDTH = 100;
 	public static int WINDOW_DEFAULT_HEIGHT = 100;
 
-	private Display display;
+	/* Décalaration Shell */
 	private Shell shell;
+	private Shell fenetrePersonnelle1;
 	
-	/* Création Label */
+	/* Décalaration Label */
+
 	private Label label_nom;
 	private Label label_prenom;
 	private Label label_contrat;
@@ -34,17 +41,17 @@ public class SecondeSWT {
 	private Label label_slash1;
 	private Label label_slash2;
 
-	/* Création Text */
+	/* Décalaration Text */
 	private Text text_nom;
 	private Text text_prenom;
 	private Text text_duree;
 	private Text text_date_fin;
 
-	/* Création Button */
+	/* Décalaration Button */
 	private Button button_annuler;
 	private Button button_valider;
 
-	/* Création Composite */
+	/* Décalaration Composite */
 	private Composite nom;
 	private Composite contrat;
 	private Composite date_debut;
@@ -52,7 +59,7 @@ public class SecondeSWT {
 	private Composite date_fin;
 	private Composite boutons;
 
-	/* Création Combo */
+	/* Décalaration Combo */
 	private Combo type_contrat;
 	private Combo combo_jour;
 	private Combo combo_mois;
@@ -60,11 +67,17 @@ public class SecondeSWT {
 
 	/**
 	 * Constructeur par défaut de la classe SecondeSWT
+
+	 * @param fenetrePersonnelle1
+	 * 		Le shell de la classe PrincipalSWT
 	 */
-	public SecondeSWT(Shell shell) {
-		display = new Display();
+	public SecondeSWT(Shell fenetrePersonnelle1) {
+		if (fenetrePersonnelle1 != null) {
+			this.fenetrePersonnelle1 = fenetrePersonnelle1;
+			fenetrePersonnelle1.setVisible(false);;
+		}
 		
-		this.shell = shell;
+		this.shell = new Shell(Launcher.display, SWT.CLOSE | SWT.TITLE | SWT.MIN | SWT.MAX);
 
 		shell.setLayout(new GridLayout(1, true));
 		
@@ -161,16 +174,79 @@ public class SecondeSWT {
 		
 		shell.pack();
 		shell.open();
+
+		this.dispatchEvents();
 		this.start();
 	}
+	
+	/**
+	 * Méthode d'ajout des écouteurs
+	 */
+	private void dispatchEvents(){
+		button_annuler.addMouseListener(new MouseListener() {
+			
+			/**
+			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris relaché
+			 */
+			@Override
+			public void mouseUp(MouseEvent arg0) {
+				fenetrePersonnelle1.setVisible(true);
+				shell.dispose();
+			}
+			
+			/**
+			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris enfoncé
+			 */
+			@Override
+			public void mouseDown(MouseEvent arg0) {
+				
+			}
+			
+			/**
+			 * Redéfinition de la méthode de l'écouteur sur le double clic
+			 */
+			@Override
+			public void mouseDoubleClick(MouseEvent arg0) {
+				
+			}
+		});
+		
+		button_valider.addMouseListener(new MouseListener() {
+			
+			/**
+			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris relaché
+			 */
+			@Override
+			public void mouseUp(MouseEvent arg0) {
+				
+			}
+			
+			/**
+			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris enfoncé
+			 */
+			@Override
+			public void mouseDown(MouseEvent arg0) {
+				
+			}
+			
+			/**
+			 * Redéfinition de la méthode de l'écouteur sur le double clic
+			 */
+			@Override
+			public void mouseDoubleClick(MouseEvent arg0) {
+				
+			}
+		});
+	}
 
+	/**
+	 * Méthode qui permet de mettre en pause le Launcher
+	 */
 	private void start() {
 		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
+			if (!Launcher.display.readAndDispatch()) {
+				Launcher.display.sleep();
 			}
 		}
-		
-		display.dispose();
 	}
 }

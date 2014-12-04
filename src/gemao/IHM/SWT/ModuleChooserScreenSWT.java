@@ -1,6 +1,7 @@
 package gemao.IHM.SWT;
 
 import gemao.Launcher;
+import gemao.IHM.gestionMateriel.AjouterMatériel;
 import gemao.IHM.gestionPersonnel.PrincipalSWT;
 
 import org.eclipse.swt.SWT;
@@ -124,6 +125,27 @@ public class ModuleChooserScreenSWT {
 			@Override
 			public void mouseUp(MouseEvent arg0) {
 				new PrincipalSWT();
+				
+			}
+			
+			@Override
+			public void mouseDown(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseDoubleClick(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		b_materiel.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseUp(MouseEvent arg0) {
+				new AjouterMatériel();
 				
 			}
 			
