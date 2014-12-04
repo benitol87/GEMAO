@@ -1,20 +1,88 @@
 package gemao.application.gestionMateriel;
 
 public class Etat {
-	private final int idEtat;
+	private final long idEtat;
 	private String libelleEtat;
-	public Etat(int idEtat, String libelleEtat) {
+	
+	/**
+	 * Instantiates a new etat.
+	 *
+	 * @param idEtat the id etat
+	 * @param libelleEtat the libelle etat
+	 */
+	public Etat(long idEtat, String libelleEtat) {
 		this.idEtat = idEtat;
 		this.libelleEtat = libelleEtat;
 	}
+	
+	/**
+	 * Gets the libelle etat.
+	 *
+	 * @return the libelle etat
+	 */
 	public String getLibelleEtat() {
 		return libelleEtat;
 	}
+	
+	/**
+	 * Sets the libelle etat.
+	 *
+	 * @param libelleEtat the new libelle etat
+	 */
 	public void setLibelleEtat(String libelleEtat) {
 		this.libelleEtat = libelleEtat;
 	}
-	public int getIdEtat() {
+	
+	/**
+	 * Gets the id etat.
+	 *
+	 * @return the id etat
+	 */
+	public long getIdEtat() {
 		return idEtat;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (idEtat ^ (idEtat >>> 32));
+		result = prime * result
+				+ ((libelleEtat == null) ? 0 : libelleEtat.hashCode());
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Etat other = (Etat) obj;
+		if (idEtat != other.idEtat)
+			return false;
+		if (libelleEtat == null) {
+			if (other.libelleEtat != null)
+				return false;
+		} else if (!libelleEtat.equals(other.libelleEtat))
+			return false;
+		return true;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Etat [idEtat=" + idEtat + ", libelleEtat=" + libelleEtat + "]";
 	}
 	
 	
