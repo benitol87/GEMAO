@@ -1,5 +1,7 @@
 package gemao.application.gestionMateriel;
 
+import java.sql.Date;
+
 public class Materiel {
 
 	private final long idMateriel;
@@ -9,7 +11,7 @@ public class Materiel {
 	private final String designation;
 	private String typeMat;
 	private final long numSerie;
-	private final String dateAchat;
+	private final Date dateAchat;
 	private final float valeurAchat;
 	private final float valeurReap;
 	private boolean deplacable;
@@ -33,7 +35,7 @@ public class Materiel {
 	 */
 	public Materiel(long idMateriel, Etat etat, Categorie categorie,
 			Marque marque, String designation, String typeMat, long numSerie,
-			String dateAchat, float valeurAchat, float valeurReap,
+			Date dateAchat, float valeurAchat, float valeurReap,
 			boolean deplacable, String observation) {
 		this.idMateriel = idMateriel;
 		this.etat = etat;
@@ -288,7 +290,7 @@ public class Materiel {
 	 *
 	 * @return the date achat
 	 */
-	public String getDateAchat() {
+	public Date getDateAchat() {
 		return dateAchat;
 	}
 
