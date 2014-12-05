@@ -1,5 +1,7 @@
 package gemao.application.gestionMateriel;
 
+import java.sql.Date;
+
 import gemao.entity.Personne;
 
 public class Location {
@@ -7,8 +9,8 @@ public class Location {
 	private final Materiel materiel;
 	private final Etat etatDebut;
 	private final Etat etatFin;
-	private final String dateEmprunt;
-	private final String dateRetour;
+	private final Date dateEmprunt;
+	private final Date dateRetour;
 	private final int duree;
 	private float montant;
 
@@ -109,7 +111,7 @@ public class Location {
 	 * @param montant the montant
 	 */
 	public Location(Personne personne, Materiel materiel, Etat etatDebut,
-			Etat etatFin, String dateEmprunt, String dateRetour, int duree,
+			Etat etatFin, Date dateEmprunt, Date dateRetour, int duree,
 			float montant) {
 		this.personne = personne;
 		this.materiel = materiel;
@@ -180,7 +182,7 @@ public class Location {
 	 *
 	 * @return the date emprunt
 	 */
-	public String getDateEmprunt() {
+	public Date getDateEmprunt() {
 		return dateEmprunt;
 	}
 
@@ -189,7 +191,7 @@ public class Location {
 	 *
 	 * @return the date retour
 	 */
-	public String getDateRetour() {
+	public Date getDateRetour() {
 		return dateRetour;
 	}
 
