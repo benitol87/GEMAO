@@ -13,7 +13,7 @@ public class Personne {
 	private String telFixe;
 	private String telPort;
 	private String email;
-	private float qf;
+	
 	
 	/**
 	 * Construit une Personne
@@ -29,7 +29,7 @@ public class Personne {
 	 */
 	public Personne(long idPersonne, long idAdresse, long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
-			String telPort, String email, float qf) {
+			String telPort, String email) {
 		this.idPersonne = idPersonne;
 		this.idAdresse = idAdresse;
 		this.idCommuneNaiss = idCommuneNaiss;
@@ -39,11 +39,10 @@ public class Personne {
 		this.telFixe = telFixe;
 		this.telPort = telPort;
 		this.email = email;
-		this.qf = qf;
 	}
 	
 	/**
-	 * Construit une Personne à partir d'une personne.
+	 * Construit une Personne ï¿½ partir d'une personne.
 	 * @param personne
 	 */
 	public Personne(Personne personne){
@@ -55,8 +54,7 @@ public class Personne {
 			personne.getDateNaissance(),
 			personne.getTelFixe(),
 			personne.getTelPort(),
-			personne.getEmail(),
-			personne.getQf());
+			personne.getEmail());
 	}
 
 	/**
@@ -186,13 +184,7 @@ public class Personne {
 	}
 
 
-	public float getQf() {
-		return qf;
-	}
 
-	public void setQf(float qf) {
-		this.qf = qf;
-	}
 	
 
 	@Override
@@ -208,7 +200,6 @@ public class Personne {
 		result = prime * result + (int) (idPersonne ^ (idPersonne >>> 32));
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + Float.floatToIntBits(qf);
 		result = prime * result + ((telFixe == null) ? 0 : telFixe.hashCode());
 		result = prime * result + ((telPort == null) ? 0 : telPort.hashCode());
 		return result;
@@ -248,8 +239,6 @@ public class Personne {
 			if (other.prenom != null)
 				return false;
 		} else if (!prenom.equals(other.prenom))
-			return false;
-		if (Float.floatToIntBits(qf) != Float.floatToIntBits(other.qf))
 			return false;
 		if (telFixe == null) {
 			if (other.telFixe != null)

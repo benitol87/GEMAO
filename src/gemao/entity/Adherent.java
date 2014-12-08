@@ -8,6 +8,7 @@ public class Adherent extends Personne{
 	private boolean droitImage;
 	private Date dateEntree;
 	private Date dateSortie;
+	private float qf;
 	
 	
 	/**
@@ -33,16 +34,17 @@ public class Adherent extends Personne{
 			String telPort, String email, int idMotif, int idResponsable,
 			boolean droitImage, Date dateEntree, Date dateSortie, float qf) {
 		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
-				dateNaissance, telFixe, telPort, email, qf);
+				dateNaissance, telFixe, telPort, email);
 		this.idMotif = idMotif;
 		this.idResponsable = idResponsable;
 		this.droitImage = droitImage;
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
+		this.qf = qf;
 	}
 	
 	/**
-	 * Construit un Adhérent.
+	 * Construit un Adhï¿½rent.
 	 * @param personne
 	 * @param idMotif
 	 * @param idResponsable
@@ -59,6 +61,7 @@ public class Adherent extends Personne{
 		this.droitImage = droitImage;
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
+		this.qf = qf;
 	}
 
 
@@ -142,6 +145,20 @@ public class Adherent extends Personne{
 	}
 
 
+	/**
+	 * @return the qf
+	 */
+	public float getQf() {
+		return qf;
+	}
+
+	/**
+	 * @param qf the qf to set
+	 */
+	public void setQf(float qf) {
+		this.qf = qf;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -162,24 +179,24 @@ public class Adherent extends Personne{
 		return builder.toString();
 	}
 
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		long result = super.hashCode();
+		int result = super.hashCode();
 		result = prime * result
 				+ ((dateEntree == null) ? 0 : dateEntree.hashCode());
 		result = prime * result
 				+ ((dateSortie == null) ? 0 : dateSortie.hashCode());
 		result = prime * result + (droitImage ? 1231 : 1237);
 		result = prime * result + idMotif;
-		result = prime * result + idResponsable;
-		return (int) result;
+		result = prime * result
+				+ (int) (idResponsable ^ (idResponsable >>> 32));
+		result = prime * result + Float.floatToIntBits(qf);
+		return result;
 	}
-
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -209,9 +226,9 @@ public class Adherent extends Personne{
 			return false;
 		if (idResponsable != other.idResponsable)
 			return false;
+		if (Float.floatToIntBits(qf) != Float.floatToIntBits(other.qf))
+			return false;
 		return true;
 	}
-	
-	
 	
 }
