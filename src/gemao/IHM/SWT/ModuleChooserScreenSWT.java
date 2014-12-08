@@ -1,7 +1,7 @@
 package gemao.IHM.SWT;
 
 import gemao.Launcher;
-import gemao.IHM.gestionMateriel.AjouterMatériel;
+import gemao.IHM.gestionMateriel.AjouterMateriel;
 import gemao.IHM.gestionPersonnel.PrincipalSWT;
 
 import org.eclipse.swt.SWT;
@@ -52,15 +52,15 @@ public class ModuleChooserScreenSWT {
 		
 		
 		group.setText ("Modules");
-		b_adherent.setText ("Module adhérent");
+		b_adherent.setText ("Module adhï¿½rent");
 		b_archives.setText("Module archives");
 		b_ca.setText("Module conseil d'administration");
-		b_compta.setText("Module comptabilité");
+		b_compta.setText("Module comptabilitï¿½");
 		b_cours.setText("Module cours");
-		b_materiel.setText ("Module matériel");
+		b_materiel.setText ("Module matï¿½riel");
 		b_personnel.setText ("Module personnel");
 		b_partenaires.setText("Module partenaires");
-		b_pedagogique.setText("Module pédagogie");
+		b_pedagogique.setText("Module pï¿½dagogie");
 		b_profils.setText("Module profils");
 		b_salaires.setText("Module salaires");
 		b_quitter.setText("Quitter");
@@ -96,7 +96,7 @@ public class ModuleChooserScreenSWT {
 	}
 	
 	/**
-	 * Méthode attribuant les listeners
+	 * Mï¿½thode attribuant les listeners
 	 */
 	private void dispatchEvents(){
 		b_quitter.addMouseListener(new MouseListener() {
@@ -145,7 +145,7 @@ public class ModuleChooserScreenSWT {
 			
 			@Override
 			public void mouseUp(MouseEvent arg0) {
-				new AjouterMatériel();
+				new AjouterMateriel();
 				
 			}
 			

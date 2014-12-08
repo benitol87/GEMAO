@@ -20,9 +20,9 @@ import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class AjouterMatériel {
+public class AjouterMateriel{
 	
-	
+	private boolean type; 
 	private Shell shell;
 	
 	private Composite compositeTop;
@@ -42,6 +42,7 @@ public class AjouterMatériel {
 	private GridLayout glTop;
 	private GridLayout glCenter;
 	private GridLayout glCenterOuest;
+	private GridLayout glCenterEst;
 	private GridLayout glCenterEstNord;
 	private GridLayout glCenterEstSud;
 	private GridLayout glBottom;
@@ -55,6 +56,10 @@ public class AjouterMatériel {
 	private Label l_marque;
 	private Label l_prixU;
 	private Label l_obs;
+	private Label l_etat;
+	private Label l_num_ser;
+	private Label l_deplace;
+	private Label l_val_reapro;
 	
 	private Text t_des;
 	private Text t_val_ach;
@@ -63,18 +68,23 @@ public class AjouterMatériel {
 	private Text t_marque;
 	private Text t_prixU;
 	private Text t_obs;
+	private Text t_etat;
+	private Text t_num_ser;
+	private Text t_val_reapro;
 	
+	private Combo c_deplace;
 	private Combo c_cat;
 	private Combo c_type;
 	
 	private Button b_valider;
 	private Button b_annuler;
 	
-	public AjouterMatériel(){
+	public AjouterMateriel(){
 		
+		type = false;
 		shell = new Shell(Launcher.display, SWT.CLOSE | SWT.MIN);
 		shell.setSize(2000, 1000);
-		shell.setText("Menu Matériel");
+		shell.setText("Menu Materiel");
     
 		compositeTop = new Composite(shell, SWT.BORDER);
 		glTop = new GridLayout();
@@ -119,14 +129,62 @@ public class AjouterMatériel {
 		this.start();
 	}
     public void validerEvent(){
-    	b_valider
+    	b_valider.addMouseTrackListener(new MouseTrackListener() {
+			
+			@Override
+			public void mouseHover(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExit(MouseEvent arg0) {
+				if(t_des.getText().equals("") && t_val_ach.getText().equals("") && t_date_ach.getText().equals("") && t_marque.getText().equals("") && t_obs.getText().equals("") && 
+					((t_val_reapro.getText().equals("") && t_num_ser.getText().equals("") && t_etat.getText().equals("") ) ||
+					(t_prixU.getText().equals("") && t_qte.getText().equals(""))) 
+					&& type == false){
+					
+				}else{
+					
+				}
+				
+			}
+			
+			@Override
+			public void mouseEnter(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
     }
+
+    public void annulerEvent(){
+    	b_annuler.addMouseTrackListener(new MouseTrackListener() {
+			
+			@Override
+			public void mouseHover(MouseEvent arg0) {
+				// TODO Auto-generated method stub	
+			}
+			
+			@Override
+			public void mouseExit(MouseEvent arg0) {
+							
+			}
+			
+			@Override
+			public void mouseEnter(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+    }
+    
 	public void typeEvent(){
 		c_cat.addSelectionListener(new SelectionListener() {
 
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
-				if(((Combo)e.widget).getText().equals("Instrument")){
+				if(((Combo)e.widget).getText().equals("Autre") && type == false){
 					compositeCenter = new Composite(shell, SWT.NONE);
 					glCenter = new GridLayout();
 					glCenter.numColumns = 3;
@@ -140,14 +198,14 @@ public class AjouterMatériel {
 					compositeCO.setLayout(glCenterOuest);
 				
 				
-					l_type = new Label(compositeCO, SWT.NONE|SWT.READ_ONLY);
+					l_type = new Label(compositeCO, SWT.NONE);
 					l_type.setText("Type :");
 			    
-					c_type = new Combo(compositeCO, SWT.NONE);
+					c_type = new Combo(compositeCO, SWT.NONE|SWT.READ_ONLY);
 			    
 			    
 					l_qte = new Label(compositeCO, SWT.NONE);
-					l_qte.setText("Quantité :");
+					l_qte.setText("Quantitï¿½ :");
 			    
 					t_qte = new Text(compositeCO, SWT.BORDER);
 			    
@@ -188,6 +246,96 @@ public class AjouterMatériel {
 			    	b_valider.setText("Valider");
 			    	
 			    	shell.pack();
+			    	type = true;
+				}
+				
+				if(((Combo)e.widget).getText().equals("Instrument") && type == false){
+					compositeCenter = new Composite(shell, SWT.NONE);
+					glCenter = new GridLayout();
+					glCenter.numColumns = 3;
+					compositeCenter.setLayout(glCenter);	
+			    
+			    	
+				
+					compositeCO = new Composite(compositeCenter, SWT.BORDER);
+					glCenterOuest = new GridLayout();
+					glCenterOuest.numColumns = 2;
+					compositeCO.setLayout(glCenterOuest);
+				
+				
+					l_type = new Label(compositeCO, SWT.NONE);
+					l_type.setText("Type :");
+			    
+					c_type = new Combo(compositeCO, SWT.NONE|SWT.READ_ONLY);
+			    
+			    
+					l_etat = new Label(compositeCO, SWT.NONE);
+					l_etat.setText("Etat :");
+			    
+					t_etat = new Text(compositeCO, SWT.BORDER);
+			    
+					l_marque = new Label(compositeCO, SWT.NONE);
+					l_marque.setText("Marque :");
+								
+					t_marque = new Text(compositeCO, SWT.BORDER);
+			    
+					l_num_ser = new Label(compositeCO, SWT.NONE);
+					l_num_ser.setText("NumÃ©ro de serie :");
+			    
+					t_num_ser = new Text(compositeCO, SWT.BORDER);
+
+				
+					compositeCE = new Composite(compositeCenter, SWT.NONE);
+					glCenterEst = new GridLayout();
+					glCenterEst.numColumns = 1;
+					compositeCE.setLayout(glCenterEst);
+				
+					
+					compositeCEN = new Composite(compositeCE, SWT.BORDER);
+					glCenterEstNord = new GridLayout();
+					glCenterEstNord.numColumns = 2;
+					compositeCEN.setLayout(glCenterEstNord);
+					
+					l_val_reapro = new Label(compositeCEN,SWT.NONE);
+					l_val_reapro.setText("Valeur de reapprovisionnement : ");
+					
+					t_val_reapro = new Text(compositeCEN,SWT.BORDER);
+					
+					l_deplace = new Label(compositeCEN,SWT.NONE);
+					l_deplace.setText("Deplacable : ");
+					
+					c_deplace = new Combo(compositeCEN,SWT.BORDER|SWT.READ_ONLY);
+					c_deplace.add("Oui");
+					c_deplace.add("Non");
+					
+					
+					compositeCES = new Composite(compositeCE, SWT.BORDER);
+					rlCenterEst = new RowLayout(SWT.VERTICAL);
+					compositeCES.setLayout(rlCenterEst);
+					
+				
+			    	l_obs = new Label(compositeCES, SWT.NONE);
+			    	l_obs.setText("Observations :");
+			    
+			    	compositeDes = new Composite(compositeCES, SWT.NONE);
+			    	fl_obs = new FillLayout();
+			    	compositeDes.setLayout(fl_obs);
+			    				
+			    	t_obs = new Text(compositeDes, SWT.BORDER|SWT.V_SCROLL);
+				
+			    	compositeBottom = new Composite(shell, SWT.NONE);
+			    	glBottom = new GridLayout();
+			    	glBottom.numColumns = 3;
+			    	compositeBottom.setLayout(glBottom);
+			    		
+			    	b_annuler = new Button(compositeBottom, SWT.NONE);
+			    	b_annuler.setText("Annuler");
+				
+			    	b_valider = new Button(compositeBottom, SWT.NONE);
+			    	b_valider.setText("Valider");
+			    	
+			    	shell.pack();
+			    	type = true;
 				}
 				
 				
