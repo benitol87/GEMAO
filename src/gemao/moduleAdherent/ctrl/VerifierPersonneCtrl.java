@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 
 import gemao.entity.Personne;
 
-public class AjouterPersonneCtrl {
+public class VerifierPersonneCtrl {
 
-	public AjouterPersonneCtrl() {
+	public VerifierPersonneCtrl() {
 
 	}
 

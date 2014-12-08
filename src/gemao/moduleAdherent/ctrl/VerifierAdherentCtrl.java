@@ -4,8 +4,8 @@ import java.util.Date;
 
 import gemao.entity.Adherent;
 
-public class AjouterAdherentCtrl {
-	public AjouterAdherentCtrl() {
+public class VerifierAdherentCtrl {
+	public VerifierAdherentCtrl() {
 
 	}
 
@@ -20,7 +20,7 @@ public class AjouterAdherentCtrl {
 		/**
 		 * Vérification des informations générales aux personnes
 		 */
-		AjouterPersonneCtrl persCtrl = new AjouterPersonneCtrl();
+		VerifierPersonneCtrl persCtrl = new VerifierPersonneCtrl();
 		if (!persCtrl.verifierInformations(adherent))
 			return false;
 
