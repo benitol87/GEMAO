@@ -20,7 +20,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 	@Override
 	public Personne create(Personne obj) {
 		if (obj == null) {
-			throw new NullPointerException("La personne ne doit pas être null");
+			throw new NullPointerException("La personne ne doit pas ï¿½tre null");
 		}
 
 		long id = 0;
@@ -29,8 +29,8 @@ public class PersonneDAO extends DAOMySql<Personne> {
 		ResultSet result = null;
 		try {
 			String sql = "INSERT INTO Personne(idAdresse, idCommuneNaiss, nom, prenom,"
-					+ "	dateNaissance, tel_fixe, tel_port, email, qf)"
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+					+ "	dateNaissance, tel_fixe, tel_port, email)"
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 			requete = connect.prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
 			requete.setLong(1, obj.getIdAdresse());
@@ -41,7 +41,6 @@ public class PersonneDAO extends DAOMySql<Personne> {
 			requete.setString(6, obj.getTelFixe());
 			requete.setString(7, obj.getTelPort());
 			requete.setString(8, obj.getEmail());
-			requete.setFloat(9, obj.getQf());
 			requete.executeUpdate();
 
 			result = requete.getGeneratedKeys();
@@ -70,7 +69,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 	@Override
 	public void delete(Personne obj) {
 		/*if (obj == null) {
-			throw new NullPointerException("La personne ne doit pas être null");
+			throw new NullPointerException("La personne ne doit pas ï¿½tre null");
 		}
 		
 		if (obj.getIdPersonne() == 0) {
@@ -99,7 +98,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 	@Override
 	public Personne update(Personne obj) {
 		if (obj == null) {
-			throw new NullPointerException("La personne ne doit pas être null");
+			throw new NullPointerException("La personne ne doit pas ï¿½tre null");
 		}
 		
 		PreparedStatement requete = null;
@@ -107,7 +106,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 		try {
 			String sql = "UPDATE Personne SET idAdresse = ?, idCommuneNaiss = ?, nom = ?, "
 					+ "prenom = ?, dateNaissance = ?, tel_fixe = ?, tel_port = ?, "
-					+ "email = ?, qf = ?"
+					+ "email = ?"
 					+ "WHERE idPersonne = ?;";
 			requete = connect.prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
@@ -119,8 +118,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 			requete.setString(6, obj.getTelFixe());
 			requete.setString(7, obj.getTelPort());
 			requete.setString(8, obj.getEmail());
-			requete.setFloat(9, obj.getQf());
-			requete.setLong(10, obj.getIdPersonne());
+			requete.setLong(9, obj.getIdPersonne());
 			requete.executeUpdate();
 
 		} catch (SQLException e) {
@@ -161,7 +159,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 						result.getDate("dateNaissance"),
 						result.getString("tel_fixe"),
 						result.getString("tel_port"),
-						result.getString("email"), result.getFloat("qf"));
+						result.getString("email"));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -201,7 +199,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 						result.getDate("dateNaissance"),
 						result.getString("tel_fixe"),
 						result.getString("tel_port"),
-						result.getString("email"), result.getFloat("qf"));
+						result.getString("email"));
 				liste.add(personne);
 			}
 		} catch (SQLException e1) {
