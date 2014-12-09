@@ -153,9 +153,10 @@ public class PersonneDAO extends DAOMySql<Personne> {
 
 			if (result.first()) {
 				personne = new Personne(result.getInt("idPersonne"),
-						result.getInt("idAdresse"),
-						result.getInt("idCommuneNaiss"),
-						result.getString("nom"), result.getString("prenom"),
+						result.getLong("idAdresse"),
+						result.getLong("idCommuneNaiss"),
+						result.getString("nom"), 
+						result.getString("prenom"),
 						result.getDate("dateNaissance"),
 						result.getString("tel_fixe"),
 						result.getString("tel_port"),

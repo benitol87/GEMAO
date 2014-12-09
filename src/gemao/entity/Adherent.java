@@ -9,6 +9,7 @@ public class Adherent extends Personne{
 	private Date dateEntree;
 	private Date dateSortie;
 	private float qf;
+	private float cotisation;
 	
 	
 	/**
@@ -28,11 +29,12 @@ public class Adherent extends Personne{
 	 * @param dateEntree
 	 * @param dateSortie
 	 * @param qf 
+	 * @param cotisation TODO
 	 */
 	public Adherent(long idPersonne, long idAdresse, long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, int idMotif, long idResponsable,
-			boolean droitImage, Date dateEntree, Date dateSortie, float qf) {
+			boolean droitImage, Date dateEntree, Date dateSortie, float qf, float cotisation) {
 		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email);
 		this.idMotif = idMotif;
@@ -41,6 +43,7 @@ public class Adherent extends Personne{
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
 		this.qf = qf;
+		this.cotisation = cotisation;
 	}
 	
 	/**
@@ -54,7 +57,7 @@ public class Adherent extends Personne{
 	 * @param qf
 	 */
 	public Adherent(Personne personne, int idMotif, long idResponsable,
-			boolean droitImage, Date dateEntree, Date dateSortie, float qf){
+			boolean droitImage, Date dateEntree, Date dateSortie, float qf, float cotisation){
 		super(personne);
 		this.idMotif = idMotif;
 		this.idResponsable = idResponsable;
@@ -62,6 +65,7 @@ public class Adherent extends Personne{
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
 		this.qf = qf;
+		this.cotisation = cotisation;
 	}
 
 
@@ -157,6 +161,24 @@ public class Adherent extends Personne{
 	 */
 	public void setQf(float qf) {
 		this.qf = qf;
+	}
+	
+	
+
+	public float getCotisation() {
+		return cotisation;
+	}
+
+	public void setCotisation(float cotisation) {
+		this.cotisation = cotisation;
+	}
+
+	public void setIdMotif(Integer idMotif) {
+		this.idMotif = idMotif;
+	}
+
+	public void setIdResponsable(Long idResponsable) {
+		this.idResponsable = idResponsable;
 	}
 
 	/* (non-Javadoc)
