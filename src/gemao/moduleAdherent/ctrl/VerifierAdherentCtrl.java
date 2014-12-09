@@ -27,10 +27,18 @@ public class VerifierAdherentCtrl {
 		/**
 		 * Vérification de l'idMotif
 		 */
+		if (adherent.getIdMotif() != null) {
+			// if ( adherent.getIdMotif() n'existe pas)
+			return false;
+		}
 
 		/**
 		 * Vérification de l'idResponsable
 		 */
+		if (adherent.getIdResponsable() != null) {
+			// if ( adherent.getIdMotif() n'existe pas)
+			return false;
+		}
 
 		/**
 		 * Vérification des dates d'entrée et sortie

@@ -26,21 +26,31 @@ public class VerifierPersonneCtrl {
 		/**
 		 * Vérification de l'idPersonne
 		 */
+		if (pers.getIdPersonne() != null && pers.getIdPersonne() < 0) {
+			System.out.println("L'idPersonne doit être positif");
+			return false;
+		}
 
 		/**
 		 * Vérification de l'idAdresse
+		 *
+		 * if (pers.getIdAdresse() n'existe pas){
+		 * syso("L'idAdresse n'existe pas"); return false; }
 		 */
 
 		/**
 		 * Vérification de l'idCommuneNaiss
+		 *
+		 * if (pers.getIdCommune() n'existe pas){
+		 * syso("L'idCommune n'existe pas"); return false; }
 		 */
 
 		/**
-		 * Vérification du nom
+		 * Vérification du nom Masque à définir
 		 */
 
 		/**
-		 * Vérification du prenom
+		 * Vérification du prenom Masque à définir
 		 */
 
 		/**
@@ -54,7 +64,7 @@ public class VerifierPersonneCtrl {
 		}
 
 		/**
-		 * Vérification de l'email
+		 * Vérification de l'email (Vérifier si le masque est correct)
 		 */
 		masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
 				+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";

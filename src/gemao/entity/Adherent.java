@@ -3,8 +3,8 @@ package gemao.entity;
 import java.util.Date;
 
 public class Adherent extends Personne{
-	private int idMotif;
-	private long idResponsable;
+	private Integer idMotif;
+	private Long idResponsable;
 	private boolean droitImage;
 	private Date dateEntree;
 	private Date dateSortie;
@@ -31,7 +31,7 @@ public class Adherent extends Personne{
 	 */
 	public Adherent(long idPersonne, long idAdresse, long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
-			String telPort, String email, int idMotif, int idResponsable,
+			String telPort, String email, int idMotif, long idResponsable,
 			boolean droitImage, Date dateEntree, Date dateSortie, float qf) {
 		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email);
@@ -53,7 +53,7 @@ public class Adherent extends Personne{
 	 * @param dateSortie
 	 * @param qf
 	 */
-	public Adherent(Personne personne, int idMotif, int idResponsable,
+	public Adherent(Personne personne, int idMotif, long idResponsable,
 			boolean droitImage, Date dateEntree, Date dateSortie, float qf){
 		super(personne);
 		this.idMotif = idMotif;
@@ -68,7 +68,7 @@ public class Adherent extends Personne{
 	/**
 	 * @return the idMotif
 	 */
-	public int getIdMotif() {
+	public Integer getIdMotif() {
 		return idMotif;
 	}
 
@@ -84,7 +84,7 @@ public class Adherent extends Personne{
 	/**
 	 * @return the idResponsable
 	 */
-	public long getIdResponsable() {
+	public Long getIdResponsable() {
 		return idResponsable;
 	}
 
@@ -92,7 +92,7 @@ public class Adherent extends Personne{
 	/**
 	 * @param idResponsable the idResponsable to set
 	 */
-	public void setIdResponsable(int idResponsable) {
+	public void setIdResponsable(long idResponsable) {
 		this.idResponsable = idResponsable;
 	}
 

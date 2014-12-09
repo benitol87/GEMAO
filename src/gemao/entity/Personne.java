@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class Personne {
 	
-	private long idPersonne;
-	private long idAdresse;
-	private long idCommuneNaiss;
+	private Long idPersonne;
+	private Long idAdresse;
+	private Long idCommuneNaiss;
 	private String nom;
 	private String prenom;
 	private Date dateNaissance;
@@ -60,42 +60,42 @@ public class Personne {
 	/**
 	 * @return the idPersonne
 	 */
-	public long getIdPersonne() {
+	public Long getIdPersonne() {
 		return idPersonne;
 	}
 
 	/**
 	 * @param idPersonne the idPersonne to set
 	 */
-	public void setIdPersonne(int idPersonne) {
+	public void setIdPersonne(long idPersonne) {
 		this.idPersonne = idPersonne;
 	}
 
 	/**
 	 * @return the idAdresse
 	 */
-	public long getIdAdresse() {
+	public Long getIdAdresse() {
 		return idAdresse;
 	}
 
 	/**
 	 * @param idAdresse the idAdresse to set
 	 */
-	public void setIdAdresse(int idAdresse) {
+	public void setIdAdresse(long idAdresse) {
 		this.idAdresse = idAdresse;
 	}
 
 	/**
 	 * @return the idCommuneNaiss
 	 */
-	public long getIdCommuneNaiss() {
+	public Long getIdCommuneNaiss() {
 		return idCommuneNaiss;
 	}
 
 	/**
 	 * @param idCommuneNaiss the idCommuneNaiss to set
 	 */
-	public void setIdCommuneNaiss(int idCommuneNaiss) {
+	public void setIdCommuneNaiss(long idCommuneNaiss) {
 		this.idCommuneNaiss = idCommuneNaiss;
 	}
 
