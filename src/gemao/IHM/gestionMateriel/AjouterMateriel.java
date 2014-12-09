@@ -79,8 +79,9 @@ public class AjouterMateriel{
 	private Button b_valider;
 	private Button b_annuler;
 	
-	public AjouterMateriel(){
+	public AjouterMateriel(Shell shell2){
 		
+		this.shell = new Shell(Launcher.display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
 		type = false;
 		shell = new Shell(Launcher.display, SWT.CLOSE | SWT.MIN);
 		shell.setSize(2000, 1000);
@@ -90,6 +91,7 @@ public class AjouterMateriel{
 		glTop = new GridLayout();
 		glTop.numColumns = 4;
 		compositeTop.setLayout(glTop);
+		compositeTop.setToolTipText("informations principales");
 	
 		l_cat = new Label(compositeTop, SWT.NONE);
 		l_cat.setText("Categorie :");
@@ -126,6 +128,8 @@ public class AjouterMateriel{
     	shell.pack();
 		shell.open();
 		this.typeEvent();
+		this.annulerEvent();
+		this.validerEvent();
 		this.start();
 	}
     public void validerEvent(){
