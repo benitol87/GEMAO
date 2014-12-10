@@ -17,19 +17,21 @@ public class VerifierAdherentCtrl {
 	 */
 	public boolean verifierInformations(Adherent adherent) {
 
+		boolean isValide = true;
+
 		/**
 		 * Vérification des informations générales aux personnes
 		 */
 		VerifierPersonneCtrl persCtrl = new VerifierPersonneCtrl();
 		if (!persCtrl.verifierInformations(adherent))
-			return false;
+			isValide = false;
 
 		/**
 		 * Vérification de l'idMotif
 		 */
 		if (adherent.getIdMotif() != null) {
 			// if ( adherent.getIdMotif() n'existe pas)
-			return false;
+			isValide = false;
 		}
 
 		/**
@@ -37,22 +39,41 @@ public class VerifierAdherentCtrl {
 		 */
 		if (adherent.getIdResponsable() != null) {
 			// if ( adherent.getIdMotif() n'existe pas)
-			return false;
+			isValide = false;
 		}
 
 		/**
 		 * Vérification des dates d'entrée et sortie
 		 */
 		Date date = new Date();
-		if (adherent.getDateEntree().after(date)) {
+
+		if (adherent.getDateEntree() == null) {
 			System.out
-					.println("La date d'entrée doit être antérieur à la date actuelle");
-			return false;
-		}
-		if (adherent.getDateEntree().after(adherent.getDateSortie())) {
-			System.out
-					.println("La date de sortie doit être postérieur à la date d'entrée");
-			return false;
+					.println("La date d'entrée doit obligatoirement être saisie");
+			isValide = false;
+		} else {
+			if (adherent.getDateEntree().after(date)) {
+				System.out
+						.println("La date d'entrée doit être antérieur à la date actuelle");
+				isValide = false;
+			}
+			if (adherent.getDateSortie() != null) {
+				if (adherent.getDateEntree().after(adherent.getDateSortie())) {
+					System.out
+							.println("La date de sortie doit être postérieur à la date d'entrée");
+					isValide = false;
+				}
+				if (adherent.getDateSortie().after(date)) {
+					System.out
+							.println("La date de sortie doit être antérieur à la date actuelle");
+					isValide = false;
+				}
+			}
+			if (adherent.getDateEntree().before(adherent.getDateNaissance())) {
+				System.out
+						.println("La date de naissance doit être antérieur à la date d'entrée");
+				isValide = false;
+			}
 		}
 
 		/**
@@ -61,9 +82,9 @@ public class VerifierAdherentCtrl {
 		if (adherent.getQf() < 0.0) {
 			System.out
 					.println("Le montant du quotient familiale ne peut pas être négatif");
-			return false;
+			isValide = false;
 		}
 
-		return true;
+		return isValide;
 	}
 }

@@ -3,7 +3,7 @@ package gemao.entity;
 import java.util.Date;
 
 public class Personne {
-	
+
 	private Long idPersonne;
 	private Long idAdresse;
 	private Long idCommuneNaiss;
@@ -13,10 +13,10 @@ public class Personne {
 	private String telFixe;
 	private String telPort;
 	private String email;
-	
-	
+
 	/**
 	 * Construit une Personne
+	 * 
 	 * @param idPersonne
 	 * @param idAdresse
 	 * @param idCommuneNaiss
@@ -27,7 +27,7 @@ public class Personne {
 	 * @param telPort
 	 * @param email
 	 */
-	public Personne(long idPersonne, long idAdresse, long idCommuneNaiss,
+	public Personne(Long idPersonne, Long idAdresse, Long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email) {
 		this.idPersonne = idPersonne;
@@ -40,21 +40,17 @@ public class Personne {
 		this.telPort = telPort;
 		this.email = email;
 	}
-	
+
 	/**
 	 * Construit une Personne � partir d'une personne.
+	 * 
 	 * @param personne
 	 */
-	public Personne(Personne personne){
-		this(personne.getIdPersonne(),
-			personne.getIdAdresse(),
-			personne.getIdCommuneNaiss(),
-			personne.getNom(),
-			personne.getPrenom(),
-			personne.getDateNaissance(),
-			personne.getTelFixe(),
-			personne.getTelPort(),
-			personne.getEmail());
+	public Personne(Personne personne) {
+		this(personne.getIdPersonne(), personne.getIdAdresse(), personne
+				.getIdCommuneNaiss(), personne.getNom(), personne.getPrenom(),
+				personne.getDateNaissance(), personne.getTelFixe(), personne
+						.getTelPort(), personne.getEmail());
 	}
 
 	/**
@@ -65,9 +61,10 @@ public class Personne {
 	}
 
 	/**
-	 * @param idPersonne the idPersonne to set
+	 * @param idPersonne
+	 *            the idPersonne to set
 	 */
-	public void setIdPersonne(long idPersonne) {
+	public void setIdPersonne(Long idPersonne) {
 		this.idPersonne = idPersonne;
 	}
 
@@ -79,9 +76,10 @@ public class Personne {
 	}
 
 	/**
-	 * @param idAdresse the idAdresse to set
+	 * @param idAdresse
+	 *            the idAdresse to set
 	 */
-	public void setIdAdresse(long idAdresse) {
+	public void setIdAdresse(Long idAdresse) {
 		this.idAdresse = idAdresse;
 	}
 
@@ -93,9 +91,10 @@ public class Personne {
 	}
 
 	/**
-	 * @param idCommuneNaiss the idCommuneNaiss to set
+	 * @param idCommuneNaiss
+	 *            the idCommuneNaiss to set
 	 */
-	public void setIdCommuneNaiss(long idCommuneNaiss) {
+	public void setIdCommuneNaiss(Long idCommuneNaiss) {
 		this.idCommuneNaiss = idCommuneNaiss;
 	}
 
@@ -107,7 +106,8 @@ public class Personne {
 	}
 
 	/**
-	 * @param nom the nom to set
+	 * @param nom
+	 *            the nom to set
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -121,7 +121,8 @@ public class Personne {
 	}
 
 	/**
-	 * @param prenom the prenom to set
+	 * @param prenom
+	 *            the prenom to set
 	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
@@ -135,7 +136,8 @@ public class Personne {
 	}
 
 	/**
-	 * @param dateNaissance the dateNaissance to set
+	 * @param dateNaissance
+	 *            the dateNaissance to set
 	 */
 	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
@@ -149,7 +151,8 @@ public class Personne {
 	}
 
 	/**
-	 * @param telFixe the telFixe to set
+	 * @param telFixe
+	 *            the telFixe to set
 	 */
 	public void setTelFixe(String telFixe) {
 		this.telFixe = telFixe;
@@ -163,7 +166,8 @@ public class Personne {
 	}
 
 	/**
-	 * @param telPort the telPort to set
+	 * @param telPort
+	 *            the telPort to set
 	 */
 	public void setTelPort(String telPort) {
 		this.telPort = telPort;
@@ -177,15 +181,12 @@ public class Personne {
 	}
 
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-
-	
 
 	@Override
 	public int hashCode() {
@@ -253,7 +254,9 @@ public class Personne {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -281,8 +284,4 @@ public class Personne {
 		return builder.toString();
 	}
 
-	
-	
-	
-	
 }

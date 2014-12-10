@@ -120,8 +120,8 @@ public class AdherentDAO extends DAOMySql<Adherent>{
 			if (result.first()) {
 				PersonneDAO personneDAO = new PersonneDAO(this.connect);
 				adherent = new Adherent(personneDAO.get(id),
-						result.getInt("idMotifSortie"),
-						result.getLong("idResponsable"),
+						Integer.valueOf(result.getInt("idMotifSortie")),
+						Long.valueOf(result.getLong("idResponsable")),
 						result.getBoolean("droitImage"), 
 						result.getDate("dateEntree"),
 						result.getDate("dateSortie"),
@@ -160,8 +160,8 @@ public class AdherentDAO extends DAOMySql<Adherent>{
 			PersonneDAO personneDAO = new PersonneDAO(this.connect);
 			while (result.next()) {
 				adherent = new Adherent(personneDAO.get(result.getLong("idPersonne")),
-						result.getInt("idMotifSortie"),
-						result.getLong("idResponsable"),
+						Integer.valueOf(result.getInt("idMotifSortie")),
+						Long.valueOf(result.getLong("idResponsable")),
 						result.getBoolean("droitImage"), 
 						result.getDate("dateEntree"),
 						result.getDate("dateSortie"),

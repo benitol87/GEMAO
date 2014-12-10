@@ -152,9 +152,9 @@ public class PersonneDAO extends DAOMySql<Personne> {
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				personne = new Personne(result.getInt("idPersonne"),
-						result.getLong("idAdresse"),
-						result.getLong("idCommuneNaiss"),
+				personne = new Personne(Long.valueOf(result.getInt("idPersonne")),
+						Long.valueOf(result.getLong("idAdresse")),
+						Long.valueOf(result.getLong("idCommuneNaiss")),
 						result.getString("nom"), 
 						result.getString("prenom"),
 						result.getDate("dateNaissance"),
@@ -193,9 +193,9 @@ public class PersonneDAO extends DAOMySql<Personne> {
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				personne = new Personne(result.getLong("idPersonne"),
-						result.getLong("idAdresse"),
-						result.getLong("idCommuneNaiss"),
+				personne = new Personne(Long.valueOf(result.getLong("idPersonne")),
+						Long.valueOf(result.getLong("idAdresse")),
+						Long.valueOf(result.getLong("idCommuneNaiss")),
 						result.getString("nom"), result.getString("prenom"),
 						result.getDate("dateNaissance"),
 						result.getString("tel_fixe"),

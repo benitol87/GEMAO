@@ -31,9 +31,9 @@ public class Adherent extends Personne{
 	 * @param qf 
 	 * @param cotisation TODO
 	 */
-	public Adherent(long idPersonne, long idAdresse, long idCommuneNaiss,
+	public Adherent(Long idPersonne, Long idAdresse, Long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
-			String telPort, String email, int idMotif, long idResponsable,
+			String telPort, String email, Integer idMotif, Long idResponsable,
 			boolean droitImage, Date dateEntree, Date dateSortie, float qf, float cotisation) {
 		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email);
@@ -56,7 +56,7 @@ public class Adherent extends Personne{
 	 * @param dateSortie
 	 * @param qf
 	 */
-	public Adherent(Personne personne, int idMotif, long idResponsable,
+	public Adherent(Personne personne, Integer idMotif, Long idResponsable,
 			boolean droitImage, Date dateEntree, Date dateSortie, float qf, float cotisation){
 		super(personne);
 		this.idMotif = idMotif;
@@ -80,7 +80,7 @@ public class Adherent extends Personne{
 	/**
 	 * @param idMotif the idMotif to set
 	 */
-	public void setIdMotif(int idMotif) {
+	public void setIdMotif(Integer idMotif) {
 		this.idMotif = idMotif;
 	}
 
@@ -96,7 +96,7 @@ public class Adherent extends Personne{
 	/**
 	 * @param idResponsable the idResponsable to set
 	 */
-	public void setIdResponsable(long idResponsable) {
+	public void setIdResponsable(Long idResponsable) {
 		this.idResponsable = idResponsable;
 	}
 
@@ -173,13 +173,6 @@ public class Adherent extends Personne{
 		this.cotisation = cotisation;
 	}
 
-	public void setIdMotif(Integer idMotif) {
-		this.idMotif = idMotif;
-	}
-
-	public void setIdResponsable(Long idResponsable) {
-		this.idResponsable = idResponsable;
-	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
