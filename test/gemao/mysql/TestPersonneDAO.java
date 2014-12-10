@@ -9,12 +9,12 @@ import java.util.List;
 public class TestPersonneDAO {
 
 	public static void main(String[] args) {
-		// On récupère une instance de Connection à la base
+		// On rï¿½cupï¿½re une instance de Connection ï¿½ la base
 		Connection co = ConnectionMySql.getInstance();
-		// On créer un Objet PersonneDAO qui gère les opérations sur la base
+		// On crï¿½er un Objet PersonneDAO qui gï¿½re les opï¿½rations sur la base
 		PersonneDAO personneDAO = new PersonneDAO(co);
 		
-		// On recupère la personne dans la base avec l'id = 1
+		// On recupï¿½re la personne dans la base avec l'id = 1
 		Personne personne = personneDAO.get(1);
 		System.out.println(personne);
 		 
@@ -22,7 +22,7 @@ public class TestPersonneDAO {
 		Personne personneNull = personneDAO.get(0);
 		System.out.println(personneNull);
 		
-		//Pour obtenir tous les adhérent
+		//Pour obtenir tous les adhï¿½rent
 		List<Personne> liste = personneDAO.getAll();
 		System.out.println("\n Personnes : ");
 		for(Personne p : liste){
@@ -30,20 +30,20 @@ public class TestPersonneDAO {
 		}
 		
 		System.out.println("\nAjout");
-		//Pour ajouter une personne à la base on creer l'objet correspondant
-		//N.B l'id est égale à 0 car auto incrémentation
+		//Pour ajouter une personne ï¿½ la base on creer l'objet correspondant
+		//N.B l'id est ï¿½gale ï¿½ 0 car auto incrï¿½mentation
 		Personne personneAdd = new Personne(0L, 1L, 1L, "Test", "Riri", new Date(), 
-				"0504030201", "0605040302","riri@unilim.fr", 0.5F );
-		//On ajoute à la base la personne, on récupère la personne effectivement ajouter
+				"0504030201", "0605040302","riri@unilim.fr");
+		//On ajoute ï¿½ la base la personne, on rï¿½cupï¿½re la personne effectivement ajouter
 		Personne rs = personneDAO.create(personneAdd);
 		System.out.println(rs);
 		
 		
-		//Pour mettre à jour on passe une Personne avec l'id correspondant avec les nouvelle
+		//Pour mettre ï¿½ jour on passe une Personne avec l'id correspondant avec les nouvelle
 		//informations
 		rs.setNom("DuChemoile");
 		rs = personneDAO.update(rs);
-		System.out.println("\n Mise à jour !");
+		System.out.println("\n Mise ï¿½ jour !");
 		System.out.println(rs);
 		
 		liste = personneDAO.getAll();
@@ -52,8 +52,8 @@ public class TestPersonneDAO {
 			System.out.println(p);
 		}
 		
-		//Pour supprimer il suffit de passer en paramètre la personne avec l'id correspondant
-		//N.B l'objet peut être vide mis à part pour l'id
+		//Pour supprimer il suffit de passer en paramï¿½tre la personne avec l'id correspondant
+		//N.B l'objet peut ï¿½tre vide mis ï¿½ part pour l'id
 		System.out.println("\nSuppression");
 		try{
 			personneDAO.delete(rs);
