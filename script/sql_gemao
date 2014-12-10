@@ -148,6 +148,7 @@ CREATE TABLE materiel (
 	idCategorie TINYINT NOT NULL,
 	idMarque SMALLINT,
 	idDesignation TINYINT,
+	idFournisseur SMALLINT,
 	typeMateriel VARCHAR(20),
 	numSerie VARCHAR(15),
 	dateAchat DATE,
@@ -159,7 +160,8 @@ CREATE TABLE materiel (
 	CONSTRAINT fk_materiel_etat FOREIGN KEY (idEtat) REFERENCES etat(idEtat),
 	CONSTRAINT fk_materiel_categorie FOREIGN KEY (idCategorie) REFERENCES categorie(idCategorie),
 	CONSTRAINT fk_materiel_marque FOREIGN KEY (idMarque) REFERENCES marque(idMarque),
-	CONSTRAINT fk_materiel_designation FOREIGN KEY (idDesignation) REFERENCES designation(idDesignation)
+	CONSTRAINT fk_materiel_designation FOREIGN KEY (idDesignation) REFERENCES designation(idDesignation),
+	CONSTRAINT fk_materiel_fournisseur FOREIGN KEY (idFournisseur) REFERENCES fournisseur(idFournisseur)
 );
 
 -- Fournisseurs de matériel
@@ -363,9 +365,9 @@ INSERT INTO designation (idDesignation, libelle) VALUES
 	(10, 'Maracas'),
 	(11, 'Crécelle');
 
-INSERT INTO materiel (idMateriel, idEtat, idCategorie, idMarque, idDesignation, typeMateriel, numSerie, dateAchat, valeurAchat, valeurReapprov, deplaceConcert, observation) VALUES
-	(1, 1, 1, 1, 1, 'ETERNA ER-10', 3907658, '2013-09-01', NULL, 4200, 1, NULL),
-	(2, 2, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO materiel (idMateriel, idEtat, idCategorie, idMarque, idDesignation, idFournisseur, typeMateriel, numSerie, dateAchat, valeurAchat, valeurReapprov, deplaceConcert, observation) VALUES
+	(1, 1, 1, 1, 1, 1, 'ETERNA ER-10', 3907658, '2013-09-01', NULL, 4200, 1, NULL),
+	(2, 2, 1, 1, 2, 1, NULL, NULL, NULL, NULL, NULL, 1, NULL);
 	
 INSERT INTO fournisseur (idFournisseur, nom) VALUES
 	(1, 'Fournisseur 1'),
