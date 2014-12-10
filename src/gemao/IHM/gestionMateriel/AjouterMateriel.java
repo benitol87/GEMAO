@@ -79,7 +79,7 @@ public class AjouterMateriel{
 	private Button b_valider;
 	private Button b_annuler;
 	
-	public AjouterMateriel(Shell shell2){
+	public AjouterMateriel(){
 		
 		this.shell = new Shell(Launcher.display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
 		type = false;
@@ -118,9 +118,6 @@ public class AjouterMateriel{
 		t_date_ach = new Text(compositeTop, SWT.BORDER);
 	
 	
-		
-		
-	
     	glPrincipal = new GridLayout();
     	shell.setLayout(glPrincipal);
     	shell.setLayout(new GridLayout());
@@ -128,8 +125,6 @@ public class AjouterMateriel{
     	shell.pack();
 		shell.open();
 		this.typeEvent();
-		this.annulerEvent();
-		this.validerEvent();
 		this.start();
 	}
     public void validerEvent(){
@@ -251,6 +246,9 @@ public class AjouterMateriel{
 			    	
 			    	shell.pack();
 			    	type = true;
+			    	
+			    	annulerEvent();
+					validerEvent();
 				}
 				
 				if(((Combo)e.widget).getText().equals("Instrument") && type == false){
@@ -340,6 +338,9 @@ public class AjouterMateriel{
 			    	
 			    	shell.pack();
 			    	type = true;
+			    	
+			    	annulerEvent();
+					validerEvent();
 				}
 				
 				
