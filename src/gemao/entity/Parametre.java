@@ -15,7 +15,6 @@ public class Parametre {
 	
 	public Parametre(long idParam, float alloc2, float alloc3, float alloc4,
 			float alloc5, float qf_min, float qf_max, Date dateModif) {
-		super();
 		this.idParam = idParam;
 		this.alloc2 = alloc2;
 		this.alloc3 = alloc3;
@@ -24,6 +23,17 @@ public class Parametre {
 		this.qf_min = qf_min;
 		this.qf_max = qf_max;
 		this.dateModif = dateModif;
+	}
+	
+	public Parametre(Parametre param){
+		this.idParam = param.getIdParam();
+		this.alloc2 = param.getAlloc2();
+		this.alloc3 = param.getAlloc3();
+		this.alloc4 = param.getAlloc4();
+		this.alloc5 = param.getAlloc5();
+		this.qf_min = param.getQf_min();
+		this.qf_max = param.getQf_max();
+		this.dateModif = param.getDateModif();
 	}
 
 

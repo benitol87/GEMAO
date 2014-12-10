@@ -46,11 +46,13 @@ public class VerifierPersonneCtrl {
 		 */
 
 		/**
-		 * Vérification du nom Masque à définir
+		 * Vérification du nom 
+		 * Masque à définir
 		 */
 
 		/**
-		 * Vérification du prenom Masque à définir
+		 * Vérification du prenom 
+		 * Masque à définir
 		 */
 
 		/**

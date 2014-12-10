@@ -1,5 +1,10 @@
 package gemao.moduleAdherent.ctrl;
 
+import gemao.entity.Parametre;
+import gemao.mysql.ConnectionMySql;
+import gemao.mysql.ParametreDAO;
+import java.sql.Connection;
+
 public class CalculerQuotientCtrl {
 
 	public CalculerQuotientCtrl() {
@@ -10,31 +15,36 @@ public class CalculerQuotientCtrl {
 	 * Cette fonction permet de calculer
 	 * 
 	 * @param revenus
-	 *            Les revenus du foyer (doit être supérieur à 0)
+	 *            Les revenus du foyer (doit ï¿½tre supï¿½rieur ï¿½ 0)
 	 * @param nbPersFoyer
-	 *            Le nombre de personnes du foyer (doit être supérieur à 0)
+	 *            Le nombre de personnes du foyer (doit ï¿½tre supï¿½rieur ï¿½ 0)
 	 * @param nbEnfFoyer
-	 *            Le nombre d'enfants du foyer (doit être supérieur à 0)
-	 * @return Le quotient calculé
+	 *            Le nombre d'enfants du foyer (doit ï¿½tre supï¿½rieur ï¿½ 0)
+	 * @return Le quotient calculï¿½
 	 */
 	public float calculerQuotient(float revenus, int nbPersFoyer, int nbEnfFoyer) {
 		float alloc, quotient = 0;
+		
+		Connection co = ConnectionMySql.getInstance();
+		ParametreDAO parametreDAO = new ParametreDAO(co);
+		Parametre param = new Parametre(parametreDAO.getLast());
+		
 		switch (nbEnfFoyer) {
 		case 0:
 		case 1:
 			alloc = 0;
 			break;
 		case 2:
-			alloc = 129; // getAlloc2 dans table parametre
+			alloc = param.getAlloc2();
 			break;
 		case 3:
-			alloc = 295; // getAlloc3 dans table parametre
+			alloc = param.getAlloc3();
 			break;
 		case 4:
-			alloc = 460; // getAlloc4 dans table parametre
+			alloc = param.getAlloc4();
 			break;
 		default:
-			alloc = 626; // getAlloc5 dans table parametre
+			alloc = param.getAlloc5();
 			break;
 		}
 

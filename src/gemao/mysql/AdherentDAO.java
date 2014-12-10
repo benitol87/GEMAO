@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gemao.entity.Adherent;
-import gemao.entity.Personne;
 
 public class AdherentDAO extends DAOMySql<Adherent>{
 
