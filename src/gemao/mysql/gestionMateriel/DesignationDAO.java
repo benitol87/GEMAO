@@ -1,6 +1,7 @@
 package gemao.mysql.gestionMateriel;
 
 import gemao.application.gestionMateriel.Categorie;
+import gemao.application.gestionMateriel.Designation;
 import gemao.mysql.DAOMySql;
 
 import java.sql.Connection;
@@ -11,29 +12,29 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategorieDAO extends DAOMySql<Categorie> {
-
-	public CategorieDAO(Connection conn) {
+public class DesignationDAO extends DAOMySql<Designation> {
+	public DesignationDAO(Connection conn) {
 		super(conn);
 	}
 
 	@Override
-	public Categorie create(Categorie obj) {
+	public Designation create(Designation obj) {
 		if (obj == null) {
-			throw new NullPointerException("La categorie ne doit pas etre null");
+			throw new NullPointerException(
+					"La designation ne doit pas etre null");
 		}
 
 		long id = 0;
-		
+
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO Categorie(idCategorie, libelle)"
+			String sql = "INSERT INTO designation(idDesignation, libelle)"
 					+ "VALUES (?, ?);";
 			requete = connect.prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
-			requete.setInt(1, obj.getIdCategorie());
-			requete.setString(2, obj.getLibelleCat());
+			requete.setInt(1, obj.getIdDesignation());
+			requete.setString(2, obj.getLibelleDesignation());
 			requete.executeUpdate();
 
 			result = requete.getGeneratedKeys();
@@ -44,9 +45,9 @@ public class CategorieDAO extends DAOMySql<Categorie> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if(requete != null){
+			if (requete != null) {
 				try {
-					if(result != null){
+					if (result != null) {
 						result.close();
 					}
 					requete.close();
@@ -60,24 +61,27 @@ public class CategorieDAO extends DAOMySql<Categorie> {
 	}
 
 	@Override
-	public void delete(Categorie obj) {
+	public void delete(Designation obj) {
 		if (obj == null) {
-			throw new NullPointerException("La categorie ne doit pas etre null");
+			throw new NullPointerException(
+					"La designation ne doit pas etre null");
 		}
-		
-		if (obj.getIdCategorie() <= 0) {
-			throw new IllegalArgumentException("La categorie ne peut pas avoir un id = 0");
+
+		if (obj.getIdDesignation() == 0) {
+			throw new IllegalArgumentException(
+					"La designation ne peut pas avoir un id = 0");
 		}
-		
+
 		Statement stat = null;
 		try {
-			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
-										ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM categorie WHERE idCategorie = " + obj.getIdCategorie() + ";");
+			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			stat.execute("DELETE FROM designation WHERE idDesignation = "
+					+ obj.getIdDesignation() + ";");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if(stat != null ){
+			if (stat != null) {
 				try {
 					stat.close();
 				} catch (SQLException e) {
@@ -88,25 +92,25 @@ public class CategorieDAO extends DAOMySql<Categorie> {
 	}
 
 	@Override
-	public Categorie update(Categorie obj) {
-		//TODO Comportement par d�faut, a modifier
+	public Designation update(Designation obj) {
+		// TODO Comportement par d�faut, a modifier
 		return null;
 	}
 
 	@Override
-	public Categorie get(long id) {
-		Categorie categorie = null;
+	public Designation get(long id) {
+		Designation designation = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM categorie WHERE idCategorie = ?;";
+			String sql = "SELECT * FROM designation WHERE idDesignation = ?;";
 			requete = connect.prepareStatement(sql);
 			requete.setLong(1, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				categorie = new Categorie(result.getInt("idCategorie"),
+				designation = new Designation(result.getInt("idDesignation"),
 						result.getString("libelle"));
 			}
 		} catch (SQLException e1) {
@@ -123,28 +127,26 @@ public class CategorieDAO extends DAOMySql<Categorie> {
 				}
 			}
 		}
-		return categorie;
+		return designation;
 	}
 
-	
-	
 	@Override
-	public List<Categorie> getAll() {
-		List<Categorie> liste = new ArrayList<>();
+	public List<Designation> getAll() {
+		List<Designation> liste = new ArrayList<>();
 
-		Categorie categorie = null;
+		Designation designation = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM categorie;";
+			String sql = "SELECT * FROM designation;";
 			requete = connect.prepareStatement(sql);
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				categorie = new Categorie(result.getInt("idCategorie"),
+				designation = new Designation(result.getInt("idDesignation"),
 						result.getString("libelle"));
-				liste.add(categorie);
+				liste.add(designation);
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -163,5 +165,4 @@ public class CategorieDAO extends DAOMySql<Categorie> {
 
 		return liste;
 	}
-
 }

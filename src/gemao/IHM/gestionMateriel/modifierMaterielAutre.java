@@ -1,4 +1,4 @@
-package gemao.IHM.gestionMaterielq;
+package gemao.IHM.gestionMateriel;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class modifierMatérielAutre {
+public class modifierMaterielAutre {
 	
 	public static void main(String[] args) {
 	  
@@ -22,7 +22,7 @@ public class modifierMatérielAutre {
 		Shell shell = new Shell(display, SWT.CLOSE | SWT.MIN);
 		shell.open();
 		shell.setSize(2000, 1000);
-		shell.setText("Menu Matériel");
+		shell.setText("Menu Materiel");
     
 			Composite compositeTop = new Composite(shell, SWT.BORDER);
 			GridLayout glTop = new GridLayout();
@@ -63,10 +63,10 @@ public class modifierMatérielAutre {
     
     
 					Label l_qte = new Label(compositeCO, SWT.NONE);
-					l_qte.setText("Quantité :");
+					l_qte.setText("Quantitï¿½ :");
     
 					Text t_qte = new Text(compositeCO, SWT.BORDER);
-					t_qte.setText("La valeur récupérée");
+					t_qte.setText("La valeur rï¿½cupï¿½rï¿½e");
     
 					Label l_marque = new Label(compositeCO, SWT.NONE);
 					l_marque.setText("Marque :");
@@ -85,7 +85,7 @@ public class modifierMatérielAutre {
     				l_obs.setText("Observations :");
     
     				Text t_obs = new Text(compositeCE, SWT.BORDER|SWT.V_SCROLL);
-    				t_obs.setText("La valeur récupérée");
+    				t_obs.setText("La valeur rï¿½cupï¿½rï¿½e");
     				
     		Composite compositeBottom = new Composite(shell, SWT.BORDER);
     		GridLayout glBottom = new GridLayout();

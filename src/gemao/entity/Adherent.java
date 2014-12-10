@@ -180,7 +180,9 @@ public class Adherent extends Personne{
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Adherent [idMotif=");
+		builder.append("Adherent [");
+		builder.append(super.toString());
+		builder.append(", idMotif=");
 		builder.append(idMotif);
 		builder.append(", idResponsable=");
 		builder.append(idResponsable);

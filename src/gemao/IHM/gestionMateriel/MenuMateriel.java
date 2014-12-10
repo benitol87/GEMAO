@@ -69,7 +69,7 @@ public class MenuMateriel {
 			
 			@Override
 			public void mouseUp(MouseEvent arg0) {
-				new AjouterMateriel(shell);
+				new AjouterMateriel();
 				
 			}
 			
