@@ -118,11 +118,11 @@ public class PrincipalSWT  {
 		label_telPor = new Label(haut, SWT.NONE);
 		text_telPor = new Text(haut, SWT.BORDER);
 		label_nom.setText("*NOM : ");
-		label_prenom.setText("*Prénom : ");
+		label_prenom.setText("*PrÃ©nom : ");
 		label_naissance.setText("*Date de naissance : ");
 		label_email.setText("*Adresse Email : ");
-		label_telFix.setText("Téléphone fixe : ");
-		label_telPor.setText("Téléphone portable : ");
+		label_telFix.setText("TÃ©lÃ©phone fixe : ");
+		label_telPor.setText("TÃ©lÃ©phone portable : ");
 
 		// Composite centre
 		groupe_adresse = new Group(centre, SWT.NONE);
@@ -146,7 +146,7 @@ public class PrincipalSWT  {
 		groupe_professionnel.setText("Professionnel");
 		groupe_professionnel.setLayout(new GridLayout(2, true));
 		label_diplome = new Label(groupe_professionnel, SWT.NONE);
-		label_diplome.setText("Diplôme : ");
+		label_diplome.setText("DipÃ´me : ");
 		text_diplome = new Text(groupe_professionnel, SWT.BORDER);
 		/*boutonPlusMoins = new Composite(groupe_professionnel, SWT.NONE);
 		boutonPlusMoins.setLayout(new FillLayout());
