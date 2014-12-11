@@ -30,11 +30,11 @@ public class modifierMaterielAutre {
 			compositeTop.setLayout(glTop);
 	
 				Label l_cat = new Label(compositeTop, SWT.NONE);
-				l_cat.setText("Categorie :");
+				l_cat.setText("Catégorie :");
     
     
 				Label l_des = new Label(compositeTop, SWT.NONE);
-				l_des.setText("Designation :");
+				l_des.setText("Désignation :");
 	
 	
 				Label l_val_ach = new Label(compositeTop, SWT.NONE);
@@ -63,10 +63,10 @@ public class modifierMaterielAutre {
     
     
 					Label l_qte = new Label(compositeCO, SWT.NONE);
-					l_qte.setText("Quantit� :");
+					l_qte.setText("Quantité :");
     
 					Text t_qte = new Text(compositeCO, SWT.BORDER);
-					t_qte.setText("La valeur r�cup�r�e");
+					t_qte.setText("La valeur récupérée");
     
 					Label l_marque = new Label(compositeCO, SWT.NONE);
 					l_marque.setText("Marque :");
@@ -85,7 +85,7 @@ public class modifierMaterielAutre {
     				l_obs.setText("Observations :");
     
     				Text t_obs = new Text(compositeCE, SWT.BORDER|SWT.V_SCROLL);
-    				t_obs.setText("La valeur r�cup�r�e");
+    				t_obs.setText("La valeur récupérée");
     				
     		Composite compositeBottom = new Composite(shell, SWT.BORDER);
     		GridLayout glBottom = new GridLayout();

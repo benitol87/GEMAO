@@ -94,14 +94,14 @@ public class AjouterMateriel{
 		compositeTop.setToolTipText("informations principales");
 	
 		l_cat = new Label(compositeTop, SWT.NONE);
-		l_cat.setText("Categorie :");
+		l_cat.setText("Catégorie :");
     
 		c_cat = new Combo(compositeTop, SWT.NONE|SWT.READ_ONLY);
 		c_cat.add("Instrument");
 		c_cat.add("Autre");
 				    
 		l_des = new Label(compositeTop, SWT.NONE);
-		l_des.setText("Designation :");
+		l_des.setText("Désignation :");
 	
 		t_des = new Text(compositeTop, SWT.BORDER);
 	
@@ -204,7 +204,7 @@ public class AjouterMateriel{
 			    
 			    
 					l_qte = new Label(compositeCO, SWT.NONE);
-					l_qte.setText("Quantit� :");
+					l_qte.setText("Quantité :");
 			    
 					t_qte = new Text(compositeCO, SWT.BORDER);
 			    
@@ -299,12 +299,12 @@ public class AjouterMateriel{
 					compositeCEN.setLayout(glCenterEstNord);
 					
 					l_val_reapro = new Label(compositeCEN,SWT.NONE);
-					l_val_reapro.setText("Valeur de reapprovisionnement : ");
+					l_val_reapro.setText("Valeur de réapprovisionnement : ");
 					
 					t_val_reapro = new Text(compositeCEN,SWT.BORDER);
 					
 					l_deplace = new Label(compositeCEN,SWT.NONE);
-					l_deplace.setText("Deplacable : ");
+					l_deplace.setText("Déplaçable : ");
 					
 					c_deplace = new Combo(compositeCEN,SWT.BORDER|SWT.READ_ONLY);
 					c_deplace.add("Oui");
