@@ -52,15 +52,15 @@ public class ModuleChooserScreenSWT {
 		
 		
 		group.setText ("Modules");
-		b_adherent.setText ("Module adh�rent");
+		b_adherent.setText ("Module adhérent");
 		b_archives.setText("Module archives");
 		b_ca.setText("Module conseil d'administration");
-		b_compta.setText("Module comptabilit�");
+		b_compta.setText("Module comptabilité");
 		b_cours.setText("Module cours");
-		b_materiel.setText ("Module mat�riel");
+		b_materiel.setText ("Module matériel");
 		b_personnel.setText ("Module personnel");
 		b_partenaires.setText("Module partenaires");
-		b_pedagogique.setText("Module p�dagogie");
+		b_pedagogique.setText("Module pédagogie");
 		b_profils.setText("Module profils");
 		b_salaires.setText("Module salaires");
 		b_quitter.setText("Quitter");

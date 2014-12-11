@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * Classe SecondeSWT intervenant après la classe PrincipalSWT
+ * Classe SecondeSWT intervenant aprï¿½s la classe PrincipalSWT
  * @author Coco
  *
  */
@@ -25,11 +25,11 @@ public class SecondeSWT {
 	public static int WINDOW_DEFAULT_WIDTH = 100;
 	public static int WINDOW_DEFAULT_HEIGHT = 100;
 
-	/* Décalaration Shell */
+	/* Dï¿½calaration Shell */
 	private Shell shell;
 	private Shell fenetrePersonnelle1;
 	
-	/* Décalaration Label */
+	/* Dï¿½calaration Label */
 
 	private Label label_nom;
 	private Label label_prenom;
@@ -41,17 +41,17 @@ public class SecondeSWT {
 	private Label label_slash1;
 	private Label label_slash2;
 
-	/* Décalaration Text */
+	/* Dï¿½calaration Text */
 	private Text text_nom;
 	private Text text_prenom;
 	private Text text_duree;
 	private Text text_date_fin;
 
-	/* Décalaration Button */
+	/* Dï¿½calaration Button */
 	private Button button_annuler;
 	private Button button_valider;
 
-	/* Décalaration Composite */
+	/* Dï¿½calaration Composite */
 	private Composite nom;
 	private Composite contrat;
 	private Composite date_debut;
@@ -59,14 +59,14 @@ public class SecondeSWT {
 	private Composite date_fin;
 	private Composite boutons;
 
-	/* Décalaration Combo */
+	/* Dï¿½calaration Combo */
 	private Combo type_contrat;
 	private Combo combo_jour;
 	private Combo combo_mois;
 	private Combo combo_annee;
 
 	/**
-	 * Constructeur par défaut de la classe SecondeSWT
+	 * Constructeur par dï¿½faut de la classe SecondeSWT
 
 	 * @param fenetrePersonnelle1
 	 * 		Le shell de la classe PrincipalSWT
@@ -148,19 +148,19 @@ public class SecondeSWT {
 
 		/* Ajout des textes dans les composants */
 		label_nom.setText("*NOM : ");
-		label_prenom.setText("*Prénom : ");
+		label_prenom.setText("*PrÃ©nom : ");
 		
 		label_contrat.setText("Type de contrat : ");
 		type_contrat.add("CDI");
 		type_contrat.add("CDD");
-		type_contrat.add("Bénévola");
+		type_contrat.add("BÃ©nÃ©vola");
 		
-		label_date_debut.setText("*Date de début : ");
+		label_date_debut.setText("*Date de dÃ©but : ");
 		
 		label_slash1.setText("/");
 		label_slash2.setText("/");
 		
-		label_duree.setText("Durée du contrat : ");
+		label_duree.setText("DurÃ©e du contrat : ");
 		
 		label_mois.setText("mois");
 		
@@ -180,13 +180,13 @@ public class SecondeSWT {
 	}
 	
 	/**
-	 * Méthode d'ajout des écouteurs
+	 * Mï¿½thode d'ajout des ï¿½couteurs
 	 */
 	private void dispatchEvents(){
 		button_annuler.addMouseListener(new MouseListener() {
 			
 			/**
-			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris relaché
+			 * Redï¿½finition de la mï¿½thode de l'ï¿½couteur sur le bouton de la souris relachï¿½
 			 */
 			@Override
 			public void mouseUp(MouseEvent arg0) {
@@ -195,7 +195,7 @@ public class SecondeSWT {
 			}
 			
 			/**
-			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris enfoncé
+			 * Redï¿½finition de la mï¿½thode de l'ï¿½couteur sur le bouton de la souris enfoncï¿½
 			 */
 			@Override
 			public void mouseDown(MouseEvent arg0) {
@@ -203,7 +203,7 @@ public class SecondeSWT {
 			}
 			
 			/**
-			 * Redéfinition de la méthode de l'écouteur sur le double clic
+			 * Redï¿½finition de la mï¿½thode de l'ï¿½couteur sur le double clic
 			 */
 			@Override
 			public void mouseDoubleClick(MouseEvent arg0) {
@@ -214,7 +214,7 @@ public class SecondeSWT {
 		button_valider.addMouseListener(new MouseListener() {
 			
 			/**
-			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris relaché
+			 * Redï¿½finition de la mï¿½thode de l'ï¿½couteur sur le bouton de la souris relachï¿½
 			 */
 			@Override
 			public void mouseUp(MouseEvent arg0) {
@@ -222,7 +222,7 @@ public class SecondeSWT {
 			}
 			
 			/**
-			 * Redéfinition de la méthode de l'écouteur sur le bouton de la souris enfoncé
+			 * Redï¿½finition de la mï¿½thode de l'ï¿½couteur sur le bouton de la souris enfoncï¿½
 			 */
 			@Override
 			public void mouseDown(MouseEvent arg0) {
@@ -230,7 +230,7 @@ public class SecondeSWT {
 			}
 			
 			/**
-			 * Redéfinition de la méthode de l'écouteur sur le double clic
+			 * Redï¿½finition de la mï¿½thode de l'ï¿½couteur sur le double clic
 			 */
 			@Override
 			public void mouseDoubleClick(MouseEvent arg0) {
@@ -240,7 +240,7 @@ public class SecondeSWT {
 	}
 
 	/**
-	 * Méthode qui permet de mettre en pause le Launcher
+	 * Mï¿½thode qui permet de mettre en pause le Launcher
 	 */
 	private void start() {
 		while (!shell.isDisposed()) {
