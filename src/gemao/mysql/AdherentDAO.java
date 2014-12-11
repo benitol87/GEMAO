@@ -26,17 +26,17 @@ public class AdherentDAO extends DAOMySql<Adherent>{
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO Adhérent(idPersonne, idMotifSortie, idResponsable, droitImage,"
+			String sql = "INSERT INTO Adherent(idPersonne, idMotifSortie, idResponsable, droitImage,"
 					+ "	dateEntree, dateSortie, qf, cotisation)"
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 			requete = connect.prepareStatement(sql);
 			requete.setLong(1, obj.getIdPersonne());
-			requete.setLong(2, obj.getIdMotif());
-			requete.setLong(3, obj.getIdResponsable());
+			requete.setObject(2, obj.getIdMotif());
+			requete.setObject(3, obj.getIdResponsable());
 			requete.setInt(4, (obj.isDroitImage()?1:0));
 			requete.setDate(5, new Date(obj.getDateEntree().getTime()));
-			requete.setDate(6, new Date(obj.getDateSortie().getTime()));
-			requete.setFloat(7, obj.getQf());
+			requete.setDate(6, null);
+			requete.setObject(7, obj.getQf());
 			requete.setFloat(8, obj.getCotisation());
 			requete.executeUpdate();
 

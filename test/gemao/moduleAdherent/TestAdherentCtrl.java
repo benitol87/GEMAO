@@ -12,7 +12,7 @@ public class TestAdherentCtrl {
 		Adherent adherent = new Adherent(null, Long.valueOf(1),
 				Long.valueOf(1), "Test", "Jean-Test", new Date("07/08/1995"),
 				"0123456789", "0666666666", "jean.test@test.com", null, null,
-				true, new Date("10/10/2014"), null, 500, 100);
+				true, new Date("10/10/2014"), null, Float.valueOf(500), 100);
 		
 		AjouterAdherentCtrl ajouterAdherentCtrl = new AjouterAdherentCtrl();
 		ajouterAdherentCtrl.ajoutAdherent(adherent);

@@ -8,7 +8,7 @@ public class Adherent extends Personne{
 	private boolean droitImage;
 	private Date dateEntree;
 	private Date dateSortie;
-	private float qf;
+	private Float qf;
 	private float cotisation;
 	
 	
@@ -34,7 +34,7 @@ public class Adherent extends Personne{
 	public Adherent(Long idPersonne, Long idAdresse, Long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, Integer idMotif, Long idResponsable,
-			boolean droitImage, Date dateEntree, Date dateSortie, float qf, float cotisation) {
+			boolean droitImage, Date dateEntree, Date dateSortie, Float qf, float cotisation) {
 		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email);
 		this.idMotif = idMotif;
@@ -57,7 +57,7 @@ public class Adherent extends Personne{
 	 * @param qf
 	 */
 	public Adherent(Personne personne, Integer idMotif, Long idResponsable,
-			boolean droitImage, Date dateEntree, Date dateSortie, float qf, float cotisation){
+			boolean droitImage, Date dateEntree, Date dateSortie, Float qf, float cotisation){
 		super(personne);
 		this.idMotif = idMotif;
 		this.idResponsable = idResponsable;
@@ -152,7 +152,7 @@ public class Adherent extends Personne{
 	/**
 	 * @return the qf
 	 */
-	public float getQf() {
+	public Float getQf() {
 		return qf;
 	}
 
@@ -165,7 +165,7 @@ public class Adherent extends Personne{
 	
 	
 
-	public float getCotisation() {
+	public Float getCotisation() {
 		return cotisation;
 	}
 
