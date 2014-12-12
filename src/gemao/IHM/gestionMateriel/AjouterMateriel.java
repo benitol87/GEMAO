@@ -5,6 +5,7 @@ import gemao.Launcher;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.MouseTrackListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -22,7 +23,9 @@ import org.eclipse.swt.widgets.Text;
 
 public class AjouterMateriel{
 	
-	private boolean type; 
+	private boolean type;
+	private boolean autre;
+	private boolean instrument;
 	private Shell shell;
 	
 	private Composite compositeTop;
@@ -83,6 +86,8 @@ public class AjouterMateriel{
 		
 		this.shell = new Shell(Launcher.display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
 		type = false;
+		instrument = false;
+		autre = false;
 		shell = new Shell(Launcher.display, SWT.CLOSE | SWT.MIN);
 		shell.setSize(2000, 1000);
 		shell.setText("Menu Materiel");
@@ -128,29 +133,22 @@ public class AjouterMateriel{
 		this.start();
 	}
     public void validerEvent(){
-    	b_valider.addMouseTrackListener(new MouseTrackListener() {
+    	b_valider.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseHover(MouseEvent arg0) {
+			public void mouseUp(MouseEvent arg0) {
+				shell.dispose();
+				
+			}
+			
+			@Override
+			public void mouseDown(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				
 			}
 			
 			@Override
-			public void mouseExit(MouseEvent arg0) {
-				if(t_des.getText().equals("") && t_val_ach.getText().equals("") && t_date_ach.getText().equals("") && t_marque.getText().equals("") && t_obs.getText().equals("") && 
-					((t_val_reapro.getText().equals("") && t_num_ser.getText().equals("") && t_etat.getText().equals("") ) ||
-					(t_prixU.getText().equals("") && t_qte.getText().equals(""))) 
-					&& type == false){
-					
-				}else{
-					
-				}
-				
-			}
-			
-			@Override
-			public void mouseEnter(MouseEvent arg0) {
+			public void mouseDoubleClick(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -158,20 +156,22 @@ public class AjouterMateriel{
     }
 
     public void annulerEvent(){
-    	b_annuler.addMouseTrackListener(new MouseTrackListener() {
+    	b_annuler.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseHover(MouseEvent arg0) {
-				// TODO Auto-generated method stub	
+			public void mouseUp(MouseEvent arg0) {
+				shell.dispose();
+				
 			}
 			
 			@Override
-			public void mouseExit(MouseEvent arg0) {
-							
+			public void mouseDown(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
 			}
 			
 			@Override
-			public void mouseEnter(MouseEvent arg0) {
+			public void mouseDoubleClick(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -183,7 +183,9 @@ public class AjouterMateriel{
 
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
+				
 				if(((Combo)e.widget).getText().equals("Autre") && type == false){
+					
 					compositeCenter = new Composite(shell, SWT.NONE);
 					glCenter = new GridLayout();
 					glCenter.numColumns = 3;
