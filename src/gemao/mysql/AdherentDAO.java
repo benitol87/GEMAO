@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gemao.entity.Adherent;
+import gemao.mysql.util.DateUtil;
 
 public class AdherentDAO extends DAOMySql<Adherent>{
 
@@ -26,7 +27,7 @@ public class AdherentDAO extends DAOMySql<Adherent>{
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO Adherent(idPersonne, idMotifSortie, idResponsable, droitImage,"
+			String sql = "INSERT INTO adherent(idPersonne, idMotifSortie, idResponsable, droitImage,"
 					+ "	dateEntree, dateSortie, qf, cotisation)"
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 			requete = connect.prepareStatement(sql);
@@ -34,8 +35,8 @@ public class AdherentDAO extends DAOMySql<Adherent>{
 			requete.setObject(2, obj.getIdMotif());
 			requete.setObject(3, obj.getIdResponsable());
 			requete.setInt(4, (obj.isDroitImage()?1:0));
-			requete.setDate(5, new Date(obj.getDateEntree().getTime()));
-			requete.setDate(6, null);
+			requete.setDate(5, DateUtil.toSqlDate(obj.getDateEntree()));
+			requete.setDate(6, DateUtil.toSqlDate(obj.getDateSortie()));
 			requete.setObject(7, obj.getQf());
 			requete.setFloat(8, obj.getCotisation());
 			requete.executeUpdate();
@@ -72,17 +73,17 @@ public class AdherentDAO extends DAOMySql<Adherent>{
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "UPDATE Adherent SET idMotifSortie = ?, idResponsable = ?, droitImage = ?, "
+			String sql = "UPDATE adherent SET idMotifSortie = ?, idResponsable = ?, droitImage = ?, "
 					+ "dateEntree = ?, dateSortie = ?, qf = ?, cotisation = ? "
 					+ "WHERE idPersonne = ?;";
 			requete = connect.prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
-			requete.setLong(1, obj.getIdMotif());
-			requete.setLong(2, obj.getIdResponsable());
+			requete.setObject(1, obj.getIdMotif());
+			requete.setObject(2, obj.getIdResponsable());
 			requete.setInt(3, (obj.isDroitImage()?1:0));
-			requete.setDate(4, new Date(obj.getDateEntree().getTime()));
-			requete.setDate(5, new Date(obj.getDateSortie().getTime()));
-			requete.setFloat(6, obj.getQf());
+			requete.setDate(4, DateUtil.toSqlDate(obj.getDateEntree()));
+			requete.setDate(5, DateUtil.toSqlDate(obj.getDateSortie()));
+			requete.setObject(6, obj.getQf());
 			requete.setFloat(7, obj.getCotisation());
 			requete.setLong(8, obj.getIdPersonne());
 			requete.executeUpdate();
@@ -119,8 +120,8 @@ public class AdherentDAO extends DAOMySql<Adherent>{
 
 			if (result.first()) {
 				PersonneDAO personneDAO = new PersonneDAO(this.connect);
-				adherent = new Adherent(personneDAO.get(id),
-						Integer.valueOf(result.getInt("idMotifSortie")),
+				adherent = new Adherent(personneDAO.get(result.getLong("idPersonne")),
+						(Integer)(result.getObject("idMotifSortie")),
 						Long.valueOf(result.getLong("idResponsable")),
 						result.getBoolean("droitImage"), 
 						result.getDate("dateEntree"),
@@ -154,13 +155,13 @@ public class AdherentDAO extends DAOMySql<Adherent>{
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM Adherent;";
+			String sql = "SELECT * FROM adherent;";
 			requete = connect.prepareStatement(sql);
 			result = requete.executeQuery();
 			PersonneDAO personneDAO = new PersonneDAO(this.connect);
 			while (result.next()) {
 				adherent = new Adherent(personneDAO.get(result.getLong("idPersonne")),
-						Integer.valueOf(result.getInt("idMotifSortie")),
+						(Integer)(result.getObject("idMotifSortie")),
 						Long.valueOf(result.getLong("idResponsable")),
 						result.getBoolean("droitImage"), 
 						result.getDate("dateEntree"),

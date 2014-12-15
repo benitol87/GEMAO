@@ -1,6 +1,7 @@
 package gemao.mysql;
 
 import gemao.entity.Personne;
+import gemao.mysql.util.DateUtil;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -28,7 +29,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO Personne(idAdresse, idCommuneNaiss, nom, prenom,"
+			String sql = "INSERT INTO personne(idAdresse, idCommuneNaiss, nom, prenom,"
 					+ "	dateNaissance, tel_fixe, tel_port, email)"
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 			requete = connect.prepareStatement(sql,
@@ -37,7 +38,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 			requete.setLong(2, obj.getIdCommuneNaiss());
 			requete.setString(3, obj.getNom());
 			requete.setString(4, obj.getPrenom());
-			requete.setDate(5, new Date(obj.getDateNaissance().getTime()));
+			requete.setDate(5, DateUtil.toSqlDate(obj.getDateNaissance()));
 			requete.setString(6, obj.getTelFixe());
 			requete.setString(7, obj.getTelPort());
 			requete.setString(8, obj.getEmail());
@@ -104,7 +105,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "UPDATE Personne SET idAdresse = ?, idCommuneNaiss = ?, nom = ?, "
+			String sql = "UPDATE personne SET idAdresse = ?, idCommuneNaiss = ?, nom = ?, "
 					+ "prenom = ?, dateNaissance = ?, tel_fixe = ?, tel_port = ?, "
 					+ "email = ?"
 					+ "WHERE idPersonne = ?;";
@@ -146,7 +147,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM Personne WHERE idPersonne = ?;";
+			String sql = "SELECT * FROM personne WHERE idPersonne = ?;";
 			requete = connect.prepareStatement(sql);
 			requete.setLong(1, id);
 			result = requete.executeQuery();
@@ -188,7 +189,7 @@ public class PersonneDAO extends DAOMySql<Personne> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM Personne;";
+			String sql = "SELECT * FROM personne;";
 			requete = connect.prepareStatement(sql);
 			result = requete.executeQuery();
 
