@@ -79,7 +79,7 @@ public class VerifierAdherentCtrl {
 		/**
 		 * Vérification du quotient familiale
 		 */
-		if (adherent.getQf() < 0.0) {
+		if (adherent.getQf()!=null && adherent.getQf() < 0.0) {
 			System.out
 					.println("Le montant du quotient familiale ne peut pas être négatif");
 			isValide = false;
