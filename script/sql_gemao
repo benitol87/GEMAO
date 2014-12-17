@@ -141,6 +141,13 @@ CREATE TABLE designation (
 	CONSTRAINT pk_designation PRIMARY KEY (idDesignation)
 );
 
+-- Fournisseurs de matériel
+CREATE TABLE fournisseur (
+	idFournisseur SMALLINT NOT NULL AUTO_INCREMENT,
+	nom VARCHAR(50) NOT NULL,
+	CONSTRAINT pk_fournisseur PRIMARY KEY (idFournisseur)
+);
+
 -- Instruments, pupitres, etc...
 CREATE TABLE materiel (
 	idMateriel SMALLINT NOT NULL AUTO_INCREMENT,
@@ -162,13 +169,6 @@ CREATE TABLE materiel (
 	CONSTRAINT fk_materiel_marque FOREIGN KEY (idMarque) REFERENCES marque(idMarque),
 	CONSTRAINT fk_materiel_designation FOREIGN KEY (idDesignation) REFERENCES designation(idDesignation),
 	CONSTRAINT fk_materiel_fournisseur FOREIGN KEY (idFournisseur) REFERENCES fournisseur(idFournisseur)
-);
-
--- Fournisseurs de matériel
-CREATE TABLE fournisseur (
-	idFournisseur SMALLINT NOT NULL AUTO_INCREMENT,
-	nom VARCHAR(50) NOT NULL,
-	CONSTRAINT pk_fournisseur PRIMARY KEY (idFournisseur)
 );
 
 -- Entreprises effectuant la réparation ou l'entretien du matériel
@@ -364,15 +364,16 @@ INSERT INTO designation (idDesignation, libelle) VALUES
 	(9, 'Pied de cymbale'),
 	(10, 'Maracas'),
 	(11, 'Crécelle');
-
-INSERT INTO materiel (idMateriel, idEtat, idCategorie, idMarque, idDesignation, idFournisseur, typeMateriel, numSerie, dateAchat, valeurAchat, valeurReapprov, deplaceConcert, observation) VALUES
-	(1, 1, 1, 1, 1, 1, 'ETERNA ER-10', 3907658, '2013-09-01', NULL, 4200, 1, NULL),
-	(2, 2, 1, 1, 2, 1, NULL, NULL, NULL, NULL, NULL, 1, NULL);
 	
 INSERT INTO fournisseur (idFournisseur, nom) VALUES
 	(1, 'Fournisseur 1'),
 	(2, 'Fournisseur 2'),
 	(3, 'Fournisseur 3');
+
+INSERT INTO materiel (idMateriel, idEtat, idCategorie, idMarque, idDesignation, idFournisseur, typeMateriel, numSerie, dateAchat, valeurAchat, valeurReapprov, deplaceConcert, observation) VALUES
+	(1, 1, 1, 1, 1, 1, 'ETERNA ER-10', 3907658, '2013-09-01', NULL, 4200, 1, NULL),
+	(2, 2, 1, 1, 2, 1, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+
 
 INSERT INTO reparateur (idReparateur, nom) VALUES
 	(1, 'Réparateur 1'),
