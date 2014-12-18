@@ -192,6 +192,10 @@ public class Adherent extends Personne{
 		builder.append(dateEntree);
 		builder.append(", dateSortie=");
 		builder.append(dateSortie);
+		builder.append(", qf=");
+		builder.append(qf);
+		builder.append(", cotisation=");
+		builder.append(cotisation);
 		builder.append("]");
 		return builder.toString();
 	}
