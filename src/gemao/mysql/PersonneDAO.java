@@ -2,6 +2,7 @@ package gemao.mysql;
 
 import gemao.entity.Personne;
 import gemao.mysql.util.DateUtil;
+import gemao.mysql.util.NumberUtil;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -154,8 +155,8 @@ public class PersonneDAO extends DAOMySql<Personne> {
 
 			if (result.first()) {
 				personne = new Personne(Long.valueOf(result.getInt("idPersonne")),
-						Long.valueOf(result.getLong("idAdresse")),
-						Long.valueOf(result.getLong("idCommuneNaiss")),
+						NumberUtil.getResultLong(result, "idAdresse"),
+						NumberUtil.getResultLong(result, "idCommuneNaiss"),
 						result.getString("nom"), 
 						result.getString("prenom"),
 						result.getDate("dateNaissance"),
@@ -195,8 +196,8 @@ public class PersonneDAO extends DAOMySql<Personne> {
 
 			while (result.next()) {
 				personne = new Personne(Long.valueOf(result.getLong("idPersonne")),
-						Long.valueOf(result.getLong("idAdresse")),
-						Long.valueOf(result.getLong("idCommuneNaiss")),
+						NumberUtil.getResultLong(result, "idAdresse"),
+						NumberUtil.getResultLong(result, "idCommuneNaiss"),
 						result.getString("nom"), result.getString("prenom"),
 						result.getDate("dateNaissance"),
 						result.getString("tel_fixe"),

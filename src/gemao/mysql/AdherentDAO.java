@@ -1,16 +1,16 @@
 package gemao.mysql;
 
+import gemao.entity.Adherent;
+import gemao.mysql.util.DateUtil;
+import gemao.mysql.util.NumberUtil;
+
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import gemao.entity.Adherent;
-import gemao.mysql.util.DateUtil;
 
 public class AdherentDAO extends DAOMySql<Adherent>{
 
@@ -121,13 +121,13 @@ public class AdherentDAO extends DAOMySql<Adherent>{
 			if (result.first()) {
 				PersonneDAO personneDAO = new PersonneDAO(this.connect);
 				adherent = new Adherent(personneDAO.get(result.getLong("idPersonne")),
-						(Integer)(result.getObject("idMotifSortie")),
-						Long.valueOf(result.getLong("idResponsable")),
+						NumberUtil.getResultInteger(result, "idMotifSortie"),
+						NumberUtil.getResultLong(result,"idResponsable"),
 						result.getBoolean("droitImage"), 
 						result.getDate("dateEntree"),
 						result.getDate("dateSortie"),
-						result.getFloat("qf"),
-						result.getFloat("cotisation"));
+						NumberUtil.getResultFloat(result, "qf"),
+						NumberUtil.getResultFloat(result, "cotisation"));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -161,13 +161,13 @@ public class AdherentDAO extends DAOMySql<Adherent>{
 			PersonneDAO personneDAO = new PersonneDAO(this.connect);
 			while (result.next()) {
 				adherent = new Adherent(personneDAO.get(result.getLong("idPersonne")),
-						(Integer)(result.getObject("idMotifSortie")),
-						Long.valueOf(result.getLong("idResponsable")),
+						NumberUtil.getResultInteger(result, "idMotifSortie"),
+						NumberUtil.getResultLong(result,"idResponsable"),
 						result.getBoolean("droitImage"), 
 						result.getDate("dateEntree"),
 						result.getDate("dateSortie"),
-						result.getFloat("qf"),
-						result.getFloat("cotisation"));
+						NumberUtil.getResultFloat(result, "qf"),
+						NumberUtil.getResultFloat(result, "cotisation"));
 				liste.add(adherent);
 			}
 		} catch (SQLException e1) {
