@@ -4,15 +4,38 @@ import java.sql.Date;
 
 import gemao.entity.Personne;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Location.
+ */
 public class Location {
+	
+	/** The personne. */
 	private final Personne personne;
+	
+	/** The materiel. */
 	private final Materiel materiel;
+	
+	/** The etat debut. */
 	private final Etat etatDebut;
+	
+	/** The etat fin. */
 	private final Etat etatFin;
+	
+	/** The date emprunt. */
 	private final Date dateEmprunt;
+	
+	/** The date retour. */
 	private final Date dateRetour;
+	
+	/** The duree. */
 	private final int duree;
+	
+	/** The montant. */
 	private float montant;
+	
+	/** The reparation. */
+	private final Reparation reparation;
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -98,6 +121,8 @@ public class Location {
 				+ ", duree=" + duree + ", montant=" + montant + "]";
 	}
 
+	
+	
 	/**
 	 * Instantiates a new location.
 	 *
@@ -109,10 +134,11 @@ public class Location {
 	 * @param dateRetour the date retour
 	 * @param duree the duree
 	 * @param montant the montant
+	 * @param reparation the reparation
 	 */
 	public Location(Personne personne, Materiel materiel, Etat etatDebut,
 			Etat etatFin, Date dateEmprunt, Date dateRetour, int duree,
-			float montant) {
+			float montant, Reparation reparation) {
 		this.personne = personne;
 		this.materiel = materiel;
 		this.etatDebut = etatDebut;
@@ -121,6 +147,7 @@ public class Location {
 		this.dateRetour = dateRetour;
 		this.duree = duree;
 		this.montant = montant;
+		this.reparation = reparation;
 	}
 
 	/**
