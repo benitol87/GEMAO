@@ -1,6 +1,6 @@
 package gemao.application.gestionMateriel;
 
-import java.util.Date;
+import java.sql.Date;
 
 // TODO: Auto-generated Javadoc
 /**

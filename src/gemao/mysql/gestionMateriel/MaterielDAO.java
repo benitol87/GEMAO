@@ -21,7 +21,7 @@ public class MaterielDAO extends DAOMySql<Materiel> {
 	@Override
 	public Materiel create(Materiel obj) {
 		if (obj == null) {
-			throw new NullPointerException("Le materiel ne doit pas être null");
+			throw new NullPointerException("Le materiel ne doit pas ï¿½tre null");
 		}
 
 		long id = 0;
@@ -76,7 +76,7 @@ public class MaterielDAO extends DAOMySql<Materiel> {
 	@Override
 	public void delete(Materiel obj) {
 		if (obj == null) {
-			throw new NullPointerException("Le materiel ne doit pas être null");
+			throw new NullPointerException("Le materiel ne doit pas ï¿½tre null");
 		}
 
 		if (obj.getIdMateriel() == 0) {
@@ -88,7 +88,7 @@ public class MaterielDAO extends DAOMySql<Materiel> {
 		try {
 			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM MARQUE WHERE idMarque = "
+			stat.execute("DELETE FROM Materiel WHERE idMateriel = "
 					+ obj.getIdMateriel() + ";");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,7 +117,7 @@ public class MaterielDAO extends DAOMySql<Materiel> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM marque WHERE idMateriel = ?;";
+			String sql = "SELECT * FROM Materiel WHERE idMateriel = ?;";
 			requete = connect.prepareStatement(sql);
 			requete.setLong(1, id);
 			result = requete.executeQuery();
@@ -125,8 +125,7 @@ public class MaterielDAO extends DAOMySql<Materiel> {
 			if (result.first()) {
 				materiel = new Materiel(result.getLong("idMateriel"),
 						new EtatDAO(connect).get(result.getInt("idEtat")),
-						new CategorieDAO(connect).get(result
-								.getInt("idCategorie")),
+						new CategorieDAO(connect).get(result.getInt("idCategorie")),
 						new MarqueDAO(connect).get(result.getInt("idMarque")),
 						result.getString("designation"),
 						result.getString("typeMateriel"),
