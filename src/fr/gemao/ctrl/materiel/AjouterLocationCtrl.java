@@ -41,7 +41,7 @@ public class AjouterLocationCtrl {
 		if (materiel == null) {
 			throw new NullPointerException("Le materiel ne peut etre null");
 		}
-		if (etatFin == null || etatDebut == null) {
+		if (etatDebut == null) {
 			throw new NullPointerException("L'etat ne peut etre null");
 		}
 		if (dateEmprunt == null) {
