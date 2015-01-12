@@ -1,5 +1,7 @@
-package fr.gemao.ancien_mysql.gestionMateriel;
+package gemao.mysql.gestionMateriel;
 
+import gemao.application.gestionMateriel.Categorie;
+import gemao.mysql.DAOMySql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import fr.gemao.entity.materiel.Categorie;
-import fr.gemao.ancien_mysql.DAOMySql;
 
 public class CategorieDAO extends DAOMySql<Categorie> {
 

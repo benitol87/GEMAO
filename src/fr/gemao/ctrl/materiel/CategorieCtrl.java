@@ -3,7 +3,6 @@ package fr.gemao.ctrl.materiel;
 import java.sql.Connection;
 
 import fr.gemao.ancien_mysql.ConnectionMySql;
-import fr.gemao.ancien_mysql.gestionMateriel.CategorieDAO;
 import fr.gemao.entity.materiel.Categorie;
 
 
@@ -20,7 +19,7 @@ public class CategorieCtrl {
 		if(libelle == ""){
 			throw new NullPointerException("Le libelle ne doit pas etre vide");
 		}
-		Categorie categorie = new Categorie(idCat,libelle);
-		new CategorieDAO(ConnectionMySql.getInstance()).create(categorie);
+		
+		new CategorieDAO(ConnectionMySql.getInstance()).creat(categorie);
 	}
 }

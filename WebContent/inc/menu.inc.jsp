@@ -123,3 +123,4 @@
 				<div class="block block-40 clearfix">
 					<p><a href="#" id="trigger" class="menu-trigger">Menu</a></p>
 				</div>
+				<div style="clear:both;"></div>
