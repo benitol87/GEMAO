@@ -313,8 +313,7 @@ public class Contrat {
 		result = prime * result + moisFinContrat;
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result
-				+ ((typeContrat == null) ? 0 : typeContrat.hashCode());
+		result = prime * result + ((typeContrat == null) ? 0 : typeContrat.hashCode());
 		return result;
 	}
 
