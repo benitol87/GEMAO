@@ -1,20 +1,16 @@
 package fr.gemao.sql.gestionMateriel;
 
-import gemao.application.gestionMateriel.Categorie;
-import gemao.mysql.DAOMySql;
+import fr.gemao.entity.materiel.Categorie;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.IDAO;
+import fr.gemao.sql.SQLException;
+import fr.gemao.sql.exception.DAOException;
+import fr.gemao.sql.util.DAOUtilitaires;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+public class CategorieDAO extends IDAO<Categorie> {
 
-public class CategorieDAO extends DAOMySql<Categorie> {
-
-	public CategorieDAO(Connection conn) {
-		super(conn);
+	public CategorieDAO(DAOFactory factory) {
+		super(factory);
 	}
 
 	@Override
@@ -24,37 +20,30 @@ public class CategorieDAO extends DAOMySql<Categorie> {
 		}
 
 		long id = 0;
-		
+		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		try {
-			String sql = "INSERT INTO Categorie(idCategorie, libelle)"
-					+ "VALUES (?, ?);";
-			requete = connect.prepareStatement(sql,
-					Statement.RETURN_GENERATED_KEYS);
-			requete.setInt(1, obj.getIdCategorie());
-			requete.setString(2, obj.getLibelleCat());
-			requete.executeUpdate();
 
-			result = requete.getGeneratedKeys();
-			if (result != null && result.first()) {
-				id = result.getLong(1);
-			}
+		String sql = "INSERT INTO Categorie(idCategorie, libelle)"
+				+ "VALUES (?, ?);";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false,
+			obj.getIdCategorie(),
+			obj.getLibelleCat();
+			
+			int status =  requete.executeUpdate();
+
+			if ( status == 0 ) {
+	            throw new DAOException( "Échec de la création de l'adhérent, aucune ligne ajoutée dans la table." );
+	        }
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DAOException(e);
 		} finally {
-			if(requete != null){
-				try {
-					if(result != null){
-						result.close();
-					}
-					requete.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
+		
 
 		return this.get(id);
 	}
@@ -64,20 +53,22 @@ public class CategorieDAO extends DAOMySql<Categorie> {
 		if (obj == null) {
 			throw new NullPointerException("La categorie ne doit pas etre null");
 		}
-		
+
 		if (obj.getIdCategorie() <= 0) {
-			throw new IllegalArgumentException("La categorie ne peut pas avoir un id = 0");
+			throw new IllegalArgumentException(
+					"La categorie ne peut pas avoir un id = 0");
 		}
-		
+
 		Statement stat = null;
 		try {
-			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
-										ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM categorie WHERE idCategorie = " + obj.getIdCategorie() + ";");
+			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			stat.execute("DELETE FROM categorie WHERE idCategorie = "
+					+ obj.getIdCategorie() + ";");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if(stat != null ){
+			if (stat != null) {
 				try {
 					stat.close();
 				} catch (SQLException e) {
@@ -89,7 +80,7 @@ public class CategorieDAO extends DAOMySql<Categorie> {
 
 	@Override
 	public Categorie update(Categorie obj) {
-		//TODO Comportement par d�faut, a modifier
+		// TODO Comportement par d�faut, a modifier
 		return null;
 	}
 
@@ -126,8 +117,6 @@ public class CategorieDAO extends DAOMySql<Categorie> {
 		return categorie;
 	}
 
-	
-	
 	@Override
 	public List<Categorie> getAll() {
 		List<Categorie> liste = new ArrayList<>();
