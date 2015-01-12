@@ -1,6 +1,8 @@
-package gemao.entity;
+package fr.gemao.entity.adherent;
 
 import java.util.Date;
+
+import fr.gemao.entity.Personne;
 
 public class Adherent extends Personne{
 	private Integer idMotif;
