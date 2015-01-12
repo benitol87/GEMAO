@@ -1,11 +1,12 @@
-package gemao.moduleAdherent.ctrl;
+package fr.gemao.form.adherent;
 
 import java.util.Date;
 
+import fr.gemao.form.VerifierSyntaxePersonne;
 import gemao.entity.Adherent;
 
-public class VerifierAdherentCtrl {
-	public VerifierAdherentCtrl() {
+public class VerifierSyntaxeAdherent {
+	public VerifierSyntaxeAdherent() {
 
 	}
 
@@ -22,7 +23,7 @@ public class VerifierAdherentCtrl {
 		/**
 		 * Vérification des informations générales aux personnes
 		 */
-		VerifierPersonneCtrl persCtrl = new VerifierPersonneCtrl();
+		VerifierSyntaxePersonne persCtrl = new VerifierSyntaxePersonne();
 		if (!persCtrl.verifierInformations(adherent))
 			isValide = false;
 

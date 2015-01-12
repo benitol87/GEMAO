@@ -1,7 +1,8 @@
-package gemao.moduleAdherent.ctrl;
+package fr.gemao.ctrl.adherent;
 
 import java.sql.Connection;
 
+import fr.gemao.form.adherent.VerifierSyntaxeAdherent;
 import gemao.entity.Adherent;
 import gemao.entity.Personne;
 import gemao.mysql.AdherentDAO;
@@ -15,7 +16,7 @@ public class AjouterAdherentCtrl {
 	}
 
 	public void ajoutAdherent(Adherent adherent) {
-		VerifierAdherentCtrl verifAdherent = new VerifierAdherentCtrl();
+		VerifierSyntaxeAdherent verifAdherent = new VerifierSyntaxeAdherent();
 
 		if (verifAdherent.verifierInformations(adherent)) {
 			Personne test1;

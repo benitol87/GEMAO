@@ -1,4 +1,4 @@
-package gemao.moduleAdherent.ctrl;
+package fr.gemao.form;
 
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 
 import gemao.entity.Personne;
 
-public class VerifierPersonneCtrl {
+public class VerifierSyntaxePersonne {
 
-	public VerifierPersonneCtrl() {
+	public VerifierSyntaxePersonne() {
 
 	}
 

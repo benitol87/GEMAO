@@ -1,4 +1,4 @@
-package gemao.moduleAdherent.ctrl;
+package fr.gemao.ctrl.adherent;
 
 import gemao.entity.Parametre;
 import gemao.mysql.ConnectionMySql;

@@ -1,4 +1,4 @@
-package gemao.moduleAdherent.ctrl;
+package fr.gemao.ctrl.adherent;
 
 import java.sql.Connection;
 import java.util.ArrayList;
