@@ -1,4 +1,4 @@
-package gemao.mysql.gestionMateriel;
+package fr.gemao.sql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.gemao.ancien_mysql.gestionMateriel.CategorieDAO;
+import fr.gemao.ancien_mysql.gestionMateriel.MarqueDAO;
 import gemao.application.gestionMateriel.Materiel;
 import gemao.mysql.DAOMySql;
 
