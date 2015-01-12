@@ -7,15 +7,13 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.ancien_mysql.AdherentDAO;
 import fr.gemao.ancien_mysql.ConnectionMySql;
-import fr.gemao.ancien_mysql.PersonneDAO;
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.entity.materiel.Etat;
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.entity.materiel.Materiel;
-import fr.gemao.form.adherent.VerifierSyntaxeAdherent;
+import fr.gemao.ancien_mysql.gestionMateriel.MaterielDAO;
 
 public class MaterielCtrl {
 	public MaterielCtrl() {

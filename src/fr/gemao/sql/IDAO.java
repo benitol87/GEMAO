@@ -1,13 +1,14 @@
-package gemao.mysql;
+package fr.gemao.sql;
 
-import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
-public abstract class DAOMySql<T> {
-	protected Connection connect = null;
+public abstract class IDAO<T> {
+	protected DAOFactory factory = null;
 
-	public DAOMySql(Connection conn){
-		this.connect = conn;
+	public IDAO(DAOFactory factory){
+		this.factory = factory;
 	}
 
 	/**
@@ -28,10 +29,10 @@ public abstract class DAOMySql<T> {
 	public abstract void delete(T obj);
 
 	/**
-	 * Mïéthode de mise à jour d'un objet.
+	 * Mï¿½ï¿½thode de mise ï¿½ jour d'un objet.
 	 * @param obj
-	 * 		Objet à mettre à jour.
-	 * @return l'objet updaté ou null s'il n'est pas trouvé après la mise à jour.
+	 * 		Objet ï¿½ mettre ï¿½ jour.
+	 * @return l'objet updatï¿½ ou null s'il n'est pas trouvï¿½ aprï¿½s la mise ï¿½ jour.
 	 */
 	public abstract T update(T obj);
 
@@ -48,4 +49,17 @@ public abstract class DAOMySql<T> {
 	 * @return la liste de tous les objets.
 	 */
 	public abstract List<T> getAll();
+	
+	/**
+	 * Simple mÃ©thode utilitaire permettant de faire la correspondance (le
+	 * mapping) entre une ligne issue de la table des T (un
+	 * ResultSet) et un bean T.
+	 * 
+	 * @param result
+	 * 		Le rÃ©sultat d'une requÃªte.
+	 * 
+	 * @return L'Objet mapper.
+	 * @throws SQLException 
+	 **/
+	protected abstract T map(ResultSet result) throws SQLException;
 }

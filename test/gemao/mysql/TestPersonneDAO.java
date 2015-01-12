@@ -1,16 +1,18 @@
 package gemao.mysql;
 
-import gemao.entity.Personne;
-
 import java.sql.Connection;
 import java.util.Date;
 import java.util.List;
+
+import fr.gemao.entity.Personne;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.PersonneDAO;
 
 public class TestPersonneDAO {
 
 	public static void main(String[] args) {
 		// On r�cup�re une instance de Connection � la base
-		Connection co = ConnectionMySql.getInstance();
+		DAOFactory co = DAOFactory.getInstance();
 		// On cr�er un Objet PersonneDAO qui g�re les op�rations sur la base
 		PersonneDAO personneDAO = new PersonneDAO(co);
 		
