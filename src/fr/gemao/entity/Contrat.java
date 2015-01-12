@@ -295,4 +295,75 @@ public class Contrat {
 		
 		return personnel;
 	}
+
+	/**
+	 * Redéfinition de la méthode hashCode
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + anneeDebutContrat;
+		result = prime * result + anneeFinContrat;
+		result = prime * result + ((dateFin == null) ? 0 : dateFin.hashCode());
+		result = prime * result + duree;
+		result = prime * result + jourDebutContrat;
+		result = prime * result + jourFinContrat;
+		result = prime * result + moisDebutContrat;
+		result = prime * result + moisFinContrat;
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result
+				+ ((typeContrat == null) ? 0 : typeContrat.hashCode());
+		return result;
+	}
+
+	/**
+	 * Redéfinition de la méthode equals
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contrat other = (Contrat) obj;
+		if (anneeDebutContrat != other.anneeDebutContrat)
+			return false;
+		if (anneeFinContrat != other.anneeFinContrat)
+			return false;
+		if (dateFin == null) {
+			if (other.dateFin != null)
+				return false;
+		} else if (!dateFin.equals(other.dateFin))
+			return false;
+		if (duree != other.duree)
+			return false;
+		if (jourDebutContrat != other.jourDebutContrat)
+			return false;
+		if (jourFinContrat != other.jourFinContrat)
+			return false;
+		if (moisDebutContrat != other.moisDebutContrat)
+			return false;
+		if (moisFinContrat != other.moisFinContrat)
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (prenom == null) {
+			if (other.prenom != null)
+				return false;
+		} else if (!prenom.equals(other.prenom))
+			return false;
+		if (typeContrat == null) {
+			if (other.typeContrat != null)
+				return false;
+		} else if (!typeContrat.equals(other.typeContrat))
+			return false;
+		return true;
+	}
 }
