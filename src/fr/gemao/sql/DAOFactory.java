@@ -97,5 +97,9 @@ public class DAOFactory {
     public PersonneDAO getPersonneDAO(){
     	return new PersonneDAO(this);
     }
+    
+    public ParametreDAO getParametreDAO(){
+    	return new ParametreDAO(this);
+    }
 
 }
