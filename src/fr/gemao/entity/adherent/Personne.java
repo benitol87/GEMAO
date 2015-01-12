@@ -1,4 +1,4 @@
-package gemao.entity;
+package fr.gemao.entity.adherent;
 
 import java.util.Date;
 

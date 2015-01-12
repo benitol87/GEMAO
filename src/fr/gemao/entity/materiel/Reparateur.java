@@ -1,4 +1,4 @@
-package gemao.application.gestionMateriel;
+package fr.gemao.entity.materiel;
 
 // TODO: Auto-generated Javadoc
 /**
