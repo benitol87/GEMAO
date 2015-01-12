@@ -1,8 +1,8 @@
 package fr.gemao.ctrl.adherent;
 
-import gemao.entity.Parametre;
-import gemao.mysql.ConnectionMySql;
-import gemao.mysql.ParametreDAO;
+import fr.gemao.ancien_entity.Parametre;
+import fr.gemao.ancien_mysql.ConnectionMySql;
+import fr.gemao.ancien_mysql.ParametreDAO;
 import java.sql.Connection;
 
 public class CalculerQuotientCtrl {

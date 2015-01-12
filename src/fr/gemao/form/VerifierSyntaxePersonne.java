@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import gemao.entity.Personne;
+import fr.gemao.ancien_entity.Personne;
 
 public class VerifierSyntaxePersonne {
 

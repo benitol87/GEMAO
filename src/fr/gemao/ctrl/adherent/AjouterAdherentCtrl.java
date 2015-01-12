@@ -3,11 +3,11 @@ package fr.gemao.ctrl.adherent;
 import java.sql.Connection;
 
 import fr.gemao.form.adherent.VerifierSyntaxeAdherent;
-import gemao.entity.Adherent;
-import gemao.entity.Personne;
-import gemao.mysql.AdherentDAO;
-import gemao.mysql.ConnectionMySql;
-import gemao.mysql.PersonneDAO;
+import fr.gemao.ancien_entity.Adherent;
+import fr.gemao.ancien_entity.Personne;
+import fr.gemao.ancien_mysql.AdherentDAO;
+import fr.gemao.ancien_mysql.ConnectionMySql;
+import fr.gemao.ancien_mysql.PersonneDAO;
 
 public class AjouterAdherentCtrl {
 

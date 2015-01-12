@@ -2,9 +2,9 @@ package fr.gemao.ctrl.adherent;
 
 import java.sql.Connection;
 
-import gemao.entity.Parametre;
-import gemao.mysql.ConnectionMySql;
-import gemao.mysql.ParametreDAO;
+import fr.gemao.ancien_entity.Parametre;
+import fr.gemao.ancien_mysql.ConnectionMySql;
+import fr.gemao.ancien_mysql.ParametreDAO;
 
 public class CalculerCotisationCtrl {
 	
