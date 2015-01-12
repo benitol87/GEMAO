@@ -1,8 +1,8 @@
 package fr.gemao.ctrl.materiel;
 
 import fr.gemao.ancien_mysql.ConnectionMySql;
-import fr.gemao.ancien_mysql.gestionMateriel.ReparateurDAO;
 import fr.gemao.entity.materiel.Reparateur;
+import fr.gemao.sql.gestionMateriel.ReparateurDAO;
 
 public class ReparateurCtrl {
 	

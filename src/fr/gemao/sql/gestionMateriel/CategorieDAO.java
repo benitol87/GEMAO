@@ -1,4 +1,4 @@
-package gemao.mysql.gestionMateriel;
+package fr.gemao.sql.gestionMateriel;
 
 import gemao.application.gestionMateriel.Categorie;
 import gemao.mysql.DAOMySql;

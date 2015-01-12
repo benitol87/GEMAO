@@ -1,4 +1,8 @@
-package fr.gemao.ancien_mysql.gestionMateriel;
+package fr.gemao.sql.gestionMateriel;
+
+import gemao.application.gestionMateriel.Categorie;
+import gemao.application.gestionMateriel.Etat;
+import gemao.mysql.DAOMySql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,32 +12,29 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.ancien_mysql.DAOMySql;
-import fr.gemao.entity.materiel.Marque;
+public class EtatDAO extends DAOMySql<Etat> {
 
-public class MarqueDAO extends DAOMySql<Marque> {
-
-	public MarqueDAO(Connection conn) {
+	public EtatDAO(Connection conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
-	public Marque create(Marque obj) {
+	@Override
+	public Etat create(Etat obj) {
 		if (obj == null) {
-			throw new NullPointerException("La marque ne doit pas etre null");
+			throw new NullPointerException("L'etat ne doit pas etre null");
 		}
 
 		long id = 0;
-
+		
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO MARQUE(idMarque, nomMarque)"
+			String sql = "INSERT INTO etat(idEtat, libelle)"
 					+ "VALUES (?, ?);";
 			requete = connect.prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
-			requete.setInt(1, obj.getIdMarque());
-			requete.setString(2, obj.getNomMarque());
+			requete.setInt(1, obj.getIdEtat());
+			requete.setString(2, obj.getLibelleEtat());
 			requete.executeUpdate();
 
 			result = requete.getGeneratedKeys();
@@ -44,9 +45,9 @@ public class MarqueDAO extends DAOMySql<Marque> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (requete != null) {
+			if(requete != null){
 				try {
-					if (result != null) {
+					if(result != null){
 						result.close();
 					}
 					requete.close();
@@ -60,20 +61,20 @@ public class MarqueDAO extends DAOMySql<Marque> {
 	}
 
 	@Override
-	public void delete(Marque obj) {
+	public void delete(Etat obj) {
 		if (obj == null) {
-			throw new NullPointerException("La marque ne doit pas etre null");
+			throw new NullPointerException("L'etat ne doit pas etre null");
 		}
 		
-		if (obj.getIdMarque() == 0) {
-			throw new NullPointerException("La marque ne peut pas avoir un id = 0");
+		if (obj.getIdEtat() == 0) {
+			throw new NullPointerException("L'etat ne peut pas avoir un id = 0");
 		}
 		
 		Statement stat = null;
 		try {
 			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
 										ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM MARQUE WHERE idMarque = " + obj.getIdMarque() + ";");
+			stat.execute("DELETE FROM etat WHERE idEtat = " + obj.getIdEtat() + ";");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -85,30 +86,29 @@ public class MarqueDAO extends DAOMySql<Marque> {
 				}
 			}
 		}
-		
 	}
 
 	@Override
-	public Marque update(Marque obj) {
-		// TODO Auto-generated method stub
+	public Etat update(Etat obj) {
+		//TODO Comportement par d�faut, a modifier
 		return null;
 	}
 
 	@Override
-	public Marque get(long id) {
-		Marque marque = null;
+	public Etat get(long id) {
+		Etat etat = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM marque WHERE idMarque = ?;";
+			String sql = "SELECT * FROM etat WHERE idEtat = ?;";
 			requete = connect.prepareStatement(sql);
 			requete.setLong(1, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
+				etat = new Etat(result.getInt("idEtat"),
+						result.getString("libelle"));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -124,58 +124,28 @@ public class MarqueDAO extends DAOMySql<Marque> {
 				}
 			}
 		}
-		return marque;
+		return etat;
 	}
+
 	
-	public Marque get(String nomMarque) {
-		Marque marque = null;
-
-		PreparedStatement requete = null;
-		ResultSet result = null;
-		try {
-			String sql = "SELECT * FROM marque WHERE nom = ?;";
-			requete = connect.prepareStatement(sql);
-			requete.setString(1, nomMarque);
-			result = requete.executeQuery();
-
-			if (result.first()) {
-				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
-			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		} finally {
-			if (requete != null) {
-				try {
-					if (result != null) {
-						result.close();
-					}
-					requete.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return marque;
-	}
-
+	
 	@Override
-	public List<Marque> getAll() {
-		List<Marque> liste = new ArrayList<>();
+	public List<Etat> getAll() {
+		List<Etat> liste = new ArrayList<>();
 
-		Marque marque = null;
+		Etat etat = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM marque;";
+			String sql = "SELECT * FROM categorie;";
 			requete = connect.prepareStatement(sql);
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
-				liste.add(marque);
+				etat = new Etat(result.getInt("idEtat"),
+						result.getString("libelle"));
+				liste.add(etat);
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -194,6 +164,5 @@ public class MarqueDAO extends DAOMySql<Marque> {
 
 		return liste;
 	}
-
 
 }

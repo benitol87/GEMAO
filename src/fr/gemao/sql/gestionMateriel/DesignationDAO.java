@@ -1,4 +1,4 @@
-package fr.gemao.ancien_mysql.gestionMateriel;
+package fr.gemao.sql.gestionMateriel;
 
 
 import java.sql.Connection;

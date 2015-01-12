@@ -1,4 +1,4 @@
-package gemao.mysql.gestionMateriel;
+package fr.gemao.sql.gestionMateriel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +20,7 @@ public class LocationDAO extends DAOMySql<Location> {
 	@Override
 	public Location create(Location obj) {
 		if (obj == null) {
-			throw new NullPointerException("Le materiel ne doit pas être null");
+			throw new NullPointerException("Le materiel ne doit pas ï¿½tre null");
 		}
 
 		long id = 0;
@@ -74,7 +74,7 @@ public class LocationDAO extends DAOMySql<Location> {
 	@Override
 	public void delete(Location obj) {
 		if (obj == null) {
-			throw new NullPointerException("La Location ne doit pas être null");
+			throw new NullPointerException("La Location ne doit pas ï¿½tre null");
 		}
 		Statement stat = null;
 		try {

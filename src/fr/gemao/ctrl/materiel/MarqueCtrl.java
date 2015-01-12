@@ -1,8 +1,8 @@
 package fr.gemao.ctrl.materiel;
 
 import fr.gemao.ancien_mysql.ConnectionMySql;
-import fr.gemao.ancien_mysql.gestionMateriel.MarqueDAO;
 import fr.gemao.entity.materiel.Marque;
+import fr.gemao.sql.gestionMateriel.MarqueDAO;
 
 public class MarqueCtrl {
 	public static void ajouterMarque(String nomMarque){
