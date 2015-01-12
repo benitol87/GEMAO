@@ -126,6 +126,38 @@ public class MarqueDAO extends DAOMySql<Marque> {
 		}
 		return marque;
 	}
+	
+	public Marque get(String nomMarque) {
+		Marque marque = null;
+
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		try {
+			String sql = "SELECT * FROM marque WHERE nom = ?;";
+			requete = connect.prepareStatement(sql);
+			requete.setString(1, nomMarque);
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				marque = new Marque(result.getInt("idMarque"),
+						result.getString("nomMarque"));
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} finally {
+			if (requete != null) {
+				try {
+					if (result != null) {
+						result.close();
+					}
+					requete.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return marque;
+	}
 
 	@Override
 	public List<Marque> getAll() {

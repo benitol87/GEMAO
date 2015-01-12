@@ -1,8 +1,5 @@
-package gemao.mysql.gestionMateriel;
+package fr.gemao.ancien_mysql.gestionMateriel;
 
-import gemao.application.gestionMateriel.Categorie;
-import gemao.application.gestionMateriel.Designation;
-import gemao.mysql.DAOMySql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,13 +9,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
+import fr.gemao.entity.materiel.Designation;
+import fr.gemao.ancien_mysql.DAOMySql;
+
+public class DesignationDAO extends DAOMySql<Designation> {
 	public DesignationDAO(Connection conn) {
 		super(conn);
 	}
-
 	@Override
-	public AjouterDesignationCtrl create(AjouterDesignationCtrl obj) {
+	public Designation create(Designation obj) {
 		if (obj == null) {
 			throw new NullPointerException(
 					"La designation ne doit pas etre null");
@@ -61,7 +60,7 @@ public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
 	}
 
 	@Override
-	public void delete(AjouterDesignationCtrl obj) {
+	public void delete(Designation obj) {
 		if (obj == null) {
 			throw new NullPointerException(
 					"La designation ne doit pas etre null");
@@ -92,14 +91,14 @@ public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
 	}
 
 	@Override
-	public AjouterDesignationCtrl update(AjouterDesignationCtrl obj) {
+	public Designation update(Designation obj) {
 		// TODO Comportement par d�faut, a modifier
 		return null;
 	}
 
 	@Override
-	public AjouterDesignationCtrl get(long id) {
-		AjouterDesignationCtrl designation = null;
+	public Designation get(long id) {
+		Designation designation = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
@@ -110,7 +109,7 @@ public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				designation = new AjouterDesignationCtrl(result.getInt("idDesignation"),
+				designation = new Designation(result.getInt("idDesignation"),
 						result.getString("libelle"));
 			}
 		} catch (SQLException e1) {
@@ -131,10 +130,10 @@ public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
 	}
 
 	@Override
-	public List<AjouterDesignationCtrl> getAll() {
-		List<AjouterDesignationCtrl> liste = new ArrayList<>();
+	public List<Designation> getAll() {
+		List<Designation> liste = new ArrayList<>();
 
-		AjouterDesignationCtrl designation = null;
+		Designation designation = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
@@ -144,7 +143,7 @@ public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				designation = new AjouterDesignationCtrl(result.getInt("idDesignation"),
+				designation = new Designation(result.getInt("idDesignation"),
 						result.getString("libelle"));
 				liste.add(designation);
 			}
