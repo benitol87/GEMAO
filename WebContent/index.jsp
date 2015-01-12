@@ -9,7 +9,7 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <img alt="Logo Anacrouse" src="/GEMAO/ressources/images/Anacrouse.png" width="50%" height="20%">
-
+	
 
 </body>
 <c:import url="/inc/footer.inc.jsp" />

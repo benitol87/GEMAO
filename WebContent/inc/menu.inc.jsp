@@ -118,10 +118,8 @@
 					</div>
 				</nav>
 				<!-- /mp-menu -->
-
-						<!-- Top Navigation -->
-							<div class="block block-40 clearfix">
-								<p><a href="#" id="trigger" class="menu-trigger">Menu</a></p>
-							</div>
-			</div><!-- /pusher -->
-		</div><!-- /container -->
+				
+				<!-- Top Navigation -->
+				<div class="block block-40 clearfix">
+					<p><a href="#" id="trigger" class="menu-trigger">Menu</a></p>
+				</div>
