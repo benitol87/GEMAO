@@ -1,306 +1,126 @@
 package fr.gemao.entity;
 
+import java.util.Date;
+import java.util.List;
+
 /**
- * Classe Contrat permettant de créer un personnel
+ * Classe Contrat permettant de créer un personnel (extends Personne)
  * @author Coco
  *
  */
-public class Personnel {
-	
-	private String nom;
-	private String prenom;
-	private int jourNaiss;
-	private int moisNaiss;
-	private int anneeNaiss;
-	private String telFix;
-	private String telPort;
-	private String mail;
-	private String addresse;
-	private String ville;
-	private String cp;
-	private String diplome;
-	private String fonction;
+public class Personnel extends Personne {
+		
+	private List<Integer> idResponsabilite;
+	private Integer idContrat;
+	private String login;
+	private String password;
+	private int pointsAncien;
 	
 	/**
 	 * Constructeur de la classe Personnel
+	 * @param idPersonne : l'ID de la personne
+	 * @param idAdresse : l'ID de l'adresse
+	 * @param idCommuneNaiss : l'ID de la commune de naissance
 	 * @param nom : le nom de la personne
 	 * @param prenom : le prénom de la personne
-	 * @param jourNaiss : le jour de naissance de la personne
-	 * @param moisNaiss : le mois de naissance de la personne
-	 * @param anneeNaiss : l'année de naissance de la personne
-	 * @param telFix : le numéro de téléphone fix de la personne
+	 * @param dateNaissance : la date de naissance de la personne
+	 * @param telFixe : le numéro de téléphone fixe de la personne
 	 * @param telPort : le numéro de téléphone portable de la personne
-	 * @param addresse : l'adresse physique de la personne
-	 * @param mail : l'adresse mail de la personne
-	 * @param ville : la ville où habite la personne
-	 * @param cp : le code postal où habite la personne
-	 * @param diplome : le diplôme détenu par la personne
-	 * @param fonction : la fonction exercée par la personne
+	 * @param email : l'email de la personne
+	 * @param idResponsabilite : l'ID des responsabilités
+	 * @param idContrat : l'ID du contrat
+	 * @param login : le login de la personne
+	 * @param password : le password de la personne
+	 * @param pointsAncien : le nombre de points d'ancienneté
 	 */
-	public Personnel(String nom, String prenom, int jourNaiss, int moisNaiss, int anneeNaiss, String telFix, String telPort, String addresse, String mail, String ville, String cp, String diplome, String fonction) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.jourNaiss = jourNaiss;
-		this.moisNaiss = moisNaiss;
-		this.anneeNaiss = anneeNaiss;
-		this.telFix = telFix;
-		this.telPort = telPort;
-		this.mail = mail;
-		this.addresse = addresse;
-		this.ville = ville;
-		this.cp = cp;
-		this.diplome = diplome;
-		this.fonction = fonction;
-	}
-
-	/**
-	 * Méthode permettant de retourner le nom de la personne
-	 * @return nom : le nom de la personne
-	 */
-	public String getNom() {
-		return nom;
-	}
-
-	/**
-	 * Méthode permettant de retourner le prénom de la personne
-	 * @return prenom : le prénom de la personne
-	 */
-	public String getPrenom() {
-		return prenom;
-	}
-
-	/**
-	 * Méthode permettant de retourner le jour de naissance de la personne
-	 * @return jourNaiss : le jour de naissance de la personne
-	 */
-	public int getJourNaiss() {
-		return jourNaiss;
-	}
-
-	/**
-	 * Méthode permettant de retourner le mois de naissance de la personne
-	 * @return moisNaiss : le mois de naissance de la personne
-	 */
-	public int getMoisNaiss() {
-		return moisNaiss;
-	}
-
-	/**
-	 * Méthode permettant de retourner l'année de naissance de la personne
-	 * @return anneeNaiss : l'année de naissance de la personne
-	 */
-	public int getAnneeNaiss() {
-		return anneeNaiss;
-	}
-
-	/**
-	 * Méthode permettant de retourner le numéro de téléphone fixe de la personne
-	 * @return telFix : le numéro de téléphone fixe de la personne
-	 */
-	public String getTelFix() {
-		return telFix;
-	}
-
-	/**
-	 * Méthode permettant de retourner le numéro de téléphone portable de la personne
-	 * @return telPort : le numéro de téléphone portable de la personne
-	 */
-	public String getTelPort() {
-		return telPort;
-	}
-
-	/**
-	 * Méthode permettant de retourner l'adresse mail de la personne
-	 * @return mail : l'adresse mail de la personne
-	 */
-	public String getMail() {
-		return mail;
-	}
-
-	/**
-	 * Méthode permettant de retourner l'adresse physique de la personne
-	 * @return adresse : l'adresse physique de la personne
-	 */
-	public String getAddresse() {
-		return addresse;
-	}
-
-	/**
-	 * Méthode permettant de retourner la ville où habite la personne
-	 * @return ville : la ville où habite la personne
-	 */
-	public String getVille() {
-		return ville;
-	}
-
-	/**
-	 * Méthode permettant de retourner le code postal où habite la personne
-	 * @return cp : le code postal de la personne
-	 */
-	public String getCp() {
-		return cp;
-	}
-
-	/**
-	 * Méthode permettant de retourner le diplôme détenu par la personne
-	 * @return diplome : le diplôme détenu par la personne
-	 */
-	public String getDiplome() {
-		return diplome;
-	}
-
-	/**
-	 * Méthode permettant de retourner la fonction exercée par la personne
-	 * @return fonction : la fonction exercée par la personne
-	 */
-	public String getFonction() {
-		return fonction;
-	}
-
-	/**
-	 * Méthode permettant de modifier le nom de la personne
-	 * @param nom : le nouveau nom de la personne
-	 */
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	/**
-	 * Méthode permettant de modifier le prénom de la personne
-	 * @param prenom : le nouveau prénom de la personne
-	 */
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	/**
-	 * Méthode permettant de modifier le jour de naissance de la personne
-	 * @param jourNaiss : le nouveau jour de naissance de la personne
-	 */
-	public void setJourNaiss(int jourNaiss) {
-		this.jourNaiss = jourNaiss;
-	}
-
-	/**
-	 * Méthode permettant de modifier le mois de naissance de la personne
-	 * @param moisNaiss : le nouveau mois de naissance de la personne
-	 */
-	public void setMoisNaiss(int moisNaiss) {
-		this.moisNaiss = moisNaiss;
-	}
-
-	/**
-	 * Méthode permettant de modifier l'année de naissance de la personne
-	 * @param anneeNaiss : la nouvelle année de naissance de la personne
-	 */
-	public void setAnneeNaiss(int anneeNaiss) {
-		this.anneeNaiss = anneeNaiss;
-	}
-
-	/**
-	 * Méthode permettant de modifier le numéro de téléphone fixe de la personne
-	 * @param telFix : le nouveau numéro de téléphone fixe de la personne
-	 */
-	public void setTelFix(String telFix) {
-		this.telFix = telFix;
-	}
-	
-	/**
-	 * Méthode permettant de modifier le numéro de téléphone portable de la personne
-	 * @param telPort : le nouveau numéro de téléphone portable de la personne
-	 */
-	public void setTelPort(String telPort) {
-		this.telPort = telPort;
-	}
-	
-	/**
-	 * Méthode permettant de modifier l'adresse mail de la personne
-	 * @param mail : la nouvelle adresse mail de la personne
-	 */
-	public void setMail(String mail) {
-		this.mail = mail;
-	}	
-
-	/**
-	 * Méthode permettant de modifier l'adresse physique de la personne
-	 * @param addresse : la nouvelle adresse physique de la personne
-	 */
-	public void setAddresse(String addresse) {
-		this.addresse = addresse;
-	}
-
-	/**
-	 * Méthode permettant de modifier la ville où habite la personne
-	 * @param ville : la nouvelle ville où habite la personne
-	 */
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-	/**
-	 * Méthode permettant de modifier le code postal où habite la personne
-	 * @param cp : le nouveau code postal de la personne
-	 */
-	public void setCp(String cp) {
-		this.cp = cp;
-	}
-
-	/**
-	 * Méthode permettant de modifier le diplôme détenu par la personne
-	 * @param diplome : le nouveau diplôme de la personne
-	 */
-	public void setDiplome(String diplome) {
-		this.diplome = diplome;
-	}
-
-	/**
-	 * Méthode permettant de modifier la fonction exercée par la personne
-	 * @param fonction : la nouvelle fonction de la personne
-	 */
-	public void setFonction(String fonction) {
-		this.fonction = fonction;
-	}
-	
-	/**
-	 * Redéfintion de la méthode toString permettant d'afficher les caractéristiques d'un personnel
-	 */
-	@Override
-	public String toString() {
-		String personnel;
-		StringBuilder sb = new StringBuilder();
+	public Personnel(Long idPersonne, Long idAdresse, Long idCommuneNaiss, String nom, String prenom, Date dateNaissance, String telFixe, String telPort, String email, List<Integer> idResponsabilite, Integer idContrat, String login, String password, int pointsAncien) {
+		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom, dateNaissance, telFixe, telPort, email);
 		
-		/* Concaténation de la chaine StringBuilder */
-		sb.append("Personnel : \n")
-		.append("Nom : ")
-		.append(this.nom)
-		.append("\nPrénom : ")
-		.append(this.prenom)
-		.append("\nDate de naissance : ")
-		.append(this.jourNaiss)
-		.append("/")
-		.append(this.moisNaiss)
-		.append("/")
-		.append(this.anneeNaiss)
-		.append("\nTéléphone fixe : ")
-		.append(this.telFix)
-		.append("\nTéléphone portable : ")
-		.append(this.telPort)
-		.append("\nAdresse mail : ")
-		.append(this.mail)
-		.append("\nAdresse : ")
-		.append(this.addresse)
-		.append("\nVille : ")
-		.append(this.ville)
-		.append("\nCode Postal : ")
-		.append(this.cp)
-		.append("\nDiplôme : ")
-		.append(this.diplome)
-		.append("\nFonction : ")
-		.append(this.fonction);
-		
-		personnel = sb.toString();
-		
-		return personnel;
+		this.idResponsabilite = idResponsabilite;
+		this.idContrat = idContrat;
+		this.login = login;
+		this.password = password;
+		this.pointsAncien = pointsAncien;
+	}
+
+	/**
+	 * Permet de retourner la liste des ID de responsabilités du personnel
+	 * @return idResponsabilite : la liste des responsabilités
+	 */
+	public List<Integer> getIdResponsabilite() {
+		return idResponsabilite;
+	}
+
+	/**
+	 * Permet de retourner l'ID du contrat du personnel
+	 * @return idContrat : l'ID du contrat
+	 */
+	public Integer getIdContrat() {
+		return idContrat;
+	}
+
+	/**
+	 * Permet de retourner le login du personnel
+	 * @return login : le login
+	 */
+	public String getLogin() {
+		return login;
+	}
+
+	/**
+	 * Permet de retourner le password du personnel
+	 * @return password : le password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * Permet de retourner le nombre de points d'ancienneté du personnel
+	 * @return pointsAncien : le nombre de points
+	 */
+	public int getPointsAncien() {
+		return pointsAncien;
+	}
+
+	/**
+	 * Permet de positionner une liste d'ID responsabilités
+	 * @param idResponsabilite : la liste de responsabilités
+	 */
+	public void setIdResponsabilite(List<Integer> idResponsabilite) {
+		this.idResponsabilite = idResponsabilite;
+	}
+
+	/**
+	 * Permet de positionner l'ID du contrat du personnel
+	 * @param idContrat : l'ID du contrat
+	 */
+	public void setIdContrat(Integer idContrat) {
+		this.idContrat = idContrat;
+	}
+
+	/**
+	 * Permet de positionner le login du personnel
+	 * @param login : le login
+	 */
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	/**
+	 * Permet de positionner le password du personnel
+	 * @param password : le passeword
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * Permet de positionner pointsAncien du personnel
+	 * @param pointsAncien : le nombre de points d'ancienneté
+	 */
+	public void setPointsAncien(int pointsAncien) {
+		this.pointsAncien = pointsAncien;
 	}
 
 	/**
@@ -309,90 +129,52 @@ public class Personnel {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((addresse == null) ? 0 : addresse.hashCode());
-		result = prime * result + anneeNaiss;
-		result = prime * result + ((cp == null) ? 0 : cp.hashCode());
-		result = prime * result + ((diplome == null) ? 0 : diplome.hashCode());
-		result = prime * result + ((fonction == null) ? 0 : fonction.hashCode());
-		result = prime * result + jourNaiss;
-		result = prime * result + ((mail == null) ? 0 : mail.hashCode());
-		result = prime * result + moisNaiss;
-		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
-		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + ((telFix == null) ? 0 : telFix.hashCode());
-		result = prime * result + ((telPort == null) ? 0 : telPort.hashCode());
-		result = prime * result + ((ville == null) ? 0 : ville.hashCode());
+		int result = super.hashCode();
+		result = prime * result
+				+ ((idContrat == null) ? 0 : idContrat.hashCode());
+		result = prime
+				* result
+				+ ((idResponsabilite == null) ? 0 : idResponsabilite.hashCode());
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result
+				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result + pointsAncien;
 		return result;
 	}
 
 	/**
-	 * Redéfinition de la méthode Equals
+	 * Redéfinition de la méthode equals
 	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Personnel other = (Personnel) obj;
-		if (addresse == null) {
-			if (other.addresse != null)
+		if (idContrat == null) {
+			if (other.idContrat != null)
 				return false;
-		} else if (!addresse.equals(other.addresse))
+		} else if (!idContrat.equals(other.idContrat))
 			return false;
-		if (anneeNaiss != other.anneeNaiss)
-			return false;
-		if (cp == null) {
-			if (other.cp != null)
+		if (idResponsabilite == null) {
+			if (other.idResponsabilite != null)
 				return false;
-		} else if (!cp.equals(other.cp))
+		} else if (!idResponsabilite.equals(other.idResponsabilite))
 			return false;
-		if (diplome == null) {
-			if (other.diplome != null)
+		if (login == null) {
+			if (other.login != null)
 				return false;
-		} else if (!diplome.equals(other.diplome))
+		} else if (!login.equals(other.login))
 			return false;
-		if (fonction == null) {
-			if (other.fonction != null)
+		if (password == null) {
+			if (other.password != null)
 				return false;
-		} else if (!fonction.equals(other.fonction))
+		} else if (!password.equals(other.password))
 			return false;
-		if (jourNaiss != other.jourNaiss)
-			return false;
-		if (mail == null) {
-			if (other.mail != null)
-				return false;
-		} else if (!mail.equals(other.mail))
-			return false;
-		if (moisNaiss != other.moisNaiss)
-			return false;
-		if (nom == null) {
-			if (other.nom != null)
-				return false;
-		} else if (!nom.equals(other.nom))
-			return false;
-		if (prenom == null) {
-			if (other.prenom != null)
-				return false;
-		} else if (!prenom.equals(other.prenom))
-			return false;
-		if (telFix == null) {
-			if (other.telFix != null)
-				return false;
-		} else if (!telFix.equals(other.telFix))
-			return false;
-		if (telPort == null) {
-			if (other.telPort != null)
-				return false;
-		} else if (!telPort.equals(other.telPort))
-			return false;
-		if (ville == null) {
-			if (other.ville != null)
-				return false;
-		} else if (!ville.equals(other.ville))
+		if (pointsAncien != other.pointsAncien)
 			return false;
 		return true;
 	}
