@@ -1,4 +1,4 @@
-package gemao.mysql.gestionMateriel;
+package fr.gemao.ancien_mysql.gestionMateriel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import gemao.application.gestionMateriel.Etat;
-import gemao.application.gestionMateriel.Marque;
-import gemao.mysql.DAOMySql;
+import fr.gemao.ancien_mysql.DAOMySql;
+import fr.gemao.entity.materiel.Marque;
 
 public class MarqueDAO extends DAOMySql<Marque> {
 
