@@ -3,7 +3,7 @@ package fr.gemao.entity;
 import java.util.Calendar;
 
 /**
- * Classe Contrat permettant de cr�er un contrat en r�cup�rant le nom et le pr�nom d'un personnel
+ * Classe Contrat permettant de créer un contrat en récupérant le nom et le prénom d'un personnel
  * @author Coco
  */
 public class Contrat {
@@ -21,13 +21,13 @@ public class Contrat {
 	
 	/**
 	 * Constructeur de la classe Contrat
-	 * @param nom : r�cup�ration du nom de la personne
-	 * @param prenom : r�cup�ration du pr�nom de la personne
+	 * @param nom : récupération du nom de la personne
+	 * @param prenom : récupération du prénom de la personne
 	 * @param typeContrat : le type de contrat
-	 * @param jourDebutContrat : jour de d�but du contrat
-	 * @param moisDebutContrat : mois de d�but du contrat
-	 * @param anneeDebutContrat : ann�e de d�but du contrat
-	 * @param duree : dur�e du Contrat
+	 * @param jourDebutContrat : jour de début du contrat
+	 * @param moisDebutContrat : mois de début du contrat
+	 * @param anneeDebutContrat : année de début du contrat
+	 * @param duree : durée du Contrat
 	 */
 	public Contrat(String nom, String prenom, String typeContrat, int jourDebutContrat, int moisDebutContrat, int anneeDebutContrat, int duree) {
 		this.nom = nom;
@@ -49,8 +49,8 @@ public class Contrat {
 	}
 
 	/**
-	 * Permet de retourner le pr�nom de la personne
-	 * @return prenom : le pr�nom de la personne
+	 * Permet de retourner le prénom de la personne
+	 * @return prenom : le prénom de la personne
 	 */
 	public String getPrenom() {
 		return prenom;
@@ -65,24 +65,24 @@ public class Contrat {
 	}
 
 	/**
-	 * Permet de retourner le jour de d�but du contrat
-	 * @return jourDebutContrat : le jour de d�but du contrat
+	 * Permet de retourner le jour de début du contrat
+	 * @return jourDebutContrat : le jour de début du contrat
 	 */
 	public int getJourDebutContrat() {
 		return jourDebutContrat;
 	}
 
 	/**
-	 * Permet de retourner le mois de d�but du contrat
-	 * @return moisDebutContrat : le mois de d�but du contrat
+	 * Permet de retourner le mois de début du contrat
+	 * @return moisDebutContrat : le mois de début du contrat
 	 */
 	public int getMoisDebutContrat() {
 		return moisDebutContrat;
 	}
 
 	/**
-	 * Permet de retourner l'ann�e de d�but du contrat
-	 * @return anneeDebutContrat : l'ann�e de d�but du contrat
+	 * Permet de retourner l'année de début du contrat
+	 * @return anneeDebutContrat : l'année de début du contrat
 	 */
 	public int getAnneeDebutContrat() {
 		return anneeDebutContrat;
@@ -90,7 +90,7 @@ public class Contrat {
 	
 	/**
 	 * Permet de retourner le jour de fin du contrat
-	 * @return jourFinContrat : le jour de d�but du contrat
+	 * @return jourFinContrat : le jour de début du contrat
 	 */
 	public int getJourFinContrat() {
 		return jourFinContrat;
@@ -105,16 +105,16 @@ public class Contrat {
 	}
 
 	/**
-	 * Permet de retourner l'ann�e de fin du contrat
-	 * @return anneeFinContrat : l'ann�e de fin du contrat
+	 * Permet de retourner l'année de fin du contrat
+	 * @return anneeFinContrat : l'année de fin du contrat
 	 */
 	public int getAnneeFinContrat() {
 		return anneeFinContrat;
 	}
 
 	/**
-	 * Permet de retourner la dur�e du contrat en mois
-	 * @return duree : la dur�e du contrat en mois
+	 * Permet de retourner la durée du contrat en mois
+	 * @return duree : la durée du contrat en mois
 	 */
 	public int getDuree() {
 		return duree;
@@ -137,8 +137,8 @@ public class Contrat {
 	}
 
 	/**
-	 * Permet de modifier le pr�nom de la personne
-	 * @param prenom : le nouveau pr�nom de la personne
+	 * Permet de modifier le prénom de la personne
+	 * @param prenom : le nouveau prénom de la personne
 	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
@@ -153,24 +153,24 @@ public class Contrat {
 	}
 
 	/**
-	 * Permet de modifier le jour de d�but du contrat
-	 * @param jourDebutContrat : le nouveau jour de d�but du contrat
+	 * Permet de modifier le jour de début du contrat
+	 * @param jourDebutContrat : le nouveau jour de début du contrat
 	 */
 	public void setJourDebutContrat(int jourDebutContrat) {
 		this.jourDebutContrat = jourDebutContrat;
 	}
 
 	/**
-	 * Permet de modifier le mois de d�but du contrat
-	 * @param moisDebutContrat : le nouveau mois de d�but du contrat
+	 * Permet de modifier le mois de début du contrat
+	 * @param moisDebutContrat : le nouveau mois de début du contrat
 	 */
 	public void setMoisDebutContrat(int moisDebutContrat) {
 		this.moisDebutContrat = moisDebutContrat;
 	}
 
 	/**
-	 * Permet de modifier l'ann�e de d�but du contrat
-	 * @param anneeDebutContrat : la nouvelle ann�e de d�but du contrat
+	 * Permet de modifier l'année de début du contrat
+	 * @param anneeDebutContrat : la nouvelle année de début du contrat
 	 */
 	public void setAnneeDebutContrat(int anneeDebutContrat) {
 		this.anneeDebutContrat = anneeDebutContrat;
@@ -193,23 +193,23 @@ public class Contrat {
 	}
 
 	/**
-	 * Permet de modifier l'ann�e de fin du contrat
-	 * @param anneeFinContrat : la nouvelle ann�e de fin du contrat
+	 * Permet de modifier l'année de fin du contrat
+	 * @param anneeFinContrat : la nouvelle année de fin du contrat
 	 */
 	public void setAnneeFinContrat(int anneeFinContrat) {
 		this.anneeFinContrat = anneeFinContrat;
 	}
 
 	/**
-	 * Permet de modifier la dur�e du contrat
-	 * @param duree : la nouvelle dur�e du contrat
+	 * Permet de modifier la durée du contrat
+	 * @param duree : la nouvelle durée du contrat
 	 */
 	public void setDuree(int duree) {
 		this.duree = duree;
 	}
 
 	/**
-	 * Permet de modifier la date de fin du contrat (automatiquement calcul�e)
+	 * Permet de modifier la date de fin du contrat (automatiquement calculée)
 	 * @param dateFin : la nouvelle date de fin du contrat
 	 */
 	public void setDateFin(String dateFin) {
@@ -217,24 +217,24 @@ public class Contrat {
 	}
 	
 	/**
-	 * Permet de calculer la date de fin du contrat en fonction du jour, du mois et de l'ann�e de d�but du contrat
-	 * @param jourDebutContrat : le jour de d�but du contrat
-	 * @param moisDebutContrat : le moisr de d�but du contrat
-	 * @param anneeDebutContrat : l'ann�e de d�but du contrat
-	 * @param duree : la dur�e du contrat en mois
-	 * @return : retourne une chaine de caract�re correspondant � la date de fin du contrat si il est du type "CDD"
+	 * Permet de calculer la date de fin du contrat en fonction du jour, du mois et de l'année de début du contrat
+	 * @param jourDebutContrat : le jour de début du contrat
+	 * @param moisDebutContrat : le moisr de début du contrat
+	 * @param anneeDebutContrat : l'année de début du contrat
+	 * @param duree : la durée du contrat en mois
+	 * @return : retourne une chaine de caractére correspondant é la date de fin du contrat si il est du type "CDD"
 	 */
 	public String calculerDateFin(int jourDebutContrat, int moisDebutContrat, int anneeDebutContrat, int duree) {
 		Calendar cal = Calendar.getInstance();
 		String dateFin;
 		StringBuilder sb = new StringBuilder();
 		
-		/* Positionnement du jour, mois et ann�e du d�but de contrat � l'objet Calendar */
+		/* Positionnement du jour, mois et année du début de contrat é l'objet Calendar */
 		cal.set(Calendar.DAY_OF_MONTH, jourDebutContrat);
 		cal.set(Calendar.MONTH, moisDebutContrat);
 		cal.set(Calendar.YEAR, anneeDebutContrat);
 		
-		/* Ajout de la dur�e du contrat en mois � l'objet Calendar */
+		/* Ajout de la durée du contrat en mois é l'objet Calendar */
 		cal.add(Calendar.MONTH, duree);
 		
 		/* Affectation de la date de fin de contrat */
@@ -242,7 +242,7 @@ public class Contrat {
 		moisFinContrat = cal.get(Calendar.MONTH);
 		anneeFinContrat = cal.get(Calendar.YEAR);
 		
-		/* Cr�ation de la chaine de caract�re de la date de fin */
+		/* Création de la chaine de caractére de la date de fin */
 		sb.append(jourFinContrat)
 		.append("/")
 		.append(moisFinContrat)
@@ -255,36 +255,36 @@ public class Contrat {
 	}
 
 	/**
-	 * Red�fintion de la m�thode toString permettant d'afficher les caract�ristiques d'un contrat
+	 * Redéfintion de la méthode toString permettant d'afficher les caractéristiques d'un contrat
 	 */
 	@Override
 	public String toString() {
 		String personnel;
 		StringBuilder sb = new StringBuilder();
 		
-		/* Concat�nation de la chaine StringBuilder */
+		/* Concaténation de la chaine StringBuilder */
 		sb.append("Contrat : \n")
 		.append("Nom : ")
 		.append(this.nom)
-		.append("\nPr�nom : ")
+		.append("\nPrénom : ")
 		.append(this.prenom)
 		.append("\nType de contrat : ")
 		.append(this.typeContrat)
-		.append("\nDate de d�but du contrat : ")
+		.append("\nDate de début du contrat : ")
 		.append(this.jourDebutContrat)
 		.append("/")
 		.append(this.moisDebutContrat)
 		.append("/")
 		.append(this.anneeDebutContrat);
 		
-		/* Si le contrat est du type "CDI" ou "B�n�volat" */
-		if (this.typeContrat == "CDI" || this.typeContrat == "B�n�volat") {
+		/* Si le contrat est du type "CDI" ou "Bénévolat" */
+		if (this.typeContrat == "CDI" || this.typeContrat == "Bénévolat") {
 			sb.append("\nPas de date de fin de contrat");
 		}
 		
 		/* Si le contrat est du type "CDD" */
 		if (this.typeContrat == "CDD") {
-			sb.append("\nDur�e du contrat : ")
+			sb.append("\nDurée du contrat : ")
 			.append(this.duree)
 			.append(" mois")
 			.append("\nDate de fin du contrat : ")
