@@ -3,5 +3,5 @@
 <footer>
 	<p>Gemao v1.0</p>
 </footer>
-<script src="script.js"/>
+<script src="/GEMAO/inc/js/script.js"/>
 </html>
