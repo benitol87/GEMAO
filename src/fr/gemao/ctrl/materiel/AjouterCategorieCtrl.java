@@ -1,7 +1,8 @@
 package fr.gemao.ctrl.materiel;
 
+import java.sql.Connection;
+
 import fr.gemao.ancien_mysql.ConnectionMySql;
-import fr.gemao.ctrl.adherent.Connection;
 import fr.gemao.entity.materiel.Categorie;
 
 public class AjouterCategorieCtrl {
@@ -12,7 +13,7 @@ public class AjouterCategorieCtrl {
 	public void ajoutAdherent(Categorie categorie){
 		VerifierSyntaxeCategorie verifCate = new verifierSyntaxeXCategorie();
 		
-		if verifCate.verifierInformations(categorie)){
+		if (verifCate.verifierInformations(categorie)){
 			Categorie test;
 			
 			Connection co = ConnectionMySql.getInstance();

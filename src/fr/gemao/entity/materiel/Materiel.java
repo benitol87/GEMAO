@@ -8,7 +8,7 @@ public class Materiel {
 	private Etat etat;
 	private final Categorie categorie;
 	private final Marque marque;
-	private final String designation;
+	private final Designation designation;
 	private String typeMat;
 	private final long numSerie;
 	private final Date dateAchat;
@@ -34,7 +34,7 @@ public class Materiel {
 	 * @param observation the observation
 	 */
 	public Materiel(long idMateriel, Etat etat, Categorie categorie,
-			Marque marque, String designation, String typeMat, long numSerie,
+			Marque marque, Designation designation, String typeMat, long numSerie,
 			Date dateAchat, float valeurAchat, float valeurReap,
 			boolean deplacable, String observation) {
 		this.idMateriel = idMateriel;
@@ -272,7 +272,7 @@ public class Materiel {
 	 *
 	 * @return the designation
 	 */
-	public String getDesignation() {
+	public Designation getDesignation() {
 		return designation;
 	}
 
