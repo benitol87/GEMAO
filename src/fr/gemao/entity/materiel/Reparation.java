@@ -38,7 +38,7 @@ public class Reparation {
 	 * @param dateCertificat the date certificat
 	 */
 	public Reparation(int idReparation,
-			gemao.application.gestionMateriel.Reparateur reparateur,
+			Reparateur reparateur,
 			Date dateCertificat) {
 		this.idReparation = idReparation;
 		Reparateur = reparateur;
