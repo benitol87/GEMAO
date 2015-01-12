@@ -12,13 +12,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
+public class DesignationDAO extends DAOMySql<DesignationCtrl> {
 	public DesignationDAO(Connection conn) {
 		super(conn);
 	}
 
 	@Override
-	public AjouterDesignationCtrl create(AjouterDesignationCtrl obj) {
+	public DesignationCtrl create(DesignationCtrl obj) {
 		if (obj == null) {
 			throw new NullPointerException(
 					"La designation ne doit pas etre null");
@@ -61,7 +61,7 @@ public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
 	}
 
 	@Override
-	public void delete(AjouterDesignationCtrl obj) {
+	public void delete(DesignationCtrl obj) {
 		if (obj == null) {
 			throw new NullPointerException(
 					"La designation ne doit pas etre null");
@@ -92,14 +92,14 @@ public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
 	}
 
 	@Override
-	public AjouterDesignationCtrl update(AjouterDesignationCtrl obj) {
+	public DesignationCtrl update(DesignationCtrl obj) {
 		// TODO Comportement par d�faut, a modifier
 		return null;
 	}
 
 	@Override
-	public AjouterDesignationCtrl get(long id) {
-		AjouterDesignationCtrl designation = null;
+	public DesignationCtrl get(long id) {
+		DesignationCtrl designation = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
@@ -110,7 +110,7 @@ public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				designation = new AjouterDesignationCtrl(result.getInt("idDesignation"),
+				designation = new DesignationCtrl(result.getInt("idDesignation"),
 						result.getString("libelle"));
 			}
 		} catch (SQLException e1) {
@@ -131,10 +131,10 @@ public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
 	}
 
 	@Override
-	public List<AjouterDesignationCtrl> getAll() {
-		List<AjouterDesignationCtrl> liste = new ArrayList<>();
+	public List<DesignationCtrl> getAll() {
+		List<DesignationCtrl> liste = new ArrayList<>();
 
-		AjouterDesignationCtrl designation = null;
+		DesignationCtrl designation = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
@@ -144,7 +144,7 @@ public class DesignationDAO extends DAOMySql<AjouterDesignationCtrl> {
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				designation = new AjouterDesignationCtrl(result.getInt("idDesignation"),
+				designation = new DesignationCtrl(result.getInt("idDesignation"),
 						result.getString("libelle"));
 				liste.add(designation);
 			}
