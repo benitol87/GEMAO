@@ -1,4 +1,4 @@
-package gemao.mysql.gestionMateriel;
+package fr.gemao.ancien_mysql.gestionMateriel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import gemao.application.gestionMateriel.Materiel;
-import gemao.mysql.DAOMySql;
+import fr.gemao.ancien_mysql.DAOMySql;
+import fr.gemao.entity.materiel.Materiel;
 
 public class MaterielDAO extends DAOMySql<Materiel> {
 
@@ -40,7 +40,7 @@ public class MaterielDAO extends DAOMySql<Materiel> {
 			requete.setInt(2, obj.getEtat().getIdEtat());
 			requete.setInt(3, obj.getCategorie().getIdCategorie());
 			requete.setInt(4, obj.getMarque().getIdMarque());
-			requete.setString(5, obj.getDesignation());
+			requete.setInt(5, obj.getDesignation().getIdDesignation());
 			requete.setString(6, obj.getTypeMat());
 			requete.setLong(7, obj.getNumSerie());
 			requete.setDate(8, obj.getDateAchat());
@@ -127,7 +127,7 @@ public class MaterielDAO extends DAOMySql<Materiel> {
 						new EtatDAO(connect).get(result.getInt("idEtat")),
 						new CategorieDAO(connect).get(result.getInt("idCategorie")),
 						new MarqueDAO(connect).get(result.getInt("idMarque")),
-						result.getString("designation"),
+						new DesignationDAO(connect).get(result.getInt("idDesignation")),
 						result.getString("typeMateriel"),
 						result.getLong("numSerie"),
 						result.getDate("dateAchat"),
@@ -169,10 +169,9 @@ public class MaterielDAO extends DAOMySql<Materiel> {
 			while (result.next()) {
 				materiel = new Materiel(result.getLong("idMateriel"),
 						new EtatDAO(connect).get(result.getInt("idEtat")),
-						new CategorieDAO(connect).get(result
-								.getInt("idCategorie")),
+						new CategorieDAO(connect).get(result.getInt("idCategorie")),
 						new MarqueDAO(connect).get(result.getInt("idMarque")),
-						result.getString("designation"),
+						new DesignationDAO(connect).get(result.getInt("idDesignation")),
 						result.getString("typeMateriel"),
 						result.getLong("numSerie"),
 						result.getDate("dateAchat"),

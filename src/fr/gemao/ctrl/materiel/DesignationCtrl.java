@@ -13,14 +13,14 @@ public class DesignationCtrl {
 		
 	}
 	
-	public void ajoutDesignation(Designation designation){
-		if(designation.getLibelleDesignation() == null){
+	public void ajoutDesignation(int idDesination, String libelle){
+		if(libelle == null){
 			throw new NullPointerException("Le Libelle ne doit pas etre null");
 		}
-		if(designation.getLibelleDesignation() == ""){
+		if(libelle == ""){
 			throw new NullPointerException("Le Libelle ne doit pas etre vide");
 		}
-		
+		Designation designation = new Designation(idDesination,libelle);
 		new DesignationDAO(ConnectionMySql.getInstance()).create(designation);
 	}
 }

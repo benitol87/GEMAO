@@ -1,8 +1,10 @@
-package gemao.mysql.gestionMateriel;
+package fr.gemao.ancien_mysql.gestionMateriel;
 
-import gemao.application.gestionMateriel.Categorie;
-import gemao.application.gestionMateriel.Etat;
-import gemao.mysql.DAOMySql;
+
+
+
+import fr.gemao.entity.materiel.Etat;
+import fr.gemao.ancien_mysql.DAOMySql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

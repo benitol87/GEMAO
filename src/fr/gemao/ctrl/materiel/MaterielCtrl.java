@@ -16,6 +16,7 @@ import fr.gemao.entity.materiel.Etat;
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.form.adherent.VerifierSyntaxeAdherent;
+import fr.gemao.ancien_mysql.gestionMateriel.MaterielDAO;
 
 public class MaterielCtrl {
 	public MaterielCtrl() {
