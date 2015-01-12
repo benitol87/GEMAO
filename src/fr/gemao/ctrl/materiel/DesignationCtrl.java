@@ -3,6 +3,8 @@ package fr.gemao.ctrl.materiel;
 import java.sql.Connection;
 
 import fr.gemao.entity.materiel.Designation;
+import fr.gemao.ancien_mysql.gestionMateriel.DesignationDAO;
+import fr.gemao.ancien_mysql.ConnectionMySql;
 
 
 

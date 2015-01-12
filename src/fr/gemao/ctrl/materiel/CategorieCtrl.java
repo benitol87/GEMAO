@@ -11,12 +11,12 @@ public class CategorieCtrl {
 
 	}
 
-	public void ajoutCategorie(Categorie categorie){
+	public void ajoutCategorie(int idCat, String libelle){
 
-		if(categorie.getLibelleCat() == null){
+		if(libelle == null){
 			throw new NullPointerException("Libelle Null");
 		}
-		if(categorie.getLibelleCat() == ""){
+		if(libelle == ""){
 			throw new NullPointerException("Le libelle ne doit pas etre vide");
 		}
 		
