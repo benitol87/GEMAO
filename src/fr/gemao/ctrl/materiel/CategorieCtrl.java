@@ -1,7 +1,5 @@
 package fr.gemao.ctrl.materiel;
 
-import java.sql.Connection;
-
 import fr.gemao.ancien_mysql.ConnectionMySql;
 import fr.gemao.ancien_mysql.gestionMateriel.CategorieDAO;
 import fr.gemao.entity.materiel.Categorie;

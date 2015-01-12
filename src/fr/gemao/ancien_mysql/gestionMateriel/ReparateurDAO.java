@@ -1,4 +1,7 @@
-package gemao.mysql.gestionMateriel;
+package fr.gemao.ancien_mysql.gestionMateriel;
+
+import fr.gemao.ancien_mysql.DAOMySql;
+import fr.gemao.entity.materiel.Reparateur;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import gemao.application.gestionMateriel.Materiel;
-import gemao.application.gestionMateriel.Reparateur;
-import gemao.mysql.DAOMySql;
+
 
 public class ReparateurDAO extends DAOMySql<Reparateur> {
 
