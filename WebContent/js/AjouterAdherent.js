@@ -64,7 +64,6 @@ function ajoutDiscipline(){
 
 
 $(function() {
-	$("#date").datepicker();
 	bouton1=document.getElementById("ajoutDiscipline");
 	bouton2=document.getElementById("retireDiscipline");
 	ajouteEvent(bouton1, 'click', ajoutDiscipline, false);
