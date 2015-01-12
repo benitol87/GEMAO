@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title></title>
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-</head>
-<body>
+<%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:set var="titre" value="Personnel" scope="request" />
+
+<c:import url="/inc/head.inc.jsp" />
+
+<c:import url="/inc/header.inc.jsp" />
+<c:import url="/inc/menu.inc.jsp" />
 	<!-- 1er partie du formulaire -->
 	<form id="ajoutp1" method="post" action="#">
 		<table>
@@ -14,7 +15,7 @@
 				</td><td>
 					<input type="text" name="nom" required/>
 				</td><td>
-					<label for="prenom">*Prénom:</label>
+					<label for="prenom">*PrÃ©nom:</label>
 				</td><td>
 					<input type="text" name="prenom" required/>
 				</td>
@@ -30,11 +31,11 @@
 				</td>
 			</tr><tr>
 				<td>
-					<label for="fixe">Téléphone fixe:</label>
+					<label for="fixe">TÃ©lÃ©phone fixe:</label>
 				</td><td>
 					<input type="text" name="fixe" pattern="[0][0-9]{9}" />
 				</td><td>
-					<label for="portable">Téléphone portable:</label>
+					<label for="portable">TÃ©lÃ©phone portable:</label>
 				</td><td>
 					<input type="text" name="portable" pattern="[0][0-9]{9}" />
 				</td></tr>
@@ -97,7 +98,7 @@
 				<input type="text" name="nom"/>
 			</td></td>
 			</td><td>
-				<label for="prenom">Prénom:</label>
+				<label for="prenom">PrÃ©nom:</label>
 			</td><td>
 				<input type="text" name="prenom"/>
 			</td></tr>
@@ -108,16 +109,16 @@
 					<option>CDD</option>
 					<option>CDI</option>
 					<option>CTT</option>
-					<option>Bénévolat</option>
+					<option>BÃ©nÃ©volat</option>
 				</select>
 			</td></tr>
 			<tr><td>
-				<label for="datedeb">Date de début:</label>
+				<label for="datedeb">Date de dÃ©but:</label>
 			</td><td>
 				<input type="date" name="datedeb"/>
 			</td></tr>
 			<tr><td>
-				<label for="duree">Durée:</label>
+				<label for="duree">DurÃ©e:</label>
 			</td><td>
 				<input type="text" name="duree" size="2"/> mois
 			</td></tr>
@@ -130,5 +131,4 @@
 		<input type="reset" value="Annuler"/>
 		<input type="submit" value="Valider"/>
 	</form>
-</body>
-</html>
+<c:import url="/inc/footer.inc.jsp" />
