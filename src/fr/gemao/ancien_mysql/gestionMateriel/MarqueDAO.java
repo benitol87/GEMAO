@@ -1,4 +1,4 @@
-package gemao.mysql.gestionMateriel;
+package fr.gemao.ancien_mysql.gestionMateriel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import gemao.application.gestionMateriel.Etat;
-import gemao.application.gestionMateriel.Marque;
-import gemao.mysql.DAOMySql;
+import fr.gemao.ancien_mysql.DAOMySql;
+import fr.gemao.entity.materiel.Marque;
 
 public class MarqueDAO extends DAOMySql<Marque> {
 
@@ -105,6 +104,38 @@ public class MarqueDAO extends DAOMySql<Marque> {
 			String sql = "SELECT * FROM marque WHERE idMarque = ?;";
 			requete = connect.prepareStatement(sql);
 			requete.setLong(1, id);
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				marque = new Marque(result.getInt("idMarque"),
+						result.getString("nomMarque"));
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} finally {
+			if (requete != null) {
+				try {
+					if (result != null) {
+						result.close();
+					}
+					requete.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return marque;
+	}
+	
+	public Marque get(String nomMarque) {
+		Marque marque = null;
+
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		try {
+			String sql = "SELECT * FROM marque WHERE nom = ?;";
+			requete = connect.prepareStatement(sql);
+			requete.setString(1, nomMarque);
 			result = requete.executeQuery();
 
 			if (result.first()) {

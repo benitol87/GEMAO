@@ -1,4 +1,4 @@
-package fr.gemao.entity.personnel;
+package fr.gemao.entity;
 
 /**
  * Classe Contrat permettant de créer un personnel

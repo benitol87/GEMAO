@@ -2,8 +2,9 @@ package fr.gemao.form.adherent;
 
 import java.util.Date;
 
+import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.form.VerifierSyntaxePersonne;
-import fr.gemao.ancien_entity.Adherent;
+
 
 public class VerifierSyntaxeAdherent {
 	public VerifierSyntaxeAdherent() {
