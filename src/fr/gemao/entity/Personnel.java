@@ -23,32 +23,19 @@ public class Personnel {
 	
 	/**
 	 * Constructeur de la classe Personnel
-	 * @param nom
-	 * 		Le nom de la personne
-	 * @param prenom
-	 * 		Le prénom de la personne
-	 * @param jourNaiss
-	 * 		Le jour de naissance de la personne
-	 * @param moisNaiss
-	 * 		Le mois de naissance de la personne
-	 * @param anneeNaiss
-	 * 		L'année de naissance de la personne
-	 * @param telFix
-	 * 		Le numéro de téléphone fix de la personne
-	 * @param telPort
-	 * 		Le numéro de téléphone portable de la personne
-	 * @param addresse
-	 * 		L'adresse physique de la personne
-	 * @param mail
-	 * 		L'adresse mail de la personne
-	 * @param ville
-	 * 		La ville où habite la personne
-	 * @param cp
-	 * 		Le code postal où habite la personne
-	 * @param diplome
-	 * 		Le diplôme détenu par la personne
-	 * @param fonction
-	 * 		La fonction exercée par la personne
+	 * @param nom : le nom de la personne
+	 * @param prenom : le prénom de la personne
+	 * @param jourNaiss : le jour de naissance de la personne
+	 * @param moisNaiss : le mois de naissance de la personne
+	 * @param anneeNaiss : l'année de naissance de la personne
+	 * @param telFix : le numéro de téléphone fix de la personne
+	 * @param telPort : le numéro de téléphone portable de la personne
+	 * @param addresse : l'adresse physique de la personne
+	 * @param mail : l'adresse mail de la personne
+	 * @param ville : la ville où habite la personne
+	 * @param cp : le code postal où habite la personne
+	 * @param diplome : le diplôme détenu par la personne
+	 * @param fonction : la fonction exercée par la personne
 	 */
 	public Personnel(String nom, String prenom, int jourNaiss, int moisNaiss, int anneeNaiss, String telFix, String telPort, String addresse, String mail, String ville, String cp, String diplome, String fonction) {
 		this.nom = nom;
@@ -68,8 +55,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner le nom de la personne
-	 * @return nom
-	 * 		Le nom de la personne
+	 * @return nom : le nom de la personne
 	 */
 	public String getNom() {
 		return nom;
@@ -77,8 +63,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner le prénom de la personne
-	 * @return prenom
-	 * 		Le prénom de la personne
+	 * @return prenom : le prénom de la personne
 	 */
 	public String getPrenom() {
 		return prenom;
@@ -86,8 +71,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner le jour de naissance de la personne
-	 * @return jourNaiss
-	 * 		Le jour de naissance de la personne
+	 * @return jourNaiss : le jour de naissance de la personne
 	 */
 	public int getJourNaiss() {
 		return jourNaiss;
@@ -95,8 +79,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner le mois de naissance de la personne
-	 * @return moisNaiss
-	 * 		Le mois de naissance de la personne
+	 * @return moisNaiss : le mois de naissance de la personne
 	 */
 	public int getMoisNaiss() {
 		return moisNaiss;
@@ -104,8 +87,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner l'année de naissance de la personne
-	 * @return anneeNaiss
-	 * 		L'année de naissance de la personne
+	 * @return anneeNaiss : l'année de naissance de la personne
 	 */
 	public int getAnneeNaiss() {
 		return anneeNaiss;
@@ -113,8 +95,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner le numéro de téléphone fixe de la personne
-	 * @return telFix
-	 * 		Le numéro de téléphone fixe de la personne
+	 * @return telFix : le numéro de téléphone fixe de la personne
 	 */
 	public String getTelFix() {
 		return telFix;
@@ -122,8 +103,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner le numéro de téléphone portable de la personne
-	 * @return telPort
-	 * 		Le numéro de téléphone portable de la personne
+	 * @return telPort : le numéro de téléphone portable de la personne
 	 */
 	public String getTelPort() {
 		return telPort;
@@ -131,8 +111,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner l'adresse mail de la personne
-	 * @return mail
-	 * 		L'adresse mail de la personne
+	 * @return mail : l'adresse mail de la personne
 	 */
 	public String getMail() {
 		return mail;
@@ -140,8 +119,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner l'adresse physique de la personne
-	 * @return adresse
-	 * 		L'adresse physique de la personne
+	 * @return adresse : l'adresse physique de la personne
 	 */
 	public String getAddresse() {
 		return addresse;
@@ -149,8 +127,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner la ville où habite la personne
-	 * @return ville
-	 * 		La ville où habite la personne
+	 * @return ville : la ville où habite la personne
 	 */
 	public String getVille() {
 		return ville;
@@ -158,8 +135,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner le code postal où habite la personne
-	 * @return cp
-	 * 		Le code postal de la personne
+	 * @return cp : le code postal de la personne
 	 */
 	public String getCp() {
 		return cp;
@@ -167,8 +143,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner le diplôme détenu par la personne
-	 * @return diplome
-	 * 		Le diplôme détenu par la personne
+	 * @return diplome : le diplôme détenu par la personne
 	 */
 	public String getDiplome() {
 		return diplome;
@@ -176,8 +151,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de retourner la fonction exercée par la personne
-	 * @return fonction
-	 * 		La fonction exercée par la personne
+	 * @return fonction : la fonction exercée par la personne
 	 */
 	public String getFonction() {
 		return fonction;
@@ -185,8 +159,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de modifier le nom de la personne
-	 * @param nom
-	 * 		Le nouveau nom de la personne
+	 * @param nom : le nouveau nom de la personne
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -194,8 +167,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de modifier le prénom de la personne
-	 * @param prenom
-	 * 		Le nouveau prénom de la personne
+	 * @param prenom : le nouveau prénom de la personne
 	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
@@ -203,8 +175,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de modifier le jour de naissance de la personne
-	 * @param jourNaiss
-	 * 		Le nouveau jour de naissance de la personne
+	 * @param jourNaiss : le nouveau jour de naissance de la personne
 	 */
 	public void setJourNaiss(int jourNaiss) {
 		this.jourNaiss = jourNaiss;
@@ -212,8 +183,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de modifier le mois de naissance de la personne
-	 * @param moisNaiss
-	 * 		Le nouveau mois de naissance de la personne
+	 * @param moisNaiss : le nouveau mois de naissance de la personne
 	 */
 	public void setMoisNaiss(int moisNaiss) {
 		this.moisNaiss = moisNaiss;
@@ -221,8 +191,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de modifier l'année de naissance de la personne
-	 * @param anneeNaiss
-	 * 		La nouvelle année de naissance de la personne
+	 * @param anneeNaiss : la nouvelle année de naissance de la personne
 	 */
 	public void setAnneeNaiss(int anneeNaiss) {
 		this.anneeNaiss = anneeNaiss;
@@ -230,8 +199,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de modifier le numéro de téléphone fixe de la personne
-	 * @param telFix
-	 * 		Le nouveau numéro de téléphone fixe de la personne
+	 * @param telFix : le nouveau numéro de téléphone fixe de la personne
 	 */
 	public void setTelFix(String telFix) {
 		this.telFix = telFix;
@@ -239,8 +207,7 @@ public class Personnel {
 	
 	/**
 	 * Méthode permettant de modifier le numéro de téléphone portable de la personne
-	 * @param telPort
-	 * 		Le nouveau numéro de téléphone portable de la personne
+	 * @param telPort : le nouveau numéro de téléphone portable de la personne
 	 */
 	public void setTelPort(String telPort) {
 		this.telPort = telPort;
@@ -248,8 +215,7 @@ public class Personnel {
 	
 	/**
 	 * Méthode permettant de modifier l'adresse mail de la personne
-	 * @param mail
-	 * 		La nouvelle adresse mail de la personne
+	 * @param mail : la nouvelle adresse mail de la personne
 	 */
 	public void setMail(String mail) {
 		this.mail = mail;
@@ -257,8 +223,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de modifier l'adresse physique de la personne
-	 * @param addresse
-	 * 		La nouvelle adresse physique de la personne
+	 * @param addresse : la nouvelle adresse physique de la personne
 	 */
 	public void setAddresse(String addresse) {
 		this.addresse = addresse;
@@ -266,8 +231,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de modifier la ville où habite la personne
-	 * @param ville
-	 * 		La nouvelle ville où habite la personne
+	 * @param ville : la nouvelle ville où habite la personne
 	 */
 	public void setVille(String ville) {
 		this.ville = ville;
@@ -275,8 +239,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de modifier le code postal où habite la personne
-	 * @param cp
-	 * 		Le nouveau code postal de la personne
+	 * @param cp : le nouveau code postal de la personne
 	 */
 	public void setCp(String cp) {
 		this.cp = cp;
@@ -284,8 +247,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de modifier le diplôme détenu par la personne
-	 * @param diplome
-	 * 		Le nouveau diplôme de la personne
+	 * @param diplome : le nouveau diplôme de la personne
 	 */
 	public void setDiplome(String diplome) {
 		this.diplome = diplome;
@@ -293,8 +255,7 @@ public class Personnel {
 
 	/**
 	 * Méthode permettant de modifier la fonction exercée par la personne
-	 * @param fonction
-	 * 		La nouvelle fonction de la personne
+	 * @param fonction : la nouvelle fonction de la personne
 	 */
 	public void setFonction(String fonction) {
 		this.fonction = fonction;
@@ -349,13 +310,11 @@ public class Personnel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((addresse == null) ? 0 : addresse.hashCode());
+		result = prime * result + ((addresse == null) ? 0 : addresse.hashCode());
 		result = prime * result + anneeNaiss;
 		result = prime * result + ((cp == null) ? 0 : cp.hashCode());
 		result = prime * result + ((diplome == null) ? 0 : diplome.hashCode());
-		result = prime * result
-				+ ((fonction == null) ? 0 : fonction.hashCode());
+		result = prime * result + ((fonction == null) ? 0 : fonction.hashCode());
 		result = prime * result + jourNaiss;
 		result = prime * result + ((mail == null) ? 0 : mail.hashCode());
 		result = prime * result + moisNaiss;
