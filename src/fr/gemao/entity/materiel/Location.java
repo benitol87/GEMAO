@@ -2,7 +2,9 @@ package fr.gemao.entity.materiel;
 
 import java.sql.Date;
 
-import gemao.entity.Personne;
+import fr.gemao.entity.Personne;
+
+
 
 // TODO: Auto-generated Javadoc
 /**
