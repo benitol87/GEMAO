@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import fr.gemao.ancien_entity.Parametre;
 import fr.gemao.ancien_mysql.ConnectionMySql;
-import fr.gemao.ancien_mysql.ParametreDAO;
+import fr.gemao.sql.ParametreDAO;
 
 public class CalculerCotisationCtrl {
 	

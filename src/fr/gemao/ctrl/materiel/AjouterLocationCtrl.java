@@ -4,11 +4,11 @@ import java.sql.Date;
 import java.util.GregorianCalendar;
 
 import fr.gemao.ancien_mysql.ConnectionMySql;
-import fr.gemao.ancien_mysql.gestionMateriel.LocationDAO;
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.materiel.Etat;
 import fr.gemao.entity.materiel.Location;
 import fr.gemao.entity.materiel.Materiel;
+import fr.gemao.sql.gestionMateriel.LocationDAO;
 
 /**
  * 

@@ -5,7 +5,7 @@ import java.sql.Date;
 import fr.gemao.ancien_mysql.ConnectionMySql;
 import fr.gemao.entity.materiel.Reparateur;
 import fr.gemao.entity.materiel.Reparation;
-import fr.gemao.ancien_mysql.gestionMateriel.ReparationDAO;
+import fr.gemao.sql.gestionMateriel.ReparationDAO;
 
 public class ReparationCtrl {
 

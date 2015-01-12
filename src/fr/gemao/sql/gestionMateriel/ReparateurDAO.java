@@ -1,12 +1,6 @@
-package gemao.mysql.gestionMateriel;
-
-import gemao.application.gestionMateriel.Materiel;
-import gemao.application.gestionMateriel.Reparateur;
-import gemao.application.gestionMateriel.Reparation;
-import gemao.mysql.DAOMySql;
+package fr.gemao.sql.gestionMateriel;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,17 +8,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReparationDAO extends DAOMySql<Reparation>{
-	
-	public ReparationDAO(Connection conn) {
+import gemao.application.gestionMateriel.Materiel;
+import gemao.application.gestionMateriel.Reparateur;
+import gemao.mysql.DAOMySql;
+
+public class ReparateurDAO extends DAOMySql<Reparateur> {
+
+	public ReparateurDAO(Connection conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
-	public Reparation create(Reparation obj) {
+	public Reparateur create(Reparateur obj) {
 		if (obj == null) {
-			throw new NullPointerException("Le materiel ne doit pas �tre null");
+			throw new NullPointerException("Le reparateur ne doit pas etre null");
 		}
 
 		long id = 0;
@@ -32,13 +29,11 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO REPARATION(idReparation," + "idReparateur,"
-					+ "dateCertificat" +"VALUES (?,?,?);";
+			String sql = "INSERT INTO REPARATEUR (idReparateur," + "nom)" +"VALUES (?,?);";
 			requete = connect.prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
-			requete.setInt(1, obj.getIdReparation());
-			requete.setInt(2,obj.getReparateur().getIdReparateur());
-			requete.setDate(3,obj.getDateCertificat());
+			requete.setInt(1, obj.getIdReparateur());
+			requete.setString(2,obj.getNom());
 
 			
 			requete.executeUpdate();
@@ -65,16 +60,17 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 
 		return this.get(id);
 	}
+		
 
 	@Override
-	public void delete(Reparation obj) {
+	public void delete(Reparateur obj) {
 		if (obj == null) {
 			throw new NullPointerException("La Reparation ne doit pas �tre null");
 		}
 
-		if (obj.getIdReparation() == 0) {
+		if (obj.getIdReparateur() == 0) {
 			throw new NullPointerException(
-					"La reparation ne peut pas avoir un id = 0");
+					"Le Reparateur ne peut pas avoir un id = 0");
 		}
 
 		Statement stat = null;
@@ -82,7 +78,7 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
 			stat.execute("DELETE FROM REPARATION WHERE idReparation = "
-					+ obj.getIdReparation() + ";");
+					+ obj.getIdReparateur() + ";");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -94,30 +90,31 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 				}
 			}
 		}
-	}
+	}		
+	
 
 	@Override
-	public Reparation update(Reparation obj) {
+	public Reparateur update(Reparateur obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Reparation get(long id) {
-		Reparation reparation = null;
+	public Reparateur get(long id) {
+		Reparateur reparateur = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM REPARATION WHERE idReparation = ?;";
+			String sql = "SELECT * FROM REPARATEUR WHERE idReparateur = ?;";
 			requete = connect.prepareStatement(sql);
 			requete.setLong(1, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				reparation = new Reparation(result.getInt("idReparation"),
-						new ReparateurDAO(connect).get(result.getInt("idReparateur")),
-						result.getDate("dateCertificat"));
+				reparateur = new Reparateur(result.getInt("idReparateur"),
+						result.getString("nom"));
+						
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -133,29 +130,26 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 				}
 			}
 		}
-		return reparation;
+		return reparateur;
 	}
 
-	
-
 	@Override
-	public List<Reparation> getAll() {
-		List<Reparation> liste = new ArrayList<>();
+	public List<Reparateur> getAll() {
+		List<Reparateur> liste = new ArrayList<>();
 
-		Reparation reparation = null;
+		Reparateur reparateur = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM Reparation;";
+			String sql = "SELECT * FROM Reparateur;";
 			requete = connect.prepareStatement(sql);
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				reparation = new Reparation(result.getInt("idReparation"),
-						new ReparateurDAO(connect).get(result.getInt("idReparateur")),
-						result.getDate("dateCertificat"));
-				liste.add(reparation);
+				reparateur = new Reparateur(result.getInt("idReparateur"),
+						result.getString("nom"));
+				liste.add(reparateur);
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -174,6 +168,5 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 
 		return liste;
 	}
-
 
 }

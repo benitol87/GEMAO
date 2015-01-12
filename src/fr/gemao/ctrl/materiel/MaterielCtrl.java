@@ -13,7 +13,7 @@ import fr.gemao.entity.materiel.Designation;
 import fr.gemao.entity.materiel.Etat;
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.entity.materiel.Materiel;
-import fr.gemao.ancien_mysql.gestionMateriel.MaterielDAO;
+import fr.gemao.sql.gestionMateriel.MaterielDAO;
 
 public class MaterielCtrl {
 	public MaterielCtrl() {
