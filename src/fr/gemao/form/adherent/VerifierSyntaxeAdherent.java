@@ -5,8 +5,8 @@ import java.util.Date;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.form.VerifierSyntaxePersonne;
 
-
 public class VerifierSyntaxeAdherent {
+	
 	public VerifierSyntaxeAdherent() {
 
 	}
