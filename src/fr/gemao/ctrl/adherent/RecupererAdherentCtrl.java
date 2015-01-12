@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.ancien_entity.Adherent;
+
+
 import fr.gemao.ancien_mysql.AdherentDAO;
 import fr.gemao.ancien_mysql.ConnectionMySql;
+import fr.gemao.entity.adherent.Adherent;
 
 public class RecupererAdherentCtrl {
 
