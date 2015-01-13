@@ -7,14 +7,14 @@ import fr.gemao.entity.Personnel;
  * @author Coco
  *
  */
-public class VerifierSyntaxePersonnel {
+public class VerifierSyntaxePersonnelForm {
 	
 	private boolean isValide;
 	
 	/**
 	 * Constructeur
 	 */
-	public VerifierSyntaxePersonnel() {
+	public VerifierSyntaxePersonnelForm() {
 		this.isValide = true;
 	}
 	
