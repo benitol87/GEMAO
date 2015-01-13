@@ -137,7 +137,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * FROM marque;";
+		String sql = "SELECT * FROM materiel;";
 		try {
 			
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false);

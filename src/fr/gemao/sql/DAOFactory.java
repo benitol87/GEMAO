@@ -13,6 +13,8 @@ import fr.gemao.sql.exception.DAOConfigurationException;
 import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
+import fr.gemao.sql.materiel.MaterielDAO;
+import fr.gemao.sql.materiel.ReparationDAO;
 
 public class DAOFactory {
 
@@ -145,6 +147,14 @@ public class DAOFactory {
 
 	public ResponsabiliteDAO getResponsabiliteDAO() {
 		return new ResponsabiliteDAO(this);
+	}
+
+	public MaterielDAO getMaterielDAO() {
+		return new MaterielDAO(this);
+	}
+
+	public ReparationDAO getReparationDAO() {
+		return new ReparationDAO(this);
 	}
 
 }
