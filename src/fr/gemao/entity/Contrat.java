@@ -2,8 +2,6 @@ package fr.gemao.entity;
 
 import java.util.Date;
 
-import fr.gemao.ctrl.personnel.CalculerDateFinContratCtrl;
-
 /**
  * Classe Contrat permettant de créer un contrat en récupérant le nom et le prénom d'un personnel
  * @author Coco
@@ -23,9 +21,7 @@ public class Contrat {
 	 * @param dateDebut : la date de début du contrat
 	 * @param dateFin : la date de fin du contrat
 	 */
-	public Contrat(String nom, String prenom, String typeContrat, Date dateDebut, Date dateFin) {
-		CalculerDateFinContratCtrl date = new CalculerDateFinContratCtrl();
-		
+	public Contrat(String nom, String prenom, String typeContrat, Date dateDebut, Date dateFin) {		
 		this.nom = nom;
 		this.prenom = prenom;
 		this.typeContrat = typeContrat;
