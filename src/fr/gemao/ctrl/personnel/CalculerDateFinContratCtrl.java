@@ -2,13 +2,33 @@ package fr.gemao.ctrl.personnel;
 
 import java.util.Calendar;
 
+/**
+ * Classe CalculerDateFinContratCtrl permettant de calculer la date de fin d'un contrat en fonction d'une date de début et d'une durée de contrat
+ * @author Coco
+ *
+ */
 public class CalculerDateFinContratCtrl {
 	
+	private int jourFinContrat;
+	private int moisFinContrat;
+	private int anneeFinContrat;
+	
+	/**
+	 * Constructeur
+	 */
 	public CalculerDateFinContratCtrl() {
 		
 	}
 	
-	public void CalculerDateFinContrat(int jourDebutContrat, int moisDebutContrat, int anneeDebutContrat, int duree) {
+	/**
+	 * Méthode calculant la date de fin d'un contrat
+	 * @param jourDebutContrat : le jour de début du contrat
+	 * @param moisDebutContrat : le mois de début du contrat
+	 * @param anneeDebutContrat : l'année de début du contrat
+	 * @param duree : la durée du contrat
+	 * @return dateFin : la date de fin (String)
+	 */
+	public String CalculerDateFinContrat(int jourDebutContrat, int moisDebutContrat, int anneeDebutContrat, int duree) {
 		Calendar cal = Calendar.getInstance();
 		String dateFin;
 		StringBuilder sb = new StringBuilder();
