@@ -95,7 +95,7 @@
 	</tr>
 </table>
 <div>
-	<input type="button" value="Retour" /> <input type="button"
+	<a href="listeAdherents.jsp"><input type="button" value="Retour" /></a> <input type="button"
 		value="Modifier" />
 </div>
 
