@@ -55,62 +55,29 @@ public class CategorieDAO extends IDAO<Categorie> {
 
 	@Override
 	public void delete(Categorie obj) {
-		Connection connexion = null;
-		ResultSet result = null;
-		if (obj == null) {
-			throw new NullPointerException("La categorie ne doit pas etre null");
-		}
-
-		if (obj.getIdCategorie() <= 0) {
-			throw new IllegalArgumentException(
-					"La categorie ne peut pas avoir un id <= 0");
-		}
-
-		PreparedStatement stat = null;
-		try {
-			connexion = factory.getConnection();
-			String sql = "DELETE FROM categorie WHERE idCategorie = "
-					+ obj.getIdCategorie();
-			stat = DAOUtilitaires.initialisationRequetePreparee(connexion, sql,
-					false);
-
-			int status = stat.executeUpdate();
-			if (status == 0) {
-				throw new DAOException(
-						"Échec de la suppression de la categorie, aucune modification dans la table.");
-			}
-
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} finally {
-			DAOUtilitaires.fermeturesSilencieuses(result, stat, connexion);
-		}
-
+		/*
+		 * if (obj == null) { throw new
+		 * NullPointerException("La categorie ne doit pas etre null"); }
+		 * 
+		 * if (obj.getIdCategorie() <= 0) { throw new IllegalArgumentException(
+		 * "La categorie ne peut pas avoir un id = 0"); }
+		 * 
+		 * Statement stat = null; try { stat =
+		 * connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+		 * ResultSet.CONCUR_UPDATABLE);
+		 * stat.execute("DELETE FROM categorie WHERE idCategorie = " +
+		 * obj.getIdCategorie() + ";"); } catch (SQLException e) {
+		 * e.printStackTrace(); } finally { if (stat != null) { try {
+		 * stat.close(); } catch (SQLException e) { e.printStackTrace(); } } }
+		 */
+		throw new UnsupportedOperationException(
+				"Vous n'avez pas le droit de supprimer une Categorie.");
 	}
 
 	@Override
 	public Categorie update(Categorie obj) {
-		if (obj == null) {
-			throw new NullPointerException("La categorie ne doit pas etre nul");
-		}
-
-		Connection connexion = null;
-		PreparedStatement requete = null;
-		ResultSet result = null;
-		String sql = "UPDATE categorie SET libelle = ?"
-				+ "WHERE idCategorie = ?;";
-		try {
-
-			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getLibelleCat(), obj.getIdCategorie());
-			requete.executeUpdate();
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} finally {
-			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
-		}
-		return this.get(obj.getIdCategorie());
+		// TODO Comportement par d�faut, a modifier
+		return null;
 	}
 
 	@Override
@@ -129,7 +96,8 @@ public class CategorieDAO extends IDAO<Categorie> {
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				categorie = this.map(result);
+				categorie = new Categorie(result.getInt("idCategorie"),
+						result.getString("libelle"));
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -156,7 +124,8 @@ public class CategorieDAO extends IDAO<Categorie> {
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				categorie =this.map(result);
+				categorie = new Categorie(result.getInt("idCategorie"),
+						result.getString("libelle"));
 				liste.add(categorie);
 			}
 		} catch (SQLException e) {
@@ -170,8 +139,7 @@ public class CategorieDAO extends IDAO<Categorie> {
 
 	@Override
 	protected Categorie map(ResultSet result) throws java.sql.SQLException {
-		return new Categorie(result.getInt("idCategorie"),
-				result.getString("libelle"));
+		return new Categorie(result.getInt("idCategorie"), result.getString("libelle"));
 	}
 
 }

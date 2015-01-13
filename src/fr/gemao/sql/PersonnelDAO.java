@@ -28,7 +28,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 	}
 
 	/**
-	 * Redéfinition de la méthode create
+	 * Redéfinition de lam méthode 
 	 */
 	@Override
 	public Personnel create(Personnel obj) {
@@ -67,7 +67,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 	}
 
 	/**
-	 * Redéfinition de la méthode delete
+	 * 
 	 */
 	@Override
 	public void delete(Personnel obj) {
@@ -188,8 +188,6 @@ public class PersonnelDAO extends IDAO<Personnel>{
 	
 	/**
 	 * Méthode permettant retourner un personnel en fonction de son login
-	 * @param login : le login du personnel
-	 * @return : le personnel
 	 */
 	public Personnel getLoginParPersonnel(String login) {
 		Personnel personnel = null;

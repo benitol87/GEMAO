@@ -97,12 +97,13 @@ public class LocationDAO extends IDAO<Location> {
 
 	@Override
 	public Location update(Location obj) {
-		throw new UnsupportedOperationException();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Location get(long id) {
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -117,7 +118,5 @@ public class LocationDAO extends IDAO<Location> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
 
 }

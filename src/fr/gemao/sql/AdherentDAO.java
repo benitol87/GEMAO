@@ -13,11 +13,6 @@ import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.DateUtil;
 import fr.gemao.sql.util.NumberUtil;
 
-/**
- * Classe AdherentDAO
- * @author clem19s
- *
- */
 public class AdherentDAO extends IDAO<Adherent>{
 
 	public AdherentDAO(DAOFactory factory) {

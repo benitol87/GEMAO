@@ -28,7 +28,7 @@ public class ModifAdherentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* Transmission à la page JSP en charge de l'affichage des données */
+		/* Transmission � la page JSP en charge de l'affichage des donn�es */
 		this.getServletContext()
 				.getRequestDispatcher(VUE)
 				.forward(request, response);
