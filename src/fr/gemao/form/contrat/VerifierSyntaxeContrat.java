@@ -20,7 +20,6 @@ public class VerifierSyntaxeContrat {
 	 */
 	public VerifierSyntaxeContrat() {
 		this.isValide = true;
-		Calendar cal = Calendar.getInstance();
 		anneeMin = Calendar.YEAR - 100;
 		anneeMax = Calendar.YEAR;
 	}

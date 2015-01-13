@@ -8,7 +8,7 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 	<!-- 1er partie du formulaire -->
-	<form id="ajoutp1" method="post" action="#">
+	<form id="ajoutp1" method="post" action="ajoutPersonnel2.jsp">
 		<table>
 			<tr><td>
 					<label for="nom">*NOM:</label>

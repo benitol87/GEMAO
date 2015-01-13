@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +58,7 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 		PreparedStatement state = null;
 		ResultSet result = null;
 		Responsabilite responsabilite = null;
-		List<Responsabilite> liste = new ArrayList();
+		List<Responsabilite> liste = new ArrayList<Responsabilite>();
 		
 		String sql = "SELECT * FROM responsabilite WHERE idPersonne = ?;";
 		
