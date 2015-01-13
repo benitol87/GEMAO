@@ -13,93 +13,126 @@ import fr.gemao.sql.exception.DAOConfigurationException;
 
 public class DAOFactory {
 
-    private static final String FICHIER_PROPERTIES       = "./fr/gemao/sql/dao.properties";
-    private static final String PROPERTY_URL             = "url";
-    private static final String PROPERTY_DRIVER          = "driver";
-    private static final String PROPERTY_NOM_UTILISATEUR = "nomutilisateur";
-    private static final String PROPERTY_MOT_DE_PASSE    = "motdepasse";
+	private static final String FICHIER_PROPERTIES = "./fr/gemao/sql/dao.properties";
+	private static final String PROPERTY_URL = "url";
+	private static final String PROPERTY_DRIVER = "driver";
+	private static final String PROPERTY_NOM_UTILISATEUR = "nomutilisateur";
+	private static final String PROPERTY_MOT_DE_PASSE = "motdepasse";
 
-    private BoneCP connectionPool;
+	private static boolean CHARGE = false;
 
-    DAOFactory(BoneCP connectionPool) {
-    	this.connectionPool = connectionPool;
-    }
+	private BoneCP connectionPool;
 
-    /*
-     * Méthode chargée de récupérer les informations de connexion à la base de
-     * données, charger le driver JDBC et retourner une instance de la Factory
-     */
-    public static DAOFactory getInstance() throws DAOConfigurationException {
-        Properties properties = new Properties();
-        String url;
-        String driver;
-        String nomUtilisateur;
-        String motDePasse;
-        BoneCP pool = null;
+	DAOFactory(BoneCP connectionPool) {
+		this.connectionPool = connectionPool;
+	}
 
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        InputStream fichierProperties = classLoader.getResourceAsStream( FICHIER_PROPERTIES );
+	/*
+	 * Méthode chargée de récupérer les informations de connexion à la base de
+	 * données, charger le driver JDBC et retourner une instance de la Factory
+	 */
+	public static DAOFactory getInstance() throws DAOConfigurationException {
+		DAOFactory instance;
+		if (!DAOFactory.CHARGE) {
+			Properties properties = new Properties();
+			String url;
+			String driver;
+			String nomUtilisateur;
+			String motDePasse;
+			BoneCP pool = null;
 
-        if ( fichierProperties == null ) {
-            throw new DAOConfigurationException( "Le fichier properties " + FICHIER_PROPERTIES + " est introuvable." );
-        }
+			ClassLoader classLoader = Thread.currentThread()
+					.getContextClassLoader();
+			InputStream fichierProperties = classLoader
+					.getResourceAsStream(FICHIER_PROPERTIES);
 
-        try {
-            properties.load( fichierProperties );
-            url = properties.getProperty( PROPERTY_URL );
-            driver = properties.getProperty( PROPERTY_DRIVER );
-            nomUtilisateur = properties.getProperty( PROPERTY_NOM_UTILISATEUR );
-            motDePasse = properties.getProperty( PROPERTY_MOT_DE_PASSE );
-        } catch ( IOException e ) {
-            throw new DAOConfigurationException( "Impossible de charger le fichier properties " + FICHIER_PROPERTIES, e );
-        }
+			if (fichierProperties == null) {
+				throw new DAOConfigurationException("Le fichier properties "
+						+ FICHIER_PROPERTIES + " est introuvable.");
+			}
 
-        try {
-            Class.forName( driver );
-        } catch ( ClassNotFoundException e ) {
-            throw new DAOConfigurationException( "Le driver est introuvable dans le classpath.", e );
-        }
-        
-        try {
-            /*
-             * Création d'une configuration de pool de connexions via l'objet
-             * BoneCPConfig et les différents setters associés.
-             */
-            BoneCPConfig config = new BoneCPConfig();
-            /* Mise en place de l'URL, du nom et du mot de passe */
-            config.setJdbcUrl( url );
-            config.setUsername( nomUtilisateur );
-            config.setPassword( motDePasse );
-            /* Paramétrage de la taille du pool */
-            config.setMinConnectionsPerPartition( 5 );
-            config.setMaxConnectionsPerPartition( 10 );
-            config.setPartitionCount( 2 );
-            /* Création du pool à partir de la configuration, via l'objet BoneCP */
-            pool = new BoneCP( config );
-        } catch ( SQLException e ) {
-            e.printStackTrace();
-            throw new DAOConfigurationException( "Erreur de configuration du pool de connexions.", e );
-        }
+			try {
+				properties.load(fichierProperties);
+				url = properties.getProperty(PROPERTY_URL);
+				driver = properties.getProperty(PROPERTY_DRIVER);
+				nomUtilisateur = properties
+						.getProperty(PROPERTY_NOM_UTILISATEUR);
+				motDePasse = properties.getProperty(PROPERTY_MOT_DE_PASSE);
+			} catch (IOException e) {
+				throw new DAOConfigurationException(
+						"Impossible de charger le fichier properties "
+								+ FICHIER_PROPERTIES, e);
+			}
 
-        DAOFactory instance = new DAOFactory(pool);
-        return instance;
-    }
+			try {
+				Class.forName(driver);
+			} catch (ClassNotFoundException e) {
+				throw new DAOConfigurationException(
+						"Le driver est introuvable dans le classpath.", e);
+			}
 
-    /* Méthode chargée de fournir une connexion à la base de données */
-    public Connection getConnection() throws SQLException {
-        return connectionPool.getConnection();
-    }
-    
-    public AdherentDAO getAdherentDAO(){
-    	return new AdherentDAO(this);
-    }
-    
-    public PersonneDAO getPersonneDAO(){
-    	return new PersonneDAO(this);
-    }
-    
-    public ParametreDAO getParametreDAO(){
-    	return new ParametreDAO(this);
-    }
+			try {
+				/*
+				 * Création d'une configuration de pool de connexions via
+				 * l'objet BoneCPConfig et les différents setters associés.
+				 */
+				BoneCPConfig config = new BoneCPConfig();
+				/* Mise en place de l'URL, du nom et du mot de passe */
+				config.setJdbcUrl(url);
+				config.setUsername(nomUtilisateur);
+				config.setPassword(motDePasse);
+				/* Paramétrage de la taille du pool */
+				config.setMinConnectionsPerPartition(5);
+				config.setMaxConnectionsPerPartition(10);
+				config.setPartitionCount(2);
+				/*
+				 * Création du pool à partir de la configuration, via l'objet
+				 * BoneCP
+				 */
+				pool = new BoneCP(config);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOConfigurationException(
+						"Erreur de configuration du pool de connexions.", e);
+			}
+			instance = new DAOFactory(pool);
+			DAOFactory.CHARGE = true;
+		}else{
+			instance = null;
+		}
+		return instance;
+	}
+
+	/* Méthode chargée de fournir une connexion à la base de données */
+	public Connection getConnection() throws SQLException {
+		return connectionPool.getConnection();
+	}
+
+	public AdherentDAO getAdherentDAO() {
+		return new AdherentDAO(this);
+	}
+
+	public PersonneDAO getPersonneDAO() {
+		return new PersonneDAO(this);
+	}
+
+	public ParametreDAO getParametreDAO() {
+		return new ParametreDAO(this);
+	}
+
+	public EtatDAO getEtatDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public EtatDAO getCategorieDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public EtatDAO getMarqueDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
