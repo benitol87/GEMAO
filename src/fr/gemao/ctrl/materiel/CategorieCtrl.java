@@ -14,8 +14,9 @@ public class CategorieCtrl {
 	 *            le libelle de la categorie a rajouter.
 	 */
 	public static void ajoutCategorie(int idCategorie, String libelle) {
-		if(idCategorie <=0){
-			throw new IllegalArgumentException("L'id de la categorie doit etre > 0");
+		if (idCategorie <= 0) {
+			throw new IllegalArgumentException(
+					"L'id de la categorie doit etre > 0");
 		}
 		if (libelle == null) {
 			throw new NullPointerException("Le libelle ne peut etre null");
@@ -54,32 +55,29 @@ public class CategorieCtrl {
 			}
 		}
 	}
+
 	/**
 	 * Permet de modifier le libelle d'une categorie
 	 * 
 	 * @param categorie
-	 * 		la nouvelle Categorie
+	 *            la nouvelle Categorie
 	 */
-	public void modifierCategorie(Categorie categorie){
-		if(categorie.getIdCategorie() <=0){
+	public void modifierCategorie(Categorie categorie) {
+		if (categorie.getIdCategorie() <= 0) {
 			throw new IllegalArgumentException("ID invalide");
 		}
-		
-		if(categorie.getLibelleCat()==null){
+
+		if (categorie.getLibelleCat() == null) {
 			throw new NullPointerException("Libelle invalide");
 		}
-		
-		if(categorie.getLibelleCat() == ""){
+
+		if (categorie.getLibelleCat() == "") {
 			throw new IllegalArgumentException("Libelle invalide");
 		}
-		
+
 		CategorieDAO catdao = new CategorieDAO(DAOFactory.getInstance());
-		List<Categorie> cats = catdao.getAll();
-		for (Categorie cat : cats) {
-			if (cat.getIdCategorie() == categorie.getIdCategorie()) {
-				catdao.update(categorie);
-				break;
-			}
-		}
+
+		catdao.update(categorie);
+
 	}
 }
