@@ -2,8 +2,8 @@ package gemao.moduleAdherent;
 
 import java.util.List;
 
-import gemao.entity.Adherent;
-import gemao.moduleAdherent.ctrl.RecupererAdherentCtrl;
+import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 
 public class TestAdherentCtrl {
 
