@@ -1,4 +1,4 @@
-package fr.gemao.sql.gestionMateriel;
+package fr.gemao.sql.materiel;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,21 +7,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.materiel.Reparateur;
+import fr.gemao.entity.materiel.Reparation;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
 
-public class ReparateurDAO extends IDAO<Reparateur> {
+public class ReparationDAO extends IDAO<Reparation> {
 
-	public ReparateurDAO(DAOFactory conn) {
+	public ReparationDAO(DAOFactory conn) {
 		super(conn);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public Reparateur create(Reparateur obj) {
+	public Reparation create(Reparation obj) {
 		if (obj == null) {
-			throw new NullPointerException(
-					"Le reparateur ne doit pas etre null");
+			throw new NullPointerException("Le materiel ne doit pas �tre null");
 		}
 
 		long id = 0;
@@ -29,12 +29,13 @@ public class ReparateurDAO extends IDAO<Reparateur> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO REPARATEUR (idReparateur," + "nom)"
-					+ "VALUES (?,?);";
+			String sql = "INSERT INTO REPARATION(idReparation,"
+					+ "idReparateur," + "dateCertificat" + "VALUES (?,?,?);";
 			requete = factory.getConnection().prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
-			requete.setInt(1, obj.getIdReparateur());
-			requete.setString(2, obj.getNom());
+			requete.setInt(1, obj.getIdReparation());
+			requete.setInt(2, obj.getReparateur().getIdReparateur());
+			requete.setDate(3, obj.getDateCertificat());
 
 			requete.executeUpdate();
 
@@ -62,15 +63,15 @@ public class ReparateurDAO extends IDAO<Reparateur> {
 	}
 
 	@Override
-	public void delete(Reparateur obj) {
+	public void delete(Reparation obj) {
 		if (obj == null) {
 			throw new NullPointerException(
 					"La Reparation ne doit pas �tre null");
 		}
 
-		if (obj.getIdReparateur() == 0) {
+		if (obj.getIdReparation() == 0) {
 			throw new NullPointerException(
-					"Le Reparateur ne peut pas avoir un id = 0");
+					"La reparation ne peut pas avoir un id = 0");
 		}
 
 		Statement stat = null;
@@ -79,7 +80,7 @@ public class ReparateurDAO extends IDAO<Reparateur> {
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
 			stat.execute("DELETE FROM REPARATION WHERE idReparation = "
-					+ obj.getIdReparateur() + ";");
+					+ obj.getIdReparation() + ";");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -94,27 +95,28 @@ public class ReparateurDAO extends IDAO<Reparateur> {
 	}
 
 	@Override
-	public Reparateur update(Reparateur obj) {
+	public Reparation update(Reparation obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Reparateur get(long id) {
-		Reparateur reparateur = null;
+	public Reparation get(long id) {
+		Reparation reparation = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM REPARATEUR WHERE idReparateur = ?;";
+			String sql = "SELECT * FROM REPARATION WHERE idReparation = ?;";
 			requete = factory.getConnection().prepareStatement(sql);
 			requete.setLong(1, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				reparateur = new Reparateur(result.getInt("idReparateur"),
-						result.getString("nom"));
-
+				reparation = new Reparation(result.getInt("idReparation"),
+						new ReparateurDAO(factory).get(result
+								.getInt("idReparateur")),
+						result.getDate("dateCertificat"));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -130,26 +132,28 @@ public class ReparateurDAO extends IDAO<Reparateur> {
 				}
 			}
 		}
-		return reparateur;
+		return reparation;
 	}
 
 	@Override
-	public List<Reparateur> getAll() {
-		List<Reparateur> liste = new ArrayList<>();
+	public List<Reparation> getAll() {
+		List<Reparation> liste = new ArrayList<>();
 
-		Reparateur reparateur = null;
+		Reparation reparation = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM Reparateur;";
+			String sql = "SELECT * FROM Reparation;";
 			requete = factory.getConnection().prepareStatement(sql);
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				reparateur = new Reparateur(result.getInt("idReparateur"),
-						result.getString("nom"));
-				liste.add(reparateur);
+				reparation = new Reparation(result.getInt("idReparation"),
+						new ReparateurDAO(factory).get(result
+								.getInt("idReparateur")),
+						result.getDate("dateCertificat"));
+				liste.add(reparation);
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -170,7 +174,7 @@ public class ReparateurDAO extends IDAO<Reparateur> {
 	}
 
 	@Override
-	protected Reparateur map(ResultSet result) throws SQLException {
+	protected Reparation map(ResultSet result) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

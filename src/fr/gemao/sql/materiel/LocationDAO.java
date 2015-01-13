@@ -1,4 +1,4 @@
-package fr.gemao.sql.gestionMateriel;
+package fr.gemao.sql.materiel;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

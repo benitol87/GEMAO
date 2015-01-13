@@ -1,4 +1,4 @@
-package fr.gemao.sql.gestionMateriel;
+package fr.gemao.sql.materiel;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,20 +7,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.materiel.Marque;
+import fr.gemao.entity.materiel.Reparateur;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
 
-public class MarqueDAO extends IDAO<Marque> {
+public class ReparateurDAO extends IDAO<Reparateur> {
 
-	public MarqueDAO(DAOFactory conn) {
+	public ReparateurDAO(DAOFactory conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
-	public Marque create(Marque obj) {
+	@Override
+	public Reparateur create(Reparateur obj) {
 		if (obj == null) {
-			throw new NullPointerException("La marque ne doit pas etre null");
+			throw new NullPointerException(
+					"Le reparateur ne doit pas etre null");
 		}
 
 		long id = 0;
@@ -28,12 +29,13 @@ public class MarqueDAO extends IDAO<Marque> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO MARQUE(idMarque, nomMarque)"
-					+ "VALUES (?, ?);";
+			String sql = "INSERT INTO REPARATEUR (idReparateur," + "nom)"
+					+ "VALUES (?,?);";
 			requete = factory.getConnection().prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
-			requete.setInt(1, obj.getIdMarque());
-			requete.setString(2, obj.getNomMarque());
+			requete.setInt(1, obj.getIdReparateur());
+			requete.setString(2, obj.getNom());
+
 			requete.executeUpdate();
 
 			result = requete.getGeneratedKeys();
@@ -60,14 +62,15 @@ public class MarqueDAO extends IDAO<Marque> {
 	}
 
 	@Override
-	public void delete(Marque obj) {
+	public void delete(Reparateur obj) {
 		if (obj == null) {
-			throw new NullPointerException("La marque ne doit pas etre null");
+			throw new NullPointerException(
+					"La Reparation ne doit pas �tre null");
 		}
 
-		if (obj.getIdMarque() == 0) {
+		if (obj.getIdReparateur() == 0) {
 			throw new NullPointerException(
-					"La marque ne peut pas avoir un id = 0");
+					"Le Reparateur ne peut pas avoir un id = 0");
 		}
 
 		Statement stat = null;
@@ -75,8 +78,8 @@ public class MarqueDAO extends IDAO<Marque> {
 			stat = factory.getConnection().createStatement(
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM MARQUE WHERE idMarque = "
-					+ obj.getIdMarque() + ";");
+			stat.execute("DELETE FROM REPARATION WHERE idReparation = "
+					+ obj.getIdReparateur() + ";");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -88,30 +91,30 @@ public class MarqueDAO extends IDAO<Marque> {
 				}
 			}
 		}
-
 	}
 
 	@Override
-	public Marque update(Marque obj) {
+	public Reparateur update(Reparateur obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Marque get(long id) {
-		Marque marque = null;
+	public Reparateur get(long id) {
+		Reparateur reparateur = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM marque WHERE idMarque = ?;";
+			String sql = "SELECT * FROM REPARATEUR WHERE idReparateur = ?;";
 			requete = factory.getConnection().prepareStatement(sql);
 			requete.setLong(1, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
+				reparateur = new Reparateur(result.getInt("idReparateur"),
+						result.getString("nom"));
+
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -127,58 +130,26 @@ public class MarqueDAO extends IDAO<Marque> {
 				}
 			}
 		}
-		return marque;
-	}
-
-	public Marque get(String nomMarque) {
-		Marque marque = null;
-
-		PreparedStatement requete = null;
-		ResultSet result = null;
-		try {
-			String sql = "SELECT * FROM marque WHERE nom = ?;";
-			requete = factory.getConnection().prepareStatement(sql);
-			requete.setString(1, nomMarque);
-			result = requete.executeQuery();
-
-			if (result.first()) {
-				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
-			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		} finally {
-			if (requete != null) {
-				try {
-					if (result != null) {
-						result.close();
-					}
-					requete.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return marque;
+		return reparateur;
 	}
 
 	@Override
-	public List<Marque> getAll() {
-		List<Marque> liste = new ArrayList<>();
+	public List<Reparateur> getAll() {
+		List<Reparateur> liste = new ArrayList<>();
 
-		Marque marque = null;
+		Reparateur reparateur = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM marque;";
+			String sql = "SELECT * FROM Reparateur;";
 			requete = factory.getConnection().prepareStatement(sql);
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
-				liste.add(marque);
+				reparateur = new Reparateur(result.getInt("idReparateur"),
+						result.getString("nom"));
+				liste.add(reparateur);
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -199,7 +170,7 @@ public class MarqueDAO extends IDAO<Marque> {
 	}
 
 	@Override
-	protected Marque map(ResultSet result) throws SQLException {
+	protected Reparateur map(ResultSet result) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
