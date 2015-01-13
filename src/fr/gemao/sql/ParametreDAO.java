@@ -18,7 +18,7 @@ public class ParametreDAO extends IDAO<Parametre> {
 
 	@Override
 	public Parametre create(Parametre obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
