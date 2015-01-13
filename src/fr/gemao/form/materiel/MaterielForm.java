@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.entity.materiel.Etat;
