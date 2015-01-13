@@ -157,4 +157,7 @@ public class DAOFactory {
 		return new ReparationDAO(this);
 	}
 
+	public ResponsableDAO getResponsableDAO(){
+		return new ResponsableDAO(this);
+	}
 }
