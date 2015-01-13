@@ -2,66 +2,67 @@ package fr.gemao.form.personnel;
 
 import fr.gemao.entity.Personnel;
 
+/**
+ * Classe de vérification des informations d'un personnel
+ * @author Coco
+ *
+ */
 public class VerifierSyntaxePersonnel {
 	
 	private boolean isValide;
 	
+	/**
+	 * Constructeur
+	 */
 	public VerifierSyntaxePersonnel() {
 		this.isValide = true;
 	}
 	
+	/**
+	 * Vérifie les informations d'un personnel
+	 * @param personnel : le personnel à vérifier
+	 * @return : retourne true si les informations sont cohérentes, false sinon
+	 */
 	public boolean verifierInformations(Personnel personnel) {
 		
-		if (personnel.getNom() == null) {
-			this.isValide = false;
+		/**
+		 * Vérifie si la liste des responsabilités n'est pas vide
+		 */
+		if (personnel.getIdResponsabilite() == null) {
+			System.out.println("Le personnel doit avoir au moins une responsabilité");
+			isValide = false;
 		}
 		
-		if (personnel.getPrenom() == null) {
-			this.isValide = false;
-		}
-
-		if (personnel.getJourNaiss() < 1 || personnel.getJourNaiss() > 31) {
-			this.isValide = false;
-		}
-		
-		if (personnel.getMoisNaiss() < 1 || personnel.getMoisNaiss() > 12) {
-			this.isValide = false;
+		/**
+		 * Vérifié si le numéro de contrat n'est pas null
+		 */
+		if (personnel.getIdContrat() == null) {
+			System.out.println("Le personnel doit avoir un numéro de contrat");
+			isValide = false;
 		}
 		
-		if (personnel.getAnneeNaiss() < 1900 || personnel.getAnneeNaiss() > 2100) {
-			this.isValide = false;
+		/**
+		 * Vérifie si le login du personnel n'est pas null
+		 */
+		if (personnel.getLogin() == null) {
+			System.out.println("Le login du personnel ne peut pas être null");
+			isValide = false;
 		}
 		
-		if (personnel.getTelFix() == null) {
-			this.isValide = false;
+		/**
+		 * Vérifie si le mot de passe du personnel n'est pas null
+		 */
+		if (personnel.getPassword() == null) {
+			System.out.println("Le mot de passe du personnel ne peut pas être null");
+			isValide = false;
 		}
 		
-		if (personnel.getTelPort() == null) {
-			this.isValide = false;
-		}
-		
-		if (personnel.getMail() == null) {
-			this.isValide = false;
-		}
-		
-		if (personnel.getAddresse() == null) {
-			this.isValide = false;
-		}
-		
-		if (personnel.getVille() == null) {
-			this.isValide = false;
-		}
-		
-		if (personnel.getCp() == null) {
-			this.isValide = false;
-		}
-		
-		if (personnel.getDiplome() == null) {
-			this.isValide = false;
-		}
-		
-		if (personnel.getFonction() == null) {
-			this.isValide = false;
+		/**
+		 * Vérifie si le nombre de points d'ancienneté n'est pas inférieur à 0
+		 */
+		if (personnel.getPointsAncien() < 0) {
+			System.out.println("Le nombre de point d'ancienneté du personnel ne peut pas être inférieur à 0");
+			isValide = false;
 		}
 		
 		return isValide;
