@@ -1,25 +1,55 @@
 package fr.gemao.ctrl.materiel;
 
-import java.sql.Connection;
+import java.util.List;
 
-import fr.gemao.ancien_mysql.ConnectionMySql;
 import fr.gemao.entity.materiel.Categorie;
-
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.gestionMateriel.CategorieDAO;
 
 public class CategorieCtrl {
-	public CategorieCtrl() {
+	/**
+	 * Permet d'ajouter une categorie dans la base de donees
+	 * 
+	 * @param libelle
+	 *            le libelle de la categorie a rajouter.
+	 */
+	public static void ajoutCategorie(String libelle) {
 
-	}
-
-	public void ajoutCategorie(int idCat, String libelle){
-
-		if(libelle == null){
-			throw new NullPointerException("Libelle Null");
+		if (libelle == null) {
+			throw new NullPointerException("Le libelle ne peut etre null");
 		}
-		if(libelle == ""){
+		if (libelle == "") {
 			throw new NullPointerException("Le libelle ne doit pas etre vide");
 		}
-		
-		new CategorieDAO(ConnectionMySql.getInstance()).creat(categorie);
+		Categorie categorie = new Categorie(0, libelle);
+
+		new CategorieDAO(DAOFactory.getInstance()).create(categorie);
+	}
+
+	/**
+	 * Permet de supprimer une categorie de la base. Si plusieurs categories
+	 * sont presentes avec le meme libelle, seule la premiere sera supprimee.
+	 * 
+	 * @param libelle
+	 *            le libelle de la categorie a supprimer.
+	 */
+	public static void supprimerCategorie(String libelle) {
+
+		if (libelle == null) {
+			throw new NullPointerException("Le libelle ne peut etre null");
+		}
+		if (libelle == "") {
+			throw new NullPointerException("Le libelle ne doit pas etre vide");
+		}
+
+		CategorieDAO catdao = new CategorieDAO(DAOFactory.getInstance());
+
+		List<Categorie> cats = catdao.getAll();
+		for (Categorie cat : cats) {
+			if (cat.getLibelleCat().equals(libelle)) {
+				catdao.delete(cat);
+				break;
+			}
+		}
 	}
 }
