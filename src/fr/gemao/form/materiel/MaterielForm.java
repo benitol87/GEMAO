@@ -23,7 +23,7 @@ public class MaterielForm {
 	private static final String CHAMP_INST_ETAT = "etat";
 	private static final String CHAMP_INST_NUMSERIE = "numSerie";
 	private static final String CHAMP_INST_VALREA = "valRea";
-	// DEPLACABLE a prendre en compte
+	private static final String CHAMP_INST_DEPLACABLE = "deplace";
 	private static final String CHAMP_INST_OBSERVATION = "observation";
 
 	// Partie Mobilier
@@ -43,13 +43,16 @@ public class MaterielForm {
 	float valAch;
 	String dateAch;
 
+	// variables categorie Instrument
 	private int idType;
 	private String etat;
 	private String marque;
 	private long numserie;
 	private float valRea;
 	private String observation;
+	private boolean deplacable;
 
+	// variables categorie Mobilier
 	private float prixU;
 	private int qte;
 
@@ -76,18 +79,21 @@ public class MaterielForm {
 		} catch (Exception e) {
 			setErreur(CHAMP_CATEGORIE, e.getMessage());
 		}
+
 		/* Validation du champ categorie. */
 		try {
 			validationDesignation(designation);
 		} catch (Exception e) {
 			setErreur(CHAMP_DESIGNATION, e.getMessage());
 		}
+
 		/* Validation du champ categorie. */
 		try {
 			validationValeurAchat(valAch);
 		} catch (Exception e) {
 			setErreur(CHAMP_VALACH, e.getMessage());
 		}
+
 		/* Validation du champ categorie. */
 		try {
 			validationDateAchat(dateAch);
@@ -100,13 +106,19 @@ public class MaterielForm {
 			idType = Integer.parseInt(getValeurChamp(request, CHAMP_TYPE));
 			etat = getValeurChamp(request, CHAMP_INST_ETAT);
 			marque = getValeurChamp(request, CHAMP_MARQUE);
+			String deplac = getValeurChamp(request, CHAMP_INST_DEPLACABLE);
 			numserie = Long.parseLong(getValeurChamp(request,
 					CHAMP_INST_NUMSERIE));
 			valRea = Float
 					.parseFloat(getValeurChamp(request, CHAMP_INST_VALREA));
-
-			// DEPLACABLE a prendre en compte
 			observation = getValeurChamp(request, CHAMP_INST_OBSERVATION);
+
+			/* Validation du champ deplacable. */
+			try {
+				validationDeplacable(deplac);
+			} catch (Exception e) {
+				setErreur(CHAMP_TYPE, e.getMessage());
+			}
 
 			/* Validation du champ type. */
 			try {
@@ -145,8 +157,13 @@ public class MaterielForm {
 			/* Initialisation du résultat global de la validation. */
 			if (erreurs.isEmpty()) {
 				resultat = "Succès de l'ajout.";
+				if (deplac.equals("oui")) {
+					deplacable = true;
+				} else {
+					deplacable = false;
+				}
 			} else {
-				resultat = "Échec de l'aout.";
+				resultat = "Échec de l'ajout.";
 			}
 		}
 		if (categorie == VAL_MOBI) {
@@ -181,6 +198,23 @@ public class MaterielForm {
 				validationPrixUnitaire(prixU);
 			} catch (Exception e) {
 				setErreur(CHAMP_MOBI_PRIXU, e.getMessage());
+			}
+			/* Initialisation du résultat global de la validation. */
+			if (erreurs.isEmpty()) {
+				resultat = "Succès de l'ajout.";
+			} else {
+				resultat = "Échec de l'ajout.";
+			}
+		}
+	}
+
+	private void validationDeplacable(String deplac) throws Exception {
+		if (deplac == null) {
+			throw new Exception(
+					"Merci de choisir une valeur valide pour deplacable.");
+		} else {
+			if (deplac.equals("")) {
+				throw new Exception("Merci de saisir une date d'achat valide.");
 			}
 		}
 	}
