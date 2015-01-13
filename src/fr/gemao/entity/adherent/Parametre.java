@@ -12,6 +12,8 @@ public class Parametre {
 	private float qf_max;
 	private Date dateModif;
 	
+	public Parametre() {
+	}
 	
 	public Parametre(long idParam, float alloc2, float alloc3, float alloc4,
 			float alloc5, float qf_min, float qf_max, Date dateModif) {

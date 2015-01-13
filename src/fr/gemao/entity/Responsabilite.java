@@ -9,6 +9,9 @@ public class Responsabilite {
 	
 	private int idResponsabilite;
 	private String libelle;
+	
+	public Responsabilite() {
+	}
 
 	/**
 	 * Constructeur de la classe Responsabilite

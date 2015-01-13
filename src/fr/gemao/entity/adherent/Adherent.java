@@ -13,6 +13,9 @@ public class Adherent extends Personne{
 	private Float qf;
 	private float cotisation;
 	
+	public Adherent() {
+	}
+	
 	
 	/**
 	 * Construit un Adh�rent

@@ -13,6 +13,9 @@ public class Contrat {
 	private Date dateDebut;
 	private Date dateFin;
 	
+	public Contrat() {
+	}
+	
 	/**
 	 * Constructeur de la classe Contrat
 	 * @param nom : récupération du nom de la personne
