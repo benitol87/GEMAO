@@ -1,6 +1,6 @@
 package fr.gemao.entity;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import fr.gemao.ctrl.personnel.CalculerDateFinContratCtrl;
 
@@ -12,36 +12,25 @@ public class Contrat {
 	private String nom;
 	private String prenom;
 	private String typeContrat;
-	private int jourDebutContrat;
-	private int moisDebutContrat;
-	private int anneeDebutContrat;
-	private int jourFinContrat;
-	private int moisFinContrat;
-	private int anneeFinContrat;
-	private int duree;
-	private String dateFin;
+	private Date dateDebut;
+	private Date dateFin;
 	
 	/**
 	 * Constructeur de la classe Contrat
 	 * @param nom : récupération du nom de la personne
 	 * @param prenom : récupération du prénom de la personne
-	 * @param typeContrat : le type de contrat
-	 * @param jourDebutContrat : jour de début du contrat
-	 * @param moisDebutContrat : mois de début du contrat
-	 * @param anneeDebutContrat : année de début du contrat
-	 * @param duree : durée du Contrat
+	 * @param typeContrat : le type du contrat
+	 * @param dateDebut : la date de début du contrat
+	 * @param dateFin : la date de fin du contrat
 	 */
-	public Contrat(String nom, String prenom, String typeContrat, int jourDebutContrat, int moisDebutContrat, int anneeDebutContrat, int duree) {
+	public Contrat(String nom, String prenom, String typeContrat, Date dateDebut, Date dateFin) {
 		CalculerDateFinContratCtrl date = new CalculerDateFinContratCtrl();
 		
 		this.nom = nom;
 		this.prenom = prenom;
 		this.typeContrat = typeContrat;
-		this.jourDebutContrat = jourDebutContrat;
-		this.moisDebutContrat = moisDebutContrat;
-		this.anneeDebutContrat = anneeDebutContrat;
-		this.duree = duree;
-		this.dateFin = date.CalculerDateFinContrat(jourDebutContrat, moisDebutContrat, anneeDebutContrat, duree);
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
 	}
 
 	/**
@@ -67,68 +56,20 @@ public class Contrat {
 	public String getTypeContrat() {
 		return typeContrat;
 	}
-
+	
 	/**
-	 * Permet de retourner le jour de début du contrat
-	 * @return jourDebutContrat : le jour de début du contrat
+	 * Permet de retourner la date de début du contrat
+	 * @return dateDebut : la date de début du contrat
 	 */
-	public int getJourDebutContrat() {
-		return jourDebutContrat;
-	}
-
-	/**
-	 * Permet de retourner le mois de début du contrat
-	 * @return moisDebutContrat : le mois de début du contrat
-	 */
-	public int getMoisDebutContrat() {
-		return moisDebutContrat;
-	}
-
-	/**
-	 * Permet de retourner l'année de début du contrat
-	 * @return anneeDebutContrat : l'année de début du contrat
-	 */
-	public int getAnneeDebutContrat() {
-		return anneeDebutContrat;
+	public Date getDateDebut() {
+		return dateDebut;
 	}
 	
 	/**
-	 * Permet de retourner le jour de fin du contrat
-	 * @return jourFinContrat : le jour de début du contrat
-	 */
-	public int getJourFinContrat() {
-		return jourFinContrat;
-	}
-
-	/**
-	 * Permet de retourner le mois de fin du contrat
-	 * @return moisFinContrat : le mois de fin du contrat
-	 */
-	public int getMoisFinContrat() {
-		return moisFinContrat;
-	}
-
-	/**
-	 * Permet de retourner l'année de fin du contrat
-	 * @return anneeFinContrat : l'année de fin du contrat
-	 */
-	public int getAnneeFinContrat() {
-		return anneeFinContrat;
-	}
-
-	/**
-	 * Permet de retourner la durée du contrat en mois
-	 * @return duree : la durée du contrat en mois
-	 */
-	public int getDuree() {
-		return duree;
-	}
-
-	/**
 	 * Permet de retourner la date de fin du contrat si le contrat est de type "CDD"
-	 * @return dateFin : la date de fin de la forme : jj/mm/aaaa
+	 * @return dateFin : la date de fin du contrat
 	 */
-	public String getDateFin() {
+	public Date getDateFin() {
 		return dateFin;
 	}
 
@@ -155,68 +96,20 @@ public class Contrat {
 	public void setTypeContrat(String typeContrat) {
 		this.typeContrat = typeContrat;
 	}
-
-	/**
-	 * Permet de modifier le jour de début du contrat
-	 * @param jourDebutContrat : le nouveau jour de début du contrat
-	 */
-	public void setJourDebutContrat(int jourDebutContrat) {
-		this.jourDebutContrat = jourDebutContrat;
-	}
-
-	/**
-	 * Permet de modifier le mois de début du contrat
-	 * @param moisDebutContrat : le nouveau mois de début du contrat
-	 */
-	public void setMoisDebutContrat(int moisDebutContrat) {
-		this.moisDebutContrat = moisDebutContrat;
-	}
-
-	/**
-	 * Permet de modifier l'année de début du contrat
-	 * @param anneeDebutContrat : la nouvelle année de début du contrat
-	 */
-	public void setAnneeDebutContrat(int anneeDebutContrat) {
-		this.anneeDebutContrat = anneeDebutContrat;
-	}
 	
 	/**
-	 * Permet de modifier le jour de fin du contrat
-	 * @param jourFinContrat : le nouveau jour de fin du contrat
+	 * Permet de modifier la date de début du contrat
+	 * @param dateDebut : la nouvelle date de début du contrat
 	 */
-	public void setJourFinContrat(int jourFinContrat) {
-		this.jourFinContrat = jourFinContrat;
-	}
-
-	/**
-	 * Permet de modifier le mois de fin du contrat
-	 * @param moisFinContrat : le nouveau mois de fin du contrat
-	 */
-	public void setMoisFinContrat(int moisFinContrat) {
-		this.moisFinContrat = moisFinContrat;
-	}
-
-	/**
-	 * Permet de modifier l'année de fin du contrat
-	 * @param anneeFinContrat : la nouvelle année de fin du contrat
-	 */
-	public void setAnneeFinContrat(int anneeFinContrat) {
-		this.anneeFinContrat = anneeFinContrat;
-	}
-
-	/**
-	 * Permet de modifier la durée du contrat
-	 * @param duree : la nouvelle durée du contrat
-	 */
-	public void setDuree(int duree) {
-		this.duree = duree;
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
 	}
 
 	/**
 	 * Permet de modifier la date de fin du contrat (automatiquement calculée)
 	 * @param dateFin : la nouvelle date de fin du contrat
 	 */
-	public void setDateFin(String dateFin) {
+	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
 
@@ -237,11 +130,7 @@ public class Contrat {
 		.append("\nType de contrat : ")
 		.append(this.typeContrat)
 		.append("\nDate de début du contrat : ")
-		.append(this.jourDebutContrat)
-		.append("/")
-		.append(this.moisDebutContrat)
-		.append("/")
-		.append(this.anneeDebutContrat);
+		.append(this.dateDebut);
 		
 		/* Si le contrat est du type "CDI" ou "Bénévolat" */
 		if (this.typeContrat == "CDI" || this.typeContrat == "Bénévolat") {
@@ -250,10 +139,7 @@ public class Contrat {
 		
 		/* Si le contrat est du type "CDD" */
 		if (this.typeContrat == "CDD") {
-			sb.append("\nDurée du contrat : ")
-			.append(this.duree)
-			.append(" mois")
-			.append("\nDate de fin du contrat : ")
+			sb.append("\nDate de fin du contrat : ")
 			.append(this.dateFin);
 		}
 		
@@ -269,17 +155,13 @@ public class Contrat {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + anneeDebutContrat;
-		result = prime * result + anneeFinContrat;
+		result = prime * result
+				+ ((dateDebut == null) ? 0 : dateDebut.hashCode());
 		result = prime * result + ((dateFin == null) ? 0 : dateFin.hashCode());
-		result = prime * result + duree;
-		result = prime * result + jourDebutContrat;
-		result = prime * result + jourFinContrat;
-		result = prime * result + moisDebutContrat;
-		result = prime * result + moisFinContrat;
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + ((typeContrat == null) ? 0 : typeContrat.hashCode());
+		result = prime * result
+				+ ((typeContrat == null) ? 0 : typeContrat.hashCode());
 		return result;
 	}
 
@@ -295,24 +177,15 @@ public class Contrat {
 		if (getClass() != obj.getClass())
 			return false;
 		Contrat other = (Contrat) obj;
-		if (anneeDebutContrat != other.anneeDebutContrat)
-			return false;
-		if (anneeFinContrat != other.anneeFinContrat)
+		if (dateDebut == null) {
+			if (other.dateDebut != null)
+				return false;
+		} else if (!dateDebut.equals(other.dateDebut))
 			return false;
 		if (dateFin == null) {
 			if (other.dateFin != null)
 				return false;
 		} else if (!dateFin.equals(other.dateFin))
-			return false;
-		if (duree != other.duree)
-			return false;
-		if (jourDebutContrat != other.jourDebutContrat)
-			return false;
-		if (jourFinContrat != other.jourFinContrat)
-			return false;
-		if (moisDebutContrat != other.moisDebutContrat)
-			return false;
-		if (moisFinContrat != other.moisFinContrat)
 			return false;
 		if (nom == null) {
 			if (other.nom != null)
