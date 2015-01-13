@@ -26,8 +26,9 @@ public class VerifierSyntaxeResponsable {
 		boolean isValide = true;
 		
 		//Vérification de l'idResponsable
-		if(responsable.getIdResponsable() != null){
-			
+		if(responsable.getIdResponsable() != null && responsable.getIdResponsable() < 0.0){
+			System.out.println("L'idResponsable doit être positif...");
+			isValide = false;
 		}
 		
 		//Vérification du nom

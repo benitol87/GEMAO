@@ -2,14 +2,14 @@ package fr.gemao.entity.adherent;
 
 public class Responsable {
 
-	private long idResponsable;
+	private Long idResponsable;
 	private String nom;
 	private String prenom;
 	private String telephone;
 	private String email;
 	
 	
-	public Responsable(long idResponsable, String nom, String prenom,
+	public Responsable(Long idResponsable, String nom, String prenom,
 			String telephone, String email) {
 		super();
 		this.idResponsable = idResponsable;
@@ -19,10 +19,10 @@ public class Responsable {
 		this.email = email;
 	}
 
-	public long getIdResponsable() {
+	public Long getIdResponsable() {
 		return idResponsable;
 	}
-	public void setIdResponsable(long idResponsable) {
+	public void setIdResponsable(Long idResponsable) {
 		this.idResponsable = idResponsable;
 	}
 	public String getNom() {
@@ -104,7 +104,4 @@ public class Responsable {
 				+ ", prenom=" + prenom + ", telephone=" + telephone
 				+ ", email=" + email + "]";
 	}
-	
-	
-	
 }
