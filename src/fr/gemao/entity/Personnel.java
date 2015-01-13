@@ -47,7 +47,7 @@ public class Personnel extends Personne {
 			String string2, Integer resultInteger2) {
 		super(personne);
 		
-		this.listeResponsabilite = listeResponsabilite;
+		this.listeResponsabilite = idResponsabilites;
 		this.idContrat = resultInteger;
 		this.login = string;
 		this.password = string2;
