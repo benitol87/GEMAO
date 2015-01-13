@@ -18,7 +18,7 @@ public class VerifierSyntaxeResponsable {
 	 * @param responsable
 	 * @return true si toutes les informations sont valides, false sinon
 	 */
-	public boolean verifierInformations(Responsable responsable){
+	public boolean verifierInformations(Responsable responsable) {
 		
 		String masque;
 		Pattern pattern;
@@ -26,7 +26,7 @@ public class VerifierSyntaxeResponsable {
 		boolean isValide = true;
 		
 		//Vérification de l'idResponsable
-		if(responsable.getIdResponsable() != null && responsable.getIdResponsable() < 0.0){
+		if (responsable.getIdResponsable() < 0.0) {
 			System.out.println("L'idResponsable doit être positif...");
 			isValide = false;
 		}
@@ -35,6 +35,7 @@ public class VerifierSyntaxeResponsable {
 		masque = "^[A-Za-z\\-]+$";
 		pattern = Pattern.compile(masque);
 		controler = pattern.matcher(responsable.getNom());
+		
 		if (!controler.matches()) {
 			System.out.println("Le format du nom est invalide...");
 			isValide = false;
@@ -43,6 +44,7 @@ public class VerifierSyntaxeResponsable {
 		//Vérification du prénom
 		masque = "^[A-Za-z\\-]+$";
 		controler = pattern.matcher(responsable.getPrenom());
+		
 		if (!controler.matches()) {
 			System.out.println("Le format du prénom est invalide...");
 			isValide = false;
@@ -52,6 +54,7 @@ public class VerifierSyntaxeResponsable {
 		masque = "^[0][0-9]{9}$";
 		pattern = Pattern.compile(masque);
 		controler = pattern.matcher(responsable.getTelephone());
+		
 		if (!controler.matches() && responsable.getTelephone() != null) {
 			System.out.println("Le format du numéro de téléphone est invalide...");
 			isValide = false;
@@ -62,6 +65,7 @@ public class VerifierSyntaxeResponsable {
 				+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
 		pattern = Pattern.compile(masque);
 		controler = pattern.matcher(responsable.getEmail());
+		
 		if (!controler.matches() && responsable.getEmail() != null) {
 			System.out.println("Le format de l'adresse email est invalide...");
 			isValide = false;
@@ -69,5 +73,4 @@ public class VerifierSyntaxeResponsable {
 		
 		return isValide;
 	}
-
 }
