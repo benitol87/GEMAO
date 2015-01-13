@@ -8,12 +8,14 @@
 ></script>
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-	<form id="ajouterMateriel" action="#" method="post">
+
+	<form name="modifierMaterielInstrument" action="#" method="post">
 		<table>
 			<tr>
 				<td><label for="categorie">Catégorie : </label></td> 
 				<td>
 					<select name="categorie" id="categorie">
+						<option values="0"></option>
 						<option value="1">Instrument</option>
 						<option value="2">Mobilier</option>
 					</select> 
@@ -29,10 +31,8 @@
 				<td><label for="dateAch">Date d'achat : </label></td>
 				<td><input type="date" name="dateAch"/></td>
 			</tr>
-		</table>
-	</form>
-	<form id="ajouterMaterielInstrument" action="#" methode="post" hidden>
-		<table>
+		</form>
+		<form name="modifierMaterielInstrument" action="#" method="post">
 			<tr>
 				<td>
 					<fieldset>
@@ -71,10 +71,10 @@
 										<tr>
 											<td><label for="deplacable">Déplaçable : </label></td>
 											<td>
-												<label for="deplacableOui"> <input type="radio" 
-												checked="checked" name="deplace" value="oui"/> oui</label>
-												<label for="deplacableNon"> <input type="radio" 
-												checked="checked" name="deplace" value="non"/> non</label>
+												<label for="deplacableOui">oui</label>
+												<input type="radio" name="title" value="Ms" checked="checked">
+												<label for="deplacableNon">non</label>
+												<input type="radio" name="title" value="Ms" checked="checked">
 											</td>
 										</tr>
 									</table>
@@ -88,44 +88,6 @@
 							</td>
 						</tr>		
 					</table>
-				</td>
-			</tr>
-			<tr>
-				<td><input type="submit" name="valider" value="Valider"/></td>
-				<td></td><td></td>
-				<td><input type="reset" name="annuler" value="Annuler" /></td>
-			</tr>
-		</table>
-	</form>
-	<form id="ajouterMaterielMobilier" action="#" methode="post" hidden>
-		<table>
-			<tr>
-				<td>
-					<fieldset >
-						<legend>Mobilier</legend>
-						<table>
-							<tr>
-								<td><label for="type">Type : </label></td>
-								<td><select name="Type"></select></td>
-							</tr>
-							<tr>
-								<td><label for="quantite">Quantité : </label></td>
-								<td><input type="text" name="quantite"/></td>
-							</tr>	
-							<tr>
-								<td><label for="marque">Marque : </label></td>
-								<td><input type="text" name="marque"/></td>
-							</tr>
-							<tr>
-								<td><label for="prixU">Prix unitaire : </label></td>
-								<td><input type="text" name="prixU"/></td>
-							</tr>
-						</table>
-					</fieldset>
-				</td>
-				<td>
-					<label for="observation">Observation : </label>
-					<textarea rows="5" cols="50"></textarea>
 				</td>
 			</tr>
 			<tr>
