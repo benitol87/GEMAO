@@ -1,21 +1,23 @@
 package fr.gemao.sql.gestionMateriel;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.materiel.Designation;
-import fr.gemao.ancien_mysql.DAOMySql;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.IDAO;
+import fr.gemao.sql.exception.DAOException;
+import fr.gemao.sql.util.DAOUtilitaires;
 
-public class DesignationDAO extends DAOMySql<Designation> {
-	public DesignationDAO(Connection conn) {
-		super(conn);
+public class DesignationDAO extends IDAO<Designation> {
+	public DesignationDAO(DAOFactory factory) {
+		super(factory);
 	}
+
 	@Override
 	public Designation create(Designation obj) {
 		if (obj == null) {
@@ -24,36 +26,27 @@ public class DesignationDAO extends DAOMySql<Designation> {
 		}
 
 		long id = 0;
-
+		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
+
+		String sql = "INSERT INTO designation(idDesignation, libelle)"
+				+ "VALUES (?, ?);";
 		try {
-			String sql = "INSERT INTO designation(idDesignation, libelle)"
-					+ "VALUES (?, ?);";
-			requete = connect.prepareStatement(sql,
-					Statement.RETURN_GENERATED_KEYS);
-			requete.setInt(1, obj.getIdDesignation());
-			requete.setString(2, obj.getLibelleDesignation());
-			requete.executeUpdate();
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, obj.getIdDesignation(),
+					obj.getLibelleDesignation());
 
-			result = requete.getGeneratedKeys();
-			if (result != null && result.first()) {
-				id = result.getLong(1);
+			int status = requete.executeUpdate();
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la création de la designation, aucune ligne ajoutée dans la table.");
 			}
-
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DAOException(e);
 		} finally {
-			if (requete != null) {
-				try {
-					if (result != null) {
-						result.close();
-					}
-					requete.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
 		return this.get(id);
@@ -61,33 +54,24 @@ public class DesignationDAO extends DAOMySql<Designation> {
 
 	@Override
 	public void delete(Designation obj) {
-		if (obj == null) {
-			throw new NullPointerException(
-					"La designation ne doit pas etre null");
-		}
-
-		if (obj.getIdDesignation() == 0) {
-			throw new IllegalArgumentException(
-					"La designation ne peut pas avoir un id = 0");
-		}
-
-		Statement stat = null;
-		try {
-			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM designation WHERE idDesignation = "
-					+ obj.getIdDesignation() + ";");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (stat != null) {
-				try {
-					stat.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+		/*
+		 * if (obj == null) { throw new NullPointerException(
+		 * "La designation ne doit pas etre null"); }
+		 * 
+		 * if (obj.getIdDesignation() == 0) { throw new
+		 * IllegalArgumentException(
+		 * "La designation ne peut pas avoir un id = 0"); }
+		 * 
+		 * Statement stat = null; try { stat =
+		 * connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+		 * ResultSet.CONCUR_UPDATABLE);
+		 * stat.execute("DELETE FROM designation WHERE idDesignation = " +
+		 * obj.getIdDesignation() + ";"); } catch (SQLException e) {
+		 * e.printStackTrace(); } finally { if (stat != null) { try {
+		 * stat.close(); } catch (SQLException e) { e.printStackTrace(); } } }
+		 */
+		throw new UnsupportedOperationException(
+				"Vous n'avez pas le droit de supprimer une Categorie.");
 	}
 
 	@Override
@@ -99,47 +83,42 @@ public class DesignationDAO extends DAOMySql<Designation> {
 	@Override
 	public Designation get(long id) {
 		Designation designation = null;
-
+		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
 			String sql = "SELECT * FROM designation WHERE idDesignation = ?;";
-			requete = connect.prepareStatement(sql);
-			requete.setLong(1, id);
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
 				designation = new Designation(result.getInt("idDesignation"),
 						result.getString("libelle"));
 			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			throw new DAOException(e);
 		} finally {
-			if (requete != null) {
-				try {
-					if (result != null) {
-						result.close();
-					}
-					requete.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
+
 		return designation;
 	}
 
 	@Override
 	public List<Designation> getAll() {
 		List<Designation> liste = new ArrayList<>();
-
+		Connection connexion = null;
 		Designation designation = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
 			String sql = "SELECT * FROM designation;";
-			requete = connect.prepareStatement(sql);
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false);
 			result = requete.executeQuery();
 
 			while (result.next()) {
@@ -147,21 +126,18 @@ public class DesignationDAO extends DAOMySql<Designation> {
 						result.getString("libelle"));
 				liste.add(designation);
 			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			throw new DAOException(e);
 		} finally {
-			if (requete != null) {
-				try {
-					if (result != null) {
-						result.close();
-					}
-					requete.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
 		return liste;
+	}
+
+	@Override
+	protected Designation map(ResultSet result) throws SQLException {
+		return new Designation(result.getInt("idDesignation"),
+				result.getString("libelle"));
 	}
 }

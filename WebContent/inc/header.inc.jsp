@@ -3,5 +3,5 @@
 <body>
 <header>
 	<span>M. Machin, fonctions</span>
-	<a href="">Connexion</a>
+	<a href="/GEMAO/Deconnexion">Déconnexion</a>
 </header>
