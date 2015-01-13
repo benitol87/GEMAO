@@ -9,9 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.gemao.ctrl.ConnexionCtrl;
-import fr.gemao.entity.Personnel;
-
 
 /**
  * Servlet implementation class Connexion
@@ -43,21 +40,6 @@ public class ConnexionServlet extends HttpServlet {
 
         /* Traitement de la requête et récupération du bean en résultant */
         //Utilisateur utilisateur = form.connecterUtilisateur( request );
-		
-		
-		
-		
-		
-		///////////////////////////
-		ConnexionCtrl connexionCtrl = new ConnexionCtrl();
-		Personnel personnel = connexionCtrl.controlerPersonnel(request.getParameter("login"),request.getParameter("motdepasse"));
-		
-		if(personnel == null){
-			
-		}
-		
-		
-		///////////////////////////
 
         /* Récupération de la session depuis la requête */
         HttpSession session = request.getSession();
