@@ -103,34 +103,8 @@ public class MaterielDAO extends IDAO<Materiel> {
 
 	@Override
 	public Materiel update(Materiel obj) {
-		if (obj == null) {
-			throw new NullPointerException("Le Materiel ne doit pas etre nul");
-		}
-		Connection connexion = null;
-		PreparedStatement requete = null;
-		ResultSet result = null;
-		String sql = "UPDATE Materiel SET idEtat = ?,idCategorie = ?,idMarque =?,idDesignation =?,valeurReapprov=?,observation = ?"
-				+ "WHERE idmateriel = ?;";
-		try {
-			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false,
-					obj.getEtat().getIdEtat(),
-					obj.getCategorie().getIdCategorie(),
-					obj.getMarque().getIdMarque(),
-					obj.getDesignation().getIdDesignation(),
-					obj.getValeurReap(),
-					obj.getObservation()
-					);
-			
-			requete.executeUpdate();
-			
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} finally {
-			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
-		}
-		return this.get(obj.getIdMateriel());
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -163,7 +137,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * FROM marque;";
+		String sql = "SELECT * FROM materiel;";
 		try {
 			
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false);

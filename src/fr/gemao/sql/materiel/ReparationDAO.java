@@ -96,7 +96,8 @@ public class ReparationDAO extends IDAO<Reparation> {
 
 	@Override
 	public Reparation update(Reparation obj) {
-		throw new UnsupportedOperationException();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -174,9 +175,8 @@ public class ReparationDAO extends IDAO<Reparation> {
 
 	@Override
 	protected Reparation map(ResultSet result) throws SQLException {
-		return new Reparation(result.getInt("idReparation"),
-				new ReparateurDAO(DAOFactory.getInstance()).get(result.getLong("idReparateur"))
-				, result.getDate("dateCertificat"));
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

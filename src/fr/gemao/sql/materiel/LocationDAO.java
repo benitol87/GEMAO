@@ -1,14 +1,18 @@
 package fr.gemao.sql.materiel;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.materiel.Location;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
+import fr.gemao.sql.exception.DAOException;
+import fr.gemao.sql.util.DAOUtilitaires;
 
 public class LocationDAO extends IDAO<Location> {
 
@@ -97,27 +101,54 @@ public class LocationDAO extends IDAO<Location> {
 
 	@Override
 	public Location update(Location obj) {
-		throw new UnsupportedOperationException();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Location get(long id) {
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Location> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+List<Location> liste = new ArrayList<Location>();
+		
+		Location location = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM Location;";
+		try {
+
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false);
+			result = requete.executeQuery();
+
+			while (result.next()) {
+				location = this.map(result);
+				liste.add(location);
+			}
+		} catch (SQLException e1) {
+			throw new DAOException(e1);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return liste;
 	}
 
 	@Override
 	protected Location map(ResultSet result) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Location(factory.getPersonneDAO().get(
+				result.getInt("idPersonne")), factory.getMaterielDAO().get(
+				result.getInt("idMateriel")), factory.getEtatDAO().get(
+				result.getInt("idEtat")), factory.getEtatDAO().get(
+				result.getInt("idEtat")), result.getDate("dateEmprun"),
+				result.getDate("dateRetour"), result.getInt("duree"),
+				result.getInt("montant"), factory.getReparationDAO().get(
+						result.getInt("idReparation")));
 	}
-
-	
 
 }

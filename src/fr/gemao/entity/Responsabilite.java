@@ -1,7 +1,7 @@
 package fr.gemao.entity;
 
 /**
- * Classe Responsabilite
+ * Classe Responsabilité
  * @author Coco
  *
  */
@@ -21,7 +21,7 @@ public class Responsabilite {
 	}
 
 	/**
-	 * Permet de retourner l'ID de la responsabilité
+	 * Permet de retourner l'ID d'une responsabilité
 	 * @return idResponsabilite : l'ID de la responsabilité
 	 */
 	public int getIdResponsabilite() {
@@ -29,8 +29,8 @@ public class Responsabilite {
 	}
 
 	/**
-	 * Permet de retourner le libelle
-	 * @return libelle : le libelle
+	 * Permet de retourner le libellé d'une responsabilité
+	 * @return libelle : le libellé
 	 */
 	public String getLibelle() {
 		return libelle;
@@ -38,14 +38,14 @@ public class Responsabilite {
 
 	/**
 	 * Permet de positionner l'ID de la responsabilité
-	 * @param idResponsabilite : le nouveau ID
+	 * @param idResponsabilite : le nouvel ID
 	 */
 	public void setIdResponsabilite(int idResponsabilite) {
 		this.idResponsabilite = idResponsabilite;
 	}
 
 	/**
-	 * Permet de positionner le libelle de la responsabilité
+	 * Permet de positionner le libellé d'une responsabilité
 	 * @param libelle : le nouveau libellé
 	 */
 	public void setLibelle(String libelle) {
