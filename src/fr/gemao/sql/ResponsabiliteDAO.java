@@ -185,7 +185,7 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 		Responsabilite responsabilite = null;
 		List<Responsabilite> liste = new ArrayList<Responsabilite>();
 		
-		String sql = "SELECT * FROM responsabilite r INNER JOIN personnelxresponsabilite pxr on r.idResponsabilite = pxr.idResponsabilite WHERE idPersonne = ?;";
+		String sql = "SELECT * FROM responsabilite r INNER JOIN personnelXresponsabilite pxr on r.idResponsabilite = pxr.idResponsabilite WHERE idPersonne = ?;";
 		
 		try {
 			co = factory.getConnection();
