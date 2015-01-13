@@ -5,12 +5,11 @@ function afficherType()
 	{
 
 		document.getElementById("ajouterMaterielInstrument").style.display="inline";
-		document.getElementById("ajouterMaterielMobilier").style.display="hidden";
+		document.getElementById("ajouterMaterielMobilier").style.display="none";
 	}
 	else
 	{
-
-		document.getElementById("ajouterMaterielInstrument").style.display="hidden";
+		document.getElementById("ajouterMaterielInstrument").style.display="none";
 		document.getElementById("ajouterMaterielMobilier").style.display="inline";
 	}
 }
@@ -26,7 +25,7 @@ function ajouteEvent(objet,typeEvent,nomFonction,typePropagation){
 function dispatchEvents(){
 	var catego = document.getElementById("categorie");
 	if(catego)
-		ajouteEvent(catego,"select",afficherType,false);
+		ajouteEvent(catego,"click",afficherType,false);
 }
 
 window.onload=function(){
