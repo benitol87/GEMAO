@@ -29,13 +29,20 @@ public class ConnexionForm {
 		String login = getValeurChamp(request, CHAMP_LOGIN);
 		String motDePasse = getValeurChamp(request, CHAMP_PASS);
 
-<<<<<<< HEAD
-=======
-		ConnexionCtrl connexionCtrl = new ConnexionCtrl();
-		Personnel personnel = connexionCtrl.controlerPersonnel(login, motDePasse);
+		Personnel personnel = null;
 
-		/* Initialisation du résultat global de la validation. */
->>>>>>> origin/master
+		try {
+			validationLogin(login);
+		} catch (Exception e) {
+			setErreur(CHAMP_LOGIN, e.getMessage());
+		}
+
+		try {
+			validationMotDePasse(motDePasse);
+		} catch (Exception e) {
+			setErreur(CHAMP_PASS, e.getMessage());
+		}
+
 		if (erreurs.isEmpty()) {
 			ConnexionCtrl connexionCtrl = new ConnexionCtrl();
 			try {
@@ -58,6 +65,24 @@ public class ConnexionForm {
 	 */
 	private void setErreur(String champ, String message) {
 		erreurs.put(champ, message);
+	}
+
+	/**
+	 * Valide le login saisie.
+	 */
+	private void validationLogin(String login) throws Exception {
+		if (login == null) {
+			throw new Exception("Merci de saisir un login.");
+		}
+	}
+
+	/**
+	 * Valide le mot de passe saisi.
+	 */
+	private void validationMotDePasse(String motDePasse) throws Exception {
+		if (motDePasse == null) {
+			throw new Exception("Merci de saisir votre mot de passe.");
+		}
 	}
 
 	/*
