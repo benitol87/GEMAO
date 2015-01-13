@@ -5,7 +5,6 @@
 <c:import url="/inc/head.inc.jsp" />
 <body>
 	<c:import url="/inc/header.inc.jsp" />
-	<c:import url="/inc/menu.inc.jsp" />
 	
 	<form class="well" method="post" action="Connexion">
             <fieldset>
@@ -28,11 +27,10 @@
                 
                 <%-- Vérification de la présence d'un objet utilisateur en session --%>
                 <c:if test="${!empty sessionScope.sessionUtilisateur}">
-                    <p class="text-success">Vous êtes connecté(e) avec le login : ${sessionScope.sessionUtilisateur.login}</p>
+                    <p class="text-success">Vous êtes connecté(e) avec le login : ${sessionScope.sessionUtilisateur}</p>
                 </c:if>
             </fieldset>
         </form>
-	
-	
+        
 	<c:import url="/inc/footer.inc.jsp" />
 </body>
