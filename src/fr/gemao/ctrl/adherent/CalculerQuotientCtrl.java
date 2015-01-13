@@ -1,10 +1,8 @@
 package fr.gemao.ctrl.adherent;
 
-import fr.gemao.ancien_entity.Parametre;
+import fr.gemao.entity.adherent.Parametre;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.ParametreDAO;
-
-import java.sql.Connection;
 
 public class CalculerQuotientCtrl {
 
