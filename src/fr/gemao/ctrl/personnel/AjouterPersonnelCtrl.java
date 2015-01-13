@@ -5,6 +5,7 @@ import fr.gemao.entity.Personnel;
 import fr.gemao.form.personnel.VerifierSyntaxePersonnel;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
+import fr.gemao.sql.PersonnelDAO;
 
 /**
  * La classe AjouterPersonnelCtrl permet de contrôler l'ajout d'un personnel.
