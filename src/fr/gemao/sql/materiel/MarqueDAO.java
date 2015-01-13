@@ -133,7 +133,7 @@ public class MarqueDAO extends IDAO<Marque> {
 
 			if (result.first()) {
 				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
+						result.getString("nom"));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -164,8 +164,7 @@ public class MarqueDAO extends IDAO<Marque> {
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
+				marque = this.map(result);
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -222,8 +221,8 @@ public class MarqueDAO extends IDAO<Marque> {
 	@Override
 	protected Marque map(ResultSet result) throws SQLException {
 
-		return new Marque(result.getInt("idDesignation"),
-				result.getString("libelle"));
+		return new Marque(result.getInt("idMarque"),
+				result.getString("nom"));
 	}
 
 }

@@ -129,8 +129,7 @@ public class CategorieDAO extends IDAO<Categorie> {
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				categorie = new Categorie(result.getInt("idCategorie"),
-						result.getString("libelle"));
+				categorie = this.map(result);
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -157,8 +156,7 @@ public class CategorieDAO extends IDAO<Categorie> {
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				categorie = new Categorie(result.getInt("idCategorie"),
-						result.getString("libelle"));
+				categorie =this.map(result);
 				liste.add(categorie);
 			}
 		} catch (SQLException e) {

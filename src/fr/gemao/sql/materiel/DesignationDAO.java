@@ -91,7 +91,7 @@ public class DesignationDAO extends IDAO<Designation> {
 	@Override
 	public Designation update(Designation obj) {
 		if (obj == null) {
-			throw new NullPointerException("La categorie ne doit pas etre nul");
+			throw new NullPointerException("La Designation ne doit pas etre nul");
 		}
 
 		Connection connexion = null;
@@ -128,8 +128,7 @@ public class DesignationDAO extends IDAO<Designation> {
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				designation = new Designation(result.getInt("idDesignation"),
-						result.getString("libelle"));
+				designation = this.map(result);
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
