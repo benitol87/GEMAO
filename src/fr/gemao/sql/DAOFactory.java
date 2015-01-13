@@ -9,6 +9,7 @@ import java.util.Properties;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
+import fr.gemao.entity.Adresse;
 import fr.gemao.sql.exception.DAOConfigurationException;
 import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
@@ -151,7 +152,7 @@ public class DAOFactory {
 		return new ResponsableDAO(this);
 	}
 	
-	public AdherentDAO getAdresseDAO(){
+	public AdresseDAO getAdresseDAO(){
 		return new AdresseDAO(this);
 	}
 
