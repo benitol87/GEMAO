@@ -29,14 +29,25 @@ public class ConnexionForm {
 		String login = getValeurChamp(request, CHAMP_LOGIN);
 		String motDePasse = getValeurChamp(request, CHAMP_PASS);
 
+<<<<<<< HEAD
+=======
 		ConnexionCtrl connexionCtrl = new ConnexionCtrl();
 		Personnel personnel = connexionCtrl.controlerPersonnel(login, motDePasse);
 
 		/* Initialisation du résultat global de la validation. */
+>>>>>>> origin/master
 		if (erreurs.isEmpty()) {
-			resultat = "Succès de la connexion.";
+			ConnexionCtrl connexionCtrl = new ConnexionCtrl();
+			try {
+				personnel = connexionCtrl.controlerPersonnel(login, motDePasse);
+			} catch (Exception e) {
+				setErreur("Connexion", e.getMessage());
+				personnel = new Personnel(null, null, null, null, null, null,
+						null, null, null, null, null, login, null, 0);
+			}
 		} else {
-			resultat = "Échec de la connexion.";
+			personnel = new Personnel(null, null, null, null, null, null, null,
+					null, null, null, null, login, null, 0);
 		}
 
 		return personnel;

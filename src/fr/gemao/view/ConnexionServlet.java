@@ -16,12 +16,20 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name="Connexion", urlPatterns={"/Connexion"})
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+<<<<<<< HEAD
+	public static final String ATT_USER = "personnel";
+	public static final String ATT_FORM = "form";
+	public static final String ATT_SESSION_USER = "sessionObjectPersonnel";
+	public static final String VUE_CONNEXION = "/WEB-INF/connexion.jsp";
+	public static final String VUE_ACCUEIL = "/index.jsp";
+=======
 	public static final String ATT_USER         = "utilisateur";
     public static final String ATT_FORM         = "form";
     public static final String ATT_SESSION_USER = "sessionUtilisateur";
     public static final String VUE_CONNEXION    = "/WEB-INF/connexion.jsp";
     public static final String VUE_ACCUEIL      = "/index.jsp";
        
+>>>>>>> origin/master
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,6 +52,22 @@ public class ConnexionServlet extends HttpServlet {
         /* Récupération de la session depuis la requête */
         HttpSession session = request.getSession();
 
+<<<<<<< HEAD
+		/**
+		 * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
+		 * Utilisateur à la session, sinon suppression du bean de la session.
+		 */
+		if (form.getErreurs().isEmpty()) {
+			session.setAttribute(ATT_SESSION_USER, personnel);
+			// L'utilisateur voit la redirection
+			response.sendRedirect(request.getContextPath() + VUE_ACCUEIL);
+		} else {
+			session.setAttribute(ATT_FORM, form);
+			session.setAttribute(ATT_USER, personnel);
+			this.getServletContext().getRequestDispatcher(VUE_CONNEXION)
+					.forward(request, response);
+		}
+=======
         /**
          * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
          * Utilisateur à la session, sinon suppression du bean de la session.
@@ -64,6 +88,7 @@ public class ConnexionServlet extends HttpServlet {
         
         // L'utilisateur ne voit pas la redirection
         //this.getServletContext().getRequestDispatcher( VUE_ACCUEIL ).forward( request, response );
+>>>>>>> origin/master
 	}
 
 }
