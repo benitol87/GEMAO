@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Personnel extends Personne {
 		
-	private List<Integer> idResponsabilite;
+	private List<Responsabilite> listeResponsabilite;
 	private Integer idContrat;
 	private String login;
 	private String password;
@@ -33,22 +33,33 @@ public class Personnel extends Personne {
 	 * @param password : le password de la personne
 	 * @param pointsAncien : le nombre de points d'ancienneté
 	 */
-	public Personnel(Long idPersonne, Long idAdresse, Long idCommuneNaiss, String nom, String prenom, Date dateNaissance, String telFixe, String telPort, String email, List<Integer> idResponsabilite, Integer idContrat, String login, String password, int pointsAncien) {
+	public Personnel(Long idPersonne, Long idAdresse, Long idCommuneNaiss, String nom, String prenom, Date dateNaissance, String telFixe, String telPort, String email, List<Responsabilite> idResponsabilite, Integer idContrat, String login, String password, int pointsAncien) {
 		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom, dateNaissance, telFixe, telPort, email);
 		
-		this.idResponsabilite = idResponsabilite;
+		this.listeResponsabilite = idResponsabilite;
 		this.idContrat = idContrat;
 		this.login = login;
 		this.password = password;
 		this.pointsAncien = pointsAncien;
 	}
 
+	public Personnel(Personne personne, List<Responsabilite> idResponsabilites, Integer resultInteger, String string,
+			String string2, Integer resultInteger2) {
+		super(personne);
+		
+		this.listeResponsabilite = listeResponsabilite;
+		this.idContrat = resultInteger;
+		this.login = string;
+		this.password = string2;
+		this.pointsAncien = resultInteger2;		
+	}
+
 	/**
 	 * Permet de retourner la liste des ID de responsabilités du personnel
 	 * @return idResponsabilite : la liste des responsabilités
 	 */
-	public List<Integer> getIdResponsabilite() {
-		return idResponsabilite;
+	public List<Responsabilite> getIdResponsabilite() {
+		return listeResponsabilite;
 	}
 
 	/**
@@ -87,8 +98,8 @@ public class Personnel extends Personne {
 	 * Permet de positionner une liste d'ID responsabilités
 	 * @param idResponsabilite : la liste de responsabilités
 	 */
-	public void setIdResponsabilite(List<Integer> idResponsabilite) {
-		this.idResponsabilite = idResponsabilite;
+	public void setIdResponsabilite(List<Responsabilite> idResponsabilite) {
+		this.listeResponsabilite = idResponsabilite;
 	}
 
 	/**
@@ -134,7 +145,7 @@ public class Personnel extends Personne {
 				+ ((idContrat == null) ? 0 : idContrat.hashCode());
 		result = prime
 				* result
-				+ ((idResponsabilite == null) ? 0 : idResponsabilite.hashCode());
+				+ ((listeResponsabilite == null) ? 0 : listeResponsabilite.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
@@ -159,10 +170,10 @@ public class Personnel extends Personne {
 				return false;
 		} else if (!idContrat.equals(other.idContrat))
 			return false;
-		if (idResponsabilite == null) {
-			if (other.idResponsabilite != null)
+		if (listeResponsabilite == null) {
+			if (other.listeResponsabilite != null)
 				return false;
-		} else if (!idResponsabilite.equals(other.idResponsabilite))
+		} else if (!listeResponsabilite.equals(other.listeResponsabilite))
 			return false;
 		if (login == null) {
 			if (other.login != null)

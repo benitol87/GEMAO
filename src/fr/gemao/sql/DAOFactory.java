@@ -143,4 +143,8 @@ public class DAOFactory {
 		return new PersonnelDAO(this);
 	}
 
+	public ResponsabiliteDAO getResponsabiliteDAO() {
+		return new ResponsabiliteDAO(this);
+	}
+
 }
