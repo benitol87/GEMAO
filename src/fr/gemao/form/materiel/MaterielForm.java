@@ -351,7 +351,7 @@ public class MaterielForm {
 	}
 
 	/**
-	 * Valide le type choisi.
+	 * Valide la marque saisie.
 	 */
 	private void validationMarque(String marque) throws Exception {
 		if (marque == null) {
@@ -364,21 +364,11 @@ public class MaterielForm {
 	}
 
 	/**
-	 * Valide le type choisi.
+	 * Valide le numero de serie saisi.
 	 */
 	private void validationNumserie(long numserie) throws Exception {
 		if (numserie <= 0) {
 			throw new Exception("Merci de saisir un numero de serie.");
-		}
-	}
-
-	/**
-	 * Valide le type choisi.
-	 */
-	private void validationValRea(float valRea) throws Exception {
-		if (valRea <= 0) {
-			throw new Exception(
-					"Merci de saisir un montant de reapprovisionnement correct.");
 		}
 	}
 
