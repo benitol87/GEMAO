@@ -1,5 +1,17 @@
 package fr.gemao.ctrl.personnel;
 
-public class AjouterPersonnelCtrl {
+import fr.gemao.entity.Personnel;
+import fr.gemao.form.personnel.VerifierSyntaxePersonnel;
 
+
+public class AjouterPersonnelCtrl {
+	
+	public AjouterPersonnelCtrl(){
+		
+	}
+	
+	public static void ajouterPersonnel(Personnel personnel){
+		VerifierSyntaxePersonnel verifperso = new VerifierSyntaxePersonnel();
+		
+	}
 }
