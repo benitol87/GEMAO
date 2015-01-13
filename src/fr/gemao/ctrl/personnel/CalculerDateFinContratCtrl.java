@@ -17,7 +17,9 @@ public class CalculerDateFinContratCtrl {
 	 * Constructeur
 	 */
 	public CalculerDateFinContratCtrl() {
-		
+		this.jourFinContrat = 0;
+		this.moisFinContrat = 0;
+		this.anneeFinContrat = 0;
 	}
 	
 	/**
