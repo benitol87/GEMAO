@@ -18,7 +18,7 @@ import fr.gemao.form.ConnexionForm;
 @WebServlet(name = "Connexion", urlPatterns = { "/Connexion" })
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String ATT_USER = "utilisateur";
+	public static final String ATT_USER = "personnel";
 	public static final String ATT_FORM = "form";
 	public static final String ATT_SESSION_USER = "sessionObjectPersonnel";
 	public static final String VUE_CONNEXION = "/WEB-INF/connexion.jsp";
@@ -59,7 +59,8 @@ public class ConnexionServlet extends HttpServlet {
 			// L'utilisateur voit la redirection
 			response.sendRedirect(request.getContextPath() + VUE_ACCUEIL);
 		} else {
-
+			session.setAttribute(ATT_FORM, form);
+			session.setAttribute(ATT_USER, personnel);
 			this.getServletContext().getRequestDispatcher(VUE_CONNEXION)
 					.forward(request, response);
 		}

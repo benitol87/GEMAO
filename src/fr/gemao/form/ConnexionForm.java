@@ -42,20 +42,18 @@ public class ConnexionForm {
 			setErreur(CHAMP_PASS, e.getMessage());
 		}
 
-		ConnexionCtrl connexionCtrl = new ConnexionCtrl();
-		try{
-			personnel = connexionCtrl.controlerPersonnel(login,
-					motDePasse);
-		}catch(Exception e){
-			e.getMessage();
-		}
-		
-
-		/* Initialisation du résultat global de la validation. */
 		if (erreurs.isEmpty()) {
-			resultat = "Succès de la connexion.";
+			ConnexionCtrl connexionCtrl = new ConnexionCtrl();
+			try {
+				personnel = connexionCtrl.controlerPersonnel(login, motDePasse);
+			} catch (Exception e) {
+				setErreur("Connexion", e.getMessage());
+				personnel = new Personnel(null, null, null, null, null, null,
+						null, null, null, null, null, login, null, 0);
+			}
 		} else {
-			resultat = "Échec de la connexion.";
+			personnel = new Personnel(null, null, null, null, null, null, null,
+					null, null, null, null, login, null, 0);
 		}
 
 		return personnel;
