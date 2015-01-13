@@ -1,4 +1,4 @@
-package gemao;
+/*package gemao;
 
 import gemao.IHM.SWT.StartingScreenSWT;
 import gemao.IHM.gestionPersonnel.PrincipalSWT;
@@ -31,8 +31,8 @@ public class Launcher {
 	}
 	
 	/**
-	 * Méthode arrêtant l'application
-	 */
+	 * Mï¿½thode arrï¿½tant l'application
+	 
 	public static void stop(){
 		Launcher.display.dispose();
 	}
@@ -40,3 +40,4 @@ public class Launcher {
 }
 
 
+*/
