@@ -65,6 +65,9 @@ public class MaterielCtrl {
 	}
 	
 	public Materiel recupererMateriel(int idMateriel){
+		if(idMateriel <= 0 ){
+			throw new IllegalArgumentException("Id incorrect");
+		}
 		MaterielDAO materielDAO = new MaterielDAO(DAOFactory.getInstance());
 		
 		return materielDAO.get(idMateriel);

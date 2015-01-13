@@ -1,7 +1,6 @@
 package fr.gemao.entity;
 
 public class Commune {
-
 	private Integer idCommune, codePostal;
 	private String nomCommune;
 	private boolean avantage;

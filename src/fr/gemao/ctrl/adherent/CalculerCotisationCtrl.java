@@ -6,10 +6,18 @@ import fr.gemao.sql.ParametreDAO;
 
 public class CalculerCotisationCtrl {
 	
+	/**
+	 * Constructeur
+	 */
 	public CalculerCotisationCtrl() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Méthode permettant de calculer le montant des cotisations selon le quotient familial
+	 * @param qf
+	 * @return montant des cotisations
+	 */
 	public float calculerCotisations(Float qf){
 		
 		DAOFactory factory = DAOFactory.getInstance();

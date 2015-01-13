@@ -1,13 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Calcul du Quotient Familial</title>
-</head>
-<body>
-	<h1>Calcul du Quotient Familial</h1>
+<%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:set var="titre" value="Calcul du Quotient Familial" scope="request" />
+
+<c:import url="/inc/head.inc.jsp" />
+
+<c:import url="/inc/header.inc.jsp" />
+<c:import url="/inc/menu.inc.jsp" />
+<h1>Calcul du Quotient Familial</h1>
+<form action="#" method="post">
 	<table>
 		<tr>
 			<td><label for="nbPers">Nombre de personne : </label></td>
@@ -22,7 +23,8 @@
 		</tr>
 	</table>
 	<div>
-		<input type="button" value="Annuler" /> <input type="button" value="Valider" />
+		<input type="button" value="Annuler" /> <input type="button"
+			value="Valider" />
 	</div>
-</body>
-</html>
+</form>
+<c:import url="/inc/footer.inc.jsp" />

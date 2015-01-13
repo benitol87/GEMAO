@@ -16,6 +16,12 @@ public class ConnexionCtrl {
 	}
 
 	public Personnel controlerPersonnel(String login, String passwd) {
+		if (login == null) {
+			throw new IllegalArgumentException("Le login ne peut être null");
+		}
+		if (passwd == null) {
+			throw new IllegalArgumentException("Le password ne peut être null");
+		}
 
 		Personnel personnel = personnelDAO.getLoginParPersonnel(login);
 

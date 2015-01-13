@@ -13,6 +13,10 @@ public class AjouterResponsableCtrl {
 	public AjouterResponsableCtrl(){
 	}
 	
+	/**
+	 * Méthode permettant d'ajouter un responsable dans la BD
+	 * @param responsable
+	 */
 	public void ajouterResponsable(Responsable responsable){
 		
 		VerifierSyntaxeResponsable verifResp = new VerifierSyntaxeResponsable();
@@ -21,8 +25,8 @@ public class AjouterResponsableCtrl {
 			
 			Responsable test1, test2;
 
-			DAOFactory factory = DAOFactory.getInstance();
-			ResponsableDAO responsableDAO = factory.getResponsableDAO();
+			DAOFactory co = DAOFactory.getInstance();
+			ResponsableDAO responsableDAO = co.getResponsableDAO();
 
 			test1 = responsableDAO.create(responsable);
 			if (test1 == null){

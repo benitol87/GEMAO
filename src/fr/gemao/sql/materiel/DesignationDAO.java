@@ -54,38 +54,24 @@ public class DesignationDAO extends IDAO<Designation> {
 
 	@Override
 	public void delete(Designation obj) {
-		Connection connexion = null;
-		ResultSet result = null;
-		if (obj == null) {
-			throw new NullPointerException(
-					"La designation ne doit pas etre null");
-		}
-
-		if (obj.getIdDesignation() <= 0) {
-			throw new IllegalArgumentException(
-					"La designation ne peut pas avoir un id <= 0");
-		}
-
-		PreparedStatement stat = null;
-		try {
-			connexion = factory.getConnection();
-			String sql = "DELETE FROM designation WHERE idDesignation = "
-					+ obj.getIdDesignation();
-			stat = DAOUtilitaires.initialisationRequetePreparee(connexion, sql,
-					false);
-			
-			int status = stat.executeUpdate();
-			if (status == 0) {
-				throw new DAOException(
-						"Échec de la suppression de la Designation, aucune modification dans la table.");
-			}
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} finally {
-			DAOUtilitaires.fermeturesSilencieuses(result, stat, connexion);
-		}
-
-
+		/*
+		 * if (obj == null) { throw new NullPointerException(
+		 * "La designation ne doit pas etre null"); }
+		 * 
+		 * if (obj.getIdDesignation() == 0) { throw new
+		 * IllegalArgumentException(
+		 * "La designation ne peut pas avoir un id = 0"); }
+		 * 
+		 * Statement stat = null; try { stat =
+		 * connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+		 * ResultSet.CONCUR_UPDATABLE);
+		 * stat.execute("DELETE FROM designation WHERE idDesignation = " +
+		 * obj.getIdDesignation() + ";"); } catch (SQLException e) {
+		 * e.printStackTrace(); } finally { if (stat != null) { try {
+		 * stat.close(); } catch (SQLException e) { e.printStackTrace(); } } }
+		 */
+		throw new UnsupportedOperationException(
+				"Vous n'avez pas le droit de supprimer une Designation.");
 	}
 
 	@Override

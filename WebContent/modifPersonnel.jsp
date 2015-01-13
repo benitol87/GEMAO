@@ -7,7 +7,7 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-	<form id="modifp method="post" action="#">
+	<form id="modifp" method="post" action="#">
 			<h2>Modification des informations</h2>
 			<table>
 				<tr><td>
@@ -63,8 +63,8 @@
 					<input type="text" name="diplome" />
 				</td></tr>
 				<tr><td>
-					<input type="button" value="+" action=""/>
-					<input type="button" value="-" action=""/>
+					<input type="button" value="+" />
+					<input type="button" value="-"/>
 				</td></tr>
 				<tr><td>
 					<label for="fonction">Fonction:</label>
@@ -72,8 +72,8 @@
 					<input type="text" name="fonction"/>
 				</td></tr>
 				<tr><td>
-					<input type="button" value="+" action=""/>
-					<input type="button" value="-" action=""/>
+					<input type="button" value="+"/>
+					<input type="button" value="-" />
 				</td></tr>
 			</table>
 		</fieldset>

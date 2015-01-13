@@ -23,8 +23,8 @@ public class ModifierResponsableCtrl {
 		if(verifResp.verifierInformations(responsable)){
 			Responsable test1, test2;
 			
-			DAOFactory factory = DAOFactory.getInstance();
-			ResponsableDAO responsableDAO = factory.getResponsableDAO();
+			DAOFactory co = DAOFactory.getInstance();
+			ResponsableDAO responsableDAO = co.getResponsableDAO();
 			
 			test1 = responsableDAO.update(responsable);
 			if(test1 == null){

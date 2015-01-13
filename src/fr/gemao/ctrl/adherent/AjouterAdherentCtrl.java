@@ -27,26 +27,26 @@ public class AjouterAdherentCtrl {
 			Personne test1;
 			Adherent test2;
 
-			DAOFactory factory = DAOFactory.getInstance();
-			PersonneDAO personneDAO = factory.getPersonneDAO();
-			AdherentDAO adherentDAO = factory.getAdherentDAO();
+			DAOFactory co = DAOFactory.getInstance();
+			PersonneDAO personneDAO = co.getPersonneDAO();
+			AdherentDAO adherentDAO = co.getAdherentDAO();
 
 			test1 = personneDAO.create(adherent);
 			if (test1 == null){
-				System.out.println("Une erreur est survenue lors de l'insertion...");
+				System.out.println("Une erreur est survenue lors de l'insertion");
 			} else {
 				adherent.setIdPersonne(test1.getIdPersonne());
 				test2 = adherentDAO.create(adherent);
 				if (test2 == null){
-					System.out.println("Une erreur est survenue lors de l'insertion...");
+					System.out.println("Une erreur est survenue lors de l'insertion");
 				} else {
-					System.out.println("L'adhérent a bien été ajouté.");
+					System.out.println("L'adhérent à bien été ajouté");
 				}
 			}
 
 		} else {
 			System.out
-					.println("Les informations de l'adhérent ne sont pas valides...");
+					.println("Les informations de l'adhérent ne sont pas valide");
 		}
 	}
 }
