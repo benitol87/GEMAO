@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.gestionMateriel.CategorieDAO;
+import fr.gemao.sql.materiel.CategorieDAO;
 
 public class CategorieCtrl {
 	/**

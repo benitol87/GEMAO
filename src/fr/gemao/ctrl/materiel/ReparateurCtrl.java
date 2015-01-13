@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.gemao.entity.materiel.Reparateur;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.gestionMateriel.ReparateurDAO;
+import fr.gemao.sql.materiel.ReparateurDAO;
 
 public class ReparateurCtrl {
 

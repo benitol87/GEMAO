@@ -2,10 +2,12 @@ package fr.gemao.ctrl.materiel;
 
 import java.sql.Date;
 
-import fr.gemao.ancien_mysql.ConnectionMySql;
+
+
 import fr.gemao.entity.materiel.Reparateur;
 import fr.gemao.entity.materiel.Reparation;
-import fr.gemao.sql.gestionMateriel.ReparationDAO;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.materiel.ReparationDAO;
 
 public class ReparationCtrl {
 
@@ -22,6 +24,6 @@ public class ReparationCtrl {
 
 		Reparation reparation = new Reparation(idReparation, reparateur,
 				dateCertificat);
-		new ReparationDAO(ConnectionMySql.getInstance()).create(reparation);
+		new ReparationDAO(DAOFactory.getInstance()).create(reparation);
 	}
 }

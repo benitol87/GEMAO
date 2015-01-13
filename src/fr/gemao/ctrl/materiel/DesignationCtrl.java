@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.gestionMateriel.DesignationDAO;
+import fr.gemao.sql.materiel.DesignationDAO;
 
 
 

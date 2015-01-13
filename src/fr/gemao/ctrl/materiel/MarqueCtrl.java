@@ -2,7 +2,7 @@ package fr.gemao.ctrl.materiel;
 
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.gestionMateriel.MarqueDAO;
+import fr.gemao.sql.materiel.MarqueDAO;
 
 public class MarqueCtrl {
 	/**

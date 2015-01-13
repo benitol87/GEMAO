@@ -7,13 +7,13 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.ancien_mysql.ConnectionMySql;
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.entity.materiel.Etat;
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.entity.materiel.Materiel;
-import fr.gemao.sql.gestionMateriel.MaterielDAO;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.materiel.MaterielDAO;
 
 public class MaterielCtrl {
 	public MaterielCtrl() {
@@ -59,22 +59,20 @@ public class MaterielCtrl {
 		
 		Materiel materiel = new Materiel(idMat, etat, categorie, marque, designation, observation, numSerie, dateAchat, valeurReap, valeurReap, deplacable, observation);
 		
-		new MaterielDAO(ConnectionMySql.getInstance()).create(materiel);
+		new MaterielDAO(DAOFactory.getInstance()).create(materiel);
 		
 		
 	}
 	
 	public Materiel recupererMateriel(int idMateriel){
-		Connection co = ConnectionMySql.getInstance();
-		MaterielDAO materielDAO = new MaterielDAO(co);
+		MaterielDAO materielDAO = new MaterielDAO(DAOFactory.getInstance());
 		
 		return materielDAO.get(idMateriel);
 	}
 	
 	public List<Materiel> recupererTousMateriels(){
 		List<Materiel> listeMateriel = new ArrayList<Materiel>();
-		Connection co = ConnectionMySql.getInstance();
-		MaterielDAO materielDAO = new MaterielDAO(co);
+		MaterielDAO materielDAO = new MaterielDAO(DAOFactory.getInstance());
 		
 		listeMateriel = materielDAO.getAll();
 		
