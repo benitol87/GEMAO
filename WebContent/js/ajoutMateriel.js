@@ -7,10 +7,15 @@ function afficherType()
 		document.getElementById("ajouterMaterielInstrument").style.display="inline";
 		document.getElementById("ajouterMaterielMobilier").style.display="none";
 	}
-	else
+	else if(document.getElementById("categorie").options[document.getElementById("categorie").options.selectedIndex].text=="Mobilier")
 	{
 		document.getElementById("ajouterMaterielInstrument").style.display="none";
 		document.getElementById("ajouterMaterielMobilier").style.display="inline";
+	}
+	else
+	{
+		document.getElementById("ajouterMaterielInstrument").style.display="none";
+		document.getElementById("ajouterMaterielMobilier").style.display="none";
 	}
 }
 
