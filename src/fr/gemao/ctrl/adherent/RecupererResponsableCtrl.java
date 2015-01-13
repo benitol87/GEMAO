@@ -22,18 +22,22 @@ public class RecupererResponsableCtrl {
 	 */
 	public Responsable recupererResponsable(Long idResponsable){
 		
-		DAOFactory factory = DAOFactory.getInstance();
-		ResponsableDAO responsableDAO = factory.getResponsableDAO();
+		DAOFactory co = DAOFactory.getInstance();
+		ResponsableDAO responsableDAO = co.getResponsableDAO();
 		
 		Responsable responsable = responsableDAO.get(idResponsable);
 		
 		return responsable;
 	}
 
+	/**
+	 * Méthode permettant de récupérer l'ensemble des responsables de la BD
+	 * @return la liste des responsables
+	 */
 	public List<Responsable> recupererTousResponsables(){
 		List<Responsable> listeResponsables = new ArrayList<Responsable>();
-		DAOFactory factory = DAOFactory.getInstance();
-		ResponsableDAO responsableDAO = factory.getResponsableDAO();
+		DAOFactory co = DAOFactory.getInstance();
+		ResponsableDAO responsableDAO = co.getResponsableDAO();
 		
 		listeResponsables = responsableDAO.getAll();
 		
