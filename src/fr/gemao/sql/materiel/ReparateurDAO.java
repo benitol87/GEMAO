@@ -1,7 +1,5 @@
-package fr.gemao.sql.gestionMateriel;
+package fr.gemao.sql.materiel;
 
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,18 +7,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.materiel.Designation;
-import fr.gemao.ancien_mysql.DAOMySql;
+import fr.gemao.entity.materiel.Reparateur;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.IDAO;
 
-public class DesignationDAO extends DAOMySql<Designation> {
-	public DesignationDAO(Connection conn) {
+public class ReparateurDAO extends IDAO<Reparateur> {
+
+	public ReparateurDAO(DAOFactory conn) {
 		super(conn);
 	}
+
 	@Override
-	public Designation create(Designation obj) {
+	public Reparateur create(Reparateur obj) {
 		if (obj == null) {
 			throw new NullPointerException(
-					"La designation ne doit pas etre null");
+					"Le reparateur ne doit pas etre null");
 		}
 
 		long id = 0;
@@ -28,12 +29,13 @@ public class DesignationDAO extends DAOMySql<Designation> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO designation(idDesignation, libelle)"
-					+ "VALUES (?, ?);";
-			requete = connect.prepareStatement(sql,
+			String sql = "INSERT INTO REPARATEUR (idReparateur," + "nom)"
+					+ "VALUES (?,?);";
+			requete = factory.getConnection().prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
-			requete.setInt(1, obj.getIdDesignation());
-			requete.setString(2, obj.getLibelleDesignation());
+			requete.setInt(1, obj.getIdReparateur());
+			requete.setString(2, obj.getNom());
+
 			requete.executeUpdate();
 
 			result = requete.getGeneratedKeys();
@@ -60,23 +62,24 @@ public class DesignationDAO extends DAOMySql<Designation> {
 	}
 
 	@Override
-	public void delete(Designation obj) {
+	public void delete(Reparateur obj) {
 		if (obj == null) {
 			throw new NullPointerException(
-					"La designation ne doit pas etre null");
+					"La Reparation ne doit pas �tre null");
 		}
 
-		if (obj.getIdDesignation() == 0) {
-			throw new IllegalArgumentException(
-					"La designation ne peut pas avoir un id = 0");
+		if (obj.getIdReparateur() == 0) {
+			throw new NullPointerException(
+					"Le Reparateur ne peut pas avoir un id = 0");
 		}
 
 		Statement stat = null;
 		try {
-			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+			stat = factory.getConnection().createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM designation WHERE idDesignation = "
-					+ obj.getIdDesignation() + ";");
+			stat.execute("DELETE FROM REPARATION WHERE idReparation = "
+					+ obj.getIdReparateur() + ";");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -91,26 +94,27 @@ public class DesignationDAO extends DAOMySql<Designation> {
 	}
 
 	@Override
-	public Designation update(Designation obj) {
-		// TODO Comportement par d�faut, a modifier
+	public Reparateur update(Reparateur obj) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Designation get(long id) {
-		Designation designation = null;
+	public Reparateur get(long id) {
+		Reparateur reparateur = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM designation WHERE idDesignation = ?;";
-			requete = connect.prepareStatement(sql);
+			String sql = "SELECT * FROM REPARATEUR WHERE idReparateur = ?;";
+			requete = factory.getConnection().prepareStatement(sql);
 			requete.setLong(1, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				designation = new Designation(result.getInt("idDesignation"),
-						result.getString("libelle"));
+				reparateur = new Reparateur(result.getInt("idReparateur"),
+						result.getString("nom"));
+
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -126,26 +130,26 @@ public class DesignationDAO extends DAOMySql<Designation> {
 				}
 			}
 		}
-		return designation;
+		return reparateur;
 	}
 
 	@Override
-	public List<Designation> getAll() {
-		List<Designation> liste = new ArrayList<>();
+	public List<Reparateur> getAll() {
+		List<Reparateur> liste = new ArrayList<>();
 
-		Designation designation = null;
+		Reparateur reparateur = null;
 
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "SELECT * FROM designation;";
-			requete = connect.prepareStatement(sql);
+			String sql = "SELECT * FROM Reparateur;";
+			requete = factory.getConnection().prepareStatement(sql);
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				designation = new Designation(result.getInt("idDesignation"),
-						result.getString("libelle"));
-				liste.add(designation);
+				reparateur = new Reparateur(result.getInt("idReparateur"),
+						result.getString("nom"));
+				liste.add(reparateur);
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -164,4 +168,11 @@ public class DesignationDAO extends DAOMySql<Designation> {
 
 		return liste;
 	}
+
+	@Override
+	protected Reparateur map(ResultSet result) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

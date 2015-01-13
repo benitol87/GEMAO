@@ -1,0 +1,143 @@
+package fr.gemao.sql.materiel;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.gemao.entity.materiel.Designation;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.IDAO;
+import fr.gemao.sql.exception.DAOException;
+import fr.gemao.sql.util.DAOUtilitaires;
+
+public class DesignationDAO extends IDAO<Designation> {
+	public DesignationDAO(DAOFactory factory) {
+		super(factory);
+	}
+
+	@Override
+	public Designation create(Designation obj) {
+		if (obj == null) {
+			throw new NullPointerException(
+					"La designation ne doit pas etre null");
+		}
+
+		long id = 0;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+
+		String sql = "INSERT INTO designation(idDesignation, libelle)"
+				+ "VALUES (?, ?);";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, obj.getIdDesignation(),
+					obj.getLibelleDesignation());
+
+			int status = requete.executeUpdate();
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la création de la designation, aucune ligne ajoutée dans la table.");
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return this.get(id);
+	}
+
+	@Override
+	public void delete(Designation obj) {
+		/*
+		 * if (obj == null) { throw new NullPointerException(
+		 * "La designation ne doit pas etre null"); }
+		 * 
+		 * if (obj.getIdDesignation() == 0) { throw new
+		 * IllegalArgumentException(
+		 * "La designation ne peut pas avoir un id = 0"); }
+		 * 
+		 * Statement stat = null; try { stat =
+		 * connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+		 * ResultSet.CONCUR_UPDATABLE);
+		 * stat.execute("DELETE FROM designation WHERE idDesignation = " +
+		 * obj.getIdDesignation() + ";"); } catch (SQLException e) {
+		 * e.printStackTrace(); } finally { if (stat != null) { try {
+		 * stat.close(); } catch (SQLException e) { e.printStackTrace(); } } }
+		 */
+		throw new UnsupportedOperationException(
+				"Vous n'avez pas le droit de supprimer une Categorie.");
+	}
+
+	@Override
+	public Designation update(Designation obj) {
+		// TODO Comportement par d�faut, a modifier
+		return null;
+	}
+
+	@Override
+	public Designation get(long id) {
+		Designation designation = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		try {
+			String sql = "SELECT * FROM designation WHERE idDesignation = ?;";
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, id);
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				designation = new Designation(result.getInt("idDesignation"),
+						result.getString("libelle"));
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return designation;
+	}
+
+	@Override
+	public List<Designation> getAll() {
+		List<Designation> liste = new ArrayList<>();
+		Connection connexion = null;
+		Designation designation = null;
+
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		try {
+			String sql = "SELECT * FROM designation;";
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false);
+			result = requete.executeQuery();
+
+			while (result.next()) {
+				designation = new Designation(result.getInt("idDesignation"),
+						result.getString("libelle"));
+				liste.add(designation);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return liste;
+	}
+
+	@Override
+	protected Designation map(ResultSet result) throws SQLException {
+		return new Designation(result.getInt("idDesignation"),
+				result.getString("libelle"));
+	}
+}
