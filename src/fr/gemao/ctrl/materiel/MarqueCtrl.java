@@ -16,6 +16,12 @@ public class MarqueCtrl {
 			throw new NullPointerException(
 					"Le nom de la marque ne peut etre vide.");
 		}
+		
+		if(nomMarque == ""){
+			throw new IllegalArgumentException(
+					"Le nom de la marque doit etre renseigne");
+		}
+		
 		Marque marque = new Marque(0, nomMarque);
 		new MarqueDAO(DAOFactory.getInstance()).create(marque);
 	}
@@ -31,7 +37,10 @@ public class MarqueCtrl {
 			throw new NullPointerException(
 					"Le nom de la marque ne peut etre vide.");
 		}
-
+		if(nomMarque == ""){
+			throw new IllegalArgumentException(
+					"Le nom de la marque doit etre renseigne");
+		}
 		MarqueDAO marquedao = new MarqueDAO(DAOFactory.getInstance());
 		Marque marque = marquedao.get(nomMarque);
 		marquedao.delete(marque);
