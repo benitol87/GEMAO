@@ -1,14 +1,11 @@
 package fr.gemao.ctrl.personnel;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.Personnel;
-import fr.gemao.entity.adherent.Adherent;
-import fr.gemao.entity.personnel.Personnel;
-import fr.gemao.sql.AdherentDAO;
 import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.PersonnelDAO;
 
 /**
  * La classe personnel permet de récupérer un personnel ou de tous les lister.

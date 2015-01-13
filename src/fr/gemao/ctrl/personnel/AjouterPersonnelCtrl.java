@@ -2,9 +2,10 @@ package fr.gemao.ctrl.personnel;
 
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.Personnel;
-import fr.gemao.form.personnel.VerifierSyntaxePersonnel;
+import fr.gemao.form.personnel.VerifierSyntaxePersonnelForm;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
+import fr.gemao.sql.PersonnelDAO;
 
 /**
  * La classe AjouterPersonnelCtrl permet de contrôler l'ajout d'un personnel.
@@ -42,7 +43,7 @@ public class AjouterPersonnelCtrl {
 	 *            : Le personnel ajouté.
 	 */
 	public static void ajouterPersonnelSyntaxe(Personnel personnel) {
-		VerifierSyntaxePersonnel verifperso = new VerifierSyntaxePersonnel();
+		VerifierSyntaxePersonnelForm verifperso = new VerifierSyntaxePersonnelForm();
 
 		if (verifperso.verifierInformations(personnel)) {
 			Personne test1;

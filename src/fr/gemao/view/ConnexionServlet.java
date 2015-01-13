@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class Connexion
  */
 @WebServlet(name="Connexion", urlPatterns={"/Connexion"})
-public class Connexion extends HttpServlet {
+public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String ATT_USER         = "utilisateur";
     public static final String ATT_FORM         = "form";
