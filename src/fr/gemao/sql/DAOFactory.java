@@ -26,7 +26,7 @@ public class DAOFactory {
 	private static final String PROPERTY_MOT_DE_PASSE = "motdepasse";
 
 	private static boolean CHARGE = false;
-
+	private static DAOFactory instance;
 	private BoneCP connectionPool;
 
 	DAOFactory(BoneCP connectionPool) {
@@ -103,8 +103,9 @@ public class DAOFactory {
 			}
 			instance = new DAOFactory(pool);
 			DAOFactory.CHARGE = true;
+			DAOFactory.instance = instance;
 		}else{
-			instance = null;
+			instance = DAOFactory.instance;
 		}
 		return instance;
 	}

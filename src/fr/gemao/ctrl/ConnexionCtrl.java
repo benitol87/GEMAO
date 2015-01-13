@@ -11,7 +11,6 @@ public class ConnexionCtrl {
 
 	public ConnexionCtrl() {
 		daoFactory = DAOFactory.getInstance();
-
 		personnelDAO = daoFactory.getPersonnelDAO();
 	}
 
@@ -20,7 +19,7 @@ public class ConnexionCtrl {
 			throw new IllegalArgumentException("Le login ne peut être null");
 		}
 		if (passwd == null) {
-			throw new IllegalArgumentException("Le password ne peut être null");
+			throw new IllegalArgumentException("Le mot de passe ne peut être null");
 		}
 
 		Personnel personnel = personnelDAO.getLoginParPersonnel(login);
