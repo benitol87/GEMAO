@@ -146,5 +146,13 @@ public class DAOFactory {
 	public ResponsabiliteDAO getResponsabiliteDAO() {
 		return new ResponsabiliteDAO(this);
 	}
+	
+	public ResponsableDAO getResponsableDAO(){
+		return new ResponsableDAO(this);
+	}
+	
+	public AdherentDAO getAdresseDAO(){
+		return new AdresseDAO(this);
+	}
 
 }
