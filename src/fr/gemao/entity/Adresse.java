@@ -1,13 +1,13 @@
 package fr.gemao.entity;
 
 public class Adresse {
-	private int idAdresse;
-	private int idCommune;
-	private int numRue;
+	private Integer idAdresse;
+	private Integer idCommune;
+	private Integer numRue;
 	private String nomRue;
 	private String infoCompl;
 	
-	public Adresse(int idAdresse, int idCommune, int numRue, String nomRue,
+	public Adresse(Integer idAdresse, Integer idCommune, Integer numRue, String nomRue,
 			String infoCompl) {
 		super();
 		this.idAdresse = idAdresse;
@@ -17,27 +17,27 @@ public class Adresse {
 		this.infoCompl = infoCompl;
 	}
 
-	public int getIdAdresse() {
+	public Integer getIdAdresse() {
 		return idAdresse;
 	}
 
-	public void setIdAdresse(int idAdresse) {
+	public void setIdAdresse(Integer idAdresse) {
 		this.idAdresse = idAdresse;
 	}
 
-	public int getIdCommune() {
+	public Integer getIdCommune() {
 		return idCommune;
 	}
 
-	public void setIdCommune(int idCommune) {
+	public void setIdCommune(Integer idCommune) {
 		this.idCommune = idCommune;
 	}
 
-	public int getNumRue() {
+	public Integer getNumRue() {
 		return numRue;
 	}
 
-	public void setNumRue(int numRue) {
+	public void setNumRue(Integer numRue) {
 		this.numRue = numRue;
 	}
 
@@ -66,8 +66,8 @@ public class Adresse {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
+		final Integer prime = 31;
+		Integer result = 1;
 		result = prime * result + idAdresse;
 		result = prime * result + idCommune;
 		result = prime * result
