@@ -16,6 +16,10 @@ public class AjouterAdherentCtrl {
 
 	}
 
+	/**
+	 * Méthode permettant d'ajouter un adhérent dans la BD
+	 * @param adherent
+	 */
 	public void ajoutAdherent(Adherent adherent) {
 		VerifierSyntaxeAdherent verifAdherent = new VerifierSyntaxeAdherent();
 
