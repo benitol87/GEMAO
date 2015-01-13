@@ -67,7 +67,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 	}
 
 	/**
-	 * 
+	 * Redéfinition de la méthode delete
 	 */
 	@Override
 	public void delete(Personnel obj) {

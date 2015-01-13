@@ -14,6 +14,8 @@ import fr.gemao.sql.exception.DAOConfigurationException;
 import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
+import fr.gemao.sql.materiel.MaterielDAO;
+import fr.gemao.sql.materiel.ReparationDAO;
 
 public class DAOFactory {
 
@@ -22,6 +24,8 @@ public class DAOFactory {
 	private static final String PROPERTY_DRIVER = "driver";
 	private static final String PROPERTY_NOM_UTILISATEUR = "nomutilisateur";
 	private static final String PROPERTY_MOT_DE_PASSE = "motdepasse";
+	
+	private static DAOFactory instance;
 
 	private static boolean CHARGE = false;
 
@@ -100,9 +104,11 @@ public class DAOFactory {
 						"Erreur de configuration du pool de connexions.", e);
 			}
 			instance = new DAOFactory(pool);
+			DAOFactory.instance = instance;
 			DAOFactory.CHARGE = true;
+			
 		}else{
-			instance = null;
+			instance = DAOFactory.instance;
 		}
 		return instance;
 	}
@@ -154,6 +160,14 @@ public class DAOFactory {
 	
 	public AdresseDAO getAdresseDAO(){
 		return new AdresseDAO(this);
+	}
+
+	public MaterielDAO getMaterielDAO() {
+		return new MaterielDAO(this);
+	}
+
+	public ReparationDAO getReparationDAO() {
+		return new ReparationDAO(this);
 	}
 
 }
