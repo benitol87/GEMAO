@@ -80,4 +80,21 @@ public class CategorieCtrl {
 		catdao.update(categorie);
 
 	}
+	/**
+	 * permet de recuperer une categorie avec son id
+	 * 
+	 * @param idCategorie
+	 * 		id de la categorie a recuperer
+	 * @return
+	 * 		la categorie qui corespond a idCategorie
+	 */
+	public Categorie recupererCategorie(int idCategorie){
+		if(idCategorie <=0 ){
+			throw new IllegalArgumentException("id invalide");
+		}
+		CategorieDAO catdao = new CategorieDAO(DAOFactory.getInstance());
+
+		return catdao.get(idCategorie);
+		
+	}
 }

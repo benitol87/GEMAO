@@ -73,4 +73,21 @@ public class EtatCtrl {
 		etatDAO.update(etat);
 		
 	}
+	/**
+	 * permet de recuperer un etat avec son id
+	 * 
+	 * @param idEtat
+	 * 		id de l'etat a recuperer
+	 * @return
+	 * 		L'etat correspondant a l'idEtat
+	 */
+	public Etat recupererEtat(int idEtat){
+		if(idEtat <= 0){
+			throw new IllegalArgumentException("idEtat invalide");
+		}
+		
+		EtatDAO etatDAO = new EtatDAO(DAOFactory.getInstance());
+		
+		return etatDAO.get(idEtat);
+	}
 }
