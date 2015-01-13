@@ -1,6 +1,7 @@
 package fr.gemao.ctrl.personnel;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Classe CalculerDateFinContratCtrl permettant de calculer la date de fin d'un contrat en fonction d'une date de début et d'une durée de contrat
@@ -9,9 +10,7 @@ import java.util.Calendar;
  */
 public class CalculerDateFinContratCtrl {
 	
-	private int jourFinContrat;
-	private int moisFinContrat;
-	private int anneeFinContrat;
+	private Date dateFin;
 	
 	/**
 	 * Constructeur
@@ -28,33 +27,15 @@ public class CalculerDateFinContratCtrl {
 	 * @param duree : la durée du contrat
 	 * @return dateFin : la date de fin (String)
 	 */
-	public String CalculerDateFinContrat(int jourDebutContrat, int moisDebutContrat, int anneeDebutContrat, int duree) {
+	public Date CalculerDateFinContrat(Date dateDebut, int duree) {
 		Calendar cal = Calendar.getInstance();
-		String dateFin;
-		StringBuilder sb = new StringBuilder();
+		cal.setTime(dateDebut);
 		
-		/* Positionnement du jour, mois et année du début de contrat é l'objet Calendar */
-		cal.set(Calendar.DAY_OF_MONTH, jourDebutContrat);
-		cal.set(Calendar.MONTH, moisDebutContrat);
-		cal.set(Calendar.YEAR, anneeDebutContrat);
-		
-		/* Ajout de la durée du contrat en mois é l'objet Calendar */
+		/* Ajout de la durée du contrat en mois à l'objet Calendar */
 		cal.add(Calendar.MONTH, duree);
 		
-		/* Affectation de la date de fin de contrat */
-		jourFinContrat = cal.get(Calendar.DAY_OF_MONTH);
-		moisFinContrat = cal.get(Calendar.MONTH);
-		anneeFinContrat = cal.get(Calendar.YEAR);
-		
-		/* Création de la chaine de caractére de la date de fin */
-		sb.append(jourFinContrat)
-		.append("/")
-		.append(moisFinContrat)
-		.append("/")
-		.append(anneeFinContrat);
-		
-		dateFin = sb.toString();
-		
+		dateFin = cal.getTime();
+				
 		return dateFin;
 	}
 }
