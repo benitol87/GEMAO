@@ -1,8 +1,5 @@
 package fr.gemao.ctrl.materiel;
 
-
-
-import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,5 +77,49 @@ public class MaterielCtrl {
 		listeMateriel = materielDAO.getAll();
 		
 		return listeMateriel;
+	}
+	
+	public void modifierMateriel(Materiel materiel){
+		if(materiel.getEtat() == null){
+			throw new NullPointerException("L'etat ne doit pas etre null");
+		}
+		
+		if(materiel.getCategorie() == null){
+			throw new NullPointerException("La categorie ne doit pas etre null");
+		}
+		
+		if(materiel.getMarque() == null){
+			throw new NullPointerException("la marque ne doit pas etre null");
+		}
+		
+		if(materiel.getDesignation() == null){
+			throw new NullPointerException("La designation ne doit pas etre null");
+		}
+		
+		if(materiel.getTypeMat() == null){
+			throw new NullPointerException("le type de materiel ne doit pas etre null");
+		}
+		
+		if (materiel.getTypeMat() == ""){
+			throw new IllegalArgumentException("le type doit etre rempli");
+		}
+		
+		if(materiel.getDateAchat() == null){
+			throw new NullPointerException("La date d'achat ne doit pas etre null");
+		}
+		
+		if(materiel.getValeurAchat() < 0.0){
+			throw new IllegalArgumentException("la valeur d'achat ne peut pas etre negative");
+		}
+		
+		if(materiel.getValeurReap() < 0.0){
+			throw new IllegalArgumentException("la valeur ne peut pas etre negative");
+		}
+		
+		MaterielDAO materielDAO = new MaterielDAO(DAOFactory.getInstance());
+		
+		materielDAO.update(materiel);
+		
+		
 	}
 }
