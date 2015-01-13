@@ -4,7 +4,8 @@ import java.util.List;
 
 import fr.gemao.entity.materiel.Etat;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.EtatDAO;
+import fr.gemao.sql.materiel.EtatDAO;
+
 
 public class EtatCtrl {
 	/**
@@ -46,5 +47,30 @@ public class EtatCtrl {
 				break;
 			}
 		}
+	}
+	
+	/**
+	 * Permet de modifier le libelle d'un etat
+	 * 
+	 * @param etat
+	 * 		l'etat avec son nouveau libelle
+	 */
+	public void modifierEtat(Etat etat){
+		if(etat.getIdEtat() <= 0){
+			throw new IllegalArgumentException("id invalide");
+		}
+		
+		if(etat.getLibelleEtat() == null){
+			throw new NullPointerException("Libelle incomplet");
+		}
+		
+		if(etat.getLibelleEtat() == ""){
+			throw new IllegalArgumentException("Libelle incorrect");
+		}
+		
+		EtatDAO etatDAO = new EtatDAO(DAOFactory.getInstance());
+		
+		etatDAO.update(etat);
+		
 	}
 }
