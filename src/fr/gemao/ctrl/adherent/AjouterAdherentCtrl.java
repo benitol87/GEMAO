@@ -11,6 +11,9 @@ import fr.gemao.ancien_mysql.PersonneDAO;
 
 public class AjouterAdherentCtrl {
 
+	/**
+	 * Constructeur
+	 */
 	public AjouterAdherentCtrl() {
 
 	}
