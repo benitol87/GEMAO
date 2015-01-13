@@ -8,9 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.Responsabilite;
+import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
+import fr.gemao.sql.util.DateUtil;
+import fr.gemao.sql.util.NumberUtil;
 
+/**
+ * Classe ResponsabiliteDAO (extends IDAO<Responsabilite>)
+ * @author Coco
+ *
+ */
 public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	
 	/**
@@ -26,8 +34,33 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	 */
 	@Override
 	public Responsabilite create(Responsabilite obj) {
-		// TODO Auto-generated method stub
-		return null;
+		if (obj == null) {
+			throw new NullPointerException("La responsabilité ne doit pas être null");
+		}
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "INSERT INTO responsabilite(idResponsabilite, libelle,"
+				+ "VALUES (?, ?);";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false,
+					obj.getIdResponsabilite(),
+					obj.getLibelle());
+			
+			int status = requete.executeUpdate();
+			
+			if ( status == 0 ) {
+	            throw new DAOException( "Échec de la création de la responsabilité, aucune ligne ajoutée dans la table." );
+	        }
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return this.get(obj.getIdResponsabilite());
 	}
 
 	/**
@@ -35,7 +68,6 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	 */
 	@Override
 	public void delete(Responsabilite obj) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -44,8 +76,30 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	 */
 	@Override
 	public Responsabilite update(Responsabilite obj) {
-		// TODO Auto-generated method stub
-		return null;
+		if (obj == null) {
+			throw new NullPointerException("La responsabilité ne doit pas être null");
+		}
+		
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		
+		String sql = "UPDATE respo SET libelle = ?, "
+				+ "WHERE idResponsabilite = ?;";
+		try {
+			
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, 
+					obj.getLibelle());
+			requete.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return this.get(obj.getIdResponsabilite());
 	}
 
 	/**
@@ -53,8 +107,28 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	 */
 	@Override
 	public Responsabilite get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Responsabilite responsabilite = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		
+		String sql = "SELECT * FROM responsabilite WHERE idResponsabilite = ?;";
+		
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, id);
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				responsabilite = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		
+		return responsabilite;
 	}
 
 	/**
@@ -62,8 +136,31 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	 */
 	@Override
 	public List<Responsabilite> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Responsabilite> liste = new ArrayList<>();
+
+		Responsabilite responsabilite = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		
+		String sql = "SELECT * FROM responsabilite;";
+		
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false);
+			result = requete.executeQuery();
+			
+			while (result.next()) {
+				responsabilite = this.map(result);
+				liste.add(responsabilite);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return liste;
 	}
 
 	/**
@@ -71,8 +168,10 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	 */
 	@Override
 	protected Responsabilite map(ResultSet result) throws SQLException {
-		
-		return new Responsabilite(result.getInt("idResponsabilite"), result.getString("libelle"));
+		ResponsabiliteDAO responsabiliteDAO = factory.getResponsabiliteDAO();
+		Responsabilite responsabilite = new Responsabilite(responsabiliteDAO.get(result.getInt("idResponsabilite")),
+				result.getString("libelle"));
+		return responsabilite;
 	}
 	
 	/**
