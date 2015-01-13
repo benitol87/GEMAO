@@ -10,6 +10,9 @@ import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
 import fr.gemao.sql.exception.DAOConfigurationException;
+import fr.gemao.sql.materiel.CategorieDAO;
+import fr.gemao.sql.materiel.DesignationDAO;
+import fr.gemao.sql.materiel.MarqueDAO;
 
 public class DAOFactory {
 
@@ -121,18 +124,23 @@ public class DAOFactory {
 	}
 
 	public EtatDAO getEtatDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new EtatDAO(this);
 	}
 
-	public EtatDAO getCategorieDAO() {
-		// TODO Auto-generated method stub
-		return null;
+	public CategorieDAO getCategorieDAO() {
+		return new CategorieDAO(this);
 	}
 
-	public EtatDAO getMarqueDAO() {
-		// TODO Auto-generated method stub
-		return null;
+	public MarqueDAO getMarqueDAO() {
+		return new MarqueDAO(this);
+	}
+	
+	public DesignationDAO getDesignationDAO(){
+		return new DesignationDAO(this);
+	}
+	
+	public PersonnelDAO getPersonnelDAO(){
+		return new PersonnelDAO(this);
 	}
 
 }

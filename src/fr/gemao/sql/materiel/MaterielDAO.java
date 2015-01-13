@@ -162,7 +162,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 				factory.getEtatDAO().get(result.getInt("idEtat")),
 				factory.getCategorieDAO().get(result.getInt("idCategorie")),
 				factory.getMarqueDAO().get(result.getInt("idMarque")),
-				factory.getDesigantionDAO().get(result.getInt("idDesignation")),
+				factory.getDesignationDAO().get(result.getInt("idDesignation")),
 				result.getString("typeMateriel"),
 				result.getLong("numSerie"),
 				result.getDate("dateAchat"),
