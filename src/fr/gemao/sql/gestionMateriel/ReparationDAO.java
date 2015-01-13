@@ -1,12 +1,5 @@
 package fr.gemao.sql.gestionMateriel;
 
-import gemao.application.gestionMateriel.Materiel;
-import gemao.application.gestionMateriel.Reparateur;
-import gemao.application.gestionMateriel.Reparation;
-import gemao.mysql.DAOMySql;
-
-import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,13 +7,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReparationDAO extends DAOMySql<Reparation>{
-	
-	public ReparationDAO(Connection conn) {
+import fr.gemao.entity.materiel.Reparation;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.IDAO;
+
+public class ReparationDAO extends IDAO<Reparation> {
+
+	public ReparationDAO(DAOFactory conn) {
 		super(conn);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public Reparation create(Reparation obj) {
 		if (obj == null) {
@@ -32,15 +29,14 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO REPARATION(idReparation," + "idReparateur,"
-					+ "dateCertificat" +"VALUES (?,?,?);";
-			requete = connect.prepareStatement(sql,
+			String sql = "INSERT INTO REPARATION(idReparation,"
+					+ "idReparateur," + "dateCertificat" + "VALUES (?,?,?);";
+			requete = factory.getConnection().prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
 			requete.setInt(1, obj.getIdReparation());
-			requete.setInt(2,obj.getReparateur().getIdReparateur());
-			requete.setDate(3,obj.getDateCertificat());
+			requete.setInt(2, obj.getReparateur().getIdReparateur());
+			requete.setDate(3, obj.getDateCertificat());
 
-			
 			requete.executeUpdate();
 
 			result = requete.getGeneratedKeys();
@@ -69,7 +65,8 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 	@Override
 	public void delete(Reparation obj) {
 		if (obj == null) {
-			throw new NullPointerException("La Reparation ne doit pas �tre null");
+			throw new NullPointerException(
+					"La Reparation ne doit pas �tre null");
 		}
 
 		if (obj.getIdReparation() == 0) {
@@ -79,7 +76,8 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 
 		Statement stat = null;
 		try {
-			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+			stat = factory.getConnection().createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
 			stat.execute("DELETE FROM REPARATION WHERE idReparation = "
 					+ obj.getIdReparation() + ";");
@@ -110,13 +108,14 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 		ResultSet result = null;
 		try {
 			String sql = "SELECT * FROM REPARATION WHERE idReparation = ?;";
-			requete = connect.prepareStatement(sql);
+			requete = factory.getConnection().prepareStatement(sql);
 			requete.setLong(1, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
 				reparation = new Reparation(result.getInt("idReparation"),
-						new ReparateurDAO(connect).get(result.getInt("idReparateur")),
+						new ReparateurDAO(factory).get(result
+								.getInt("idReparateur")),
 						result.getDate("dateCertificat"));
 			}
 		} catch (SQLException e1) {
@@ -136,8 +135,6 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 		return reparation;
 	}
 
-	
-
 	@Override
 	public List<Reparation> getAll() {
 		List<Reparation> liste = new ArrayList<>();
@@ -148,12 +145,13 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 		ResultSet result = null;
 		try {
 			String sql = "SELECT * FROM Reparation;";
-			requete = connect.prepareStatement(sql);
+			requete = factory.getConnection().prepareStatement(sql);
 			result = requete.executeQuery();
 
 			while (result.next()) {
 				reparation = new Reparation(result.getInt("idReparation"),
-						new ReparateurDAO(connect).get(result.getInt("idReparateur")),
+						new ReparateurDAO(factory).get(result
+								.getInt("idReparateur")),
 						result.getDate("dateCertificat"));
 				liste.add(reparation);
 			}
@@ -175,5 +173,10 @@ public class ReparationDAO extends DAOMySql<Reparation>{
 		return liste;
 	}
 
+	@Override
+	protected Reparation map(ResultSet result) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
