@@ -1,14 +1,9 @@
 package fr.gemao.ctrl.adherent;
 
-import java.sql.Connection;
-
-import fr.gemao.entity.Personne;
-import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.Responsable;
-import fr.gemao.form.adherent.VerifierSyntaxeAdherent;
 import fr.gemao.form.adherent.VerifierSyntaxeResponsable;
-import fr.gemao.sql.AdherentDAO;
-import fr.gemao.sql.PersonneDAO;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.ResponsableDAO;
 
 public class ModifierResponsableCtrl {
 	
@@ -28,8 +23,8 @@ public class ModifierResponsableCtrl {
 		if(verifResp.verifierInformations(responsable)){
 			Responsable test1, test2;
 			
-			Connection co = ConnectionMySql.getInstance();
-			ResponsableDAO responsableDAO = new ResponsableDAO(co);
+			DAOFactory factory = DAOFactory.getInstance();
+			ResponsableDAO responsableDAO = factory.getResponsableDAO();
 			
 			test1 = responsableDAO.update(responsable);
 			if(test1 == null){

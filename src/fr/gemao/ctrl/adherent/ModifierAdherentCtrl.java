@@ -1,11 +1,11 @@
 package fr.gemao.ctrl.adherent;
 
-import java.sql.Connection;
 
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.form.adherent.VerifierSyntaxeAdherent;
 import fr.gemao.sql.AdherentDAO;
+import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
 
 public class ModifierAdherentCtrl {
@@ -28,9 +28,9 @@ public class ModifierAdherentCtrl {
 			Personne test1;
 			Adherent test2;
 
-			Connection co = ConnectionMySql.getInstance();
-			PersonneDAO personneDAO = new PersonneDAO(co);
-			AdherentDAO adherentDAO = new AdherentDAO(co);
+			DAOFactory factory = DAOFactory.getInstance();
+			PersonneDAO personneDAO = factory.getPersonneDAO();
+			AdherentDAO adherentDAO = factory.getAdherentDAO();
 
 			test1 = personneDAO.update(adherent);
 			if (test1 == null){

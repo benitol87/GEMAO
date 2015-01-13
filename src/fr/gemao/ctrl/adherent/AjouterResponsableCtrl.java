@@ -1,12 +1,9 @@
 package fr.gemao.ctrl.adherent;
 
-import java.sql.Connection;
-
-import fr.gemao.entity.Personne;
-import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.Responsable;
-import fr.gemao.form.VerifierSyntaxePersonne;
 import fr.gemao.form.adherent.VerifierSyntaxeResponsable;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.ResponsableDAO;
 
 public class AjouterResponsableCtrl {
 
@@ -24,8 +21,8 @@ public class AjouterResponsableCtrl {
 			
 			Responsable test1, test2;
 
-			Connection co = ConnectionMySql.getInstance();
-			ResponsableDAO responsableDAO = new ResponsableDAO(co);
+			DAOFactory factory = DAOFactory.getInstance();
+			ResponsableDAO responsableDAO = factory.getResponsableDAO();
 
 			test1 = responsableDAO.create(responsable);
 			if (test1 == null){

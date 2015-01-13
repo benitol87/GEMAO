@@ -1,10 +1,11 @@
 package fr.gemao.ctrl.adherent;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.adherent.Responsable;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.ResponsableDAO;
 
 public class RecupererResponsableCtrl {
 	
@@ -20,8 +21,9 @@ public class RecupererResponsableCtrl {
 	 * @return responsable dont l'identifiant est idResponsable
 	 */
 	public Responsable recupererResponsable(Long idResponsable){
-		Connection co = ConnectionMySql.getInstance();
-		ResponsableDAO responsableDAO = new ResponsableDAO(co);
+		
+		DAOFactory factory = DAOFactory.getInstance();
+		ResponsableDAO responsableDAO = factory.getResponsableDAO();
 		
 		Responsable responsable = responsableDAO.get(idResponsable);
 		
@@ -30,8 +32,8 @@ public class RecupererResponsableCtrl {
 
 	public List<Responsable> recupererTousResponsables(){
 		List<Responsable> listeResponsables = new ArrayList<Responsable>();
-		Connection co = ConnectionMySql.getInstance();
-		ResponsableDAO responsableDAO = new ResponsableDAO(co);
+		DAOFactory factory = DAOFactory.getInstance();
+		ResponsableDAO responsableDAO = factory.getResponsableDAO();
 		
 		listeResponsables = responsableDAO.getAll();
 		
