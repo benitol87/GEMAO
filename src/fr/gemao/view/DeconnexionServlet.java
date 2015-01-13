@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class Deconnexion
  */
 @WebServlet("/Deconnexion")
-public class Deconnexion extends HttpServlet {
+public class DeconnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	public static final String URL_REDIRECTION = "/GEMAO/Connexion";

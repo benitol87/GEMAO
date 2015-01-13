@@ -1,5 +1,6 @@
 package fr.gemao.sql.materiel;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,8 @@ import java.util.List;
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
+import fr.gemao.sql.exception.DAOException;
+import fr.gemao.sql.util.DAOUtilitaires;
 
 public class MarqueDAO extends IDAO<Marque> {
 
@@ -93,8 +96,27 @@ public class MarqueDAO extends IDAO<Marque> {
 
 	@Override
 	public Marque update(Marque obj) {
-		// TODO Auto-generated method stub
-		return null;
+		if(obj == null){
+			throw new NullPointerException("La marque ne doit pas etre null");
+		}
+		
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "Update Marque SET nom = ? WHERE idMarque = ?";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false,
+					obj.getNomMarque(),
+					obj.getIdMarque());
+			requete.executeUpdate();
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		return this.get(obj.getIdMarque());
 	}
 
 	@Override
@@ -176,8 +198,7 @@ public class MarqueDAO extends IDAO<Marque> {
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
+				marque = this.map(result);
 				liste.add(marque);
 			}
 		} catch (SQLException e1) {
@@ -200,8 +221,9 @@ public class MarqueDAO extends IDAO<Marque> {
 
 	@Override
 	protected Marque map(ResultSet result) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new Marque(result.getInt("idDesignation"),
+				result.getString("libelle"));
 	}
 
 }
