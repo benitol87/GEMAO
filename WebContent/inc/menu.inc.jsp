@@ -10,6 +10,7 @@
 					<div class="mp-level">
 						<h2 >GEMAO</h2>
 						<ul>
+						<li><a href="/GEMAO/">Accueil</a></li>
 							<li class="icon icon-arrow-left">
 								<a href="#">Adhérent</a>
 								<div class="mp-level">

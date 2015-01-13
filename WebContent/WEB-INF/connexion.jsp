@@ -4,7 +4,6 @@
 
 <c:import url="/inc/head.inc.jsp" />
 <body>
-	<c:import url="/inc/header.inc.jsp" />
 	
 	<form class="well" method="post" action="Connexion">
             <fieldset>
@@ -31,6 +30,5 @@
                 </c:if>
             </fieldset>
         </form>
-        
-	<c:import url="/inc/footer.inc.jsp" />
 </body>
+</html>
