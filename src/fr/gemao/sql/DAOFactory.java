@@ -12,6 +12,7 @@ import com.jolbox.bonecp.BoneCPConfig;
 import fr.gemao.sql.exception.DAOConfigurationException;
 import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
+import fr.gemao.sql.materiel.EtatDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
 import fr.gemao.sql.materiel.MaterielDAO;
 import fr.gemao.sql.materiel.ReparationDAO;
