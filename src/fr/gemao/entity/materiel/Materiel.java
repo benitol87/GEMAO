@@ -18,7 +18,7 @@ public class Materiel {
 	private String observation;
 	
 	public Materiel() {
-		
+		this.idMateriel = (Long) null;
 	}
 
 	/**
