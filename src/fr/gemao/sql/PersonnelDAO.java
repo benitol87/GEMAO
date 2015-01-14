@@ -149,7 +149,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		
-		String sql = "SELECT * FROM personnel pl inner join personne p on pl.idPersonne = p.idPersonne order by ;";
+		String sql = "SELECT * FROM personnel pl inner join personne p on pl.idPersonne = p.idPersonne order by nom, prenom;";
 		
 		try {
 			connexion = factory.getConnection();
@@ -176,7 +176,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 	protected Personnel map(ResultSet result) throws SQLException {
 		PersonneDAO personneDAO = factory.getPersonneDAO();
 		ResponsabiliteDAO responsabiliteDAO = factory.getResponsabiliteDAO();
-		Personnel personnel = new Personnel(personneDAO.get(result.getLong("idPersonne")),
+		Personnel personnel = new Personnel(personneDAO.map(result),
 				responsabiliteDAO.getResponsabilitesParPersonne(result.getLong("idPersonne")),
 				NumberUtil.getResultInteger(result, "idContrat"),
 				result.getString("login"),
