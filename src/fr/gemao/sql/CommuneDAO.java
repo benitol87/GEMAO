@@ -120,6 +120,10 @@ public class CommuneDAO extends IDAO<Commune> {
 
 		return liste;
 	}
+	
+	public Commune exist(Commune commune){
+		return null;
+	}
 
 	@Override
 	protected Commune map(ResultSet result) throws SQLException {
