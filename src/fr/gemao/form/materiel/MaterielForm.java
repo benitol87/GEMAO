@@ -35,6 +35,7 @@ public class MaterielForm {
 
 	private static final int VAL_INST = 1;
 	private static final int VAL_MOBI = 2;
+	private static final int VAL_FOUR = 3;
 
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
@@ -172,7 +173,7 @@ public class MaterielForm {
 		}
 
 		// Dans le cas d'un mobilier.
-		if (categorie == VAL_MOBI) {
+		if (categorie == VAL_MOBI || categorie == VAL_FOUR) {
 			idType = Integer.parseInt(getValeurChamp(request, CHAMP_TYPE));
 			qte = Integer.parseInt(getValeurChamp(request, CHAMP_MOBI_QTE));
 			marque = getValeurChamp(request, CHAMP_MARQUE);
@@ -414,7 +415,8 @@ public class MaterielForm {
 	 * Valide la categorie choisie.
 	 */
 	private void validationCategorie(int categorie) throws Exception {
-		if (categorie != VAL_INST && categorie != VAL_MOBI) {
+		if (categorie != VAL_INST && categorie != VAL_MOBI
+				&& categorie != VAL_FOUR) {
 			throw new Exception("Merci de choisir une categorie valide.");
 		}
 	}
