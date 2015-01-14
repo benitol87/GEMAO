@@ -4,8 +4,7 @@
 <c:set var="titre" value="Materiel" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
-<script type="text/javascript" src="js/ajoutMateriel.js"
-></script>
+<script type="text/javascript" src="/GEMAO/js/ajoutMateriel.js"></script>
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 	<form id="ajouterMateriel" action="#" method="post">
@@ -30,12 +29,12 @@
 						<legend>Instrument</legend>
 						<table>
 							<tr>
-								<td><label for="type">Type : </label></td>
-								<td><select name="Type"></select></td>
-							</tr>
-							<tr>
 								<td><label for="designation">Désignation : </label></td> 
 								<td><select name="designation" id="designation"></select></td>
+							</tr>
+							<tr>
+								<td><label for="type">Type : </label></td>
+								<td><input type="text" name="type"/></td>
 							</tr>
 							<tr>
 								<td><label for="etat">Etat : </label></td>
@@ -100,12 +99,12 @@
 						<legend>Mobilier</legend>
 						<table>
 							<tr>
-								<td><label for="type">Type : </label></td>
-								<td><select name="Type"></select></td>
-							</tr>
-							<tr>
 								<td><label for="designation">Désignation : </label></td> 
 								<td><select name="designation" id="designation"></select></td>
+							</tr>
+							<tr>
+								<td><label for="type">Type : </label></td>
+								<td><input type="text" name="type"/></td>
 							</tr>
 							<tr>
 								<td><label for="quantite">Quantité : </label></td>
@@ -142,12 +141,12 @@
 						<legend>Fourniture</legend>
 						<table>
 							<tr>
-								<td><label for="type">Type : </label></td>
-								<td><select name="Type"></select></td>
-							</tr>
-							<tr>
 								<td><label for="designation">Désignation : </label></td> 
 								<td><select name="designation" id="designation"></select></td>
+							</tr>
+							<tr>
+								<td><label for="type">Type : </label></td>
+								<td><input type="text" name="type"/></td>
 							</tr>
 							<tr>
 								<td><label for="quantite">Quantité : </label></td>

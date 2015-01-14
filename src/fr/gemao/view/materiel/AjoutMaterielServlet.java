@@ -18,7 +18,7 @@ import fr.gemao.sql.materiel.DesignationDAO;
 import fr.gemao.sql.materiel.EtatDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
 
-@WebServlet("/app/AjouterMateriel")
+@WebServlet("/materiel/AjouterMateriel")
 public class AjoutMaterielServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -38,7 +38,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 	public static final String ATT_MATERIEL ="materiel";
 	public static final String ATT_MESSAGE = "message";
 	
-	private String VUE = "/app/ajoutMateriel.jsp";
+	private String VUE = "/WEB-INF/pages/materiel/ajoutMateriel.jsp";
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
