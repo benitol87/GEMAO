@@ -121,8 +121,8 @@ public class CommuneDAO extends IDAO<Commune> {
 		return liste;
 	}
 	
-	public boolean exist(Commune commune){
-		return true;
+	public Commune exist(Commune commune){
+		return null;
 	}
 
 	@Override

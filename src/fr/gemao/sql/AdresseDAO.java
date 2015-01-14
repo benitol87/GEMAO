@@ -139,8 +139,8 @@ public class AdresseDAO extends IDAO<Adresse> {
 		return liste;
 	}
 	
-	public boolean exist(Commune commune){
-		return true;
+	public Adresse exist(Commune commune){
+		return null;
 	}
 
 	@Override
