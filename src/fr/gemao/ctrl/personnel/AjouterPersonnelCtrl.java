@@ -31,8 +31,7 @@ public class AjouterPersonnelCtrl {
 	public static void ajouterPersonnel(Personnel personnel) {
 
 		if (personnel == null) {
-			throw new IllegalArgumentException(
-					"Le personnel ne peut pas être null");
+			throw new IllegalArgumentException("Le personnel ne peut pas être null");
 		}
 	}
 
