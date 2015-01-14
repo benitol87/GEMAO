@@ -51,13 +51,13 @@
 					value="ancienne valeur" /></td>
 			</tr>
 			<tr>
-				<td><label for="codeP">Code Postal : </label></td>
-				<td><input type="text" name="codeP" required="required"
+				<td><label for="commune">Commune : </label></td>
+				<td><input type="text" name="comunne" required="required"
 					autocomplete="off" value="ancienne valeur" /></td>
 			</tr>
 			<tr>
-				<td><label for="commune">Commune : </label></td>
-				<td><input type="text" name="comunne" required="required"
+				<td><label for="codeP">Code Postal : </label></td>
+				<td><input type="text" name="codeP" required="required"
 					autocomplete="off" value="ancienne valeur" /></td>
 			</tr>
 		</table>
@@ -70,8 +70,7 @@
 	</div>
 	<div>
 		<input type="button" value="Annuler" /> <input type="button"
-			value="Suivant" /> <input type="button"
-			value="Valider" />
+			value="Suivant" /> <input type="button" value="Valider" />
 	</div>
 </form>
 <c:import url="/inc/footer.inc.jsp" />
