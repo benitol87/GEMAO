@@ -23,22 +23,17 @@ public class AjouterResponsableCtrl {
 		
 		if(verifResp.verifierInformations(responsable)){
 			
-			Responsable test1, test2;
+			Responsable test;
 
 			DAOFactory co = DAOFactory.getInstance();
 			ResponsableDAO responsableDAO = co.getResponsableDAO();
 
-			test1 = responsableDAO.create(responsable);
-			if (test1 == null){
+			test = responsableDAO.create(responsable);
+			if (test == null){
 				System.out.println("Une erreur est survenue lors de l'insertion...");
 			} else {
-				responsable.setIdResponsable(test1.getIdResponsable());
-				test2 = responsableDAO.create(responsable);
-				if (test2 == null){
-					System.out.println("Une erreur est survenue lors de l'insertion...");
-				} else {
-					System.out.println("Le responsable a bien été ajouté.");
-				}
+				responsable.setIdResponsable(test.getIdResponsable());
+				System.out.println("Le responsable a bien été ajouté.");
 			}
 		}
 		else{
