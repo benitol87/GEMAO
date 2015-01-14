@@ -104,7 +104,7 @@ public class ReparateurDAO extends IDAO<Reparateur> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "UPDATE Designation SET nom = ?"
+		String sql = "UPDATE Reparateur SET nom = ?"
 				+ "WHERE idReparateur = ?;";
 		try {
 			connexion = factory.getConnection();

@@ -39,17 +39,17 @@ public class MaterielForm {
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
 
-	/* Variables récupérées */
+	/* Variables récupérées BEGIN */
 	// variables communes aux deux categories
-	int categorie;
-	String designation;
-	float valAch;
-	String dateAch;
+	private int categorie;
+	private String designation;
+	private float valAch;
+	private String dateAch;
+	private int idType;
+	private String marque;
 
 	// variables categorie Instrument
-	private int idType;
 	private String etat;
-	private String marque;
 	private long numserie;
 	private float valRea;
 	private String observation;
@@ -58,6 +58,8 @@ public class MaterielForm {
 	// variables categorie Mobilier
 	private float prixU;
 	private int qte;
+
+	/* Variables recupérées END */
 
 	public String getResultat() {
 		return resultat;
@@ -82,21 +84,21 @@ public class MaterielForm {
 			setErreur(CHAMP_CATEGORIE, e.getMessage());
 		}
 
-		/* Validation du champ categorie. */
+		/* Validation de la designation. */
 		try {
 			validationDesignation(designation);
 		} catch (Exception e) {
 			setErreur(CHAMP_DESIGNATION, e.getMessage());
 		}
 
-		/* Validation du champ categorie. */
+		/* Validation de la valeur d'achat. */
 		try {
 			validationValeurAchat(valAch);
 		} catch (Exception e) {
 			setErreur(CHAMP_VALACH, e.getMessage());
 		}
 
-		/* Validation du champ categorie. */
+		/* Validation de la date d'achat. */
 		try {
 			validationDateAchat(dateAch);
 		} catch (Exception e) {
@@ -168,6 +170,8 @@ public class MaterielForm {
 				resultat = "Échec de l'ajout.";
 			}
 		}
+
+		// Dans le cas d'un mobilier.
 		if (categorie == VAL_MOBI) {
 			idType = Integer.parseInt(getValeurChamp(request, CHAMP_TYPE));
 			qte = Integer.parseInt(getValeurChamp(request, CHAMP_MOBI_QTE));
@@ -181,7 +185,7 @@ public class MaterielForm {
 				setErreur(CHAMP_TYPE, e.getMessage());
 			}
 
-			/* Validation du champ etat */
+			/* Validation du champ quantité */
 			try {
 				validationQuantite(qte);
 			} catch (Exception e) {
@@ -195,12 +199,13 @@ public class MaterielForm {
 				setErreur(CHAMP_MARQUE, e.getMessage());
 			}
 
-			/* Validation du champ numserie */
+			/* Validation du champ prix unitaire */
 			try {
 				validationPrixUnitaire(prixU);
 			} catch (Exception e) {
 				setErreur(CHAMP_MOBI_PRIXU, e.getMessage());
 			}
+
 			/* Initialisation du résultat global de la validation. */
 			if (erreurs.isEmpty()) {
 				resultat = "Succès de l'ajout.";
@@ -210,17 +215,140 @@ public class MaterielForm {
 		}
 	}
 
+	/**
+	 * Retourne la categorie du materiel.
+	 * 
+	 * @return la categorie du materiel.
+	 */
+	public int getCategorie() {
+		return categorie;
+	}
+
+	/**
+	 * Retourne la designation du materiel.
+	 * 
+	 * @return la designation du materiel.
+	 */
+	public String getDesignation() {
+		return designation;
+	}
+
+	/**
+	 * Retourne la valeur d'achat du materiel.
+	 * 
+	 * @return la valeur d'achat du materiel.
+	 */
+	public float getValAch() {
+		return valAch;
+	}
+
+	/**
+	 * Retourne la date d'achat du materiel.
+	 * 
+	 * @return la date d'achat du materiel.
+	 */
+	public String getDateAch() {
+		return dateAch;
+	}
+
+	/**
+	 * Retourne l'id du type.
+	 * 
+	 * @return l'id du type.
+	 */
+	public int getIdType() {
+		return idType;
+	}
+
+	/**
+	 * Retourne l'etat de l'instrument.
+	 * 
+	 * @return l'etat de l'instrument.
+	 */
+	public String getEtat() {
+		return etat;
+	}
+
+	/**
+	 * Retourne la marque du materiel.
+	 * 
+	 * @return la marque du materiel.
+	 */
+	public String getMarque() {
+		return marque;
+	}
+
+	/**
+	 * Retourne le numero de serie.
+	 * 
+	 * @return le numero de serie.
+	 */
+	public long getNumserie() {
+		return numserie;
+	}
+
+	/**
+	 * Retourne la valeur de réapprovisionnement de l'instrument.
+	 * 
+	 * @return la valeur de réapprovisionnement de l'instrument.
+	 */
+	public float getValRea() {
+		return valRea;
+	}
+
+	/**
+	 * Retourne l'observation sur le materiel.
+	 * 
+	 * @return l'observation sur le materiel.
+	 */
+	public String getObservation() {
+		return observation;
+	}
+
+	/**
+	 * Retourne le prix unitaire du mobilier.
+	 * 
+	 * @return le prix unitaire du mobilier.
+	 */
+	public float getPrixU() {
+		return prixU;
+	}
+
+	/**
+	 * La quantité de mobilier commandée.
+	 * 
+	 * @return la quantité de mobilier commandée.
+	 */
+	public int getQte() {
+		return qte;
+	}
+
+	/**
+	 * Retourne la déplacabilité(?) d'un instrument.
+	 * 
+	 * @return vrai si l'instrument est deplacable, faux sinon.
+	 */
+	public boolean getDeplacable() {
+		return deplacable;
+	}
+
+	/**
+	 * Valide la deplacabilité(?) saisie.
+	 */
 	private void validationDeplacable(String deplac) throws Exception {
 		if (deplac == null) {
 			throw new Exception(
 					"Merci de choisir une valeur valide pour deplacable.");
 		} else {
-			if (deplac.equals("")) {
+			if (!deplac.equals("oui") && !deplac.equals("non")) {
 				throw new Exception("Merci de saisir une date d'achat valide.");
 			}
 		}
 	}
 
+	/**
+	 * Valide la valeur de reapprovisionnement saisie.
+	 */
 	private void validationValeurReapprovisionnement(float valRea2)
 			throws Exception {
 		if (valRea2 <= 0) {
@@ -229,58 +357,9 @@ public class MaterielForm {
 		}
 	}
 
-	public int getCategorie() {
-		return categorie;
-	}
-
-	public String getDesignation() {
-		return designation;
-	}
-
-	public float getValAch() {
-		return valAch;
-	}
-
-	public String getDateAch() {
-		return dateAch;
-	}
-
-	public int getIdType() {
-		return idType;
-	}
-
-	public String getEtat() {
-		return etat;
-	}
-
-	public String getMarque() {
-		return marque;
-	}
-
-	public long getNumserie() {
-		return numserie;
-	}
-
-	public float getValRea() {
-		return valRea;
-	}
-
-	public String getObservation() {
-		return observation;
-	}
-
-	public float getPrixU() {
-		return prixU;
-	}
-
-	public int getQte() {
-		return qte;
-	}
-
-	public boolean getDeplacable() {
-		return deplacable;
-	}
-
+	/**
+	 * Valide la date d'achat saisie.
+	 */
 	private void validationDateAchat(String dateAch) throws Exception {
 		if (dateAch == null) {
 			throw new Exception("Merci de saisir une date d'achat valide.");
@@ -291,12 +370,18 @@ public class MaterielForm {
 		}
 	}
 
+	/**
+	 * Valide la valeur d'achat saisie.
+	 */
 	private void validationValeurAchat(float valAch2) throws Exception {
 		if (valAch2 <= 0) {
 			throw new Exception("Merci de saisir une valeur d'achat valide");
 		}
 	}
 
+	/**
+	 * Valide la designation saisie.
+	 */
 	private void validationDesignation(String designation) throws Exception {
 		if (designation == null) {
 			throw new Exception("Merci de saisir une designation valide.");
@@ -308,7 +393,7 @@ public class MaterielForm {
 	}
 
 	/**
-	 * Valide le prix unitaire saisie.
+	 * Valide le prix unitaire saisi.
 	 */
 	private void validationPrixUnitaire(float prixU) throws Exception {
 		if (prixU <= 0) {
@@ -378,14 +463,14 @@ public class MaterielForm {
 		}
 	}
 
-	/*
+	/**
 	 * Ajoute un message correspondant au champ spécifié à la map des erreurs.
 	 */
 	private void setErreur(String champ, String message) {
 		erreurs.put(champ, message);
 	}
 
-	/*
+	/**
 	 * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
 	 * sinon.
 	 */
