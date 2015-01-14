@@ -1,17 +1,18 @@
 package fr.gemao.form.materiel;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.gemao.entity.materiel.Categorie;
-import fr.gemao.entity.materiel.Designation;
-import fr.gemao.entity.materiel.Etat;
-import fr.gemao.entity.materiel.Marque;
-import fr.gemao.entity.materiel.Materiel;
-
+/**
+ * Classe pour la validation du formulaire d'ajout de materiel. Seules les
+ * variables en rapport avec la categorie (instrument ou mobilier) sont
+ * initialisees (faire la verification).
+ * 
+ * @author kayzen
+ *
+ */
 public class MaterielForm {
 
 	private static final String CHAMP_CATEGORIE = "categorie";
@@ -67,7 +68,6 @@ public class MaterielForm {
 	}
 
 	public void testerMateriel(HttpServletRequest request) {
-		Materiel mat;
 
 		/* Récupération des champs du formulaire */
 		categorie = Integer.parseInt(getValeurChamp(request, CHAMP_CATEGORIE));
@@ -275,6 +275,10 @@ public class MaterielForm {
 
 	public int getQte() {
 		return qte;
+	}
+
+	public boolean getDeplacable() {
+		return deplacable;
 	}
 
 	private void validationDateAchat(String dateAch) throws Exception {
