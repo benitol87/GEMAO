@@ -221,4 +221,15 @@ public class AdherentForm {
 			throw new Exception("Merci de saisir une adresse email valide.");
 		}
 	}
+	
+	/**
+	 * Méthode permettant de valider l'adresse email de l'adhérent
+	 * @param email
+	 * @throws Exception
+	 */
+	private void validationEmail(String email) throws Exception {
+		if (email == null || email.equals("")) {
+			throw new Exception("Merci de saisir une adresse email valide.");
+		}
+	}
 }
