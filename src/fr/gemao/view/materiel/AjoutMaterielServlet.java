@@ -24,7 +24,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 	
 
 	
-	private String VUE = "/WEB-INF/pages/materiel/ajoutMateriel.jsp";
+	private static String VUE = "/WEB-INF/pages/materiel/ajoutMateriel.jsp";
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
