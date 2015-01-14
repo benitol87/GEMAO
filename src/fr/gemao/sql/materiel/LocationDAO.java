@@ -121,7 +121,7 @@ List<Location> liste = new ArrayList<Location>();
 		ResultSet result = null;
 		String sql = "SELECT * FROM Location;";
 		try {
-
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false);
 			result = requete.executeQuery();
