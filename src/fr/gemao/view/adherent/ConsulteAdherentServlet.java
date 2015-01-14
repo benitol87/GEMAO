@@ -1,7 +1,6 @@
 package fr.gemao.view.adherent;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,22 +12,23 @@ import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.entity.adherent.Adherent;
 
 /**
- * Servlet implementation class ListeAdherentServlet
+ * Servlet implementation class ConsulteAdherentServlet
  */
-@WebServlet("/ListeAdherents")
-public class ListeAdherentServlet extends HttpServlet {
+@WebServlet("/ConsulteAdherent")
+public class ConsulteAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	public static final String VUE_LISTEADHERENTS = "/listeAdherents.jsp";
+       
+	public static final String VUE_CONSULTEADHERENT = "/consulteAdherent.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
 		RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
-		List<Adherent> adherents = recupererAdherentCtrl.recupererTousAdherents();
-		request.setAttribute("listeAdherents", adherents);
-		this.getServletContext().getRequestDispatcher( VUE_LISTEADHERENTS ).forward( request, response );
+		Adherent adherent = recupererAdherentCtrl.recupererAdherent(id);
+		
+		this.getServletContext().getRequestDispatcher( VUE_CONSULTEADHERENT ).forward( request, response );
 	}
 
 	/**
