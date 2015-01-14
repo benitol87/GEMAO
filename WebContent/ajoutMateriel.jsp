@@ -9,28 +9,18 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 	<form id="ajouterMateriel" action="#" method="post">
-		<table>
-			<tr>
-				<td><label for="categorie">Catégorie : </label></td> 
-				<td>
-					<select name="categorie" id="categorie">
-						<option value="1">Instrument</option>
-						<option value="2">Mobilier</option>
-						<option value="3">Fourniture</option>
-					</select> 
-				</td>
-			
-				<td><label for="designation">Désignation : </label></td> 
-				<td><input type="text" name="designation" /></td>
-			</tr>
-			<tr>
-				<td><label for="valeurAch">Valeur d'achat : </label></td>
-				<td><input type="number" name="ValeurAch" /></td>
+		<label for="categorie">Catégorie : </label>
+			<select name="categorie" id="categorie">
+				<option value="1">Instrument</option>
+				<option value="2">Mobilier</option>
+				<option value="3">Fourniture</option>
+			</select> 
+				
+		<label for="valeurAch">Valeur d'achat : </label>
+		<input type="number" name="ValeurAch" />
 		
-				<td><label for="dateAch">Date d'achat : </label></td>
-				<td><input type="date" name="dateAch"/></td>
-			</tr>
-		</table>
+		<label for="dateAch">Date d'achat : </label>
+		<input type="date" name="dateAch"/>
 	</form>
 	<form id="ajouterMaterielInstrument" action="#" methode="post" hidden>
 		<table>
@@ -44,12 +34,16 @@
 								<td><select name="Type"></select></td>
 							</tr>
 							<tr>
+								<td><label for="designation">Désignation : </label></td> 
+								<td><select name="designation" id="designation"></select></td>
+							</tr>
+							<tr>
 								<td><label for="etat">Etat : </label></td>
-								<td><input type="text" name="etat"/></td>
+								<td><select name="etat" id="etat"></select></td>
 							</tr>	
 							<tr>
 								<td><label for="marque">Marque : </label></td>
-								<td><input type="text" name="marque"/></td>
+								<td><select name="marque" id="marque"></select></td>
 							</tr>
 							<tr>
 								<td><label for="numSerie">Numéro de série : </label></td>
@@ -110,12 +104,16 @@
 								<td><select name="Type"></select></td>
 							</tr>
 							<tr>
+								<td><label for="designation">Désignation : </label></td> 
+								<td><select name="designation" id="designation"></select></td>
+							</tr>
+							<tr>
 								<td><label for="quantite">Quantité : </label></td>
 								<td><input type="text" name="quantite"/></td>
 							</tr>	
 							<tr>
 								<td><label for="marque">Marque : </label></td>
-								<td><input type="text" name="marque"/></td>
+								<td><select name="marque" id="marque"></select></td>
 							</tr>
 							<tr>
 								<td><label for="prixU">Prix unitaire : </label></td>
@@ -148,12 +146,16 @@
 								<td><select name="Type"></select></td>
 							</tr>
 							<tr>
+								<td><label for="designation">Désignation : </label></td> 
+								<td><select name="designation" id="designation"></select></td>
+							</tr>
+							<tr>
 								<td><label for="quantite">Quantité : </label></td>
 								<td><input type="text" name="quantite"/></td>
 							</tr>	
 							<tr>
 								<td><label for="marque">Marque : </label></td>
-								<td><input type="text" name="marque"/></td>
+								<td><select name="marque" id="marque"></select></td>
 							</tr>
 							<tr>
 								<td><label for="prixU">Prix unitaire : </label></td>
