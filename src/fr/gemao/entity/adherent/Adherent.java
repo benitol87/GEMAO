@@ -43,7 +43,7 @@ public class Adherent extends Personne {
 	 * @param cotisation
 	 * @param disciplines
 	 */
-	public Adherent(Long idPersonne, Integer idAdresse, Long idCommuneNaiss,
+	public Adherent(Long idPersonne, Integer idAdresse, Integer idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, Civilite civilite, Integer idMotif,
 			Long idResponsable, boolean droitImage, Date dateEntree,

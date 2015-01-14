@@ -8,7 +8,7 @@ public class Personne {
 
 	private Long idPersonne;
 	private Integer idAdresse;
-	private Long idCommuneNaiss;
+	private Integer idCommuneNaiss;
 	private String nom;
 	private String prenom;
 	private Date dateNaissance;
@@ -34,7 +34,7 @@ public class Personne {
 	 * @param email
 	 * @param civilite
 	 */
-	public Personne(Long idPersonne, Integer idAdresse, Long idCommuneNaiss,
+	public Personne(Long idPersonne, Integer idAdresse, Integer idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, Civilite civilite) {
 		this.idPersonne = idPersonne;
@@ -94,7 +94,7 @@ public class Personne {
 	/**
 	 * @return the idCommuneNaiss
 	 */
-	public Long getIdCommuneNaiss() {
+	public Integer getIdCommuneNaiss() {
 		return idCommuneNaiss;
 	}
 
@@ -102,7 +102,7 @@ public class Personne {
 	 * @param idCommuneNaiss
 	 *            the idCommuneNaiss to set
 	 */
-	public void setIdCommuneNaiss(Long idCommuneNaiss) {
+	public void setIdCommuneNaiss(Integer idCommuneNaiss) {
 		this.idCommuneNaiss = idCommuneNaiss;
 	}
 
