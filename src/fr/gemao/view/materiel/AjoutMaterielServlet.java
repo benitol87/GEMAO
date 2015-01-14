@@ -41,28 +41,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 	private String VUE = "/WEB-INF/pages/materiel/ajoutMateriel.jsp";
 
 	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		
-		int idEtat =Integer.parseInt(request.getParameter("idEtat"));
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			HttpServletResponse response) throws ServletException, IOException {	
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}
