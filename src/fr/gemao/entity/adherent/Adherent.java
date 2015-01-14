@@ -60,6 +60,7 @@ public class Adherent extends Personne{
 	 * @param dateEntree
 	 * @param dateSortie
 	 * @param qf
+	 * @param cotisation
 	 */
 	public Adherent(Personne personne, Integer idMotif, Long idResponsable,
 			boolean droitImage, Date dateEntree, Date dateSortie, Float qf, float cotisation){

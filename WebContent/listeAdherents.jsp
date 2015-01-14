@@ -28,7 +28,7 @@
     <td>Eddy</td>
     <td><a href="consulteAdherent.jsp?id=126"><input type="button" value="Détails"/></a></td>
   </tr>
-				<c:forEach items="${listeAdherent}" var="adh">
+				<c:forEach items="${listeAdherents}" var="adh">
 					<tr>
 						<td><c:out value="${adh['nom']}" /></td>
 						<td><c:out value="${adh['prenom']}" /></td>
