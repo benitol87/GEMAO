@@ -96,10 +96,10 @@
 	</fieldset>
 
 	<div>
-		<span>Droit à l'image : </span> <input type="radio" name="droitImOui"
-			value="true" checked="checked" /> <label for="droitImOui">Oui</label>
-		<input type="radio" name="droitImNon" value="false" /> <label
-			for="droitImNon">Non</label>
+		<span>Droit à l'image : </span> <input type="radio" name="droitImage"
+			value="true" checked="checked" /> <label for="droitImage">Oui</label>
+		<input type="radio" name="droitImage" value="false" /> <label
+			for="droitImage">Non</label>
 	</div>
 	<div>
 		<input type="button" value="Annuler" /> <input type="button"
