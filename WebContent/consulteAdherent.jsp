@@ -12,19 +12,31 @@
 <table>
 	<tr>
 		<td><label for="nom">Nom : </label></td>
-		<td><p><c:out value="${adherent['nom']}" /></p></td>
+		<td><p>
+				<c:out value="${adherent['nom']}" />
+			</p></td>
 		<td><label for="prenom">Prénom : </label></td>
-		<td><p><c:out value="${adherent['prenom']}" /></p></td>
+		<td><p>
+				<c:out value="${adherent['prenom']}" />
+			</p></td>
 		<td><label for="dateNaiss">Date de naissance : </label></td>
-		<td><p><c:out value="${adherent['dateNaissance']}" /></p></td>
+		<td><p>
+				<c:out value="${dateNaissance}" />
+			</p></td>
 	</tr>
 	<tr>
 		<td><label for="telFixe">Téléphone fixe : </label></td>
-		<td><p><c:out value="${adherent['telFixe']}" /></p></td>
+		<td><p>
+				<c:out value="${adherent['telFixe']}" />
+			</p></td>
 		<td><label for="telPort">Téléphone portable : </label></td>
-		<td><p><c:out value="${adherent['telPort']}" /></p></td>
+		<td><p>
+				<c:out value="${adherent['telPort']}" />
+			</p></td>
 		<td><label for="email">E-mail : </label></td>
-		<td><p><c:out value="${adherent['email']}" /></p></td>
+		<td><p>
+				<c:out value="${adherent['email']}" />
+			</p></td>
 	</tr>
 </table>
 <br />
@@ -77,6 +89,11 @@
 <div>
 	<span>Droit à l'image : OUI (OU NON)</span>
 </div>
+
+<c:if test="${adherent['idResponsable']==null}">
+	<p>TESTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</p>		
+</c:if>
+
 <p>SI IL Y A UN RESPONSABLE</p>
 <table>
 	<tr>
@@ -95,8 +112,8 @@
 	</tr>
 </table>
 <div>
-	<a href="ListeAdherents"><input type="button" value="Retour" /></a> <input type="button"
-		value="Modifier" />
+	<a href="ListeAdherents"><input type="button" value="Retour" /></a> <input
+		type="button" value="Modifier" />
 </div>
 
 <c:import url="/inc/footer.inc.jsp" />
