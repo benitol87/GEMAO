@@ -2,12 +2,10 @@ package fr.gemao.ctrl.adherent;
 
 import java.util.Date;
 
-import fr.gemao.entity.Personne;
+import fr.gemao.ctrl.AjouterPersonneCtrl;
 import fr.gemao.entity.adherent.Adherent;
-import fr.gemao.form.VerifierSyntaxePersonne;
 import fr.gemao.sql.AdherentDAO;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.PersonneDAO;
 
 public class AjouterAdherentCtrl {
 
@@ -24,11 +22,6 @@ public class AjouterAdherentCtrl {
 	 * @return true si les informations sont valides, false sinon
 	 */
 	public boolean verifierInformations(Adherent adherent){
-		//Vérification des informations générales de la personne
-		VerifierSyntaxePersonne persCtrl = new VerifierSyntaxePersonne();
-		if (!persCtrl.verifierInformations(adherent))
-			return false;
-
 		//Vérification de l'idMotif
 		if (adherent.getIdMotif() != null) {
 			return false;
@@ -88,18 +81,13 @@ public class AjouterAdherentCtrl {
 	 */
 	public void ajoutAdherent(Adherent adherent) {
 		if (this.verifierInformations(adherent)) {
-			Personne pers;
 			Adherent adh;
 
-			DAOFactory co = DAOFactory.getInstance();
-			PersonneDAO personneDAO = co.getPersonneDAO();
-			AdherentDAO adherentDAO = co.getAdherentDAO();
+			AjouterPersonneCtrl ajouterPers = new AjouterPersonneCtrl();
+			if(ajouterPers.ajoutPersonne(adherent) != -1){
+				DAOFactory co = DAOFactory.getInstance();
+				AdherentDAO adherentDAO = co.getAdherentDAO();
 
-			pers = personneDAO.create(adherent);
-			if (pers == null){
-				System.out.println("Une erreur est survenue lors de l'insertion...");
-			} else {
-				adherent.setIdPersonne(pers.getIdPersonne());
 				adh = adherentDAO.create(adherent);
 				if (adh == null){
 					System.out.println("Une erreur est survenue lors de l'insertion...");
@@ -107,7 +95,9 @@ public class AjouterAdherentCtrl {
 					System.out.println("L'adhérent a bien été ajouté.");
 				}
 			}
-
+			else{
+				System.out.println("Une erreur est survenue lors de l'insertion...");
+			}
 		} else {
 			System.out
 					.println("Les informations de l'adhérent ne sont pas valides...");
