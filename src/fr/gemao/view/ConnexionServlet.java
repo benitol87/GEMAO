@@ -59,8 +59,7 @@ public class ConnexionServlet extends HttpServlet {
 				personnel = connexionCtrl.controlerPersonnel(form.getLogin(), form.getMotDePasse());
 			} catch (Exception e) {
 				form.setErreur("Connexion", e.getMessage());
-				personnel = new Personnel(null, null, null, null, null, null,
-						null, null, null, null, null, form.getLogin(), null, 0);
+				personnel.setLogin(form.getLogin());
 			}
 		}
 		
@@ -69,8 +68,8 @@ public class ConnexionServlet extends HttpServlet {
 			// L'utilisateur voit la redirection
 			response.sendRedirect(request.getContextPath() + VUE_ACCUEIL);
 		} else {
-			session.setAttribute(ATT_FORM, form);
-			session.setAttribute(ATT_USER, personnel);
+			request.setAttribute(ATT_FORM, form);
+			request.setAttribute(ATT_USER, personnel);
 			this.getServletContext().getRequestDispatcher(VUE_CONNEXION)
 					.forward(request, response);
 		}
