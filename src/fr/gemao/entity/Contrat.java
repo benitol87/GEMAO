@@ -14,6 +14,7 @@ public class Contrat {
 	private Date dateFin;
 	
 	public Contrat() {
+		
 	}
 	
 	/**
