@@ -3,6 +3,7 @@ package fr.gemao.entity.adherent;
 import java.util.Date;
 
 import fr.gemao.entity.Personne;
+import fr.gemao.entity.util.Civilite;
 
 public class Adherent extends Personne{
 	private Integer idMotif;
@@ -38,10 +39,10 @@ public class Adherent extends Personne{
 	 */
 	public Adherent(Long idPersonne, Long idAdresse, Long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
-			String telPort, String email, Integer idMotif, Long idResponsable,
+			String telPort, String email, Civilite civilite, Integer idMotif, Long idResponsable,
 			boolean droitImage, Date dateEntree, Date dateSortie, Float qf, float cotisation) {
 		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
-				dateNaissance, telFixe, telPort, email);
+				dateNaissance, telFixe, telPort, email, civilite);
 		this.idMotif = idMotif;
 		this.idResponsable = idResponsable;
 		this.droitImage = droitImage;
