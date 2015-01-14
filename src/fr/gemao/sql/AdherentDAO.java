@@ -13,7 +13,7 @@ import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.DateUtil;
 import fr.gemao.sql.util.NumberUtil;
 
-public class AdherentDAO extends IDAO<Adherent>{
+public class AdherentDAO extends IDAO<Adherent> {
 
 	public AdherentDAO(DAOFactory factory) {
 		super(factory);
@@ -32,21 +32,19 @@ public class AdherentDAO extends IDAO<Adherent>{
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		try {
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false,
-					obj.getIdPersonne(),
-					obj.getIdMotif(),
-					obj.getIdResponsable(),
-					(obj.isDroitImage()?1:0),
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, obj.getIdPersonne(), obj.getIdMotif(),
+					obj.getIdResponsable(), (obj.isDroitImage() ? 1 : 0),
 					DateUtil.toSqlDate(obj.getDateEntree()),
-					DateUtil.toSqlDate(obj.getDateSortie()),
-					obj.getQf(),
+					DateUtil.toSqlDate(obj.getDateSortie()), obj.getQf(),
 					obj.getCotisation());
-			
+
 			int status = requete.executeUpdate();
-			
-			if ( status == 0 ) {
-	            throw new DAOException( "Échec de la création de l'adhérent, aucune ligne ajoutée dans la table." );
-	        }
+
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la création de l'adhérent, aucune ligne ajoutée dans la table.");
+			}
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -59,7 +57,7 @@ public class AdherentDAO extends IDAO<Adherent>{
 
 	@Override
 	public void delete(Adherent obj) {
-		
+
 	}
 
 	@Override
@@ -67,7 +65,7 @@ public class AdherentDAO extends IDAO<Adherent>{
 		if (obj == null) {
 			throw new NullPointerException("La personne ne doit pas �tre null");
 		}
-		
+
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
@@ -75,17 +73,14 @@ public class AdherentDAO extends IDAO<Adherent>{
 				+ "dateEntree = ?, dateSortie = ?, qf = ?, cotisation = ? "
 				+ "WHERE idPersonne = ?;";
 		try {
-			
+
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, 
-					obj.getIdMotif(),
-					obj.getIdResponsable(),
-					(obj.isDroitImage()?1:0),
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, obj.getIdMotif(), obj.getIdResponsable(),
+					(obj.isDroitImage() ? 1 : 0),
 					DateUtil.toSqlDate(obj.getDateEntree()),
-					DateUtil.toSqlDate(obj.getDateSortie()),
-					obj.getQf(),
-					obj.getCotisation(),
-					obj.getIdPersonne());
+					DateUtil.toSqlDate(obj.getDateSortie()), obj.getQf(),
+					obj.getCotisation(), obj.getIdPersonne());
 			requete.executeUpdate();
 
 		} catch (SQLException e) {
@@ -105,9 +100,10 @@ public class AdherentDAO extends IDAO<Adherent>{
 		ResultSet result = null;
 		String sql = "SELECT * FROM adherent a inner join personne p on a.idPersonne=p.idPersonne WHERE p.idPersonne = ?;";
 		try {
-			
+
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, id);
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
@@ -131,11 +127,12 @@ public class AdherentDAO extends IDAO<Adherent>{
 		ResultSet result = null;
 		String sql = "SELECT * FROM adherent a inner join personne p on a.idPersonne=p.idPersonne order by nom, prenom;";
 		try {
-			
+
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false);
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false);
 			result = requete.executeQuery();
-			
+
 			while (result.next()) {
 				adherent = this.map(result);
 				liste.add(adherent);
@@ -152,12 +149,15 @@ public class AdherentDAO extends IDAO<Adherent>{
 	@Override
 	public Adherent map(ResultSet result) throws SQLException {
 		PersonneDAO personneDAO = factory.getPersonneDAO();
-		Adherent adherent = new Adherent(personneDAO.map(result), NumberUtil.getResultInteger(result,
-				"idMotifSortie"),
+		DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
+		Adherent adherent = new Adherent(personneDAO.map(result),
+				NumberUtil.getResultInteger(result, "idMotifSortie"),
 				NumberUtil.getResultLong(result, "idResponsable"),
 				result.getBoolean("droitImage"), result.getDate("dateEntree"),
 				result.getDate("dateSortie"), NumberUtil.getResultFloat(result,
-						"qf"), NumberUtil.getResultFloat(result, "cotisation"));
+						"qf"), NumberUtil.getResultFloat(result, "cotisation"),
+				disciplineDAO.getDisciplineParAdherent(result
+						.getLong("idPersonne")));
 		return adherent;
 	}
 

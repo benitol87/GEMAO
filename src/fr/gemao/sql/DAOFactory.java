@@ -174,4 +174,8 @@ public class DAOFactory {
 	public ResponsableDAO getResponsableDAO(){
 		return new ResponsableDAO(this);
 	}
+
+	public DisciplineDAO getDisciplineDAO() {
+		return new DisciplineDAO(this);
+	}
 }
