@@ -27,7 +27,7 @@ public class ConsulteAdherentServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
 		Adherent adherent = recupererAdherentCtrl.recupererAdherent(id);
-		
+		request.setAttribute("adherent", adherent);
 		this.getServletContext().getRequestDispatcher( VUE_CONSULTEADHERENT ).forward( request, response );
 	}
 
