@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
+import fr.gemao.ctrl.adherent.RecupererResponsableCtrl;
 import fr.gemao.entity.adherent.Adherent;
 
 /**
@@ -33,6 +34,11 @@ public class ConsulteAdherentServlet extends HttpServlet {
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String dateNaissance = formatter.format(adherent.getDateNaissance());
+		
+		if(adherent.getIdResponsable()!=null){
+			RecupererResponsableCtrl recupererResponsableCtrl = new RecupererResponsableCtrl();
+			
+		}
 
 		request.setAttribute("adherent", adherent);
 		request.setAttribute("dateNaissance", dateNaissance);
