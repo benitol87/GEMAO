@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <body>
-<header>
-	<span>${sessionScope.sessionObjectPersonnel.prenom} ${sessionScope.sessionObjectPersonnel.nom}</span>
-	<a class="icon icon-settings" href="/GEMAO/Parametre"></a>
-	<a href="/GEMAO/Deconnexion">Déconnexion</a>
-</header>
+	<header>
+		<span>${sessionScope.sessionObjectPersonnel.prenom}
+			${sessionScope.sessionObjectPersonnel.nom}</span> <a
+			class="icon icon-settings" href="<c:url value="/Parametres"/>"></a> <a
+			href="<c:url value="/Deconnexion"/>">Déconnexion</a>
+	</header>

@@ -40,7 +40,6 @@ public class LocationInstrumentServlet extends HttpServlet {
 		
 		
 		
-		
 		request.setAttribute(PARAM_LISTE_CATEGORIE, listeCategorie);
 		
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );

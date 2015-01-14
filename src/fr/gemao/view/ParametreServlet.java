@@ -15,7 +15,7 @@ import fr.gemao.form.ParametreForm;
 /**
  * Servlet implementation class ParametreServlet
  */
-@WebServlet("/Parametre")
+@WebServlet("/Parametres")
 public class ParametreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

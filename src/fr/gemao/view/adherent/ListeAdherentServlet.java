@@ -15,7 +15,7 @@ import fr.gemao.entity.adherent.Adherent;
 /**
  * Servlet implementation class ListeAdherentServlet
  */
-@WebServlet("/ListeAdherents")
+@WebServlet("/adherent/ListeAdherents")
 public class ListeAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

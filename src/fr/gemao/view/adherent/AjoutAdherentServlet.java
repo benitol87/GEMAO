@@ -27,7 +27,7 @@ import fr.gemao.sql.DAOFactory;
 /**
  * Servlet implementation class AjoutAdherent
  */
-@WebServlet("/AjoutAdherent")
+@WebServlet("/adherent/AjoutAdherent")
 public class AjoutAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
