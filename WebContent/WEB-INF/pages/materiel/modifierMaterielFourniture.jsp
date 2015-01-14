@@ -9,17 +9,17 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-	<form name="modifierMaterielMobilier" action="#" method="post">
+	<form name="modifierMaterielFourniture" action="#" method="post">
 		<table>
 			<tr>
 				<td>
 				<label for="categorie">Catégorie : </label> 
-				<label for="categorieResult">Mobilier</label>
+				<label for="categorieResult">Fourniture</label>
 				</td>
 			
 				<td>
 				<label for="designation">Désignation : </label>
-				<label for="designationResult">Chaise </label>
+				<label for="designationResult">livre </label>
 				</td>
 			</tr>
 			<tr>
@@ -33,9 +33,8 @@
 				<label for="dateAchResult">10/10/1010 </label>
 				</td>
 			</tr>
-		</table>
-	</form>
-	<form id="ajouterMaterielMobilier" action="#" methode="post" hidden>
+		</form>
+		<form id="ajouterMaterielFourniture" action="#" methode="post" hidden>
 		<table>
 			<tr>
 				<td>
@@ -73,5 +72,4 @@
 			</tr>
 		</table>
 	</form>
-
 <c:import url="/inc/footer.inc.jsp" />
