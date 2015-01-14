@@ -47,12 +47,12 @@ public class ModifierMaterielFournitureServlet extends HttpServlet {
 		 * Utilisateur à la session, sinon suppression du bean de la session.
 		 */
 		if (form.getErreurs().isEmpty()) {
-			ConnexionCtrl connexionCtrl = new ConnexionCtrl();
 			try {
 				MaterielCtrl matctrl = new MaterielCtrl();
 				Materiel mat = matctrl.recupererMateriel(3);
 				// ajout de la quantité a rajouter
 				mat.setObservation(form.getObservation());
+				matctrl.modifierMateriel(mat);
 			} catch (Exception e) {
 				form.setErreur("Connexion", e.getMessage());
 			}
