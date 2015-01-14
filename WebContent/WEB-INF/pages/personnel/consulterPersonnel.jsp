@@ -7,30 +7,30 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-	<h2>Informations de...</h2>
+	<h1>Consultation d'un personnel</h1>
 	<table>
 		<tr><td>
 			<label for="nom">NOM : </label>
 		</td><td>
-		
+				<c:out value="${personnel['nom']}" />
 		</td><td>
 			<label for="prenom">Prénom : </label>
 		</td><td>
-		
+				<c:out value="${personnel['prenom']}" />
 		</td></tr>
 		<tr><td>
 			<label for="email">Email : </label>
 		</td><td>
-		
+				<c:out value="${personnel['email']}" />
 		</td></tr>
 		<tr><td>
 			<label for="fixe">Téléphone fixe : </label>
 		</td><td>
-		
+			<c:out value="${personnel['telFixe']}" />
 		</td><td>
 			<label for="portable">Téléphone portable : </label>
 		</td><td>
-		
+			<c:out value="${personnel['telPort']}" />
 		</td></tr>
 	</table>
 	<fieldset>
@@ -68,4 +68,8 @@
 			</td></tr>
 		</table>
 	</fieldset>
+	<div>
+		<a href="ListeAdherents"><input type="button" value="Retour" /></a> <input type="button"
+			value="Modifier" />
+	</div>
 <c:import url="/inc/footer.inc.jsp" />
