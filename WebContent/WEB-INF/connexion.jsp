@@ -5,28 +5,28 @@
 <c:import url="/inc/head.inc.jsp" />
 <body>
 	
-	<form class="well" method="post" action="Connexion">
+	<form method="post" action="Connexion">
             <fieldset>
                 <legend>Connexion</legend>
 
-                <label class="control-label" for="nom">Identifiant<span class="requis">*</span></label>
-                <input class="form-control" type="text" id="login" name="login" value="<c:out value="${personnel.login}"/>" size="20" maxlength="60" />
-                <span class="text-danger">${form.erreurs['login']}</span>
+                <label for="nom">Identifiant<span class="requis">*</span></label>
+                <input type="text" id="login" name="login" value="<c:out value="${personnel.login}"/>" size="20" maxlength="60" />
+                <span>${form.erreurs['login']}</span>
                 <br />
 
-                <label class="control-label" for="motdepasse">Mot de passe<span class="requis">*</span></label>
-                <input class="form-control" type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
-                <span class="text-danger">${form.erreurs['motdepasse']}</span>
+                <label for="motdepasse">Mot de passe<span class="requis">*</span></label>
+                <input type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
+                <span>${form.erreurs['motdepasse']}</span>
                 <br />
 
-                <input class="btn btn-primary" type="submit" value="Connexion" class="sansLabel" />
+                <input type="submit" value="Connexion"/>
                 <br />
                 
                 <p>${form.erreurs['Connexion']}</p>
                 
                 <%-- Vérification de la présence d'un objet personnel en session --%>
                 <c:if test="${!empty sessionScope.sessionObjectPersonnel}">
-                    <p class="text-success">Vous êtes connecté(e) avec le login : ${sessionScope.sessionObjectPersonnel.login}</p>
+                    <p>Vous êtes connecté(e) avec le login : ${sessionScope.sessionObjectPersonnel.login}</p>
                     <a href="/GEMAO/">Accueil</a>
                 </c:if>
             </fieldset>
