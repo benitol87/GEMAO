@@ -47,8 +47,9 @@
 								<td><label for="typeResult">flute a bec</label></td>
 							</tr>
 							<tr>
+								<!--% Etat à empêcher de s'améliorer -->
 								<td><label for="etat">Etat : </label></td>
-								<td><input type="text" name="etat"></td>
+								<td><select name="etat" id="etat"></select></td>
 							</tr>	
 							<tr>
 								<td><label for="marque">Marque : </label></td>
