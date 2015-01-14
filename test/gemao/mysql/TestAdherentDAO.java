@@ -1,15 +1,17 @@
 package gemao.mysql;
 
-import gemao.entity.Adherent;
-import gemao.entity.Personne;
-
 import java.sql.Connection;
 import java.util.List;
+
+import fr.gemao.entity.Personne;
+import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.sql.AdherentDAO;
+import fr.gemao.sql.DAOFactory;
 
 public class TestAdherentDAO {
 
 	public static void main(String[] args) {
-		Connection co = ConnectionMySql.getInstance();
+		DAOFactory co = DAOFactory.getInstance();
 		AdherentDAO adherentDAO = new AdherentDAO(co);
 		
 		Adherent adherent = adherentDAO.get(2);
