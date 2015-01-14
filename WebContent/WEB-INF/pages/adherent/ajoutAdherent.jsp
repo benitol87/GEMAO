@@ -43,7 +43,7 @@
 			<td><input type="text" name="comNaiss" required="required"
 				autocomplete="off" /></td>
 			<td><label for="codePNaiss">Code Postal : </label></td>
-			<td><input type="text" name="codePNaiss" required="required"
+			<td><input type="text" name="codePostNaiss" required="required"
 				autocomplete="off" /></td>
 		</tr>
 		<tr>
