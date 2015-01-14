@@ -144,7 +144,7 @@ public class EtatDAO extends IDAO<Etat> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * FROM categorie;";
+		String sql = "SELECT * FROM Etat;";
 		try {
 			
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false);
