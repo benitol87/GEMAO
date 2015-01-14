@@ -38,7 +38,10 @@
 							</tr>
 							<tr>
 								<td><label for="etat">Etat : </label></td>
-								<td><select name="etat" id="etat"></select></td>
+								<td><select name="etat" id="etat">
+								<c:forEach var="etat" items="listEtat">
+           							 <option>${etat.getLibelle()}</option>
+       							 </c:forEach></select></td>
 							</tr>	
 							<tr>
 								<td><label for="marque">Marque : </label></td>
