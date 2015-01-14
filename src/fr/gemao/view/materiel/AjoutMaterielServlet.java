@@ -42,6 +42,27 @@ public class AjoutMaterielServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		int idEtat =Integer.parseInt(request.getParameter("idEtat"));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}
