@@ -59,6 +59,7 @@ public class ConnexionServlet extends HttpServlet {
 				personnel = connexionCtrl.controlerPersonnel(form.getLogin(), form.getMotDePasse());
 			} catch (Exception e) {
 				form.setErreur("Connexion", e.getMessage());
+				personnel = new Personnel();
 				personnel.setLogin(form.getLogin());
 			}
 		}
