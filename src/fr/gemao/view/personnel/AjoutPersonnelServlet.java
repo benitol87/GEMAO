@@ -1,3 +1,4 @@
+
 package fr.gemao.view.personnel;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AjoutPersonnelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private String VUE = "/app/ajouterPersonnel.jsp";
+	private String VUE = "/WEB-INF/pages/personnel/ajoutPersonnel.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,13 +34,21 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		 */
 		/*String nom = request.getParameter( "nom" );
         String prenom = request.getParameter( "prenom" );
-        String dateNaissance = request.getParameter( "dateNaiss" );
-        String telFixe = request.getParameter( "telFixe" );
-        String telPortable = request.getParameter( "telPort" );
+        String dateNaissance = request.getParameter( "date" );
+        String telFixe = request.getParameter( "fixe" );
+        String telPortable = request.getParameter( "portable" );
         String mail = request.getParameter("email");
         String numAdresse = request.getParameter("num");
-        String codePostal = request.getParameter("codeP");
-        String ville = request.getParameter("ville");*/
+        String codePostal = request.getParameter("code");
+        String ville = request.getParameter("ville");
+        String diplome = request.getParameter("diplome");
+        String fonction = request.getParameter("fonction");
+        
+        String contrat = request.getParameter("type");
+        String debcontrat = request.getParameter("datedeb");
+        String duree = request.getParameter("duree");
+        String fincontrat = request.getParameter("datefin");
+        */
         
 		/* Transmission à la page JSP en charge de l'affichage des données */
 		this.getServletContext()
@@ -48,3 +57,4 @@ public class AjoutPersonnelServlet extends HttpServlet {
 	}
 
 }
+
