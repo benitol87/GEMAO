@@ -17,14 +17,14 @@ public class RecupererAdherentCtrl {
 	
 	/**
 	 * Méthode permettant de récupérer un adhérent selon son identifiant
-	 * @param idPersonne
+	 * @param id
 	 * @return l'adhérent dont l'identifiant est idPersonne
 	 */
-	public Adherent recupererAdherent(Long idPersonne){
+	public Adherent recupererAdherent(int id){
 		DAOFactory co = DAOFactory.getInstance();
 		AdherentDAO adherentDAO = co.getAdherentDAO();
 		
-		Adherent adherent = adherentDAO.get(idPersonne);
+		Adherent adherent = adherentDAO.get(id);
 		
 		return adherent;		
 	}
