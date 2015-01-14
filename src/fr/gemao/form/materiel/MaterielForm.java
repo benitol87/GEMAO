@@ -17,7 +17,7 @@ public class MaterielForm {
 
 	private static final String CHAMP_CATEGORIE = "categorie";
 	private static final String CHAMP_DESIGNATION = "designation";
-	private static final String CHAMP_VALACH = "valeurAch";
+	private static final String CHAMP_VALACH = "ValeurAch";
 	private static final String CHAMP_DATEACH = "dateAch";
 	private static final String CHAMP_TYPE = "type";
 	private static final String CHAMP_MARQUE = "marque";
@@ -42,16 +42,16 @@ public class MaterielForm {
 
 	/* Variables récupérées BEGIN */
 	// variables communes aux deux categories
-	private int categorie;
-	private String designation;
+	private int idCategorie;
+	private int idDesignation; //
 	private float valAch;
 	private String dateAch;
-	private int idType;
-	private String marque;
+	private String type;
+	private int idMarque;
 
 	// variables categorie Instrument
-	private String etat;
-	private long numserie;
+	private int idEtat;
+	private String numserie;
 	private float valRea;
 	private String observation;
 	private boolean deplacable;
@@ -73,21 +73,23 @@ public class MaterielForm {
 	public void testerMateriel(HttpServletRequest request) {
 
 		/* Récupération des champs du formulaire */
-		categorie = Integer.parseInt(getValeurChamp(request, CHAMP_CATEGORIE));
-		designation = getValeurChamp(request, CHAMP_DESIGNATION);
+		idCategorie = Integer
+				.parseInt(getValeurChamp(request, CHAMP_CATEGORIE));
+		idDesignation = Integer.parseInt(getValeurChamp(request,
+				CHAMP_DESIGNATION));
 		valAch = Float.parseFloat(getValeurChamp(request, CHAMP_VALACH));
 		dateAch = getValeurChamp(request, CHAMP_DATEACH);
 
 		/* Validation du champ categorie. */
 		try {
-			validationCategorie(categorie);
+			validationCategorie(idCategorie);
 		} catch (Exception e) {
 			setErreur(CHAMP_CATEGORIE, e.getMessage());
 		}
 
 		/* Validation de la designation. */
 		try {
-			validationDesignation(designation);
+			validationDesignation(idDesignation);
 		} catch (Exception e) {
 			setErreur(CHAMP_DESIGNATION, e.getMessage());
 		}
@@ -107,13 +109,12 @@ public class MaterielForm {
 		}
 
 		// Dans le cas ou il s'agit d'un intrument.
-		if (categorie == VAL_INST) {
-			idType = Integer.parseInt(getValeurChamp(request, CHAMP_TYPE));
-			etat = getValeurChamp(request, CHAMP_INST_ETAT);
-			marque = getValeurChamp(request, CHAMP_MARQUE);
+		if (idCategorie == VAL_INST) {
+			type = getValeurChamp(request, CHAMP_TYPE);
+			idEtat = Integer.parseInt(getValeurChamp(request, CHAMP_INST_ETAT));
+			idMarque = Integer.parseInt(getValeurChamp(request, CHAMP_MARQUE));
 			String deplac = getValeurChamp(request, CHAMP_INST_DEPLACABLE);
-			numserie = Long.parseLong(getValeurChamp(request,
-					CHAMP_INST_NUMSERIE));
+			numserie = getValeurChamp(request, CHAMP_INST_NUMSERIE);
 			valRea = Float
 					.parseFloat(getValeurChamp(request, CHAMP_INST_VALREA));
 			observation = getValeurChamp(request, CHAMP_INST_OBSERVATION);
@@ -127,21 +128,21 @@ public class MaterielForm {
 
 			/* Validation du champ type. */
 			try {
-				validationType(idType);
+				validationType(type);
 			} catch (Exception e) {
 				setErreur(CHAMP_TYPE, e.getMessage());
 			}
 
 			/* Validation du champ etat */
 			try {
-				validationEtat(etat);
+				validationEtat(idEtat);
 			} catch (Exception e) {
 				setErreur(CHAMP_INST_ETAT, e.getMessage());
 			}
 
 			/* Validation du champ marque */
 			try {
-				validationMarque(marque);
+				validationMarque(idMarque);
 			} catch (Exception e) {
 				setErreur(CHAMP_MARQUE, e.getMessage());
 			}
@@ -173,15 +174,15 @@ public class MaterielForm {
 		}
 
 		// Dans le cas d'un mobilier.
-		if (categorie == VAL_MOBI || categorie == VAL_FOUR) {
-			idType = Integer.parseInt(getValeurChamp(request, CHAMP_TYPE));
+		if (idCategorie == VAL_MOBI || idCategorie == VAL_FOUR) {
+			type = getValeurChamp(request, CHAMP_TYPE);
 			qte = Integer.parseInt(getValeurChamp(request, CHAMP_MOBI_QTE));
-			marque = getValeurChamp(request, CHAMP_MARQUE);
+			idMarque = Integer.parseInt(getValeurChamp(request, CHAMP_MARQUE));
 			prixU = Float.parseFloat(getValeurChamp(request, CHAMP_MOBI_PRIXU));
 
 			/* Validation du champ type. */
 			try {
-				validationType(idType);
+				validationType(type);
 			} catch (Exception e) {
 				setErreur(CHAMP_TYPE, e.getMessage());
 			}
@@ -195,7 +196,7 @@ public class MaterielForm {
 
 			/* Validation du champ marque */
 			try {
-				validationMarque(marque);
+				validationMarque(idMarque);
 			} catch (Exception e) {
 				setErreur(CHAMP_MARQUE, e.getMessage());
 			}
@@ -222,7 +223,7 @@ public class MaterielForm {
 	 * @return la categorie du materiel.
 	 */
 	public int getCategorie() {
-		return categorie;
+		return idCategorie;
 	}
 
 	/**
@@ -230,8 +231,8 @@ public class MaterielForm {
 	 * 
 	 * @return la designation du materiel.
 	 */
-	public String getDesignation() {
-		return designation;
+	public int getDesignation() {
+		return idDesignation;
 	}
 
 	/**
@@ -257,8 +258,8 @@ public class MaterielForm {
 	 * 
 	 * @return l'id du type.
 	 */
-	public int getIdType() {
-		return idType;
+	public String getIdType() {
+		return type;
 	}
 
 	/**
@@ -266,8 +267,8 @@ public class MaterielForm {
 	 * 
 	 * @return l'etat de l'instrument.
 	 */
-	public String getEtat() {
-		return etat;
+	public int getEtat() {
+		return idEtat;
 	}
 
 	/**
@@ -275,8 +276,8 @@ public class MaterielForm {
 	 * 
 	 * @return la marque du materiel.
 	 */
-	public String getMarque() {
-		return marque;
+	public int getMarque() {
+		return idMarque;
 	}
 
 	/**
@@ -284,7 +285,7 @@ public class MaterielForm {
 	 * 
 	 * @return le numero de serie.
 	 */
-	public long getNumserie() {
+	public String getNumserie() {
 		return numserie;
 	}
 
@@ -383,13 +384,9 @@ public class MaterielForm {
 	/**
 	 * Valide la designation saisie.
 	 */
-	private void validationDesignation(String designation) throws Exception {
-		if (designation == null) {
+	private void validationDesignation(int idDesignation2) throws Exception {
+		if (idDesignation2 <= 0) {
 			throw new Exception("Merci de saisir une designation valide.");
-		} else {
-			if (designation.equals("")) {
-				throw new Exception("Merci de saisir une designation valide.");
-			}
 		}
 	}
 
@@ -424,44 +421,45 @@ public class MaterielForm {
 	/**
 	 * Valide le type choisi.
 	 */
-	private void validationType(int type) throws Exception {
-		if (type <= 0) {
-			throw new Exception("Merci de choisir un type.");
+	private void validationType(String type2) throws Exception {
+		if (type2 == null) {
+			throw new Exception("Merci de saisir un type valide.");
+		} else {
+			if (type2.equals("")) {
+				throw new Exception("Merci de saisir un type valide.");
+			}
 		}
 	}
 
 	/**
 	 * Valide l'etat saisi.
 	 */
-	private void validationEtat(String etat) throws Exception {
-		if (etat == null) {
+	private void validationEtat(int idEtat2) throws Exception {
+		if (idEtat2 <= 0) {
 			throw new Exception("Merci de saisir un etat valide.");
-		} else {
-			if (etat.equals("")) {
-				throw new Exception("Merci de saisir un etat valide.");
-			}
 		}
 	}
 
 	/**
 	 * Valide la marque saisie.
 	 */
-	private void validationMarque(String marque) throws Exception {
-		if (marque == null) {
+	private void validationMarque(int idMarque2) throws Exception {
+		if (idMarque2 <= 0) {
 			throw new Exception("Merci de saisir une marque valide.");
-		} else {
-			if (marque.equals("")) {
-				throw new Exception("Merci de saisir une marque valide.");
-			}
 		}
 	}
 
 	/**
 	 * Valide le numero de serie saisi.
 	 */
-	private void validationNumserie(long numserie) throws Exception {
-		if (numserie <= 0) {
-			throw new Exception("Merci de saisir un numero de serie.");
+	private void validationNumserie(String numserie2) throws Exception {
+		if (numserie2 == null) {
+			throw new Exception("Merci de saisir un numero de serie valide.");
+		} else {
+			if (numserie2.equals("")) {
+				throw new Exception(
+						"Merci de saisir un numero de serie valide.");
+			}
 		}
 	}
 

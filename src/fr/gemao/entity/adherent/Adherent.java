@@ -1,11 +1,14 @@
 package fr.gemao.entity.adherent;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import fr.gemao.entity.Discipline;
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.util.Civilite;
 
-public class Adherent extends Personne{
+public class Adherent extends Personne {
 	private Integer idMotif;
 	private Long idResponsable;
 	private boolean droitImage;
@@ -13,13 +16,15 @@ public class Adherent extends Personne{
 	private Date dateSortie;
 	private Float qf;
 	private float cotisation;
-	
+	private List<Discipline> disciplines;
+
 	public Adherent() {
+		disciplines = new ArrayList<>();
 	}
-	
-	
+
 	/**
 	 * Construit un Adh�rent
+	 * 
 	 * @param idPersonne
 	 * @param idAdresse
 	 * @param idCommuneNaiss
@@ -34,13 +39,16 @@ public class Adherent extends Personne{
 	 * @param droitImage
 	 * @param dateEntree
 	 * @param dateSortie
-	 * @param qf 
-	 * @param cotisation TODO
+	 * @param qf
+	 * @param cotisation
+	 * @param disciplines
 	 */
 	public Adherent(Long idPersonne, Long idAdresse, Long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
-			String telPort, String email, Civilite civilite, Integer idMotif, Long idResponsable,
-			boolean droitImage, Date dateEntree, Date dateSortie, Float qf, float cotisation) {
+			String telPort, String email, Civilite civilite, Integer idMotif,
+			Long idResponsable, boolean droitImage, Date dateEntree,
+			Date dateSortie, Float qf, float cotisation,
+			List<Discipline> disciplines) {
 		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email, civilite);
 		this.idMotif = idMotif;
@@ -50,10 +58,14 @@ public class Adherent extends Personne{
 		this.dateSortie = dateSortie;
 		this.qf = qf;
 		this.cotisation = cotisation;
+		if(disciplines == null){
+			disciplines = new ArrayList<>();
+		}
 	}
-	
+
 	/**
 	 * Construit un Adh�rent.
+	 * 
 	 * @param personne
 	 * @param idMotif
 	 * @param idResponsable
@@ -63,7 +75,8 @@ public class Adherent extends Personne{
 	 * @param qf
 	 */
 	public Adherent(Personne personne, Integer idMotif, Long idResponsable,
-			boolean droitImage, Date dateEntree, Date dateSortie, Float qf, float cotisation){
+			boolean droitImage, Date dateEntree, Date dateSortie, Float qf,
+			float cotisation, List<Discipline> disciplines) {
 		super(personne);
 		this.idMotif = idMotif;
 		this.idResponsable = idResponsable;
@@ -72,8 +85,10 @@ public class Adherent extends Personne{
 		this.dateSortie = dateSortie;
 		this.qf = qf;
 		this.cotisation = cotisation;
+		if(disciplines == null){
+			disciplines = new ArrayList<>();
+		}
 	}
-
 
 	/**
 	 * @return the idMotif
@@ -82,14 +97,13 @@ public class Adherent extends Personne{
 		return idMotif;
 	}
 
-
 	/**
-	 * @param idMotif the idMotif to set
+	 * @param idMotif
+	 *            the idMotif to set
 	 */
 	public void setIdMotif(Integer idMotif) {
 		this.idMotif = idMotif;
 	}
-
 
 	/**
 	 * @return the idResponsable
@@ -98,14 +112,13 @@ public class Adherent extends Personne{
 		return idResponsable;
 	}
 
-
 	/**
-	 * @param idResponsable the idResponsable to set
+	 * @param idResponsable
+	 *            the idResponsable to set
 	 */
 	public void setIdResponsable(Long idResponsable) {
 		this.idResponsable = idResponsable;
 	}
-
 
 	/**
 	 * @return the droitImage
@@ -114,14 +127,13 @@ public class Adherent extends Personne{
 		return droitImage;
 	}
 
-
 	/**
-	 * @param droitImage the droitImage to set
+	 * @param droitImage
+	 *            the droitImage to set
 	 */
 	public void setDroitImage(boolean droitImage) {
 		this.droitImage = droitImage;
 	}
-
 
 	/**
 	 * @return the dateEntree
@@ -130,14 +142,13 @@ public class Adherent extends Personne{
 		return dateEntree;
 	}
 
-
 	/**
-	 * @param dateEntree the dateEntree to set
+	 * @param dateEntree
+	 *            the dateEntree to set
 	 */
 	public void setDateEntree(Date dateEntree) {
 		this.dateEntree = dateEntree;
 	}
-
 
 	/**
 	 * @return the dateSortie
@@ -146,14 +157,13 @@ public class Adherent extends Personne{
 		return dateSortie;
 	}
 
-
 	/**
-	 * @param dateSortie the dateSortie to set
+	 * @param dateSortie
+	 *            the dateSortie to set
 	 */
 	public void setDateSortie(Date dateSortie) {
 		this.dateSortie = dateSortie;
 	}
-
 
 	/**
 	 * @return the qf
@@ -163,13 +173,12 @@ public class Adherent extends Personne{
 	}
 
 	/**
-	 * @param qf the qf to set
+	 * @param qf
+	 *            the qf to set
 	 */
 	public void setQf(float qf) {
 		this.qf = qf;
 	}
-	
-	
 
 	public Float getCotisation() {
 		return cotisation;
@@ -179,8 +188,41 @@ public class Adherent extends Personne{
 		this.cotisation = cotisation;
 	}
 
+	/**
+	 * @return the disciplines
+	 */
+	public List<Discipline> getDisciplines() {
+		return disciplines;
+	}
 
-	/* (non-Javadoc)
+	/**
+	 * @param disciplines
+	 *            the disciplines to set
+	 */
+	public void setDisciplines(List<Discipline> disciplines) {
+		this.disciplines = disciplines;
+	}
+	
+	/**
+	 * Ajoute une discipline à l'adhérent.
+	 * @param discipline
+	 */
+	public boolean addDiscipline(Discipline discipline){
+		return disciplines.add(discipline);
+	}
+	
+	/**
+	 * Supprime une discipline à l'adhérent.
+	 * @param discipline
+	 * @return
+	 */
+	public boolean removeDiscipline(Discipline discipline){
+		return disciplines.remove(discipline);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -206,7 +248,9 @@ public class Adherent extends Personne{
 		return builder.toString();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -225,7 +269,9 @@ public class Adherent extends Personne{
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -257,5 +303,5 @@ public class Adherent extends Personne{
 			return false;
 		return true;
 	}
-	
+
 }

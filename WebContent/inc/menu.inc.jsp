@@ -30,7 +30,7 @@
 												<a class="mp-back" href="#">Retour</a>
 												<ul>
 													<li><a href="#">Archiver</a></li>
-													<li><a href="#">Lister</a></li>
+													<li><a href="/GEMAO/ListeAdherents">Lister</a></li>
 												</ul>
 											</div>
 										</li>
@@ -56,7 +56,7 @@
 												<a class="mp-back" href="#">Retour</a>
 												<ul>
 													<li><a href="#">Archiver</a></li>
-													<li><a href="#">Lister</a></li>
+													<li><a href="/GEMAO/ListePersonnel">Lister</a></li>
 												</ul>
 											</div>
 										</li>
