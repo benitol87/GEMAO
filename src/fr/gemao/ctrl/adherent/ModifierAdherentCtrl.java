@@ -2,6 +2,7 @@ package fr.gemao.ctrl.adherent;
 
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.form.adherent.VerifierSyntaxeAdherent;
 import fr.gemao.sql.AdherentDAO;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
@@ -20,24 +21,24 @@ public class ModifierAdherentCtrl {
 	 * @param adherent
 	 */
 	public void modifierAdherent(Adherent adherent){
-		AjouterAdherentCtrl ajoutAdherent = new AjouterAdherentCtrl();
+		VerifierSyntaxeAdherent verifAdherent = new VerifierSyntaxeAdherent();
 		
-		if(ajoutAdherent.verifierInformations(adherent)){
-			Personne pers;
-			Adherent adh;
+		if(verifAdherent.verifierInformations(adherent)){
+			Personne test1;
+			Adherent test2;
 			
 			DAOFactory co = DAOFactory.getInstance();
 			PersonneDAO personneDAO = co.getPersonneDAO();
 			AdherentDAO adherentDAO = co.getAdherentDAO();
 			
-			pers = personneDAO.update(adherent);
-			if(pers == null){
+			test1 = personneDAO.update(adherent);
+			if(test1 == null){
 				System.out.println("Une erreur est survenue lors de la modification...");
 			}
 			else{
-				adherent.setIdResponsable(pers.getIdPersonne());
-				adh = adherentDAO.update(adherent);
-				if(adh == null){
+				adherent.setIdResponsable(test1.getIdPersonne());
+				test2 = adherentDAO.update(adherent);
+				if(test2 == null){
 					System.out.println("Une erreur est survenue lors de la modification...");
 				}
 				else{

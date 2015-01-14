@@ -18,7 +18,7 @@ public class RecupererAdherentCtrl {
 	/**
 	 * Méthode permettant de récupérer un adhérent selon son identifiant
 	 * @param id
-	 * @return l'adhérent dont l'identifiant est id
+	 * @return l'adhérent dont l'identifiant est idPersonne
 	 */
 	public Adherent recupererAdherent(int id){
 		DAOFactory co = DAOFactory.getInstance();

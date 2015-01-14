@@ -196,7 +196,7 @@ public class PersonneDAO extends IDAO<Personne> {
 	@Override
 	protected Personne map(ResultSet result) throws SQLException {
 		return new Personne(Long.valueOf(result.getInt("idPersonne")),
-				NumberUtil.getResultLong(result, "idAdresse"),
+				NumberUtil.getResultInteger(result, "idAdresse"),
 				NumberUtil.getResultLong(result, "idCommuneNaiss"),
 				result.getString("nom"), 
 				result.getString("prenom"),

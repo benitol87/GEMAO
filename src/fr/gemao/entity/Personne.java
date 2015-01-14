@@ -7,7 +7,7 @@ import fr.gemao.entity.util.Civilite;
 public class Personne {
 
 	private Long idPersonne;
-	private Long idAdresse;
+	private Integer idAdresse;
 	private Long idCommuneNaiss;
 	private String nom;
 	private String prenom;
@@ -34,7 +34,7 @@ public class Personne {
 	 * @param email
 	 * @param civilite
 	 */
-	public Personne(Long idPersonne, Long idAdresse, Long idCommuneNaiss,
+	public Personne(Long idPersonne, Integer idAdresse, Long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, Civilite civilite) {
 		this.idPersonne = idPersonne;
@@ -79,7 +79,7 @@ public class Personne {
 	/**
 	 * @return the idAdresse
 	 */
-	public Long getIdAdresse() {
+	public Integer getIdAdresse() {
 		return idAdresse;
 	}
 
@@ -87,7 +87,7 @@ public class Personne {
 	 * @param idAdresse
 	 *            the idAdresse to set
 	 */
-	public void setIdAdresse(Long idAdresse) {
+	public void setIdAdresse(Integer idAdresse) {
 		this.idAdresse = idAdresse;
 	}
 
