@@ -157,7 +157,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 				result.getBoolean("droitImage"), result.getDate("dateEntree"),
 				result.getDate("dateSortie"), NumberUtil.getResultFloat(result,
 						"qf"), NumberUtil.getResultFloat(result, "cotisation"));
-		return adherent;
+		return adherent; 
 	}
 
 }
