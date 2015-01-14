@@ -1,5 +1,7 @@
 package fr.gemao.sql.util;
 
+import java.sql.Timestamp;
+
 public class DateUtil {
 
 	private DateUtil(){}
@@ -10,10 +12,10 @@ public class DateUtil {
 	 * 		Date de java.util
 	 * @return Date java.sql ou null si la date en paramètre est null.
 	 */
-	public static java.sql.Date toSqlDate(java.util.Date date){
-		java.sql.Date sqlDate = null;
+	public static Timestamp toSqlDate(java.util.Date date){
+		Timestamp sqlDate = null;
 		if(date != null){
-			sqlDate = new java.sql.Date(date.getTime());
+			sqlDate = new Timestamp(date.getTime());
 		}
 		return sqlDate;
 	}
