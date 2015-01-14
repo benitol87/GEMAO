@@ -129,7 +129,7 @@ public class AdherentDAO extends IDAO<Adherent>{
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * FROM adherent inner join personne p on a.idPersonne=p.idPersonne order by nom, prenom;";
+		String sql = "SELECT * FROM adherent a inner join personne p on a.idPersonne=p.idPersonne order by nom, prenom;";
 		try {
 			
 			connexion = factory.getConnection();
