@@ -139,8 +139,29 @@ public class AdresseDAO extends IDAO<Adresse> {
 		return liste;
 	}
 	
-	public Adresse exist(Commune commune){
-		return null;
+	public Adresse exist(Adresse adresse){
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * from adresse where idCommmune = ? and numRue = ? and nomRue = ? and infoCompl = ?;";
+		Adresse verif = null;
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, adresse.getIdCommune(),
+					adresse.getNumRue(), adresse.getNomRue(), adresse.getInfoCompl());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				verif = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return verif;
 	}
 
 	@Override
