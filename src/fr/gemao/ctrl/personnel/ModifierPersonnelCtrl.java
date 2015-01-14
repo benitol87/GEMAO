@@ -2,7 +2,7 @@ package fr.gemao.ctrl.personnel;
 
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.Personnel;
-import fr.gemao.form.personnel.VerifierSyntaxePersonnel;
+import fr.gemao.form.personnel.PersonnelForm;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
 import fr.gemao.sql.PersonnelDAO;
@@ -30,7 +30,7 @@ public class ModifierPersonnelCtrl {
 	 *            : le personnel modifié
 	 */
 	public static void modifierPersonnelSyntaxe(Personnel personnel) {
-		VerifierSyntaxePersonnel verifperso = new VerifierSyntaxePersonnel();
+		PersonnelForm verifperso = new PersonnelForm();
 
 		if (verifperso.verifierInformations(personnel)) {
 			Personne test1;
