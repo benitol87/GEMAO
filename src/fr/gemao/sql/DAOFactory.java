@@ -27,10 +27,10 @@ public class DAOFactory {
 
 	private static boolean CHARGE = false;
 	private static DAOFactory instance;
-	private BoneCP connectionPool;
+	private static  BoneCP connectionPool;
 
 	DAOFactory(BoneCP connectionPool) {
-		this.connectionPool = connectionPool;
+		DAOFactory.connectionPool = connectionPool;
 	}
 
 	/*
@@ -117,6 +117,10 @@ public class DAOFactory {
 	/* Méthode chargée de fournir une connexion à la base de données */
 	public Connection getConnection() throws SQLException {
 		return connectionPool.getConnection();
+	}
+	
+	public static BoneCP getConnectionPool(){
+		return connectionPool;
 	}
 
 	public AdherentDAO getAdherentDAO() {
