@@ -15,14 +15,13 @@
 		<th>Designation</th>
 		<th>Categorie</th>
 		<th>Quantité</th>
-		<th></th>
 	</tr>
 	<c:forEach items="${listeMateriels}" var="mat">
 		<tr>
-			<td><c:out value="${mat.getDesignation().getLibelleDesignation()}" /></td>
-			<td><c:out value="${mat.getCategorie().getLibelleCat()}" /></td>
-			<td><c:out value="${mat.getCategorie().getLibelleCat()}" /></td>
-			<td><a href="ConsulteAdherent?id=<c:out value="${adh['idPersonne']}" />"><input type="button" value="Détails" /></a><td>
+			<td><c:out value="${mat.designation.libelleDesignation}" /></td>
+			<td><c:out value="${mat.categorie.libelleCat}" /></td>
+			<td><c:out value="${mat.categorie.libelleCat}" /></td>
+			
 		</tr>
 	</c:forEach>
 </table>
