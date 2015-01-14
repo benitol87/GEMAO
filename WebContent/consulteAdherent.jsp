@@ -88,7 +88,7 @@
 		</tr>
 		<tr>
 			<td><label for="tel">Téléphone : </label></td>
-			<td><p><c:out value="${responsable['telephonee']}" /></p></td>
+			<td><p><c:out value="${responsable['telephone']}" /></p></td>
 			<td><label for="email">E-mail : </label></td>
 			<td><p><c:out value="${responsable['email']}" /></p></td>
 		</tr>
