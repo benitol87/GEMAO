@@ -153,7 +153,7 @@ public class AdherentDAO extends IDAO<Adherent>{
 	public Adherent map(ResultSet result) throws SQLException {
 		PersonneDAO personneDAO = factory.getPersonneDAO();
 		Adherent adherent = new Adherent(personneDAO.get(result.getLong("idPersonne")),
-				NumberUtil.getResultInteger(result, "idMotif"),
+				NumberUtil.getResultInteger(result, "idMotifSortie"),
 				NumberUtil.getResultLong(result,"idResponsable"),
 				result.getBoolean("droitImage"), 
 				result.getDate("dateEntree"),
