@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.Discipline;
-import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
-import fr.gemao.sql.util.DateUtil;
 import fr.gemao.sql.util.NumberUtil;
 
 public class DisciplineDAO extends IDAO<Discipline> {
@@ -139,6 +137,41 @@ public class DisciplineDAO extends IDAO<Discipline> {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 		return list;
+	}
+	
+	/**
+	 * Associe une discipline et un adhérent.
+	 * @param idDiscipline
+	 * @param idAdherent
+	 */
+	public void addDiscplineParAdherent(int idDiscipline, long idAdherent){
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		String sql = "INSERT INTO suit(idAdherent, idDiscipline) values ( ?, ?);";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, idAdherent, idDiscipline);
+			int status = requete.executeUpdate();
+			if(status == 0 ){
+				throw new DAOException(
+						"Échec de la création de suit, aucune ligne ajoutée dans la table.");
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally{
+			DAOUtilitaires.fermeturesSilencieuses(requete, connexion);
+		}
+	}
+	
+	/**
+	 * Associe une liste de disciplines à une adhérent.
+	 * @param listDiscipline
+	 * @param idAdherent
+	 */
+	public void addAllDisciplineParAdherent(List<Discipline> listDiscipline, long idAdherent){
+		for(Discipline d : listDiscipline){
+			addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
+		}
 	}
 
 	@Override

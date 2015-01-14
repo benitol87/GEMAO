@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.sql.AdresseDAO;
+import fr.gemao.sql.CommuneDAO;
 import fr.gemao.sql.DAOFactory;
 
 public class AjouterCommuneCtrl {
