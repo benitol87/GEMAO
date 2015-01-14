@@ -1,10 +1,13 @@
 package fr.gemao.ctrl.materiel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.materiel.Categorie;
+import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.materiel.CategorieDAO;
+import fr.gemao.sql.materiel.MaterielDAO;
 
 public class CategorieCtrl {
 	/**
@@ -96,5 +99,14 @@ public class CategorieCtrl {
 
 		return catdao.get(idCategorie);
 		
+	}
+	
+	public List<Categorie> recupererToutesCategories(){
+		List<Categorie> listeCategorie = new ArrayList<Categorie>();
+		CategorieDAO categorieDAO = new CategorieDAO(DAOFactory.getInstance());
+		
+		listeCategorie = categorieDAO.getAll();
+		
+		return listeCategorie;
 	}
 }
