@@ -77,8 +77,9 @@ public class AjouterResponsableCtrl {
 	/**
 	 * Méthode permettant d'ajouter un responsable dans la BD
 	 * @param responsable
+	 * @return idResponsable si ajout réalisé, -1 sinon
 	 */
-	public void ajouterResponsable(Responsable responsable){
+	public long ajouterResponsable(Responsable responsable){
 		
 		if(this.verifierInformations(responsable)){
 			
@@ -90,13 +91,16 @@ public class AjouterResponsableCtrl {
 			resp = responsableDAO.create(responsable);
 			if (resp == null){
 				System.out.println("Une erreur est survenue lors de l'insertion...");
+				return -1;
 			} else {
 				responsable.setIdResponsable(resp.getIdResponsable());
 				System.out.println("Le responsable a bien été ajouté.");
+				return resp.getIdResponsable();
 			}
 		}
 		else{
 			System.out.println("Les informations du responsable ne sont pas valides...");
+			return -1;
 		}
 	}
 }

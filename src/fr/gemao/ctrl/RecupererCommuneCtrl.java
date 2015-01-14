@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.Commune;
+import fr.gemao.sql.CommuneDAO;
 import fr.gemao.sql.DAOFactory;
 
 public class RecupererCommuneCtrl {
