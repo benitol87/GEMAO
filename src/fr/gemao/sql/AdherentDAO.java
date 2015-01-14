@@ -45,6 +45,11 @@ public class AdherentDAO extends IDAO<Adherent> {
 				throw new DAOException(
 						"Échec de la création de l'adhérent, aucune ligne ajoutée dans la table.");
 			}
+			
+			if(!obj.getDisciplines().isEmpty()){
+				DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
+				disciplineDAO.addAllDisciplineParAdherent(obj.getDisciplines(), obj.getIdPersonne());
+			}
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
