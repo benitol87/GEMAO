@@ -20,22 +20,18 @@ public class ParametreDAO extends IDAO<Parametre> {
 	@Override
 	public Parametre create(Parametre obj) {
 		String sql = "INSERT INTO parametre (alloc2, alloc3, alloc4, "
-				+ "alloc5, qf_max, qf_min, dateLodif VALUE (?,?,?,?,?,?,?);";
+				+ "alloc5, qf_max, qf_min, dateModif) VALUES (?,?,?,?,?,?,?);";
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, true, 
-					obj.getAlloc2(),
-					obj.getAlloc3(),
-					obj.getAlloc4(),
-					obj.getAlloc5(),
-					obj.getQf_max(),
-					obj.getQf_min(),
-					DateUtil.toSqlDate(obj.getDateModif()));
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, true, obj.getAlloc2(), obj.getAlloc3(),
+					obj.getAlloc4(), obj.getAlloc5(), obj.getQf_max(),
+					obj.getQf_min(), DateUtil.toSqlDate(obj.getDateModif()));
 			int status = requete.executeUpdate();
-			
+
 			if (status == 0) {
 				throw new DAOException(
 						"Échec de la création de paramètre, aucune ligne ajoutée dans la table.");
@@ -117,4 +113,3 @@ public class ParametreDAO extends IDAO<Parametre> {
 	}
 
 }
-

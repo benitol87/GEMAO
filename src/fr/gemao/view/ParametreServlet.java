@@ -18,24 +18,28 @@ import fr.gemao.form.ParametreForm;
 @WebServlet("/Parametre")
 public class ParametreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final String VUE_PARAMETRE = "/WEB-INF/pages/parametre.jsp";
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 this.getServletContext().getRequestDispatcher( VUE_PARAMETRE ).forward( request, response );
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		this.getServletContext().getRequestDispatcher(VUE_PARAMETRE)
+				.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		ParametreForm form = new ParametreForm();
-		
+
 		Parametre parametre = form.ajoutParametre(request);
-		
 		if (form.getErreurs().isEmpty()) {
 			ParametreCtrl parametreCtrl = new ParametreCtrl();
 			try {
@@ -43,7 +47,11 @@ public class ParametreServlet extends HttpServlet {
 			} catch (Exception e) {
 				form.setErreur("Parametre", e.getMessage());
 			}
+		} else {
+
 		}
+		this.getServletContext().getRequestDispatcher(VUE_PARAMETRE)
+				.forward(request, response);
 	}
 
 }

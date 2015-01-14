@@ -3,6 +3,6 @@
 <body>
 <header>
 	<span>${sessionScope.sessionObjectPersonnel.prenom} ${sessionScope.sessionObjectPersonnel.nom}</span>
-	<a class="icon icon-settings" href="/GEMAO/Connexion"></a>
+	<a class="icon icon-settings" href="/GEMAO/Parametre"></a>
 	<a href="/GEMAO/Deconnexion">Déconnexion</a>
 </header>

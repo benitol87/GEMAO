@@ -19,12 +19,11 @@ public class ParametreCtrl {
 	public void controlerParametre(Parametre parametre) {
 
 		Parametre param = parametreDAO.getLast();
-		
-		if(!parametre.equals(param)){
+
+		if (!parametre.equals(param)) {
 			parametre.setDateModif(Calendar.getInstance().getTime());
 			parametreDAO.create(parametre);
-		}
-		else{
+		} else {
 			throw new IllegalArgumentException(
 					"Le paramétre n'a pas été modifié.");
 		}

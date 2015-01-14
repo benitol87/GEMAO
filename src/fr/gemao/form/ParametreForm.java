@@ -56,14 +56,14 @@ public class ParametreForm {
 	}
 
 	public Parametre ajoutParametre(HttpServletRequest request) {
-		
+
 		alloc2 = Float.parseFloat(getValeurChamp(request, CHAMP_ALLOC2));
 		alloc3 = Float.parseFloat(getValeurChamp(request, CHAMP_ALLOC3));
 		alloc4 = Float.parseFloat(getValeurChamp(request, CHAMP_ALLOC4));
 		alloc5 = Float.parseFloat(getValeurChamp(request, CHAMP_ALLOC5));
 		qfMin = Float.parseFloat(getValeurChamp(request, CHAMP_QFMIN));
 		qfMax = Float.parseFloat(getValeurChamp(request, CHAMP_QFMAX));
-		
+
 		try {
 			validationAlloc(alloc2);
 		} catch (Exception e) {
@@ -84,7 +84,7 @@ public class ParametreForm {
 		} catch (Exception e) {
 			setErreur(CHAMP_ALLOC5, e.getMessage());
 		}
-		
+
 		try {
 			validationQF(qfMax);
 		} catch (Exception e) {
@@ -95,20 +95,20 @@ public class ParametreForm {
 		} catch (Exception e) {
 			setErreur(CHAMP_QFMIN, e.getMessage());
 		}
-				
+
 		Parametre parametre = null;
-		
-		if (!erreurs.isEmpty()) {
-			parametre = new Parametre();
-			parametre.setAlloc2(alloc2);
-			parametre.setAlloc3(alloc3);
-			parametre.setAlloc4(alloc4);
-			parametre.setAlloc5(alloc5);
-			parametre.setQf_max(qfMax);
-			parametre.setQf_min(qfMin);
-			
-		}
-		
+
+		/* if (!erreurs.isEmpty()) { */
+		parametre = new Parametre();
+		parametre.setAlloc2(alloc2);
+		parametre.setAlloc3(alloc3);
+		parametre.setAlloc4(alloc4);
+		parametre.setAlloc5(alloc5);
+		parametre.setQf_max(qfMax);
+		parametre.setQf_min(qfMin);
+
+		/* } */
+
 		return parametre;
 	}
 
@@ -144,7 +144,6 @@ public class ParametreForm {
 	private static String getValeurChamp(HttpServletRequest request,
 			String nomChamp) {
 		String valeur = request.getParameter(nomChamp);
-		System.out.println(valeur);
 		if (valeur == null || valeur.trim().length() == 0) {
 			return null;
 		} else {
