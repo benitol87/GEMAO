@@ -137,7 +137,7 @@ public class PersonnelForm {
 	public void testerPersonnel(HttpServletRequest request) {
 
 		/* Récupération des champs du formulaire */
-		//listeResponsabilite = getValeurChamp(request, CHAMP_LISTERESPONSABILITE);
+		listeResponsabilite = getValeurChamp(request, CHAMP_LISTERESPONSABILITE);
 		idContrat = Integer.parseInt(getValeurChamp(request, CHAMP_IDCONTRAT));
 		login = getValeurChamp(request, CHAMP_LOGIN);
 		password = getValeurChamp(request, CHAMP_PASSWORD);
