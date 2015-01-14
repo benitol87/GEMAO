@@ -122,6 +122,10 @@ public class DAOFactory {
 	public AdherentDAO getAdherentDAO() {
 		return new AdherentDAO(this);
 	}
+	
+	public AdherentDAO getAdresseDAO(){
+		return new AdherentDAO(this);
+	}
 
 	public PersonneDAO getPersonneDAO() {
 		return new PersonneDAO(this);
