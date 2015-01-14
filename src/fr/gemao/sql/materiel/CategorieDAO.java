@@ -175,9 +175,8 @@ public class CategorieDAO extends IDAO<Categorie> {
 
 		String sql = "SELECT * FROM categorie";
 		try {
-			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false);
+			connexion = DAOFactory.getInstance().getConnection();
+			requete = connexion.prepareStatement(sql);
 			result = requete.executeQuery();
 
 			while (result.next()) {

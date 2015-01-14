@@ -54,7 +54,7 @@ public class Personnel extends Personne {
 	 * @param pointsAncien
 	 *            : le nombre de points d'ancienneté
 	 */
-	public Personnel(Long idPersonne, Long idAdresse, Long idCommuneNaiss,
+	public Personnel(Long idPersonne, Integer idAdresse, Integer idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, Civilite civilite,
 			List<Responsabilite> idResponsabilite, Integer idContrat,

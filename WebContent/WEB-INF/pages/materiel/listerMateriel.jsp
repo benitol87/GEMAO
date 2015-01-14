@@ -15,26 +15,15 @@
 		<th>Designation</th>
 		<th>Categorie</th>
 		<th>Quantité</th>
-		<th></th>
 	</tr>
-	<tr>
- 		<td>Batterie01</td>
- 		<td>Instrument</td>
- 		<td>N/A</td>
- 		<td><input type="button" value="Détails"/></td>
- 	</tr>
-	<tr>
-		<td>Trombonne</td>
- 		<td>Fournitures</td>
- 		<td>3019</td>
- 		<td><input type="button" value="Détails"/></td>
-	</tr>
-	<tr>
-		<td>chaise</td>
- 		<td>Mobilier</td>
- 		<td>208</td>
- 		<td><input type="button" value="Détails"/></td>
-	</tr>
+	<c:forEach items="${listeMateriels}" var="mat">
+		<tr>
+			<td><c:out value="${mat.designation.libelleDesignation}" /></td>
+			<td><c:out value="${mat.categorie.libelleCat}" /></td>
+			<td><c:out value="${mat.categorie.libelleCat}" /></td>
+			
+		</tr>
+	</c:forEach>
 </table>
 
 <c:import url="/inc/footer.inc.jsp" />

@@ -19,18 +19,18 @@
 			
 				<td>
 				<label for="designation">Désignation : </label>
-				<label for="designationResult">livre </label>
+				<label for="designationResult">${materiel.getDesignation().getLibelleDesignation()} </label>
 				</td>
 			</tr>
 			<tr>
 				<td>
 				<label for="valeurAch">Valeur d'achat : </label>
-				<label for="valeurAchResult">42€ </label>
+				<label for="valeurAchResult">${materiel.getValeurAchat()}</label>
 				</td>
 		
 				<td>
 				<label for="dateAch">Date d'achat : </label>
-				<label for="dateAchResult">10/10/1010 </label>
+				<label for="dateAchResult">${materiel.getDateAchat()} </label>
 				</td>
 			</tr>
 		</form>
@@ -43,7 +43,7 @@
 						<table>
 							<tr>
 								<td><label for="type">Type : </label></td>
-								<td><label for="typeResult">chaise</label></td>
+								<td><label for="typeResult">${materiel.getTypeMat()}</label></td>
 							</tr>
 							<tr>
 								<td><label for="quantite">Quantité : </label></td>
@@ -51,18 +51,18 @@
 							</tr>	
 							<tr>
 								<td><label for="marque">Marque : </label></td>
-								<td><label for="marqueResult">Ikea</label></td>
+								<td><label for="marqueResult">${materiel.getMarque().getNomMarque()}</label></td>
 							</tr>
 							<tr>
 								<td><label for="prixU">Prix unitaire : </label></td>
-								<td><label for="prixUResult">12€</label></td>
+								<td><label for="prixUResult">${materiel.getValeurAchat()}</label></td>
 							</tr>
 						</table>
 					</fieldset>
 				</td>
 				<td>
 					<label for="observation">Observation : </label>
-					<textarea rows="5" cols="30"></textarea>
+					<textarea rows="5" cols="30" name="observation">${materiel.getObservation()}</textarea>
 				</td>
 			</tr>
 			<tr>

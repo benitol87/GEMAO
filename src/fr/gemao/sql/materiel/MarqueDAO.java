@@ -1,5 +1,6 @@
 package fr.gemao.sql.materiel;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,8 @@ import java.util.List;
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
+import fr.gemao.sql.exception.DAOException;
+import fr.gemao.sql.util.DAOUtilitaires;
 
 public class MarqueDAO extends IDAO<Marque> {
 
@@ -28,7 +31,7 @@ public class MarqueDAO extends IDAO<Marque> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO MARQUE(idMarque, nomMarque)"
+			String sql = "INSERT INTO MARQUE(idMarque, nom)"
 					+ "VALUES (?, ?);";
 			requete = factory.getConnection().prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
@@ -111,7 +114,7 @@ public class MarqueDAO extends IDAO<Marque> {
 
 			if (result.first()) {
 				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
+						result.getString("nom"));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -143,7 +146,7 @@ public class MarqueDAO extends IDAO<Marque> {
 
 			if (result.first()) {
 				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
+						result.getString("nom"));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -167,34 +170,28 @@ public class MarqueDAO extends IDAO<Marque> {
 		List<Marque> liste = new ArrayList<>();
 
 		Marque marque = null;
-
+		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		try {
+		
+			
 			String sql = "SELECT * FROM marque;";
-			requete = factory.getConnection().prepareStatement(sql);
+		try {
+			
+			connexion = DAOFactory.getInstance().getConnection();
+			requete = connexion.prepareStatement(sql);
 			result = requete.executeQuery();
-
+			
 			while (result.next()) {
 				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
+						result.getString("nom"));
 				liste.add(marque);
 			}
 		} catch (SQLException e1) {
-			e1.printStackTrace();
+			throw new DAOException(e1);
 		} finally {
-			if (requete != null) {
-				try {
-					if (result != null) {
-						result.close();
-					}
-					requete.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
-
 		return liste;
 	}
 

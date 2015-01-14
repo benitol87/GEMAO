@@ -1,38 +1,30 @@
-package fr.gemao.form;
+package fr.gemao.ctrl;
 
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.gemao.entity.Personne;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.PersonneDAO;
 
-
-
-public class VerifierSyntaxePersonne {
-
-	public VerifierSyntaxePersonne() {
-
-	}
-
+public class AjouterPersonneCtrl {
+	
 	/**
-	 * Vérifie les informations d'une personne
-	 * 
-	 * @param pers
-	 * @return true si les informations sont bonnes (cohérentes), false sinon
+	 * Constructeur
 	 */
-	public boolean verifierInformations(Personne pers) {
+	public AjouterPersonneCtrl(){
+	}
+	
+	public boolean verifierInformations(Personne personne){
 		String masque;
 		Pattern pattern;
 		Matcher controler;
 
-		boolean isValide = true;
-
-		/**
-		 * Vérification de l'idPersonne
-		 */
-		if (pers.getIdPersonne() != null && pers.getIdPersonne() < 0) {
+		//Vérification de l'idPersonne
+		if (personne.getIdPersonne() < 0) {
 			System.out.println("L'idPersonne doit être positif");
-			isValide = false;
+			return false;
 		}
 
 		/**
@@ -54,33 +46,33 @@ public class VerifierSyntaxePersonne {
 		 */
 		masque = "^[A-Za-z\\-]+$";
 		pattern = Pattern.compile(masque);
-		controler = pattern.matcher(pers.getNom());
+		controler = pattern.matcher(personne.getNom());
 		if (!controler.matches()) {
 			System.out.println("Le format du nom est invalide");
-			isValide = false;
+			return false;
 		}
 
 		/**
 		 * Vérification du prenom Masque à définir
 		 */
-		controler = pattern.matcher(pers.getPrenom());
+		controler = pattern.matcher(personne.getPrenom());
 		if (!controler.matches()) {
 			System.out.println("Le format du prénom est invalide");
-			isValide = false;
+			return false;
 		}
 
 		/**
 		 * Vérification de la date de naissance
 		 */
 		Date date = new Date();
-		if (pers.getDateNaissance() == null) {
+		if (personne.getDateNaissance() == null) {
 			System.out
 					.println("La date d'entrée doit obligatoirement être saisie");
-			isValide = false;
-		} else if (pers.getDateNaissance().after(date)) {
+			return false;
+		} else if (personne.getDateNaissance().after(date)) {
 			System.out
 					.println("La date de naissance doit être antérieur à la date actuelle");
-			isValide = false;
+			return false;
 		}
 
 		/**
@@ -89,10 +81,10 @@ public class VerifierSyntaxePersonne {
 		masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
 				+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
 		pattern = Pattern.compile(masque);
-		controler = pattern.matcher(pers.getEmail());
-		if (!controler.matches() && pers.getEmail() != null) {
+		controler = pattern.matcher(personne.getEmail());
+		if (!controler.matches() && personne.getEmail() != null) {
 			System.out.println("Le format de l'email est invalide");
-			isValide = false;
+			return false;
 		}
 
 		/**
@@ -100,18 +92,45 @@ public class VerifierSyntaxePersonne {
 		 */
 		masque = "^[0][0-9]{9}$";
 		pattern = Pattern.compile(masque);
-		controler = pattern.matcher(pers.getTelFixe());
-		if (!controler.matches() && pers.getTelFixe() != null) {
+		controler = pattern.matcher(personne.getTelFixe());
+		if (!controler.matches() && personne.getTelFixe() != null) {
 			System.out.println("Le format du telephone fixe est invalide");
-			isValide = false;
+			return false;
 		}
-		controler = pattern.matcher(pers.getTelPort());
-		if (!controler.matches() && pers.getTelPort() != null) {
+		controler = pattern.matcher(personne.getTelPort());
+		if (!controler.matches() && personne.getTelPort() != null) {
 			System.out.println("Le format du telephone portable est invalide");
-			isValide = false;
+			return false;
 		}
+		
+		return true;
+	}
+	
+	/**
+	 * Méthode permettant d'ajouter une personne dans la BD
+	 * @param personne
+	 */
+	public long ajoutPersonne(Personne personne){
+		if (this.verifierInformations(personne)) {
+			Personne pers;
 
-		return isValide;
+			DAOFactory co = DAOFactory.getInstance();
+			PersonneDAO personneDAO = co.getPersonneDAO();
+
+			pers = personneDAO.create(personne);
+			if (pers == null){
+				System.out.println("Une erreur est survenue lors de l'insertion...");
+				return -1;
+			} else {
+					System.out.println("La personne a bien été ajoutée.");
+					return pers.getIdPersonne();
+			}
+
+		} else {
+			System.out
+					.println("Les informations de la personne ne sont pas valides...");
+			return -1;
+		}
 	}
 
 }

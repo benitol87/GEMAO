@@ -121,6 +121,31 @@ public class CommuneDAO extends IDAO<Commune> {
 		return liste;
 	}
 
+	public Commune existNomCodePostal(Commune commune) {
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * from commune where nom = ? and codePostal = ?;";
+		Commune verif = null;
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, commune.getNomCommune(),
+					commune.getCodePostal());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				verif = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return verif;
+	}
+
 	@Override
 	protected Commune map(ResultSet result) throws SQLException {
 		return new Commune(result.getInt("idCommune"),

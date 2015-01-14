@@ -32,7 +32,7 @@ public class EtatDAO extends IDAO<Etat> {
 		ResultSet result = null;
 		String sql = "INSERT INTO etat(idEtat, libelle)" + "VALUES (?, ?);";
 		try {
-
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, true, obj.getIdEtat(), obj.getLibelleEtat());
 			int status = requete.executeUpdate();
@@ -96,7 +96,7 @@ public class EtatDAO extends IDAO<Etat> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM etat WHERE idEtat = ?;";
 		try {
-
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false, id);
 			result = requete.executeQuery();
@@ -120,7 +120,7 @@ public class EtatDAO extends IDAO<Etat> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM etat WHERE libelle = ?;";
 		try {
-
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false, libEtat);
 			result = requete.executeQuery();
@@ -146,8 +146,8 @@ public class EtatDAO extends IDAO<Etat> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM Etat;";
 		try {
-			
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false);
+			connexion = DAOFactory.getInstance().getConnection();
+			requete = connexion.prepareStatement(sql);
 			result = requete.executeQuery();
 
 			while (result.next()) {
@@ -159,7 +159,6 @@ public class EtatDAO extends IDAO<Etat> {
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
-
 		return liste;
 	}
 

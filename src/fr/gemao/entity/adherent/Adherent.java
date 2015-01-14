@@ -43,7 +43,7 @@ public class Adherent extends Personne {
 	 * @param cotisation
 	 * @param disciplines
 	 */
-	public Adherent(Long idPersonne, Long idAdresse, Long idCommuneNaiss,
+	public Adherent(Long idPersonne, Integer idAdresse, Integer idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, Civilite civilite, Integer idMotif,
 			Long idResponsable, boolean droitImage, Date dateEntree,
@@ -201,6 +201,23 @@ public class Adherent extends Personne {
 	 */
 	public void setDisciplines(List<Discipline> disciplines) {
 		this.disciplines = disciplines;
+	}
+	
+	/**
+	 * Ajoute une discipline à l'adhérent.
+	 * @param discipline
+	 */
+	public boolean addDiscipline(Discipline discipline){
+		return disciplines.add(discipline);
+	}
+	
+	/**
+	 * Supprime une discipline à l'adhérent.
+	 * @param discipline
+	 * @return
+	 */
+	public boolean removeDiscipline(Discipline discipline){
+		return disciplines.remove(discipline);
 	}
 
 	/*

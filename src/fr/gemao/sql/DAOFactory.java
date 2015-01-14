@@ -178,4 +178,8 @@ public class DAOFactory {
 	public DisciplineDAO getDisciplineDAO() {
 		return new DisciplineDAO(this);
 	}
+	
+	public CommuneDAO getCommuneDAO(){
+		return new CommuneDAO(this);
+	}
 }

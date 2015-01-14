@@ -1,70 +1,174 @@
 package fr.gemao.form.personnel;
 
-import fr.gemao.entity.Personnel;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import fr.gemao.entity.Responsabilite;
 
 /**
- * Classe de vérification des informations d'un personnel
+ * Classe de validation du formulaire Personnel
  * @author Coco
  *
  */
 public class PersonnelForm {
 	
-	private boolean isValide;
+	//Informations relatives à la personne
+	private static final String CHAMP_LISTERESPONSABILITE = "responsabilités";
+	private static final String CHAMP_IDCONTRAT = "idContrat";
+	private static final String CHAMP_LOGIN = "login";
+	private static final String CHAMP_PASSWORD = "password";
+	private static final String CHAMP_POINTSANCIEN = "pointsAncien";
 	
-	/**
-	 * Constructeur
-	 */
-	public PersonnelForm() {
-		this.isValide = true;
+	private List<Responsabilite> listeResponsabilite;
+	private Integer idContrat;
+	private String login;
+	private String password;
+	private int pointsAncien;
+	
+	private String resultat;
+	private Map<String, String> erreurs = new HashMap<String, String>();
+	
+	public List<Responsabilite> getListeResponsabilite() {
+		return listeResponsabilite;
+	}
+
+	public Integer getIdContrat() {
+		return idContrat;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public int getPointsAncien() {
+		return pointsAncien;
+	}
+
+	public String getResultat() {
+		return resultat;
+	}
+
+	public Map<String, String> getErreurs() {
+		return erreurs;
+	}
+	
+	/* Méthode utilitaire qui retourne null si un champ est vide, et son contenu sinon */
+	private static String getValeurChamp(HttpServletRequest request, String nomChamp) {
+		String valeur = request.getParameter(nomChamp);
+		
+		if (valeur == null || valeur.trim().length() == 0) {
+			return null;
+		} else {
+			return valeur;
+		}
+	}
+	
+	/* Ajoute un message correspondant au champ spécifié à la map des erreurs. */
+	private void setErreur(String champ, String message) {
+		erreurs.put(champ, message);
 	}
 	
 	/**
-	 * Vérifie les informations d'un personnel
-	 * @param personnel : le personnel à vérifier
-	 * @return : retourne true si les informations sont cohérentes, false sinon
+	 * Méthode permettant de valider la liste des responsabilités
+	 * @param listeResponsabilites
+	 * @throws Exception
 	 */
-	public boolean verifierInformations(Personnel personnel) {
-		
-		/**
-		 * Vérifie si la liste des responsabilités n'est pas vide
-		 */
-		if (personnel.getIdResponsabilite() == null) {
-			System.out.println("Le personnel doit avoir au moins une responsabilité");
-			isValide = false;
+	private void validationListeResponsabilites(List<Responsabilite> listeResponsabilites) throws Exception {
+		if (listeResponsabilites == null) {
+			throw new Exception("Merci de saisir une liste de responsabilités valide.");
 		}
-		
-		/**
-		 * Vérifié si le numéro de contrat n'est pas null
-		 */
-		if (personnel.getIdContrat() == null) {
-			System.out.println("Le personnel doit avoir un numéro de contrat");
-			isValide = false;
+	}
+	
+	/**
+	 * Méthode permettant de valider l'ID du contrat
+	 * @param idContrat : l'ID du contrat
+	 * @throws Exception
+	 */
+	private void validationIdContrat(Integer idContrat) throws Exception {
+		if (idContrat == null || idContrat < 0) {
+			throw new Exception("Merci de saisir un ID de contrat valide.");
 		}
-		
-		/**
-		 * Vérifie si le login du personnel n'est pas null
-		 */
-		if (personnel.getLogin() == null) {
-			System.out.println("Le login du personnel ne peut pas être null");
-			isValide = false;
+	}
+	
+	/**
+	 * Méthode permettant de valider le login du personnel
+	 * @param login : le login
+	 * @throws Exception
+	 */
+	private void validationLogin(String login) throws Exception {
+		if (login == null || login.equals("")) {
+			throw new Exception("Merci de saisir un login valide.");
 		}
-		
-		/**
-		 * Vérifie si le mot de passe du personnel n'est pas null
-		 */
-		if (personnel.getPassword() == null) {
-			System.out.println("Le mot de passe du personnel ne peut pas être null");
-			isValide = false;
+	}
+
+	/**
+	 * Méthode permettant de valider le password du personnel
+	 * @param password : le password
+	 * @throws Exception
+	 */
+	private void validationPassword(String password) throws Exception {
+		if (password == null || password.equals("")) {
+			throw new Exception("Merci de saisir un password valide.");
 		}
-		
-		/**
-		 * Vérifie si le nombre de points d'ancienneté n'est pas inférieur à 0
-		 */
-		if (personnel.getPointsAncien() < 0) {
-			System.out.println("Le nombre de point d'ancienneté du personnel ne peut pas être inférieur à 0");
-			isValide = false;
+	}
+
+	/**
+	 * Méthode permettant de valider le nombre de points d'ancienneté
+	 * @param pointsAncien : le nombre de points d'ancienneté
+	 * @throws Exception
+	 */
+	private void validationPointsAncien(int pointsAncien) throws Exception {
+		if (pointsAncien < 0) {
+			throw new Exception("Merci de saisir un nombre de points valide.");
 		}
-		
-		return isValide;
+	}
+	
+	/**
+	 * Méthode permettant de tester un personnel
+	 * @param request
+	 */
+	public void testerPersonnel(HttpServletRequest request) {
+
+		/* Récupération des champs du formulaire */
+		listeResponsabilite = getValeurChamp(request, CHAMP_LISTERESPONSABILITE);
+		idContrat = Integer.parseInt(getValeurChamp(request, CHAMP_IDCONTRAT));
+		login = getValeurChamp(request, CHAMP_LOGIN);
+		password = getValeurChamp(request, CHAMP_PASSWORD);
+		pointsAncien = Integer.parseInt(getValeurChamp(request, CHAMP_POINTSANCIEN));
+
+		/* Validation de l'ID du contrat */
+		try {
+			validationIdContrat(idContrat);
+		} catch (Exception e) {
+			setErreur(CHAMP_IDCONTRAT, e.getMessage());
+		}
+
+		/* Validation du login */
+		try {
+			validationLogin(login);
+		} catch (Exception e) {
+			setErreur(CHAMP_LOGIN, e.getMessage());
+		}
+
+		/* Validation du password */
+		try {
+			validationPassword(password);
+		} catch (Exception e) {
+			setErreur(CHAMP_PASSWORD, e.getMessage());
+		}
+
+		/* Validation du nombre de points d'ancienneté */
+		try {
+			validationPointsAncien(pointsAncien);
+		} catch (Exception e) {
+			setErreur(CHAMP_POINTSANCIEN, e.getMessage());
+		}
 	}
 }
