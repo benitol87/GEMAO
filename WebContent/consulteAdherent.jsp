@@ -91,26 +91,21 @@
 </div>
 
 <c:if test="${adherent['idResponsable']==null}">
-	<p>TESTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</p>		
+	<table>
+		<tr>
+			<td><label for="nom">Nom : </label></td>
+			<td><p><c:out value="${responsable['nom']}" /></p></td>
+			<td><label for="prenom">Prénom : </label></td>
+			<td><p><c:out value="${responsable['prenom']}" /></p></td>
+		</tr>
+		<tr>
+			<td><label for="tel">Téléphone : </label></td>
+			<td><p><c:out value="${responsable['telephonee']}" /></p></td>
+			<td><label for="email">E-mail : </label></td>
+			<td><p><c:out value="${responsable['email']}" /></p></td>
+		</tr>
+	</table>
 </c:if>
-
-<p>SI IL Y A UN RESPONSABLE</p>
-<table>
-	<tr>
-		<td><label for="nom">Nom : </label></td>
-		<td><p>NOM RESPONSABLE ICI</p></td>
-		<td><label for="prenom">Prénom : </label></td>
-		<td><p>PRENOM RESPONSABLE ICI</p></td>
-	</tr>
-	<tr>
-		<td><label for="telFixe">Téléphone fixe : </label></td>
-		<td><p>TEL FIXE RESPONSABLE ICI</p></td>
-		<td><label for="telPort">Téléphone portable : </label></td>
-		<td><p>TEL PORT RESPONSABLE ICI</p></td>
-		<td><label for="email">E-mail : </label></td>
-		<td><p>MAIL RESPONSABLE ICI</p></td>
-	</tr>
-</table>
 <div>
 	<a href="ListeAdherents"><input type="button" value="Retour" /></a> <input
 		type="button" value="Modifier" />
