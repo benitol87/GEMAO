@@ -31,7 +31,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO Materiel(idMateriel," + "idEtat,"
+		String sql = "INSERT INTO materiel(idMateriel," + "idEtat,"
 				+ "idCategorie," + "idMarque," + "idDesignation,"
 				+ "typeMateriel," + "numSerie," + "dateAchat,"
 				+ "valeurAchat," + "valeurReapprov," + "deplaceConcert,"
@@ -89,7 +89,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 			connexion = factory.getConnection();
 			stat = connexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM Materiel WHERE idMateriel = "
+			stat.execute("DELETE FROM materiel WHERE idMateriel = "
 					+ obj.getIdMateriel() + ";");
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -113,7 +113,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * FROM Materiel WHERE idMateriel = ?;";
+		String sql = "SELECT * FROM materiel WHERE idMateriel = ?;";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, id);
