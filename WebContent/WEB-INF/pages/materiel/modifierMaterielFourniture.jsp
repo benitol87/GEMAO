@@ -19,7 +19,7 @@
 			
 				<td>
 				<label for="designation">Désignation : </label>
-				<label for="designationResult">livre </label>
+				<label for="designationResult">${mat.getDesignation()} </label>
 				</td>
 			</tr>
 			<tr>
