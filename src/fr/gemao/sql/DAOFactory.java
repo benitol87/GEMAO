@@ -27,7 +27,7 @@ public class DAOFactory {
 
 	private static boolean CHARGE = false;
 	private static DAOFactory instance;
-	private static BoneCP connectionPool;
+	private BoneCP connectionPool;
 
 	DAOFactory(BoneCP connectionPool) {
 		this.connectionPool = connectionPool;
@@ -91,7 +91,6 @@ public class DAOFactory {
 				config.setMinConnectionsPerPartition(5);
 				config.setMaxConnectionsPerPartition(10);
 				config.setPartitionCount(2);
-				config.setDisableConnectionTracking(true);
 				/*
 				 * Création du pool à partir de la configuration, via l'objet
 				 * BoneCP
@@ -114,10 +113,6 @@ public class DAOFactory {
 	/* Méthode chargée de fournir une connexion à la base de données */
 	public Connection getConnection() throws SQLException {
 		return connectionPool.getConnection();
-	}
-	
-	public static BoneCP getConnectionPool(){
-		return connectionPool;
 	}
 
 	public AdherentDAO getAdherentDAO() {

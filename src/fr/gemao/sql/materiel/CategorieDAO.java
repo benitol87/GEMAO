@@ -139,7 +139,31 @@ public class CategorieDAO extends IDAO<Categorie> {
 		}
 		return categorie;
 	}
+	public Categorie get(String nomCat) {
+		Categorie categorie = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
 
+		String sql = "SELECT * FROM categorie WHERE libelle = ?;";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, nomCat);
+
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				categorie = new Categorie(result.getInt("idCategorie"),
+						result.getString("libelle"));
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		return categorie;
+	}
 	@Override
 	public List<Categorie> getAll() {
 		List<Categorie> liste = new ArrayList<>();

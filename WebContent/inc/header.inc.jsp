@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <body>
 <header>
-	<span>${sessionScope.sessionObjectPersonnel.prenom} ${sessionScope.sessionObjectPersonnel.nom}</span>
-	<a class="icon icon-settings" href="/GEMAO/Connexion"></a>
+	<span>M. Machin, fonctions</span>
 	<a href="/GEMAO/Deconnexion">Déconnexion</a>
-	
 </header>
