@@ -70,7 +70,7 @@ public class ContratForm {
 	
 	/**
 	 * Méthode permettant de valider le nom sur le contrat
-	 * @param nom
+	 * @param nom : le nom sur le contrat
 	 * @throws Exception
 	 */
 	private void validationNom(String nom) throws Exception {
@@ -81,7 +81,7 @@ public class ContratForm {
 	
 	/**
 	 * Méthode permettant de vérifier le prénom sur le contrat
-	 * @param prenom
+	 * @param prenom : le prénom sur le contrat
 	 * @throws Exception
 	 */
 	private void validationPrenom(String prenom) throws Exception {
@@ -92,7 +92,7 @@ public class ContratForm {
 
 	/**
 	 * Méthode permettant de vérifier le type du contrat
-	 * @param typeContrat
+	 * @param typeContrat : le type du contrat
 	 * @throws Exception
 	 */
 	private void validationTypeContrat(String typeContrat) throws Exception {
@@ -103,7 +103,7 @@ public class ContratForm {
 
 	/**
 	 * Méthode permettant de vérifier la date de début du contrat
-	 * @param dateDebut
+	 * @param dateDebut : la date de début du contrat
 	 * @throws Exception
 	 */
 	private void validationDateDebut(Date dateDebut) throws Exception {
@@ -114,11 +114,11 @@ public class ContratForm {
 	
 	/**
 	 * Méthode permettant de vérifier la date de fin du contrat
-	 * @param dateFin
+	 * @param dateFin : la date de fin du contrat
 	 * @throws Exception
 	 */
 	private void validationDateFin(Date dateFin) throws Exception {
-		if (dateFin.equals("") && dateFin.getYear() > dateDebut.getYear()) {
+		if (dateFin.equals("")) {
 			throw new Exception("Merci de saisir une date de fin du contrat valide.");
 		}
 	}
