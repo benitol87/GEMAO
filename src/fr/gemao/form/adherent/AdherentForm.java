@@ -1,8 +1,6 @@
 package fr.gemao.form.adherent;
 
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +18,7 @@ public class AdherentForm {
 	//Informations relatives à la personne
 	private static final String CHAMP_NOM = "nom";
 	private static final String CHAMP_PRENOM = "prenom";
-	private static final String CHAMP_DATENAISS = "dateNaissance";
+	private static final String CHAMP_DATENAISSANCE = "dateNaissance";
 	private static final String CHAMP_TELFIXE = "telFixe";
 	private static final String CHAMP_TELPORT = "telPort";
 	private static final String CHAMP_EMAIL = "email";
@@ -37,7 +35,7 @@ public class AdherentForm {
 	//Droit à l'image
 	private static final String CHAMP_DROITIMAGE = "droitImage";
 	
-	//Discipline
+	//Discipline (à modifier !)
 	private static final String CHAMP_DISCIPLINE = "discipline";
 	private static final String CHAMP_CLASSE = "classe";
 	
@@ -47,7 +45,7 @@ public class AdherentForm {
 	//Informations relatives à la personne
 	private String nom;
 	private String prenom;
-	private Date dateNaissance;
+	private String dateNaissance;
 	private String telFixe;
 	private String telPort;
 	private String email;
@@ -62,11 +60,11 @@ public class AdherentForm {
 	private String nomCommune;
 	
 	//Droit à l'image
-	private boolean droitImage;
+	private String droitImage;
 	
 	//Discipline
-	private List<String> disciplines;
-	private List<String> classes;
+	private String discipline;
+	private String classe;
 	
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
@@ -87,7 +85,7 @@ public class AdherentForm {
 		return this.prenom;
 	}
 	
-	public Date getDateNaissance(){
+	public String getDateNaissance(){
 		return this.dateNaissance;
 	}
 	
@@ -123,16 +121,18 @@ public class AdherentForm {
 		return this.nomCommune;
 	}
 	
-	public boolean getDroitImage(){
+	public String getDroitImage(){
 		return this.droitImage;
 	}
 	
-	public List<String> getDisciplines(){
-		return this.disciplines;
+	//A modifier !
+	public String getDiscipline(){
+		return this.discipline;
 	}
 	
-	public List<String> getClasses(){
-		return this.classes;
+	//A modifier !
+	public String getClasse(){
+		return this.classe;
 	}
 	
 	/*
@@ -223,13 +223,191 @@ public class AdherentForm {
 	}
 	
 	/**
-	 * Méthode permettant de valider l'adresse email de l'adhérent
-	 * @param email
+	 * Méthode permettant de valider le numéro de rue de l'adhérent
+	 * @param numRue
 	 * @throws Exception
 	 */
-	private void validationEmail(String email) throws Exception {
-		if (email == null || email.equals("")) {
-			throw new Exception("Merci de saisir une adresse email valide.");
+	private void validationNumRue(Integer numRue) throws Exception {
+		if (numRue == null || numRue.equals("") || numRue <= 0) {
+			throw new Exception("Merci de saisir un numéro de rue valide.");
+		}
+	}
+	
+	/**
+	 * Méthode permettant de valider le nom de la rue de l'adhérent
+	 * @param nomRue
+	 * @throws Exception
+	 */
+	private void validationNomRue(String nomRue) throws Exception {
+		if (nomRue == null || nomRue.equals("")) {
+			throw new Exception("Merci de saisir un nom de rue valide.");
+		}
+	}
+	
+	/**
+	 * Méthode permettant de valider le code postal de l'adhérent
+	 * @param codePostal
+	 * @throws Exception
+	 */
+	private void validationCodePostal(Integer codePostal) throws Exception {
+		if (codePostal == null || codePostal.equals("")) {
+			throw new Exception("Merci de saisir un code postal valide.");
+		}
+	}
+	
+	/**
+	 * Méthode permettant de valider le nom de la commune de l'adhérent
+	 * @param nomCommune
+	 * @throws Exception
+	 */
+	private void validationNomCommune(String nomCommune) throws Exception {
+		if (nomCommune == null || nomCommune.equals("")) {
+			throw new Exception("Merci de saisir un nom de commune valide.");
+		}
+	}
+	
+	/**
+	 * Méthode permettant de valider le droit à l'image de l'adhérent
+	 * @param droitImage
+	 * @throws Exception
+	 */
+	private void validationDroitImage(String droitImage) throws Exception {
+		if (droitImage == null || droitImage.equals("")) {
+			throw new Exception("Merci de spécifier le droit à l'image.");
+		}
+	}
+	
+	/**
+	 * Méthode permettant de valider la/les discipline(s) de l'adhérent
+	 * @param disciplines
+	 * @throws Exception
+	 */
+	//A modifier !
+	private void validationDiscipline(String discipline) throws Exception {
+		if (discipline == null || discipline.equals("")) {
+			throw new Exception("Merci de saisir au moins une discipline.");
+		}
+	}
+	
+	/**
+	 * Méthode permettant de valider la/les classe(s) de l'adhérent
+	 * @param classes
+	 * @throws Exception
+	 */
+	//A modifier !
+	private void validationClasse(String classe) throws Exception {
+		if (classe == null || classe.equals("")) {
+			throw new Exception("Merci de saisir au moins une classe.");
+		}
+	}
+	
+	public void testerAdherent(HttpServletRequest request) {
+
+		//Récupération des champs du formulaire
+		nom = getValeurChamp(request, CHAMP_NOM);
+		prenom = getValeurChamp(request, CHAMP_PRENOM);
+		dateNaissance = getValeurChamp(request, CHAMP_DATENAISSANCE);
+		telFixe = getValeurChamp(request, CHAMP_TELFIXE);
+		telPort = getValeurChamp(request, CHAMP_TELPORT);
+		email = getValeurChamp(request, CHAMP_EMAIL);
+		numRue = Integer.parseInt(getValeurChamp(request, CHAMP_NUMRUE));
+		nomRue = getValeurChamp(request, CHAMP_NOMRUE);
+		infoCompl = getValeurChamp(request, CHAMP_INFOCOMPL);
+		codePostal = Integer.parseInt(getValeurChamp(request, CHAMP_CODEPOSTAL));
+		nomCommune = getValeurChamp(request, CHAMP_NOMCOMMUNE);
+		droitImage = getValeurChamp(request, CHAMP_DROITIMAGE);
+		discipline = getValeurChamp(request, CHAMP_DISCIPLINE);
+		classe = getValeurChamp(request, CHAMP_CLASSE);
+
+		//Validation du champ nom
+		try {
+			validationNom(nom);
+		} catch (Exception e) {
+			setErreur(CHAMP_NOM, e.getMessage());
+		}
+		
+		//Validation du champ prénom
+				try {
+					validationPrenom(prenom);
+				} catch (Exception e) {
+					setErreur(CHAMP_PRENOM, e.getMessage());
+				}
+
+		//Validation du champ date de naissance
+		try {
+			validationDateNaissance(dateNaissance);
+		} catch (Exception e) {
+			setErreur(CHAMP_DATENAISSANCE, e.getMessage());
+		}	
+		
+		//Validation du champ téléphone fixe
+		try {
+			validationTelFixe(telFixe);
+		} catch (Exception e) {
+			setErreur(CHAMP_TELFIXE, e.getMessage());
+		}
+		
+		//Validation du champ téléphone portable
+		try {
+			validationTelPort(telPort);
+		} catch (Exception e) {
+			setErreur(CHAMP_TELPORT, e.getMessage());
+		}
+		
+		//Validation du champ email
+		try {
+			validationEmail(email);
+		} catch (Exception e) {
+			setErreur(CHAMP_EMAIL, e.getMessage());
+		}
+		
+		//Validation du champ numéro de rue
+		try {
+			validationNumRue(numRue);
+		} catch (Exception e) {
+			setErreur(CHAMP_NUMRUE, e.getMessage());
+		}
+		
+		//Validation du champ nom de rue
+		try {
+			validationNomRue(nomRue);
+		} catch (Exception e) {
+			setErreur(CHAMP_NOMRUE, e.getMessage());
+		}
+		
+		//Validation du champ code postal
+		try {
+			validationCodePostal(codePostal);
+		} catch (Exception e) {
+			setErreur(CHAMP_CODEPOSTAL, e.getMessage());
+		}
+		
+		//Validation du champ nom de commune
+		try {
+			validationNomCommune(nomCommune);
+		} catch (Exception e) {
+			setErreur(CHAMP_NOMCOMMUNE, e.getMessage());
+		}
+		
+		//Validation du champ prénom
+		try {
+			validationDroitImage(droitImage);
+		} catch (Exception e) {
+			setErreur(CHAMP_DROITIMAGE, e.getMessage());
+		}
+		
+		//Validation du champ discipline (A modifier !)
+		try {
+			validationDiscipline(discipline);
+		} catch (Exception e) {
+			setErreur(CHAMP_DISCIPLINE, e.getMessage());
+		}
+		
+		//Validation du champ classe (A modifier !)
+		try {
+			validationClasse(classe);
+		} catch (Exception e) {
+			setErreur(CHAMP_CLASSE, e.getMessage());
 		}
 	}
 }
