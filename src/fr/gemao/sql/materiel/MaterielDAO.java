@@ -37,7 +37,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 				+ "valeurAchat," + "valeurReapprov," + "deplaceConcert,"
 				+ "observations)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
 		try {
-			
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, true, 
 			obj.getIdMateriel(),
 			obj.getEtat().getIdEtat(),
@@ -86,6 +86,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 		Connection connexion = null;
 		Statement stat = null;
 		try {
+			connexion = factory.getConnection();
 			stat = connexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
 			stat.execute("DELETE FROM Materiel WHERE idMateriel = "
@@ -114,6 +115,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM Materiel WHERE idMateriel = ?;";
 		try {
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, id);
 			result = requete.executeQuery();
 
@@ -138,7 +140,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM materiel;";
 		try {
-			
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false);
 			result = requete.executeQuery();
 

@@ -1,5 +1,6 @@
 package fr.gemao.sql.materiel;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -167,14 +168,17 @@ public class MarqueDAO extends IDAO<Marque> {
 		List<Marque> liste = new ArrayList<>();
 
 		Marque marque = null;
-
+		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		try {
+		
+			
 			String sql = "SELECT * FROM marque;";
-			requete = factory.getConnection().prepareStatement(sql);
+		try {
+			connexion = DAOFactory.getInstance().getConnection();
+			requete = connexion.prepareStatement(sql);
 			result = requete.executeQuery();
-
+			
 			while (result.next()) {
 				marque = new Marque(result.getInt("idMarque"),
 						result.getString("nomMarque"));
