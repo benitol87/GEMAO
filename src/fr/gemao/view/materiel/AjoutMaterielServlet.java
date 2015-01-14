@@ -35,15 +35,15 @@ public class AjoutMaterielServlet extends HttpServlet {
 		
 		List<Etat> listEtat = new ArrayList<Etat>();
 		listEtat = new EtatDAO(DAOFactory.getInstance()).getAll();
-		request.setAttribute("LISTETAT",listEtat);
+		request.setAttribute("LISTE_ETAT",listEtat);
 		
 		List<Designation> listDes = new ArrayList<Designation>();
 		listDes = new DesignationDAO(DAOFactory.getInstance()).getAll();
-		request.setAttribute("LISTDES",listDes);
+		request.setAttribute("LISTE_DESIGNATION",listDes);
 		
-		List<Marque> listMarq = new ArrayList<Marque>();
-		listMarq = new MarqueDAO(DAOFactory.getInstance()).getAll();
-		request.setAttribute("LISTEMARQ",listMarq);
+		List<Marque> listMarque = new ArrayList<Marque>();
+		listMarque = new MarqueDAO(DAOFactory.getInstance()).getAll();
+		request.setAttribute("LISTE_MARQUE",listMarque);
 		
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);

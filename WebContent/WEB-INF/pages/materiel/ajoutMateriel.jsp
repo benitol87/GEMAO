@@ -33,7 +33,7 @@
 							<td><select name="designation" id="designation">
 									<%
 										ArrayList<Designation> designations = (ArrayList) request
-												.getAttribute("LISTDES");
+												.getAttribute("LISTE_DESIGNATION");
 									%>
 									<%
 										for (int i = 0; i < designations.size(); i++) {
@@ -54,7 +54,7 @@
 							<td><select name="etat" id="etat">
 									<%
 										ArrayList<Etat> Etats = (ArrayList) request
-												.getAttribute("LISTETAT");
+												.getAttribute("LISTE_ETAT");
 									%>
 									<%
 										for (int i = 0; i < Etats.size(); i++) {
@@ -71,7 +71,7 @@
 							<td><select name="marque" id="marque">
 									<%
 										ArrayList<Marque> marques = (ArrayList) request
-												.getAttribute("LISTEMARQ");
+												.getAttribute("LISTE_MARQUE");
 									%>
 									<%
 										for (int i = 0; i < marques.size(); i++) {
@@ -161,7 +161,16 @@
 						</tr>
 						<tr>
 							<td><label for="marque">Marque : </label></td>
-							<td><select name="marque" id="marque"></select></td>
+							<td><select name="marque" id="marque">
+									<%
+										for (int i = 0; i < marques.size(); i++) {
+											Marque item = marques.get(i);
+									%>
+									<option value="<%=item.getIdMarque()%>"><%=item.getNomMarque()%></option>
+									<%
+										}
+									%>
+							</select></td>
 						</tr>
 						<tr>
 							<td><label for="prixU">Prix unitaire : </label></td>
@@ -211,7 +220,15 @@
 						</tr>
 						<tr>
 							<td><label for="marque">Marque : </label></td>
-							<td><select name="marque" id="marque"></select></td>
+							<td><select name="marque" id="marque">
+									<%
+										for (int i = 0; i < marques.size(); i++) {
+											Marque item = marques.get(i);
+									%>
+									<option value="<%=item.getIdMarque()%>"><%=item.getNomMarque()%></option>
+									<%
+										}
+									%></select></td>
 						</tr>
 						<tr>
 							<td><label for="prixU">Prix unitaire : </label></td>

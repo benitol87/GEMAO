@@ -11,6 +11,8 @@ import java.util.List;
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
+import fr.gemao.sql.exception.DAOException;
+import fr.gemao.sql.util.DAOUtilitaires;
 
 public class MarqueDAO extends IDAO<Marque> {
 
@@ -175,6 +177,7 @@ public class MarqueDAO extends IDAO<Marque> {
 			
 			String sql = "SELECT * FROM marque;";
 		try {
+			
 			connexion = DAOFactory.getInstance().getConnection();
 			requete = connexion.prepareStatement(sql);
 			result = requete.executeQuery();
@@ -185,20 +188,10 @@ public class MarqueDAO extends IDAO<Marque> {
 				liste.add(marque);
 			}
 		} catch (SQLException e1) {
-			e1.printStackTrace();
+			throw new DAOException(e1);
 		} finally {
-			if (requete != null) {
-				try {
-					if (result != null) {
-						result.close();
-					}
-					requete.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
-
 		return liste;
 	}
 
