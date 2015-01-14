@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import fr.gemao.entity.Responsabilite;
 
 /**
- * Classe de validation des informations d'un personnel
+ * Classe de validation du formulaire Personnel
  * @author Coco
  *
  */
@@ -76,6 +76,17 @@ public class PersonnelForm {
 	}
 	
 	/**
+	 * Méthode permettant de valider la liste des responsabilités
+	 * @param listeResponsabilites
+	 * @throws Exception
+	 */
+	private void validationListeResponsabilites(List<Responsabilite> listeResponsabilites) throws Exception {
+		if (listeResponsabilites == null) {
+			throw new Exception("Merci de saisir une liste de responsabilités valide.");
+		}
+	}
+	
+	/**
 	 * Méthode permettant de valider l'ID du contrat
 	 * @param idContrat : l'ID du contrat
 	 * @throws Exception
@@ -126,7 +137,7 @@ public class PersonnelForm {
 	public void testerPersonnel(HttpServletRequest request) {
 
 		/* Récupération des champs du formulaire */
-		//listeResponsabilite = getValeurChamp(request, listeResponsabilite.toString());
+		//listeResponsabilite = getValeurChamp(request, CHAMP_LISTERESPONSABILITE);
 		idContrat = Integer.parseInt(getValeurChamp(request, CHAMP_IDCONTRAT));
 		login = getValeurChamp(request, CHAMP_LOGIN);
 		password = getValeurChamp(request, CHAMP_PASSWORD);
