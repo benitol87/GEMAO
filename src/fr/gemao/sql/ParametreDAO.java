@@ -109,7 +109,7 @@ public class ParametreDAO extends IDAO<Parametre> {
 				result.getFloat("alloc2"), result.getFloat("alloc3"),
 				result.getFloat("alloc4"), result.getFloat("alloc5"),
 				result.getFloat("qf_min"), result.getFloat("qf_max"),
-				result.getDate("dateModif"));
+				result.getTimestamp("dateModif"));
 	}
 
 }
