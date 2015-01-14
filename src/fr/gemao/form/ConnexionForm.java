@@ -45,8 +45,8 @@ public class ConnexionForm {
 		}
 
 		if (!erreurs.isEmpty()) {
-			personnel = new Personnel(null, null, null, null, null, null, null,
-					null, null, null, null, login, null, 0);
+			personnel = new Personnel();
+			personnel.setLogin(login);
 		}
 
 		return personnel;
