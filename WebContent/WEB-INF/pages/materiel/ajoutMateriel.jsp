@@ -4,6 +4,7 @@
 <%@ page import="fr.gemao.entity.materiel.Etat"%>
 <%@ page import="fr.gemao.entity.materiel.Designation"%>
 <%@ page import="fr.gemao.entity.materiel.Marque"%>
+<%@ page import="fr.gemao.entity.materiel.Categorie"%>
 
 <c:set var="titre" value="Materiel" scope="request" />
 
@@ -14,9 +15,18 @@
 <form id="ajouterMateriel" action="#" method="post">
 	<label for="categorie">Catégorie : </label> <select name="categorie"
 		id="categorie">
-		<option value="1">Instrument</option>
-		<option value="2">Mobilier</option>
-		<option value="3">Fourniture</option>
+		<%
+			ArrayList<Categorie> categories = (ArrayList) request
+					.getAttribute("LISTE_CATEGORIE");
+		%>
+		<%
+			for (int i = 0; i < categories.size(); i++) {
+				Categorie item = categories.get(i);
+		%>
+		<option value="<%=item.getIdCategorie()%>"><%=item.getLibelleCat()%></option>
+		<%
+			}
+		%>
 	</select> <label for="valeurAch">Valeur d'achat : </label> <input type="number"
 		name="ValeurAch" /> <label for="dateAch">Date d'achat : </label> <input
 		type="date" name="dateAch" />
@@ -228,7 +238,8 @@
 									<option value="<%=item.getIdMarque()%>"><%=item.getNomMarque()%></option>
 									<%
 										}
-									%></select></td>
+									%>
+							</select></td>
 						</tr>
 						<tr>
 							<td><label for="prixU">Prix unitaire : </label></td>

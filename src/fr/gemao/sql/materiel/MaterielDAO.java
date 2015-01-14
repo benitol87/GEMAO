@@ -31,15 +31,14 @@ public class MaterielDAO extends IDAO<Materiel> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO materiel(idMateriel," + "idEtat,"
+		String sql = "INSERT INTO materiel(" + "idEtat,"
 				+ "idCategorie," + "idMarque," + "idDesignation,"
 				+ "typeMateriel," + "numSerie," + "dateAchat,"
 				+ "valeurAchat," + "valeurReapprov," + "deplaceConcert,"
-				+ "observations)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+				+ "observations)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, true, 
-			obj.getIdMateriel(),
 			obj.getEtat().getIdEtat(),
 			obj.getCategorie().getIdCategorie(),
 			obj.getMarque().getIdMarque(),
