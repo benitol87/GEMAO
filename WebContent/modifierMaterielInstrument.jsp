@@ -12,27 +12,31 @@
 	<form name="modifierMaterielInstrument" action="#" method="post">
 		<table>
 			<tr>
-				<td><label for="categorie">Catégorie : </label></td> 
 				<td>
-					<select name="categorie" id="categorie">
-						<option values="0"></option>
-						<option value="1">Instrument</option>
-						<option value="2">Mobilier</option>
-					</select> 
+				<label for="categorie">Catégorie : </label> 
+				<label for="categorieResult">Instrument</label>
 				</td>
 			
-				<td><label for="designation">Désignation : </label></td> 
-				<td><input type="text" name="designation" /></td>
+				<td>
+				<label for="designation">Désignation : </label>
+				<label for="designationResult">flute </label>
+				</td>
 			</tr>
 			<tr>
-				<td><label for="valeurAch">Valeur d'achat : </label></td>
-				<td><input type="number" name="ValeurAch" /></td>
+				<td>
+				<label for="valeurAch">Valeur d'achat : </label>
+				<label for="valeurAchResult">666€ </label>
+				</td>
 		
-				<td><label for="dateAch">Date d'achat : </label></td>
-				<td><input type="date" name="dateAch"/></td>
+				<td>
+				<label for="dateAch">Date d'achat : </label>
+				<label for="dateAchResult">10/10/1010 </label>
+				</td>
 			</tr>
-		</form>
-		<form name="modifierMaterielInstrument" action="#" method="post">
+		</table>
+	</form>
+	<form name="modifierMaterielInstrument" action="#" method="post">
+		<table>
 			<tr>
 				<td>
 					<fieldset>
@@ -40,19 +44,19 @@
 						<table>
 							<tr>
 								<td><label for="type">Type : </label></td>
-								<td><select name="Type"></select></td>
+								<td><label for="typeResult">flute a bec</label></td>
 							</tr>
 							<tr>
 								<td><label for="etat">Etat : </label></td>
-								<td><input type="text" name="etat"/></td>
+								<td><input type="text" name="etat"></td>
 							</tr>	
 							<tr>
 								<td><label for="marque">Marque : </label></td>
-								<td><input type="text" name="marque"/></td>
+								<td><label for="marqueResult">toshiba</label></td>
 							</tr>
 							<tr>
 								<td><label for="numSerie">Numéro de série : </label></td>
-								<td><input type="text" name="numSerie"/></td>
+								<td><label for="numSerieResult">254vse</label></td>
 							</tr>
 						</table>
 					</fieldset>
@@ -84,7 +88,7 @@
 						<tr>
 							<td>
 								<label for="observation">Observation : </label>
-								<textarea rows="5" cols="50"></textarea>
+								<textarea rows="5" cols="30"></textarea>
 							</td>
 						</tr>		
 					</table>
