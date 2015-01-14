@@ -7,11 +7,11 @@
 		<title><c:out value="${requestScope.titre}"/></title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="/GEMAO/favicon.ico">
-		<link rel="stylesheet" type="text/css" href="/GEMAO/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="/GEMAO/css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="/GEMAO/css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="/GEMAO/css/icons.css" />
-		<link rel="stylesheet" type="text/css" href="/GEMAO/css/component.css" />
-		<script src="/GEMAO/js/modernizr.custom.js"></script>
+		<link rel="shortcut icon" href="<c:url value="/favicon.ico"/>">
+		<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>" />
+		<link rel="stylesheet" type="text/css" href="<c:url value="/css/normalize.css"/>" />
+		<link rel="stylesheet" type="text/css" href="<c:url value="/css/demo.css"/>" />
+		<link rel="stylesheet" type="text/css" href="<c:url value="/css/icons.css"/>" />
+		<link rel="stylesheet" type="text/css" href="<c:url value="/css/component.css"/>" />
+		<script src="<c:url value="/js/modernizr.custom.js"/>" ></script>
 	</head>
