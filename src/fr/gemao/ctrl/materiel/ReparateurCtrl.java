@@ -80,4 +80,20 @@ public class ReparateurCtrl {
 		repDAO.update(reparateur);
 		
 	}
+	/**
+	 * Permet de recuperer un Reparateur
+	 * @param idRep
+	 * 		id du reparateur a recuperer
+	 * @return
+	 * 		le reparateur correspondant a idRep
+	 */
+	public Reparateur recupererReparateur(int idRep){
+		if(idRep <=0){
+			throw new IllegalArgumentException("id invalide");
+			
+		}
+		ReparateurDAO repDAO = new ReparateurDAO(DAOFactory.getInstance());
+		
+		return repDAO.get(idRep);
+	}
 }
