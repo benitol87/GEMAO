@@ -21,7 +21,7 @@ import fr.gemao.entity.adherent.Responsable;
 public class ConsulteAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public static final String VUE_CONSULTEADHERENT = "/consulteAdherent.jsp";
+	public static final String VUE_CONSULTEADHERENT = "/WEB-INF/pages/adherent/consulteAdherent.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
