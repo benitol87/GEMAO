@@ -57,4 +57,27 @@ public class ReparateurCtrl {
 			}
 		}
 	}
+	/**
+	 * permet de modifier le nom d'un reparateur
+	 * 
+	 * @param reparateur
+	 * 		le reparateur avec son nouveau nom
+	 */
+	public void modifierReparateur(Reparateur reparateur){
+		if(reparateur.getIdReparateur() <=0){
+			throw new IllegalArgumentException("Id incorrect");
+		}
+		
+		if(reparateur.getNom() == null){
+			throw new NullPointerException("Nom non precisé");
+		}
+		
+		if(reparateur.getNom() == ""){
+			throw new IllegalArgumentException("Nom incomplet");
+		}
+		ReparateurDAO repDAO = new ReparateurDAO(DAOFactory.getInstance());
+		
+		repDAO.update(reparateur);
+		
+	}
 }

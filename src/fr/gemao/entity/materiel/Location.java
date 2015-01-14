@@ -13,31 +13,31 @@ import fr.gemao.entity.Personne;
 public class Location {
 	
 	/** The personne. */
-	private final Personne personne;
+	private Personne personne;
 	
 	/** The materiel. */
-	private final Materiel materiel;
+	private Materiel materiel;
 	
 	/** The etat debut. */
-	private final Etat etatDebut;
+	private Etat etatDebut;
 	
 	/** The etat fin. */
-	private final Etat etatFin;
+	private Etat etatFin;
 	
 	/** The date emprunt. */
-	private final Date dateEmprunt;
+	private Date dateEmprunt;
 	
 	/** The date retour. */
-	private final Date dateRetour;
+	private Date dateRetour;
 	
 	/** The duree. */
-	private final int duree;
+	private int duree;
 	
 	/** The montant. */
 	private float montant;
 	
 	/** The reparation. */
-	private final Reparation reparation;
+	private Reparation reparation;
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -123,7 +123,8 @@ public class Location {
 				+ ", duree=" + duree + ", montant=" + montant + "]";
 	}
 
-	
+	public Location() {
+	}
 	
 	/**
 	 * Instantiates a new location.
@@ -232,4 +233,42 @@ public class Location {
 	public int getDuree() {
 		return duree;
 	}
+
+	public Reparation getReparation() {
+		return reparation;
+	}
+
+	public void setReparation(Reparation reparation) {
+		this.reparation = reparation;
+	}
+
+	public void setPersonne(Personne personne) {
+		this.personne = personne;
+	}
+
+	public void setMateriel(Materiel materiel) {
+		this.materiel = materiel;
+	}
+
+	public void setEtatDebut(Etat etatDebut) {
+		this.etatDebut = etatDebut;
+	}
+
+	public void setEtatFin(Etat etatFin) {
+		this.etatFin = etatFin;
+	}
+
+	public void setDateEmprunt(Date dateEmprunt) {
+		this.dateEmprunt = dateEmprunt;
+	}
+
+	public void setDateRetour(Date dateRetour) {
+		this.dateRetour = dateRetour;
+	}
+
+	public void setDuree(int duree) {
+		this.duree = duree;
+	}
+	
+	
 }

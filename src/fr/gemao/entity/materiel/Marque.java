@@ -1,8 +1,11 @@
 package fr.gemao.entity.materiel;
 
 public class Marque {
-	private final int idMarque;
+	private int idMarque;
 	private String nomMarque;
+	
+	public Marque() {
+	}
 	
 	/**
 	 * Instantiates a new marque.
@@ -13,6 +16,10 @@ public class Marque {
 	public Marque(int idMarque, String nomMarque) {
 		this.idMarque = idMarque;
 		this.nomMarque = nomMarque;
+	}
+
+	public void setIdMarque(int idMarque) {
+		this.idMarque = idMarque;
 	}
 
 	/**

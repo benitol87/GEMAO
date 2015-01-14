@@ -11,7 +11,6 @@ public class ConnexionCtrl {
 
 	public ConnexionCtrl() {
 		daoFactory = DAOFactory.getInstance();
-
 		personnelDAO = daoFactory.getPersonnelDAO();
 	}
 
@@ -20,13 +19,13 @@ public class ConnexionCtrl {
 			throw new IllegalArgumentException("Le login ne peut être null");
 		}
 		if (passwd == null) {
-			throw new IllegalArgumentException("Le password ne peut être null");
+			throw new IllegalArgumentException("Le mot de passe ne peut être null");
 		}
 
 		Personnel personnel = personnelDAO.getLoginParPersonnel(login);
 
 		if (personnel == null) {
-			throw new IllegalArgumentException("Le personnel ne peut être null");
+			throw new IllegalArgumentException("Le login n'existe pas");
 		}
 
 		final String motDePassePersonnel = personnel.getPassword();
@@ -34,7 +33,8 @@ public class ConnexionCtrl {
 		boolean passwdIdentique = motDePassePersonnel.equals(passwd);
 
 		if (!passwdIdentique) {
-			throw new IllegalArgumentException("Le mot de passe est différent");
+			throw new IllegalArgumentException(
+					"Le mot de passe n'est pas valide");
 		}
 
 		return personnel;

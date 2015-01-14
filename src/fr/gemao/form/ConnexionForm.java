@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.gemao.ctrl.ConnexionCtrl;
 import fr.gemao.entity.Personnel;
 
 public class ConnexionForm {
@@ -15,6 +14,8 @@ public class ConnexionForm {
 
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
+	
+	private String login, motDePasse;
 
 	public String getResultat() {
 		return resultat;
@@ -26,17 +27,26 @@ public class ConnexionForm {
 
 	public Personnel connecterPersonnel(HttpServletRequest request) {
 		/* Récupération des champs du formulaire */
-		String login = getValeurChamp(request, CHAMP_LOGIN);
-		String motDePasse = getValeurChamp(request, CHAMP_PASS);
+		login = getValeurChamp(request, CHAMP_LOGIN);
+		motDePasse = getValeurChamp(request, CHAMP_PASS);
 
-		ConnexionCtrl connexionCtrl = new ConnexionCtrl();
-		Personnel personnel = connexionCtrl.controlerPersonnel(login, motDePasse);
+		Personnel personnel = null;
 
-		/* Initialisation du résultat global de la validation. */
-		if (erreurs.isEmpty()) {
-			resultat = "Succès de la connexion.";
-		} else {
-			resultat = "Échec de la connexion.";
+		try {
+			validationLogin(login);
+		} catch (Exception e) {
+			setErreur(CHAMP_LOGIN, e.getMessage());
+		}
+
+		try {
+			validationMotDePasse(motDePasse);
+		} catch (Exception e) {
+			setErreur(CHAMP_PASS, e.getMessage());
+		}
+
+		if (!erreurs.isEmpty()) {
+			personnel = new Personnel(null, null, null, null, null, null, null,
+					null, null, null, null, login, null, 0);
 		}
 
 		return personnel;
@@ -45,8 +55,26 @@ public class ConnexionForm {
 	/*
 	 * Ajoute un message correspondant au champ spécifié à la map des erreurs.
 	 */
-	private void setErreur(String champ, String message) {
+	public void setErreur(String champ, String message) {
 		erreurs.put(champ, message);
+	}
+
+	/**
+	 * Valide le login saisie.
+	 */
+	private void validationLogin(String login) throws Exception {
+		if (login == null) {
+			throw new Exception("Merci de saisir un login.");
+		}
+	}
+
+	/**
+	 * Valide le mot de passe saisi.
+	 */
+	private void validationMotDePasse(String motDePasse) throws Exception {
+		if (motDePasse == null) {
+			throw new Exception("Merci de saisir votre mot de passe.");
+		}
 	}
 
 	/*
@@ -62,4 +90,14 @@ public class ConnexionForm {
 			return valeur;
 		}
 	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+	
+	
 }

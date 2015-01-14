@@ -7,6 +7,9 @@ public class Adresse {
 	private String nomRue;
 	private String infoCompl;
 	
+	public Adresse() {
+	}
+	
 	public Adresse(Integer idAdresse, Integer idCommune, Integer numRue, String nomRue,
 			String infoCompl) {
 		super();
