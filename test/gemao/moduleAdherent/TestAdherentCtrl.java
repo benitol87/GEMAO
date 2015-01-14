@@ -32,7 +32,7 @@ public class TestAdherentCtrl {
 		 */
 		RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
 		
-		Adherent adherent2 = recupererAdherentCtrl.recupererAdherent(2L);
+		Adherent adherent2 = recupererAdherentCtrl.recupererAdherent(2);
 		List<Adherent> listeAdherents = recupererAdherentCtrl.recupererTousAdherents();
 
 		System.out.println("Adherent (personne 2) :\n"+adherent2+"\n\n");

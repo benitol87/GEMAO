@@ -72,7 +72,13 @@ public class AjouterAdherentCtrl {
 					.println("Le montant du quotient familial ne peut pas être négatif...");
 			return false;
 		}
-
+		
+		//Vérifications des disciplines
+		if(adherent.getDisciplines().isEmpty()){
+			System.out.println("L'adhérent doit participer à au moins une discipline...");
+			return false;
+		}
+		
 		return true;
 	}
 

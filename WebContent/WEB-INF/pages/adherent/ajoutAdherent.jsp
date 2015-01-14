@@ -24,7 +24,7 @@
 			<td><input type="text" name="prenom" required="required"
 				autocomplete="off" /></td>
 			<td><label for="dateNaiss">Date de naissance : </label></td>
-			<td><input type="text" name="dateNaiss" id="date"
+			<td><input type="text" name="dateNaiss" id="dateNaiss"
 				required="required" autocomplete="off" /></td>
 		</tr>
 		<tr>
@@ -39,11 +39,11 @@
 				autocomplete="off" /></td>
 		</tr>
 		<tr>
-			<td><label for="comNaissance">Commune de naissance : </label></td>
-			<td><input type="text" name="comNaissance" required="required"
+			<td><label for="comNaiss">Commune de naissance : </label></td>
+			<td><input type="text" name="comNaiss" required="required"
 				autocomplete="off" /></td>
-			<td><label for="codePNaissance">Code Postal : </label></td>
-			<td><input type="text" name="codePNaissance" required="required"
+			<td><label for="codePNaiss">Code Postal : </label></td>
+			<td><input type="text" name="codePNaiss" required="required"
 				autocomplete="off" /></td>
 		</tr>
 		<tr>
@@ -60,11 +60,11 @@
 			<td><input type="text" name="compl" autocomplete="off" /></td>
 		</tr>
 		<tr>
-			<td><label for="codeP">Code Postal : </label></td>
-			<td><input type="text" name="codeP" required="required"
-				autocomplete="off" /></td>
 			<td><label for="commune">Commune : </label></td>
 			<td><input type="text" name="comunne" required="required"
+				autocomplete="off" /></td>
+			<td><label for="codePostal">Code Postal : </label></td>
+			<td><input type="text" name="codePostal" required="required"
 				autocomplete="off" /></td>
 		</tr>
 		<tr>
@@ -96,6 +96,11 @@
 			<td><input type="button" value="Retirer" id="retireDiscipline" />
 				<input type="button" value="Ajouter" id="ajoutDiscipline" /></td>
 		</tr>
+		<tr>
+			<td><label for="dateInscri">Date d'inscripton : </label></td>
+			<td><input type="text" name="datenIscri" id="dateInscri" required="required"
+				autocomplete="off" /></td>
+		</tr>
 	</table>
 	<div>
 		<span>Droit à l'image : </span> <input type="radio" name="droitImage"
@@ -104,8 +109,8 @@
 			for="droitImage">Non</label>
 	</div>
 	<div>
-		<input type="button" value="Annuler" /> <input type="button"
-			value="Suivant" /> <input type="button" value="Valider" />
+		<input type="button" value="Annuler" /> <input type="submit"
+			value="Suivant" />
 	</div>
 </form>
 <c:import url="/inc/footer.inc.jsp" />
