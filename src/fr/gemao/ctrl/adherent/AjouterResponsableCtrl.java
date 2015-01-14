@@ -1,7 +1,6 @@
 package fr.gemao.ctrl.adherent;
 
 import fr.gemao.entity.adherent.Responsable;
-import fr.gemao.form.adherent.VerifierSyntaxeResponsable;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.ResponsableDAO;
 
@@ -13,15 +12,17 @@ public class AjouterResponsableCtrl {
 	public AjouterResponsableCtrl(){
 	}
 	
+	public boolean verifierInformations(Responsable responsable){
+		//A implémenter
+		return true;
+	}
+	
 	/**
 	 * Méthode permettant d'ajouter un responsable dans la BD
 	 * @param responsable
 	 */
 	public void ajouterResponsable(Responsable responsable){
-		
-		VerifierSyntaxeResponsable verifResp = new VerifierSyntaxeResponsable();
-		
-		if(verifResp.verifierInformations(responsable)){
+		if(this.verifierInformations(responsable)){
 			
 			Responsable test;
 

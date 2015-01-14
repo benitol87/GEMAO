@@ -1,7 +1,6 @@
 package fr.gemao.ctrl.adherent;
 
 import fr.gemao.entity.adherent.Responsable;
-import fr.gemao.form.adherent.VerifierSyntaxeResponsable;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.ResponsableDAO;
 
@@ -18,9 +17,9 @@ public class ModifierResponsableCtrl {
 	 * @param responsable
 	 */
 	public void modifierResponsable(Responsable responsable){
-		VerifierSyntaxeResponsable verifResp = new VerifierSyntaxeResponsable();
+		AjouterResponsableCtrl ajoutResp = new AjouterResponsableCtrl();
 		
-		if(verifResp.verifierInformations(responsable)){
+		if(ajoutResp.verifierInformations(responsable)){
 			Responsable test1, test2;
 			
 			DAOFactory co = DAOFactory.getInstance();
