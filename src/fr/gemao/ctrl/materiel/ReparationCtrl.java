@@ -4,9 +4,12 @@ import java.sql.Date;
 
 
 
+import java.util.List;
+
 import fr.gemao.entity.materiel.Reparateur;
 import fr.gemao.entity.materiel.Reparation;
 import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.materiel.ReparateurDAO;
 import fr.gemao.sql.materiel.ReparationDAO;
 
 public class ReparationCtrl {
@@ -26,4 +29,31 @@ public class ReparationCtrl {
 				dateCertificat);
 		new ReparationDAO(DAOFactory.getInstance()).create(reparation);
 	}
+	
+	public void supprimerReparation(int idReparation){
+		if(idReparation <=0){
+			throw new IllegalArgumentException("id invalide");
+		}
+		
+		ReparationDAO repDAO = new ReparationDAO(DAOFactory.getInstance());
+
+		List<Reparation> reps = repDAO.getAll();
+		for (Reparation rep : reps) {
+			if (rep.getIdReparation() == (idReparation)) {
+				repDAO.delete(rep);
+				break;
+			}
+		}
+		
+	}
+	
+	public Reparation recupererReparation(int idReparation){
+		if(idReparation <=0){
+			throw new IllegalArgumentException("id invalide");
+		}
+		
+		ReparationDAO repDAO = new ReparationDAO(DAOFactory.getInstance());
+		return repDAO.get(idReparation);
+	}
 }
+	
