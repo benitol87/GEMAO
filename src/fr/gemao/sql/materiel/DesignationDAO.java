@@ -125,7 +125,31 @@ public class DesignationDAO extends IDAO<Designation> {
 
 		return designation;
 	}
+	
+	public Designation get(String libDes) {
+		Designation designation = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		try {
+			String sql = "SELECT * FROM designation WHERE libelle = ?;";
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, libDes);
+			result = requete.executeQuery();
 
+			if (result.first()) {
+				designation = new Designation(result.getInt("idDesignation"),
+						result.getString("libelle"));
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return designation;
+	}
 	@Override
 	public List<Designation> getAll() {
 		List<Designation> liste = new ArrayList<>();
