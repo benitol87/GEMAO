@@ -1,5 +1,6 @@
 package fr.gemao.sql.materiel;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,8 @@ import java.util.List;
 import fr.gemao.entity.materiel.Reparation;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
+import fr.gemao.sql.exception.DAOException;
+import fr.gemao.sql.util.DAOUtilitaires;
 
 public class ReparationDAO extends IDAO<Reparation> {
 
@@ -96,8 +99,31 @@ public class ReparationDAO extends IDAO<Reparation> {
 
 	@Override
 	public Reparation update(Reparation obj) {
-		throw new UnsupportedOperationException();
+		if(obj == null){
+			throw new NullPointerException("Reparation NULL");
+		}
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql ="UPDATE Reparation SET idReparateur =?, dateCertificat = ?"
+				+"WHERE idReparation =?;";
+		try{
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false,
+					obj.getReparateur().getIdReparateur(),
+					obj.getDateCertificat(),
+					obj.getIdReparation());
+					
+		requete.executeUpdate();
+	} catch (SQLException e) {
+		throw new DAOException(e);
+	} finally {
+		DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 	}
+	return this.get(obj.getIdReparation());
+}
+	
 
 	@Override
 	public Reparation get(long id) {
