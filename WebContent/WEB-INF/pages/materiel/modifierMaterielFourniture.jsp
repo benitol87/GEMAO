@@ -62,7 +62,7 @@
 				</td>
 				<td>
 					<label for="observation">Observation : </label>
-					<textarea rows="5" cols="30">${materiel.getObservation()}</textarea>
+					<textarea rows="5" cols="30" name="observation">${materiel.getObservation()}</textarea>
 				</td>
 			</tr>
 			<tr>
