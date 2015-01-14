@@ -14,10 +14,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.gemao.ctrl.AjouterAdresseCtrl;
+import fr.gemao.ctrl.RecupererAdresseCtrl;
+import fr.gemao.entity.Adresse;
+import fr.gemao.entity.Commune;
 import fr.gemao.entity.Discipline;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.form.VerifierSyntaxePersonne;
+import fr.gemao.sql.AdresseDAO;
+import fr.gemao.sql.DAOFactory;
 
 /**
  * Servlet implementation class AjoutAdherent
@@ -44,9 +50,8 @@ public class AjoutAdherentServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * Récupération des données saisies, envoyées en tant que paramètres de
-		 * la requète POST générée à la validation du formulaire
+		/**
+		 * Recuperation des données concernant l'adhérent
 		 */
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -54,16 +59,12 @@ public class AjoutAdherentServlet extends HttpServlet {
 		String telFixe = request.getParameter("telFixe");
 		String telPortable = request.getParameter("telPort");
 		String email = request.getParameter("email");
-		String comNaiss = request.getParameter("comNaiss");
-		String codePostNaiss = request.getParameter("codePostNaiss");
-		String numAdresse = request.getParameter("num");
-		String rueAdresse = request.getParameter("rue");
-		String complAdresse = request.getParameter("compl");
-		String commune = request.getParameter("num");
-		String codePostal = request.getParameter("codePostal");
 		String droitImage = request.getParameter("droitImage");
 		String dateInscription = request.getParameter("dateInscri");
 
+		/**
+		 * Création de l'adhérent
+		 */
 		Date dateNaiss = new Date();
 		Date dateInscri = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
@@ -78,9 +79,50 @@ public class AjoutAdherentServlet extends HttpServlet {
 				dateNaiss, telFixe, telPortable, email, Civilite.MONSIEUR,
 				null, null, Boolean.parseBoolean(droitImage), dateInscri, null,
 				null, 0.0f, list);
-		VerifierSyntaxePersonne verifierSyntaxePersonne = new VerifierSyntaxePersonne();
-		verifierSyntaxePersonne.verifierInformations(adherent);
-
+		
+		/**
+		 * Réupération des données de la commune de naissance
+		 */
+		String comNaiss = request.getParameter("comNaiss");
+		String codePostNaiss = request.getParameter("codePostNaiss");
+		
+		/**
+		 * Création de la commune de naissance (la récupère dans la base ou l'ajoute)
+		 */
+		Commune communeNaiss = new Commune();
+		
+		/**
+		 * Réupération des données de la commune
+		 */
+		String com = request.getParameter("commune");
+		String codePostal = request.getParameter("codePostal");
+		
+		/**
+		 * Création de la commune (la récupère dans la base ou l'ajoute)
+		 */
+		Commune commune = new Commune();
+		
+		/**
+		 * Réupération des données de l'adresse
+		 */
+		String numAdresse = request.getParameter("num");
+		String rueAdresse = request.getParameter("rue");
+		String complAdresse = request.getParameter("compl");
+		
+		/**
+		 * Création de l'adresse (la récupère dans la base ou l'ajoute)
+		 */
+		Adresse adresse = new Adresse(null,commune.getIdCommune(),Integer.parseInt(numAdresse),rueAdresse,complAdresse);
+		DAOFactory factory = DAOFactory.getInstance();
+		AdresseDAO adresseDAO = factory.getAdresseDAO();
+		if (adresseDAO.exist(adresse)==null) {
+			AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
+			ajouterAdresseCtrl.ajoutAdresse(adresse);
+		}
+		adresse = adresseDAO.exist(adresse);
+		
+		adherent.setIdAdresse(adresse.getIdAdresse());
+		
 		/* Transmission à la page JSP en charge de l'affichage des données */
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
