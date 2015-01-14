@@ -36,7 +36,7 @@ public class ModifierAdherentCtrl {
 				System.out.println("Une erreur est survenue lors de la modification...");
 			}
 			else{
-				adherent.setIdPersonne(test1.getIdPersonne());
+				adherent.setIdResponsable(test1.getIdPersonne());
 				test2 = adherentDAO.update(adherent);
 				if(test2 == null){
 					System.out.println("Une erreur est survenue lors de la modification...");

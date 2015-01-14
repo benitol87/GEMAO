@@ -98,7 +98,7 @@ public class ResponsableDAO extends IDAO<Responsable> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM responsable WHERE idResponsable = ?;";
 		try {
-
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false, id);
 			result = requete.executeQuery();

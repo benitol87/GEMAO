@@ -15,7 +15,7 @@ public class VerifierSyntaxeAdherent {
 	 * Vérifie les informations d'un adhérent
 	 * 
 	 * @param adherent
-	 * @return true si les informations sont bonnes (cohérentes), false sinon
+	 * @return true si les informations sont bonne (cohérente), false sinon
 	 */
 	public boolean verifierInformations(Adherent adherent) {
 
@@ -51,39 +51,39 @@ public class VerifierSyntaxeAdherent {
 
 		if (adherent.getDateEntree() == null) {
 			System.out
-					.println("La date d'entrée doit obligatoirement être saisie...");
+					.println("La date d'entrée doit obligatoirement être saisie");
 			isValide = false;
 		} else {
 			if (adherent.getDateEntree().after(date)) {
 				System.out
-						.println("La date d'entrée doit être antérieure à la date actuelle...");
+						.println("La date d'entrée doit être antérieur à la date actuelle");
 				isValide = false;
 			}
 			if (adherent.getDateSortie() != null) {
 				if (adherent.getDateEntree().after(adherent.getDateSortie())) {
 					System.out
-							.println("La date de sortie doit être postérieure à la date d'entrée...");
+							.println("La date de sortie doit être postérieur à la date d'entrée");
 					isValide = false;
 				}
 				if (adherent.getDateSortie().after(date)) {
 					System.out
-							.println("La date de sortie doit être antérieure à la date actuelle...");
+							.println("La date de sortie doit être antérieur à la date actuelle");
 					isValide = false;
 				}
 			}
 			if (adherent.getDateEntree().before(adherent.getDateNaissance())) {
 				System.out
-						.println("La date de naissance doit être antérieure à la date d'entrée...");
+						.println("La date de naissance doit être antérieur à la date d'entrée");
 				isValide = false;
 			}
 		}
 
 		/**
-		 * Vérification du quotient familial
+		 * Vérification du quotient familiale
 		 */
 		if (adherent.getQf()!=null && adherent.getQf() < 0.0) {
 			System.out
-					.println("Le montant du quotient familial ne peut pas être négatif...");
+					.println("Le montant du quotient familiale ne peut pas être négatif");
 			isValide = false;
 		}
 

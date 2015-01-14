@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererResponsableCtrl;
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.entity.adherent.Responsable;
 
 /**
  * Servlet implementation class ConsulteAdherentServlet
@@ -37,7 +38,8 @@ public class ConsulteAdherentServlet extends HttpServlet {
 		
 		if(adherent.getIdResponsable()!=null){
 			RecupererResponsableCtrl recupererResponsableCtrl = new RecupererResponsableCtrl();
-			
+			Responsable responsable = recupererResponsableCtrl.recupererResponsable(adherent.getIdResponsable());
+			request.setAttribute("responsable", responsable);
 		}
 
 		request.setAttribute("adherent", adherent);

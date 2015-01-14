@@ -19,11 +19,8 @@
 				autocomplete="off" /></td>
 		</tr>
 		<tr>
-			<td><label for="telFixe">Téléphone fixe : </label></td>
-			<td><input type="text" name="telFixe" pattern="[0][1-9][0-9]{8}"
-				required="required" autocomplete="off" /></td>
-			<td><label for="telPort">Téléphone portable : </label></td>
-			<td><input type="text" name="telPort" pattern="[0][1-9][0-9]{8}"
+			<td><label for="tel">Téléphone : </label></td>
+			<td><input type="text" name="tel" pattern="[0][1-9][0-9]{8}"
 				required="required" autocomplete="off" /></td>
 			<td><label for="email">E-mail : </label></td>
 			<td><input type="text" name="email" required="required"

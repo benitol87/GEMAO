@@ -170,7 +170,7 @@ public class PersonneDAO extends IDAO<Personne> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * FROM personne order by nom, prenom;";
+		String sql = "SELECT * FROM personne;";
 		try {
 			
 			connexion = factory.getConnection();

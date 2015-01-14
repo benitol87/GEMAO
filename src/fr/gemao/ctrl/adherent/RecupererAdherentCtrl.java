@@ -20,7 +20,7 @@ public class RecupererAdherentCtrl {
 	 * @param idPersonne
 	 * @return l'adhérent dont l'identifiant est idPersonne
 	 */
-	public Adherent recupererAdherent(Integer idPersonne){
+	public Adherent recupererAdherent(Long idPersonne){
 		DAOFactory co = DAOFactory.getInstance();
 		AdherentDAO adherentDAO = co.getAdherentDAO();
 		
