@@ -73,10 +73,8 @@ public class MaterielForm {
 	public void testerMateriel(HttpServletRequest request) {
 
 		/* Récupération des champs du formulaire */
-		idCategorie = Integer
-				.parseInt(getValeurChamp(request, CHAMP_CATEGORIE));
-		idDesignation = Integer.parseInt(getValeurChamp(request,
-				CHAMP_DESIGNATION));
+		idCategorie = Integer.parseInt(getValeurChamp(request, CHAMP_CATEGORIE));
+		idDesignation = Integer.parseInt(getValeurChamp(request, CHAMP_DESIGNATION));
 		valAch = Float.parseFloat(getValeurChamp(request, CHAMP_VALACH));
 		dateAch = getValeurChamp(request, CHAMP_DATEACH);
 
@@ -115,8 +113,7 @@ public class MaterielForm {
 			idMarque = Integer.parseInt(getValeurChamp(request, CHAMP_MARQUE));
 			String deplac = getValeurChamp(request, CHAMP_INST_DEPLACABLE);
 			numserie = getValeurChamp(request, CHAMP_INST_NUMSERIE);
-			valRea = Float
-					.parseFloat(getValeurChamp(request, CHAMP_INST_VALREA));
+			valRea = Float.parseFloat(getValeurChamp(request, CHAMP_INST_VALREA));
 			observation = getValeurChamp(request, CHAMP_INST_OBSERVATION);
 
 			/* Validation du champ deplacable. */
@@ -339,8 +336,7 @@ public class MaterielForm {
 	 */
 	private void validationDeplacable(String deplac) throws Exception {
 		if (deplac == null) {
-			throw new Exception(
-					"Merci de choisir une valeur valide pour deplacable.");
+			throw new Exception("Merci de choisir une valeur valide pour deplacable.");
 		} else {
 			if (!deplac.equals("oui") && !deplac.equals("non")) {
 				throw new Exception("Merci de saisir une date d'achat valide.");
@@ -351,11 +347,9 @@ public class MaterielForm {
 	/**
 	 * Valide la valeur de reapprovisionnement saisie.
 	 */
-	private void validationValeurReapprovisionnement(float valRea2)
-			throws Exception {
+	private void validationValeurReapprovisionnement(float valRea2) throws Exception {
 		if (valRea2 <= 0) {
-			throw new Exception(
-					"Merci de saisir une valeur de reapprovisionnement valide");
+			throw new Exception("Merci de saisir une valeur de reapprovisionnement valide");
 		}
 	}
 
@@ -457,8 +451,7 @@ public class MaterielForm {
 			throw new Exception("Merci de saisir un numero de serie valide.");
 		} else {
 			if (numserie2.equals("")) {
-				throw new Exception(
-						"Merci de saisir un numero de serie valide.");
+				throw new Exception("Merci de saisir un numero de serie valide.");
 			}
 		}
 	}
@@ -474,9 +467,9 @@ public class MaterielForm {
 	 * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
 	 * sinon.
 	 */
-	private static String getValeurChamp(HttpServletRequest request,
-			String nomChamp) {
+	private static String getValeurChamp(HttpServletRequest request, String nomChamp) {
 		String valeur = request.getParameter(nomChamp);
+		
 		if (valeur == null || valeur.trim().length() == 0) {
 			return null;
 		} else {
