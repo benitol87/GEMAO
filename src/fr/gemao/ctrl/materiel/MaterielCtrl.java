@@ -17,7 +17,7 @@ public class MaterielCtrl {
 
 	}
 
-	public void ajoutMateriel(int idMat,Etat etat,Categorie categorie, Marque marque, Designation designation,String typeMat,long numSerie,Date dateAchat, float valeurAchat,float valeurReap, boolean deplacable,String observation) {
+	public void ajoutMateriel(Etat etat,Categorie categorie, Marque marque, Designation designation,String typeMat,long numSerie,Date dateAchat, float valeurAchat,float valeurReap, boolean deplacable,String observation) {
 		if(etat == null){
 			throw new NullPointerException("L'etat ne doit pas etre null");
 		}
@@ -54,7 +54,7 @@ public class MaterielCtrl {
 			throw new IllegalArgumentException("la valeur ne peut pas etre negative");
 		}
 		
-		Materiel materiel = new Materiel(idMat, etat, categorie, marque, designation, observation, numSerie, dateAchat, valeurReap, valeurReap, deplacable, observation);
+		Materiel materiel = new Materiel(0, etat, categorie, marque, designation, observation, numSerie, dateAchat, valeurReap, valeurReap, deplacable, observation);
 		
 		new MaterielDAO(DAOFactory.getInstance()).create(materiel);
 		

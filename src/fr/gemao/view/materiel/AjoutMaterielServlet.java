@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.gemao.ctrl.materiel.MaterielCtrl;
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.entity.materiel.Etat;
@@ -25,6 +26,7 @@ import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
 import fr.gemao.sql.materiel.EtatDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
+import fr.gemao.sql.materiel.MaterielDAO;
 
 
 
@@ -85,6 +87,12 @@ public class AjoutMaterielServlet extends HttpServlet {
 		MarqueDAO marqDAO = new MarqueDAO(DAOFactory.getInstance());
 		materiel.setTypeMat(type);
 		materiel.setMarque(marqDAO.get(marque));
+		
+		MaterielCtrl matCtrl = new MaterielCtrl();
+		matCtrl.ajoutMateriel(materiel.getEtat(), materiel.getCategorie(),
+				materiel.getMarque(), materiel.getDesignation(),
+				materiel.getTypeMat(), materiel.getNumSerie(), materiel.getDateAchat(),
+				materiel.getValeurAchat(), materiel.getValeurReap(),materiel.isDeplacable(),materiel.getObservation() );
 		
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
