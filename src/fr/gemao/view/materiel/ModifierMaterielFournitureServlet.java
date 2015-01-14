@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.gemao.ctrl.materiel.MaterielCtrl;
+import fr.gemao.entity.materiel.Materiel;
+
 @WebServlet("/materiel/ModifierMaterielFourniture")
 public class ModifierMaterielFournitureServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -17,11 +20,12 @@ public class ModifierMaterielFournitureServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		/*
-		List<Etat> listEtat = new ArrayList<Etat>();
-		listEtat = new EtatDAO(DAOFactory.getInstance()).getAll();
-		request.setAttribute("etat", listEtat);
-		*/
+		MaterielCtrl matctrl = new MaterielCtrl();
+		Materiel mat = matctrl.recupererMateriel(3);
+
+		// tester mat
+
+		request.setAttribute("materiel", mat);
 
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);

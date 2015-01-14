@@ -29,7 +29,7 @@ public class MarqueDAO extends IDAO<Marque> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO MARQUE(idMarque, nomMarque)"
+			String sql = "INSERT INTO MARQUE(idMarque, nom)"
 					+ "VALUES (?, ?);";
 			requete = factory.getConnection().prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
@@ -112,7 +112,7 @@ public class MarqueDAO extends IDAO<Marque> {
 
 			if (result.first()) {
 				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
+						result.getString("nom"));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -144,7 +144,7 @@ public class MarqueDAO extends IDAO<Marque> {
 
 			if (result.first()) {
 				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
+						result.getString("nom"));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -181,7 +181,7 @@ public class MarqueDAO extends IDAO<Marque> {
 			
 			while (result.next()) {
 				marque = new Marque(result.getInt("idMarque"),
-						result.getString("nomMarque"));
+						result.getString("nom"));
 				liste.add(marque);
 			}
 		} catch (SQLException e1) {
