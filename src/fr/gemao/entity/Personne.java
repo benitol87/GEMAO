@@ -2,6 +2,8 @@ package fr.gemao.entity;
 
 import java.util.Date;
 
+import fr.gemao.entity.util.Civilite;
+
 public class Personne {
 
 	private Long idPersonne;
@@ -13,6 +15,7 @@ public class Personne {
 	private String telFixe;
 	private String telPort;
 	private String email;
+	private Civilite civilite;
 	
 	public Personne() {
 	}
@@ -29,10 +32,11 @@ public class Personne {
 	 * @param telFixe
 	 * @param telPort
 	 * @param email
+	 * @param civilite
 	 */
 	public Personne(Long idPersonne, Long idAdresse, Long idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
-			String telPort, String email) {
+			String telPort, String email, Civilite civilite) {
 		this.idPersonne = idPersonne;
 		this.idAdresse = idAdresse;
 		this.idCommuneNaiss = idCommuneNaiss;
@@ -42,6 +46,7 @@ public class Personne {
 		this.telFixe = telFixe;
 		this.telPort = telPort;
 		this.email = email;
+		this.civilite = civilite;
 	}
 
 	/**
@@ -53,7 +58,7 @@ public class Personne {
 		this(personne.getIdPersonne(), personne.getIdAdresse(), personne
 				.getIdCommuneNaiss(), personne.getNom(), personne.getPrenom(),
 				personne.getDateNaissance(), personne.getTelFixe(), personne
-						.getTelPort(), personne.getEmail());
+						.getTelPort(), personne.getEmail(), personne.getCivilite());
 	}
 
 	/**
@@ -283,8 +288,18 @@ public class Personne {
 		builder.append(telPort);
 		builder.append(", email=");
 		builder.append(email);
+		builder.append(", civilite=");
+		builder.append(civilite);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	public Civilite getCivilite() {
+		return civilite;
+	}
+
+	public void setCivilite(Civilite civilite) {
+		this.civilite = civilite;
 	}
 
 }

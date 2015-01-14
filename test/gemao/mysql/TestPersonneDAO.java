@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import fr.gemao.entity.Personne;
+import fr.gemao.entity.util.Civilite;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
 
@@ -35,7 +36,8 @@ public class TestPersonneDAO {
 		//Pour ajouter une personne � la base on creer l'objet correspondant
 		//N.B l'id est �gale � 0 car auto incr�mentation
 		Personne personneAdd = new Personne(0L, 1L, 1L, "Test", "Riri", new Date(), 
-				"0504030201", "0605040302","riri@unilim.fr");
+				"0504030201", "0605040302","riri@unilim.fr", Civilite.MONSIEUR);
+		System.out.println(personneAdd);
 		//On ajoute � la base la personne, on r�cup�re la personne effectivement ajouter
 		Personne rs = personneDAO.create(personneAdd);
 		System.out.println(rs);

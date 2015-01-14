@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.Personne;
+import fr.gemao.entity.util.Civilite;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.DateUtil;
@@ -34,8 +35,8 @@ public class PersonneDAO extends IDAO<Personne> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "INSERT INTO personne(idAdresse, idCommuneNaiss, nom, prenom,"
-				+ "	dateNaissance, tel_fixe, tel_port, email)"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "	dateNaissance, tel_fixe, tel_port, email, sexe)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		try {
 			
 			connexion = factory.getConnection();
@@ -47,7 +48,8 @@ public class PersonneDAO extends IDAO<Personne> {
 			DateUtil.toSqlDate(obj.getDateNaissance()),
 			obj.getTelFixe(),
 			obj.getTelPort(),
-			obj.getEmail());
+			obj.getEmail(),
+			obj.getCivilite().getSexe());
 			
 			int status = requete.executeUpdate();
 			if ( status == 0 ) {
@@ -108,7 +110,7 @@ public class PersonneDAO extends IDAO<Personne> {
 		ResultSet result = null;
 		String sql = "UPDATE personne SET idAdresse = ?, idCommuneNaiss = ?, nom = ?, "
 				+ "prenom = ?, dateNaissance = ?, tel_fixe = ?, tel_port = ?, "
-				+ "email = ?"
+				+ "email = ?, sexe = ?"
 				+ "WHERE idPersonne = ?;";
 		try {
 			
@@ -122,6 +124,7 @@ public class PersonneDAO extends IDAO<Personne> {
 					obj.getTelFixe(),
 					obj.getTelPort(),
 					obj.getEmail(),
+					obj.getCivilite().getSexe(),
 					obj.getIdPersonne());
 			int status = requete.executeUpdate();
 			
@@ -192,7 +195,6 @@ public class PersonneDAO extends IDAO<Personne> {
 
 	@Override
 	protected Personne map(ResultSet result) throws SQLException {
-		
 		return new Personne(Long.valueOf(result.getInt("idPersonne")),
 				NumberUtil.getResultLong(result, "idAdresse"),
 				NumberUtil.getResultLong(result, "idCommuneNaiss"),
@@ -201,7 +203,9 @@ public class PersonneDAO extends IDAO<Personne> {
 				result.getDate("dateNaissance"),
 				result.getString("tel_fixe"),
 				result.getString("tel_port"),
-				result.getString("email"));
+				result.getString("email"),
+				(result.getString("sexe").equals("M")?Civilite.MONSIEUR:Civilite.MADAME));
+		
 	}
 
 }
