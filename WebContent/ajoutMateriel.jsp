@@ -16,6 +16,7 @@
 					<select name="categorie" id="categorie">
 						<option value="1">Instrument</option>
 						<option value="2">Mobilier</option>
+						<option value="3">Fourniture</option>
 					</select> 
 				</td>
 			
@@ -135,4 +136,43 @@
 			</tr>
 		</table>
 	</form>
+	<form id="ajouterMaterielFourniture" action="#" methode="post" hidden>
+		<table>
+			<tr>
+				<td>
+					<fieldset >
+						<legend>Fourniture</legend>
+						<table>
+							<tr>
+								<td><label for="type">Type : </label></td>
+								<td><select name="Type"></select></td>
+							</tr>
+							<tr>
+								<td><label for="quantite">Quantité : </label></td>
+								<td><input type="text" name="quantite"/></td>
+							</tr>	
+							<tr>
+								<td><label for="marque">Marque : </label></td>
+								<td><input type="text" name="marque"/></td>
+							</tr>
+							<tr>
+								<td><label for="prixU">Prix unitaire : </label></td>
+								<td><input type="text" name="prixU"/></td>
+							</tr>
+						</table>
+					</fieldset>
+				</td>
+				<td>
+					<label for="observation">Observation : </label>
+					<textarea rows="5" cols="50"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="submit" name="valider" value="Valider"/></td>
+				<td></td><td></td>
+				<td><input type="reset" name="annuler" value="Annuler" /></td>
+			</tr>
+		</table>
+	</form>
+	
 <c:import url="/inc/footer.inc.jsp" />

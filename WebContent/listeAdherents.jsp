@@ -8,21 +8,24 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-
-
 <h1>Liste des adhérents</h1>
 
 <table>
-	</tr>
-	<c:forEach items="${listeAdherents}" var="adh">
-		<tr>
-			<td><c:out value="${adh['nom']}" /></td>
-			<td><c:out value="${adh['prenom']}" /></td>
-			<td><a
-				href="ConsulteAdherent?id=<c:out value="${adh['idPersonne']}" />"><input
-					type="button" value="Détails" /></a></td>
-		</tr>
-	</c:forEach>
+  <tr>
+    <th>Nom</th>
+    <th>Prenom</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>Barnabé</td>
+    <td>Jean</td>
+    <td><input type="button" value="Détails"/></td>
+  </tr>
+  <tr>
+    <td>Malou</td>
+    <td>Eddy</td>
+    <td><input type="button" value="Détails"/></td>
+  </tr>
 </table>
 
 <c:import url="/inc/footer.inc.jsp" />

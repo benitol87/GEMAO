@@ -12,31 +12,19 @@
 <table>
 	<tr>
 		<td><label for="nom">Nom : </label></td>
-		<td><p>
-				<c:out value="${adherent['nom']}" />
-			</p></td>
+		<td><p>NOM ICI</p></td>
 		<td><label for="prenom">Prénom : </label></td>
-		<td><p>
-				<c:out value="${adherent['prenom']}" />
-			</p></td>
+		<td><p>PRENOM ICI</p></td>
 		<td><label for="dateNaiss">Date de naissance : </label></td>
-		<td><p>
-				<c:out value="${dateNaissance}" />
-			</p></td>
+		<td><p>DATE DE NAISSANCE ICI</p></td>
 	</tr>
 	<tr>
 		<td><label for="telFixe">Téléphone fixe : </label></td>
-		<td><p>
-				<c:out value="${adherent['telFixe']}" />
-			</p></td>
+		<td><p>Tel Fixe ICI</p></td>
 		<td><label for="telPort">Téléphone portable : </label></td>
-		<td><p>
-				<c:out value="${adherent['telPort']}" />
-			</p></td>
+		<td><p>TEL PORT ICI</p></td>
 		<td><label for="email">E-mail : </label></td>
-		<td><p>
-				<c:out value="${adherent['email']}" />
-			</p></td>
+		<td><p>MAIL ICI</p></td>
 	</tr>
 </table>
 <br />
@@ -107,8 +95,8 @@
 	</table>
 </c:if>
 <div>
-	<a href="ListeAdherents"><input type="button" value="Retour" /></a> <input
-		type="button" value="Modifier" />
+	<input type="button" value="Retour" /> <input type="button"
+		value="Modifier" />
 </div>
 
 <c:import url="/inc/footer.inc.jsp" />
