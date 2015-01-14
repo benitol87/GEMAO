@@ -4,18 +4,22 @@ import java.sql.Date;
 
 public class Materiel {
 
-	private final long idMateriel;
+	private long idMateriel;
 	private Etat etat;
-	private final Categorie categorie;
-	private final Marque marque;
-	private final Designation designation;
+	private Categorie categorie;
+	private Marque marque;
+	private Designation designation;
 	private String typeMat;
-	private final long numSerie;
-	private final Date dateAchat;
-	private final float valeurAchat;
-	private final float valeurReap;
+	private long numSerie;
+	private Date dateAchat;
+	private float valeurAchat;
+	private float valeurReap;
 	private boolean deplacable;
 	private String observation;
+	
+	public Materiel() {
+		
+	}
 
 	/**
 	 * Instantiates a new materiel.
@@ -311,4 +315,38 @@ public class Materiel {
 	public float getValeurReap() {
 		return valeurReap;
 	}
+
+	public void setIdMateriel(long idMateriel) {
+		this.idMateriel = idMateriel;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public void setMarque(Marque marque) {
+		this.marque = marque;
+	}
+
+	public void setDesignation(Designation designation) {
+		this.designation = designation;
+	}
+
+	public void setNumSerie(long numSerie) {
+		this.numSerie = numSerie;
+	}
+
+	public void setDateAchat(Date dateAchat) {
+		this.dateAchat = dateAchat;
+	}
+
+	public void setValeurAchat(float valeurAchat) {
+		this.valeurAchat = valeurAchat;
+	}
+
+	public void setValeurReap(float valeurReap) {
+		this.valeurReap = valeurReap;
+	}
+	
+	
 }

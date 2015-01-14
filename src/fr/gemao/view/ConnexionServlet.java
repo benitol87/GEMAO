@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.ConnexionCtrl;
 import fr.gemao.entity.Personnel;
 import fr.gemao.form.ConnexionForm;
 
@@ -52,6 +53,17 @@ public class ConnexionServlet extends HttpServlet {
 		 * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
 		 * Utilisateur à la session, sinon suppression du bean de la session.
 		 */
+		if (form.getErreurs().isEmpty()) {
+			ConnexionCtrl connexionCtrl = new ConnexionCtrl();
+			try {
+				personnel = connexionCtrl.controlerPersonnel(form.getLogin(), form.getMotDePasse());
+			} catch (Exception e) {
+				form.setErreur("Connexion", e.getMessage());
+				personnel = new Personnel(null, null, null, null, null, null,
+						null, null, null, null, null, form.getLogin(), null, 0);
+			}
+		}
+		
 		if (form.getErreurs().isEmpty()) {
 			session.setAttribute(ATT_SESSION_USER, personnel);
 			// L'utilisateur voit la redirection

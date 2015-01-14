@@ -1,8 +1,11 @@
 package fr.gemao.entity.materiel;
 
 public class Designation {
-	private final int idDesignation;
+	private int idDesignation;
 	private String libelleDesignation;
+	
+	public Designation() {
+	}
 
 	/**
 	 * Instantiates a new Designation.
@@ -43,6 +46,12 @@ public class Designation {
 	 */
 	public int getIdDesignation() {
 		return idDesignation;
+	}
+	
+	
+
+	public void setIdDesignation(int idDesignation) {
+		this.idDesignation = idDesignation;
 	}
 
 	@Override

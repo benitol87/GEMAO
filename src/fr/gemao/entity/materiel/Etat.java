@@ -1,8 +1,11 @@
 package fr.gemao.entity.materiel;
 
 public class Etat {
-	private final int idEtat;
+	private int idEtat;
 	private String libelleEtat;
+	
+	public Etat() {
+	}
 	
 	/**
 	 * Instantiates a new etat.
@@ -42,6 +45,12 @@ public class Etat {
 		return idEtat;
 	}
 	
+	
+	
+	public void setIdEtat(int idEtat) {
+		this.idEtat = idEtat;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */

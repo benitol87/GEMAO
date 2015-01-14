@@ -8,6 +8,8 @@ public class Responsable {
 	private String telephone;
 	private String email;
 	
+	public Responsable() {
+	}
 	
 	public Responsable(long idResponsable, String nom, String prenom,
 			String telephone, String email) {

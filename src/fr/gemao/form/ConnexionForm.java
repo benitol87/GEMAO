@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.gemao.ctrl.ConnexionCtrl;
 import fr.gemao.entity.Personnel;
 
 public class ConnexionForm {
@@ -15,6 +14,8 @@ public class ConnexionForm {
 
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
+	
+	private String login, motDePasse;
 
 	public String getResultat() {
 		return resultat;
@@ -26,8 +27,8 @@ public class ConnexionForm {
 
 	public Personnel connecterPersonnel(HttpServletRequest request) {
 		/* Récupération des champs du formulaire */
-		String login = getValeurChamp(request, CHAMP_LOGIN);
-		String motDePasse = getValeurChamp(request, CHAMP_PASS);
+		login = getValeurChamp(request, CHAMP_LOGIN);
+		motDePasse = getValeurChamp(request, CHAMP_PASS);
 
 		Personnel personnel = null;
 
@@ -43,16 +44,7 @@ public class ConnexionForm {
 			setErreur(CHAMP_PASS, e.getMessage());
 		}
 
-		if (erreurs.isEmpty()) {
-			ConnexionCtrl connexionCtrl = new ConnexionCtrl();
-			try {
-				personnel = connexionCtrl.controlerPersonnel(login, motDePasse);
-			} catch (Exception e) {
-				setErreur("Connexion", e.getMessage());
-				personnel = new Personnel(null, null, null, null, null, null,
-						null, null, null, null, null, login, null, 0);
-			}
-		} else {
+		if (!erreurs.isEmpty()) {
 			personnel = new Personnel(null, null, null, null, null, null, null,
 					null, null, null, null, login, null, 0);
 		}
@@ -63,7 +55,7 @@ public class ConnexionForm {
 	/*
 	 * Ajoute un message correspondant au champ spécifié à la map des erreurs.
 	 */
-	private void setErreur(String champ, String message) {
+	public void setErreur(String champ, String message) {
 		erreurs.put(champ, message);
 	}
 
@@ -98,4 +90,14 @@ public class ConnexionForm {
 			return valeur;
 		}
 	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+	
+	
 }

@@ -1,15 +1,18 @@
 package fr.gemao.form.materiel;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.gemao.entity.materiel.Categorie;
-import fr.gemao.entity.materiel.Designation;
-import fr.gemao.entity.materiel.Etat;
-import fr.gemao.entity.materiel.Marque;
-import fr.gemao.entity.materiel.Materiel;
+import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Classe pour la validation du formulaire d'ajout de materiel. Seules les
+ * variables en rapport avec la categorie (instrument ou mobilier) sont
+ * initialisees (faire la verification).
+ * 
+ * @author kayzen
+ *
+ */
 public class MaterielForm {
 
 	private static final String CHAMP_CATEGORIE = "categorie";
@@ -65,7 +68,6 @@ public class MaterielForm {
 	}
 
 	public void testerMateriel(HttpServletRequest request) {
-		Materiel mat;
 
 		/* Récupération des champs du formulaire */
 		categorie = Integer.parseInt(getValeurChamp(request, CHAMP_CATEGORIE));
@@ -275,6 +277,10 @@ public class MaterielForm {
 		return qte;
 	}
 
+	public boolean getDeplacable() {
+		return deplacable;
+	}
+
 	private void validationDateAchat(String dateAch) throws Exception {
 		if (dateAch == null) {
 			throw new Exception("Merci de saisir une date d'achat valide.");
@@ -351,7 +357,7 @@ public class MaterielForm {
 	}
 
 	/**
-	 * Valide le type choisi.
+	 * Valide la marque saisie.
 	 */
 	private void validationMarque(String marque) throws Exception {
 		if (marque == null) {
@@ -364,21 +370,11 @@ public class MaterielForm {
 	}
 
 	/**
-	 * Valide le type choisi.
+	 * Valide le numero de serie saisi.
 	 */
 	private void validationNumserie(long numserie) throws Exception {
 		if (numserie <= 0) {
 			throw new Exception("Merci de saisir un numero de serie.");
-		}
-	}
-
-	/**
-	 * Valide le type choisi.
-	 */
-	private void validationValRea(float valRea) throws Exception {
-		if (valRea <= 0) {
-			throw new Exception(
-					"Merci de saisir un montant de reapprovisionnement correct.");
 		}
 	}
 

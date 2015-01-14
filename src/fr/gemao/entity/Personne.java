@@ -13,6 +13,9 @@ public class Personne {
 	private String telFixe;
 	private String telPort;
 	private String email;
+	
+	public Personne() {
+	}
 
 	/**
 	 * Construit une Personne

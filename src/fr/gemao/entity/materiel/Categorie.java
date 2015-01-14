@@ -1,8 +1,11 @@
 package fr.gemao.entity.materiel;
 
 public class Categorie {
-	private final int idCategorie;
-	private final String libelleCat;
+	private int idCategorie;
+	private String libelleCat;
+	
+	public Categorie() {
+	}
 	
 	/**
 	 * Instantiates a new categorie.
@@ -24,6 +27,16 @@ public class Categorie {
 		this(categorie.getIdCategorie(),categorie.getLibelleCat());
 	}
 	
+	
+	
+	public void setIdCategorie(int idCategorie) {
+		this.idCategorie = idCategorie;
+	}
+
+	public void setLibelleCat(String libelleCat) {
+		this.libelleCat = libelleCat;
+	}
+
 	/**
 	 * Gets the id categorie.
 	 *

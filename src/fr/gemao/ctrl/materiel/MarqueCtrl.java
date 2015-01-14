@@ -71,7 +71,14 @@ public class MarqueCtrl {
 		marqueDAO.update(marque);
 		
 	}
-	
+	/**
+	 * permet de recuperer une marque
+	 * 
+	 * @param idMarque
+	 * 		id de la marque a recuperer
+	 * @return
+	 * 		la marque recuperer grace a son id
+	 */
 	public Marque recupererMarque(int idMarque){
 		
 		if(idMarque <= 0){
