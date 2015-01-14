@@ -202,6 +202,23 @@ public class Adherent extends Personne {
 	public void setDisciplines(List<Discipline> disciplines) {
 		this.disciplines = disciplines;
 	}
+	
+	/**
+	 * Ajoute une discipline à l'adhérent.
+	 * @param discipline
+	 */
+	public boolean addDiscipline(Discipline discipline){
+		return disciplines.add(discipline);
+	}
+	
+	/**
+	 * Supprime une discipline à l'adhérent.
+	 * @param discipline
+	 * @return
+	 */
+	public boolean removeDiscipline(Discipline discipline){
+		return disciplines.remove(discipline);
+	}
 
 	/*
 	 * (non-Javadoc)
