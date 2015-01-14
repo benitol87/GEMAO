@@ -1,10 +1,8 @@
 package fr.gemao.ctrl.adherent;
 
-import fr.gemao.ancien_entity.Parametre;
-import fr.gemao.ancien_mysql.ConnectionMySql;
+import fr.gemao.entity.adherent.Parametre;
+import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.ParametreDAO;
-
-import java.sql.Connection;
 
 public class CalculerQuotientCtrl {
 
@@ -26,8 +24,8 @@ public class CalculerQuotientCtrl {
 	public float calculerQuotient(float revenus, int nbPersFoyer, int nbEnfFoyer) {
 		float alloc, quotient = 0;
 		
-		Connection co = ConnectionMySql.getInstance();
-		ParametreDAO parametreDAO = new ParametreDAO(co);
+		DAOFactory co = DAOFactory.getInstance();
+		ParametreDAO parametreDAO = co.getParametreDAO();
 		Parametre param = new Parametre(parametreDAO.getLast());
 		
 		switch (nbEnfFoyer) {

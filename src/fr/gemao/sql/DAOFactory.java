@@ -12,6 +12,7 @@ import com.jolbox.bonecp.BoneCPConfig;
 import fr.gemao.sql.exception.DAOConfigurationException;
 import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
+import fr.gemao.sql.materiel.EtatDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
 import fr.gemao.sql.materiel.MaterielDAO;
 import fr.gemao.sql.materiel.ReparationDAO;
@@ -25,7 +26,7 @@ public class DAOFactory {
 	private static final String PROPERTY_MOT_DE_PASSE = "motdepasse";
 
 	private static boolean CHARGE = false;
-
+	private static DAOFactory instance;
 	private BoneCP connectionPool;
 
 	DAOFactory(BoneCP connectionPool) {
@@ -102,8 +103,9 @@ public class DAOFactory {
 			}
 			instance = new DAOFactory(pool);
 			DAOFactory.CHARGE = true;
+			DAOFactory.instance = instance;
 		}else{
-			instance = null;
+			instance = DAOFactory.instance;
 		}
 		return instance;
 	}
@@ -157,4 +159,7 @@ public class DAOFactory {
 		return new ReparationDAO(this);
 	}
 
+	public ResponsableDAO getResponsableDAO(){
+		return new ResponsableDAO(this);
+	}
 }

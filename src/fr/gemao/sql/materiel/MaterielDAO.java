@@ -10,7 +10,6 @@ import java.util.List;
 
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.EtatDAO;
 import fr.gemao.sql.IDAO;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;

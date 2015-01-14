@@ -12,6 +12,9 @@ public class Reparateur {
 	/** The nom. */
 	private String nom;
 	
+	public Reparateur() {
+	}
+	
 	/**
 	 * Instantiates a new reparateur.
 	 *

@@ -71,13 +71,33 @@ public class DesignationDAO extends IDAO<Designation> {
 		 * stat.close(); } catch (SQLException e) { e.printStackTrace(); } } }
 		 */
 		throw new UnsupportedOperationException(
-				"Vous n'avez pas le droit de supprimer une Categorie.");
+				"Vous n'avez pas le droit de supprimer une Designation.");
 	}
 
 	@Override
 	public Designation update(Designation obj) {
-		// TODO Comportement par d�faut, a modifier
-		return null;
+		if (obj == null) {
+			throw new NullPointerException("La Designation ne doit pas etre nul");
+		}
+
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "UPDATE Designation SET libelle = ?"
+				+ "WHERE idDesignation = ?;";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false,
+					obj.getLibelleDesignation(),
+					obj.getIdDesignation());
+			requete.executeUpdate();
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		return this.get(obj.getIdDesignation());
 	}
 
 	@Override

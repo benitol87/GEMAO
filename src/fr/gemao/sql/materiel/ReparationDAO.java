@@ -96,8 +96,7 @@ public class ReparationDAO extends IDAO<Reparation> {
 
 	@Override
 	public Reparation update(Reparation obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

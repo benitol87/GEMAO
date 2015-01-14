@@ -16,6 +16,9 @@ public class Personnel extends Personne {
 	private String password;
 	private int pointsAncien;
 	
+	public Personnel() {
+	}
+	
 	/**
 	 * Constructeur de la classe Personnel
 	 * @param idPersonne : l'ID de la personne

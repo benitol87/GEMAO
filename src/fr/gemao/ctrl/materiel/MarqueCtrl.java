@@ -41,8 +41,51 @@ public class MarqueCtrl {
 			throw new IllegalArgumentException(
 					"Le nom de la marque doit etre renseigne");
 		}
+		
 		MarqueDAO marquedao = new MarqueDAO(DAOFactory.getInstance());
+		
 		Marque marque = marquedao.get(nomMarque);
+		
 		marquedao.delete(marque);
+	}
+	/**
+	 * permet la modification du nom d'une marque
+	 * 
+	 * @param marque
+	 * 		la Marque a modifier avec son nouveau nom
+	 */
+	public void updateMarque(Marque marque){
+		if(marque.getIdMarque() <=0){
+			throw new IllegalArgumentException("Id invalide");
+		}
+		
+		if (marque.getNomMarque() == null){
+			throw new NullPointerException("Nom incomplet");	
+		}
+		
+		if (marque.getNomMarque() == ""){
+			throw new IllegalArgumentException("Nom incomplet");	
+		}
+		MarqueDAO marqueDAO = new MarqueDAO(DAOFactory.getInstance());
+		
+		marqueDAO.update(marque);
+		
+	}
+	/**
+	 * permet de recuperer une marque
+	 * 
+	 * @param idMarque
+	 * 		id de la marque a recuperer
+	 * @return
+	 * 		la marque recuperer grace a son id
+	 */
+	public Marque recupererMarque(int idMarque){
+		
+		if(idMarque <= 0){
+			throw new IllegalArgumentException("Id invalide");
+		}
+		MarqueDAO marqueDAO = new MarqueDAO(DAOFactory.getInstance());
+		
+		return marqueDAO.get(idMarque);
 	}
 }

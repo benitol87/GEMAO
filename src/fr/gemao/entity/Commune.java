@@ -4,6 +4,9 @@ public class Commune {
 	private Integer idCommune, codePostal;
 	private String nomCommune;
 	private boolean avantage;
+	
+	public Commune() {
+	}
 
 	public Commune(Integer idCommune, Integer codePostal, String nomCommune,
 			boolean avantage) {

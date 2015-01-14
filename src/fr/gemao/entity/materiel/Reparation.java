@@ -30,6 +30,9 @@ public class Reparation {
 		return result;
 	}
 	
+	public Reparation() {
+	}
+	
 	/**
 	 * Instantiates a new reparation.
 	 *
