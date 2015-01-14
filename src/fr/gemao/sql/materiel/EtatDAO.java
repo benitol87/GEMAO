@@ -111,6 +111,30 @@ public class EtatDAO extends IDAO<Etat> {
 		}
 		return etat;
 	}
+	
+	public Etat get(String libEtat) {
+		Etat etat = null;
+
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM etat WHERE libelle = ?;";
+		try {
+
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, libEtat);
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				etat = this.map(result);
+			}
+		} catch (SQLException e1) {
+			throw new DAOException(e1);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		return etat;
+	}
 
 	@Override
 	public List<Etat> getAll() {
