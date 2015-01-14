@@ -146,8 +146,8 @@ public class EtatDAO extends IDAO<Etat> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM Etat;";
 		try {
-			
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false);
+			connexion = DAOFactory.getInstance().getConnection();
+			requete = connexion.prepareStatement(sql);
 			result = requete.executeQuery();
 
 			while (result.next()) {
@@ -159,7 +159,6 @@ public class EtatDAO extends IDAO<Etat> {
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
-
 		return liste;
 	}
 

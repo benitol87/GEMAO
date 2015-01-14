@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.gemao.entity.materiel.Designation;
 import fr.gemao.entity.materiel.Etat;
+import fr.gemao.entity.materiel.Marque;
 import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.materiel.DesignationDAO;
 import fr.gemao.sql.materiel.EtatDAO;
+import fr.gemao.sql.materiel.MarqueDAO;
 
 
 
@@ -31,7 +35,15 @@ public class AjoutMaterielServlet extends HttpServlet {
 		
 		List<Etat> listEtat = new ArrayList<Etat>();
 		listEtat = new EtatDAO(DAOFactory.getInstance()).getAll();
-		request.setAttribute("etat",listEtat);
+		request.setAttribute("LISTETAT",listEtat);
+		
+		List<Designation> listDes = new ArrayList<Designation>();
+		listDes = new DesignationDAO(DAOFactory.getInstance()).getAll();
+		request.setAttribute("LISTDES",listDes);
+		
+		List<Marque> listMarq = new ArrayList<Marque>();
+		listMarq = new MarqueDAO(DAOFactory.getInstance()).getAll();
+		request.setAttribute("LISTEMARQ",listMarq);
 		
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
