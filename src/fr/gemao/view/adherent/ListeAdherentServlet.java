@@ -18,23 +18,29 @@ import fr.gemao.entity.adherent.Adherent;
 @WebServlet("/ListeAdherents")
 public class ListeAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	public static final String VUE_LISTEADHERENTS = "/WEB-INF/pages/adherent/listeAdherents.jsp";
+
+	public static final String VUE = "/WEB-INF/pages/adherent/listeAdherents.jsp";
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
-		List<Adherent> adherents = recupererAdherentCtrl.recupererTousAdherents();
+		List<Adherent> adherents = recupererAdherentCtrl
+				.recupererTousAdherents();
 		request.setAttribute("listeAdherents", adherents);
-		this.getServletContext().getRequestDispatcher( VUE_LISTEADHERENTS ).forward( request, response );
+		this.getServletContext().getRequestDispatcher(VUE)
+				.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 

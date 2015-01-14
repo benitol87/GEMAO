@@ -21,7 +21,7 @@ import fr.gemao.entity.adherent.Responsable;
 public class ConsulteAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public static final String VUE_CONSULTEADHERENT = "/WEB-INF/pages/adherent/consulteAdherent.jsp";
+	public static final String VUE = "/WEB-INF/pages/adherent/consulteAdherent.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -35,16 +35,17 @@ public class ConsulteAdherentServlet extends HttpServlet {
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String dateNaissance = formatter.format(adherent.getDateNaissance());
-		
-		if(adherent.getIdResponsable()!=null){
+
+		if (adherent.getIdResponsable() != null) {
 			RecupererResponsableCtrl recupererResponsableCtrl = new RecupererResponsableCtrl();
-			Responsable responsable = recupererResponsableCtrl.recupererResponsable(adherent.getIdResponsable());
+			Responsable responsable = recupererResponsableCtrl
+					.recupererResponsable(adherent.getIdResponsable());
 			request.setAttribute("responsable", responsable);
 		}
 
 		request.setAttribute("adherent", adherent);
 		request.setAttribute("dateNaissance", dateNaissance);
-		this.getServletContext().getRequestDispatcher(VUE_CONSULTEADHERENT)
+		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}
 

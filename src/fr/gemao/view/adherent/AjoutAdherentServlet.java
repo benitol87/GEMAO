@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AjoutAdherent
  */
-@WebServlet("/app/AjoutAdherent")
+@WebServlet("/AjoutAdherent")
 public class AjoutAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private String VUE = "/app/ajoutAdherent.jsp";
+	private String VUE = "/WEB-INF/pages/adherent/ajoutAdherent.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse

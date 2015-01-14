@@ -38,63 +38,65 @@
 			<td><input type="text" name="email" required="required"
 				autocomplete="off" /></td>
 		</tr>
+		<tr>
+			<td><label for="comNaissance">Commune de naissance : </label></td>
+			<td><input type="text" name="comNaissance" required="required"
+				autocomplete="off" /></td>
+			<td><label for="codePNaissance">Code Postal : </label></td>
+			<td><input type="text" name="codePNaissance" required="required"
+				autocomplete="off" /></td>
+		</tr>
+		<tr>
+			<th><p>Adresse</p></th>
+		</tr>
+		<tr>
+			<td><label for="num">Numéro : </label></td>
+			<td><input type="text" name="num" required="required"
+				autocomplete="off" /></td>
+			<td><label for="rue">Rue : </label></td>
+			<td><input type="text" name="rue" required="required"
+				autocomplete="off" /></td>
+			<td><label for="compl">Complémentaire : </label></td>
+			<td><input type="text" name="compl" autocomplete="off" /></td>
+		</tr>
+		<tr>
+			<td><label for="codeP">Code Postal : </label></td>
+			<td><input type="text" name="codeP" required="required"
+				autocomplete="off" /></td>
+			<td><label for="commune">Commune : </label></td>
+			<td><input type="text" name="comunne" required="required"
+				autocomplete="off" /></td>
+		</tr>
+		<tr>
+			<td>
+				<table>
+					<tbody id="disciplines">
+						<tr>
+							<th><p>Disciplines</p></th>
+						</tr>
+						<tr>
+							<td>Discipline</td>
+							<td>Classe</td>
+						</tr>
+						<tr id="1">
+							<td><select size="1" name="dis1">
+									<option value="1">Test 1</option>
+									<option value="2">Test 2</option>
+							</select></td>
+							<td><select size="1" name="clas1">
+									<option value="1">Test 1</option>
+									<option value="2">Test 2</option>
+							</select></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="button" value="Retirer" id="retireDiscipline" />
+				<input type="button" value="Ajouter" id="ajoutDiscipline" /></td>
+		</tr>
 	</table>
-	<br />
-
-	<fieldset>
-		<legend>Adresse</legend>
-		<table>
-			<tr>
-				<td><label for="num">Numéro : </label></td>
-				<td><input type="text" name="num" required="required"
-					autocomplete="off" /></td>
-			</tr>
-			<tr>
-				<td><label for="rue">Rue : </label></td>
-				<td><input type="text" name="rue" required="required"
-					autocomplete="off" /></td>
-			</tr>
-			<tr>
-				<td><label for="compl">Complémentaire : </label></td>
-				<td><input type="text" name="compl" autocomplete="off" /></td>
-			</tr>
-			<tr>
-				<td><label for="codeP">Code Postal : </label></td>
-				<td><input type="text" name="codeP" required="required"
-					autocomplete="off" /></td>
-			</tr>
-			<tr>
-				<td><label for="commune">Commune : </label></td>
-				<td><input type="text" name="comunne" required="required"
-					autocomplete="off" /></td>
-			</tr>
-		</table>
-	</fieldset>
-
-	<fieldset>
-		<legend>Discipline</legend>
-		<table>
-			<tbody id="disciplines">
-				<tr>
-					<td><p>Discipline</p></td>
-					<td><p>Classe</p></td>
-				</tr>
-				<tr id="1">
-					<td><select size="1" name="dis1">
-							<option value="1">Test 1</option>
-							<option value="2">Test 2</option>
-					</select></td>
-					<td><select size="1" name="clas1">
-							<option value="1">Test 1</option>
-							<option value="2">Test 2</option>
-					</select></td>
-				</tr>
-			</tbody>
-		</table>
-		<input type="button" value="Retirer" id="retireDiscipline" /> <input
-			type="button" value="Ajouter" id="ajoutDiscipline" />
-	</fieldset>
-
 	<div>
 		<span>Droit à l'image : </span> <input type="radio" name="droitImage"
 			value="true" checked="checked" /> <label for="droitImage">Oui</label>
