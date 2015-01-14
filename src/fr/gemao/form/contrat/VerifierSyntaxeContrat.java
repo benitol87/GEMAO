@@ -12,8 +12,7 @@ import fr.gemao.entity.Contrat;
 public class VerifierSyntaxeContrat {
 	
 	/* Calendrier */
-	private Calendar calDebut;
-	private Calendar calFin;
+	
 	
 	/* Boolean */
 	private boolean isValide = true;
@@ -33,8 +32,8 @@ public class VerifierSyntaxeContrat {
 	public boolean verifierInformations(Contrat contrat) {
 		
 		/* Affectation des Calendar avec les dates du contrat */
-		calDebut.setTime(contrat.getDateDebut());
-		calFin.setTime(contrat.getDateFin());
+		Calendar calDebut = Calendar.getInstance();
+		Calendar calFin = Calendar.getInstance();
 		
 		/* Vérification du nom sur le contrat */
 		if (contrat.getNom() == null) {
@@ -54,10 +53,28 @@ public class VerifierSyntaxeContrat {
 			isValide = false;
 		}
 		
-		/* Vérification de l'année du contrat */
-		if (calFin.YEAR < calDebut.YEAR) {
-			System.out.println("L'année de fin du contrat doit être supérieure à l'année de début du contrat");
+		/* Vérification de la date de début du contrat */
+		if (contrat.getDateDebut() == null) {
+			System.out.println("La date de début du contrat ne peut pas être null");
 			isValide = false;
+		}
+		
+		/* Vérification de la date de fin du contrat */
+		if (contrat.getDateFin() == null) {
+			System.out.println("La date de fin du contrat ne peut pas être null");
+			isValide = false;
+		}
+		
+		/* Vérification de l'année du contrat */
+		if (contrat.getDateDebut() != null || contrat.getDateFin() != null) {
+			
+			calDebut.setTime(contrat.getDateDebut());
+			calFin.setTime(contrat.getDateFin());
+			
+			if (calFin.YEAR < calDebut.YEAR) {
+				System.out.println("L'année de fin du contrat doit être supérieure à l'année de début du contrat");
+				isValide = false;
+			}
 		}
 		
 		return isValide;
