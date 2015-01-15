@@ -15,7 +15,7 @@ import fr.gemao.sql.IDAO;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 
-public class FournisseurDAO extends IDAO<Fournisseur>{
+public class FournisseurDAO extends IDAO<Fournisseur> {
 
 	public FournisseurDAO(DAOFactory factory) {
 		super(factory);
@@ -25,17 +25,18 @@ public class FournisseurDAO extends IDAO<Fournisseur>{
 	@Override
 	public Fournisseur create(Fournisseur obj) {
 		if (obj == null) {
-			throw new NullPointerException("Le fournisseur ne doit pas etre null");
+			throw new NullPointerException(
+					"Le fournisseur ne doit pas etre null");
 		}
-		
+		int id = 0;
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "INSERT INTO Fournisseur(nom)" + "VALUES (?);";
-		
-		try{
+
+		try {
 			connexion = factory.getConnection();
-			
+
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, true, obj.getNomFournisseur());
 			int status = requete.executeUpdate();
@@ -45,23 +46,30 @@ public class FournisseurDAO extends IDAO<Fournisseur>{
 						"Échec de la création d'un fournisseur, aucune ligne ajoutée dans la table.");
 			}
 
-		}catch (SQLException e) {
+			result = requete.getGeneratedKeys();
+			if (result != null && result.first()) {
+				id =result.getInt(1);
+			}
+
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
-		
-		return this.get(obj.getNomFournisseur());
+
+		return this.get(id);
 	}
 
 	@Override
 	public void delete(Fournisseur obj) {
 		if (obj == null) {
-			throw new NullPointerException("Le Fournisseur ne doit pas etre null");
+			throw new NullPointerException(
+					"Le Fournisseur ne doit pas etre null");
 		}
 
 		if (obj.getIdFournisseur() == 0) {
-			throw new NullPointerException("un Fournisseur ne peut pas avoir un id = 0");
+			throw new NullPointerException(
+					"un Fournisseur ne peut pas avoir un id = 0");
 		}
 
 		Connection connexion = null;
@@ -70,8 +78,8 @@ public class FournisseurDAO extends IDAO<Fournisseur>{
 			connexion = factory.getConnection();
 			stat = connexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM Fournisseur WHERE idFournisseur = " + obj.getIdFournisseur()
-					+ ";");
+			stat.execute("DELETE FROM Fournisseur WHERE idFournisseur = "
+					+ obj.getIdFournisseur() + ";");
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {
@@ -109,10 +117,10 @@ public class FournisseurDAO extends IDAO<Fournisseur>{
 		}
 		return fournisseur;
 	}
-	
-	public Fournisseur get(String nomFournisseur){
+
+	public Fournisseur get(String nomFournisseur) {
 		Fournisseur fournisseur = null;
-		
+
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
@@ -162,9 +170,8 @@ public class FournisseurDAO extends IDAO<Fournisseur>{
 
 	@Override
 	protected Fournisseur map(ResultSet result) throws SQLException {
-		return new Fournisseur(result.getInt("IdFournisseur"),result.getString("Nom"));
+		return new Fournisseur(result.getInt("IdFournisseur"),
+				result.getString("Nom"));
 	}
-	
-	
 
 }

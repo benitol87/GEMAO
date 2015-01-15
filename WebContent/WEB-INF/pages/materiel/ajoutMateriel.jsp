@@ -17,6 +17,13 @@
 	</select> <label for="ValeurAch">Valeur d'achat : </label> <input type="number"
 		name="ValeurAch" /> <label for="dateAch">Date d'achat : </label> <input
 		type="date" name="dateAch" />
+		<label for="fournisseur">Fournisseur : </label> <select name="fournisseur"
+		id="fournisseur">
+		<c:forEach var="fourn" items="${requestScope['LISTE_FOURNISSEUR']}">
+			<option value="${fourn.getIdFournisseur()}">
+				${fourn.getNomFournisseur()}</option>
+		</c:forEach>
+	</select>
 	<table>
 		<tr>
 			<td>

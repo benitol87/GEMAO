@@ -31,33 +31,35 @@ public class MaterielDAO extends IDAO<Materiel> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO materiel(" + "idEtat,"
-				+ "idCategorie," + "idMarque," + "idDesignation,"+"idFournisseur"
-				+ "typeMateriel," + "numSerie," + "dateAchat,"
-				+ "valeurAchat," + "valeurReapprov," + "deplaceConcert,"
-				+ "observation, quantite)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?, ?);";
+		String sql = "INSERT INTO materiel(idEtat," + "idCategorie,"
+				+ "idMarque," + "idDesignation," + "idFournisseur,"
+				+ "typeMateriel," + "numSerie," + "dateAchat," + "valeurAchat,"
+				+ "valeurReapprov," + "deplaceConcert,"
+				+ "observation, quantite)"
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		try {
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, true, 
-			obj.getEtat().getIdEtat(),
-			obj.getCategorie().getIdCategorie(),
-			obj.getMarque().getIdMarque(),
-			obj.getDesignation().getIdDesignation(),
-			obj.getFournisseur().getIdFournisseur(),
-			obj.getTypeMat(),
-			obj.getNumSerie(),
-			obj.getDateAchat(),
-			obj.getValeurAchat(),
-			obj.getValeurReap(),
-			obj.isDeplacable(),
-			obj.getObservation(),
-			obj.getQuantite());
-			
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, true, obj.getEtat().getIdEtat(),
+					obj.getCategorie().getIdCategorie(),
+					obj.getMarque().getIdMarque(),
+					obj.getDesignation().getIdDesignation(),
+					obj.getFournisseur().getIdFournisseur(),
+					obj.getTypeMat(),
+					obj.getNumSerie(),
+					obj.getDateAchat(),
+					obj.getValeurAchat(),
+					obj.getValeurReap(),
+					obj.isDeplacable(),
+					obj.getObservation(),
+					obj.getQuantite());
+			System.out.println(requete);
 			int status = requete.executeUpdate();
-			
-			if ( status == 0 ) {
-	            throw new DAOException( "Échec de la création de matériel, aucune ligne ajoutée dans la table." );
-	        }
+
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la création de matériel, aucune ligne ajoutée dans la table.");
+			}
 
 			result = requete.getGeneratedKeys();
 			if (result != null && result.first()) {
@@ -119,23 +121,17 @@ public class MaterielDAO extends IDAO<Materiel> {
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false,
-					obj.getEtat().getIdEtat(),
-					obj.getCategorie().getIdCategorie(),
-					obj.getMarque().getIdMarque(),
-					obj.getDesignation().getIdDesignation(),
-					obj.getTypeMat(),
-					obj.getNumSerie(),
-					obj.getDateAchat(),
-					obj.getValeurAchat(),
-					obj.getValeurReap(),
-					obj.isDeplacable(),
-					obj.getObservation(),
-					obj.getQuantite(),
-					obj.getIdMateriel());
+					sql, false, obj.getEtat().getIdEtat(), obj.getCategorie()
+							.getIdCategorie(), obj.getMarque().getIdMarque(),
+					obj.getDesignation().getIdDesignation(), obj.getTypeMat(),
+					obj.getNumSerie(), obj.getDateAchat(),
+					obj.getValeurAchat(), obj.getValeurReap(), obj
+							.isDeplacable(), obj.getObservation(), obj
+							.getQuantite(), obj.getIdMateriel());
 			int status = requete.executeUpdate();
-			if(status == 0){
-				throw new DAOException("La mise à jour de materiel n'a pas eu lieu.");
+			if (status == 0) {
+				throw new DAOException(
+						"La mise à jour de materiel n'a pas eu lieu.");
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -154,7 +150,8 @@ public class MaterielDAO extends IDAO<Materiel> {
 		String sql = "SELECT * FROM materiel WHERE idMateriel = ?;";
 		try {
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, id);
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
@@ -179,7 +176,8 @@ public class MaterielDAO extends IDAO<Materiel> {
 		String sql = "SELECT * FROM materiel;";
 		try {
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false);
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false);
 			result = requete.executeQuery();
 
 			while (result.next()) {

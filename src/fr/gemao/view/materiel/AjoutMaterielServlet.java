@@ -17,12 +17,14 @@ import fr.gemao.ctrl.materiel.MaterielCtrl;
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.entity.materiel.Etat;
+import fr.gemao.entity.materiel.Fournisseur;
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
 import fr.gemao.sql.materiel.EtatDAO;
+import fr.gemao.sql.materiel.FournisseurDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
 
 @WebServlet("/materiel/AjouterMateriel")
@@ -48,6 +50,10 @@ public class AjoutMaterielServlet extends HttpServlet {
 		List<Marque> listMarque = new ArrayList<Marque>();
 		listMarque = new MarqueDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute("LISTE_MARQUE", listMarque);
+		
+		List<Fournisseur> listFourn = new ArrayList<Fournisseur>();
+		listFourn = new FournisseurDAO(DAOFactory.getInstance()).getAll();
+		request.setAttribute("LISTE_FOURNISSEUR", listFourn);
 
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
@@ -72,7 +78,12 @@ public class AjoutMaterielServlet extends HttpServlet {
 		List<Marque> listMarque = new ArrayList<Marque>();
 		listMarque = new MarqueDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute("LISTE_MARQUE", listMarque);
+		
+		List<Fournisseur> listFourn = new ArrayList<Fournisseur>();
+		listFourn = new FournisseurDAO(DAOFactory.getInstance()).getAll();
+		request.setAttribute("LISTE_FOURNISSEUR", listFourn);
 
+		String fournisseur = request.getParameter("fournisseur");
 		String etat = request.getParameter("etat");
 		String categorie = request.getParameter("categorie");
 		String designation = request.getParameter("designation");
@@ -103,6 +114,9 @@ public class AjoutMaterielServlet extends HttpServlet {
 
 		DesignationDAO desDAO = new DesignationDAO(DAOFactory.getInstance());
 		materiel.setDesignation(desDAO.get(Long.parseLong(designation)));
+		System.out.println(fournisseur);
+		FournisseurDAO fourDAO = new FournisseurDAO(DAOFactory.getInstance());
+		materiel.setFournisseur(fourDAO.get(Long.parseLong(fournisseur)));
 
 		materiel.setValeurAchat(valAchat);
 		materiel.setValeurReap(valReap);
