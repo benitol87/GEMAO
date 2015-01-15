@@ -27,18 +27,25 @@ public class FonctionDAO extends IDAO<Fonction> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO fonction(idFonction,nom) "
+		String sql = "INSERT INTO fonction(nom) "
 				+ "VALUES (?);";
+		int id;
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getIdFonction(), obj.getNom());
+					sql, true, obj.getIdFonction(), obj.getNom());
 
 			int status = requete.executeUpdate();
 
 			if (status == 0) {
 				throw new DAOException(
 						"Échec de la création de la fonction, aucune ligne ajoutée dans la table.");
+			}
+			
+			result = requete.getGeneratedKeys();
+			if (result != null && result.first()) {
+				id = result.getInt(1);
+				obj.setIdFonction(id);
 			}
 
 		} catch (SQLException e) {
@@ -47,7 +54,7 @@ public class FonctionDAO extends IDAO<Fonction> {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
-		return this.get(obj.getIdFonction());
+		return obj;
 	}
 
 	@Override
