@@ -34,25 +34,30 @@
 		</td></tr>
 	</table>
 	<fieldset>
-		<legend>Adresse</legend>
-		<table>
-			<tr><td>
-				<label for="adresse">Adresse: </label>
-			</td><td>
-				
-			</td></tr>
-			<tr><td>
-				<label for="ville">Ville:</label>
-			</td><td>
-				
-			</td></tr>
-			<tr><td>
-				<label for="code">Code postal:</label>
-			</td><td>
-			
-			</td></tr>
-		</table>
-	</fieldset>
+	<legend>Adresse</legend>
+	<table>
+		<tr>
+			<td><label for="num">Numéro : </label></td>
+			<td><p><c:out value="${adresse['numRue']}" /></p></td>
+		</tr>
+		<tr>
+			<td><label for="rue">Rue : </label></td>
+			<td><p><c:out value="${adresse['nomRue']}" /></p></td>
+		</tr>
+		<tr>
+			<td><label for="compl">Complémentaire : </label></td>
+			<td><p><c:out value="${adresse['infoCompl']}" /></p></td>
+		</tr>
+		<tr>
+			<td><label for="codeP">Code Postal : </label></td>
+			<td><p>CODE POSTAL ICI</p></td>
+		</tr>
+		<tr>
+			<td><label for="commune">Commune : </label></td>
+			<td><p>COMMUNE ICI</p></td>
+		</tr>
+	</table>
+</fieldset>
 	<fieldset>
 		<legend>Professionnel</legend>
 		<table>
