@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.materiel.Etat;
 import fr.gemao.entity.materiel.Fournisseur;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
@@ -32,7 +31,7 @@ public class FournisseurDAO extends IDAO<Fournisseur> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO Fournisseur(nom)" + "VALUES (?);";
+		String sql = "INSERT INTO fournisseur(nom)" + "VALUES (?);";
 
 		try {
 			connexion = factory.getConnection();
@@ -78,7 +77,7 @@ public class FournisseurDAO extends IDAO<Fournisseur> {
 			connexion = factory.getConnection();
 			stat = connexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM Fournisseur WHERE idFournisseur = "
+			stat.execute("DELETE FROM fournisseur WHERE idFournisseur = "
 					+ obj.getIdFournisseur() + ";");
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -124,7 +123,7 @@ public class FournisseurDAO extends IDAO<Fournisseur> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * FROM fournisseur WHERE Nom = ?;";
+		String sql = "SELECT * FROM fournisseur WHERE nom = ?;";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
@@ -150,7 +149,7 @@ public class FournisseurDAO extends IDAO<Fournisseur> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * FROM FOURNISSEUR;";
+		String sql = "SELECT * FROM fournisseur;";
 		try {
 			connexion = DAOFactory.getInstance().getConnection();
 			requete = connexion.prepareStatement(sql);
@@ -170,8 +169,8 @@ public class FournisseurDAO extends IDAO<Fournisseur> {
 
 	@Override
 	protected Fournisseur map(ResultSet result) throws SQLException {
-		return new Fournisseur(result.getInt("IdFournisseur"),
-				result.getString("Nom"));
+		return new Fournisseur(result.getInt("idFournisseur"),
+				result.getString("nom"));
 	}
 
 }
