@@ -50,7 +50,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 		List<Marque> listMarque = new ArrayList<Marque>();
 		listMarque = new MarqueDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute("LISTE_MARQUE", listMarque);
-		
+
 		List<Fournisseur> listFourn = new ArrayList<Fournisseur>();
 		listFourn = new FournisseurDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute("LISTE_FOURNISSEUR", listFourn);
@@ -78,7 +78,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 		List<Marque> listMarque = new ArrayList<Marque>();
 		listMarque = new MarqueDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute("LISTE_MARQUE", listMarque);
-		
+
 		List<Fournisseur> listFourn = new ArrayList<Fournisseur>();
 		listFourn = new FournisseurDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute("LISTE_FOURNISSEUR", listFourn);
@@ -114,7 +114,6 @@ public class AjoutMaterielServlet extends HttpServlet {
 
 		DesignationDAO desDAO = new DesignationDAO(DAOFactory.getInstance());
 		materiel.setDesignation(desDAO.get(Long.parseLong(designation)));
-		System.out.println(fournisseur);
 		FournisseurDAO fourDAO = new FournisseurDAO(DAOFactory.getInstance());
 		materiel.setFournisseur(fourDAO.get(Long.parseLong(fournisseur)));
 
@@ -139,11 +138,11 @@ public class AjoutMaterielServlet extends HttpServlet {
 		MaterielCtrl matCtrl = new MaterielCtrl();
 		matCtrl.ajoutMateriel(materiel.getEtat(), materiel.getCategorie(),
 				materiel.getMarque(), materiel.getDesignation(),
-				materiel.getFournisseur(),
-				materiel.getTypeMat(), materiel.getNumSerie(),
-				materiel.getDateAchat(), materiel.getValeurAchat(),
-				materiel.getValeurReap(), materiel.isDeplacable(),
-				materiel.getObservation(), Integer.parseInt(quantite));
+				materiel.getFournisseur(), materiel.getTypeMat(),
+				materiel.getNumSerie(), materiel.getDateAchat(),
+				materiel.getValeurAchat(), materiel.getValeurReap(),
+				materiel.isDeplacable(), materiel.getObservation(),
+				Integer.parseInt(quantite));
 
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
