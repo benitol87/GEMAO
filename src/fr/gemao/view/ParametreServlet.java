@@ -27,8 +27,19 @@ public class ParametreServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		ParametreCtrl parametreCtrl = new ParametreCtrl();
+		Parametre parametre = parametreCtrl.getLast();
+		if(parametre != null){
+			request.setAttribute("alloc2", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc2()));
+			request.setAttribute("alloc3", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc3()));
+			request.setAttribute("alloc4", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc4()));
+			request.setAttribute("alloc5", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc5()));
+			request.setAttribute("qf_max", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_max()));
+			request.setAttribute("qf_min", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_min()));
+		}
 		this.getServletContext().getRequestDispatcher(VUE_PARAMETRE)
-				.forward(request, response);
+		.forward(request, response);
+		
 	}
 
 	/**
@@ -38,18 +49,25 @@ public class ParametreServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		ParametreForm form = new ParametreForm();
-
+		ParametreCtrl parametreCtrl = new ParametreCtrl();
+		
 		Parametre parametre = form.ajoutParametre(request);
 		if (form.getErreurs().isEmpty()) {
-			ParametreCtrl parametreCtrl = new ParametreCtrl();
 			try {
 				parametreCtrl.controlerParametre(parametre);
 			} catch (Exception e) {
 				form.setErreur("Parametre", e.getMessage());
+				System.out.println(form.getErreurs());
 			}
 		} else {
-
+			System.out.println("Erreur");
 		}
+		request.setAttribute("alloc2", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc2()));
+		request.setAttribute("alloc3", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc3()));
+		request.setAttribute("alloc4", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc4()));
+		request.setAttribute("alloc5", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc5()));
+		request.setAttribute("qf_max", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_max()));
+		request.setAttribute("qf_min", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_min()));
 		this.getServletContext().getRequestDispatcher(VUE_PARAMETRE)
 				.forward(request, response);
 	}
