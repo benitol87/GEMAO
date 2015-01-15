@@ -66,7 +66,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 		 */
 		Date dateNaiss = new Date();
 		Date dateInscri = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			dateNaiss = formatter.parse(dateNaissance);
 			dateInscri = formatter.parse(dateInscription);
@@ -97,8 +97,10 @@ public class AjoutAdherentServlet extends HttpServlet {
 		if (communeDAO.existNomCodePostal(communeNaiss) == null) {
 			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
 			ajouterCommuneCtrl.ajoutCommune(communeNaiss);
+			System.out.println("test1");
 		}
 		communeNaiss = communeDAO.existNomCodePostal(communeNaiss);
+		
 		/**
 		 * Réupération des données de la commune
 		 */
@@ -111,10 +113,11 @@ public class AjoutAdherentServlet extends HttpServlet {
 		Commune commune = new Commune(null, Integer.parseInt(codePostal), com,
 				false);
 		if (communeDAO.existNomCodePostal(commune) == null) {
-			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
-			ajouterCommuneCtrl.ajoutCommune(commune);
+//			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
+//			ajouterCommuneCtrl.ajoutCommune(commune);
+			System.out.println("test2");
 		}
-		commune = communeDAO.existNomCodePostal(commune);
+//		commune = communeDAO.existNomCodePostal(commune);
 		
 		/**
 		 * Réupération des données de l'adresse
@@ -131,14 +134,16 @@ public class AjoutAdherentServlet extends HttpServlet {
 
 		AdresseDAO adresseDAO = factory.getAdresseDAO();
 		if (adresseDAO.exist(adresse) == null) {
-			AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
-			ajouterAdresseCtrl.ajoutAdresse(adresse);
-		}
-		adresse = adresseDAO.exist(adresse);
+//			AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
+//			ajouterAdresseCtrl.ajoutAdresse(adresse);
+			System.out.println("test3");
 
-		adherent.setIdCommuneNaiss(communeNaiss.getIdCommune());
-		adherent.setIdAdresse(adresse.getIdAdresse());
-		
+		}
+//		adresse = adresseDAO.exist(adresse);
+
+//		adherent.setIdCommuneNaiss(communeNaiss.getIdCommune());
+//		adherent.setIdAdresse(adresse.getIdAdresse());
+//		
 		System.out.println(adherent);
 
 		/* Transmission à la page JSP en charge de l'affichage des données */

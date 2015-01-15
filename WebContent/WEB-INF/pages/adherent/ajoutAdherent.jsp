@@ -11,8 +11,8 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script src="js/AjouterAdherent.js"></script>
-<link rel="stylesheet" type="text/css" href="css/datepicker.css" />
+<script src="<c:url value="/js/AjouterAdherent.js"/>"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/datepicker.css"/>" />
 <h1>Ajout d'un adhérent</h1>
 <form action="#" method="post">
 	<table>
@@ -98,7 +98,7 @@
 		</tr>
 		<tr>
 			<td><label for="dateInscri">Date d'inscripton : </label></td>
-			<td><input type="text" name="datenIscri" id="dateInscri" required="required"
+			<td><input type="text" name="dateInscri" id="dateInscri" required="required"
 				autocomplete="off" /></td>
 		</tr>
 	</table>

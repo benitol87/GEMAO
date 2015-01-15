@@ -31,7 +31,7 @@ public class CommuneDAO extends IDAO<Commune> {
 		String sql = "INSERT INTO commune(codePostal, nom, avantage)"
 				+ "VALUES (?, ?, ?);";
 		try {
-
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, true, obj.getCodePostal(), obj.getIdCommune(),
 					obj.isAvantage());
