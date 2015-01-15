@@ -97,7 +97,6 @@ public class AjoutAdherentServlet extends HttpServlet {
 		if (communeDAO.existNomCodePostal(communeNaiss) == null) {
 			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
 			ajouterCommuneCtrl.ajoutCommune(communeNaiss);
-			System.out.println("test1");
 		}
 		communeNaiss = communeDAO.existNomCodePostal(communeNaiss);
 		
@@ -118,6 +117,9 @@ public class AjoutAdherentServlet extends HttpServlet {
 			System.out.println("test2");
 		}
 //		commune = communeDAO.existNomCodePostal(commune);
+		
+		System.out.println(communeNaiss.getIdCommune()+" "+communeNaiss.getNomCommune()+" "+communeNaiss.getCodePostal()+" "+communeNaiss.isAvantage());
+		System.out.println(commune.getIdCommune()+" "+commune.getNomCommune()+" "+commune.getCodePostal()+" "+commune.isAvantage());
 		
 		/**
 		 * Réupération des données de l'adresse
