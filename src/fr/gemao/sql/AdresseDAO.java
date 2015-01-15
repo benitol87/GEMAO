@@ -144,7 +144,7 @@ public class AdresseDAO extends IDAO<Adresse> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * from adresse where idCommmune = ? and numRue = ? and nomRue = ? and infoCompl = ?;";
+		String sql = "SELECT * from adresse where idCommune = ? and numRue = ? and nomRue = ? and infoCompl = ?;";
 		Adresse verif = null;
 		try {
 			connexion = factory.getConnection();
