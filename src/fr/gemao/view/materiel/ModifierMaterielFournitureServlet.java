@@ -28,17 +28,22 @@ public class ModifierMaterielFournitureServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 
-		int idParametre = Integer.parseInt(request.getParameter("idMateriel"));
+		String param = request.getParameter("idMateriel");
 
-		MaterielCtrl matctrl = new MaterielCtrl();
-		Materiel mat = matctrl.recupererMateriel(3); // TODO: Changer l'id selon
-														// ce qu'on a recu
+		if (param != null) {
+			int idParametre = Integer.parseInt(param);
+			MaterielCtrl matctrl = new MaterielCtrl();
+			Materiel mat = matctrl.recupererMateriel(idParametre);
 
-		session.setAttribute("materiel", mat);
-		request.setAttribute("materiel", mat);
+			session.setAttribute("materiel", mat);
+			request.setAttribute("materiel", mat);
 
-		this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
-				.forward(request, response);
+			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
+					.forward(request, response);
+		} else {
+			this.getServletContext().getRequestDispatcher(VUE_LISTE)
+					.forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request,
