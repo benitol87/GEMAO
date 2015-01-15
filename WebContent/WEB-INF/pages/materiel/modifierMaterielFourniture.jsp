@@ -30,7 +30,6 @@
 		<tr>
 			<td>
 				<fieldset>
-					<legend>Mobilier</legend>
 					<table>
 						<tr>
 							<td><label for="type">Type : </label></td>

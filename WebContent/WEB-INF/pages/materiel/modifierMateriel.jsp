@@ -4,7 +4,6 @@
 <c:set var="titre" value="Materiel" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
-<script type="text/javascript" src="js/ajoutMateriel.js"></script>
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 

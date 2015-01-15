@@ -16,6 +16,7 @@
 		<th>Categorie</th>
 		<th>Quantité</th>
 		<th></th>
+		<th></th>
 	</tr>
 	<c:forEach items="${listeMateriels}" var="mat">
 		<tr>
@@ -25,6 +26,10 @@
 			<td><a
 				href="ModifierMateriel?idMateriel=<c:out value="${mat.idMateriel}" />"><input
 					type="button" value="Modifier" /></a>
+			<td>
+			<td><a
+				href="ConsulterMateriel?idMateriel=<c:out value="${mat.idMateriel}" />"><input
+					type="button" value="Consulter" /></a>
 			<td>
 		</tr>
 	</c:forEach>
