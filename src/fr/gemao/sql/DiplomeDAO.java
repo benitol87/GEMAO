@@ -21,7 +21,41 @@ public class DiplomeDAO extends IDAO<Diplome> {
 
 	@Override
 	public Diplome create(Diplome obj) {
+		if (obj == null) {
+			throw new NullPointerException("Le  ne doit pas être null");
+		}
 		
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "INSERT INTO diplome(idDiplome, nomDiplome)"
+				+ "VALUES (?, ?);";
+		Integer id = null;
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, true,
+					obj.getIdDiplome(),
+					obj.getNomDiplome());
+			
+			int status = requete.executeUpdate();
+			
+			if ( status == 0 ) {
+	            throw new DAOException( "Échec de la création du diplome, aucune ligne ajoutée dans la table." );
+	        }
+			
+			result = requete.getGeneratedKeys();
+			if (result != null && result.first()) {
+				id = result.getInt(1);
+				obj.setIdDiplome(id);
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return obj;
 	}
 
 	@Override
