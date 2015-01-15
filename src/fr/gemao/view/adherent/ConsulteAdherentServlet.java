@@ -2,6 +2,7 @@ package fr.gemao.view.adherent;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererResponsableCtrl;
+import fr.gemao.entity.Discipline;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.Responsable;
+import fr.gemao.sql.DisciplineDAO;
 
 /**
  * Servlet implementation class ConsulteAdherentServlet
@@ -22,7 +25,9 @@ public class ConsulteAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public static final String VUE = "/WEB-INF/pages/adherent/consulteAdherent.jsp";
-
+	public final String PARAM_DATE_NAISSANCE = "dateNaissance";
+	public final String PARAM_ADHERENT = "adherent";
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -36,26 +41,18 @@ public class ConsulteAdherentServlet extends HttpServlet {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String dateNaissance = formatter.format(adherent.getDateNaissance());
 
-		if (adherent.getIdResponsable() != null) {
+		if (adherent.getResponsable() != null) {
 			RecupererResponsableCtrl recupererResponsableCtrl = new RecupererResponsableCtrl();
 			Responsable responsable = recupererResponsableCtrl
-					.recupererResponsable(adherent.getIdResponsable());
+					.recupererResponsable(adherent.getResponsable().getIdResponsable());
 			request.setAttribute("responsable", responsable);
 		}
+		
 
-		request.setAttribute("adherent", adherent);
-		request.setAttribute("dateNaissance", dateNaissance);
+		request.setAttribute(PARAM_ADHERENT, adherent);
+		request.setAttribute(PARAM_DATE_NAISSANCE, dateNaissance);
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

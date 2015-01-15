@@ -102,6 +102,9 @@ public class LocationInstrumentServlet extends HttpServlet {
 			int idAdherent	= Integer.parseInt(locationForm.getAdherent());
 			String dateDebut = locationForm.getDateDebut();
 			String dateFin = locationForm.getDateFin();
+			
+			// TODO
+			// Insérer la location dans la base
 		}
 		
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );

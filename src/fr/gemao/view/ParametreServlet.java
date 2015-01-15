@@ -36,6 +36,8 @@ public class ParametreServlet extends HttpServlet {
 			request.setAttribute("alloc5", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc5()));
 			request.setAttribute("qf_max", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_max()));
 			request.setAttribute("qf_min", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_min()));
+			request.setAttribute("tarifInstrument", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifInstrument()));
+			request.setAttribute("tarifFormation", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifFormation()));
 		}
 		this.getServletContext().getRequestDispatcher(VUE_PARAMETRE)
 		.forward(request, response);
@@ -69,6 +71,8 @@ public class ParametreServlet extends HttpServlet {
 		request.setAttribute("alloc5", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc5()));
 		request.setAttribute("qf_max", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_max()));
 		request.setAttribute("qf_min", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_min()));
+		request.setAttribute("tarifInstrument", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifInstrument()));
+		request.setAttribute("tarifFormation", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifFormation()));
 		this.getServletContext().getRequestDispatcher(VUE_PARAMETRE)
 				.forward(request, response);
 	}

@@ -53,12 +53,17 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		
 		DiplomeDAO diplomeDAO = factory.getDiplomeDAO();
 		List<Diplome> listeDiplome;
+		
+		Integer idContrat = null;
 		try {
+			if(obj.getContrat() != null){
+				idContrat = obj.getContrat().getIdContrat();
+			}
 			obj = (Personnel) personneDAO.create(obj);
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false,
 					obj.getIdPersonne(),
-					obj.getIdContrat(),
+					idContrat,
 					obj.getLogin(),
 					obj.getPassword(),
 					obj.getPointsAncien());
@@ -105,11 +110,14 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		
 		String sql = "UPDATE personnel SET idContrat = ?, login = ?, pwd = ?, pointAnciennete = ? "
 				+ "WHERE idPersonne = ?;";
+		Integer idContrat = null;
 		try {
-			
+			if(obj.getContrat() != null){
+				idContrat = obj.getContrat().getIdContrat();
+			}
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, 
-					obj.getIdContrat(),
+					obj.getContrat(),
 					obj.getLogin(),
 					obj.getPassword(),
 					obj.getPointsAncien());
@@ -193,10 +201,11 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		PersonneDAO personneDAO = factory.getPersonneDAO();
 		ResponsabiliteDAO responsabiliteDAO = factory.getResponsabiliteDAO();
 		DiplomeDAO diplomeDAO = factory.getDiplomeDAO();
+		ContratDAO contratDAO = factory.getContratDAO();
 		Personnel personnel = new Personnel(personneDAO.map(result),
 				responsabiliteDAO.getResponsabilitesParPersonne(result.getLong("idPersonne")),
 				diplomeDAO.getDiplomesParPersonnel(result.getLong("idPersonne")),
-				NumberUtil.getResultInteger(result, "idContrat"),
+				contratDAO.get(NumberUtil.getResultInteger(result, "idContrat")),
 				result.getString("login"),
 				result.getString("pwd"),
 				NumberUtil.getResultInteger(result, "pointAnciennete"));

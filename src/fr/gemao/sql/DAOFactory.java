@@ -203,4 +203,8 @@ public class DAOFactory {
 	public FournisseurDAO getFournisseurDAO() {
 		return new FournisseurDAO(this);
 	}
+
+	public MotifSortieDAO getMotifSortieDAO() {
+		return new MotifSortieDAO(this);
+	}
 }

@@ -15,7 +15,7 @@ public class Personnel extends Personne {
 
 	private List<Responsabilite> listeResponsabilite;
 	private List<Diplome> listeDiplomes;
-	private Integer idContrat;
+	private Contrat contrat;
 	private String login;
 	private String password;
 	private int pointsAncien;
@@ -46,7 +46,7 @@ public class Personnel extends Personne {
 	 *            : l'email de la personne
 	 * @param listeResponsabilite
 	 *            : l'ID des responsabilités
-	 * @param idContrat
+	 * @param contrat
 	 *            : l'ID du contrat
 	 * @param login
 	 *            : le login de la personne
@@ -55,18 +55,18 @@ public class Personnel extends Personne {
 	 * @param pointsAncien
 	 *            : le nombre de points d'ancienneté
 	 */
-	public Personnel(Long idPersonne, Integer idAdresse,
-			Integer idCommuneNaiss, String nom, String prenom,
+	public Personnel(Long idPersonne,  Adresse adresse,
+			Commune communeNaiss, String nom, String prenom,
 			Date dateNaissance, String telFixe, String telPort, String email,
 			Civilite civilite, List<Responsabilite> listeResponsabilite,
-			List<Diplome> listeDiplome, Integer idContrat, String login,
+			List<Diplome> listeDiplome, Contrat contrat, String login,
 			String password, int pointsAncien) {
-		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
+		super(idPersonne, adresse, communeNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email, civilite);
 
 		this.listeResponsabilite = listeResponsabilite;
 		this.listeDiplomes = listeDiplome;
-		this.idContrat = idContrat;
+		this.contrat = contrat;
 		this.login = login;
 		this.password = password;
 		this.pointsAncien = pointsAncien;
@@ -76,20 +76,20 @@ public class Personnel extends Personne {
 	 * 
 	 * @param personne
 	 * @param listeResponsabilite
-	 * @param idContrat
+	 * @param contrat
 	 * @param login
 	 * @param password
 	 * @param pointsAncien
 	 */
 	public Personnel(Personne personne,
 			List<Responsabilite> listeResponsabilite,
-			List<Diplome> listeDiplome, Integer idContrat, String login,
+			List<Diplome> listeDiplome, Contrat contrat, String login,
 			String password, Integer pointsAncien) {
 		super(personne);
 
 		this.listeResponsabilite = listeResponsabilite;
 		this.listeDiplomes = listeDiplome;
-		this.idContrat = idContrat;
+		this.contrat = contrat;
 		this.login = login;
 		this.password = password;
 		this.pointsAncien = pointsAncien;
@@ -109,8 +109,8 @@ public class Personnel extends Personne {
 	 * 
 	 * @return idContrat : l'ID du contrat
 	 */
-	public Integer getIdContrat() {
-		return idContrat;
+	public Contrat getContrat() {
+		return contrat;
 	}
 
 	/**
@@ -153,11 +153,11 @@ public class Personnel extends Personne {
 	/**
 	 * Permet de positionner l'ID du contrat du personnel
 	 * 
-	 * @param idContrat
+	 * @param contrat
 	 *            : l'ID du contrat
 	 */
-	public void setIdContrat(Integer idContrat) {
-		this.idContrat = idContrat;
+	public void setContrat(Contrat contrat) {
+		this.contrat = contrat;
 	}
 
 	/**
@@ -212,8 +212,8 @@ public class Personnel extends Personne {
 	@Override
 	public String toString() {
 		return "Personnel [listeResponsabilite=" + listeResponsabilite
-				+ ", listeDiplomes=" + listeDiplomes + ", idContrat="
-				+ idContrat + ", login=" + login + ", password=" + password
+				+ ", listeDiplomes=" + listeDiplomes + ", contrat=" + contrat
+				+ ", login=" + login + ", password=" + password
 				+ ", pointsAncien=" + pointsAncien + "]";
 	}
 
@@ -224,8 +224,7 @@ public class Personnel extends Personne {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result
-				+ ((idContrat == null) ? 0 : idContrat.hashCode());
+		result = prime * result + ((contrat == null) ? 0 : contrat.hashCode());
 		result = prime * result
 				+ ((listeDiplomes == null) ? 0 : listeDiplomes.hashCode());
 		result = prime
@@ -251,10 +250,10 @@ public class Personnel extends Personne {
 		if (getClass() != obj.getClass())
 			return false;
 		Personnel other = (Personnel) obj;
-		if (idContrat == null) {
-			if (other.idContrat != null)
+		if (contrat == null) {
+			if (other.contrat != null)
 				return false;
-		} else if (!idContrat.equals(other.idContrat))
+		} else if (!contrat.equals(other.contrat))
 			return false;
 		if (listeDiplomes == null) {
 			if (other.listeDiplomes != null)
@@ -281,5 +280,4 @@ public class Personnel extends Personne {
 		return true;
 	}
 
-	
 }

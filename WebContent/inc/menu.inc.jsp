@@ -49,7 +49,7 @@
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
 								<li><a href="<c:url value="/location/locationInstrument"/>">Prêt</a></li>
-								<li><a href="#">Retour</a></li>
+								<li><a href="/location/retourInstrument">Retour</a></li>
 							</ul>
 						</div></li>
 				</ul>

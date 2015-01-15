@@ -110,7 +110,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
 		ajouterAdresseCtrl.ajoutAdresse(adrss);
 
-		personnel.setIdAdresse(adrss.getIdAdresse());
+		personnel.setAdresse(adrss.getIdAdresse());
 
 		session.setAttribute("personnel", personnel);
 

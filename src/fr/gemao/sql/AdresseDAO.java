@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import fr.gemao.entity.Adresse;
+import fr.gemao.entity.Commune;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 
@@ -36,7 +36,7 @@ public class AdresseDAO extends IDAO<Adresse> {
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, true, obj.getIdCommune(), obj.getNumRue(),
+					sql, true, obj.getCommune().getIdCommune(), obj.getNumRue(),
 					obj.getNomRue(), obj.getInfoCompl());
 			int status = requete.executeUpdate();
 
@@ -149,7 +149,7 @@ public class AdresseDAO extends IDAO<Adresse> {
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, adresse.getIdCommune(),
+					sql, false, adresse.getCommune().getIdCommune(),
 					adresse.getNumRue(), adresse.getNomRue(), adresse.getInfoCompl());
 			result = requete.executeQuery();
 
@@ -167,8 +167,10 @@ public class AdresseDAO extends IDAO<Adresse> {
 
 	@Override
 	protected Adresse map(ResultSet result) throws SQLException {
+		Commune commune = new CommuneDAO(DAOFactory.getInstance()).get(result.getInt("idCommune"));
 		return new Adresse(result.getInt("idAdresse"),
-				result.getInt("idCommune"), result.getInt("numRue"),
+				commune,
+				result.getInt("numRue"),
 				result.getString("nomRue"), result.getString("infoCompl"));
 	}
 
