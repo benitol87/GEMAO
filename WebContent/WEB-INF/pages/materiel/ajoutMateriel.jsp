@@ -1,10 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="fr.gemao.entity.materiel.Etat"%>
-<%@ page import="fr.gemao.entity.materiel.Designation"%>
-<%@ page import="fr.gemao.entity.materiel.Marque"%>
-<%@ page import="fr.gemao.entity.materiel.Categorie"%>
+
 
 <c:set var="titre" value="Materiel" scope="request" />
 
@@ -14,18 +10,10 @@
 <form id="ajouterMateriel" action="#" method="post">
 	<label for="categorie">Catégorie : </label> <select name="categorie"
 		id="categorie">
-		<%
-			ArrayList<Categorie> categories = (ArrayList) request
-					.getAttribute("LISTE_CATEGORIE");
-		%>
-		<%
-			for (int i = 0; i < categories.size(); i++) {
-				Categorie item = categories.get(i);
-		%>
-		<option value="<%=item.getIdCategorie()%>"><%=item.getLibelleCat()%></option>
-		<%
-			}
-		%>
+		<c:forEach var="cat" items="${requestScope['LISTE_CATEGORIE']}">
+			<option value="${cat.getIdCategorie()}">
+				${cat.getLibelleCat()}</option>
+		</c:forEach>
 	</select> <label for="ValeurAch">Valeur d'achat : </label> <input type="number"
 		name="ValeurAch" /> <label for="dateAch">Date d'achat : </label> <input
 		type="date" name="dateAch" />
@@ -37,18 +25,11 @@
 						<tr>
 							<td><label for="designation">Désignation : </label></td>
 							<td><select name="designation" id="designation">
-									<%
-										ArrayList<Designation> designations = (ArrayList) request
-												.getAttribute("LISTE_DESIGNATION");
-									%>
-									<%
-										for (int i = 0; i < designations.size(); i++) {
-											Designation item = designations.get(i);
-									%>
-									<option value="<%=item.getIdDesignation()%>"><%=item.getLibelleDesignation()%></option>
-									<%
-										}
-									%>
+									<c:forEach var="des"
+										items="${requestScope['LISTE_DESIGNATION']}">
+										<option value="${des.getIdDesignation()}">
+											${des.getLibelleDesignation()}</option>
+									</c:forEach>
 							</select></td>
 						</tr>
 						<tr>
@@ -58,35 +39,21 @@
 						<tr>
 							<td><label for="etat">Etat : </label></td>
 							<td><select name="etat" id="etat">
-									<%
-										ArrayList<Etat> Etats = (ArrayList) request
-												.getAttribute("LISTE_ETAT");
-									%>
-									<%
-										for (int i = 0; i < Etats.size(); i++) {
-											Etat item = Etats.get(i);
-									%>
-									<option value="<%=item.getIdEtat()%>"><%=item.getLibelleEtat()%></option>
-									<%
-										}
-									%>
+									<c:forEach var="etat"
+										items="${requestScope['LISTE_ETAT']}">
+										<option value="${etat.getIdEtat()}">
+											${etat.getLibelleEtat()}</option>
+									</c:forEach>
 							</select></td>
 						</tr>
 						<tr>
 							<td><label for="marque">Marque : </label></td>
 							<td><select name="marque" id="marque">
-									<%
-										ArrayList<Marque> marques = (ArrayList) request
-												.getAttribute("LISTE_MARQUE");
-									%>
-									<%
-										for (int i = 0; i < marques.size(); i++) {
-											Marque item = marques.get(i);
-									%>
-									<option value="<%=item.getIdMarque()%>"><%=item.getNomMarque()%></option>
-									<%
-										}
-									%>
+									<c:forEach var="marque"
+										items="${requestScope['LISTE_MARQUE']}">
+										<option value="${marque.getIdMarque()}">
+											${marque.getNomMarque()}</option>
+									</c:forEach>
 							</select></td>
 						</tr>
 
@@ -114,12 +81,9 @@
 										<td><input type="number" name="valRea" /></td>
 									</tr>
 									<tr>
-										<td><label for="deplacable">Déplaçable : </label></td>
-										<td><label for="deplacableOui"> <input
-												type="radio" checked="checked" name="deplacableOui" value="oui" />
-												oui
-										</label> <label for="deplacableNon"> <input type="radio"
-										 name="deplacableNon" value="non" /> non
+
+										<td><label> <input type="checkbox"
+												name="deplacable" value="on" /> Deplacable
 										</label></td>
 									</tr>
 								</table>
