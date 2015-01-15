@@ -28,8 +28,8 @@
 		</tr>
 	</table>
 	<div>
-		<input type="button" value="Annuler" /> <input type="button"
-			value="Suivant" /> <input type="button" value="Valider" />
+		<input type="button" value="Annuler" /> <input type="submit"
+			value="Suivant" />
 	</div>
 </form>
 <c:import url="/inc/footer.inc.jsp" />

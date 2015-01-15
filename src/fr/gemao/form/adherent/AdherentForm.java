@@ -471,18 +471,18 @@ public class AdherentForm {
 		}
 		
 		//Validation du champ discipline (A modifier !)
-		try {
-			validationDiscipline(discipline);
-		} catch (Exception e) {
-			setErreur(CHAMP_DISCIPLINE, e.getMessage());
-		}
+//		try {
+//			validationDiscipline(discipline);
+//		} catch (Exception e) {
+//			setErreur(CHAMP_DISCIPLINE, e.getMessage());
+//		}
 		
 		//Validation du champ classe (A modifier !)
-		try {
-			validationClasse(classe);
-		} catch (Exception e) {
-			setErreur(CHAMP_CLASSE, e.getMessage());
-		}
+//		try {
+//			validationClasse(classe);
+//		} catch (Exception e) {
+//			setErreur(CHAMP_CLASSE, e.getMessage());
+//		}
 		
 		//Validation du champ date d'entrée
 		try {

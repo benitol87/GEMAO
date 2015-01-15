@@ -1,5 +1,6 @@
 package fr.gemao.ctrl.adherent;
 
+import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.entity.Parametre;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.ParametreDAO;
@@ -20,17 +21,15 @@ public class CalculerCotisationCtrl {
 	 */
 	public float calculerCotisations(Float qf){
 		
-		DAOFactory factory = DAOFactory.getInstance();
-		ParametreDAO parametreDAO = factory.getParametreDAO();
-		Parametre param = new Parametre(parametreDAO.getLast());
-		
-		float cotisation = 200.0F; // param.getCotisation a ajouté dans la base
+		ParametreCtrl parametreCtrl = new ParametreCtrl();
+		Parametre parametre = parametreCtrl.getLast();
+		float cotisation = parametre.getTarifFormation();
 		
 		if(qf != null){
 			//si on applique le quotient familial (habitants des communes bénéficiaires des avantages)
-			if (param.getQf_min()>qf)
+			if (parametre.getQf_min()>qf)
 				return cotisation/2;
-			if (param.getQf_max()>qf)
+			if (parametre.getQf_max()>qf)
 				return cotisation/1.5F;		
 		}
 

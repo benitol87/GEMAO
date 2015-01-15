@@ -115,10 +115,10 @@ public class Adherent extends Personne {
 	}
 
 	/**
-	 * @param idResponsable
-	 *            the idResponsable to set
+	 * @param responsable
+	 *            the responsable to set
 	 */
-	public void setIdResponsable(Responsable responsable) {
+	public void setResponsable(Responsable responsable) {
 		this.responsable = responsable;
 	}
 

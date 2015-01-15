@@ -90,17 +90,16 @@ public class AjoutAdherentServlet extends HttpServlet {
 			 * Réupération des données de la commune de naissance
 			 */
 			String comNaiss = adherentForm.getComNaiss();
-			String codePostNaiss = adherentForm.getCodePostNaiss();
+			Integer codePostNaiss = adherentForm.getCodePostNaiss();
 
 			/**
-			 * Création de la commune de naissance (la récupère dans la base ou
-			 * l'ajoute)
+			 * Création de la commune de naissance
 			 */
 			// DAOFactory factory = DAOFactory.getInstance();
 			// CommuneDAO communeDAO = factory.getCommuneDAO();
 
-			Commune communeNaiss = new Commune(null,
-					Integer.parseInt(codePostNaiss), comNaiss, false);
+			Commune communeNaiss = new Commune(null, codePostNaiss, comNaiss,
+					false);
 			// if (communeDAO.existNomCodePostal(communeNaiss) == null) {
 			// AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
 			// ajouterCommuneCtrl.ajoutCommune(communeNaiss);
@@ -114,7 +113,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 			Integer codePostal = adherentForm.getCodePostal();
 
 			/**
-			 * Création de la commune (la récupère dans la base ou l'ajoute)
+			 * Création de la commune
 			 */
 			Commune commune = new Commune(null, codePostal, com, false);
 			// if (communeDAO.existNomCodePostal(commune) == null) {
@@ -131,7 +130,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 			String complAdresse = adherentForm.getInfoCompl();
 
 			/**
-			 * Création de l'adresse (la récupère dans la base ou l'ajoute)
+			 * Création de l'adresse
 			 */
 			Adresse adresse = new Adresse(null, null, numAdresse, rueAdresse,
 					complAdresse);
@@ -167,7 +166,6 @@ public class AjoutAdherentServlet extends HttpServlet {
 			System.out.println(adherentForm.getErreurs());
 			System.out.println("Erreur !");
 
-			/* Transmission à la page JSP en charge de l'affichage des données */
 			this.getServletContext().getRequestDispatcher(VUE)
 					.forward(request, response);
 		}
