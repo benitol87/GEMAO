@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.Contrat;
+import fr.gemao.sql.ContratDAO;
 import fr.gemao.sql.DAOFactory;
 
 public class RecupererContratCtrl {
@@ -21,7 +22,7 @@ public class RecupererContratCtrl {
 	 */
 	public Contrat recupererContrat(int idContrat){
 		DAOFactory co = DAOFactory.getInstance();
-		ContratDAO contratDAO = co.getCommuneDAO();
+		ContratDAO contratDAO = co.getContratDAO();
 		
 		Contrat contrat = contratDAO.get(idContrat);
 		
@@ -35,7 +36,7 @@ public class RecupererContratCtrl {
 	public List<Contrat> recupererTousContrats(){
 		List<Contrat> listeContrats = new ArrayList<Contrat>();
 		DAOFactory co = DAOFactory.getInstance();
-		ContratDAO contratDAO = co.getCommuneDAO();
+		ContratDAO contratDAO = co.getContratDAO();
 		
 		listeContrats = contratDAO.getAll();
 		
