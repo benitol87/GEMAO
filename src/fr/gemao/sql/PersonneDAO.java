@@ -35,11 +35,19 @@ public class PersonneDAO extends IDAO<Personne> {
 		String sql = "INSERT INTO personne(idAdresse, idCommuneNaiss, nom, prenom,"
 				+ "	dateNaissance, tel_fixe, tel_port, email, sexe)"
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		Integer idAdresse = null;
+		Integer idCommuneNaiss = null;
 		try {
 
 			connexion = factory.getConnection();
+			if(obj.getAdresse() != null){
+				idAdresse = obj.getAdresse().getIdAdresse();
+			}
+			if(obj.getCommuneNaiss() != null){
+				idCommuneNaiss = obj.getCommuneNaiss().getIdCommune();
+			}
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, true, obj.getIdAdresse(), obj.getIdCommuneNaiss(), obj
+					sql, true, idAdresse, idCommuneNaiss, obj
 							.getNom(), obj.getPrenom(), DateUtil.toSqlDate(obj
 							.getDateNaissance()), obj.getTelFixe(), obj
 							.getTelPort(), obj.getEmail(), obj.getCivilite()
@@ -99,11 +107,19 @@ public class PersonneDAO extends IDAO<Personne> {
 		String sql = "UPDATE personne SET idAdresse = ?, idCommuneNaiss = ?, nom = ?, "
 				+ "prenom = ?, dateNaissance = ?, tel_fixe = ?, tel_port = ?, "
 				+ "email = ?, sexe = ?" + "WHERE idPersonne = ?;";
+		Integer idAdresse = null;
+		Integer idCommuneNaiss = null;
 		try {
 
 			connexion = factory.getConnection();
+			if(obj.getAdresse() == null){
+				idAdresse = obj.getAdresse().getIdAdresse();
+			}
+			if(obj.getCommuneNaiss() == null){
+				idCommuneNaiss = obj.getCommuneNaiss().getIdCommune();
+			}
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, true, obj.getIdAdresse(), obj.getIdCommuneNaiss(), obj
+					sql, true, idAdresse, idCommuneNaiss, obj
 							.getNom(), obj.getPrenom(), new Date(obj
 							.getDateNaissance().getTime()), obj.getTelFixe(),
 					obj.getTelPort(), obj.getEmail(), obj.getCivilite()
@@ -186,11 +202,20 @@ public class PersonneDAO extends IDAO<Personne> {
 				+ " and idCommuneNaiss = ? and dateNaiss = ?"
 				+ " and sexe = ?;";
 		Personne verif = null;
+		Integer idAdresse = null;
+		Integer idCommuneNaiss = null;
 		try {
+
 			connexion = factory.getConnection();
+			if(personne.getAdresse() == null){
+				idAdresse = personne.getAdresse().getIdAdresse();
+			}
+			if(personne.getCommuneNaiss() == null){
+				idCommuneNaiss = personne.getCommuneNaiss().getIdCommune();
+			}
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false, personne.getNom(), personne.getPrenom(),
-					personne.getIdCommuneNaiss(), personne.getDateNaissance(), personne.getCivilite().getSexe());
+					idAdresse, idCommuneNaiss, personne.getCivilite().getSexe());
 			result = requete.executeQuery();
 
 			if (result.first()) {
@@ -207,9 +232,11 @@ public class PersonneDAO extends IDAO<Personne> {
 
 	@Override
 	protected Personne map(ResultSet result) throws SQLException {
+		AdresseDAO adresseDAO = factory.getAdresseDAO();
+		CommuneDAO communeDAO = factory.getCommuneDAO();
 		return new Personne(Long.valueOf(result.getInt("idPersonne")),
-				NumberUtil.getResultInteger(result, "idAdresse"),
-				NumberUtil.getResultInteger(result, "idCommuneNaiss"),
+				adresseDAO.get(NumberUtil.getResultInteger(result, "idAdresse")),
+				communeDAO.get(NumberUtil.getResultInteger(result, "idCommuneNaiss")),
 				result.getString("nom"), result.getString("prenom"),
 				result.getDate("dateNaissance"), result.getString("tel_fixe"),
 				result.getString("tel_port"), result.getString("email"),
