@@ -23,20 +23,21 @@ public class Materiel {
 	}
 
 	/**
-	 * Instantiates a new materiel.
-	 *
-	 * @param idMateriel the id materiel
-	 * @param etat the etat
-	 * @param categorie the categorie
-	 * @param marque the marque
-	 * @param designation the designation
-	 * @param typeMat the type mat
-	 * @param numSerie the num serie
-	 * @param dateAchat the date achat
-	 * @param valeurAchat the valeur achat
-	 * @param valeurReap the valeur reap
-	 * @param deplacable the deplacable
-	 * @param observation the observation
+	 * Constructeur d'un objet Materiel
+	 * 
+	 * @param idMateriel : l'ID du matériel
+	 * @param etat : l'état
+	 * @param categorie : la catégorie
+	 * @param marque : la marque
+	 * @param designation : la désignation
+	 * @param typeMat : le type
+	 * @param numSerie : le numéro de série
+	 * @param dateAchat : la date d'achat
+	 * @param valeurAchat : la valeur d'achat
+	 * @param valeurReap : la valeur de ré-approvisionnement
+	 * @param deplacable : si le matériel est déplaçable ou non
+	 * @param observation : l'observation
+	 * @param quantite : la quantité
 	 */
 	public Materiel(Long idMateriel, Etat etat, Categorie categorie,
 			Marque marque, Designation designation, String typeMat, long numSerie,
@@ -56,30 +57,147 @@ public class Materiel {
 		this.observation = observation;
 		this.quantite = quantite;
 	}
-	
-	
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * Constructeur d'un objet Materiel
+	 * @param m : le matériel (objet)
+	 */
+	public Materiel(Materiel m){
+		this(m.getIdMateriel(),
+				m.getEtat(),
+				m.getCategorie(),
+				m.getMarque(),
+				m.getDesignation(),
+				m.getTypeMat(),
+				m.getNumSerie(),
+				m.getDateAchat(),
+				m.getValeurAchat(),
+				m.getValeurReap(),
+				m.isDeplacable(),
+				m.getObservation(),
+				m.getQuantite());
+	}
+	
+	public Long getIdMateriel() {
+		return idMateriel;
+	}
+
+	public Etat getEtat() {
+		return etat;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public Marque getMarque() {
+		return marque;
+	}
+
+	public Designation getDesignation() {
+		return designation;
+	}
+
+	public String getTypeMat() {
+		return typeMat;
+	}
+
+	public long getNumSerie() {
+		return numSerie;
+	}
+
+	public Date getDateAchat() {
+		return dateAchat;
+	}
+
+	public float getValeurAchat() {
+		return valeurAchat;
+	}
+
+	public float getValeurReap() {
+		return valeurReap;
+	}
+
+	public boolean isDeplacable() {
+		return deplacable;
+	}
+
+	public String getObservation() {
+		return observation;
+	}
+
+	public int getQuantite() {
+		return quantite;
+	}
+
+	public void setIdMateriel(Long idMateriel) {
+		this.idMateriel = idMateriel;
+	}
+
+	public void setEtat(Etat etat) {
+		this.etat = etat;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public void setMarque(Marque marque) {
+		this.marque = marque;
+	}
+
+	public void setDesignation(Designation designation) {
+		this.designation = designation;
+	}
+
+	public void setTypeMat(String typeMat) {
+		this.typeMat = typeMat;
+	}
+
+	public void setNumSerie(long numSerie) {
+		this.numSerie = numSerie;
+	}
+
+	public void setDateAchat(Date dateAchat) {
+		this.dateAchat = dateAchat;
+	}
+
+	public void setValeurAchat(float valeurAchat) {
+		this.valeurAchat = valeurAchat;
+	}
+
+	public void setValeurReap(float valeurReap) {
+		this.valeurReap = valeurReap;
+	}
+
+	public void setDeplacable(boolean deplacable) {
+		this.deplacable = deplacable;
+	}
+
+	public void setObservation(String observation) {
+		this.observation = observation;
+	}
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+
+	/**
+	 * Redéfinition de la méthode hashCode
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((categorie == null) ? 0 : categorie.hashCode());
-		result = prime * result
-				+ ((dateAchat == null) ? 0 : dateAchat.hashCode());
+		result = prime * result + ((categorie == null) ? 0 : categorie.hashCode());
+		result = prime * result + ((dateAchat == null) ? 0 : dateAchat.hashCode());
 		result = prime * result + (deplacable ? 1231 : 1237);
-		result = prime * result
-				+ ((designation == null) ? 0 : designation.hashCode());
+		result = prime * result + ((designation == null) ? 0 : designation.hashCode());
 		result = prime * result + ((etat == null) ? 0 : etat.hashCode());
-		result = prime * result
-				+ ((idMateriel == null) ? 0 : idMateriel.hashCode());
+		result = prime * result + ((idMateriel == null) ? 0 : idMateriel.hashCode());
 		result = prime * result + ((marque == null) ? 0 : marque.hashCode());
 		result = prime * result + (int) (numSerie ^ (numSerie >>> 32));
-		result = prime * result
-				+ ((observation == null) ? 0 : observation.hashCode());
+		result = prime * result + ((observation == null) ? 0 : observation.hashCode());
 		result = prime * result + quantite;
 		result = prime * result + ((typeMat == null) ? 0 : typeMat.hashCode());
 		result = prime * result + Float.floatToIntBits(valeurAchat);
@@ -87,8 +205,8 @@ public class Materiel {
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * Redéfinition de la méthode equals
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -145,241 +263,46 @@ public class Materiel {
 				return false;
 		} else if (!typeMat.equals(other.typeMat))
 			return false;
-		if (Float.floatToIntBits(valeurAchat) != Float
-				.floatToIntBits(other.valeurAchat))
+		if (Float.floatToIntBits(valeurAchat) != Float.floatToIntBits(other.valeurAchat))
 			return false;
-		if (Float.floatToIntBits(valeurReap) != Float
-				.floatToIntBits(other.valeurReap))
+		if (Float.floatToIntBits(valeurReap) != Float.floatToIntBits(other.valeurReap))
 			return false;
 		return true;
-	}
-	
-	
+	}	
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * Redéfinition de la méthode toString
 	 */
 	@Override
 	public String toString() {
-		return "Materiel [idMateriel=" + idMateriel + ", etat=" + etat
-				+ ", categorie=" + categorie + ", marque=" + marque
-				+ ", designation=" + designation + ", typeMat=" + typeMat
-				+ ", numSerie=" + numSerie + ", dateAchat=" + dateAchat
-				+ ", valeurAchat=" + valeurAchat + ", valeurReap=" + valeurReap
-				+ ", deplacable=" + deplacable + ", observation=" + observation
-				+ ", quantite=" + quantite + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Materiel [idMateriel=");
+		builder.append(idMateriel);
+		builder.append(", etat=");
+		builder.append(etat);
+		builder.append(", categorie=");
+		builder.append(categorie);
+		builder.append(", marque=");
+		builder.append(marque);
+		builder.append(", designation=");
+		builder.append(designation);
+		builder.append(", typeMat=");
+		builder.append(typeMat);
+		builder.append(", numSerie=");
+		builder.append(numSerie);
+		builder.append(", dateAchat=");
+		builder.append(dateAchat);
+		builder.append(", valeurAchat=");
+		builder.append(valeurAchat);
+		builder.append(", valeurReap=");
+		builder.append(valeurReap);
+		builder.append(", deplacable=");
+		builder.append(deplacable);
+		builder.append(", observation=");
+		builder.append(observation);
+		builder.append(", quantite=");
+		builder.append(quantite);
+		builder.append("]");
+		return builder.toString();
 	}
-
-	/**
-	 * Instantiates a new materiel.
-	 *
-	 * @param m the m
-	 */
-	public Materiel(Materiel m){
-		this(m.getIdMateriel(),
-				m.getEtat(),
-				m.getCategorie(),
-				m.getMarque(),
-				m.getDesignation(),
-				m.getTypeMat(),
-				m.getNumSerie(),
-				m.getDateAchat(),
-				m.getValeurAchat(),
-				m.getValeurReap(),
-				m.isDeplacable(),
-				m.getObservation(),
-				m.getQuantite());
-	}
-
-	/**
-	 * Gets the etat.
-	 *
-	 * @return the etat
-	 */
-	public Etat getEtat() {
-		return etat;
-	}
-
-	/**
-	 * Sets the etat.
-	 *
-	 * @param etat the new etat
-	 */
-	public void setEtat(Etat etat) {
-		this.etat = etat;
-	}
-
-	/**
-	 * Gets the categorie.
-	 *
-	 * @return the categorie
-	 */
-	public Categorie getCategorie() {
-		return categorie;
-	}
-
-	/**
-	 * Gets the marque.
-	 *
-	 * @return the marque
-	 */
-	public Marque getMarque() {
-		return marque;
-	}
-
-	/**
-	 * Gets the type mat.
-	 *
-	 * @return the type mat
-	 */
-	public String getTypeMat() {
-		return typeMat;
-	}
-
-	/**
-	 * Sets the type mat.
-	 *
-	 * @param typeMat the new type mat
-	 */
-	public void setTypeMat(String typeMat) {
-		this.typeMat = typeMat;
-	}
-
-	/**
-	 * Checks if is deplacable.
-	 *
-	 * @return true, if is deplacable
-	 */
-	public boolean isDeplacable() {
-		return deplacable;
-	}
-
-	/**
-	 * Sets the deplacable.
-	 *
-	 * @param deplacable the new deplacable
-	 */
-	public void setDeplacable(boolean deplacable) {
-		this.deplacable = deplacable;
-	}
-
-	/**
-	 * Gets the observation.
-	 *
-	 * @return the observation
-	 */
-	public String getObservation() {
-		return observation;
-	}
-
-	/**
-	 * Sets the observation.
-	 *
-	 * @param observation the new observation
-	 */
-	public void setObservation(String observation) {
-		this.observation = observation;
-	}
-
-	/**
-	 * Gets the id materiel.
-	 *
-	 * @return the id materiel
-	 */
-	public long getIdMateriel() {
-		return idMateriel;
-	}
-
-	/**
-	 * Gets the designation.
-	 *
-	 * @return the designation
-	 */
-	public Designation getDesignation() {
-		return designation;
-	}
-
-	/**
-	 * Gets the num serie.
-	 *
-	 * @return the num serie
-	 */
-	public long getNumSerie() {
-		return numSerie;
-	}
-
-	/**
-	 * Gets the date achat.
-	 *
-	 * @return the date achat
-	 */
-	public Date getDateAchat() {
-		return dateAchat;
-	}
-
-	/**
-	 * Gets the valeur achat.
-	 *
-	 * @return the valeur achat
-	 */
-	public float getValeurAchat() {
-		return valeurAchat;
-	}
-
-	/**
-	 * Gets the valeur reap.
-	 *
-	 * @return the valeur reap
-	 */
-	public float getValeurReap() {
-		return valeurReap;
-	}
-
-	public void setIdMateriel(long idMateriel) {
-		this.idMateriel = idMateriel;
-	}
-
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
-
-	public void setMarque(Marque marque) {
-		this.marque = marque;
-	}
-
-	public void setDesignation(Designation designation) {
-		this.designation = designation;
-	}
-
-	public void setNumSerie(long numSerie) {
-		this.numSerie = numSerie;
-	}
-
-	public void setDateAchat(Date dateAchat) {
-		this.dateAchat = dateAchat;
-	}
-
-	public void setValeurAchat(float valeurAchat) {
-		this.valeurAchat = valeurAchat;
-	}
-
-	public void setValeurReap(float valeurReap) {
-		this.valeurReap = valeurReap;
-	}
-
-	/**
-	 * @return the quantite
-	 */
-	public int getQuantite() {
-		return quantite;
-	}
-
-	/**
-	 * @param quantite the quantite to set
-	 */
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
-	}
-	
-	
 }
