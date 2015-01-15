@@ -24,7 +24,7 @@ import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
 import fr.gemao.sql.materiel.EtatDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
-import fr.gemao.sql.materiel.MaterielDAO;
+
 
 
 
@@ -70,6 +70,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 		String dateAchat = request.getParameter("dateAch");
 		String type = request.getParameter("type");
 		String marque = request.getParameter("marque");
+		String observation = request.getParameter("observation");
 		String numSerie = request.getParameter("numSerie");
 		String quantite = request.getParameter("quantite");
 		
@@ -86,7 +87,8 @@ public class AjoutMaterielServlet extends HttpServlet {
 		
 		materiel.setValeurAchat(valAchat);
 		materiel.setValeurReap(valReap);
-		
+		materiel.setObservation(observation);
+		materiel.setNumSerie(numSerie);
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			materiel.setDateAchat(new java.sql.Date(formatter.parse(dateAchat).getTime()));
@@ -105,7 +107,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 		matCtrl.ajoutMateriel(materiel.getEtat(), materiel.getCategorie(),
 				materiel.getMarque(), materiel.getDesignation(),
 				materiel.getTypeMat(), materiel.getNumSerie(), materiel.getDateAchat(),
-				materiel.getValeurAchat(), materiel.getValeurReap(),materiel.isDeplacable(),materiel.getObservation(), 1 );
+				materiel.getValeurAchat(), materiel.getValeurReap(),materiel.isDeplacable(),materiel.getObservation(), Integer.parseInt(quantite) );
 		
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
