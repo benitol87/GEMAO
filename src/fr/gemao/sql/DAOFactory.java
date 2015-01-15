@@ -182,4 +182,8 @@ public class DAOFactory {
 	public CommuneDAO getCommuneDAO(){
 		return new CommuneDAO(this);
 	}
+	
+	public ContratDAO getContratDAO(){
+		return new ContratDAO(this);
+	}
 }
