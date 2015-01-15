@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import fr.gemao.entity.Personnel;
 import fr.gemao.entity.Responsabilite;
 
 /**
@@ -60,7 +61,7 @@ public class PersonnelForm {
 	}
 	
 	/* Méthode utilitaire qui retourne null si un champ est vide, et son contenu sinon */
-	private static String getValeurChamp(HttpServletRequest request, String nomChamp) {
+	public static String getValeurChamp(HttpServletRequest request, String nomChamp) {
 		String valeur = request.getParameter(nomChamp);
 		
 		if (valeur == null || valeur.trim().length() == 0) {
@@ -71,7 +72,7 @@ public class PersonnelForm {
 	}
 	
 	/* Ajoute un message correspondant au champ spécifié à la map des erreurs. */
-	private void setErreur(String champ, String message) {
+	public void setErreur(String champ, String message) {
 		erreurs.put(champ, message);
 	}
 	
@@ -134,7 +135,7 @@ public class PersonnelForm {
 	 * Méthode permettant de tester un personnel
 	 * @param request
 	 */
-	public void testerPersonnel(HttpServletRequest request) {
+	public Personnel testerPersonnel(HttpServletRequest request) {
 
 		/* Récupération des champs du formulaire */
 		String str = null;
@@ -185,5 +186,12 @@ public class PersonnelForm {
 		} catch (Exception e) {
 			setErreur(CHAMP_POINTSANCIEN, e.getMessage());
 		}
+		
+		if (getErreurs().isEmpty()) {
+			Personnel pers = new Personnel();
+			return pers;
+		}
+		
+		return null;
 	}
 }
