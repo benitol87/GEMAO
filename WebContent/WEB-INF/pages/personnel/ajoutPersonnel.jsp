@@ -76,7 +76,7 @@
 				<tr><td>
 				<label for="fonction">*Fonction:</label>
 				</td><td>
-				<input type="text" name="fonction" required />
+				<input type="text" name="fonction1" required />
 				</td></tr>
 				<tr><td>
 				<input type="button" value="+" action=""/>
