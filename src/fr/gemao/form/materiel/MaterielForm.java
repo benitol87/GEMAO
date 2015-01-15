@@ -21,6 +21,7 @@ public class MaterielForm {
 	private static final String CHAMP_DATEACH = "dateAch";
 	private static final String CHAMP_TYPE = "type";
 	private static final String CHAMP_MARQUE = "marque";
+	private static final String CHAMP_FOURNISSEUR = "fournisseur";
 
 	// Partie Instrument
 	private static final String CHAMP_INST_ETAT = "etat";
@@ -55,6 +56,7 @@ public class MaterielForm {
 	private float valRea;
 	private String observation;
 	private boolean deplacable;
+	private int idFournisseur;
 
 	// variables categorie Mobilier
 	private float prixU;
@@ -80,12 +82,20 @@ public class MaterielForm {
 		valAch = Float.parseFloat(getValeurChamp(request, CHAMP_VALACH));
 		dateAch = getValeurChamp(request, CHAMP_DATEACH);
 		observation = getValeurChamp(request, CHAMP_INST_OBSERVATION);
+		String fourniss = getValeurChamp(request, CHAMP_FOURNISSEUR);
 
 		/* Validation du champ categorie. */
 		try {
 			validationCategorie(idCategorie);
 		} catch (Exception e) {
 			setErreur(CHAMP_CATEGORIE, e.getMessage());
+		}
+
+		/* Validation du champ categorie. */
+		try {
+			validationFournisseur(fourniss);
+		} catch (Exception e) {
+			setErreur(CHAMP_FOURNISSEUR, e.getMessage());
 		}
 
 		/* Validation de la designation. */
@@ -198,8 +208,19 @@ public class MaterielForm {
 			} else {
 				deplacable = false;
 			}
+			idFournisseur = Integer.parseInt(fourniss);
 		} else {
 			resultat = "Échec de l'ajout.";
+		}
+	}
+
+	private void validationFournisseur(String fourniss) throws Exception {
+		if (fourniss == null) {
+			throw new Exception("Merci de choisir un fournisseur valide.");
+		} else {
+			if (fourniss.equals("")) {
+				throw new Exception("Merci de choisir un fournisseur valide.");
+			}
 		}
 	}
 
@@ -318,6 +339,15 @@ public class MaterielForm {
 	 */
 	public boolean getDeplacable() {
 		return deplacable;
+	}
+
+	/**
+	 * Retourne le fournisseur d'un materiel.
+	 * 
+	 * @return l'id du fournisseur du materiel
+	 */
+	public int getFournisseur() {
+		return idFournisseur;
 	}
 
 	/**

@@ -85,6 +85,13 @@
 								value="${sessionScope.sessionObjectMateriel.getNumSerie()}" />
 							</td>
 						</tr>
+						<tr>
+							<td><label for="fournisseurResult">Fournisseur : </label></td>
+							<td><label for="fournisseurResult">${sessionScope.sessionObjectMateriel.getFournisseur().getNomFournisseur()}</label>
+								<input hidden="true" name="fournisseur" type="number"
+								value="${sessionScope.sessionObjectMateriel.getFournisseur().getIdFournisseur()}" />
+							</td>
+						</tr>
 					</table>
 				</fieldset>
 			</td>
