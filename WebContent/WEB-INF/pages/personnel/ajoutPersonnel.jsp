@@ -8,6 +8,7 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 	<!-- 1er partie du formulaire -->
+	<h1>Ajout d'un personnel</h1>
 	<form id="ajoutp1" method="post" action="ajoutPersonnel2.jsp">
 		<table>
 			<tr><td>
