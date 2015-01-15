@@ -90,4 +90,10 @@ public class EtatCtrl {
 		
 		return etatDAO.get(idEtat);
 	}
+	
+	public List<Etat> getListeEtat(){
+		EtatDAO etatDAO = new EtatDAO(DAOFactory.getInstance());
+		
+		return etatDAO.getAll();
+	}
 }
