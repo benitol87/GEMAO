@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.materiel.CategorieCtrl;
 import fr.gemao.ctrl.materiel.DesignationCtrl;
+import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.form.location.LocationForm;
@@ -22,15 +24,18 @@ import fr.gemao.form.location.LocationForm;
 @WebServlet("/location/locationInstrument")
 public class LocationInstrumentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	
 	private String VUE = "/WEB-INF/pages/location/locationInstrument.jsp";
 	
-	private final String PARAM_ID_CATEGORIE = "idCategorie";
-	private final String PARAM_NOM_CATEGORIE = "nomCategorie";
-	private final String PARAM_LISTE_CATEGORIE	= "listeCategorie";
+	private final String PARAM_ID_CATEGORIE			= "idCategorie";
+	private final String PARAM_NOM_CATEGORIE		= "nomCategorie";
+	private final String PARAM_LISTE_CATEGORIE		= "listeCategorie";
 	private final String PARAM_LISTE_DESIGNATION	= "listeDesignation";
+	private final String PARAM_NOM_DESIGNATION		= "nomDesignation";
 	private final String PARAM_LISTE_ADHERENT		= "listeAdherent";
+	private final String PARAM_ID_DESIGNATION		= "idDesignation";
+	private final String PARAM_RESULTAT				= "resultat";
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -57,15 +62,18 @@ public class LocationInstrumentServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		CategorieCtrl categorieCtrl = new CategorieCtrl();
 		DesignationCtrl designationCtrl = new DesignationCtrl();
+		RecupererAdherentCtrl adherentCtrl = new RecupererAdherentCtrl();
+		int idCategorie, idDesignation;
 		
 		if(locationForm.getCategorie()!=null){
-			int idCategorie = Integer.parseInt(locationForm.getCategorie());
+			idCategorie = Integer.parseInt(locationForm.getCategorie());
 			// 2ème passage :	la catégorie vient d'être choisie,
 			// 					choix de la désignation
 			
 			// Mise du numéro de la catégorie dans la session
 			session.setAttribute(PARAM_ID_CATEGORIE, idCategorie);
 			
+			// Passage en paramètre dans la requête du nom de la catégorie
 			request.setAttribute(PARAM_NOM_CATEGORIE, categorieCtrl.recupererCategorie(idCategorie).getLibelleCat());
 			
 			// Récupération de la liste 
@@ -74,10 +82,26 @@ public class LocationInstrumentServlet extends HttpServlet {
 		} else if(locationForm.getDesignation()!=null){
 			// 3ème passage :	la désignation vient d'être choisie,
 			// 					choix de l'instrument
+			idDesignation	= Integer.parseInt(locationForm.getDesignation());
+			idCategorie		= ((Integer)session.getAttribute(PARAM_ID_CATEGORIE)).intValue(); 
+			
+			// Mise du numéro de la désignation dans la session
+			session.setAttribute(PARAM_ID_DESIGNATION, idDesignation);
+
+			// Passage en paramètre dans la requête du nom de la catégorie
+			request.setAttribute(PARAM_NOM_CATEGORIE, categorieCtrl.recupererCategorie(idCategorie).getLibelleCat());
+			request.setAttribute(PARAM_NOM_DESIGNATION, categorieCtrl.recupererCategorie(idDesignation).getLibelleCat());
+
+			List<Adherent> listeAdherent = adherentCtrl.recupererTousAdherents();
+			request.setAttribute(PARAM_LISTE_ADHERENT, listeAdherent);
 			
 		} else {
 			// Dernier passage : Toutes les informations ont été choisies
-			
+			idDesignation	= ((Integer)session.getAttribute(PARAM_ID_DESIGNATION)).intValue();
+			idCategorie		= ((Integer)session.getAttribute(PARAM_ID_CATEGORIE)).intValue(); 
+			int idAdherent	= Integer.parseInt(locationForm.getAdherent());
+			String dateDebut = locationForm.getDateDebut();
+			String dateFin = locationForm.getDateFin();
 		}
 		
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );

@@ -1,14 +1,11 @@
 package fr.gemao.form.location;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.gemao.entity.adherent.Adherent;
-import fr.gemao.entity.materiel.Categorie;
-import fr.gemao.entity.materiel.Designation;
+
 import fr.gemao.form.util.Form;
 
 public class LocationForm {

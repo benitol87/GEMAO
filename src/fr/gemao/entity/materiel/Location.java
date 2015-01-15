@@ -5,8 +5,6 @@ import java.sql.Date;
 import fr.gemao.entity.Personne;
 
 
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class Location.
  */
@@ -31,7 +29,7 @@ public class Location {
 	private Date dateRetour;
 	
 	/** The duree. */
-	private int duree;
+	private Date dateEcheance;
 	
 	/** The montant. */
 	private float montant;
@@ -50,7 +48,6 @@ public class Location {
 				+ ((dateEmprunt == null) ? 0 : dateEmprunt.hashCode());
 		result = prime * result
 				+ ((dateRetour == null) ? 0 : dateRetour.hashCode());
-		result = prime * result + duree;
 		result = prime * result
 				+ ((etatDebut == null) ? 0 : etatDebut.hashCode());
 		result = prime * result + ((etatFin == null) ? 0 : etatFin.hashCode());
@@ -84,7 +81,10 @@ public class Location {
 				return false;
 		} else if (!dateRetour.equals(other.dateRetour))
 			return false;
-		if (duree != other.duree)
+		if (dateEcheance == null) {
+			if (other.dateEcheance != null)
+				return false;
+		} else if (!dateRetour.equals(other.dateRetour))
 			return false;
 		if (etatDebut == null) {
 			if (other.etatDebut != null)
@@ -120,7 +120,7 @@ public class Location {
 		return "Location [personne=" + personne + ", materiel=" + materiel
 				+ ", etatDebut=" + etatDebut + ", etatFin=" + etatFin
 				+ ", dateEmprunt=" + dateEmprunt + ", dateRetour=" + dateRetour
-				+ ", duree=" + duree + ", montant=" + montant + "]";
+				+ ", dateEcheance=" + dateEcheance + ", montant=" + montant + "]";
 	}
 
 	public Location() {
@@ -135,12 +135,12 @@ public class Location {
 	 * @param etatFin the etat fin
 	 * @param dateEmprunt the date emprunt
 	 * @param dateRetour the date retour
-	 * @param duree the duree
+	 * @param dateEcheance the date echeance
 	 * @param montant the montant
 	 * @param reparation the reparation
 	 */
 	public Location(Personne personne, Materiel materiel, Etat etatDebut,
-			Etat etatFin, Date dateEmprunt, Date dateRetour, int duree,
+			Etat etatFin, Date dateEmprunt, Date dateRetour, Date dateEcheance,
 			float montant, Reparation reparation) {
 		this.personne = personne;
 		this.materiel = materiel;
@@ -148,7 +148,7 @@ public class Location {
 		this.etatFin = etatFin;
 		this.dateEmprunt = dateEmprunt;
 		this.dateRetour = dateRetour;
-		this.duree = duree;
+		this.dateEcheance = dateEcheance;
 		this.montant = montant;
 		this.reparation = reparation;
 	}
@@ -225,14 +225,7 @@ public class Location {
 		return dateRetour;
 	}
 
-	/**
-	 * Gets the duree.
-	 *
-	 * @return the duree
-	 */
-	public int getDuree() {
-		return duree;
-	}
+	
 
 	public Reparation getReparation() {
 		return reparation;
@@ -266,9 +259,15 @@ public class Location {
 		this.dateRetour = dateRetour;
 	}
 
-	public void setDuree(int duree) {
-		this.duree = duree;
+	public Date getDateEcheance() {
+		return dateEcheance;
 	}
+
+	public void setDateEcheance(Date dateEcheance) {
+		this.dateEcheance = dateEcheance;
+	}
+
+	
 	
 	
 }
