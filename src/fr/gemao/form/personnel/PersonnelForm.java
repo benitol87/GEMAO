@@ -16,7 +16,7 @@ import fr.gemao.entity.Responsabilite;
 public class PersonnelForm {
 	
 	//Informations relatives à la personne
-	private static final String CHAMP_LISTERESPONSABILITE = "responsabilités";
+	private static final String CHAMP_LISTERESPONSABILITE = "fonction";
 	private static final String CHAMP_IDCONTRAT = "idContrat";
 	private static final String CHAMP_LOGIN = "login";
 	private static final String CHAMP_PASSWORD = "password";
@@ -137,7 +137,22 @@ public class PersonnelForm {
 	public void testerPersonnel(HttpServletRequest request) {
 
 		/* Récupération des champs du formulaire */
-		listeResponsabilite = getValeurChamp(request, CHAMP_LISTERESPONSABILITE);
+		String str = null;
+		Responsabilite res;
+		int i = 1;
+		
+		do {
+			str = getValeurChamp(request, CHAMP_LISTERESPONSABILITE+i);
+			i++;
+			
+			if (str != null || str.equals("")) {
+				res = new Responsabilite();
+				res.setLibelle(str);
+				listeResponsabilite.add(res);
+			}
+			
+		} while(str != null);
+		
 		idContrat = Integer.parseInt(getValeurChamp(request, CHAMP_IDCONTRAT));
 		login = getValeurChamp(request, CHAMP_LOGIN);
 		password = getValeurChamp(request, CHAMP_PASSWORD);
