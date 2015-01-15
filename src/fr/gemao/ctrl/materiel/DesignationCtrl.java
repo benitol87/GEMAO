@@ -1,5 +1,6 @@
 package fr.gemao.ctrl.materiel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.materiel.Designation;
@@ -98,5 +99,14 @@ public class DesignationCtrl {
 
 		return desDAO.get(idDesignation);
 
+	}
+
+	public List<Designation> recupererToutesDesignations() {
+		List<Designation> listeDesignation = new ArrayList<Designation>();
+		DesignationDAO designationDAO = new DesignationDAO(DAOFactory.getInstance());
+		
+		listeDesignation = designationDAO.getAll();
+		
+		return listeDesignation;
 	}
 }
