@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import fr.gemao.entity.Contrat;
+import fr.gemao.entity.materiel.Designation;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 
@@ -15,10 +16,6 @@ public class ContratDAO extends IDAO<Contrat> {
 	public ContratDAO(DAOFactory factory) {
 		super(factory);
 		// TODO Auto-generated constructor stub
-	}
-
-	public Contrat(DAOFactory factory) {
-		super(factory);
 	}
 
 	@Override
@@ -74,8 +71,28 @@ public class ContratDAO extends IDAO<Contrat> {
 
 	@Override
 	public Contrat get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Contrat contrat = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		try {
+			String sql = "SELECT * FROM contrat WHERE idContrat = ?;";
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, id);
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				designation = new Designation(result.getInt("idDesignation"),
+						result.getString("libelle"));
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return designation;
 	}
 
 	@Override
