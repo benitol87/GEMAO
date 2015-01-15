@@ -11,11 +11,11 @@
 <form action="#" method="post">
 	<table>
 		<tr>
-			<td><label for="nbPers">Nombre de personne : </label></td>
-			<td><input type="number" name="nbPers" required="required"
+			<td><label for="nbPers">Nombre de personne(s) : </label></td>
+			<td><input type="number" name="nbPers" required="required" min="0"
 				autocomplete="off" /></td>
-			<td><label for="nbEnf">Nombre d'enfant : </label></td>
-			<td><input type="number" name="nbEnf" required="required"
+			<td><label for="nbEnf">Nombre d'enfant(s) : </label></td>
+			<td><input type="number" name="nbEnf" required="required" min="0"
 				autocomplete="off" /></td>
 			<td><label for="revenues">Revenus annuels : </label></td>
 			<td><input type="number" namme="revenues" required="required"
