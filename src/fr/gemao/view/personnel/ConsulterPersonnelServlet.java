@@ -17,6 +17,7 @@ import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Contrat;
+import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.Responsabilite;
 
@@ -64,7 +65,13 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 		if(listeResponsabilite.isEmpty()){
 			listeResponsabilite.add(new Responsabilite(0, "Aucune"));
 		}
+		
+		List<Diplome> listeDiplome = personnel.getListeDiplomes();
+		if(listeDiplome.isEmpty()){
+			listeDiplome.add(new Diplome(0, "Aucun"));
+		}
 
+		request.setAttribute("listeDiplome", listeDiplome);
 		request.setAttribute("listeResponsabilite", listeResponsabilite);
 		request.setAttribute("personnel", personnel);
 		request.setAttribute("adresse", adresse);
