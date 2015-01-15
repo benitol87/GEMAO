@@ -62,7 +62,6 @@ public class ModifierMaterielServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		System.out.print(form.getErreurs());
 		if (form.getErreurs().isEmpty()) {
-			System.out.println(" de bite");
 			MaterielCtrl matctrl = new MaterielCtrl();
 			Materiel mat = null;
 			if (session.getAttribute("sessionObjectMateriel").getClass() == Materiel.class) {
