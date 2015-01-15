@@ -120,12 +120,14 @@ public class MaterielDAO extends IDAO<Materiel> {
 					sql, false,
 					obj.getEtat().getIdEtat(),
 					obj.getCategorie().getIdCategorie(),
+					obj.getMarque().getIdMarque(),
 					obj.getDesignation().getIdDesignation(),
 					obj.getTypeMat(),
 					obj.getNumSerie(),
 					obj.getDateAchat(),
 					obj.getValeurAchat(),
 					obj.getValeurReap(),
+					obj.isDeplacable(),
 					obj.getObservation(),
 					obj.getIdMateriel());
 			int status = requete.executeUpdate();
