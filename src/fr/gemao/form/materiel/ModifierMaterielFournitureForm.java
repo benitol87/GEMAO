@@ -37,14 +37,9 @@ public class ModifierMaterielFournitureForm {
 
 	public void testerMateriel(HttpServletRequest request) {
 
-		/* Récupération des champs du formulaire */
-
-		qte = Integer.parseInt(getValeurChamp(request, CHAMP_MOBI_QTE));
-		observation = getValeurChamp(request, CHAMP_MOBI_OBS);
-
 		/* Validation du champ quantité */
 		try {
-			validationQuantite(qte);
+			validationQuantite(getValeurChamp(request, CHAMP_MOBI_QTE));
 		} catch (Exception e) {
 			setErreur(CHAMP_MOBI_QTE, e.getMessage());
 		}
@@ -52,6 +47,11 @@ public class ModifierMaterielFournitureForm {
 		/* Initialisation du résultat global de la validation. */
 		if (erreurs.isEmpty()) {
 			resultat = "Succès de l'ajout.";
+			qte = Integer.parseInt(getValeurChamp(request, CHAMP_MOBI_QTE));
+			observation = getValeurChamp(request, CHAMP_MOBI_OBS);
+			if(observation == null){
+				observation = new String("");
+			}
 		} else {
 			resultat = "Échec de l'ajout.";
 		}
@@ -78,9 +78,13 @@ public class ModifierMaterielFournitureForm {
 	/**
 	 * Valide la quantite saisie.
 	 */
-	private void validationQuantite(int qte) throws Exception {
-		if (qte <= 0) {
+	private void validationQuantite(String qte) throws Exception {
+		if (qte == null) {
 			throw new Exception("Merci de saisir une quantite valide.");
+		} else {
+			if (qte.isEmpty()) {
+				throw new Exception("Merci de saisir une quantite valide.");
+			}
 		}
 	}
 

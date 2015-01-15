@@ -7,6 +7,12 @@ import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.sql.AdherentDAO;
 import fr.gemao.sql.DAOFactory;
 
+/**
+ * La classe AjouterAdherentCtrl permet de contrôler l'ajout d'un adhérent
+ * 
+ * @author Coco
+ *
+ */
 public class AjouterAdherentCtrl {
 
 	/**
@@ -63,9 +69,8 @@ public class AjouterAdherentCtrl {
 	}
 
 	/**
-	 * Méthode permettant d'ajouter un adhérent dans la BD.
-	 * Pour être ajouté, la méthode vérifie que les informations de l'adhérent sont valides et que l'ajout de la personne a été réalisé.
-	 * @param adherent
+	 * Méthode permettant d'ajouter un adhérent dans la base de données
+	 * @param adherent : l'adhérent à ajouter
 	 */
 	public void ajoutAdherent(Adherent adherent) {
 
@@ -73,6 +78,7 @@ public class AjouterAdherentCtrl {
 			AjouterPersonneCtrl ajoutPers = new AjouterPersonneCtrl();
 			
 			//Ajout de la personne dans la base
+
 			if(ajoutPers.ajoutPersonne(adherent) != -1){
 				Adherent adh;
 
@@ -91,14 +97,15 @@ public class AjouterAdherentCtrl {
 				else{
 					System.out.println("Les informations de l'adhérent ne sont pas valides...");
 				}
+
 			}
 			else{
 				System.out.println("Une erreur est survenue lors de l'insertion...");
+
 			}
 
 		} else {
-			System.out
-					.println("Les informations de l'adhérent ne sont pas valide");
+			System.out.println("Les informations de l'adhérent ne sont pas valides");
 		}
 	}
 }

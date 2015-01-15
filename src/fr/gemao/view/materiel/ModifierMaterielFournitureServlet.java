@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.gemao.ctrl.ConnexionCtrl;
 import fr.gemao.ctrl.materiel.MaterielCtrl;
-import fr.gemao.entity.Personnel;
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.form.materiel.ModifierMaterielFournitureForm;
 
@@ -19,18 +17,33 @@ import fr.gemao.form.materiel.ModifierMaterielFournitureForm;
 public class ModifierMaterielFournitureServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private String VUE = "/WEB-INF/pages/materiel/modifierMaterielFourniture.jsp";
+	private String VUE_MODIFICATION = "/WEB-INF/pages/materiel/modifierMaterielFourniture.jsp";
+	public static final String VUE_LISTE = "/WEB-INF/pages/materiel/listerMateriel";
 
+	/**
+	 * Chargement de la page de modification. Le parametre idMateriel doit etre
+	 * envoyé pour le doGet (l'id correspond a celui du materiel a modifier.
+	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 
-		MaterielCtrl matctrl = new MaterielCtrl();
-		Materiel mat = matctrl.recupererMateriel(3);
+		String param = request.getParameter("idMateriel");
 
-		request.setAttribute("materiel", mat);
+		if (param != null) {
+			int idParametre = Integer.parseInt(param);
+			MaterielCtrl matctrl = new MaterielCtrl();
+			Materiel mat = matctrl.recupererMateriel(idParametre);
 
-		this.getServletContext().getRequestDispatcher(VUE)
-				.forward(request, response);
+			session.setAttribute("materiel", mat);
+			request.setAttribute("materiel", mat);
+
+			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
+					.forward(request, response);
+		} else {
+			this.getServletContext().getRequestDispatcher(VUE_LISTE)
+					.forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request,
@@ -42,20 +55,25 @@ public class ModifierMaterielFournitureServlet extends HttpServlet {
 		/* Récupération de la session depuis la requête */
 		HttpSession session = request.getSession();
 
-		/**
-		 * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
-		 * Utilisateur à la session, sinon suppression du bean de la session.
-		 */
 		if (form.getErreurs().isEmpty()) {
-			try {
-				MaterielCtrl matctrl = new MaterielCtrl();
-				Materiel mat = matctrl.recupererMateriel(3);
-				// ajout de la quantité a rajouter
+
+			MaterielCtrl matctrl = new MaterielCtrl();
+			Materiel mat = null;
+			if (session.getAttribute("materiel").getClass() == Materiel.class) {
+				mat = (Materiel) session.getAttribute("materiel");
+				mat.setQuantite(form.getQuantite());
 				mat.setObservation(form.getObservation());
 				matctrl.modifierMateriel(mat);
-			} catch (Exception e) {
-				form.setErreur("Connexion", e.getMessage());
+				session.removeAttribute("materiel");
+			} else {
+				form.setErreur("Modification", "Probleme de session");
 			}
+		}
+		if (form.getErreurs().isEmpty()) {
+			response.sendRedirect(request.getContextPath() + VUE_LISTE);
+		} else {
+			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
+					.forward(request, response);
 		}
 	}
 }

@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Materiel {
 
-	private long idMateriel;
+	private Long idMateriel;
 	private Etat etat;
 	private Categorie categorie;
 	private Marque marque;
@@ -16,9 +16,10 @@ public class Materiel {
 	private float valeurReap;
 	private boolean deplacable;
 	private String observation;
+	private int quantite;
 	
 	public Materiel() {
-		this.idMateriel = (Long) null;
+		this.idMateriel = null;
 	}
 
 	/**
@@ -37,10 +38,10 @@ public class Materiel {
 	 * @param deplacable the deplacable
 	 * @param observation the observation
 	 */
-	public Materiel(long idMateriel, Etat etat, Categorie categorie,
+	public Materiel(Long idMateriel, Etat etat, Categorie categorie,
 			Marque marque, Designation designation, String typeMat, long numSerie,
 			Date dateAchat, float valeurAchat, float valeurReap,
-			boolean deplacable, String observation) {
+			boolean deplacable, String observation, int quantite) {
 		this.idMateriel = idMateriel;
 		this.etat = etat;
 		this.categorie = categorie;
@@ -53,22 +54,14 @@ public class Materiel {
 		this.valeurReap = valeurReap;
 		this.deplacable = deplacable;
 		this.observation = observation;
+		this.quantite = quantite;
 	}
 	
 	
-	
-	@Override
-	public String toString() {
-		return "Materiel [idMateriel=" + idMateriel + ", etat=" + etat
-				+ ", categorie=" + categorie + ", marque=" + marque
-				+ ", designation=" + designation + ", typeMat=" + typeMat
-				+ ", numSerie=" + numSerie + ", dateAchat=" + dateAchat
-				+ ", valeurAchat=" + valeurAchat + ", valeurReap=" + valeurReap
-				+ ", deplacable=" + deplacable + ", observation=" + observation
-				+ "]";
-	}
 
-	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -81,18 +74,22 @@ public class Materiel {
 		result = prime * result
 				+ ((designation == null) ? 0 : designation.hashCode());
 		result = prime * result + ((etat == null) ? 0 : etat.hashCode());
-		result = prime * result + (int) (idMateriel ^ (idMateriel >>> 32));
+		result = prime * result
+				+ ((idMateriel == null) ? 0 : idMateriel.hashCode());
 		result = prime * result + ((marque == null) ? 0 : marque.hashCode());
 		result = prime * result + (int) (numSerie ^ (numSerie >>> 32));
 		result = prime * result
 				+ ((observation == null) ? 0 : observation.hashCode());
+		result = prime * result + quantite;
 		result = prime * result + ((typeMat == null) ? 0 : typeMat.hashCode());
 		result = prime * result + Float.floatToIntBits(valeurAchat);
 		result = prime * result + Float.floatToIntBits(valeurReap);
 		return result;
 	}
 
-	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -124,7 +121,10 @@ public class Materiel {
 				return false;
 		} else if (!etat.equals(other.etat))
 			return false;
-		if (idMateriel != other.idMateriel)
+		if (idMateriel == null) {
+			if (other.idMateriel != null)
+				return false;
+		} else if (!idMateriel.equals(other.idMateriel))
 			return false;
 		if (marque == null) {
 			if (other.marque != null)
@@ -138,6 +138,8 @@ public class Materiel {
 				return false;
 		} else if (!observation.equals(other.observation))
 			return false;
+		if (quantite != other.quantite)
+			return false;
 		if (typeMat == null) {
 			if (other.typeMat != null)
 				return false;
@@ -150,6 +152,22 @@ public class Materiel {
 				.floatToIntBits(other.valeurReap))
 			return false;
 		return true;
+	}
+	
+	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Materiel [idMateriel=" + idMateriel + ", etat=" + etat
+				+ ", categorie=" + categorie + ", marque=" + marque
+				+ ", designation=" + designation + ", typeMat=" + typeMat
+				+ ", numSerie=" + numSerie + ", dateAchat=" + dateAchat
+				+ ", valeurAchat=" + valeurAchat + ", valeurReap=" + valeurReap
+				+ ", deplacable=" + deplacable + ", observation=" + observation
+				+ ", quantite=" + quantite + "]";
 	}
 
 	/**
@@ -169,7 +187,8 @@ public class Materiel {
 				m.getValeurAchat(),
 				m.getValeurReap(),
 				m.isDeplacable(),
-				m.getObservation());
+				m.getObservation(),
+				m.getQuantite());
 	}
 
 	/**
@@ -346,6 +365,20 @@ public class Materiel {
 
 	public void setValeurReap(float valeurReap) {
 		this.valeurReap = valeurReap;
+	}
+
+	/**
+	 * @return the quantite
+	 */
+	public int getQuantite() {
+		return quantite;
+	}
+
+	/**
+	 * @param quantite the quantite to set
+	 */
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
 	}
 	
 	
