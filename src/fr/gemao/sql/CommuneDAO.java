@@ -32,7 +32,7 @@ public class CommuneDAO extends IDAO<Commune> {
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, true, obj.getCodePostal(), obj.getIdCommune(),
+					sql, true, obj.getCodePostal(), obj.getNomCommune(),
 					obj.isAvantage());
 			int status = requete.executeUpdate();
 
