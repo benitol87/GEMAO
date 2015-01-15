@@ -61,7 +61,7 @@
 		</tr>
 		<tr>
 			<td><label for="commune">Commune : </label></td>
-			<td><input type="text" name="comunne" required="required"
+			<td><input type="text" name="commune" required="required"
 				autocomplete="off" /></td>
 			<td><label for="codePostal">Code Postal : </label></td>
 			<td><input type="text" name="codePostal" required="required"
