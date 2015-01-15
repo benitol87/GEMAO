@@ -29,4 +29,13 @@ public class ParametreCtrl {
 		}
 
 	}
+	
+	public Parametre getLast(){
+		return parametreDAO.getLast();
+	}
+	
+	public String conversionDeSqlVersAffichage(float valeur){
+		
+		return Float.toString(valeur).replace('.', ',');
+	}
 }

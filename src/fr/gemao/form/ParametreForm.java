@@ -6,9 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.gemao.entity.Parametre;
-import fr.gemao.entity.Personnel;
-import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.ParametreDAO;
 
 public class ParametreForm {
 	private static final String CHAMP_ALLOC2 = "alloc2";
@@ -98,7 +95,7 @@ public class ParametreForm {
 
 		Parametre parametre = null;
 
-		/* if (!erreurs.isEmpty()) { */
+		 /*if (!erreurs.isEmpty()) {*/
 		parametre = new Parametre();
 		parametre.setAlloc2(alloc2);
 		parametre.setAlloc3(alloc3);
@@ -123,8 +120,8 @@ public class ParametreForm {
 	 * Valide l'alloc saisie.
 	 */
 	private void validationAlloc(float alloc) throws Exception {
-		if ((Float) alloc == null) {
-			throw new Exception("Merci de saisir une allocation familiale.");
+		if (alloc < 0) {
+			throw new Exception("Merci de saisir une allocation familiale positive.");
 		}
 	}
 
@@ -132,8 +129,8 @@ public class ParametreForm {
 	 * Valide le mot de passe saisi.
 	 */
 	private void validationQF(float qf) throws Exception {
-		if ((Float) qf == null) {
-			throw new Exception("Merci de saisir un quotient familial.");
+		if (qf < 0 ) {
+			throw new Exception("Merci de saisir un quotient familial positif.");
 		}
 	}
 
