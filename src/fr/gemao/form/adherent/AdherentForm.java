@@ -51,7 +51,7 @@ public class AdherentForm {
 	private String nom;
 	private String prenom;
 	private String dateNaissance;
-	private String codePostNaiss;
+	private Integer codePostNaiss;
 	private String comNaiss;
 	private String telFixe;
 	private String telPort;
@@ -99,7 +99,7 @@ public class AdherentForm {
 		return this.dateNaissance;
 	}
 	
-	public String getCodePostNaiss(){
+	public Integer getCodePostNaiss(){
 		return this.codePostNaiss;
 	}
 	
@@ -216,7 +216,7 @@ public class AdherentForm {
 	 * @param codePostNaiss
 	 * @throws Exception
 	 */
-	private void validationCodePostNaiss(String codePostNaiss) throws Exception {
+	private void validationCodePostNaiss(Integer codePostNaiss) throws Exception {
 		if (codePostNaiss == null || codePostNaiss.equals("")) {
 			throw new Exception("Merci de saisir un code postal de naissance valide.");
 		}
@@ -362,7 +362,7 @@ public class AdherentForm {
 		nom = getValeurChamp(request, CHAMP_NOM);
 		prenom = getValeurChamp(request, CHAMP_PRENOM);
 		dateNaissance = getValeurChamp(request, CHAMP_DATENAISS);
-		codePostNaiss = getValeurChamp(request, CHAMP_CODEPOSTNAISS);
+		codePostNaiss = Integer.parseInt(getValeurChamp(request, CHAMP_CODEPOSTNAISS));
 		comNaiss = getValeurChamp(request, CHAMP_COMNAISS);
 		telFixe = getValeurChamp(request, CHAMP_TELFIXE);
 		telPort = getValeurChamp(request, CHAMP_TELPORT);
@@ -385,11 +385,11 @@ public class AdherentForm {
 		}
 		
 		//Validation du champ prénom
-				try {
-					validationPrenom(prenom);
-				} catch (Exception e) {
-					setErreur(CHAMP_PRENOM, e.getMessage());
-				}
+		try {
+			validationPrenom(prenom);
+		} catch (Exception e) {
+			setErreur(CHAMP_PRENOM, e.getMessage());
+		}
 
 		//Validation du champ date de naissance
 		try {
