@@ -10,7 +10,7 @@ import java.util.Date;
 public class Contrat {
 	private Integer idContrat;
 	private TypeContrat typeContrat;
-	private MotifFinContrat idMotifContrat;
+	private MotifFinContrat motifFinContrat;
 	private Date dateDebut;
 	private Date dateFin;
 	private Date dateRupture;
@@ -32,7 +32,7 @@ public class Contrat {
 		super();
 		this.idContrat = idContrat;
 		this.typeContrat = typeContrat;
-		this.idMotifContrat = idMotifContrat;
+		this.motifFinContrat = idMotifContrat;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.dateRupture = dateRupture;
@@ -62,8 +62,8 @@ public class Contrat {
 	/**
 	 * @return the idMotifContrat
 	 */
-	public MotifFinContrat getIdMotifContrat() {
-		return idMotifContrat;
+	public MotifFinContrat getMotifFinContrat() {
+		return motifFinContrat;
 	}
 
 
@@ -136,10 +136,10 @@ public class Contrat {
 	}
 
 	/**
-	 * @param idMotifContrat the idMotifContrat to set
+	 * @param motifFinContrat the idMotifContrat to set
 	 */
-	public void setIdMotifContrat(MotifFinContrat idMotifContrat) {
-		this.idMotifContrat = idMotifContrat;
+	public void setMotifFinContrat(MotifFinContrat motifFinContrat) {
+		this.motifFinContrat = motifFinContrat;
 	}
 
 	/* (non-Javadoc)
@@ -148,7 +148,7 @@ public class Contrat {
 	@Override
 	public String toString() {
 		return "Contrat [idContrat=" + idContrat + ", typeContrat="
-				+ typeContrat + ", idMotifContrat=" + idMotifContrat
+				+ typeContrat + ", idMotifContrat=" + motifFinContrat
 				+ ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
 				+ ", dateRupture=" + dateRupture + "]";
 	}
@@ -168,7 +168,7 @@ public class Contrat {
 		result = prime * result
 				+ ((idContrat == null) ? 0 : idContrat.hashCode());
 		result = prime * result
-				+ ((idMotifContrat == null) ? 0 : idMotifContrat.hashCode());
+				+ ((motifFinContrat == null) ? 0 : motifFinContrat.hashCode());
 		result = prime * result
 				+ ((typeContrat == null) ? 0 : typeContrat.hashCode());
 		return result;
@@ -206,10 +206,10 @@ public class Contrat {
 				return false;
 		} else if (!idContrat.equals(other.idContrat))
 			return false;
-		if (idMotifContrat == null) {
-			if (other.idMotifContrat != null)
+		if (motifFinContrat == null) {
+			if (other.motifFinContrat != null)
 				return false;
-		} else if (!idMotifContrat.equals(other.idMotifContrat))
+		} else if (!motifFinContrat.equals(other.motifFinContrat))
 			return false;
 		if (typeContrat == null) {
 			if (other.typeContrat != null)
