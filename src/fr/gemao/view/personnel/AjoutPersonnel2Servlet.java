@@ -13,12 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.gemao.entity.Personnel;
-import fr.gemao.entity.util.Civilite;
 
 /**
  * Servlet implementation class AjoutPersonnel2Servlet
  */
-@WebServlet("/AjoutPersonnel2")
+@WebServlet("/personnel/AjoutPersonnel2")
 public class AjoutPersonnel2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +35,8 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		session.getAttribute("personnel");
+		Personnel perso = (Personnel) session.getAttribute("personnel");
+		System.out.println(perso);
 		/**
 		 * Récupération des données saisies, envoyées en tant que paramètres de
 		 * la requète POST générée à la validation du formulaire
@@ -58,22 +58,12 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
         } catch (ParseException e) {
 			e.printStackTrace();
 		}
-        Personnel personnel= new Personnel(
-        		session.getAttribute(personnel.getIdPersonne()), 
-        		session.getAttribute("personnel"), 
-        		session.getAttribute("personnel"), 
-        		session.getAttribute("personnel"), 
-        		session.getAttribute("personnel"), 
-        		session.getAttribute("personnel"), 
-        		session.getAttribute("personnel"), 
-        		session.getAttribute("personnel"), 
-        		session.getAttribute("personnel"), 
-        		Civilite.MONSIEUR, 
-        		session.getAttribute("personnel"), 
-        		session.getAttribute("personnel"), 
-        		session.getAttribute("personnel"), 
-        		session.getAttribute("personnel"), 
-        		0);
+        Personnel personnel= new Personnel();
+        
+        /* Transmission à la page JSP en charge de l'affichage des données */
+     		this.getServletContext()
+     				.getRequestDispatcher(VUE)
+     				.forward(request, response);
 	}
 
 }
