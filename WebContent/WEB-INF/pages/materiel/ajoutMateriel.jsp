@@ -30,7 +30,7 @@
 		name="ValeurAch" /> <label for="dateAch">Date d'achat : </label> <input
 		type="date" name="dateAch" />
 </form>
-<form id="ajouterMaterielInstrument" action="#" methode="post" hidden>
+<form id="ajouterMateriel" action="#" methode="post">
 	<table>
 		<tr>
 			<td>
