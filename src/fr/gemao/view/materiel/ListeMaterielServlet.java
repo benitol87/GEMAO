@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.materiel.MaterielCtrl;
 import fr.gemao.entity.materiel.Materiel;
@@ -38,7 +39,11 @@ public class ListeMaterielServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+			HttpSession session = request.getSession();
+			
+		   String idMateriel = request.getParameter( "materiel" );
+		   session.setAttribute("idMateriel",idMateriel);
+		
 	}
 
 }
