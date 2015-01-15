@@ -120,4 +120,12 @@ public class Commune {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Commune [idCommune=" + idCommune + ", codePostal=" + codePostal
+				+ ", nomCommune=" + nomCommune + ", avantage=" + avantage + "]";
+	}
+	
+	
 }

@@ -7,18 +7,19 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
+	<h1>Ajout d'un personnel</h1>
 	<!-- 2eme partie du formulaire -->
 	<form id="ajoutp2" method="post" action="#">
 		<table>
 			<tr><td>
 				<label for="nom">NOM:</label>
 			</td><td>
-				<input type="text" name="nom"/>
+				<label for="nomResult"></label>
 			</td></td>
 			</td><td>
-				<label for="prenom">Prénom:</label>
+				<label for="prenom">Prï¿½nom:</label>
 			</td><td>
-				<input type="text" name="prenom"/>
+				<label for="prenomResult"></label>
 			</td></tr>
 			<tr><td>
 				<label for="type">Type de contrat:</label>
@@ -27,16 +28,16 @@
 					<option>CDD</option>
 					<option>CDI</option>
 					<option>CTT</option>
-					<option>Bénévolat</option>
+					<option>Bï¿½nï¿½volat</option>
 				</select>
 			</td></tr>
 			<tr><td>
-				<label for="datedeb">Date de début:</label>
+				<label for="datedeb">Date de dï¿½but:</label>
 			</td><td>
 				<input type="date" name="datedeb"/>
 			</td></tr>
 			<tr><td>
-				<label for="duree">Durée:</label>
+				<label for="duree">Durï¿½e:</label>
 			</td><td>
 				<input type="text" name="duree" size="2"/> mois
 			</td></tr>

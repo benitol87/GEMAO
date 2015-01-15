@@ -47,7 +47,8 @@ public class AjouterAdresseCtrl {
 			AdresseDAO adresseDAO = co.getAdresseDAO();
 			
 			//Vérification de l'inexistance de l'adresse dans la base
-			if(adresseDAO.exist(adresse) == null){
+			adr = adresseDAO.exist(adresse);
+			if(adr == null){
 				adr = adresseDAO.create(adresse);
 				if (adr == null){
 					System.out.println("Une erreur est survenue lors de l'insertion...");
@@ -57,7 +58,7 @@ public class AjouterAdresseCtrl {
 				}
 			}
 			else{
-				throw new IllegalArgumentException("L'adresse fournie existe déjà dans la base...");
+				adresse.setIdAdresse(adr.getIdAdresse());
 			}
 		}
 		else{

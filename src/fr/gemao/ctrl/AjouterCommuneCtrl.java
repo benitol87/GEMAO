@@ -58,7 +58,8 @@ public class AjouterCommuneCtrl {
 			CommuneDAO communeDAO = co.getCommuneDAO();
 			
 			//Vérification de l'inexistance de la commune dans la base
-			if(communeDAO.existNomCodePostal(commune) == null){
+			com = communeDAO.existNomCodePostal(commune);
+			if(com == null){
 				com = communeDAO.create(commune);
 				if (com == null){
 					System.out.println("Une erreur est survenue lors de l'insertion...");
@@ -68,7 +69,7 @@ public class AjouterCommuneCtrl {
 				}
 			}
 			else{
-				throw new IllegalArgumentException("La commune existe déjà dans la base...");
+				commune.setIdCommune(com.getIdCommune());
 			}
 		}
 		else{
