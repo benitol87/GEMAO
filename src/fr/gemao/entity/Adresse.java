@@ -7,11 +7,21 @@ public class Adresse {
 	private String nomRue;
 	private String infoCompl;
 	
+	/**
+	 * Constructeur
+	 */
 	public Adresse() {
 	}
 	
-	public Adresse(Integer idAdresse, Integer idCommune, Integer numRue, String nomRue,
-			String infoCompl) {
+	/**
+	 * Constructeur surchargé
+	 * @param idAdresse : l'ID de l'adresse
+	 * @param idCommune : l'ID de le commune
+	 * @param numRue : le numéro de rue
+	 * @param nomRue : le nom de la rue
+	 * @param infoCompl : informations complémentaires
+	 */
+	public Adresse(Integer idAdresse, Integer idCommune, Integer numRue, String nomRue, String infoCompl) {
 		super();
 		this.idAdresse = idAdresse;
 		this.idCommune = idCommune;
@@ -73,8 +83,7 @@ public class Adresse {
 		Integer result = 1;
 		result = prime * result + idAdresse;
 		result = prime * result + idCommune;
-		result = prime * result
-				+ ((infoCompl == null) ? 0 : infoCompl.hashCode());
+		result = prime * result + ((infoCompl == null) ? 0 : infoCompl.hashCode());
 		result = prime * result + ((nomRue == null) ? 0 : nomRue.hashCode());
 		result = prime * result + numRue;
 		return result;
@@ -107,6 +116,4 @@ public class Adresse {
 			return false;
 		return true;
 	}
-	
-	
 }
