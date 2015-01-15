@@ -35,7 +35,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 				+ "idCategorie," + "idMarque," + "idDesignation,"
 				+ "typeMateriel," + "numSerie," + "dateAchat,"
 				+ "valeurAchat," + "valeurReapprov," + "deplaceConcert,"
-				+ "observation)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+				+ "observation, quantite)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?, ?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, true, 
@@ -49,7 +49,8 @@ public class MaterielDAO extends IDAO<Materiel> {
 			obj.getValeurAchat(),
 			obj.getValeurReap(),
 			obj.isDeplacable(),
-			obj.getObservation());
+			obj.getObservation(),
+			obj.getQuantite());
 			
 			int status = requete.executeUpdate();
 			
@@ -113,7 +114,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 				+ "idCategorie = ?, idMarque = ?, idDesignation = ?,"
 				+ "typeMateriel = ?, numSerie = ?, dateAchat = ?,"
 				+ "valeurAchat = ?, valeurReapprov = ?, deplaceConcert = ?,"
-				+ "observation = ? WHERE idMateriel = ?;";
+				+ "observation = ?, quantite = ? WHERE idMateriel = ?;";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
@@ -129,6 +130,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 					obj.getValeurReap(),
 					obj.isDeplacable(),
 					obj.getObservation(),
+					obj.getQuantite(),
 					obj.getIdMateriel());
 			int status = requete.executeUpdate();
 			if(status == 0){
@@ -205,7 +207,8 @@ public class MaterielDAO extends IDAO<Materiel> {
 				result.getFloat("valeurAchat"),
 				result.getFloat("ValeurReapprov"),
 				result.getBoolean("deplaceConcert"),
-				result.getString("observation"));
+				result.getString("observation"),
+				result.getInt("quantite"));
 	}
 
 }
