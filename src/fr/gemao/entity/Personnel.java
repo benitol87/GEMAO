@@ -14,6 +14,7 @@ import fr.gemao.entity.util.Civilite;
 public class Personnel extends Personne {
 
 	private List<Responsabilite> listeResponsabilite;
+	private List<Diplome> listeDiplomes;
 	private Integer idContrat;
 	private String login;
 	private String password;
@@ -25,46 +26,73 @@ public class Personnel extends Personne {
 	/**
 	 * Constructeur de la classe Personnel
 	 * 
-	 * @param idPersonne : l'ID de la personne
-	 * @param idAdresse : l'ID de l'adresse
-	 * @param idCommuneNaiss : l'ID de la commune de naissance
-	 * @param nom : le nom de la personne
-	 * @param prenom : le prénom de la personne
-	 * @param dateNaissance : la date de naissance de la personne
-	 * @param telFixe : le numéro de téléphone fixe de la personne
-	 * @param telPort : le numéro de téléphone portable de la personne
-	 * @param email : l'email de la personne
-	 * @param listeResponsabilite : l'ID des responsabilités
-	 * @param idContrat : l'ID du contrat
-	 * @param login : le login de la personne
-	 * @param password : le password de la personne
-	 * @param pointsAncien : le nombre de points d'ancienneté
+	 * @param idPersonne
+	 *            : l'ID de la personne
+	 * @param idAdresse
+	 *            : l'ID de l'adresse
+	 * @param idCommuneNaiss
+	 *            : l'ID de la commune de naissance
+	 * @param nom
+	 *            : le nom de la personne
+	 * @param prenom
+	 *            : le prénom de la personne
+	 * @param dateNaissance
+	 *            : la date de naissance de la personne
+	 * @param telFixe
+	 *            : le numéro de téléphone fixe de la personne
+	 * @param telPort
+	 *            : le numéro de téléphone portable de la personne
+	 * @param email
+	 *            : l'email de la personne
+	 * @param listeResponsabilite
+	 *            : l'ID des responsabilités
+	 * @param idContrat
+	 *            : l'ID du contrat
+	 * @param login
+	 *            : le login de la personne
+	 * @param password
+	 *            : le password de la personne
+	 * @param pointsAncien
+	 *            : le nombre de points d'ancienneté
 	 */
-	public Personnel(Long idPersonne, Integer idAdresse, Integer idCommuneNaiss,
-			String nom, String prenom, Date dateNaissance, String telFixe,
-			String telPort, String email, Civilite civilite,
-			List<Responsabilite> listeResponsabilite, Integer idContrat,
-			String login, String password, int pointsAncien) {
+	public Personnel(Long idPersonne, Integer idAdresse,
+			Integer idCommuneNaiss, String nom, String prenom,
+			Date dateNaissance, String telFixe, String telPort, String email,
+			Civilite civilite, List<Responsabilite> listeResponsabilite,
+			List<Diplome> listeDiplome, Integer idContrat, String login,
+			String password, int pointsAncien) {
 		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email, civilite);
 
 		this.listeResponsabilite = listeResponsabilite;
+		this.listeDiplomes = listeDiplome;
 		this.idContrat = idContrat;
 		this.login = login;
 		this.password = password;
 		this.pointsAncien = pointsAncien;
 	}
 
-	public Personnel(Personne personne, List<Responsabilite> idResponsabilites,
-			Integer resultInteger, String string, String string2,
-			Integer resultInteger2) {
+	/**
+	 * 
+	 * @param personne
+	 * @param listeResponsabilite
+	 * @param idContrat
+	 * @param login
+	 * @param password
+	 * @param pointsAncien
+	 */
+	public Personnel(Personne personne,
+			List<Responsabilite> listeResponsabilite,
+			List<Diplome> listeDiplome, Integer idContrat, String login,
+			String password, Integer pointsAncien) {
 		super(personne);
 
-		this.listeResponsabilite = idResponsabilites;
-		this.idContrat = resultInteger;
-		this.login = string;
-		this.password = string2;
-		this.pointsAncien = resultInteger2;
+		this.listeResponsabilite = listeResponsabilite;
+		this.listeDiplomes = listeDiplome;
+		this.idContrat = idContrat;
+		this.login = login;
+		this.password = password;
+		this.pointsAncien = pointsAncien;
 	}
 
 	/**
@@ -161,9 +189,36 @@ public class Personnel extends Personne {
 	public void setPointsAncien(int pointsAncien) {
 		this.pointsAncien = pointsAncien;
 	}
+	
+	
 
 	/**
-	 * Redéfinition de la méthode hashCode
+	 * @return the listeDiplomes
+	 */
+	public List<Diplome> getListeDiplomes() {
+		return listeDiplomes;
+	}
+
+	/**
+	 * @param listeDiplomes the listeDiplomes to set
+	 */
+	public void setListeDiplomes(List<Diplome> listeDiplomes) {
+		this.listeDiplomes = listeDiplomes;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Personnel [listeResponsabilite=" + listeResponsabilite
+				+ ", listeDiplomes=" + listeDiplomes + ", idContrat="
+				+ idContrat + ", login=" + login + ", password=" + password
+				+ ", pointsAncien=" + pointsAncien + "]";
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
@@ -171,6 +226,8 @@ public class Personnel extends Personne {
 		int result = super.hashCode();
 		result = prime * result
 				+ ((idContrat == null) ? 0 : idContrat.hashCode());
+		result = prime * result
+				+ ((listeDiplomes == null) ? 0 : listeDiplomes.hashCode());
 		result = prime
 				* result
 				+ ((listeResponsabilite == null) ? 0 : listeResponsabilite
@@ -182,8 +239,8 @@ public class Personnel extends Personne {
 		return result;
 	}
 
-	/**
-	 * Redéfinition de la méthode equals
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -198,6 +255,11 @@ public class Personnel extends Personne {
 			if (other.idContrat != null)
 				return false;
 		} else if (!idContrat.equals(other.idContrat))
+			return false;
+		if (listeDiplomes == null) {
+			if (other.listeDiplomes != null)
+				return false;
+		} else if (!listeDiplomes.equals(other.listeDiplomes))
 			return false;
 		if (listeResponsabilite == null) {
 			if (other.listeResponsabilite != null)
@@ -218,4 +280,6 @@ public class Personnel extends Personne {
 			return false;
 		return true;
 	}
+
+	
 }
