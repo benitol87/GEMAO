@@ -1,6 +1,5 @@
 package fr.gemao.sql;
 
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -9,13 +8,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.DateUtil;
 import fr.gemao.sql.util.NumberUtil;
-
 
 public class PersonneDAO extends IDAO<Personne> {
 
@@ -30,7 +29,7 @@ public class PersonneDAO extends IDAO<Personne> {
 		}
 
 		long id = 0;
-		
+
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
@@ -38,23 +37,20 @@ public class PersonneDAO extends IDAO<Personne> {
 				+ "	dateNaissance, tel_fixe, tel_port, email, sexe)"
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		try {
-			
+
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, true, 
-			obj.getIdAdresse(),
-			obj.getIdCommuneNaiss(),
-			obj.getNom(),
-			obj.getPrenom(),
-			DateUtil.toSqlDate(obj.getDateNaissance()),
-			obj.getTelFixe(),
-			obj.getTelPort(),
-			obj.getEmail(),
-			obj.getCivilite().getSexe());
-			
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, true, obj.getIdAdresse(), obj.getIdCommuneNaiss(), obj
+							.getNom(), obj.getPrenom(), DateUtil.toSqlDate(obj
+							.getDateNaissance()), obj.getTelFixe(), obj
+							.getTelPort(), obj.getEmail(), obj.getCivilite()
+							.getSexe());
+
 			int status = requete.executeUpdate();
-			if ( status == 0 ) {
-	            throw new DAOException( "Échec de la création de la personne, aucune ligne ajoutée dans la table." );
-	        }
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la création de la personne, aucune ligne ajoutée dans la table.");
+			}
 
 			result = requete.getGeneratedKeys();
 			if (result != null && result.first()) {
@@ -72,31 +68,23 @@ public class PersonneDAO extends IDAO<Personne> {
 
 	@Override
 	public void delete(Personne obj) {
-		/*if (obj == null) {
-			throw new NullPointerException("La personne ne doit pas �tre null");
-		}
-		
-		if (obj.getIdPersonne() == 0) {
-			throw new NullPointerException("La personne ne peut pas avoir un id = 0");
-		}
-		
-		Statement stat = null;
-		try {
-			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
-										ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM personne WHERE idPersonne = " + obj.getIdPersonne() + ";");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if(stat != null ){
-				try {
-					stat.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}*/
-		throw new UnsupportedOperationException("Vous n'avez pas le droit de supprimer une Personne.");
+		/*
+		 * if (obj == null) { throw new
+		 * NullPointerException("La personne ne doit pas �tre null"); }
+		 * 
+		 * if (obj.getIdPersonne() == 0) { throw new
+		 * NullPointerException("La personne ne peut pas avoir un id = 0"); }
+		 * 
+		 * Statement stat = null; try { stat =
+		 * connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+		 * ResultSet.CONCUR_UPDATABLE);
+		 * stat.execute("DELETE FROM personne WHERE idPersonne = " +
+		 * obj.getIdPersonne() + ";"); } catch (SQLException e) {
+		 * e.printStackTrace(); } finally { if(stat != null ){ try {
+		 * stat.close(); } catch (SQLException e) { e.printStackTrace(); } } }
+		 */
+		throw new UnsupportedOperationException(
+				"Vous n'avez pas le droit de supprimer une Personne.");
 	}
 
 	@Override
@@ -104,33 +92,28 @@ public class PersonneDAO extends IDAO<Personne> {
 		if (obj == null) {
 			throw new NullPointerException("La personne ne doit pas �tre null");
 		}
-		
+
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "UPDATE personne SET idAdresse = ?, idCommuneNaiss = ?, nom = ?, "
 				+ "prenom = ?, dateNaissance = ?, tel_fixe = ?, tel_port = ?, "
-				+ "email = ?, sexe = ?"
-				+ "WHERE idPersonne = ?;";
+				+ "email = ?, sexe = ?" + "WHERE idPersonne = ?;";
 		try {
-			
+
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, true, 
-					obj.getIdAdresse(),
-					obj.getIdCommuneNaiss(),
-					obj.getNom(),
-					obj.getPrenom(),
-					new Date(obj.getDateNaissance().getTime()),
-					obj.getTelFixe(),
-					obj.getTelPort(),
-					obj.getEmail(),
-					obj.getCivilite().getSexe(),
-					obj.getIdPersonne());
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, true, obj.getIdAdresse(), obj.getIdCommuneNaiss(), obj
+							.getNom(), obj.getPrenom(), new Date(obj
+							.getDateNaissance().getTime()), obj.getTelFixe(),
+					obj.getTelPort(), obj.getEmail(), obj.getCivilite()
+							.getSexe(), obj.getIdPersonne());
 			int status = requete.executeUpdate();
-			
-			if ( status == 0 ) {
-	            throw new DAOException( "Échec de la mise à jour de la personne, aucune ligne ajoutée dans la table." );
-	        }
+
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la mise à jour de la personne, aucune ligne ajoutée dans la table.");
+			}
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -149,9 +132,10 @@ public class PersonneDAO extends IDAO<Personne> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM personne WHERE idPersonne = ?;";
 		try {
-			
+
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, id);
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
@@ -175,9 +159,10 @@ public class PersonneDAO extends IDAO<Personne> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM personne;";
 		try {
-			
+
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false);
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false);
 			result = requete.executeQuery();
 
 			while (result.next()) {
@@ -193,19 +178,43 @@ public class PersonneDAO extends IDAO<Personne> {
 		return liste;
 	}
 
+	public Personne exist(Personne personne) {
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * from personne where nom = ? and prenom = ? and idCommuneNaiss = ? and dateNaiss = ?"
+				+ " and sexe = ?;";
+		Personne verif = null;
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, personne.getNom(), personne.getPrenom(),
+					personne.getIdCommuneNaiss(), personne.getDateNaissance(), personne.getCivilite().getSexe());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				verif = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return verif;
+	}
+
 	@Override
 	protected Personne map(ResultSet result) throws SQLException {
 		return new Personne(Long.valueOf(result.getInt("idPersonne")),
 				NumberUtil.getResultInteger(result, "idAdresse"),
 				NumberUtil.getResultInteger(result, "idCommuneNaiss"),
-				result.getString("nom"), 
-				result.getString("prenom"),
-				result.getDate("dateNaissance"),
-				result.getString("tel_fixe"),
-				result.getString("tel_port"),
-				result.getString("email"),
-				(result.getString("sexe").equals("M")?Civilite.MONSIEUR:Civilite.MADAME));
-		
+				result.getString("nom"), result.getString("prenom"),
+				result.getDate("dateNaissance"), result.getString("tel_fixe"),
+				result.getString("tel_port"), result.getString("email"),
+				(result.getString("sexe").equals("M") ? Civilite.MONSIEUR
+						: Civilite.MADAME));
+
 	}
 
 }
