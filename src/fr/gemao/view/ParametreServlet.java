@@ -62,6 +62,7 @@ public class ParametreServlet extends HttpServlet {
 		} else {
 			System.out.println("Erreur");
 		}
+		request.setAttribute("form", form);
 		request.setAttribute("alloc2", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc2()));
 		request.setAttribute("alloc3", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc3()));
 		request.setAttribute("alloc4", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc4()));
