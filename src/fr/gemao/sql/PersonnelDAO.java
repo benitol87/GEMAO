@@ -176,8 +176,10 @@ public class PersonnelDAO extends IDAO<Personnel>{
 	protected Personnel map(ResultSet result) throws SQLException {
 		PersonneDAO personneDAO = factory.getPersonneDAO();
 		ResponsabiliteDAO responsabiliteDAO = factory.getResponsabiliteDAO();
+		DiplomeDAO diplomeDAO = factory.getDiplomeDAO();
 		Personnel personnel = new Personnel(personneDAO.map(result),
 				responsabiliteDAO.getResponsabilitesParPersonne(result.getLong("idPersonne")),
+				diplomeDAO.getDiplomesParPersonnel(result.getLong("idPersonne")),
 				NumberUtil.getResultInteger(result, "idContrat"),
 				result.getString("login"),
 				result.getString("pwd"),

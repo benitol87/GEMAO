@@ -194,4 +194,8 @@ public class DAOFactory {
 	public MotifFinContratDAO getMotifFinContratDAO() {
 		return new MotifFinContratDAO(this);
 	}
+	
+	public DiplomeDAO getDiplomeDAO(){
+		return new DiplomeDAO(this);
+	}
 }
