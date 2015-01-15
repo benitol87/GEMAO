@@ -125,6 +125,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 		MaterielCtrl matCtrl = new MaterielCtrl();
 		matCtrl.ajoutMateriel(materiel.getEtat(), materiel.getCategorie(),
 				materiel.getMarque(), materiel.getDesignation(),
+				materiel.getFournisseur(),
 				materiel.getTypeMat(), materiel.getNumSerie(),
 				materiel.getDateAchat(), materiel.getValeurAchat(),
 				materiel.getValeurReap(), materiel.isDeplacable(),
