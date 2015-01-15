@@ -19,6 +19,7 @@ import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Personnel;
+import fr.gemao.entity.Responsabilite;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.sql.AdresseDAO;
 import fr.gemao.sql.CommuneDAO;
@@ -80,7 +81,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
         } catch (ParseException e) {
 			e.printStackTrace();
 		}
-        List<Fonction> list = new ArrayList<>();
+        List<Responsabilite> list = new ArrayList<>();
         Personnel personnel = new Personnel(null, null, null, 
         		nom, prenom, dateNaiss, telFixe, telPortable, mail, Civilite.MONSIEUR, 
         		list, null, null, null, 0);
