@@ -54,6 +54,7 @@ public class PersonneDAO extends IDAO<Personne> {
 			result = requete.getGeneratedKeys();
 			if (result != null && result.first()) {
 				id = result.getLong(1);
+				obj.setIdPersonne(id);
 			}
 
 		} catch (SQLException e) {
@@ -62,7 +63,7 @@ public class PersonneDAO extends IDAO<Personne> {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
-		return this.get(id);
+		return obj;
 	}
 
 	@Override

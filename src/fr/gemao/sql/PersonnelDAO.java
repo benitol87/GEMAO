@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.Personnel;
+import fr.gemao.entity.Responsabilite;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -42,7 +43,12 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		String sql = "INSERT INTO personnel(idPersonne, idContrat, login, pwd, pointAnciennete)"
 				+ "VALUES (?, ?, ?, ?, ?);";
 		
+		PersonneDAO personneDAO = factory.getPersonneDAO();
+		ResponsabiliteDAO responsabiliteDAO = factory.getResponsabiliteDAO();
+		
+		List<Responsabilite> listResponsabilite;
 		try {
+			obj = (Personnel) personneDAO.create(obj);
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false,
 					obj.getIdPersonne(),
@@ -56,6 +62,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 			if ( status == 0 ) {
 	            throw new DAOException( "Échec de la création du personnel, aucune ligne ajoutée dans la table." );
 	        }
+			
+			listResponsabilite = responsabiliteDAO.addAllResponsabiliteParPersonnel(obj.getIdPersonne(), obj.getListeResponsabilite());
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
