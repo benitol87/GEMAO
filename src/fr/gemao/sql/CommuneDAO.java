@@ -27,7 +27,7 @@ public class CommuneDAO extends IDAO<Commune> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO commune(codePostal, nom, avantage)"
+		String sql = "INSERT INTO commune(codePostal, nom, avantage) "
 				+ "VALUES (?, ?, ?);";
 		try {
 			connexion = factory.getConnection();
@@ -171,7 +171,7 @@ public class CommuneDAO extends IDAO<Commune> {
 	@Override
 	protected Commune map(ResultSet result) throws SQLException {
 		return new Commune(result.getInt("idCommune"),
-				result.getInt("codePostal"), result.getString("nomCommune"),
+				result.getInt("codePostal"), result.getString("nom"),
 				result.getBoolean("avantage"));
 	}
 
