@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.materiel.Categorie;
-import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.materiel.CategorieDAO;
-import fr.gemao.sql.materiel.MaterielDAO;
 
 public class CategorieCtrl {
 	/**
