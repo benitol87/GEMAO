@@ -22,7 +22,7 @@
 			<td><c:out value="${mat.designation.libelleDesignation}" /></td>
 			<td><c:out value="${mat.categorie.libelleCat}" /></td>
 			<td><c:out value="${mat.quantite}" /></td>
-			<td><a href="ModifierMaterielFourniture?id=<c:out value="${mat.idMateriel}" name="materiel"/>"><input type="button" value="Modifier" /></a><td>
+			<td><a href="ModifierMaterielFourniture?id=<c:out value="${mat.idMateriel}" />"><input type="button" value="Modifier" /></a><td>
 		</tr>
 	</c:forEach>
 </table>
