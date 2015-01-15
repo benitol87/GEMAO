@@ -143,7 +143,7 @@
 			<td><input type="submit" name="valider" value="Valider" /></td>
 			<td></td>
 			<td></td>
-			<td><input type="reset" name="annuler" value="Annuler" /></td>
+			<td><input type="button" name="annuler" value="Retour" onClick="javascript:window.history.go(-1)" /></td>
 		</tr>
 	</table>
 </form>

@@ -7,6 +7,12 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="<c:url value="/js/AjouterPersonnel.js"/>"></script>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/css/datepicker.css"/>" />
 	<!-- 1er partie du formulaire -->
 	<h1>Ajout d'un personnel</h1>
 	<form id="ajoutp1" method="post" action="<c:url value="/personnel/AjoutPersonnel" />">
@@ -24,7 +30,7 @@
 				<td>
 					<label for="date">*Date de naissance:</label>
 				</td><td>
-					<input type="date" name="date" required/>
+					<input type="text" name="date" class="datepicker" required/>
 				</td><td>
 					<label for="email">*Adresse Email:</label>
 				</td><td>
