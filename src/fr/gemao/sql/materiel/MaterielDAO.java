@@ -102,8 +102,42 @@ public class MaterielDAO extends IDAO<Materiel> {
 
 	@Override
 	public Materiel update(Materiel obj) {
-		// TODO Auto-generated method stub
-		return null;
+		if (obj == null) {
+			throw new NullPointerException("Le matériel ne doit pas être nul");
+		}
+
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "UPDATE materiel SET idEtat = ?,"
+				+ "idCategorie = ?, idMarque = ?, idDesignation = ?,"
+				+ "typeMateriel = ?, numSerie = ?, dateAchat = ?,"
+				+ "valeurAchat = ?, valeurReapprov = ?, deplaceConcert = ?,"
+				+ "observations = ? WHERE idMateriel = ?;";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false,
+					obj.getEtat().getIdEtat(),
+					obj.getCategorie().getIdCategorie(),
+					obj.getDesignation().getIdDesignation(),
+					obj.getTypeMat(),
+					obj.getNumSerie(),
+					obj.getDateAchat(),
+					obj.getValeurAchat(),
+					obj.getValeurReap(),
+					obj.getObservation(),
+					obj.getIdMateriel());
+			int status = requete.executeUpdate();
+			if(status == 0){
+				throw new DAOException("La mise à jour de materiel n'a pas eu lieu.");
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		return this.get(obj.getIdMateriel());
 	}
 
 	@Override
