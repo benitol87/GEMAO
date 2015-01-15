@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.gemao.entity.Personne;
 import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
@@ -61,11 +62,13 @@ public class ResponsableDAO extends IDAO<Responsable> {
 	@Override
 	public void delete(Responsable obj) {
 		if (obj == null) {
-			throw new NullPointerException("Le responsable ne doit pas etre null");
+			throw new NullPointerException(
+					"Le responsable ne doit pas etre null");
 		}
 
 		if (obj.getIdResponsable() == 0) {
-			throw new NullPointerException("Le responsable ne peut pas avoir un id = 0");
+			throw new NullPointerException(
+					"Le responsable ne peut pas avoir un id = 0");
 		}
 
 		Connection connexion = null;
@@ -74,8 +77,8 @@ public class ResponsableDAO extends IDAO<Responsable> {
 			connexion = factory.getConnection();
 			stat = connexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM responsable WHERE idEtat = " + obj.getIdResponsable()
-					+ ";");
+			stat.execute("DELETE FROM responsable WHERE idEtat = "
+					+ obj.getIdResponsable() + ";");
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {
@@ -140,6 +143,32 @@ public class ResponsableDAO extends IDAO<Responsable> {
 		}
 
 		return liste;
+	}
+
+	public Responsable exist(Responsable responsable) {
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * from responsable where nom = ? and prenom = ?"
+				+ " and tel = ? and mail = ?";
+		Responsable verif = null;
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, responsable.getNom(), responsable.getPrenom(),
+					responsable.getTelephone(), responsable.getEmail());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				verif = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return verif;
 	}
 
 	@Override
