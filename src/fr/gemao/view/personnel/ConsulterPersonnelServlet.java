@@ -33,24 +33,39 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		long id = Long.parseLong(request.getParameter("id"));
 		RecupererPersonnelCtrl recupererPersonnelCtrl = new RecupererPersonnelCtrl();
 		Personnel personnel = recupererPersonnelCtrl.recupererPersonnel(id);
-		
+
 		RecupererAdresseCtrl recupererAdresseCtrl = new RecupererAdresseCtrl();
-		Adresse adresse = recupererAdresseCtrl.recupererAdresse(personnel.getIdAdresse());
-		
+		Adresse adresse = recupererAdresseCtrl.recupererAdresse(personnel
+				.getIdAdresse());
+
 		RecupererCommuneCtrl recupererCommuneCtrl = new RecupererCommuneCtrl();
-		Commune commune = recupererCommuneCtrl.recupererCommune(adresse.getIdCommune());
-		
+		Commune commune = recupererCommuneCtrl.recupererCommune(adresse
+				.getIdCommune());
+
 		RecupererContratCtrl recupererContratCtrl = new RecupererContratCtrl();
-		Contrat contrat = recupererContratCtrl.recupererContrat(personnel.getIdContrat());
-		
+		Contrat contrat = recupererContratCtrl.recupererContrat(personnel
+				.getIdContrat());
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		String dateDebutContrat = formatter.format(contrat.getDateDebut());
+
+		String dateFinContrat = null;
+		if (contrat.getDateFin() != null) {
+			dateFinContrat = formatter.format(contrat.getDateFin());
+		}
+
+		request.setAttribute("listeResponsabilite",
+				personnel.getListeResponsabilite());
 		request.setAttribute("personnel", personnel);
 		request.setAttribute("adresse", adresse);
 		request.setAttribute("commune", commune);
 		request.setAttribute("contrat", contrat);
+		request.setAttribute("dateDebutContrat", dateDebutContrat);
+		request.setAttribute("dateFinContrat", dateFinContrat);
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}

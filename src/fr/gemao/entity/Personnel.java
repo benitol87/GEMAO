@@ -34,7 +34,7 @@ public class Personnel extends Personne {
 	 * @param telFixe : le numéro de téléphone fixe de la personne
 	 * @param telPort : le numéro de téléphone portable de la personne
 	 * @param email : l'email de la personne
-	 * @param idResponsabilite : l'ID des responsabilités
+	 * @param listeResponsabilite : l'ID des responsabilités
 	 * @param idContrat : l'ID du contrat
 	 * @param login : le login de la personne
 	 * @param password : le password de la personne
@@ -43,12 +43,12 @@ public class Personnel extends Personne {
 	public Personnel(Long idPersonne, Integer idAdresse, Integer idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, Civilite civilite,
-			List<Responsabilite> idResponsabilite, Integer idContrat,
+			List<Responsabilite> listeResponsabilite, Integer idContrat,
 			String login, String password, int pointsAncien) {
 		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email, civilite);
 
-		this.listeResponsabilite = idResponsabilite;
+		this.listeResponsabilite = listeResponsabilite;
 		this.idContrat = idContrat;
 		this.login = login;
 		this.password = password;
@@ -72,7 +72,7 @@ public class Personnel extends Personne {
 	 * 
 	 * @return idResponsabilite : la liste des responsabilités
 	 */
-	public List<Responsabilite> getIdResponsabilite() {
+	public List<Responsabilite> getListeResponsabilite() {
 		return listeResponsabilite;
 	}
 
@@ -118,8 +118,8 @@ public class Personnel extends Personne {
 	 * @param idResponsabilite
 	 *            : la liste de responsabilités
 	 */
-	public void setIdResponsabilite(List<Responsabilite> idResponsabilite) {
-		this.listeResponsabilite = idResponsabilite;
+	public void setListeResponsabilite(List<Responsabilite> listeResponsabilite) {
+		this.listeResponsabilite = listeResponsabilite;
 	}
 
 	/**
