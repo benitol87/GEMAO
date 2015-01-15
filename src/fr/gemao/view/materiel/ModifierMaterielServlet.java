@@ -1,6 +1,7 @@
 package fr.gemao.view.materiel;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.materiel.EtatCtrl;
 import fr.gemao.ctrl.materiel.MaterielCtrl;
+import fr.gemao.entity.materiel.Etat;
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.form.materiel.MaterielForm;
 
@@ -34,8 +37,12 @@ public class ModifierMaterielServlet extends HttpServlet {
 			int idParametre = Integer.parseInt(param);
 			MaterielCtrl matctrl = new MaterielCtrl();
 			Materiel mat = matctrl.recupererMateriel(idParametre);
+			EtatCtrl etatctrl = new EtatCtrl();
 
 			session.setAttribute("sessionObjectMateriel", mat);
+			List<Etat> listEtats = etatctrl.getListeEtat();
+			listEtats.remove(mat.getEtat());
+			session.setAttribute("listeEtats", listEtats);
 
 			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
 					.forward(request, response);
@@ -53,18 +60,23 @@ public class ModifierMaterielServlet extends HttpServlet {
 
 		/* Récupération de la session depuis la requête */
 		HttpSession session = request.getSession();
-
+		System.out.print(form.getErreurs());
 		if (form.getErreurs().isEmpty()) {
-
+			System.out.println(" de bite");
 			MaterielCtrl matctrl = new MaterielCtrl();
 			Materiel mat = null;
-			if (session.getAttribute("materiel").getClass() == Materiel.class) {
-				mat = (Materiel) session.getAttribute("materiel");
-				
-				
+			if (session.getAttribute("sessionObjectMateriel").getClass() == Materiel.class) {
+				mat = (Materiel) session.getAttribute("sessionObjectMateriel");
+
 				mat.setQuantite(form.getQuantite());
 				mat.setObservation(form.getObservation());
-				
+				mat.setValeurReap(form.getValRea());
+				mat.setDeplacable(form.getDeplacable());
+
+				EtatCtrl etatctrl = new EtatCtrl();
+				Etat etat = etatctrl.recupererEtat(form.getEtat());
+				mat.setEtat(etat);
+
 				matctrl.modifierMateriel(mat);
 				session.removeAttribute("materiel");
 			} else {
