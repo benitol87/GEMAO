@@ -9,8 +9,8 @@ import java.util.Date;
 
 public class Contrat {
 	private Integer idContrat;
-	private int idTypeContrat;
-	private int idMotifContrat;
+	private TypeContrat typeContrat;
+	private MotifFinContrat idMotifContrat;
 	private Date dateDebut;
 	private Date dateFin;
 	private Date dateRupture;
@@ -27,12 +27,12 @@ public class Contrat {
 	 * @param dateFin
 	 * @param dateRupture
 	 */
-	public Contrat(Integer idContrat, int typeContrat, int idMotifContrat,
+	public Contrat(Integer idContrat, TypeContrat typeContrat, MotifFinContrat idMotifContrat,
 			Date dateDebut, Date dateFin, Date dateRupture) {
 		super();
 		this.idContrat = idContrat;
-		this.idTypeContrat = typeContrat;
-		idMotifContrat = idMotifContrat;
+		this.typeContrat = typeContrat;
+		this.idMotifContrat = idMotifContrat;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.dateRupture = dateRupture;
@@ -57,38 +57,14 @@ public class Contrat {
 	}
 
 
-	/**
-	 * @param typeContrat the typeContrat to set
-	 */
-	public void setTypeContrat(int typeContrat) {
-		this.idTypeContrat = typeContrat;
-	}
-
-
-
-	/**
-	 * @return the typeContrat
-	 */
-	public int getTypeContrat() {
-		return idTypeContrat;
-	}
+	
 
 	/**
 	 * @return the idMotifContrat
 	 */
-	public int getIdMotifContrat() {
+	public MotifFinContrat getIdMotifContrat() {
 		return idMotifContrat;
 	}
-
-
-
-	/**
-	 * @param idMotifContrat the idMotifContrat to set
-	 */
-	public void setIdMotifContrat(int idMotifContrat) {
-		idMotifContrat = idMotifContrat;
-	}
-
 
 
 	/**
@@ -143,7 +119,16 @@ public class Contrat {
 		this.dateRupture = dateRupture;
 	}
 
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Contrat [idContrat=" + idContrat + ", typeContrat="
+				+ typeContrat + ", idMotifContrat=" + idMotifContrat
+				+ ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
+				+ ", dateRupture=" + dateRupture + "]";
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -152,7 +137,6 @@ public class Contrat {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + idMotifContrat;
 		result = prime * result
 				+ ((dateDebut == null) ? 0 : dateDebut.hashCode());
 		result = prime * result + ((dateFin == null) ? 0 : dateFin.hashCode());
@@ -160,11 +144,12 @@ public class Contrat {
 				+ ((dateRupture == null) ? 0 : dateRupture.hashCode());
 		result = prime * result
 				+ ((idContrat == null) ? 0 : idContrat.hashCode());
-		result = prime * result + idTypeContrat;
+		result = prime * result
+				+ ((idMotifContrat == null) ? 0 : idMotifContrat.hashCode());
+		result = prime * result
+				+ ((typeContrat == null) ? 0 : typeContrat.hashCode());
 		return result;
 	}
-
-
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -178,8 +163,6 @@ public class Contrat {
 		if (getClass() != obj.getClass())
 			return false;
 		Contrat other = (Contrat) obj;
-		if (idMotifContrat != other.idMotifContrat)
-			return false;
 		if (dateDebut == null) {
 			if (other.dateDebut != null)
 				return false;
@@ -200,25 +183,20 @@ public class Contrat {
 				return false;
 		} else if (!idContrat.equals(other.idContrat))
 			return false;
-		if (idTypeContrat != other.idTypeContrat)
+		if (idMotifContrat == null) {
+			if (other.idMotifContrat != null)
+				return false;
+		} else if (!idMotifContrat.equals(other.idMotifContrat))
+			return false;
+		if (typeContrat == null) {
+			if (other.typeContrat != null)
+				return false;
+		} else if (!typeContrat.equals(other.typeContrat))
 			return false;
 		return true;
 	}
 
-
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Contrat [idContrat=" + idContrat + ", typeContrat="
-				+ idTypeContrat + ", IdMotifContrat=" + idMotifContrat
-				+ ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
-				+ ", dateRupture=" + dateRupture + "]";
-	}
-
-
+	
 
 	
 }
