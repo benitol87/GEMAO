@@ -33,7 +33,7 @@ public class ResponsableDAO extends IDAO<Responsable> {
 		String sql = "INSERT INTO responsable(idResponsable, nom, prenom, telephone, email)"
 				+ "VALUES (?, ?, ?, ?, ?);";
 		try {
-
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, true, obj.getIdResponsable(), obj.getNom(),
 					obj.getPrenom(), obj.getTelephone(), obj.getEmail());
@@ -124,7 +124,7 @@ public class ResponsableDAO extends IDAO<Responsable> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM responsable;";
 		try {
-
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false);
 			result = requete.executeQuery();
