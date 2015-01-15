@@ -13,6 +13,7 @@ import fr.gemao.sql.exception.DAOConfigurationException;
 import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
 import fr.gemao.sql.materiel.EtatDAO;
+import fr.gemao.sql.materiel.FournisseurDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
 import fr.gemao.sql.materiel.MaterielDAO;
 import fr.gemao.sql.materiel.ReparationDAO;
@@ -197,5 +198,9 @@ public class DAOFactory {
 	
 	public DiplomeDAO getDiplomeDAO(){
 		return new DiplomeDAO(this);
+	}
+
+	public FournisseurDAO getFournisseurDAO() {
+		return new FournisseurDAO(this);
 	}
 }

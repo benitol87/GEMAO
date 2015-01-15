@@ -32,10 +32,10 @@ public class MaterielDAO extends IDAO<Materiel> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "INSERT INTO materiel(" + "idEtat,"
-				+ "idCategorie," + "idMarque," + "idDesignation,"
+				+ "idCategorie," + "idMarque," + "idDesignation,"+"idFournisseur"
 				+ "typeMateriel," + "numSerie," + "dateAchat,"
 				+ "valeurAchat," + "valeurReapprov," + "deplaceConcert,"
-				+ "observation, quantite)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?, ?);";
+				+ "observation, quantite)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?, ?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, true, 
@@ -43,6 +43,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 			obj.getCategorie().getIdCategorie(),
 			obj.getMarque().getIdMarque(),
 			obj.getDesignation().getIdDesignation(),
+			obj.getFournisseur().getIdFournisseur(),
 			obj.getTypeMat(),
 			obj.getNumSerie(),
 			obj.getDateAchat(),
@@ -201,6 +202,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 				factory.getCategorieDAO().get(result.getInt("idCategorie")),
 				factory.getMarqueDAO().get(result.getInt("idMarque")),
 				factory.getDesignationDAO().get(result.getInt("idDesignation")),
+				factory.getFournisseurDAO().get(result.getInt("idFournisseur")),
 				result.getString("typeMateriel"),
 				result.getString("numSerie"),
 				result.getDate("dateAchat"),
