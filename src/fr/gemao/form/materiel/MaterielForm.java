@@ -17,7 +17,7 @@ public class MaterielForm {
 
 	private static final String CHAMP_CATEGORIE = "categorie";
 	private static final String CHAMP_DESIGNATION = "designation";
-	private static final String CHAMP_VALACH = "ValeurAch";
+	private static final String CHAMP_VALACH = "valeurAch";
 	private static final String CHAMP_DATEACH = "dateAch";
 	private static final String CHAMP_TYPE = "type";
 	private static final String CHAMP_MARQUE = "marque";
@@ -26,7 +26,7 @@ public class MaterielForm {
 	private static final String CHAMP_INST_ETAT = "etat";
 	private static final String CHAMP_INST_NUMSERIE = "numSerie";
 	private static final String CHAMP_INST_VALREA = "valRea";
-	private static final String CHAMP_INST_DEPLACABLE = "deplace";
+	private static final String CHAMP_INST_DEPLACABLE = "deplacable";
 	private static final String CHAMP_INST_OBSERVATION = "observation";
 
 	// Partie Mobilier
@@ -73,10 +73,13 @@ public class MaterielForm {
 	public void testerMateriel(HttpServletRequest request) {
 
 		/* Récupération des champs du formulaire */
-		idCategorie = Integer.parseInt(getValeurChamp(request, CHAMP_CATEGORIE));
-		idDesignation = Integer.parseInt(getValeurChamp(request, CHAMP_DESIGNATION));
+		idCategorie = Integer
+				.parseInt(getValeurChamp(request, CHAMP_CATEGORIE));
+		idDesignation = Integer.parseInt(getValeurChamp(request,
+				CHAMP_DESIGNATION));
 		valAch = Float.parseFloat(getValeurChamp(request, CHAMP_VALACH));
 		dateAch = getValeurChamp(request, CHAMP_DATEACH);
+		observation = getValeurChamp(request, CHAMP_INST_OBSERVATION);
 
 		/* Validation du champ categorie. */
 		try {
@@ -106,111 +109,97 @@ public class MaterielForm {
 			setErreur(CHAMP_DATEACH, e.getMessage());
 		}
 
-		// Dans le cas ou il s'agit d'un intrument.
-		if (idCategorie == VAL_INST) {
-			type = getValeurChamp(request, CHAMP_TYPE);
-			idEtat = Integer.parseInt(getValeurChamp(request, CHAMP_INST_ETAT));
-			idMarque = Integer.parseInt(getValeurChamp(request, CHAMP_MARQUE));
-			String deplac = getValeurChamp(request, CHAMP_INST_DEPLACABLE);
-			numserie = getValeurChamp(request, CHAMP_INST_NUMSERIE);
-			valRea = Float.parseFloat(getValeurChamp(request, CHAMP_INST_VALREA));
-			observation = getValeurChamp(request, CHAMP_INST_OBSERVATION);
+		type = getValeurChamp(request, CHAMP_TYPE);
+		idEtat = Integer.parseInt(getValeurChamp(request, CHAMP_INST_ETAT));
+		idMarque = Integer.parseInt(getValeurChamp(request, CHAMP_MARQUE));
+		String deplac = getValeurChamp(request, CHAMP_INST_DEPLACABLE);
+		numserie = getValeurChamp(request, CHAMP_INST_NUMSERIE);
+		valRea = Float.parseFloat(getValeurChamp(request, CHAMP_INST_VALREA));
 
-			/* Validation du champ deplacable. */
-			try {
-				validationDeplacable(deplac);
-			} catch (Exception e) {
-				setErreur(CHAMP_TYPE, e.getMessage());
-			}
-
-			/* Validation du champ type. */
-			try {
-				validationType(type);
-			} catch (Exception e) {
-				setErreur(CHAMP_TYPE, e.getMessage());
-			}
-
-			/* Validation du champ etat */
-			try {
-				validationEtat(idEtat);
-			} catch (Exception e) {
-				setErreur(CHAMP_INST_ETAT, e.getMessage());
-			}
-
-			/* Validation du champ marque */
-			try {
-				validationMarque(idMarque);
-			} catch (Exception e) {
-				setErreur(CHAMP_MARQUE, e.getMessage());
-			}
-
-			/* Validation du champ numserie */
-			try {
-				validationNumserie(numserie);
-			} catch (Exception e) {
-				setErreur(CHAMP_INST_NUMSERIE, e.getMessage());
-			}
-			/* Validation du champ numserie */
-			try {
-				validationValeurReapprovisionnement(valRea);
-			} catch (Exception e) {
-				setErreur(CHAMP_INST_VALREA, e.getMessage());
-			}
-
-			/* Initialisation du résultat global de la validation. */
-			if (erreurs.isEmpty()) {
-				resultat = "Succès de l'ajout.";
-				if (deplac.equals("oui")) {
-					deplacable = true;
-				} else {
-					deplacable = false;
-				}
-			} else {
-				resultat = "Échec de l'ajout.";
-			}
+		/* Validation du champ deplacable. */
+		try {
+			validationDeplacable(deplac);
+		} catch (Exception e) {
+			setErreur(CHAMP_TYPE, e.getMessage());
 		}
 
-		// Dans le cas d'un mobilier.
-		if (idCategorie == VAL_MOBI || idCategorie == VAL_FOUR) {
-			type = getValeurChamp(request, CHAMP_TYPE);
-			qte = Integer.parseInt(getValeurChamp(request, CHAMP_MOBI_QTE));
-			idMarque = Integer.parseInt(getValeurChamp(request, CHAMP_MARQUE));
-			prixU = Float.parseFloat(getValeurChamp(request, CHAMP_MOBI_PRIXU));
+		/* Validation du champ type. */
+		try {
+			validationType(type);
+		} catch (Exception e) {
+			setErreur(CHAMP_TYPE, e.getMessage());
+		}
 
-			/* Validation du champ type. */
-			try {
-				validationType(type);
-			} catch (Exception e) {
-				setErreur(CHAMP_TYPE, e.getMessage());
-			}
+		/* Validation du champ etat */
+		try {
+			validationEtat(idEtat);
+		} catch (Exception e) {
+			setErreur(CHAMP_INST_ETAT, e.getMessage());
+		}
 
-			/* Validation du champ quantité */
-			try {
-				validationQuantite(qte);
-			} catch (Exception e) {
-				setErreur(CHAMP_MOBI_QTE, e.getMessage());
-			}
+		/* Validation du champ marque */
+		try {
+			validationMarque(idMarque);
+		} catch (Exception e) {
+			setErreur(CHAMP_MARQUE, e.getMessage());
+		}
 
-			/* Validation du champ marque */
-			try {
-				validationMarque(idMarque);
-			} catch (Exception e) {
-				setErreur(CHAMP_MARQUE, e.getMessage());
-			}
+		/* Validation du champ numserie */
+		try {
+			validationNumserie(numserie);
+		} catch (Exception e) {
+			setErreur(CHAMP_INST_NUMSERIE, e.getMessage());
+		}
+		/* Validation du champ numserie */
+		try {
+			validationValeurReapprovisionnement(valRea);
+		} catch (Exception e) {
+			setErreur(CHAMP_INST_VALREA, e.getMessage());
+		}
 
-			/* Validation du champ prix unitaire */
-			try {
-				validationPrixUnitaire(prixU);
-			} catch (Exception e) {
-				setErreur(CHAMP_MOBI_PRIXU, e.getMessage());
-			}
+		type = getValeurChamp(request, CHAMP_TYPE);
+		qte = Integer.parseInt(getValeurChamp(request, CHAMP_MOBI_QTE));
+		idMarque = Integer.parseInt(getValeurChamp(request, CHAMP_MARQUE));
+		prixU = Float.parseFloat(getValeurChamp(request, CHAMP_MOBI_PRIXU));
 
-			/* Initialisation du résultat global de la validation. */
-			if (erreurs.isEmpty()) {
-				resultat = "Succès de l'ajout.";
+		/* Validation du champ type. */
+		try {
+			validationType(type);
+		} catch (Exception e) {
+			setErreur(CHAMP_TYPE, e.getMessage());
+		}
+
+		/* Validation du champ quantité */
+		try {
+			validationQuantite(qte);
+		} catch (Exception e) {
+			setErreur(CHAMP_MOBI_QTE, e.getMessage());
+		}
+
+		/* Validation du champ marque */
+		try {
+			validationMarque(idMarque);
+		} catch (Exception e) {
+			setErreur(CHAMP_MARQUE, e.getMessage());
+		}
+
+		/* Validation du champ prix unitaire */
+		try {
+			validationPrixUnitaire(prixU);
+		} catch (Exception e) {
+			setErreur(CHAMP_MOBI_PRIXU, e.getMessage());
+		}
+
+		/* Initialisation du résultat global de la validation. */
+		if (erreurs.isEmpty()) {
+			resultat = "Succès de l'ajout.";
+			if (deplac.equals("oui")) {
+				deplacable = true;
 			} else {
-				resultat = "Échec de l'ajout.";
+				deplacable = false;
 			}
+		} else {
+			resultat = "Échec de l'ajout.";
 		}
 	}
 
@@ -336,7 +325,8 @@ public class MaterielForm {
 	 */
 	private void validationDeplacable(String deplac) throws Exception {
 		if (deplac == null) {
-			throw new Exception("Merci de choisir une valeur valide pour deplacable.");
+			throw new Exception(
+					"Merci de choisir une valeur valide pour deplacable.");
 		} else {
 			if (!deplac.equals("oui") && !deplac.equals("non")) {
 				throw new Exception("Merci de saisir une date d'achat valide.");
@@ -347,9 +337,11 @@ public class MaterielForm {
 	/**
 	 * Valide la valeur de reapprovisionnement saisie.
 	 */
-	private void validationValeurReapprovisionnement(float valRea2) throws Exception {
+	private void validationValeurReapprovisionnement(float valRea2)
+			throws Exception {
 		if (valRea2 <= 0) {
-			throw new Exception("Merci de saisir une valeur de reapprovisionnement valide");
+			throw new Exception(
+					"Merci de saisir une valeur de reapprovisionnement valide");
 		}
 	}
 
@@ -451,7 +443,8 @@ public class MaterielForm {
 			throw new Exception("Merci de saisir un numero de serie valide.");
 		} else {
 			if (numserie2.equals("")) {
-				throw new Exception("Merci de saisir un numero de serie valide.");
+				throw new Exception(
+						"Merci de saisir un numero de serie valide.");
 			}
 		}
 	}
@@ -467,9 +460,10 @@ public class MaterielForm {
 	 * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
 	 * sinon.
 	 */
-	private static String getValeurChamp(HttpServletRequest request, String nomChamp) {
+	private static String getValeurChamp(HttpServletRequest request,
+			String nomChamp) {
 		String valeur = request.getParameter(nomChamp);
-		
+
 		if (valeur == null || valeur.trim().length() == 0) {
 			return null;
 		} else {
