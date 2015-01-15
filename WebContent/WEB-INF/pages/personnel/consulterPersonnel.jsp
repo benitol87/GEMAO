@@ -50,11 +50,11 @@
 		</tr>
 		<tr>
 			<td><label for="codeP">Code Postal : </label></td>
-			<td><p>CODE POSTAL ICI</p></td>
+			<td><p><c:out value="${commune['codePostal']}" /></p></td>
 		</tr>
 		<tr>
 			<td><label for="commune">Commune : </label></td>
-			<td><p>COMMUNE ICI</p></td>
+			<td><p><c:out value="${commune['nomCommune']}" /></p></td>
 		</tr>
 	</table>
 </fieldset>

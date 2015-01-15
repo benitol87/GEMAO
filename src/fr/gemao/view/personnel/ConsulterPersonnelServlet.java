@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.gemao.ctrl.RecupererAdresseCtrl;
+import fr.gemao.ctrl.RecupererCommuneCtrl;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
 import fr.gemao.entity.Adresse;
+import fr.gemao.entity.Commune;
 import fr.gemao.entity.Personnel;
 
 /**
@@ -37,8 +39,12 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 		RecupererAdresseCtrl recupererAdresseCtrl = new RecupererAdresseCtrl();
 		Adresse adresse = recupererAdresseCtrl.recupererAdresse(personnel.getIdAdresse());
 		
+		RecupererCommuneCtrl recupererCommuneCtrl = new RecupererCommuneCtrl();
+		Commune commune = recupererCommuneCtrl.recupererCommune(adresse.getIdCommune());
+		
 		request.setAttribute("personnel", personnel);
 		request.setAttribute("adresse", adresse);
+		request.setAttribute("commune", commune);
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}
