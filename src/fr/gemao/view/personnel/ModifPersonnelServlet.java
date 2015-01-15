@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.PersonneCtrl;
 import fr.gemao.entity.Personnel;
 import fr.gemao.form.personnel.ModifierPersonnelForm;
 
@@ -50,7 +51,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8")
+		response.setContentType("text/html;charset=UTF-8");
 		
 		ModifierPersonnelForm form = new ModifierPersonnelForm();
 		
