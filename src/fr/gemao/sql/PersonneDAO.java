@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.sql.exception.DAOException;
@@ -25,7 +24,7 @@ public class PersonneDAO extends IDAO<Personne> {
 	@Override
 	public Personne create(Personne obj) {
 		if (obj == null) {
-			throw new NullPointerException("La personne ne doit pas �tre null");
+			throw new NullPointerException("La personne ne doit pas être null");
 		}
 
 		long id = 0;
@@ -182,7 +181,8 @@ public class PersonneDAO extends IDAO<Personne> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * from personne where nom = ? and prenom = ? and idCommuneNaiss = ? and dateNaiss = ?"
+		String sql = "SELECT * from personne where nom = ? and prenom = ?"
+				+ " and idCommuneNaiss = ? and dateNaiss = ?"
 				+ " and sexe = ?;";
 		Personne verif = null;
 		try {
