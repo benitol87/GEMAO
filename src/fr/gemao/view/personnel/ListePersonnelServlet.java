@@ -39,7 +39,10 @@ public class ListePersonnelServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		RecupererPersonnelCtrl recupererPersonnelCtrl = new RecupererPersonnelCtrl();
+		List<Personnel> personnels = recupererPersonnelCtrl.recupererTousPersonnels();
+		request.setAttribute("listePersonnels", personnels);
+		this.getServletContext().getRequestDispatcher( VUE_LISTEPERSONNELS ).forward( request, response );
 	}
 
 }
