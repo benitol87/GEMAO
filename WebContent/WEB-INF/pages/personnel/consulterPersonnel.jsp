@@ -63,17 +63,20 @@
 		<table>
 			<tr><td>
 				<label for="contrat">Contrat : </label>
+				<td><p><c:out value="${contrat['typeContrat'].libelle}" /></p></td>
 			</td></tr>
 			<tr><td>
 				<label for="dateDebContrat">Date de début : </label>
+				<td><p><c:out value="${contrat['dateDebut']}" /></p></td>
 			</td></tr>
-			<c:if test="${contrat['typeContrat']== CDD}">
+			<c:if test="${contrat['typeContrat'].libelle == 'CDD' }">
 				<tr><td>
 					<label for="dateFinContrat">Date de fin : </label>
+					<td><p><c:out value="${contrat['dateFin']}" /></p></td>
 				</td></tr>
 			</c:if>
 			<tr><td>
-				<label for="diplome">Diplome :</label>
+				<label for="diplome">Diplôme :</label>
 			</td><td>
 				
 			</td></tr>
@@ -85,7 +88,7 @@
 		</table>
 	</fieldset>
 	<div>
-		<a href="ListeAdherents"><input type="button" value="Retour" /></a> <input type="button"
+		<a href="ListePersonnel"><input type="button" value="Retour" /></a> <input type="button"
 			value="Modifier" />
 	</div>
 <c:import url="/inc/footer.inc.jsp" />

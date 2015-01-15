@@ -103,13 +103,14 @@ public class ContratDAO extends IDAO<Contrat> {
 
 	@Override
 	protected Contrat map(ResultSet result) throws SQLException {
+		TypeContratDAO contratDAO = factory.getTypeContratDAO();
 		Contrat contrat = new Contrat();
 		contrat.setIdContrat(NumberUtil.getResultInteger(result, "idContrat"));
 		contrat.setDateDebut(result.getDate("dateDebut"));
 		contrat.setDateFin(result.getDate("dateFin"));
 		contrat.setDateRupture(result.getDate("dateRupture"));
-		contrat.setIdMotifContrat(result.getInt("idMotifFin"));
-		contrat.setTypeContrat(result.getInt("idTypeContrat"));
+		contrat.setIdMotifContrat(/*result.getInt("idMotifFin")*/null);
+		contrat.setTypeContrat(contratDAO.get(result.getInt("idTypeContrat")));
 		return contrat;
 	}
 

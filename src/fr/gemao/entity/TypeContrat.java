@@ -2,12 +2,12 @@ package fr.gemao.entity;
 
 public class TypeContrat {
 	private Integer idContrat;
-	private Integer libelle;
+	private String libelle;
 	/**
 	 * @param idContrat
 	 * @param libelle
 	 */
-	public TypeContrat(Integer idContrat, Integer libelle) {
+	public TypeContrat(Integer idContrat, String libelle) {
 		super();
 		this.idContrat = idContrat;
 		this.libelle = libelle;
@@ -27,13 +27,13 @@ public class TypeContrat {
 	/**
 	 * @return the libelle
 	 */
-	public Integer getLibelle() {
+	public String getLibelle() {
 		return libelle;
 	}
 	/**
 	 * @param libelle the libelle to set
 	 */
-	public void setLibelle(Integer libelle) {
+	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
 	/* (non-Javadoc)

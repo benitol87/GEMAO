@@ -1,9 +1,9 @@
 package fr.gemao.ctrl.personnel;
 
-import fr.gemao.ctrl.ModifierPersonneCtrl;
+import fr.gemao.entity.Personne;
 import fr.gemao.entity.Personnel;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.PersonnelDAO;
+import fr.gemao.sql.PersonneDAO;
 
 /**
  * La classe ModifierPersonnelCtrl permet de contrôler la modification d'un personnel.
@@ -24,30 +24,33 @@ public class ModifierPersonnelCtrl {
 	 * Cette méthode permet de vérifier la syntaxe du personnel.
 	 * @param personnel : le personnel modifié
 	 */
-	public static void modifierPersonnel(Personnel personnel) {
+	public long modifierPersonnel(Personnel personnel) {
 		AjouterPersonnelCtrl ajoutPersonnel = new AjouterPersonnelCtrl();
 		
+		//Vérification de la validité des informations
 		if (ajoutPersonnel.verifierInformations(personnel)) {
-			ModifierPersonneCtrl modifPers = new ModifierPersonneCtrl();
+			Personne pers;
 			
-			if (modifPers.modifierPersonne(personnel) != -1) {
-				Personnel pers;
-				
-				DAOFactory co = DAOFactory.getInstance();
-				PersonnelDAO personnelDAO = co.getPersonnelDAO();
-				
-				pers = personnelDAO.update(personnel);
+			DAOFactory co = DAOFactory.getInstance();
+			PersonneDAO personneDAO = co.getPersonneDAO();
+			
+			//Vérification de l'existance de la personne dans la BD
+			if (personneDAO.exist(personnel) != null) {
+				pers = personneDAO.update(personnel);
 				
 				if (pers == null) {
-					System.out.println("Une erreur est survenue lors de la modification");
+					System.out.println("Une erreur est survenue lors de la modification...");
+					return -1; 
 				} else {
-					System.out.println("Le personnel a bien été modifié");
+					System.out.println("Le personnel a bien été modifiée.");
+					return pers.getIdPersonne();
 				}
 			} else {
-				System.out.println("Une erreur est survenue lors de la modification");
+				throw new IllegalArgumentException("Le personnel n'existe pas dans la base...");
 			}
 		} else {
-			System.out.println("Les informations du personnel ne sont pas valides");
+			System.out.println("Les informations du personnel ne sont pas valides...");
+			return -1;
 		}
 	}
 }
