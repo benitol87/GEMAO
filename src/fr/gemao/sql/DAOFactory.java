@@ -186,4 +186,8 @@ public class DAOFactory {
 	public ContratDAO getContratDAO(){
 		return new ContratDAO(this);
 	}
+
+	public TypeContratDAO getTypeContratDAO() {
+		return null;
+	}
 }
