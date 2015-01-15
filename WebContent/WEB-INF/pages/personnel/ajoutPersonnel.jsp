@@ -45,9 +45,14 @@
 			<legend>Adresse</legend>
 			<table>
 				<tr><td>
-					<label for="adresse">*Adresse:</label>
+					<label for="numRue">*N° rue:</label>
 				</td><td>
-					<input type="text" name="adresse" required/>
+					<input type="text" name="numRue" size="2" required/>
+				</td></tr>
+				<tr><td>
+					<label for="nomRue">*Nom rue:</label>
+				</td><td>
+					<input type="text" name="nomRue" required/>
 				</td></tr>
 				<tr><td>
 					<label for="ville">Ville:</label>
