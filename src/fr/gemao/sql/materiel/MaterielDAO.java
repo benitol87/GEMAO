@@ -18,7 +18,6 @@ public class MaterielDAO extends IDAO<Materiel> {
 
 	public MaterielDAO(DAOFactory conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -37,14 +36,31 @@ public class MaterielDAO extends IDAO<Materiel> {
 				+ "valeurReapprov," + "deplaceConcert,"
 				+ "observation, quantite)"
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+		
+		Integer idCategorie = null;
+		Integer idMarque = null;
+		Integer idDesignation = null;
+		Integer idFournisseur = null;
 		try {
+			if(obj.getCategorie() != null){
+				idCategorie = obj.getCategorie().getIdCategorie();
+			}
+			if(obj.getMarque() != null){
+				idMarque = obj.getMarque().getIdMarque();
+			}
+			if(obj.getDesignation() != null){
+				idDesignation = obj.getDesignation().getIdDesignation();
+			}
+			if(obj.getFournisseur() != null){
+				idFournisseur = obj.getFournisseur().getIdFournisseur();
+			}
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, true, obj.getEtat().getIdEtat(),
-					obj.getCategorie().getIdCategorie(),
-					obj.getMarque().getIdMarque(),
-					obj.getDesignation().getIdDesignation(),
-					obj.getFournisseur().getIdFournisseur(),
+					idCategorie,
+					idMarque,
+					idDesignation,
+					idFournisseur,
 					obj.getTypeMat(),
 					obj.getNumSerie(),
 					obj.getDateAchat(),
