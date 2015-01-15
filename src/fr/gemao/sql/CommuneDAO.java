@@ -24,11 +24,11 @@ public class CommuneDAO extends IDAO<Commune> {
 			throw new NullPointerException("La commune ne doit pas être null");
 		}
 
-		long id = 0;
+		Integer id = 0;
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO commune(codePostal, nomCommune, avantage)"
+		String sql = "INSERT INTO commune(codePostal, nom, avantage)"
 				+ "VALUES (?, ?, ?);";
 		try {
 
@@ -44,7 +44,8 @@ public class CommuneDAO extends IDAO<Commune> {
 
 			result = requete.getGeneratedKeys();
 			if (result != null && result.first()) {
-				id = result.getLong(1);
+				id = result.getInt(1);
+				obj.setIdCommune(id);
 			}
 
 		} catch (SQLException e) {
@@ -53,7 +54,7 @@ public class CommuneDAO extends IDAO<Commune> {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
-		return this.get(id);
+		return obj;
 	}
 
 	@Override
@@ -64,8 +65,30 @@ public class CommuneDAO extends IDAO<Commune> {
 
 	@Override
 	public Commune update(Commune obj) {
-		// TODO Auto-generated method stub
-		return null;
+		if (obj == null) {
+			throw new NullPointerException("La commune ne doit pas être nul");
+		}
+
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "UPDATE commune SET codePostal = ?, nom = ?, avantage = ?"
+				+ "WHERE idCommune = ?;";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false,
+					obj.getCodePostal(),
+					obj.getNomCommune(),
+					obj.isAvantage(),
+					obj.getIdCommune());
+			requete.executeUpdate();
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		return this.get(obj.getIdCommune());
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class AdresseDAO extends IDAO<Adresse> {
 					"L'adresse ne doit pas etre null");
 		}
 
-		long id = 0;
+		Integer id = 0;
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
@@ -47,7 +47,8 @@ public class AdresseDAO extends IDAO<Adresse> {
 
 			result = requete.getGeneratedKeys();
 			if (result != null && result.first()) {
-				id = result.getLong(1);
+				id = result.getInt(1);
+				obj.setIdAdresse(id);
 			}
 
 		} catch (SQLException e) {
@@ -56,7 +57,7 @@ public class AdresseDAO extends IDAO<Adresse> {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
-		return this.get(id);
+		return obj;
 	}
 
 	@Override

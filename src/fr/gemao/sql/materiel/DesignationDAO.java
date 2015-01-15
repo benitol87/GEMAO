@@ -83,7 +83,7 @@ public class DesignationDAO extends IDAO<Designation> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "UPDATE Designation SET libelle = ?"
+		String sql = "UPDATE designation SET libelle = ?"
 				+ "WHERE idDesignation = ?;";
 		try {
 			connexion = factory.getConnection();
