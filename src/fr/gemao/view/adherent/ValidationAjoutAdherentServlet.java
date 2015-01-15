@@ -57,7 +57,9 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		request.setAttribute("communeNaiss", communeNaiss);
 		request.setAttribute("adresse", adresse);
 		request.setAttribute("responsable", responsable);
-
+		
+		System.out.println(responsable);
+		
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}

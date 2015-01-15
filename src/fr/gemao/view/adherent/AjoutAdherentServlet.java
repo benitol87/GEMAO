@@ -39,6 +39,14 @@ public class AjoutAdherentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+
+		session.setAttribute("ajout_adh_adherent", null);
+		session.setAttribute("ajout_adh_commune", null);
+		session.setAttribute("ajout_adh_communeNaiss", null);
+		session.setAttribute("ajout_adh_adresse", null);
+		session.setAttribute("ajout_adh_responsable", null);
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}

@@ -96,48 +96,51 @@
 			</table>
 		</td>
 	</tr>
+
+	<tr>
+		<th>Informations supplémentaires</th>
+	</tr>
 	<tr>
 		<td><label for="dateInscri">Date d'inscripton : </label></td>
 		<td><p>
 				<c:out value="${adherent['dateEntree']}" />
 			</p></td>
-	</tr>
-	<tr>
 		<td><label for="cotisation">Cotisation : </label></td>
 		<td><p>
 				<c:out value="${adherent['cotisation']}" />
 			</p></td>
+		<td><span>Droit à l'image :<c:choose>
+					<c:when test="${adherent['droitImage']==true}">Oui</c:when>
+					<c:otherwise>Non</c:otherwise>
+				</c:choose></td>
+		</span>
 	</tr>
 	<c:if test="${responsable!=null}">
 		<tr>
+			<th>Responsable</th>
+		</tr>
+		<tr>
 			<td><label for="nom">Nom : </label></td>
 			<td><p>
-					<c:out value="${adherent.responsable['nom']}" />
+					<c:out value="${responsable['nom']}" />
 				</p></td>
 			<td><label for="prenom">Prénom : </label></td>
 			<td><p>
-					<c:out value="${adherent.responsable['prenom']}" />
+					<c:out value="${responsable['prenom']}" />
 				</p></td>
 		</tr>
 		<tr>
 			<td><label for="tel">Téléphone : </label></td>
 			<td><p>
-					<c:out value="${adherent.responsable['telephone']}" />
+					<c:out value="${responsable['telephone']}" />
 				</p></td>
 			<td><label for="email">E-mail : </label></td>
 			<td><p>
-					<c:out value="${adherent.responsable['email']}" />
+					<c:out value="${responsable['email']}" />
 				</p></td>
 		</tr>
 	</c:if>
 </table>
-<div>
-	<span>Droit à l'image :<c:choose>
-			<c:when test="${adherent['droitImage']==true}">Oui</c:when>
-			<c:otherwise>Non</c:otherwise>
-		</c:choose>
-	</span>
-</div>
 
 <form action="#" method="post">
 	<a href="index.jsp"><input type="button" value="Annuler" /></a><input
