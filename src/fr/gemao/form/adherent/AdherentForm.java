@@ -18,19 +18,21 @@ public class AdherentForm {
 	//Informations relatives à la personne
 	private static final String CHAMP_NOM = "nom";
 	private static final String CHAMP_PRENOM = "prenom";
-	private static final String CHAMP_DATENAISSANCE = "dateNaissance";
+	private static final String CHAMP_DATENAISS = "dateNaiss";
+	private static final String CHAMP_CODEPOSTNAISS = "codePostNaiss";
+	private static final String CHAMP_COMNAISS = "comNaiss";
 	private static final String CHAMP_TELFIXE = "telFixe";
 	private static final String CHAMP_TELPORT = "telPort";
 	private static final String CHAMP_EMAIL = "email";
 	
 	//Adresse
-	private static final String CHAMP_NUMRUE = "numRue";
-	private static final String CHAMP_NOMRUE = "nomRue";
-	private static final String CHAMP_INFOCOMPL = "infoCompl";
+	private static final String CHAMP_NUM = "num";
+	private static final String CHAMP_RUE = "rue";
+	private static final String CHAMP_COMPL = "compl";
 	
 	//Commune
 	private static final String CHAMP_CODEPOSTAL = "codePostal";
-	private static final String CHAMP_NOMCOMMUNE = "nomCommune";
+	private static final String CHAMP_COMMUNE = "commune";
 	
 	//Droit à l'image
 	private static final String CHAMP_DROITIMAGE = "droitImage";
@@ -39,6 +41,9 @@ public class AdherentForm {
 	private static final String CHAMP_DISCIPLINE = "discipline";
 	private static final String CHAMP_CLASSE = "classe";
 	
+	//Inscription
+	private static final String CHAMP_DATEINSCRI = "dateInscri";
+	
 	/**
 	 * Variables récupérées via le formulaire d'ajout d'un adhérent
 	 */
@@ -46,6 +51,8 @@ public class AdherentForm {
 	private String nom;
 	private String prenom;
 	private String dateNaissance;
+	private String codePostNaiss;
+	private String comNaiss;
 	private String telFixe;
 	private String telPort;
 	private String email;
@@ -65,6 +72,9 @@ public class AdherentForm {
 	//Discipline
 	private String discipline;
 	private String classe;
+	
+	//Inscription
+	private String dateEntree;
 	
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
@@ -87,6 +97,14 @@ public class AdherentForm {
 	
 	public String getDateNaissance(){
 		return this.dateNaissance;
+	}
+	
+	public String getCodePostNaiss(){
+		return this.codePostNaiss;
+	}
+	
+	public String getComNaiss(){
+		return this.comNaiss;
 	}
 	
 	public String getTelFixe(){
@@ -133,6 +151,10 @@ public class AdherentForm {
 	//A modifier !
 	public String getClasse(){
 		return this.classe;
+	}
+	
+	public String getDateEntree(){
+		return this.dateEntree;
 	}
 	
 	/*
@@ -186,6 +208,28 @@ public class AdherentForm {
 	private void validationDateNaissance(String dateNaissance) throws Exception {
 		if (dateNaissance == null || dateNaissance.equals("")) {
 			throw new Exception("Merci de saisir une date de naissance valide.");
+		}
+	}
+	
+	/**
+	 * Méthode permettant de valider le code postal de naissance de l'adhérent
+	 * @param codePostNaiss
+	 * @throws Exception
+	 */
+	private void validationCodePostNaiss(String codePostNaiss) throws Exception {
+		if (codePostNaiss == null || codePostNaiss.equals("")) {
+			throw new Exception("Merci de saisir un code postal de naissance valide.");
+		}
+	}
+	
+	/**
+	 * Méthode permettant de valider la commune de naissance de l'adhérent
+	 * @param comNaiss
+	 * @throws Exception
+	 */
+	private void validationComNaiss(String comNaiss) throws Exception {
+		if (comNaiss == null || comNaiss.equals("")) {
+			throw new Exception("Merci de saisir une commune de naissance valide.");
 		}
 	}
 	
@@ -301,23 +345,37 @@ public class AdherentForm {
 		}
 	}
 	
+	/**
+	 * Méthode permettant de valider la date d'entrée de l'adhérent
+	 * @param dateEntree
+	 * @throws Exception
+	 */
+	private void validationDateEntree(String dateEntree) throws Exception {
+		if (dateEntree == null || dateEntree.equals("")) {
+			throw new Exception("Merci de spécifier le droit à l'image.");
+		}
+	}
+	
 	public void testerAdherent(HttpServletRequest request) {
 
 		//Récupération des champs du formulaire
 		nom = getValeurChamp(request, CHAMP_NOM);
 		prenom = getValeurChamp(request, CHAMP_PRENOM);
-		dateNaissance = getValeurChamp(request, CHAMP_DATENAISSANCE);
+		dateNaissance = getValeurChamp(request, CHAMP_DATENAISS);
+		codePostNaiss = getValeurChamp(request, CHAMP_CODEPOSTNAISS);
+		comNaiss = getValeurChamp(request, CHAMP_COMNAISS);
 		telFixe = getValeurChamp(request, CHAMP_TELFIXE);
 		telPort = getValeurChamp(request, CHAMP_TELPORT);
 		email = getValeurChamp(request, CHAMP_EMAIL);
-		numRue = Integer.parseInt(getValeurChamp(request, CHAMP_NUMRUE));
-		nomRue = getValeurChamp(request, CHAMP_NOMRUE);
-		infoCompl = getValeurChamp(request, CHAMP_INFOCOMPL);
+		numRue = Integer.parseInt(getValeurChamp(request, CHAMP_NUM));
+		nomRue = getValeurChamp(request, CHAMP_RUE);
+		infoCompl = getValeurChamp(request, CHAMP_COMPL);
 		codePostal = Integer.parseInt(getValeurChamp(request, CHAMP_CODEPOSTAL));
-		nomCommune = getValeurChamp(request, CHAMP_NOMCOMMUNE);
+		nomCommune = getValeurChamp(request, CHAMP_COMMUNE);
 		droitImage = getValeurChamp(request, CHAMP_DROITIMAGE);
 		discipline = getValeurChamp(request, CHAMP_DISCIPLINE);
 		classe = getValeurChamp(request, CHAMP_CLASSE);
+		dateEntree = getValeurChamp(request, CHAMP_DATEINSCRI);
 
 		//Validation du champ nom
 		try {
@@ -337,7 +395,21 @@ public class AdherentForm {
 		try {
 			validationDateNaissance(dateNaissance);
 		} catch (Exception e) {
-			setErreur(CHAMP_DATENAISSANCE, e.getMessage());
+			setErreur(CHAMP_DATENAISS, e.getMessage());
+		}	
+		
+		//Validation du champ code postal de naissance
+		try {
+			validationCodePostNaiss(codePostNaiss);
+		} catch (Exception e) {
+			setErreur(CHAMP_CODEPOSTNAISS, e.getMessage());
+		}	
+		
+		//Validation du champ commune de naissance
+		try {
+			validationComNaiss(comNaiss);
+		} catch (Exception e) {
+			setErreur(CHAMP_COMNAISS, e.getMessage());
 		}	
 		
 		//Validation du champ téléphone fixe
@@ -365,14 +437,14 @@ public class AdherentForm {
 		try {
 			validationNumRue(numRue);
 		} catch (Exception e) {
-			setErreur(CHAMP_NUMRUE, e.getMessage());
+			setErreur(CHAMP_NUM, e.getMessage());
 		}
 		
 		//Validation du champ nom de rue
 		try {
 			validationNomRue(nomRue);
 		} catch (Exception e) {
-			setErreur(CHAMP_NOMRUE, e.getMessage());
+			setErreur(CHAMP_RUE, e.getMessage());
 		}
 		
 		//Validation du champ code postal
@@ -386,7 +458,7 @@ public class AdherentForm {
 		try {
 			validationNomCommune(nomCommune);
 		} catch (Exception e) {
-			setErreur(CHAMP_NOMCOMMUNE, e.getMessage());
+			setErreur(CHAMP_COMMUNE, e.getMessage());
 		}
 		
 		//Validation du champ prénom
@@ -408,6 +480,13 @@ public class AdherentForm {
 			validationClasse(classe);
 		} catch (Exception e) {
 			setErreur(CHAMP_CLASSE, e.getMessage());
+		}
+		
+		//Validation du champ date d'entrée
+		try {
+			validationDateEntree(dateEntree);
+		} catch (Exception e) {
+			setErreur(CHAMP_DATEINSCRI, e.getMessage());
 		}
 	}
 }
