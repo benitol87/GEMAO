@@ -260,7 +260,7 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 		ResultSet result = null;
 		String sql = "INSERT INTO personnelXresponsabilite(idResponsabilite, idPersonne)"
 				+ "VALUES (?, ?);";
-		int id;
+		
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.Responsabilite;
 import fr.gemao.sql.exception.DAOException;
@@ -44,9 +45,12 @@ public class PersonnelDAO extends IDAO<Personnel>{
 				+ "VALUES (?, ?, ?, ?, ?);";
 		
 		PersonneDAO personneDAO = factory.getPersonneDAO();
-		ResponsabiliteDAO responsabiliteDAO = factory.getResponsabiliteDAO();
 		
+		ResponsabiliteDAO responsabiliteDAO = factory.getResponsabiliteDAO();
 		List<Responsabilite> listResponsabilite;
+		
+		DiplomeDAO diplomeDAO = factory.getDiplomeDAO();
+		List<Diplome> listeDiplome;
 		try {
 			obj = (Personnel) personneDAO.create(obj);
 			connexion = factory.getConnection();
@@ -64,14 +68,16 @@ public class PersonnelDAO extends IDAO<Personnel>{
 	        }
 			
 			listResponsabilite = responsabiliteDAO.addAllResponsabiliteParPersonnel(obj.getIdPersonne(), obj.getListeResponsabilite());
-
+			obj.setListeResponsabilite(listResponsabilite);
+			listeDiplome = diplomeDAO.addAllDiplomesParPersonnel(obj.getIdPersonne(), obj.getListeDiplomes());
+			obj.setListeDiplomes(listeDiplome);
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
-		return this.get(obj.getIdPersonne());
+		return obj;
 	}
 
 	/**
