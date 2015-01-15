@@ -13,12 +13,12 @@ import fr.gemao.ctrl.materiel.MaterielCtrl;
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.form.materiel.ModifierMaterielFournitureForm;
 
-@WebServlet("/materiel/ModifierMaterielFourniture")
-public class ModifierMaterielFournitureServlet extends HttpServlet {
+@WebServlet("/materiel/ModifierMateriel")
+public class ModifierMaterielServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private String VUE_MODIFICATION = "/WEB-INF/pages/materiel/modifierMaterielFourniture.jsp";
-	public static final String VUE_LISTE = "/WEB-INF/pages/materiel/listerMateriel";
+	private String VUE_MODIFICATION = "/WEB-INF/pages/materiel/modifierMateriel.jsp";
+	public static final String VUE_LISTE = "/materiel/ListerMateriel";
 
 	/**
 	 * Chargement de la page de modification. Le parametre idMateriel doit etre
@@ -35,8 +35,7 @@ public class ModifierMaterielFournitureServlet extends HttpServlet {
 			MaterielCtrl matctrl = new MaterielCtrl();
 			Materiel mat = matctrl.recupererMateriel(idParametre);
 
-			session.setAttribute("materiel", mat);
-			request.setAttribute("materiel", mat);
+			session.setAttribute("sessionObjectMateriel", mat);
 
 			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
 					.forward(request, response);

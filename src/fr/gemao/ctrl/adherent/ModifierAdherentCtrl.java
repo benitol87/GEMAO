@@ -21,15 +21,18 @@ public class ModifierAdherentCtrl {
 	}
 	
 	/**
-	 * Méthode permettant de modifier un adhérent
-	 * @param adherent : l'adhérent modifié
+	 * Méthode permettant de modifier un adhérent.
+	 * La méthode vérifie avant si les informations sont valides.
+	 * @param adherent : l'adhérent à modifier
 	 */
 	public void modifierAdherent(Adherent adherent) {
 		AjouterAdherentCtrl ajoutAdherent = new AjouterAdherentCtrl();
 		
+		//Vérification de la validité des informations
 		if (ajoutAdherent.verifierInformations(adherent)) {
 			ModifierPersonneCtrl modifPers = new ModifierPersonneCtrl();
 			
+			//Vérification de la modification de la personne
 			if (modifPers.modifierPersonne(adherent) != -1) {
 				Adherent adh;
 				

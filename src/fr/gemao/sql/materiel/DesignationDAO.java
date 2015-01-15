@@ -139,8 +139,7 @@ public class DesignationDAO extends IDAO<Designation> {
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				designation = new Designation(result.getInt("idDesignation"),
-						result.getString("libelle"));
+				designation = this.map(result);
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -166,8 +165,7 @@ public class DesignationDAO extends IDAO<Designation> {
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				designation = new Designation(result.getInt("idDesignation"),
-						result.getString("libelle"));
+				designation = this.map(result);
 				liste.add(designation);
 			}
 		} catch (SQLException e) {
