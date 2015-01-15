@@ -14,7 +14,7 @@
 			<td><c:out value="${pers['nom']}" /></td>
 			<td><c:out value="${pers['prenom']}" /></td>
 			<td><a
-				href="consulterPersonnel?id=<c:out value="${pers['idPersonne']}" />"><input
+				href="ConsulterPersonnel?id=<c:out value="${pers['idPersonne']}" />"><input
 					type="button" value="Détails" /></a>
 			<td>
 		</tr>

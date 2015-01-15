@@ -26,10 +26,14 @@ public class CalculerCotisationCtrl {
 		
 		float cotisation = 200.0F; // param.getCotisation a ajouté dans la base
 		
-		if (param.getQf_min()>qf)
-			return cotisation/2;
-		if (param.getQf_max()>qf)
-			return cotisation/1.5F;		
+		if(qf != null){
+			//si on applique le quotient familial (habitants des communes bénéficiaires des avantages)
+			if (param.getQf_min()>qf)
+				return cotisation/2;
+			if (param.getQf_max()>qf)
+				return cotisation/1.5F;		
+		}
+
 		return cotisation;
 	}
 

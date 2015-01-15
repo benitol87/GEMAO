@@ -1,5 +1,7 @@
 package fr.gemao.ctrl.adherent;
 
+import java.util.Date;
+
 import fr.gemao.ctrl.AjouterPersonneCtrl;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.sql.AdherentDAO;
@@ -21,43 +23,82 @@ public class AjouterAdherentCtrl {
 	}
 	
 	/**
-	 * Permet de vérifier les informations d'un adhérent
-	 * @param adherent : l'adhérent à vérifier
-	 * @return true si la syntaxe de l'adhérent est valide, false, sinon
+	 * Méthode permettant de vérifier la validité des informations d'un adhérent
+	 * @param adherent
+	 * @return true si les informations sont valides, false sinon
 	 */
 	public boolean verifierInformations(Adherent adherent){
-		//A implémenter
+		Date date = new Date();
+		
+		//Vérification de l'idMotif
+		if(adherent.getIdMotif() == null || adherent.getIdMotif() <= 0){
+			System.out.println("L'idMotif est invalide...");
+			return false;
+		}
+		
+		//Vérification de l'idResponsable
+		if(adherent.getIdResponsable() != null && adherent.getIdResponsable() <= 0){
+			return false;
+		}
+		
+		//Vérification de la date d'entrée
+		if(adherent.getDateEntree() == null || adherent.getDateEntree().after(date)){
+			System.out.println("La date d'entrée doit être antérieure à la date actuelle...");
+			return false;
+		}
+		
+		//Vérification de la date de sortie
+		if(adherent.getDateSortie() != null && adherent.getDateSortie().after(date)){
+			System.out.println("La date de sortie doit être antérieure à la date actuelle...");
+			return false;
+		}
+		
+		//Vérification de la cotisation
+		if(adherent.getCotisation() == null){
+			System.out.println("La cotisation doit être spécifiée...");
+			return false;
+		}
+		
+		//Vérification de la/des disciplines
+		if(adherent.getDisciplines().isEmpty()){
+			System.out.println("L'adhérent doit être inscrit à au moins une discipline...");
+			return false;
+		}
+		
 		return true;
 	}
 
 	/**
-	 * Méthode permettant d'ajouter un adhérent dans la base de données
+	 * Méthode permettant d'ajouter un adhérent dans la BD
 	 * @param adherent : l'adhérent à ajouter
 	 */
 	public void ajoutAdherent(Adherent adherent) {
+		AjouterPersonneCtrl ajoutPers = new AjouterPersonneCtrl();
+		
+		//Ajout de la personne dans la base
+		if(ajoutPers.ajoutPersonne(adherent) != -1){
+			Adherent adh;
 
-		if (this.verifierInformations(adherent)) {
-			AjouterPersonneCtrl ajoutPers = new AjouterPersonneCtrl();
-			
-			if(ajoutPers.ajoutPersonne(adherent) != -1){
-				Adherent adh;
+			DAOFactory co = DAOFactory.getInstance();
+			AdherentDAO adherentDAO = co.getAdherentDAO();
 
-				DAOFactory co = DAOFactory.getInstance();
-				AdherentDAO adherentDAO = co.getAdherentDAO();
-
+			//Vérification de la validité des informations
+			if(this.verifierInformations(adherent)){
 				adh = adherentDAO.create(adherent);
-				
 				if (adh == null){
-					System.out.println("Une erreur est survenue lors de l'insertion");
+					System.out.println("Une erreur est survenue lors de l'insertion...");
 				} else {
-					System.out.println("L'adhérent a bien été ajouté");
+					System.out.println("L'adhérent a bien été ajouté.");
 				}
-			} else{
-				System.out.println("Une erreur est survenue lors de l'insertion");
+			}
+			else{
+				System.out.println("Les informations de l'adhérent ne sont pas valides...");
 			}
 
-		} else {
-			System.out.println("Les informations de l'adhérent ne sont pas valides");
+		}
+		else{
+			System.out.println("Une erreur est survenue lors de l'insertion...");
+
 		}
 	}
 }
