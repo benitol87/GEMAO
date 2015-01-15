@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.materiel.MaterielCtrl;
 import fr.gemao.entity.materiel.Materiel;
-import fr.gemao.form.materiel.ModifierMaterielFournitureForm;
+import fr.gemao.form.materiel.MaterielForm;
 
 @WebServlet("/materiel/ModifierMateriel")
 public class ModifierMaterielServlet extends HttpServlet {
@@ -48,7 +48,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		ModifierMaterielFournitureForm form = new ModifierMaterielFournitureForm();
+		MaterielForm form = new MaterielForm();
 		form.testerMateriel(request);
 
 		/* Récupération de la session depuis la requête */
@@ -60,8 +60,11 @@ public class ModifierMaterielServlet extends HttpServlet {
 			Materiel mat = null;
 			if (session.getAttribute("materiel").getClass() == Materiel.class) {
 				mat = (Materiel) session.getAttribute("materiel");
+				
+				
 				mat.setQuantite(form.getQuantite());
 				mat.setObservation(form.getObservation());
+				
 				matctrl.modifierMateriel(mat);
 				session.removeAttribute("materiel");
 			} else {

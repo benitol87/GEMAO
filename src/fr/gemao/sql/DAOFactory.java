@@ -188,6 +188,6 @@ public class DAOFactory {
 	}
 
 	public TypeContratDAO getTypeContratDAO() {
-		return null;
+		return new TypeContratDAO(this);
 	}
 }

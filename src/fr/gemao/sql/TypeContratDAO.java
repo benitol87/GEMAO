@@ -70,7 +70,7 @@ public class TypeContratDAO extends IDAO<TypeContrat> {
 	@Override
 	protected TypeContrat map(ResultSet result) throws SQLException {
 		return new TypeContrat(NumberUtil.getResultInteger(result,
-				"idMotifContrat"), result.getString("libelle"));
+				"idTypeContrat"), result.getString("libelle"));
 	}
 
 }

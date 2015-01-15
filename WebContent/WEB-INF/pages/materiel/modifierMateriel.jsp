@@ -13,6 +13,7 @@
 		<tr>
 			<td><label for="categorie">Catégorie : </label> <label
 				for="categorieResult">${sessionScope.sessionObjectMateriel.getCategorie().getLibelleCat()}</label>
+				<input type="number" id="categorie" name="categorie" hidden="true" value="${sessionScope.sessionObjectMateriel.getCategorie().getIdCategorie()}" />
 			</td>
 
 			<td><label for="designation">Désignation : </label> <label
@@ -52,7 +53,7 @@
 						</tr>
 						<tr>
 							<td><label for="quantite">Quantité : </label></td>
-							<td><label for="quantite">${sessionScope.sessionObjectMateriel.getQuantite()}</label></td>
+							<td><input name="quantite" type="number" value="${sessionScope.sessionObjectMateriel.getQuantite()}" /></td>
 						</tr>
 						<tr>
 							<td><label for="prixU">Prix unitaire : </label></td>
@@ -84,16 +85,16 @@
 												<c:when
 													test="${sessionScope.sessionObjectMateriel.isDeplacable()==true}">
 													<label for="deplacableOui">oui</label>
-													<input type="radio" name="title" value="oui"
+													<input type="radio" name="deplacable" value="oui"
 														checked="checked">
 													<label for="deplacableNon">non</label>
-													<input type="radio" name="title" value="non">
+													<input type="radio" name="deplacable" value="non">
 												</c:when>
 												<c:otherwise>
 													<label for="deplacableOui">oui</label>
-													<input type="radio" name="title" value="oui">
+													<input type="radio" name="deplacable" value="oui">
 													<label for="deplacableNon">non</label>
-													<input type="radio" name="title" value="non"
+													<input type="radio" name="deplacable" value="non"
 														checked="checked">
 												</c:otherwise>
 											</c:choose></td>
