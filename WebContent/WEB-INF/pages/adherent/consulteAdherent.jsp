@@ -46,23 +46,23 @@
 	<table>
 		<tr>
 			<td><label for="num">Numéro : </label></td>
-			<td><p>NUMERO ICI</p></td>
+			<td><p><c:out value="${adherent.adresse.numRue}"/></p></td>
 		</tr>
 		<tr>
 			<td><label for="rue">Rue : </label></td>
-			<td><p>RUE ICI</p></td>
+			<td><p><c:out value="${adherent.adresse.nomRue}"/></p></td>
 		</tr>
 		<tr>
 			<td><label for="compl">Complémentaire : </label></td>
-			<td><p>COMPLEMENT ICI (SI EXISTE)</p></td>
+			<td><p><c:out value="${adherent.adresse.infoCompl}"/></p></td>
 		</tr>
 		<tr>
 			<td><label for="codeP">Code Postal : </label></td>
-			<td><p>CODE POSTAL ICI</p></td>
+			<td><p><c:out value="${adherent.adresse.commune.codePostal}"/></p></td>
 		</tr>
 		<tr>
 			<td><label for="commune">Commune : </label></td>
-			<td><p>COMMUNE ICI</p></td>
+			<td><p><c:out value="${adherent.adresse.commune.nomCommune}"/></p></td>
 		</tr>
 	</table>
 </fieldset>
@@ -73,16 +73,12 @@
 		<tbody id="disciplines">
 			<tr>
 				<td><p>Discipline</p></td>
-				<td><p>Classe</p></td>
 			</tr>
-			<tr id="1">
-				<td><p>DISCIPLINE 1 ICI</p></td>
-				<td><p>CLASSE 1 ICI</p></td>
-			</tr>
-			<tr id="2">
-				<td><p>DISCIPLINE 2 ICI</p></td>
-				<td><p>CLASSE 2 ICI</p></td>
-			</tr>
+			<c:forEach items="${requestScope.adherent['disciplines']}" var="discipline">
+				<tr>
+					<td><p>discipline</p></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </fieldset>
@@ -120,8 +116,10 @@
 	</table>
 </c:if>
 <div>
-	<a href="ListeAdherents"><input type="button" value="Retour" /></a> <input type="button"
-		value="Modifier" />
+	<a href="ListeAdherents">
+		<input type="button" value="Retour" />
+	</a>
+	<input type="button" value="Modifier" />
 </div>
 
 <c:import url="/inc/footer.inc.jsp" />

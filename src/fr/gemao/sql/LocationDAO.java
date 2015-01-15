@@ -34,13 +34,23 @@ public class LocationDAO extends IDAO<Location>{
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getIdDiscipline(), obj.getNom());
+					sql, false,
+					obj.getPersonne().getIdPersonne(),
+					obj.getMateriel().getIdMateriel(),
+					obj.getEtatDebut().getIdEtat(),
+					obj.getEtatFin().getIdEtat(),
+					obj.getReparation().getIdReparation(),
+					obj.getDateEmprunt(),
+					obj.getDateEcheance(),
+					obj.getDateRetour(),
+					obj.getMontant()
+			);
 
 			int status = requete.executeUpdate();
 
 			if (status == 0) {
 				throw new DAOException(
-						"Échec de la création de la discipline, aucune ligne ajoutée dans la table.");
+						"Échec de la création de la location, aucune ligne ajoutée dans la table.");
 			}
 
 		} catch (SQLException e) {
@@ -53,128 +63,32 @@ public class LocationDAO extends IDAO<Location>{
 	}
 
 	@Override
-	public void delete(Discipline obj) {
+	public void delete(Location obj) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Discipline update(Discipline obj) {
-		// TODO Auto-generated method stub
+	public Location update(Location obj) {
+		// TODO
 		return null;
 	}
 
 	@Override
-	public Discipline get(long id) {
-		Discipline discipline = null;
-		Connection connexion = null;
-		PreparedStatement requete = null;
-		ResultSet result = null;
-		String sql = "SELECT * FROM discipline WHERE idDiscipline = ?;";
-		try {
-
-			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, id);
-			result = requete.executeQuery();
-
-			if (result.first()) {
-				discipline = this.map(result);
-			}
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} finally {
-			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
-		}
-		return discipline;
+	public Location get(long id) {
+		// TODO
+		return null;
 	}
 
 	@Override
-	public List<Discipline> getAll() {
-		List<Discipline> liste = new ArrayList<>();
-
-		Discipline discipline = null;
-		Connection connexion = null;
-		PreparedStatement requete = null;
-		ResultSet result = null;
-		String sql = "SELECT * FROM discipline;";
-		try {
-
-			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false);
-			result = requete.executeQuery();
-
-			while (result.next()) {
-				discipline = this.map(result);
-				liste.add(discipline);
-			}
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} finally {
-			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
-		}
-
-		return liste;
+	public List<Location> getAll() {
+		// TODO
+		return null;
 	}
 	
-	public List<Discipline> getDisciplineParAdherent(long idAdherent){
-		List<Discipline> list = new ArrayList<>();
-		Discipline discipline = null;
-		Connection connexion = null;
-		PreparedStatement requete = null;
-		ResultSet result = null;
-		String sql = "SELECT * from discipline d inner join suit s on d.idDiscipline=s.idDiscipline WHERE idAdherent = ?;";
-		try {
-			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, idAdherent);
-			result = requete.executeQuery();
-			
-			while(result.next()){
-				discipline = this.map(result);
-				list.add(discipline);
-			}
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		}finally{
-			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
-		}
-		return list;
-	}
-	
-	/**
-	 * Associe une discipline et un adhérent.
-	 * @param idDiscipline
-	 * @param idAdherent
-	 */
-	public void addDiscplineParAdherent(int idDiscipline, long idAdherent){
-		Connection connexion = null;
-		PreparedStatement requete = null;
-		String sql = "INSERT INTO suit(idAdherent, idDiscipline) values ( ?, ?);";
-		try {
-			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, idAdherent, idDiscipline);
-			int status = requete.executeUpdate();
-			if(status == 0 ){
-				throw new DAOException(
-						"Échec de la création de suit, aucune ligne ajoutée dans la table.");
-			}
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} finally{
-			DAOUtilitaires.fermeturesSilencieuses(requete, connexion);
-		}
-	}
-	
-	/**
-	 * Associe une liste de disciplines à une adhérent.
-	 * @param listDiscipline
-	 * @param idAdherent
-	 */
-	public void addAllDisciplineParAdherent(List<Discipline> listDiscipline, long idAdherent){
-		for(Discipline d : listDiscipline){
-			addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
-		}
+	public List<Location> getLocationParAdherent(long idAdherent){
+		// TODO
+		return null;
 	}
 
 	@Override

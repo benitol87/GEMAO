@@ -31,7 +31,7 @@ public class LocationForm {
 		dateDebut	= Form.getValeurChamp(request, CHAMP_DATEDEBUT);
 		dateFin		= Form.getValeurChamp(request, CHAMP_DATEFIN);
 		
-		
+		// TODO
 	}
 	
 	/**
