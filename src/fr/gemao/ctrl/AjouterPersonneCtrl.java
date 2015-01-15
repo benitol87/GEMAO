@@ -24,7 +24,7 @@ public class AjouterPersonneCtrl {
 		/**
 		 * Vérification de l'idAdresse
 		 */
-		if (personne.getIdAdresse() == null || personne.getIdAdresse() <= 0) {
+		if (personne.getAdresse() == null || personne.getAdresse().getIdAdresse() <= 0) {
 			System.out.println("L'idAdresse n'est pas valide...");
 			return false;
 		}
@@ -32,7 +32,7 @@ public class AjouterPersonneCtrl {
 		/**
 		 * Vérification de l'idCommuneNaiss
 		 */
-		if (personne.getCommuneNaiss() == null || personne.getCommuneNaiss() <= 0) {
+		if (personne.getCommuneNaiss() == null || personne.getCommuneNaiss().getIdCommune() <= 0) {
 			System.out.println("L'idAdresse n'est pas valide...");
 			return false;
 		}

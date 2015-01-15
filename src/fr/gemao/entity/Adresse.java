@@ -2,7 +2,7 @@ package fr.gemao.entity;
 
 public class Adresse {
 	private Integer idAdresse;
-	private Integer idCommune;
+	private Commune commune;
 	private Integer numRue;
 	private String nomRue;
 	private String infoCompl;
@@ -16,15 +16,15 @@ public class Adresse {
 	/**
 	 * Constructeur surchargé
 	 * @param idAdresse : l'ID de l'adresse
-	 * @param idCommune : l'ID de le commune
+	 * @param commune : le commune du fromage
 	 * @param numRue : le numéro de rue
 	 * @param nomRue : le nom de la rue
 	 * @param infoCompl : informations complémentaires
 	 */
-	public Adresse(Integer idAdresse, Integer idCommune, Integer numRue, String nomRue, String infoCompl) {
+	public Adresse(Integer idAdresse, Commune commune, Integer numRue, String nomRue, String infoCompl) {
 		super();
 		this.idAdresse = idAdresse;
-		this.idCommune = idCommune;
+		this.commune = commune;
 		this.numRue = numRue;
 		this.nomRue = nomRue;
 		this.infoCompl = infoCompl;
@@ -38,12 +38,12 @@ public class Adresse {
 		this.idAdresse = idAdresse;
 	}
 
-	public Integer getIdCommune() {
-		return idCommune;
+	public Commune getCommune() {
+		return commune;
 	}
 
-	public void setIdCommune(Integer idCommune) {
-		this.idCommune = idCommune;
+	public void setCommune(Commune commune) {
+		this.commune = commune;
 	}
 
 	public Integer getNumRue() {
@@ -72,20 +72,22 @@ public class Adresse {
 
 	@Override
 	public String toString() {
-		return "Adresse [idAdresse=" + idAdresse + ", idCommune=" + idCommune
+		return "Adresse [idAdresse=" + idAdresse + ", idCommune=" + commune
 				+ ", numRue=" + numRue + ", nomRue=" + nomRue + ", infoCompl="
 				+ infoCompl + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		final Integer prime = 31;
-		Integer result = 1;
-		result = prime * result + idAdresse;
-		result = prime * result + idCommune;
-		result = prime * result + ((infoCompl == null) ? 0 : infoCompl.hashCode());
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((commune == null) ? 0 : commune.hashCode());
+		result = prime * result
+				+ ((idAdresse == null) ? 0 : idAdresse.hashCode());
+		result = prime * result
+				+ ((infoCompl == null) ? 0 : infoCompl.hashCode());
 		result = prime * result + ((nomRue == null) ? 0 : nomRue.hashCode());
-		result = prime * result + numRue;
+		result = prime * result + ((numRue == null) ? 0 : numRue.hashCode());
 		return result;
 	}
 
@@ -98,9 +100,15 @@ public class Adresse {
 		if (getClass() != obj.getClass())
 			return false;
 		Adresse other = (Adresse) obj;
-		if (idAdresse != other.idAdresse)
+		if (commune == null) {
+			if (other.commune != null)
+				return false;
+		} else if (!commune.equals(other.commune))
 			return false;
-		if (idCommune != other.idCommune)
+		if (idAdresse == null) {
+			if (other.idAdresse != null)
+				return false;
+		} else if (!idAdresse.equals(other.idAdresse))
 			return false;
 		if (infoCompl == null) {
 			if (other.infoCompl != null)
@@ -112,8 +120,13 @@ public class Adresse {
 				return false;
 		} else if (!nomRue.equals(other.nomRue))
 			return false;
-		if (numRue != other.numRue)
+		if (numRue == null) {
+			if (other.numRue != null)
+				return false;
+		} else if (!numRue.equals(other.numRue))
 			return false;
 		return true;
 	}
+
+	
 }

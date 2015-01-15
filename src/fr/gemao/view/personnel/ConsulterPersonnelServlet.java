@@ -49,15 +49,15 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 
 		RecupererAdresseCtrl recupererAdresseCtrl = new RecupererAdresseCtrl();
 		Adresse adresse = recupererAdresseCtrl.recupererAdresse(personnel
-				.getIdAdresse());
+				.getAdresse().getIdAdresse());
 
 		RecupererCommuneCtrl recupererCommuneCtrl = new RecupererCommuneCtrl();
 		Commune commune = recupererCommuneCtrl.recupererCommune(adresse
-				.getIdCommune());
+				.getCommune().getIdCommune());
 
 		RecupererContratCtrl recupererContratCtrl = new RecupererContratCtrl();
 		Contrat contrat = recupererContratCtrl.recupererContrat(personnel
-				.getContrat());
+				.getContrat().getIdContrat());
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String dateDebutContrat = formatter.format(contrat.getDateDebut());
