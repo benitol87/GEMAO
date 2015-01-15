@@ -20,8 +20,8 @@ import fr.gemao.form.personnel.ModifierPersonnelForm;
 public class ModifPersonnelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private String VUE_MODIFICATION = "/WEB-INF/pages/personnel/modifPersonnel.jsp";
-	public static final String VUE_LISTE = "/WEB-INF/pages/personnel/listePersonnel";
+	private static final String VUE_MODIFICATION = "/WEB-INF/pages/personnel/modifPersonnel.jsp";
+	public static final String VUE_LISTE = "/WEB-INF/pages/personnel/listePersonnel.jsp";
 
 	/**
 	 * Chargement de la page de modification. Le parametre idPersonne doit etre
@@ -39,11 +39,9 @@ public class ModifPersonnelServlet extends HttpServlet {
 			 
 			 session.setAttribute("sessionObjectPersonnel", pers);
 			 
-			 this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
-				.forward(request, response);
+			 this.getServletContext().getRequestDispatcher(VUE_MODIFICATION).forward(request, response);
 		 } else {
-			 this.getServletContext().getRequestDispatcher(VUE_LISTE)
-				.forward(request, response);
+			 this.getServletContext().getRequestDispatcher(VUE_LISTE).forward(request, response);
 		 }
 	}
 
