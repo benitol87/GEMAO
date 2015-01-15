@@ -118,6 +118,29 @@ public class Contrat {
 	public void setDateRupture(Date dateRupture) {
 		this.dateRupture = dateRupture;
 	}
+	
+	
+
+	/**
+	 * @return the typeContrat
+	 */
+	public TypeContrat getTypeContrat() {
+		return typeContrat;
+	}
+
+	/**
+	 * @param typeContrat the typeContrat to set
+	 */
+	public void setTypeContrat(TypeContrat typeContrat) {
+		this.typeContrat = typeContrat;
+	}
+
+	/**
+	 * @param idMotifContrat the idMotifContrat to set
+	 */
+	public void setIdMotifContrat(MotifFinContrat idMotifContrat) {
+		this.idMotifContrat = idMotifContrat;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
