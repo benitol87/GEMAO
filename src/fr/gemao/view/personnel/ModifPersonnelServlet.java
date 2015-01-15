@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.PersonneCtrl;
+import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
+import fr.gemao.entity.Personne;
 import fr.gemao.entity.Personnel;
-import fr.gemao.form.personnel.ModifierPersonnelForm;
 
 /**
  * Servlet implementation class ModifPersonnelServlet
@@ -51,10 +52,12 @@ public class ModifPersonnelServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		
-		String param = request.getParameter("id");
-		System.out.println("id");
+		long id = Long.parseLong(request.getParameter("id"));
 		
-		ModifierPersonnelForm form = new ModifierPersonnelForm();
+		RecupererPersonnelCtrl recupererPersonneCtrl = new RecupererPersonnelCtrl();
+		Personne personne = recupererPersonneCtrl.recupererPersonnel(id);
+		
+		PersonnelForm form = new PersonnelForm();
 		
 		form.testerPersonnel(request);
 		
@@ -67,6 +70,10 @@ public class ModifPersonnelServlet extends HttpServlet {
 			
 			if (session.getAttribute("personnel").getClass() == Personnel.class) {
 				pers = (Personnel) session.getAttribute("personnel");
+				pers.setNom(form.getNom());
+				pers.setPrenom(form.getPrenom());
+				pers.set
+				pers.setLogin(form.getLogin());
 				session.removeAttribute("personnel");
 			} else {
 				form.setErreur("Modification", "Problème de session");

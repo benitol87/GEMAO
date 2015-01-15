@@ -19,6 +19,9 @@ public class AdherentDAO extends IDAO<Adherent> {
 		super(factory);
 	}
 
+	/**
+	 * Appelle la méthode create de PersonneDAO {@link PersonneDAO#create(fr.gemao.entity.Personne)}
+	 */
 	@Override
 	public Adherent create(Adherent obj) {
 		if (obj == null) {
@@ -34,6 +37,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 		PersonneDAO personneDAO = factory.getPersonneDAO();
 		try {
 			obj = (Adherent) personneDAO.create(obj);
+			
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false, obj.getIdPersonne(), obj.getIdMotif(),
@@ -60,7 +64,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
-		return this.get(obj.getIdPersonne());
+		return obj;
 	}
 
 	@Override
@@ -71,7 +75,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 	@Override
 	public Adherent update(Adherent obj) {
 		if (obj == null) {
-			throw new NullPointerException("La personne ne doit pas �tre null");
+			throw new NullPointerException("La personne ne doit pas être null");
 		}
 
 		Connection connexion = null;
