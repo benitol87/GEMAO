@@ -58,16 +58,6 @@ public class Contrat {
 	}
 
 
-
-	/**
-	 * @return the typeContrat
-	 */
-	public int getTypeContrat1() {
-		return typeContrat;
-	}
-
-
-
 	/**
 	 * @param typeContrat the typeContrat to set
 	 */
