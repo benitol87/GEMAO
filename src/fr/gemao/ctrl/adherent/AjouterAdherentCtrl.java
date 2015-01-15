@@ -69,43 +69,36 @@ public class AjouterAdherentCtrl {
 	}
 
 	/**
-	 * Méthode permettant d'ajouter un adhérent dans la base de données
+	 * Méthode permettant d'ajouter un adhérent dans la BD
 	 * @param adherent : l'adhérent à ajouter
 	 */
 	public void ajoutAdherent(Adherent adherent) {
+		AjouterPersonneCtrl ajoutPers = new AjouterPersonneCtrl();
+		
+		//Ajout de la personne dans la base
+		if(ajoutPers.ajoutPersonne(adherent) != -1){
+			Adherent adh;
 
-		if (this.verifierInformations(adherent)) {
-			AjouterPersonneCtrl ajoutPers = new AjouterPersonneCtrl();
-			
-			//Ajout de la personne dans la base
+			DAOFactory co = DAOFactory.getInstance();
+			AdherentDAO adherentDAO = co.getAdherentDAO();
 
-			if(ajoutPers.ajoutPersonne(adherent) != -1){
-				Adherent adh;
-
-				DAOFactory co = DAOFactory.getInstance();
-				AdherentDAO adherentDAO = co.getAdherentDAO();
-
-				//Vérification de la validité des informations
-				if(this.verifierInformations(adherent)){
-					adh = adherentDAO.create(adherent);
-					if (adh == null){
-						System.out.println("Une erreur est survenue lors de l'insertion...");
-					} else {
-						System.out.println("L'adhérent a bien été ajouté.");
-					}
+			//Vérification de la validité des informations
+			if(this.verifierInformations(adherent)){
+				adh = adherentDAO.create(adherent);
+				if (adh == null){
+					System.out.println("Une erreur est survenue lors de l'insertion...");
+				} else {
+					System.out.println("L'adhérent a bien été ajouté.");
 				}
-				else{
-					System.out.println("Les informations de l'adhérent ne sont pas valides...");
-				}
-
 			}
 			else{
-				System.out.println("Une erreur est survenue lors de l'insertion...");
-
+				System.out.println("Les informations de l'adhérent ne sont pas valides...");
 			}
 
-		} else {
-			System.out.println("Les informations de l'adhérent ne sont pas valides");
+		}
+		else{
+			System.out.println("Une erreur est survenue lors de l'insertion...");
+
 		}
 	}
 }
