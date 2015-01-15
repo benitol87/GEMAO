@@ -8,7 +8,7 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <h2>Paramètres</h2>
-<form action="/GEMAO/Parametre" id="formParametre" method="post">
+<form action="<c:url value="/Parametres" />" id="formParametre" method="post">
 	<fieldset>
 		<legend>Allocations familiales</legend>
 		<label for="alloc2">2 enfants : </label> <input type="text"

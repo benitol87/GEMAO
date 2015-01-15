@@ -18,7 +18,7 @@ public class RecupererCommuneCtrl {
 	/**
 	 * Méthode permettant de récupérer une commune selon son identifiant
 	 * @param id
-	 * @return la commune dont l'identifiant est idCommune
+	 * @return la commune dont l'identifiant est idCommune, null si la commune n'existe pas
 	 */
 	public Commune recupererCommune(int idCommune){
 		DAOFactory co = DAOFactory.getInstance();
@@ -42,5 +42,4 @@ public class RecupererCommuneCtrl {
 		
 		return listeCommunes;
 	}
-
 }

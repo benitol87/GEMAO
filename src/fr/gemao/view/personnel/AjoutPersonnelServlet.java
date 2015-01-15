@@ -14,8 +14,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.gemao.ctrl.AjouterAdresseCtrl;
+import fr.gemao.ctrl.AjouterCommuneCtrl;
+import fr.gemao.entity.Adresse;
+import fr.gemao.entity.Commune;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.util.Civilite;
+import fr.gemao.sql.AdresseDAO;
+import fr.gemao.sql.CommuneDAO;
+import fr.gemao.sql.DAOFactory;
 
 /**
  * Servlet implementation class AjoutPersonnelServlet
@@ -76,8 +83,44 @@ public class AjoutPersonnelServlet extends HttpServlet {
         List<Fonction> list = new ArrayList<>();
         Personnel personnel = new Personnel(null, null, null, 
         		nom, prenom, dateNaiss, telFixe, telPortable, mail, Civilite.MONSIEUR, 
-        		list, null,);
-	
+        		list, null, null, null, 0);
+        
+        /**
+         * Récupération des données sur l'adresse
+         */
+        String adr = request.getParameter("adresse");
+        String com = request.getParameter("ville");
+        String cp = request.getParameter("codePostal");
+        
+        /**
+         * Création de la commune
+         */
+        DAOFactory factory = DAOFactory.getInstance();
+        CommuneDAO communeDAO = factory.getCommuneDAO();
+        
+        Commune commune = new Commune(null, Integer.parseInt(cp), com, false);
+    	if (communeDAO.existNomCodePostal(commune) == null) {
+			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
+			ajouterCommuneCtrl.ajoutCommune(commune);
+		}
+    	commune = communeDAO.existNomCodePostal(commune);
+        
+    	/**
+    	 * Création de l'adresse
+    	 */
+    	AdresseDAO adresseDAO = factory.getAdresseDAO();
+        Adresse adrss = new Adresse(null, commune.getIdCommune(), null, adr, null);
+        if (adresseDAO.exist(adrss) == null) {
+			AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
+			ajouterAdresseCtrl.ajoutAdresse(adrss);
+		}
+		adrss = adresseDAO.exist(adrss);
+		
+		personnel.setIdCommuneNaiss(commune.getIdCommune());
+		personnel.setIdAdresse(adrss.getIdAdresse());
+		
+		System.out.println(personnel);
+        
         /* Transmission à la page JSP en charge de l'affichage des données */
 		this.getServletContext()
 				.getRequestDispatcher(VUE)

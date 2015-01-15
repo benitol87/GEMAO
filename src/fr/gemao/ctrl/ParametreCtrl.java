@@ -25,7 +25,7 @@ public class ParametreCtrl {
 			parametreDAO.create(parametre);
 		} else {
 			throw new IllegalArgumentException(
-					"Le paramétre n'a pas été modifié.");
+					"Les paramétres n'ont pas été modifiés.");
 		}
 
 	}
