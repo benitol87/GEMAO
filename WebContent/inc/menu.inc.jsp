@@ -39,7 +39,7 @@
 							<ul>
 								<li><a href="<c:url value="/materiel/AjouterMateriel"/>">Ajouter</a></li>
 								<li><a
-									href="<c:url value="/materiel/ModifierMaterielFourniture"/>">Modifier</a></li>
+									href="<c:url value="/materiel/ModifierMateriel"/>">Modifier</a></li>
 								<li><a href="<c:url value="/materiel/ListerMateriel"/>">Lister</a></li>
 							</ul>
 						</div></li>
