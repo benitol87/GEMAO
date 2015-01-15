@@ -35,7 +35,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 				+ "idCategorie," + "idMarque," + "idDesignation,"
 				+ "typeMateriel," + "numSerie," + "dateAchat,"
 				+ "valeurAchat," + "valeurReapprov," + "deplaceConcert,"
-				+ "observations)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+				+ "observation)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, true, 
@@ -113,7 +113,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 				+ "idCategorie = ?, idMarque = ?, idDesignation = ?,"
 				+ "typeMateriel = ?, numSerie = ?, dateAchat = ?,"
 				+ "valeurAchat = ?, valeurReapprov = ?, deplaceConcert = ?,"
-				+ "observations = ? WHERE idMateriel = ?;";
+				+ "observation = ? WHERE idMateriel = ?;";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
