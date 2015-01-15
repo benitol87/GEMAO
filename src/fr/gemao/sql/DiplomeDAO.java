@@ -21,8 +21,7 @@ public class DiplomeDAO extends IDAO<Diplome> {
 
 	@Override
 	public Diplome create(Diplome obj) {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
@@ -56,7 +55,7 @@ public class DiplomeDAO extends IDAO<Diplome> {
 		Diplome diplome = null;
 		List<Diplome> liste = new ArrayList<>();
 		
-		String sql = "SELECT * FROM dipome d inner join personneXdiplome pd on d.idDiplome = pd.idDiplome WHERE idPersonne = ?;";
+		String sql = "SELECT * FROM diplome d inner join personneXdiplome pd on d.idDiplome = pd.idDiplome WHERE idPersonne = ?;";
 		
 		try {
 			co = factory.getConnection();
