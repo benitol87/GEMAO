@@ -65,23 +65,29 @@ public class AjouterResponsableCtrl {
 	
 	/**
 	 * Méthode permettant d'ajouter un responsable dans la BD.
-	 * La méthode vérifie la validité des informations avant l'ajout.
+	 * La méthode vérifie la validité des informations et si la personne n'existe pas déjà dans la base avant l'ajout.
 	 * @param responsable
 	 */
 	public void ajouterResponsable(Responsable responsable){
 		//Vérification des informations du responsable
 		if(this.verifierInformations(responsable)){
-			Responsable test;
+			Responsable resp;
 
 			DAOFactory co = DAOFactory.getInstance();
 			ResponsableDAO responsableDAO = co.getResponsableDAO();
 
-			test = responsableDAO.create(responsable);
-			if (test == null){
-				System.out.println("Une erreur est survenue lors de l'insertion...");
-			} else {
-				responsable.setIdResponsable(test.getIdResponsable());
-				System.out.println("Le responsable a bien été ajouté.");
+			//Vérification de l'inexistance du responsable dans la base
+			if(responsableDAO.existresponsable() == null){
+				resp = responsableDAO.create(responsable);
+				if (resp == null){
+					System.out.println("Une erreur est survenue lors de l'insertion...");
+				} else {
+					responsable.setIdResponsable(resp.getIdResponsable());
+					System.out.println("Le responsable a bien été ajouté.");
+				}
+			}
+			else{
+				throw new IllegalArgumentException("Le responsable existe déjà dans la base...");
 			}
 		}
 		else{
