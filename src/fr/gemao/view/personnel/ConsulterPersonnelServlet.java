@@ -29,6 +29,7 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private String VUE = "/WEB-INF/pages/personnel/consulterPersonnel.jsp";
+	private String VUE_ERREUR = "/WEB-INF/pages/erreurs/404.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -36,6 +37,11 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		if(request.getParameter("id") == null){
+			this.getServletContext().getRequestDispatcher(VUE_ERREUR)
+			.forward(request, response);
+		}
 
 		long id = Long.parseLong(request.getParameter("id"));
 		RecupererPersonnelCtrl recupererPersonnelCtrl = new RecupererPersonnelCtrl();
