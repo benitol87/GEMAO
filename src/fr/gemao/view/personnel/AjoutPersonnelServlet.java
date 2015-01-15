@@ -13,11 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
+import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.Responsabilite;
 import fr.gemao.entity.util.Civilite;
@@ -45,6 +47,8 @@ public class AjoutPersonnelServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
 		/**
 		 * Récupération des données saisies, envoyées en tant que paramètres de
 		 * la requète POST générée à la validation du formulaire
@@ -56,35 +60,28 @@ public class AjoutPersonnelServlet extends HttpServlet {
         String telFixe = request.getParameter( "fixe" );
         String telPortable = request.getParameter( "portable" );
         String mail = request.getParameter("email");
-        String adresse = request.getParameter("adresse");
+        String numrue = request.getParameter("numRue");
+        String nomrue = request.getParameter("nomRue");
         String codePostal = request.getParameter("code");
         String ville = request.getParameter("ville");
         String diplome = request.getParameter("diplome");
         String fonction = request.getParameter("fonction");
-        
-        String contrat = request.getParameter("type");
-        String debcontrat = request.getParameter("datedeb");
-        String duree = request.getParameter("duree");
-        String fincontrat = request.getParameter("datefin");
-        
+    
         /**
          * Création du personnel
          */
         Date dateNaiss = new Date();
-        Date dateDebCont = new Date();
-        Date dateFinCont = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
         try{
         	dateNaiss = formatter.parse(dateNaissance);
-        	dateDebCont = formatter.parse(debcontrat);
-        	dateFinCont = formatter.parse(fincontrat);
         } catch (ParseException e) {
 			e.printStackTrace();
 		}
         List<Responsabilite> list = new ArrayList<>();
+        List<Diplome> listdi = new ArrayList<>();
         Personnel personnel = new Personnel(null, null, null, 
         		nom, prenom, dateNaiss, telFixe, telPortable, mail, Civilite.MONSIEUR, 
-        		list, null, null, null, 0);
+        		list, listdi, null, null, null, 0);
         
         /**
          * Récupération des données sur l'adresse
@@ -105,6 +102,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 			ajouterCommuneCtrl.ajoutCommune(commune);
 		}
     	commune = communeDAO.existNomCodePostal(commune);
+    	
         
     	/**
     	 * Création de l'adresse
@@ -117,8 +115,11 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		}
 		adrss = adresseDAO.exist(adrss);
 		
+		
 		personnel.setIdCommuneNaiss(commune.getIdCommune());
 		personnel.setIdAdresse(adrss.getIdAdresse());
+		
+        session.setAttribute("personnel", personnel);
 		
 		System.out.println(personnel);
         

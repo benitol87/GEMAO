@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="titre" value="Personnel" scope="request" />
+<c:set var="titre" value="Consultation d'un personnel" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 
@@ -109,7 +109,7 @@
 	</table>
 </fieldset>
 <div>
-	<a href="ListePersonnel"><input type="button" value="Retour" /></a> <input
-		type="button" value="Modifier" />
+	<a href="ListePersonnel"><input type="button" value="Retour" /></a> 
+	<a href="ModifPersonnel?id=<c:out value="${personnel['idPersonne']}" />"><input type="button" value="Modifier" /></a>
 </div>
 <c:import url="/inc/footer.inc.jsp" />
