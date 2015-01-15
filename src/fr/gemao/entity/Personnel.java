@@ -25,34 +25,20 @@ public class Personnel extends Personne {
 	/**
 	 * Constructeur de la classe Personnel
 	 * 
-	 * @param idPersonne
-	 *            : l'ID de la personne
-	 * @param idAdresse
-	 *            : l'ID de l'adresse
-	 * @param idCommuneNaiss
-	 *            : l'ID de la commune de naissance
-	 * @param nom
-	 *            : le nom de la personne
-	 * @param prenom
-	 *            : le prénom de la personne
-	 * @param dateNaissance
-	 *            : la date de naissance de la personne
-	 * @param telFixe
-	 *            : le numéro de téléphone fixe de la personne
-	 * @param telPort
-	 *            : le numéro de téléphone portable de la personne
-	 * @param email
-	 *            : l'email de la personne
-	 * @param idResponsabilite
-	 *            : l'ID des responsabilités
-	 * @param idContrat
-	 *            : l'ID du contrat
-	 * @param login
-	 *            : le login de la personne
-	 * @param password
-	 *            : le password de la personne
-	 * @param pointsAncien
-	 *            : le nombre de points d'ancienneté
+	 * @param idPersonne : l'ID de la personne
+	 * @param idAdresse : l'ID de l'adresse
+	 * @param idCommuneNaiss : l'ID de la commune de naissance
+	 * @param nom : le nom de la personne
+	 * @param prenom : le prénom de la personne
+	 * @param dateNaissance : la date de naissance de la personne
+	 * @param telFixe : le numéro de téléphone fixe de la personne
+	 * @param telPort : le numéro de téléphone portable de la personne
+	 * @param email : l'email de la personne
+	 * @param idResponsabilite : l'ID des responsabilités
+	 * @param idContrat : l'ID du contrat
+	 * @param login : le login de la personne
+	 * @param password : le password de la personne
+	 * @param pointsAncien : le nombre de points d'ancienneté
 	 */
 	public Personnel(Long idPersonne, Integer idAdresse, Integer idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
