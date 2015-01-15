@@ -9,6 +9,7 @@ public class Materiel {
 	private Categorie categorie;
 	private Marque marque;
 	private Designation designation;
+	private Fournisseur fournisseur;
 	private String typeMat;
 	private String numSerie;
 	private Date dateAchat;
@@ -40,7 +41,7 @@ public class Materiel {
 	 * @param quantite : la quantité
 	 */
 	public Materiel(Long idMateriel, Etat etat, Categorie categorie,
-			Marque marque, Designation designation, String typeMat, String numSerie,
+			Marque marque, Designation designation,Fournisseur fournisseur, String typeMat, String numSerie,
 			Date dateAchat, float valeurAchat, float valeurReap,
 			boolean deplacable, String observation, int quantite) {
 		this.idMateriel = idMateriel;
@@ -48,6 +49,7 @@ public class Materiel {
 		this.categorie = categorie;
 		this.marque = marque;
 		this.designation = designation;
+		this.fournisseur = fournisseur;
 		this.typeMat = typeMat;
 		this.numSerie = numSerie;
 		this.dateAchat = dateAchat;
@@ -68,6 +70,7 @@ public class Materiel {
 				m.getCategorie(),
 				m.getMarque(),
 				m.getDesignation(),
+				m.getFournisseur(),
 				m.getTypeMat(),
 				m.getNumSerie(),
 				m.getDateAchat(),
@@ -78,6 +81,14 @@ public class Materiel {
 				m.getQuantite());
 	}
 	
+	public Fournisseur getFournisseur() {
+		return fournisseur;
+	}
+
+	public void setFournisseur(Fournisseur fournisseur) {
+		this.fournisseur = fournisseur;
+	}
+
 	public Long getIdMateriel() {
 		return idMateriel;
 	}
@@ -182,7 +193,17 @@ public class Materiel {
 		this.quantite = quantite;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Materiel [idMateriel=" + idMateriel + ", etat=" + etat
+				+ ", categorie=" + categorie + ", marque=" + marque
+				+ ", designation=" + designation + ", fournisseur="
+				+ fournisseur + ", typeMat=" + typeMat + ", numSerie="
+				+ numSerie + ", dateAchat=" + dateAchat + ", valeurAchat="
+				+ valeurAchat + ", valeurReap=" + valeurReap + ", deplacable="
+				+ deplacable + ", observation=" + observation + ", quantite="
+				+ quantite + "]";
+	}
 
 	@Override
 	public int hashCode() {
@@ -196,6 +217,8 @@ public class Materiel {
 		result = prime * result
 				+ ((designation == null) ? 0 : designation.hashCode());
 		result = prime * result + ((etat == null) ? 0 : etat.hashCode());
+		result = prime * result
+				+ ((fournisseur == null) ? 0 : fournisseur.hashCode());
 		result = prime * result
 				+ ((idMateriel == null) ? 0 : idMateriel.hashCode());
 		result = prime * result + ((marque == null) ? 0 : marque.hashCode());
@@ -241,6 +264,11 @@ public class Materiel {
 				return false;
 		} else if (!etat.equals(other.etat))
 			return false;
+		if (fournisseur == null) {
+			if (other.fournisseur != null)
+				return false;
+		} else if (!fournisseur.equals(other.fournisseur))
+			return false;
 		if (idMateriel == null) {
 			if (other.idMateriel != null)
 				return false;
@@ -275,41 +303,9 @@ public class Materiel {
 				.floatToIntBits(other.valeurReap))
 			return false;
 		return true;
-	}	
-
-	/**
-	 * Redéfinition de la méthode toString
-	 */
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Materiel [idMateriel=");
-		builder.append(idMateriel);
-		builder.append(", etat=");
-		builder.append(etat);
-		builder.append(", categorie=");
-		builder.append(categorie);
-		builder.append(", marque=");
-		builder.append(marque);
-		builder.append(", designation=");
-		builder.append(designation);
-		builder.append(", typeMat=");
-		builder.append(typeMat);
-		builder.append(", numSerie=");
-		builder.append(numSerie);
-		builder.append(", dateAchat=");
-		builder.append(dateAchat);
-		builder.append(", valeurAchat=");
-		builder.append(valeurAchat);
-		builder.append(", valeurReap=");
-		builder.append(valeurReap);
-		builder.append(", deplacable=");
-		builder.append(deplacable);
-		builder.append(", observation=");
-		builder.append(observation);
-		builder.append(", quantite=");
-		builder.append(quantite);
-		builder.append("]");
-		return builder.toString();
 	}
+
+	
+
+
 }
