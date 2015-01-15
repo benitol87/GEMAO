@@ -19,7 +19,7 @@ public class Materiel {
 	private int quantite;
 	
 	public Materiel() {
-		this.idMateriel =  null;
+		this.idMateriel = null;
 	}
 
 	/**
