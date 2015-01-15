@@ -202,10 +202,13 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		ResponsabiliteDAO responsabiliteDAO = factory.getResponsabiliteDAO();
 		DiplomeDAO diplomeDAO = factory.getDiplomeDAO();
 		ContratDAO contratDAO = factory.getContratDAO();
+		
+		Integer idContrat = NumberUtil.getResultInteger(result, "idContrat");
+		
 		Personnel personnel = new Personnel(personneDAO.map(result),
 				responsabiliteDAO.getResponsabilitesParPersonne(result.getLong("idPersonne")),
 				diplomeDAO.getDiplomesParPersonnel(result.getLong("idPersonne")),
-				contratDAO.get(NumberUtil.getResultInteger(result, "idContrat")),
+				idContrat==null?null:contratDAO.get(idContrat),
 				result.getString("login"),
 				result.getString("pwd"),
 				NumberUtil.getResultInteger(result, "pointAnciennete"));

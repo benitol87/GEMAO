@@ -146,7 +146,7 @@ public class PersonnelForm {
 			str = getValeurChamp(request, CHAMP_LISTERESPONSABILITE+i);
 			i++;
 			
-			if (str != null || str.equals("")) {
+			if (str != null && str.equals("")) {
 				res = new Responsabilite();
 				res.setLibelle(str);
 				listeResponsabilite.add(res);

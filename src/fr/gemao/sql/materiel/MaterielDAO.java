@@ -211,12 +211,16 @@ public class MaterielDAO extends IDAO<Materiel> {
 
 	@Override
 	protected Materiel map(ResultSet result) throws SQLException {
+		Integer idMarque = result.getInt("idMarque"),
+			idFournisseur = result.getInt("idFournisseur");
+			
+		
 		return new Materiel(result.getLong("idMateriel"),
 				factory.getEtatDAO().get(result.getInt("idEtat")),
 				factory.getCategorieDAO().get(result.getInt("idCategorie")),
-				factory.getMarqueDAO().get(result.getInt("idMarque")),
+				idMarque==null?null:factory.getMarqueDAO().get(idMarque),
 				factory.getDesignationDAO().get(result.getInt("idDesignation")),
-				factory.getFournisseurDAO().get(result.getInt("idFournisseur")),
+				idFournisseur==null?null:factory.getFournisseurDAO().get(idFournisseur),
 				result.getString("typeMateriel"),
 				result.getString("numSerie"),
 				result.getDate("dateAchat"),

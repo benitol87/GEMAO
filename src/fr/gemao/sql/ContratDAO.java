@@ -129,11 +129,12 @@ public class ContratDAO extends IDAO<Contrat> {
 		TypeContratDAO contratDAO = factory.getTypeContratDAO();
 		MotifFinContratDAO motifDAO = factory.getMotifFinContratDAO();
 		Contrat contrat = new Contrat();
+		Integer idMotifFin = result.getInt("idMotifFin");
 		contrat.setIdContrat(NumberUtil.getResultInteger(result, "idContrat"));
 		contrat.setDateDebut(result.getDate("dateDebut"));
 		contrat.setDateFin(result.getDate("dateFin"));
 		contrat.setDateRupture(result.getDate("dateRupture"));
-		contrat.setMotifFinContrat(motifDAO.get(result.getInt("idMotifFin")));
+		contrat.setMotifFinContrat(idMotifFin==null?null:motifDAO.get(idMotifFin));
 		contrat.setTypeContrat(contratDAO.get(result.getInt("idTypeContrat")));
 		return contrat;
 	}

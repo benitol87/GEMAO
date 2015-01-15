@@ -2,8 +2,6 @@ package fr.gemao.ctrl.adherent;
 
 import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.entity.Parametre;
-import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.ParametreDAO;
 
 public class CalculerCotisationCtrl {
 	
