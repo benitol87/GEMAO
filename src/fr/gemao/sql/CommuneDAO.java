@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
@@ -31,7 +30,7 @@ public class CommuneDAO extends IDAO<Commune> {
 		String sql = "INSERT INTO commune(codePostal, nom, avantage)"
 				+ "VALUES (?, ?, ?);";
 		try {
-
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, true, obj.getCodePostal(), obj.getIdCommune(),
 					obj.isAvantage());
@@ -100,7 +99,7 @@ public class CommuneDAO extends IDAO<Commune> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM commune WHERE idCommune = ?;";
 		try {
-
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false, id);
 			result = requete.executeQuery();
@@ -126,7 +125,7 @@ public class CommuneDAO extends IDAO<Commune> {
 		ResultSet result = null;
 		String sql = "SELECT * FROM commune;";
 		try {
-
+			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false);
 			result = requete.executeQuery();

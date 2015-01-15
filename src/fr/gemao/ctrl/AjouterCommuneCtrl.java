@@ -45,27 +45,34 @@ public class AjouterCommuneCtrl {
 	}
 	
 	/**
-	 * Méthode permettant d'ajouter une commune dans la BD
+	 * Méthode permettant d'ajouter une commune dans la BD.
+	 * Pour être ajoutée, les informations de la commune doivent être valides et la commune ne doit pas déjà exister dans la base (sinon levée d'une IllegalArgumentException).
 	 * @param commune
 	 */
 	public void ajoutCommune(Commune commune){
+		//Vérification de la validité des informations
 		if(this.verifierInformations(commune)){
 			Commune com;
 			
 			DAOFactory co = DAOFactory.getInstance();
 			CommuneDAO communeDAO = co.getCommuneDAO();
 			
-			com = communeDAO.create(commune);
-			if (com == null){
-				System.out.println("Une erreur est survenue lors de l'insertion...");
-			} else {
-				commune.setIdCommune(com.getIdCommune());
-				System.out.println("La commune a bien été ajoutée.");
+			//Vérification de l'inexistance de la commune dans la base
+			if(communeDAO.existNomCodePostal(commune) == null){
+				com = communeDAO.create(commune);
+				if (com == null){
+					System.out.println("Une erreur est survenue lors de l'insertion...");
+				} else {
+					commune.setIdCommune(com.getIdCommune());
+					System.out.println("La commune a bien été ajoutée.");
+				}
+			}
+			else{
+				throw new IllegalArgumentException("La commune existe déjà dans la base...");
 			}
 		}
 		else{
 			System.out.println("Les informations de la commune ne sont pas valides...");
-		}
-		
+		}	
 	}
 }

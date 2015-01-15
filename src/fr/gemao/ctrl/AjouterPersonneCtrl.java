@@ -24,16 +24,16 @@ public class AjouterPersonneCtrl {
 		/**
 		 * Vérification de l'idAdresse
 		 */
-		if (personne.getIdAdresse() == null) {
-			System.out.println("L'idAdresse ne doit pas être nul");
+		if (personne.getIdAdresse() == null || personne.getIdAdresse() <= 0) {
+			System.out.println("L'idAdresse n'est pas valide...");
 			return false;
 		}
 
 		/**
 		 * Vérification de l'idCommuneNaiss
 		 */
-		if (personne.getIdCommuneNaiss() == null) {
-			System.out.println("L'idAdresse ne doit pas être nul");
+		if (personne.getIdCommuneNaiss() == null || personne.getIdCommuneNaiss() <= 0) {
+			System.out.println("L'idAdresse n'est pas valide...");
 			return false;
 		}
 
@@ -44,7 +44,7 @@ public class AjouterPersonneCtrl {
 		pattern = Pattern.compile(masque);
 		controler = pattern.matcher(personne.getNom());
 		if (!controler.matches()) {
-			System.out.println("Le format du nom est invalide");
+			System.out.println("Le format du nom est invalide...");
 			return false;
 		}
 
@@ -53,7 +53,7 @@ public class AjouterPersonneCtrl {
 		 */
 		controler = pattern.matcher(personne.getPrenom());
 		if (!controler.matches()) {
-			System.out.println("Le format du prénom est invalide");
+			System.out.println("Le format du prénom est invalide...");
 			return false;
 		}
 
@@ -61,13 +61,9 @@ public class AjouterPersonneCtrl {
 		 * Vérification de la date de naissance
 		 */
 		Date date = new Date();
-		if (personne.getDateNaissance() == null) {
+		if (personne.getDateNaissance().after(date)) {
 			System.out
-					.println("La date d'entrée doit obligatoirement être saisie");
-			return false;
-		} else if (personne.getDateNaissance().after(date)) {
-			System.out
-					.println("La date de naissance doit être antérieur à la date actuelle");
+					.println("La date de naissance doit être antérieure à la date actuelle...");
 			return false;
 		}
 
@@ -78,8 +74,8 @@ public class AjouterPersonneCtrl {
 				+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
 		pattern = Pattern.compile(masque);
 		controler = pattern.matcher(personne.getEmail());
-		if (!controler.matches() && personne.getEmail() != null) {
-			System.out.println("Le format de l'email est invalide");
+		if (!controler.matches()) {
+			System.out.println("Le format de l'email est invalide...");
 			return false;
 		}
 
@@ -89,13 +85,13 @@ public class AjouterPersonneCtrl {
 		masque = "^[0][0-9]{9}$";
 		pattern = Pattern.compile(masque);
 		controler = pattern.matcher(personne.getTelFixe());
-		if (!controler.matches() && personne.getTelFixe() != null) {
-			System.out.println("Le format du telephone fixe est invalide");
+		if (!controler.matches()) {
+			System.out.println("Le format du téléphone fixe est invalide...");
 			return false;
 		}
 		controler = pattern.matcher(personne.getTelPort());
-		if (!controler.matches() && personne.getTelPort() != null) {
-			System.out.println("Le format du telephone portable est invalide");
+		if (!controler.matches()) {
+			System.out.println("Le format du téléphone portable est invalide...");
 			return false;
 		}
 
@@ -104,24 +100,32 @@ public class AjouterPersonneCtrl {
 
 	/**
 	 * Méthode permettant d'ajouter une personne dans la BD
+	 * Pour être ajoutée, les informations de la personne doivent être valides et la personne ne doit pas déjà exister dans la base (sinon levée d'une IllegalArgumentException).
 	 * 
 	 * @param personne
 	 */
 	public long ajoutPersonne(Personne personne) {
+		//Vérification de la validité des informations
 		if (this.verifierInformations(personne)) {
 			Personne pers;
 
 			DAOFactory co = DAOFactory.getInstance();
 			PersonneDAO personneDAO = co.getPersonneDAO();
-
-			pers = personneDAO.create(personne);
-			if (pers == null) {
-				System.out
-						.println("Une erreur est survenue lors de l'insertion...");
-				return -1;
-			} else {
-				System.out.println("La personne a bien été ajoutée.");
-				return pers.getIdPersonne();
+			
+			//Vérification de l'inexistance de la personne dans la base
+			if(personneDAO.exist(personne) == null){
+				pers = personneDAO.create(personne);
+				if (pers == null) {
+					System.out
+							.println("Une erreur est survenue lors de l'insertion...");
+					return -1;
+				} else {
+					System.out.println("La personne a bien été ajoutée.");
+					return pers.getIdPersonne();
+				}
+			}
+			else{
+				throw new IllegalArgumentException("La personne existe déjà dans la base...");
 			}
 
 		} else {
