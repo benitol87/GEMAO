@@ -58,7 +58,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false,
 					obj.getIdPersonne(),
-					obj.getIdContrat(),
+					obj.getContrat(),
 					obj.getLogin(),
 					obj.getPassword(),
 					obj.getPointsAncien());
@@ -109,7 +109,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 			
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, 
-					obj.getIdContrat(),
+					obj.getContrat(),
 					obj.getLogin(),
 					obj.getPassword(),
 					obj.getPointsAncien());

@@ -57,7 +57,7 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 
 		RecupererContratCtrl recupererContratCtrl = new RecupererContratCtrl();
 		Contrat contrat = recupererContratCtrl.recupererContrat(personnel
-				.getIdContrat());
+				.getContrat());
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String dateDebutContrat = formatter.format(contrat.getDateDebut());
