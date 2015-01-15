@@ -17,7 +17,7 @@ import fr.gemao.entity.adherent.Responsable;
 /**
  * Servlet implementation class ConsulteAdherentServlet
  */
-@WebServlet("/ConsulteAdherent")
+@WebServlet("/adherent/ConsulteAdherent")
 public class ConsulteAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

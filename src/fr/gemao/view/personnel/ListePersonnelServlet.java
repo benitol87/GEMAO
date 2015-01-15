@@ -15,7 +15,7 @@ import fr.gemao.entity.Personnel;
 /**
  * Servlet implementation class ListePersonnelServlet
  */
-@WebServlet("/ListePersonnel")
+@WebServlet("/personnel/ListePersonnel")
 public class ListePersonnelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

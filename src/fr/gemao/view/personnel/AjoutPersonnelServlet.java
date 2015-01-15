@@ -20,7 +20,7 @@ import fr.gemao.entity.util.Civilite;
 /**
  * Servlet implementation class AjoutPersonnelServlet
  */
-@WebServlet("/AjoutPersonnel")
+@WebServlet("/personnel/AjoutPersonnel")
 public class AjoutPersonnelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
