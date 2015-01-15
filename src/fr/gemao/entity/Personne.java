@@ -7,8 +7,8 @@ import fr.gemao.entity.util.Civilite;
 public class Personne {
 
 	private Long idPersonne;
-	private Adresse idAdresse;
-	private Commune idCommuneNaiss;
+	private Adresse adresse;
+	private Commune communeNaiss;
 	private String nom;
 	private String prenom;
 	private Date dateNaissance;
@@ -38,8 +38,8 @@ public class Personne {
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, Civilite civilite) {
 		this.idPersonne = idPersonne;
-		this.idAdresse = idAdresse;
-		this.idCommuneNaiss = idCommuneNaiss;
+		this.adresse = idAdresse;
+		this.communeNaiss = idCommuneNaiss;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
@@ -55,8 +55,8 @@ public class Personne {
 	 * @param personne
 	 */
 	public Personne(Personne personne) {
-		this(personne.getIdPersonne(), personne.getIdAdresse(), personne
-				.getIdCommuneNaiss(), personne.getNom(), personne.getPrenom(),
+		this(personne.getIdPersonne(), personne.getAdresse(), personne
+				.getCommuneNaiss(), personne.getNom(), personne.getPrenom(),
 				personne.getDateNaissance(), personne.getTelFixe(), personne
 						.getTelPort(), personne.getEmail(), personne.getCivilite());
 	}
@@ -79,31 +79,31 @@ public class Personne {
 	/**
 	 * @return the idAdresse
 	 */
-	public Adresse getIdAdresse() {
-		return idAdresse;
+	public Adresse getAdresse() {
+		return adresse;
 	}
 
 	/**
 	 * @param idAdresse
 	 *            the idAdresse to set
 	 */
-	public void setIdAdresse(Adresse idAdresse) {
-		this.idAdresse = idAdresse;
+	public void setAdresse(Adresse idAdresse) {
+		this.adresse = idAdresse;
 	}
 
 	/**
 	 * @return the idCommuneNaiss
 	 */
-	public Commune getIdCommuneNaiss() {
-		return idCommuneNaiss;
+	public Commune getCommuneNaiss() {
+		return communeNaiss;
 	}
 
 	/**
-	 * @param idCommuneNaiss
+	 * @param communeNaiss
 	 *            the idCommuneNaiss to set
 	 */
-	public void setIdCommuneNaiss(Commune idCommuneNaiss) {
-		this.idCommuneNaiss = idCommuneNaiss;
+	public void setCommuneNaiss(Commune communeNaiss) {
+		this.communeNaiss = communeNaiss;
 	}
 
 	/**
@@ -211,9 +211,9 @@ public class Personne {
 				+ ((dateNaissance == null) ? 0 : dateNaissance.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result
-				+ ((idAdresse == null) ? 0 : idAdresse.hashCode());
+				+ ((adresse == null) ? 0 : adresse.hashCode());
 		result = prime * result
-				+ ((idCommuneNaiss == null) ? 0 : idCommuneNaiss.hashCode());
+				+ ((communeNaiss == null) ? 0 : communeNaiss.hashCode());
 		result = prime * result
 				+ ((idPersonne == null) ? 0 : idPersonne.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
@@ -247,15 +247,15 @@ public class Personne {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (idAdresse == null) {
-			if (other.idAdresse != null)
+		if (adresse == null) {
+			if (other.adresse != null)
 				return false;
-		} else if (!idAdresse.equals(other.idAdresse))
+		} else if (!adresse.equals(other.adresse))
 			return false;
-		if (idCommuneNaiss == null) {
-			if (other.idCommuneNaiss != null)
+		if (communeNaiss == null) {
+			if (other.communeNaiss != null)
 				return false;
-		} else if (!idCommuneNaiss.equals(other.idCommuneNaiss))
+		} else if (!communeNaiss.equals(other.communeNaiss))
 			return false;
 		if (idPersonne == null) {
 			if (other.idPersonne != null)
@@ -296,9 +296,9 @@ public class Personne {
 		builder.append("Personne [idPersonne=");
 		builder.append(idPersonne);
 		builder.append(", idAdresse=");
-		builder.append(idAdresse);
+		builder.append(adresse);
 		builder.append(", idCommuneNaiss=");
-		builder.append(idCommuneNaiss);
+		builder.append(communeNaiss);
 		builder.append(", nom=");
 		builder.append(nom);
 		builder.append(", prenom=");

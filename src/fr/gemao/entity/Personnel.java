@@ -55,13 +55,13 @@ public class Personnel extends Personne {
 	 * @param pointsAncien
 	 *            : le nombre de points d'ancienneté
 	 */
-	public Personnel(Long idPersonne, Integer idAdresse,
-			Integer idCommuneNaiss, String nom, String prenom,
+	public Personnel(Long idPersonne,  Adresse adresse,
+			Commune communeNaiss, String nom, String prenom,
 			Date dateNaissance, String telFixe, String telPort, String email,
 			Civilite civilite, List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, Integer idContrat, String login,
 			String password, int pointsAncien) {
-		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
+		super(idPersonne, adresse, communeNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email, civilite);
 
 		this.listeResponsabilite = listeResponsabilite;

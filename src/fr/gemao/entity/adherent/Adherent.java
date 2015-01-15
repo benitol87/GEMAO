@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import fr.gemao.entity.Adresse;
+import fr.gemao.entity.Commune;
 import fr.gemao.entity.Discipline;
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.util.Civilite;
 
 public class Adherent extends Personne {
-	private Integer idMotif;
-	private Long idResponsable;
+	private MotifSortie motif;
+	private Responsable responsable;
 	private boolean droitImage;
 	private Date dateEntree;
 	private Date dateSortie;
@@ -43,16 +45,16 @@ public class Adherent extends Personne {
 	 * @param cotisation
 	 * @param disciplines
 	 */
-	public Adherent(Long idPersonne, Integer idAdresse, Integer idCommuneNaiss,
+	public Adherent(Long idPersonne, Adresse adresse, Commune communeNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
-			String telPort, String email, Civilite civilite, Integer idMotif,
-			Long idResponsable, boolean droitImage, Date dateEntree,
+			String telPort, String email, Civilite civilite, MotifSortie motif,
+			Responsable responsable, boolean droitImage, Date dateEntree,
 			Date dateSortie, Float qf, float cotisation,
 			List<Discipline> disciplines) {
-		super(idPersonne, idAdresse, idCommuneNaiss, nom, prenom,
+		super(idPersonne, adresse, communeNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email, civilite);
-		this.idMotif = idMotif;
-		this.idResponsable = idResponsable;
+		this.motif = motif;
+		this.responsable = responsable;
 		this.droitImage = droitImage;
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
@@ -74,12 +76,12 @@ public class Adherent extends Personne {
 	 * @param dateSortie
 	 * @param qf
 	 */
-	public Adherent(Personne personne, Integer idMotif, Long idResponsable,
+	public Adherent(Personne personne, MotifSortie motif, Responsable responsable,
 			boolean droitImage, Date dateEntree, Date dateSortie, Float qf,
 			float cotisation, List<Discipline> disciplines) {
 		super(personne);
-		this.idMotif = idMotif;
-		this.idResponsable = idResponsable;
+		this.motif = motif;
+		this.responsable = responsable;
 		this.droitImage = droitImage;
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
@@ -93,31 +95,31 @@ public class Adherent extends Personne {
 	/**
 	 * @return the idMotif
 	 */
-	public Integer getIdMotif() {
-		return idMotif;
+	public MotifSortie getMotif() {
+		return motif;
 	}
 
 	/**
 	 * @param idMotif
 	 *            the idMotif to set
 	 */
-	public void setIdMotif(Integer idMotif) {
-		this.idMotif = idMotif;
+	public void setMotif(MotifSortie motif) {
+		this.motif = motif;
 	}
 
 	/**
 	 * @return the idResponsable
 	 */
-	public Long getIdResponsable() {
-		return idResponsable;
+	public Responsable getResponsable() {
+		return responsable;
 	}
 
 	/**
 	 * @param idResponsable
 	 *            the idResponsable to set
 	 */
-	public void setIdResponsable(Long idResponsable) {
-		this.idResponsable = idResponsable;
+	public void setIdResponsable(Responsable responsable) {
+		this.responsable = responsable;
 	}
 
 	/**
@@ -220,58 +222,40 @@ public class Adherent extends Personne {
 		return disciplines.remove(discipline);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Adherent [");
-		builder.append(super.toString());
-		builder.append(", idMotif=");
-		builder.append(idMotif);
-		builder.append(", idResponsable=");
-		builder.append(idResponsable);
-		builder.append(", droitImage=");
-		builder.append(droitImage);
-		builder.append(", dateEntree=");
-		builder.append(dateEntree);
-		builder.append(", dateSortie=");
-		builder.append(dateSortie);
-		builder.append(", qf=");
-		builder.append(qf);
-		builder.append(", cotisation=");
-		builder.append(cotisation);
-		builder.append("]");
-		return builder.toString();
+		return "Adherent [motif=" + motif + ", responsable=" + responsable
+				+ ", droitImage=" + droitImage + ", dateEntree=" + dateEntree
+				+ ", dateSortie=" + dateSortie + ", qf=" + qf + ", cotisation="
+				+ cotisation + ", disciplines=" + disciplines + "]";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
+		result = prime * result + Float.floatToIntBits(cotisation);
 		result = prime * result
 				+ ((dateEntree == null) ? 0 : dateEntree.hashCode());
 		result = prime * result
 				+ ((dateSortie == null) ? 0 : dateSortie.hashCode());
-		result = prime * result + (droitImage ? 1231 : 1237);
-		result = prime * result + idMotif;
 		result = prime * result
-				+ (int) (idResponsable ^ (idResponsable >>> 32));
-		result = prime * result + Float.floatToIntBits(qf);
+				+ ((disciplines == null) ? 0 : disciplines.hashCode());
+		result = prime * result + (droitImage ? 1231 : 1237);
+		result = prime * result + ((motif == null) ? 0 : motif.hashCode());
+		result = prime * result + ((qf == null) ? 0 : qf.hashCode());
+		result = prime * result
+				+ ((responsable == null) ? 0 : responsable.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -283,6 +267,9 @@ public class Adherent extends Personne {
 		if (getClass() != obj.getClass())
 			return false;
 		Adherent other = (Adherent) obj;
+		if (Float.floatToIntBits(cotisation) != Float
+				.floatToIntBits(other.cotisation))
+			return false;
 		if (dateEntree == null) {
 			if (other.dateEntree != null)
 				return false;
@@ -293,15 +280,31 @@ public class Adherent extends Personne {
 				return false;
 		} else if (!dateSortie.equals(other.dateSortie))
 			return false;
+		if (disciplines == null) {
+			if (other.disciplines != null)
+				return false;
+		} else if (!disciplines.equals(other.disciplines))
+			return false;
 		if (droitImage != other.droitImage)
 			return false;
-		if (idMotif != other.idMotif)
+		if (motif == null) {
+			if (other.motif != null)
+				return false;
+		} else if (!motif.equals(other.motif))
 			return false;
-		if (idResponsable != other.idResponsable)
+		if (qf == null) {
+			if (other.qf != null)
+				return false;
+		} else if (!qf.equals(other.qf))
 			return false;
-		if (Float.floatToIntBits(qf) != Float.floatToIntBits(other.qf))
+		if (responsable == null) {
+			if (other.responsable != null)
+				return false;
+		} else if (!responsable.equals(other.responsable))
 			return false;
 		return true;
 	}
+
+	
 
 }
