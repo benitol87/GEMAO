@@ -1,6 +1,6 @@
 package fr.gemao.ctrl.adherent;
 
-import fr.gemao.entity.adherent.Parametre;
+import fr.gemao.entity.Parametre;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.ParametreDAO;
 

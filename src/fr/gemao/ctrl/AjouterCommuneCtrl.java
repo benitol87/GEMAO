@@ -26,12 +26,6 @@ public class AjouterCommuneCtrl {
 		Pattern pattern;
 		Matcher controler;
 		
-		//Vérification de l'idCommune
-		if(commune.getIdCommune() < 0){
-			System.out.println("L'idCommune doit être positif...");
-			return false;
-		}
-		
 		//Vérification du code postal
 		if(commune.getCodePostal() <= 0){
 			System.out.println("Le code postal doit être strictement positif...");
@@ -39,7 +33,7 @@ public class AjouterCommuneCtrl {
 		}
 		
 		//Vérification du nom de commune
-		masque = "^[A-Za-z\\-]+$";
+		masque = "^[A-Za-z\\- ]+$";
 		pattern = Pattern.compile(masque);
 		controler = pattern.matcher(commune.getNomCommune());
 		if (!controler.matches()) {

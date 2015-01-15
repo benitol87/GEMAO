@@ -9,40 +9,36 @@ import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
 
 public class AjouterPersonneCtrl {
-	
+
 	/**
 	 * Constructeur
 	 */
-	public AjouterPersonneCtrl(){
+	public AjouterPersonneCtrl() {
 	}
-	
-	public boolean verifierInformations(Personne personne){
+
+	public boolean verifierInformations(Personne personne) {
 		String masque;
 		Pattern pattern;
 		Matcher controler;
 
-		//Vérification de l'idPersonne
-		if (personne.getIdPersonne() < 0) {
-			System.out.println("L'idPersonne doit être positif");
+		/**
+		 * Vérification de l'idAdresse
+		 */
+		if (personne.getIdAdresse() == null) {
+			System.out.println("L'idAdresse ne doit pas être nul");
 			return false;
 		}
 
 		/**
-		 * Vérification de l'idAdresse
-		 *
-		 * if (pers.getIdAdresse() n'existe pas){
-		 * syso("L'idAdresse n'existe pas"); return false; }
-		 */
-
-		/**
 		 * Vérification de l'idCommuneNaiss
-		 *
-		 * if (pers.getIdCommune() n'existe pas){
-		 * syso("L'idCommune n'existe pas"); return false; }
 		 */
+		if (personne.getIdCommuneNaiss() == null) {
+			System.out.println("L'idAdresse ne doit pas être nul");
+			return false;
+		}
 
 		/**
-		 * Vérification du nom Masque à définir
+		 * Vérification du nom
 		 */
 		masque = "^[A-Za-z\\-]+$";
 		pattern = Pattern.compile(masque);
@@ -53,7 +49,7 @@ public class AjouterPersonneCtrl {
 		}
 
 		/**
-		 * Vérification du prenom Masque à définir
+		 * Vérification du prenom
 		 */
 		controler = pattern.matcher(personne.getPrenom());
 		if (!controler.matches()) {
@@ -102,15 +98,16 @@ public class AjouterPersonneCtrl {
 			System.out.println("Le format du telephone portable est invalide");
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Méthode permettant d'ajouter une personne dans la BD
+	 * 
 	 * @param personne
 	 */
-	public long ajoutPersonne(Personne personne){
+	public long ajoutPersonne(Personne personne) {
 		if (this.verifierInformations(personne)) {
 			Personne pers;
 
@@ -118,12 +115,13 @@ public class AjouterPersonneCtrl {
 			PersonneDAO personneDAO = co.getPersonneDAO();
 
 			pers = personneDAO.create(personne);
-			if (pers == null){
-				System.out.println("Une erreur est survenue lors de l'insertion...");
+			if (pers == null) {
+				System.out
+						.println("Une erreur est survenue lors de l'insertion...");
 				return -1;
 			} else {
-					System.out.println("La personne a bien été ajoutée.");
-					return pers.getIdPersonne();
+				System.out.println("La personne a bien été ajoutée.");
+				return pers.getIdPersonne();
 			}
 
 		} else {
