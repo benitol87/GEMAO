@@ -15,13 +15,14 @@
 		<th>Designation</th>
 		<th>Categorie</th>
 		<th>Quantité</th>
+		<th></th>
 	</tr>
 	<c:forEach items="${listeMateriels}" var="mat">
 		<tr>
 			<td><c:out value="${mat.designation.libelleDesignation}" /></td>
 			<td><c:out value="${mat.categorie.libelleCat}" /></td>
 			<td><c:out value="${mat.categorie.libelleCat}" /></td>
-			
+			<td><a href="ModifMateriel?id=<c:out value="${mat.idMateriel}" />"><input type="button" value="Modifier" /></a><td>
 		</tr>
 	</c:forEach>
 </table>
