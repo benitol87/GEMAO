@@ -7,6 +7,7 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
+
 	<form id="modifp" method="post" action="#">
 			<h2>Modification des informations</h2>
 			<table>
