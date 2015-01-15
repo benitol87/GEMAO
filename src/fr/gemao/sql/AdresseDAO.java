@@ -24,7 +24,7 @@ public class AdresseDAO extends IDAO<Adresse> {
 	public Adresse create(Adresse obj) {
 		if (obj == null) {
 			throw new NullPointerException(
-					"Le responsable ne doit pas etre null");
+					"L'adresse ne doit pas etre null");
 		}
 
 		long id = 0;

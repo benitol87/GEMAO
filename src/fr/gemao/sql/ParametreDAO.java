@@ -86,7 +86,7 @@ public class ParametreDAO extends IDAO<Parametre> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "SELECT * FROM parametre "
-				+ "WHERE dateModif >= ALL(Select dateModif FROM Parametre);";
+				+ "WHERE dateModif >= ALL(Select dateModif FROM parametre);";
 		try {
 			connection = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connection,

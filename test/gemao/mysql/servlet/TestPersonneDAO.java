@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.gemao.entity.Personne;
+import fr.gemao.entity.util.Civilite;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
 import fr.gemao.sql.config.InitialisationDaoFactory;
@@ -45,8 +46,8 @@ public class TestPersonneDAO extends HttpServlet {
 		System.out.println("\nAjout");
 		// Pour ajouter une personne � la base on creer l'objet correspondant
 		// N.B l'id est �gale � 0 car auto incr�mentation
-		Personne personneAdd = new Personne(0L, 1L, 1L, "Test", "Riri",
-				new Date(), "0504030201", "0605040302", "riri@unilim.fr");
+		Personne personneAdd = new Personne(0L, 1, 1, "Test", "Riri",
+				new Date(), "0504030201", "0605040302", "riri@unilim.fr", Civilite.MADAME);
 		// On ajoute � la base la personne, on r�cup�re la personne
 		// effectivement ajouter
 		Personne rs = personneDAO.create(personneAdd);

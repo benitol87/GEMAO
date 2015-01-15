@@ -1,17 +1,15 @@
 package gemao.mysql;
 
-import gemao.application.gestionMateriel.Designation;
-import gemao.entity.Personne;
-import gemao.mysql.gestionMateriel.DesignationDAO;
-
-import java.sql.Connection;
-import java.util.Date;
 import java.util.List;
+
+import fr.gemao.entity.materiel.Designation;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.materiel.DesignationDAO;
 
 public class TestDesignationDAO {
 	public static void main(String[] args) {
 		// On recupere une instance de Connection a la base
-		Connection co = ConnectionMySql.getInstance();
+		DAOFactory co = DAOFactory.getInstance();
 		// On creer un Objet DesignationDAO qui gere les operations sur la base
 		DesignationDAO designationDAO = new DesignationDAO(co);
 
