@@ -1,5 +1,7 @@
 package fr.gemao.ctrl.adherent;
 
+import javax.servlet.http.HttpServletRequest;
+
 import fr.gemao.entity.Parametre;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.ParametreDAO;
@@ -21,14 +23,17 @@ public class CalculerQuotientCtrl {
 	 *            Le nombre d'enfants du foyer (doit �tre sup�rieur � 0)
 	 * @return Le quotient calcul�
 	 */
-	public float calculerQuotient(float revenus, int nbPersFoyer, int nbEnfFoyer) {
+	public float calculerQuotient(HttpServletRequest request) {
 		float alloc, quotient = 0;
 		
 		DAOFactory co = DAOFactory.getInstance();
 		ParametreDAO parametreDAO = co.getParametreDAO();
 		Parametre param = new Parametre(parametreDAO.getLast());
+		int nbPers = Integer.parseInt(request.getParameter("nbPers"));
+		int nbEnfants = Integer.parseInt(request.getParameter("nbEnf"));
+		float revenus = Float.parseFloat((request.getParameter("revenues")).replace(',', '.'));
 		
-		switch (nbEnfFoyer) {
+		switch (nbEnfants) {
 		case 0:
 		case 1:
 			alloc = 0;
@@ -47,7 +52,7 @@ public class CalculerQuotientCtrl {
 			break;
 		}
 
-		quotient = ((revenus / 12) + alloc) / nbPersFoyer;
+		quotient = ((revenus / 12) + alloc) / nbPers;
 
 		return quotient;
 	}

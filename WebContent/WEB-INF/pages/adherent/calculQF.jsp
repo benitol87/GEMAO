@@ -18,13 +18,13 @@
 			<td><input type="number" name="nbEnf" required="required" min="0"
 				autocomplete="off" /></td>
 			<td><label for="revenues">Revenus annuels : </label></td>
-			<td><input type="number" namme="revenues" required="required"
+			<td><input type="text" pattern="[0-9]*[0-9,.][0-9]*" name="revenues" required="required"
 				autocomplete="off" /></td>
 		</tr>
 	</table>
 	<div>
-		<input type="button" value="Annuler" /> <input type="button"
-			value="Valider" />
+		<input type="button" value="Annuler" /> 
+		<input type="submit" value="Valider" />
 	</div>
 </form>
 <c:import url="/inc/footer.inc.jsp" />
