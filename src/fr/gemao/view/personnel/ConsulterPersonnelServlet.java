@@ -2,6 +2,7 @@ package fr.gemao.view.personnel;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,7 @@ import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Contrat;
 import fr.gemao.entity.Personnel;
+import fr.gemao.entity.Responsabilite;
 
 /**
  * Servlet implementation class ConsulterPersonnelServlet
@@ -57,9 +59,13 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 		if (contrat.getDateFin() != null) {
 			dateFinContrat = formatter.format(contrat.getDateFin());
 		}
+		
+		List<Responsabilite> listeResponsabilite = personnel.getListeResponsabilite();
+		if(listeResponsabilite.isEmpty()){
+			listeResponsabilite.add(new Responsabilite(0, "Aucune"));
+		}
 
-		request.setAttribute("listeResponsabilite",
-				personnel.getListeResponsabilite());
+		request.setAttribute("listeResponsabilite", listeResponsabilite);
 		request.setAttribute("personnel", personnel);
 		request.setAttribute("adresse", adresse);
 		request.setAttribute("commune", commune);
