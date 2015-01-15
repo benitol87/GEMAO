@@ -167,7 +167,7 @@ public class AdresseDAO extends IDAO<Adresse> {
 
 	@Override
 	protected Adresse map(ResultSet result) throws SQLException {
-		Commune commune = new CommuneDAO(DAOFactory.getInstance()).get(result.getInt("idCommune"));
+		Commune commune = factory.getCommuneDAO().get(result.getInt("idCommune"));
 		return new Adresse(result.getInt("idAdresse"),
 				commune,
 				result.getInt("numRue"),

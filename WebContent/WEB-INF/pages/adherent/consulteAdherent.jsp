@@ -91,26 +91,26 @@
 	</span>
 </div>
 
-<c:if test="${adherent['idResponsable']!=null}">
+<c:if test="${adherent.responsable.idResponsable!=null}">
 	<table>
 		<tr>
 			<td><label for="nom">Nom : </label></td>
 			<td><p>
-					<c:out value="${responsable['nom']}" />
+					<c:out value="${adherent.responsable['nom']}" />
 				</p></td>
 			<td><label for="prenom">Prénom : </label></td>
 			<td><p>
-					<c:out value="${responsable['prenom']}" />
+					<c:out value="${adherent.responsable['prenom']}" />
 				</p></td>
 		</tr>
 		<tr>
 			<td><label for="tel">Téléphone : </label></td>
 			<td><p>
-					<c:out value="${responsable['telephone']}" />
+					<c:out value="${adherent.responsable['telephone']}" />
 				</p></td>
 			<td><label for="email">E-mail : </label></td>
 			<td><p>
-					<c:out value="${responsable['email']}" />
+					<c:out value="${adherent.responsable['email']}" />
 				</p></td>
 		</tr>
 	</table>

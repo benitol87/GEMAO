@@ -180,14 +180,20 @@ public class AdherentDAO extends IDAO<Adherent> {
 		DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
 		ResponsableDAO responsableDAO = factory.getResponsableDAO();
 		MotifSortieDAO motifSortieDAO = factory.getMotifSortieDAO();
-		Adherent adherent = new Adherent(personneDAO.map(result),
-				motifSortieDAO.get(NumberUtil.getResultInteger(result, "idMotifSortie")),
-				responsableDAO.get(NumberUtil.getResultLong(result, "idResponsable")),
-				result.getBoolean("droitImage"), result.getDate("dateEntree"),
-				result.getDate("dateSortie"), NumberUtil.getResultFloat(result,
-						"qf"), NumberUtil.getResultFloat(result, "cotisation"),
-				disciplineDAO.getDisciplineParAdherent(result
-						.getLong("idPersonne")));
+		
+		Long idResponsable = NumberUtil.getResultLong(result, "idResponsable");
+		Integer idMotifSortie = NumberUtil.getResultInteger(result, "idMotifSortie");
+		
+		Adherent adherent = new Adherent(
+			personneDAO.map(result),
+			idMotifSortie==null?null:motifSortieDAO.get(idMotifSortie),
+			idResponsable==null?null:responsableDAO.get(idResponsable),
+			result.getBoolean("droitImage"), result.getDate("dateEntree"),
+			result.getDate("dateSortie"), NumberUtil.getResultFloat(result,
+					"qf"), NumberUtil.getResultFloat(result, "cotisation"),
+			disciplineDAO.getDisciplineParAdherent(result
+					.getLong("idPersonne"))
+		);
 		return adherent;
 	}
 
