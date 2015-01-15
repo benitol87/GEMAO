@@ -8,6 +8,7 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 	<!-- 1er partie du formulaire -->
+	<h1>Ajout d'un personnel</h1>
 	<form id="ajoutp1" method="post" action="ajoutPersonnel2.jsp">
 		<table>
 			<tr><td>
@@ -45,9 +46,14 @@
 			<legend>Adresse</legend>
 			<table>
 				<tr><td>
-					<label for="adresse">*Adresse:</label>
+					<label for="numRue">*N° rue:</label>
 				</td><td>
-					<input type="text" name="adresse" required/>
+					<input type="text" name="numRue" size="2" required/>
+				</td></tr>
+				<tr><td>
+					<label for="nomRue">*Nom rue:</label>
+				</td><td>
+					<input type="text" name="nomRue" required/>
 				</td></tr>
 				<tr><td>
 					<label for="ville">Ville:</label>

@@ -2,6 +2,7 @@ package fr.gemao.view.personnel;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +17,9 @@ import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Contrat;
+import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
+import fr.gemao.entity.Responsabilite;
 
 /**
  * Servlet implementation class ConsulterPersonnelServlet
@@ -33,24 +36,49 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		long id = Long.parseLong(request.getParameter("id"));
 		RecupererPersonnelCtrl recupererPersonnelCtrl = new RecupererPersonnelCtrl();
 		Personnel personnel = recupererPersonnelCtrl.recupererPersonnel(id);
-		
+
 		RecupererAdresseCtrl recupererAdresseCtrl = new RecupererAdresseCtrl();
-		Adresse adresse = recupererAdresseCtrl.recupererAdresse(personnel.getIdAdresse());
-		
+		Adresse adresse = recupererAdresseCtrl.recupererAdresse(personnel
+				.getIdAdresse());
+
 		RecupererCommuneCtrl recupererCommuneCtrl = new RecupererCommuneCtrl();
-		Commune commune = recupererCommuneCtrl.recupererCommune(adresse.getIdCommune());
-		
+		Commune commune = recupererCommuneCtrl.recupererCommune(adresse
+				.getIdCommune());
+
 		RecupererContratCtrl recupererContratCtrl = new RecupererContratCtrl();
-		Contrat contrat = recupererContratCtrl.recupererContrat(personnel.getIdContrat());
+		Contrat contrat = recupererContratCtrl.recupererContrat(personnel
+				.getIdContrat());
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		String dateDebutContrat = formatter.format(contrat.getDateDebut());
+
+		String dateFinContrat = null;
+		if (contrat.getDateFin() != null) {
+			dateFinContrat = formatter.format(contrat.getDateFin());
+		}
 		
+		List<Responsabilite> listeResponsabilite = personnel.getListeResponsabilite();
+		if(listeResponsabilite.isEmpty()){
+			listeResponsabilite.add(new Responsabilite(0, "Aucune"));
+		}
+		
+		List<Diplome> listeDiplome = personnel.getListeDiplomes();
+		if(listeDiplome.isEmpty()){
+			listeDiplome.add(new Diplome(0, "Aucun"));
+		}
+
+		request.setAttribute("listeDiplome", listeDiplome);
+		request.setAttribute("listeResponsabilite", listeResponsabilite);
 		request.setAttribute("personnel", personnel);
 		request.setAttribute("adresse", adresse);
 		request.setAttribute("commune", commune);
 		request.setAttribute("contrat", contrat);
+		request.setAttribute("dateDebutContrat", dateDebutContrat);
+		request.setAttribute("dateFinContrat", dateFinContrat);
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}

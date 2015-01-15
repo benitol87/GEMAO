@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.MotifFinContrat;
-import fr.gemao.entity.adherent.MotifSortie;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;

@@ -45,7 +45,8 @@
 											<li><a href="#">Archiver</a></li>
 											<li><a href="<c:url value="/personnel/ListePersonnel"/>">Lister</a></li>
 										</ul>
-									</div></li>
+									</div>
+								</li>
 							</ul>
 						</div></li>
 					<li class="icon icon-arrow-left"><a href="#">Matériel</a>
@@ -63,7 +64,8 @@
 											<li><a href="#">Archiver</a></li>
 											<li><a href="<c:url value="/materiel/ListerMateriel"/>">Lister</a></li>
 										</ul>
-									</div></li>
+									</div>
+								</li>
 							</ul>
 						</div></li>
 					<li class="icon icon-arrow-left"><a href="#">Location</a>
@@ -74,7 +76,8 @@
 								<li><a href="<c:url value="/location/locationInstrument"/>">Prêt</a></li>
 								<li><a href="#">Retour</a></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</nav>

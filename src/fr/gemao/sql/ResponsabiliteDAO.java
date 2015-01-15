@@ -13,13 +13,15 @@ import fr.gemao.sql.util.DAOUtilitaires;
 
 /**
  * Classe ResponsabiliteDAO
+ * 
  * @author Coco
  *
  */
 public class ResponsabiliteDAO extends IDAO<Responsabilite> {
-	
+
 	/**
 	 * Constructeur de la classe
+	 * 
 	 * @param factory
 	 */
 	public ResponsabiliteDAO(DAOFactory factory) {
@@ -32,26 +34,33 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	@Override
 	public Responsabilite create(Responsabilite obj) {
 		if (obj == null) {
-			throw new NullPointerException("La responsabilité ne doit pas être null");
+			throw new NullPointerException(
+					"La responsabilité ne doit pas être null");
 		}
-		
+
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "INSERT INTO responsabilite(idResponsabilite, libelle)"
 				+ "VALUES (?, ?);";
-		
+		int id;
 		try {
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false,
-					obj.getIdResponsabilite(),
-					obj.getLibelle());
-			
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, true, obj.getIdResponsabilite(), obj.getLibelle());
+
 			int status = requete.executeUpdate();
-			
-			if ( status == 0 ) {
-	            throw new DAOException( "Échec de la création de la responsabilité, aucune ligne ajoutée dans la table." );
-	        }
+
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la création de la responsabilité, aucune ligne ajoutée dans la table.");
+			}
+
+			result = requete.getGeneratedKeys();
+			if (result != null && result.first()) {
+				id = result.getInt(1);
+				obj.setIdResponsabilite(id);
+			}
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -67,7 +76,7 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	 */
 	@Override
 	public void delete(Responsabilite obj) {
-		
+
 	}
 
 	/**
@@ -76,22 +85,22 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	@Override
 	public Responsabilite update(Responsabilite obj) {
 		if (obj == null) {
-			throw new NullPointerException("La responsabilité ne doit pas être null");
+			throw new NullPointerException(
+					"La responsabilité ne doit pas être null");
 		}
-		
+
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		
+
 		String sql = "UPDATE responsabilite SET idResponsabilite = ?, libelle = ? "
 				+ "WHERE idResponsabilite = ?;";
-		
+
 		try {
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, 
-					obj.getIdResponsabilite(),
-					obj.getLibelle());
-			
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, obj.getIdResponsabilite(), obj.getLibelle());
+
 			requete.executeUpdate();
 
 		} catch (SQLException e) {
@@ -112,13 +121,14 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		
+
 		String sql = "SELECT * FROM responsabilite WHERE idResponsabilite = ?;";
-		
+
 		try {
-			
+
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, id);
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, id);
 			result = requete.executeQuery();
 
 			if (result.first()) {
@@ -129,7 +139,7 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
-		
+
 		return responsabilite;
 	}
 
@@ -143,14 +153,15 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		
+
 		String sql = "SELECT * FROM responsabilite;";
-		
+
 		try {
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false);
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false);
 			result = requete.executeQuery();
-			
+
 			while (result.next()) {
 				responsabilite = this.map(result);
 				liste.add(responsabilite);
@@ -165,17 +176,116 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	}
 
 	/**
-	 * Redéfinition de la méthode map
+	 * Ajoute une liste de responsabilité dans la base. N'ajoute pas les
+	 * éléments qui existe déjà.
+	 * 
+	 * @param liste
+	 * @return
 	 */
-	@Override
-	protected Responsabilite map(ResultSet result) throws SQLException {
-		
-		return new Responsabilite(result.getInt("idResponsabilite"), result.getString("libelle"));
+	public List<Responsabilite> createAll(List<Responsabilite> liste) {
+		List<Responsabilite> result = new ArrayList<>();
+		Responsabilite exist = null;
+		for (Responsabilite resp : liste) {
+			exist = this.exist(resp);
+			if (exist == null) {
+				result.add(this.create(resp));
+			}else{
+				result.add(exist);
+			}
+		}
+		return liste;
+	}
+
+	/**
+	 * Retourne null si la responsabilite n'existe pas dans le base de données;
+	 * Compare le libellé.
+	 * @param responsabilite
+	 * @return
+	 */
+	public Responsabilite exist(Responsabilite responsabilite) {
+		Responsabilite verif = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+
+		String sql = "SELECT * FROM responsabilite WHERE libelle = ?;";
+
+		try {
+
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, responsabilite.getLibelle());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				verif = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return verif;
 	}
 	
 	/**
-	 * Méthode permettant de retourner la liste des responsabilités liées à une personne
-	 * @param idPersonne : l'ID de la personne
+	 * Associe toutes une listes de responsabilite à une personne.
+	 * @param idPersonne
+	 * @param responsabilites
+	 * @return
+	 */
+	public List<Responsabilite> addAllResponsabiliteParPersonnel(long idPersonne, List<Responsabilite> responsabilites){
+		List<Responsabilite> results = new ArrayList<>();
+		results = this.createAll(responsabilites);
+		for(Responsabilite resp : responsabilites){
+			this.addResponsabiliteParPersonnel(idPersonne, resp);
+		}
+		return results;
+	}
+	
+	/**
+	 * Associe une responsabilité à une Personne
+	 * @param idPersonne
+	 * @param responsabilite
+	 */
+	public void addResponsabiliteParPersonnel(long idPersonne, Responsabilite responsabilite){
+		if (responsabilite == null) {
+			throw new NullPointerException(
+					"La responsabilité ne doit pas être null");
+		}
+
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "INSERT INTO personnelXresponsabilite(idResponsabilite, idPersonne)"
+				+ "VALUES (?, ?);";
+		int id;
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, responsabilite.getIdResponsabilite(), idPersonne);
+
+			int status = requete.executeUpdate();
+
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la création de l'association entre la responsabilité et la personne, aucune ligne ajoutée dans la table.");
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+	}
+
+	/**
+	 * Méthode permettant de retourner la liste des responsabilités liées à une
+	 * personne
+	 * 
+	 * @param idPersonne
+	 *            : l'ID de la personne
 	 * @return liste : la liste des responsabilités
 	 */
 	public List<Responsabilite> getResponsabilitesParPersonne(Long idPersonne) {
@@ -184,25 +294,37 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 		ResultSet result = null;
 		Responsabilite responsabilite = null;
 		List<Responsabilite> liste = new ArrayList<Responsabilite>();
-		
+
 		String sql = "SELECT * FROM responsabilite r INNER JOIN personnelXresponsabilite pxr on r.idResponsabilite = pxr.idResponsabilite WHERE idPersonne = ?;";
-		
+
 		try {
 			co = factory.getConnection();
-			state = DAOUtilitaires.initialisationRequetePreparee(co, sql, false, idPersonne);
+			state = DAOUtilitaires.initialisationRequetePreparee(co, sql,
+					false, idPersonne);
 			result = state.executeQuery();
-			
+
 			while (result.next()) {
 				responsabilite = this.map(result);
 				liste.add(responsabilite);
 			}
-			
+
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(result, state, co);
 		}
-		
+
 		return liste;
 	}
+
+	/**
+	 * Redéfinition de la méthode map
+	 */
+	@Override
+	protected Responsabilite map(ResultSet result) throws SQLException {
+
+		return new Responsabilite(result.getInt("idResponsabilite"),
+				result.getString("libelle"));
+	}
+
 }
