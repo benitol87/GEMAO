@@ -13,6 +13,7 @@ import fr.gemao.ctrl.PersonneCtrl;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.Personnel;
+import fr.gemao.form.personnel.PersonnelForm;
 
 /**
  * Servlet implementation class ModifPersonnelServlet

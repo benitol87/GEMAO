@@ -41,10 +41,10 @@ public class ConsulteAdherentServlet extends HttpServlet {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String dateNaissance = formatter.format(adherent.getDateNaissance());
 
-		if (adherent.getIdResponsable() != null) {
+		if (adherent.getResponsable() != null) {
 			RecupererResponsableCtrl recupererResponsableCtrl = new RecupererResponsableCtrl();
 			Responsable responsable = recupererResponsableCtrl
-					.recupererResponsable(adherent.getIdResponsable());
+					.recupererResponsable(adherent.getResponsable().getIdResponsable());
 			request.setAttribute("responsable", responsable);
 		}
 		

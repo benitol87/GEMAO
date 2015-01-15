@@ -31,13 +31,13 @@ public class AjouterAdherentCtrl {
 		Date date = new Date();
 		
 		//Vérification de l'idMotif
-		if(adherent.getIdMotif() == null || adherent.getIdMotif() <= 0){
+		if(adherent.getMotif() == null || adherent.getMotif().getIdMotif() <= 0){
 			System.out.println("L'idMotif est invalide...");
 			return false;
 		}
 		
 		//Vérification de l'idResponsable
-		if(adherent.getIdResponsable() != null && adherent.getIdResponsable() <= 0){
+		if(adherent.getResponsable() != null && adherent.getResponsable().getIdResponsable() <= 0){
 			return false;
 		}
 		

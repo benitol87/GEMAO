@@ -19,8 +19,8 @@ public class AjouterAdresseCtrl {
 	 */
 	public boolean verifierInformations(Adresse adresse){			
 			//Vérification de l'idCommune
-			if(adresse.getIdCommune() <= 0){
-				System.out.println("L'idCommune doit être strictement positif...");
+			if(adresse.getCommune() == null){
+				System.out.println("L'objet commune ne doit pas être null...");
 				return false;
 			}
 			
