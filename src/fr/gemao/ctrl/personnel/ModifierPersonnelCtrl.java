@@ -1,23 +1,20 @@
 package fr.gemao.ctrl.personnel;
 
-import fr.gemao.entity.Personne;
+import fr.gemao.ctrl.ModifierPersonneCtrl;
 import fr.gemao.entity.Personnel;
-import fr.gemao.form.personnel.PersonnelForm;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.PersonneDAO;
 import fr.gemao.sql.PersonnelDAO;
 
 /**
- * La classe ModifierPersonnelCtrl permet de contrôler la modification du
- * personnel.
+ * La classe ModifierPersonnelCtrl permet de contrôler la modification d'un personnel.
  * 
- * @author Thomas
+ * @author Coco
  *
  */
 public class ModifierPersonnelCtrl {
 
 	/**
-	 * Le constructeur de ModifierPersonnelCtrl.
+	 * Constructeur
 	 */
 	public ModifierPersonnelCtrl() {
 
@@ -25,38 +22,32 @@ public class ModifierPersonnelCtrl {
 
 	/**
 	 * Cette méthode permet de vérifier la syntaxe du personnel.
-	 * 
-	 * @param personnel
-	 *            : le personnel modifié
+	 * @param personnel : le personnel modifié
 	 */
-	public static void modifierPersonnelSyntaxe(Personnel personnel) {
-		PersonnelForm verifperso = new PersonnelForm();
-
-		if (verifperso.verifierInformations(personnel)) {
-			Personne test1;
-			Personnel test2;
-
-			DAOFactory factory = DAOFactory.getInstance();
-			PersonneDAO personneDAO = factory.getPersonneDAO();
-			PersonnelDAO personnelDAO = factory.getPersonnelDAO();
-
-			test1 = personneDAO.update(personnel);
-			if (test1 == null) {
-				System.out
-						.println("Une erreur est survenue lors de la modification");
-			} else {
-				personnel.setIdPersonne(test1.getIdPersonne());
-				test2 = personnelDAO.update(personnel);
-				if (test2 == null) {
-					System.out
-							.println("Une erreur est survenue lors de la modification");
+	public static void modifierPersonnel(Personnel personnel) {
+		AjouterPersonnelCtrl ajoutPersonnel = new AjouterPersonnelCtrl();
+		
+		if (ajoutPersonnel.verifierInformations(personnel)) {
+			ModifierPersonneCtrl modifPers = new ModifierPersonneCtrl();
+			
+			if (modifPers.modifierPersonne(personnel) != -1) {
+				Personnel pers;
+				
+				DAOFactory co = DAOFactory.getInstance();
+				PersonnelDAO personnelDAO = co.getPersonnelDAO();
+				
+				pers = personnelDAO.update(personnel);
+				
+				if (pers == null) {
+					System.out.println("Une erreur est survenue lors de la modification");
 				} else {
-					System.out.println("Le personnel à bien été modifié");
+					System.out.println("Le personnel a bien été modifié");
 				}
+			} else {
+				System.out.println("Une erreur est survenue lors de la modification");
 			}
 		} else {
-			System.out
-					.println("Les informations du personnel ne sont pas valides");
+			System.out.println("Les informations du personnel ne sont pas valides");
 		}
 	}
 }

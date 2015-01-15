@@ -1,10 +1,8 @@
 package fr.gemao.ctrl.personnel;
 
-import fr.gemao.entity.Personne;
+import fr.gemao.ctrl.AjouterPersonneCtrl;
 import fr.gemao.entity.Personnel;
-import fr.gemao.form.personnel.PersonnelForm;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.PersonneDAO;
 import fr.gemao.sql.PersonnelDAO;
 
 /**
@@ -16,59 +14,49 @@ import fr.gemao.sql.PersonnelDAO;
 public class AjouterPersonnelCtrl {
 
 	/**
-	 * Le controleur de AjouterPersonnelCtrl
+	 * Constructeur
 	 */
 	public AjouterPersonnelCtrl() {
 
 	}
 
 	/**
-	 * Méthode permettant d'ajouter un personnel dans la base de données
-	 * 
-	 * @param personnel
-	 *            : le personnel à ajouter
+	 * Permet de vérifier les informations d'un personnel
+	 * @param personnel : le personnel à vérifier
+	 * @return true si la syntaxe du personnel est valide, false, sinon
 	 */
-	public static void ajouterPersonnel(Personnel personnel) {
-
-		if (personnel == null) {
-			throw new IllegalArgumentException("Le personnel ne peut pas être null");
-		}
+	public boolean verifierInformations(Personnel personnel){
+		//A implémenter
+		return true;
 	}
 
 	/**
-	 * Méthode permettant de vérifier la syntaxe du personnel.
-	 * 
-	 * @param personnel
-	 *            : Le personnel ajouté.
+	 * Méthode permettant d'ajouter un personnel dans la base de données
+	 * @param personnel : le personnel à ajouter
 	 */
-	public static void ajouterPersonnelSyntaxe(Personnel personnel) {
-		PersonnelForm verifperso = new PersonnelForm();
-
-		if (verifperso.verifierInformations(personnel)) {
-			Personne test1;
-			Personnel test2;
-
-			DAOFactory factory = DAOFactory.getInstance();
-			PersonneDAO personneDAO = factory.getPersonneDAO();
-			PersonnelDAO personnelDAO = factory.getPersonnelDAO();
-
-			test1 = personneDAO.create(personnel);
-			if (test1 == null) {
-				System.out
-						.println("Une erreur est survenue lors de l'insertion");
-			} else {
-				personnel.setIdPersonne(test1.getIdPersonne());
-				test2 = personnelDAO.create(personnel);
-				if (test2 == null) {
-					System.out
-							.println("Une erreur est survenue lors de l'insertion");
+	public void ajouterPersonnel(Personnel personnel) {
+		
+		if (this.verifierInformations(personnel)) {
+			AjouterPersonneCtrl ajoutPers = new AjouterPersonneCtrl();
+			
+			if (ajoutPers.ajoutPersonne(personnel) != -1) {
+				Personnel pers;
+				
+				DAOFactory co = DAOFactory.getInstance();
+				PersonnelDAO personnelDAO = co.getPersonnelDAO();
+				
+				pers = personnelDAO.create(personnel);
+				
+				if (pers == null) {
+					System.out.println("Une erreur est survenue lors de l'insertion");
 				} else {
-					System.out.println("L'adhérent à bien été ajouté");
+					System.out.println("Le personnel a bien été ajouté");
 				}
+			} else {
+				System.out.println("Une erreur est survenue lors de l'insertion");
 			}
 		} else {
-			System.out
-					.println("Les informations de l'adhérent ne sont pas valide");
+			System.out.println("Les informations du personnel ne sont pas valides");
 		}
 	}
 }
