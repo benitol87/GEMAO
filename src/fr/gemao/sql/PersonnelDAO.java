@@ -30,7 +30,9 @@ public class PersonnelDAO extends IDAO<Personnel>{
 	}
 
 	/**
-	 * Redéfinition de lam méthode 
+	 * Redéfinition de la méthode 
+	 * Appelle create de PersonneDAO {@link PersonneDAO#create(fr.gemao.entity.Personne)}
+	 * Et associe la liste des responsabilités et des diplomes à la personne.
 	 */
 	@Override
 	public Personnel create(Personnel obj) {
