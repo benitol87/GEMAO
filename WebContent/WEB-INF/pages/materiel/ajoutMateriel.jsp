@@ -26,11 +26,10 @@
 		<%
 			}
 		%>
-	</select> <label for="valeurAch">Valeur d'achat : </label> <input type="number"
-		name="ValeurAch" /> <label for="dateAch">Date d'achat : </label> <input
-		type="date" name="dateAch" />
-</form>
-<form id="ajouterMateriel" action="#" methode="post">
+	</select> <label for="ValeurAch">Valeur d'achat : </label> 
+	<input type="number"name="ValeurAch" /> 
+	<label for="dateAch">Date d'achat : </label> 
+	<input type="date" name="dateAch" />
 	<table>
 		<tr>
 			<td>
@@ -95,10 +94,6 @@
 						<tr>
 							<td><label for="quantite">Quantité : </label></td>
 							<td><input type="text" name="quantite" id="quantite"/></td>
-						</tr>
-						<tr>	
-							<td><label for="prixU">Prix unitaire : </label></td>
-							<td><input type="text" name="prixU" id="prixU"/></td>
 						</tr>
 						<tr>
 							<td><label for="numSerie">Numéro de série : </label></td>

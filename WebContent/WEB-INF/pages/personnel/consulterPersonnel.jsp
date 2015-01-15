@@ -62,12 +62,23 @@
 		<legend>Professionnel</legend>
 		<table>
 			<tr><td>
-				<label for="diplome">Diplome:</label>
+				<label for="contrat">Contrat : </label>
+			</td></tr>
+			<tr><td>
+				<label for="dateDebContrat">Date de début : </label>
+			</td></tr>
+			<c:if test="${contrat['typeContrat']== CDD}">
+				<tr><td>
+					<label for="dateFinContrat">Date de fin : </label>
+				</td></tr>
+			</c:if>
+			<tr><td>
+				<label for="diplome">Diplome :</label>
 			</td><td>
 				
 			</td></tr>
 			<tr><td>
-				<label for="fonction">Fonction:</label>
+				<label for="fonction">Fonction :</label>
 			</td><td>
 	
 			</td></tr>

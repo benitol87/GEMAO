@@ -10,7 +10,7 @@ public class Materiel {
 	private Marque marque;
 	private Designation designation;
 	private String typeMat;
-	private long numSerie;
+	private String numSerie;
 	private Date dateAchat;
 	private float valeurAchat;
 	private float valeurReap;
@@ -40,7 +40,7 @@ public class Materiel {
 	 * @param quantite : la quantité
 	 */
 	public Materiel(Long idMateriel, Etat etat, Categorie categorie,
-			Marque marque, Designation designation, String typeMat, long numSerie,
+			Marque marque, Designation designation, String typeMat, String numSerie,
 			Date dateAchat, float valeurAchat, float valeurReap,
 			boolean deplacable, String observation, int quantite) {
 		this.idMateriel = idMateriel;
@@ -102,7 +102,7 @@ public class Materiel {
 		return typeMat;
 	}
 
-	public long getNumSerie() {
+	public String getNumSerie() {
 		return numSerie;
 	}
 
@@ -154,7 +154,7 @@ public class Materiel {
 		this.typeMat = typeMat;
 	}
 
-	public void setNumSerie(long numSerie) {
+	public void setNumSerie(String numSerie) {
 		this.numSerie = numSerie;
 	}
 
@@ -182,22 +182,27 @@ public class Materiel {
 		this.quantite = quantite;
 	}
 
-	/**
-	 * Redéfinition de la méthode hashCode
-	 */
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((categorie == null) ? 0 : categorie.hashCode());
-		result = prime * result + ((dateAchat == null) ? 0 : dateAchat.hashCode());
+		result = prime * result
+				+ ((categorie == null) ? 0 : categorie.hashCode());
+		result = prime * result
+				+ ((dateAchat == null) ? 0 : dateAchat.hashCode());
 		result = prime * result + (deplacable ? 1231 : 1237);
-		result = prime * result + ((designation == null) ? 0 : designation.hashCode());
+		result = prime * result
+				+ ((designation == null) ? 0 : designation.hashCode());
 		result = prime * result + ((etat == null) ? 0 : etat.hashCode());
-		result = prime * result + ((idMateriel == null) ? 0 : idMateriel.hashCode());
+		result = prime * result
+				+ ((idMateriel == null) ? 0 : idMateriel.hashCode());
 		result = prime * result + ((marque == null) ? 0 : marque.hashCode());
-		result = prime * result + (int) (numSerie ^ (numSerie >>> 32));
-		result = prime * result + ((observation == null) ? 0 : observation.hashCode());
+		result = prime * result
+				+ ((numSerie == null) ? 0 : numSerie.hashCode());
+		result = prime * result
+				+ ((observation == null) ? 0 : observation.hashCode());
 		result = prime * result + quantite;
 		result = prime * result + ((typeMat == null) ? 0 : typeMat.hashCode());
 		result = prime * result + Float.floatToIntBits(valeurAchat);
@@ -205,9 +210,6 @@ public class Materiel {
 		return result;
 	}
 
-	/**
-	 * Redéfinition de la méthode equals
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -249,7 +251,10 @@ public class Materiel {
 				return false;
 		} else if (!marque.equals(other.marque))
 			return false;
-		if (numSerie != other.numSerie)
+		if (numSerie == null) {
+			if (other.numSerie != null)
+				return false;
+		} else if (!numSerie.equals(other.numSerie))
 			return false;
 		if (observation == null) {
 			if (other.observation != null)
@@ -263,9 +268,11 @@ public class Materiel {
 				return false;
 		} else if (!typeMat.equals(other.typeMat))
 			return false;
-		if (Float.floatToIntBits(valeurAchat) != Float.floatToIntBits(other.valeurAchat))
+		if (Float.floatToIntBits(valeurAchat) != Float
+				.floatToIntBits(other.valeurAchat))
 			return false;
-		if (Float.floatToIntBits(valeurReap) != Float.floatToIntBits(other.valeurReap))
+		if (Float.floatToIntBits(valeurReap) != Float
+				.floatToIntBits(other.valeurReap))
 			return false;
 		return true;
 	}	

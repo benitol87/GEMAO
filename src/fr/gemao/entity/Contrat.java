@@ -6,10 +6,11 @@ import java.util.Date;
  * Classe Contrat permettant de créer un contrat en récupérant le nom et le prénom d'un personnel
  * @author Coco
  */
+
 public class Contrat {
 	private Integer idContrat;
-	private int typeContrat;
-	private int IdMotifContrat;
+	private TypeContrat typeContrat;
+	private MotifFinContrat idMotifContrat;
 	private Date dateDebut;
 	private Date dateFin;
 	private Date dateRupture;
@@ -17,8 +18,6 @@ public class Contrat {
 	public Contrat() {
 		
 	}
-	
-	
 
 	/**
 	 * @param idContrat
@@ -28,12 +27,12 @@ public class Contrat {
 	 * @param dateFin
 	 * @param dateRupture
 	 */
-	public Contrat(Integer idContrat, int typeContrat, int idMotifContrat,
+	public Contrat(Integer idContrat, TypeContrat typeContrat, MotifFinContrat idMotifContrat,
 			Date dateDebut, Date dateFin, Date dateRupture) {
 		super();
 		this.idContrat = idContrat;
 		this.typeContrat = typeContrat;
-		IdMotifContrat = idMotifContrat;
+		this.idMotifContrat = idMotifContrat;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.dateRupture = dateRupture;
@@ -58,48 +57,14 @@ public class Contrat {
 	}
 
 
-
-	/**
-	 * @return the typeContrat
-	 */
-	public int getTypeContrat1() {
-		return typeContrat;
-	}
-
-
-
-	/**
-	 * @param typeContrat the typeContrat to set
-	 */
-	public void setTypeContrat(int typeContrat) {
-		this.typeContrat = typeContrat;
-	}
-
-
-
-	/**
-	 * @return the typeContrat
-	 */
-	public int getTypeContrat() {
-		return typeContrat;
-	}
+	
 
 	/**
 	 * @return the idMotifContrat
 	 */
-	public int getIdMotifContrat() {
-		return IdMotifContrat;
+	public MotifFinContrat getIdMotifContrat() {
+		return idMotifContrat;
 	}
-
-
-
-	/**
-	 * @param idMotifContrat the idMotifContrat to set
-	 */
-	public void setIdMotifContrat(int idMotifContrat) {
-		IdMotifContrat = idMotifContrat;
-	}
-
 
 
 	/**
@@ -154,7 +119,16 @@ public class Contrat {
 		this.dateRupture = dateRupture;
 	}
 
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Contrat [idContrat=" + idContrat + ", typeContrat="
+				+ typeContrat + ", idMotifContrat=" + idMotifContrat
+				+ ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
+				+ ", dateRupture=" + dateRupture + "]";
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -163,7 +137,6 @@ public class Contrat {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + IdMotifContrat;
 		result = prime * result
 				+ ((dateDebut == null) ? 0 : dateDebut.hashCode());
 		result = prime * result + ((dateFin == null) ? 0 : dateFin.hashCode());
@@ -171,11 +144,12 @@ public class Contrat {
 				+ ((dateRupture == null) ? 0 : dateRupture.hashCode());
 		result = prime * result
 				+ ((idContrat == null) ? 0 : idContrat.hashCode());
-		result = prime * result + typeContrat;
+		result = prime * result
+				+ ((idMotifContrat == null) ? 0 : idMotifContrat.hashCode());
+		result = prime * result
+				+ ((typeContrat == null) ? 0 : typeContrat.hashCode());
 		return result;
 	}
-
-
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -189,8 +163,6 @@ public class Contrat {
 		if (getClass() != obj.getClass())
 			return false;
 		Contrat other = (Contrat) obj;
-		if (IdMotifContrat != other.IdMotifContrat)
-			return false;
 		if (dateDebut == null) {
 			if (other.dateDebut != null)
 				return false;
@@ -211,25 +183,20 @@ public class Contrat {
 				return false;
 		} else if (!idContrat.equals(other.idContrat))
 			return false;
-		if (typeContrat != other.typeContrat)
+		if (idMotifContrat == null) {
+			if (other.idMotifContrat != null)
+				return false;
+		} else if (!idMotifContrat.equals(other.idMotifContrat))
+			return false;
+		if (typeContrat == null) {
+			if (other.typeContrat != null)
+				return false;
+		} else if (!typeContrat.equals(other.typeContrat))
 			return false;
 		return true;
 	}
 
-
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Contrat [idContrat=" + idContrat + ", typeContrat="
-				+ typeContrat + ", IdMotifContrat=" + IdMotifContrat
-				+ ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
-				+ ", dateRupture=" + dateRupture + "]";
-	}
-
-
+	
 
 	
 }
