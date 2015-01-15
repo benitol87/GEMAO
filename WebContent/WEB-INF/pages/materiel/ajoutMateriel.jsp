@@ -14,11 +14,10 @@
 			<option value="${cat.getIdCategorie()}">
 				${cat.getLibelleCat()}</option>
 		</c:forEach>
-	</select> <label for="ValeurAch">Valeur d'achat : </label> <input type="number"
+	</select> <label for="ValeurAch">Valeur d'achat : </label> <input type="text"
 		name="ValeurAch" /> <label for="dateAch">Date d'achat : </label> <input
-		type="date" name="dateAch" />
-		<label for="fournisseur">Fournisseur : </label> <select name="fournisseur"
-		id="fournisseur">
+		type="date" name="dateAch" /> <label for="fournisseur">Fournisseur
+		: </label> <select name="fournisseur" id="fournisseur">
 		<c:forEach var="fourn" items="${requestScope['LISTE_FOURNISSEUR']}">
 			<option value="${fourn.getIdFournisseur()}">
 				${fourn.getNomFournisseur()}</option>
@@ -46,8 +45,7 @@
 						<tr>
 							<td><label for="etat">Etat : </label></td>
 							<td><select name="etat" id="etat">
-									<c:forEach var="etat"
-										items="${requestScope['LISTE_ETAT']}">
+									<c:forEach var="etat" items="${requestScope['LISTE_ETAT']}">
 										<option value="${etat.getIdEtat()}">
 											${etat.getLibelleEtat()}</option>
 									</c:forEach>
@@ -56,8 +54,7 @@
 						<tr>
 							<td><label for="marque">Marque : </label></td>
 							<td><select name="marque" id="marque">
-									<c:forEach var="marque"
-										items="${requestScope['LISTE_MARQUE']}">
+									<c:forEach var="marque" items="${requestScope['LISTE_MARQUE']}">
 										<option value="${marque.getIdMarque()}">
 											${marque.getNomMarque()}</option>
 									</c:forEach>
@@ -85,7 +82,7 @@
 									<tr>
 										<td><label for="valRea">Valeur de
 												réaprovisionnement : </label></td>
-										<td><input type="number" name="valRea" /></td>
+										<td><input type="text" name="valRea" /></td>
 									</tr>
 									<tr>
 
