@@ -318,7 +318,7 @@ public class MaterielForm {
 	 * 
 	 * @return la quantité de mobilier commandée.
 	 */
-	public int getQte() {
+	public int getQuantite() {
 		return qte;
 	}
 
@@ -459,7 +459,7 @@ public class MaterielForm {
 	/**
 	 * Ajoute un message correspondant au champ spécifié à la map des erreurs.
 	 */
-	private void setErreur(String champ, String message) {
+	public void setErreur(String champ, String message) {
 		erreurs.put(champ, message);
 	}
 
