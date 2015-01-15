@@ -190,4 +190,8 @@ public class DAOFactory {
 	public TypeContratDAO getTypeContratDAO() {
 		return new TypeContratDAO(this);
 	}
+
+	public MotifFinContratDAO getMotifFinContratDAO() {
+		return new MotifFinContratDAO(this);
+	}
 }

@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import fr.gemao.entity.Contrat;
-import fr.gemao.entity.materiel.Designation;
+import fr.gemao.entity.MotifFinContrat;
+import fr.gemao.entity.TypeContrat;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -34,8 +35,27 @@ public class ContratDAO extends IDAO<Contrat> {
 				+ "VALUES (?, ?, ?, ?, ?);";
 		try {
 			connexion = factory.getConnection();
+			
+			MotifFinContratDAO motifFinContratDAO = factory.getMotifFinContratDAO();
+			MotifFinContrat motif = obj.getMotifFinContrat();
+			Integer idMotif = null;
+			if(motif != null){
+				motif = motifFinContratDAO.create(motif);
+				obj.setMotifFinContrat(motif);
+				idMotif = motif.getIdMotif();
+			}
+			
+			TypeContratDAO typeDAO = factory.getTypeContratDAO();
+			TypeContrat type = obj.getTypeContrat();
+			Integer idType = null;
+			if(type != null){
+				type = typeDAO.create(type);
+				obj.setTypeContrat(type);
+				idType = type.getIdContrat();
+			}
+			
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, true, obj.getTypeContrat(), obj.getIdMotifContrat(),
+					sql, true, idType, idMotif,
 					obj.getDateDebut(), obj.getDateFin(), obj.getDateRupture());
 
 			int status = requete.executeUpdate();
@@ -43,6 +63,9 @@ public class ContratDAO extends IDAO<Contrat> {
 				throw new DAOException(
 						"Échec de la création du contrat, aucune ligne ajoutée dans la table.");
 			}
+			
+			
+			
 			
 			result = requete.getGeneratedKeys();
 			if (result != null && result.first()) {
@@ -104,12 +127,13 @@ public class ContratDAO extends IDAO<Contrat> {
 	@Override
 	protected Contrat map(ResultSet result) throws SQLException {
 		TypeContratDAO contratDAO = factory.getTypeContratDAO();
+		MotifFinContratDAO motifDAO = factory.getMotifFinContratDAO();
 		Contrat contrat = new Contrat();
 		contrat.setIdContrat(NumberUtil.getResultInteger(result, "idContrat"));
 		contrat.setDateDebut(result.getDate("dateDebut"));
 		contrat.setDateFin(result.getDate("dateFin"));
 		contrat.setDateRupture(result.getDate("dateRupture"));
-		contrat.setIdMotifContrat(/*result.getInt("idMotifFin")*/null);
+		contrat.setMotifFinContrat(motifDAO.get(result.getInt("idMotifFin")));
 		contrat.setTypeContrat(contratDAO.get(result.getInt("idTypeContrat")));
 		return contrat;
 	}
