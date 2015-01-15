@@ -17,8 +17,6 @@ public class Contrat {
 	public Contrat() {
 		
 	}
-	
-	
 
 	/**
 	 * @param idContrat
