@@ -1,8 +1,6 @@
 package fr.gemao.view.materiel;
 
 import java.io.IOException;
-
-
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -64,35 +62,50 @@ public class AjoutMaterielServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		
+		String etat = request.getParameter("etat");
 		String categorie = request.getParameter("categorie");
 		String designation = request.getParameter("designation");
-		float valAchat = Float.parseFloat(request.getParameter("valeurAch"));
+		float valAchat = Float.parseFloat(request.getParameter("ValeurAch"));
+		float valReap = Float.parseFloat(request.getParameter("valRea"));
 		String dateAchat = request.getParameter("dateAch");
 		String type = request.getParameter("type");
 		String marque = request.getParameter("marque");
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+		String numSerie = request.getParameter("numSerie");
+		String quantite = request.getParameter("quantite");
 		
 		Materiel materiel = new Materiel();
+		
+		EtatDAO etatDAO = new EtatDAO(DAOFactory.getInstance());
+		materiel.setEtat(etatDAO.get(Long.parseLong(etat)));
+		
 		CategorieDAO catDAO = new CategorieDAO(DAOFactory.getInstance());
-		materiel.setCategorie(catDAO.get(categorie));
+		materiel.setCategorie(catDAO.get(Long.parseLong(categorie)));
+		
 		DesignationDAO desDAO = new DesignationDAO(DAOFactory.getInstance());
-		materiel.setDesignation(desDAO.get(designation));
+		materiel.setDesignation(desDAO.get(Long.parseLong(designation)));
+		
 		materiel.setValeurAchat(valAchat);
+		materiel.setValeurReap(valReap);
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		try {
-			materiel.setDateAchat((Date) sdf.parse(dateAchat));
+			materiel.setDateAchat(new java.sql.Date(formatter.parse(dateAchat).getTime()));
 		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		MarqueDAO marqDAO = new MarqueDAO(DAOFactory.getInstance());
 		materiel.setTypeMat(type);
-		materiel.setMarque(marqDAO.get(marque));
+		
+		System.out.println(marque);
+		MarqueDAO marqDAO = new MarqueDAO(DAOFactory.getInstance());
+		materiel.setMarque(marqDAO.get(Long.parseLong(marque)));
+		System.out.println(materiel);
 		
 		MaterielCtrl matCtrl = new MaterielCtrl();
 		matCtrl.ajoutMateriel(materiel.getEtat(), materiel.getCategorie(),
 				materiel.getMarque(), materiel.getDesignation(),
 				materiel.getTypeMat(), materiel.getNumSerie(), materiel.getDateAchat(),
-				materiel.getValeurAchat(), materiel.getValeurReap(),materiel.isDeplacable(),materiel.getObservation() );
+				materiel.getValeurAchat(), materiel.getValeurReap(),materiel.isDeplacable(),materiel.getObservation(), 1 );
 		
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
