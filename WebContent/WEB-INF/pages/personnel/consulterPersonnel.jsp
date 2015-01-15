@@ -69,7 +69,7 @@
 				<label for="dateDebContrat">Date de début : </label>
 				<td><p><c:out value="${contrat['dateDebut']}" /></p></td>
 			</td></tr>
-			<c:if test="${contrat['typeContrat'].libelle == CDD}">
+			<c:if test="${contrat['typeContrat'].libelle == 'CDD' }">
 				<tr><td>
 					<label for="dateFinContrat">Date de fin : </label>
 					<td><p><c:out value="${contrat['dateFin']}" /></p></td>
