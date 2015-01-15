@@ -26,10 +26,9 @@
 		<%
 			}
 		%>
-	</select> <label for="ValeurAch">Valeur d'achat : </label> 
-	<input type="number"name="ValeurAch" /> 
-	<label for="dateAch">Date d'achat : </label> 
-	<input type="date" name="dateAch" />
+	</select> <label for="ValeurAch">Valeur d'achat : </label> <input type="number"
+		name="ValeurAch" /> <label for="dateAch">Date d'achat : </label> <input
+		type="date" name="dateAch" />
 	<table>
 		<tr>
 			<td>
@@ -90,10 +89,10 @@
 									%>
 							</select></td>
 						</tr>
-						
+
 						<tr>
 							<td><label for="quantite">Quantité : </label></td>
-							<td><input type="text" name="quantite" id="quantite"/></td>
+							<td><input type="text" name="quantite" id="quantite" /></td>
 						</tr>
 						<tr>
 							<td><label for="numSerie">Numéro de série : </label></td>
@@ -117,10 +116,10 @@
 									<tr>
 										<td><label for="deplacable">Déplaçable : </label></td>
 										<td><label for="deplacableOui"> <input
-												type="radio" checked="checked" name="deplace" value="oui" />
+												type="radio" checked="checked" name="deplacableOui" value="oui" />
 												oui
 										</label> <label for="deplacableNon"> <input type="radio"
-												checked="checked" name="deplace" value="non" /> non
+										 name="deplacableNon" value="non" /> non
 										</label></td>
 									</tr>
 								</table>
@@ -129,7 +128,7 @@
 					</tr>
 					<tr>
 						<td><label for="observation">Observation : </label> <textarea
-								rows="5" cols="50"></textarea></td>
+								name="observation" rows="5" cols="50"></textarea></td>
 					</tr>
 				</table>
 			</td>

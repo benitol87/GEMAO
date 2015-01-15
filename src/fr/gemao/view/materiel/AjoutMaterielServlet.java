@@ -73,6 +73,14 @@ public class AjoutMaterielServlet extends HttpServlet {
 		String observation = request.getParameter("observation");
 		String numSerie = request.getParameter("numSerie");
 		String quantite = request.getParameter("quantite");
+		String dep = request.getParameter("deplacableOui");
+		boolean deplacable=false;
+		System.out.println(dep);
+		if(dep =="on"){
+			deplacable = true;
+		}
+		
+		
 		
 		Materiel materiel = new Materiel();
 		
@@ -89,6 +97,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 		materiel.setValeurReap(valReap);
 		materiel.setObservation(observation);
 		materiel.setNumSerie(numSerie);
+		materiel.setDeplacable(deplacable);
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			materiel.setDateAchat(new java.sql.Date(formatter.parse(dateAchat).getTime()));
@@ -98,10 +107,10 @@ public class AjoutMaterielServlet extends HttpServlet {
 		}
 		materiel.setTypeMat(type);
 		
-		System.out.println(marque);
+		
 		MarqueDAO marqDAO = new MarqueDAO(DAOFactory.getInstance());
 		materiel.setMarque(marqDAO.get(Long.parseLong(marque)));
-		System.out.println(materiel);
+		
 		
 		MaterielCtrl matCtrl = new MaterielCtrl();
 		matCtrl.ajoutMateriel(materiel.getEtat(), materiel.getCategorie(),
