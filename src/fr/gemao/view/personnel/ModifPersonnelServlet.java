@@ -21,7 +21,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private static final String VUE_MODIFICATION = "/WEB-INF/pages/personnel/modifPersonnel.jsp";
-	public static final String VUE_LISTE = "/WEB-INF/pages/personnel/listePersonnel.jsp";
+	public static final String VUE_LISTE = "/GEMAO/personnel/ListePersonnel";
 
 	/**
 	 * Chargement de la page de modification. Le parametre idPersonne doit etre
@@ -41,7 +41,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 			 
 			 this.getServletContext().getRequestDispatcher(VUE_MODIFICATION).forward(request, response);
 		 } else {
-			 this.getServletContext().getRequestDispatcher(VUE_LISTE).forward(request, response);
+			 response.sendRedirect(VUE_LISTE);
 		 }
 	}
 
@@ -50,6 +50,9 @@ public class ModifPersonnelServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
+		
+		String param = request.getParameter("id");
+		System.out.println("id");
 		
 		ModifierPersonnelForm form = new ModifierPersonnelForm();
 		

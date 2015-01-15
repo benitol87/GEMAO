@@ -19,15 +19,7 @@
 							<ul>
 								<li><a href="<c:url value="/adherent/AjoutAdherent"/>">Ajouter</a></li>
 								<li><a href="<c:url value="/adherent/ModifierAdherent"/>">Modifier</a></li>
-								<li class="icon icon-arrow-left"><a href="#">Autres</a>
-									<div class="mp-level">
-										<h2>Autres</h2>
-										<a class="mp-back" href="#">Retour</a>
-										<ul>
-											<li><a href="#">Archiver</a></li>
-											<li><a href="<c:url value="/adherent/ListeAdherents"/>">Lister</a></li>
-										</ul>
-									</div></li>
+								<li><a href="<c:url value="/adherent/ListeAdherents"/>">Lister</a></li>
 							</ul>
 						</div></li>
 					<li class="icon icon-arrow-left"><a href="#">Personnel</a>
@@ -37,16 +29,7 @@
 							<ul>
 								<li><a href="<c:url value="/personnel/AjoutPersonnel"/>">Ajouter</a></li>
 								<li><a href="<c:url value="/personnel/ModifPersonnel"/>">Modifier</a></li>
-								<li class="icon icon-arrow-left"><a href="#">Autres</a>
-									<div class="mp-level">
-										<h2>Autres</h2>
-										<a class="mp-back" href="#">Retour</a>
-										<ul>
-											<li><a href="#">Archiver</a></li>
-											<li><a href="<c:url value="/personnel/ListePersonnel"/>">Lister</a></li>
-										</ul>
-									</div>
-								</li>
+								<li><a href="<c:url value="/personnel/ListePersonnel"/>">Lister</a></li>
 							</ul>
 						</div></li>
 					<li class="icon icon-arrow-left"><a href="#">Matériel</a>
@@ -55,17 +38,9 @@
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
 								<li><a href="<c:url value="/materiel/AjouterMateriel"/>">Ajouter</a></li>
-								<li><a href="<c:url value="/materiel/ModifierMaterielFourniture"/>">Modifier</a></li>
-								<li class="icon icon-arrow-left"><a href="#">Autres</a>
-									<div class="mp-level">
-										<h2>Autres</h2>
-										<a class="mp-back" href="#">Retour</a>
-										<ul>
-											<li><a href="#">Archiver</a></li>
-											<li><a href="<c:url value="/materiel/ListerMateriel"/>">Lister</a></li>
-										</ul>
-									</div>
-								</li>
+								<li><a
+									href="<c:url value="/materiel/ModifierMateriel"/>">Modifier</a></li>
+								<li><a href="<c:url value="/materiel/ListerMateriel"/>">Lister</a></li>
 							</ul>
 						</div></li>
 					<li class="icon icon-arrow-left"><a href="#">Location</a>
@@ -76,8 +51,7 @@
 								<li><a href="<c:url value="/location/locationInstrument"/>">Prêt</a></li>
 								<li><a href="#">Retour</a></li>
 							</ul>
-						</div>
-					</li>
+						</div></li>
 				</ul>
 			</div>
 		</nav>

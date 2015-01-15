@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.Diplome;
-import fr.gemao.entity.Responsabilite;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -82,6 +81,115 @@ public class DiplomeDAO extends IDAO<Diplome> {
 		return null;
 	}
 	
+	/**
+	 * Ajoute une liste de diplome dans la base. N'ajoute pas les
+	 * éléments qui existe déjà.
+	 * 
+	 * @param liste
+	 * @return
+	 */
+	public List<Diplome> createAll(List<Diplome> liste) {
+		List<Diplome> result = new ArrayList<>();
+		Diplome exist = null;
+		for (Diplome resp : liste) {
+			exist = this.exist(resp);
+			if (exist == null) {
+				result.add(this.create(resp));
+			}else{
+				result.add(exist);
+			}
+		}
+		return liste;
+	}
+
+	/**
+	 * Retourne null si lz diplome n'existe pas dans le base de données;
+	 * Compare le nomDiplome.
+	 * @param diplome
+	 * @return
+	 */
+	public Diplome exist(Diplome diplome) {
+		Diplome verif = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+
+		String sql = "SELECT * FROM responsabilite WHERE nomDiplome = ?;";
+
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, diplome.getNomDiplome());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				verif = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return verif;
+	}
+	
+	/**
+	 * Associe toutes une listes de diplome à une personne.
+	 * @param idPersonne
+	 * @param listeDiplome
+	 * @return
+	 */
+	public List<Diplome> addAllDiplomesParPersonnel(long idPersonne, List<Diplome> listeDiplome){
+		List<Diplome> results = new ArrayList<>();
+		results = this.createAll(listeDiplome);
+		for(Diplome resp : listeDiplome){
+			this.addDiplomeParPersonnel(idPersonne, resp);
+		}
+		return results;
+	}
+	
+	/**
+	 * Associe un diplome à une Personne
+	 * @param idPersonne
+	 * @param diplome
+	 */
+	public void addDiplomeParPersonnel(long idPersonne, Diplome diplome){
+		if (diplome == null) {
+			throw new NullPointerException(
+					"Le diplome ne doit pas être null");
+		}
+
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "INSERT INTO personneXdiplome(idDiplome, idPersonne)"
+				+ "VALUES (?, ?);";
+		
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, diplome.getIdDiplome(), idPersonne);
+
+			int status = requete.executeUpdate();
+
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la création de l'association entre le diplome et la personne, aucune ligne ajoutée dans la table.");
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+	}
+	
+	/**
+	 * Retourne une liste de diplome associé à une personne.
+	 * @param idPersonne
+	 * @return
+	 */
 	public List<Diplome> getDiplomesParPersonnel(Long idPersonne){
 		Connection co = null;
 		PreparedStatement state = null;

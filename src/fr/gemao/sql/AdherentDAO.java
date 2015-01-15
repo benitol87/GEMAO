@@ -30,7 +30,10 @@ public class AdherentDAO extends IDAO<Adherent> {
 		String sql = "INSERT INTO adherent(idPersonne, idMotifSortie, idResponsable, droitImage,"
 				+ "	dateEntree, dateSortie, qf, cotisation)"
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+		
+		PersonneDAO personneDAO = factory.getPersonneDAO();
 		try {
+			obj = (Adherent) personneDAO.create(obj);
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false, obj.getIdPersonne(), obj.getIdMotif(),
