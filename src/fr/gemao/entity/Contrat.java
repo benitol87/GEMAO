@@ -6,10 +6,11 @@ import java.util.Date;
  * Classe Contrat permettant de créer un contrat en récupérant le nom et le prénom d'un personnel
  * @author Coco
  */
+
 public class Contrat {
 	private Integer idContrat;
-	private int typeContrat;
-	private int IdMotifContrat;
+	private int idTypeContrat;
+	private int idMotifContrat;
 	private Date dateDebut;
 	private Date dateFin;
 	private Date dateRupture;
@@ -30,8 +31,8 @@ public class Contrat {
 			Date dateDebut, Date dateFin, Date dateRupture) {
 		super();
 		this.idContrat = idContrat;
-		this.typeContrat = typeContrat;
-		IdMotifContrat = idMotifContrat;
+		this.idTypeContrat = typeContrat;
+		idMotifContrat = idMotifContrat;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.dateRupture = dateRupture;
@@ -60,7 +61,7 @@ public class Contrat {
 	 * @param typeContrat the typeContrat to set
 	 */
 	public void setTypeContrat(int typeContrat) {
-		this.typeContrat = typeContrat;
+		this.idTypeContrat = typeContrat;
 	}
 
 
@@ -69,14 +70,14 @@ public class Contrat {
 	 * @return the typeContrat
 	 */
 	public int getTypeContrat() {
-		return typeContrat;
+		return idTypeContrat;
 	}
 
 	/**
 	 * @return the idMotifContrat
 	 */
 	public int getIdMotifContrat() {
-		return IdMotifContrat;
+		return idMotifContrat;
 	}
 
 
@@ -85,7 +86,7 @@ public class Contrat {
 	 * @param idMotifContrat the idMotifContrat to set
 	 */
 	public void setIdMotifContrat(int idMotifContrat) {
-		IdMotifContrat = idMotifContrat;
+		idMotifContrat = idMotifContrat;
 	}
 
 
@@ -151,7 +152,7 @@ public class Contrat {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + IdMotifContrat;
+		result = prime * result + idMotifContrat;
 		result = prime * result
 				+ ((dateDebut == null) ? 0 : dateDebut.hashCode());
 		result = prime * result + ((dateFin == null) ? 0 : dateFin.hashCode());
@@ -159,7 +160,7 @@ public class Contrat {
 				+ ((dateRupture == null) ? 0 : dateRupture.hashCode());
 		result = prime * result
 				+ ((idContrat == null) ? 0 : idContrat.hashCode());
-		result = prime * result + typeContrat;
+		result = prime * result + idTypeContrat;
 		return result;
 	}
 
@@ -177,7 +178,7 @@ public class Contrat {
 		if (getClass() != obj.getClass())
 			return false;
 		Contrat other = (Contrat) obj;
-		if (IdMotifContrat != other.IdMotifContrat)
+		if (idMotifContrat != other.idMotifContrat)
 			return false;
 		if (dateDebut == null) {
 			if (other.dateDebut != null)
@@ -199,7 +200,7 @@ public class Contrat {
 				return false;
 		} else if (!idContrat.equals(other.idContrat))
 			return false;
-		if (typeContrat != other.typeContrat)
+		if (idTypeContrat != other.idTypeContrat)
 			return false;
 		return true;
 	}
@@ -212,7 +213,7 @@ public class Contrat {
 	@Override
 	public String toString() {
 		return "Contrat [idContrat=" + idContrat + ", typeContrat="
-				+ typeContrat + ", IdMotifContrat=" + IdMotifContrat
+				+ idTypeContrat + ", IdMotifContrat=" + idMotifContrat
 				+ ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
 				+ ", dateRupture=" + dateRupture + "]";
 	}

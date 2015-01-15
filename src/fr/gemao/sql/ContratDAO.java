@@ -10,6 +10,7 @@ import fr.gemao.entity.Contrat;
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
+import fr.gemao.sql.util.NumberUtil;
 
 public class ContratDAO extends IDAO<Contrat> {
 
@@ -83,8 +84,7 @@ public class ContratDAO extends IDAO<Contrat> {
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				designation = new Designation(result.getInt("idDesignation"),
-						result.getString("libelle"));
+				contrat = this.map(result);
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -92,7 +92,7 @@ public class ContratDAO extends IDAO<Contrat> {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
-		return designation;
+		return contrat;
 	}
 
 	@Override
@@ -103,8 +103,14 @@ public class ContratDAO extends IDAO<Contrat> {
 
 	@Override
 	protected Contrat map(ResultSet result) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Contrat contrat = new Contrat();
+		contrat.setIdContrat(NumberUtil.getResultInteger(result, "idContrat"));
+		contrat.setDateDebut(result.getDate("dateDebut"));
+		contrat.setDateFin(result.getDate("dateFin"));
+		contrat.setDateRupture(result.getDate("dateRupture"));
+		contrat.setIdMotifContrat(result.getInt("idMotifFin"));
+		contrat.setTypeContrat(result.getInt("idTypeContrat"));
+		return contrat;
 	}
 
 }
