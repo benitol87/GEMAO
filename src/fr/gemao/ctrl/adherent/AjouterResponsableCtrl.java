@@ -77,7 +77,7 @@ public class AjouterResponsableCtrl {
 			ResponsableDAO responsableDAO = co.getResponsableDAO();
 
 			//Vérification de l'inexistance du responsable dans la base
-			if(responsableDAO.existresponsable() == null){
+			if(responsableDAO.exist(responsable) == null){
 				resp = responsableDAO.create(responsable);
 				if (resp == null){
 					System.out.println("Une erreur est survenue lors de l'insertion...");

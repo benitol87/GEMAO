@@ -206,6 +206,7 @@ public class AdherentForm {
 	 * @throws Exception
 	 */
 	private void validationDateNaissance(String dateNaissance) throws Exception {
+		//Attention : vérifier dateNaissance avant maintenant
 		if (dateNaissance == null || dateNaissance.equals("")) {
 			throw new Exception("Merci de saisir une date de naissance valide.");
 		}
@@ -351,6 +352,7 @@ public class AdherentForm {
 	 * @throws Exception
 	 */
 	private void validationDateEntree(String dateEntree) throws Exception {
+		//Attention : vérifier dateEntree avant maintenant
 		if (dateEntree == null || dateEntree.equals("")) {
 			throw new Exception("Merci de spécifier le droit à l'image.");
 		}
