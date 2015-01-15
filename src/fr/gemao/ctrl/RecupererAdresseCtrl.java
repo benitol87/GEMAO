@@ -18,7 +18,7 @@ public class RecupererAdresseCtrl {
 	/**
 	 * Méthode permettant de récupérer une adresse selon son identifiant
 	 * @param id
-	 * @return l'adresse dont l'identifiant est idAdresse
+	 * @return l'adresse dont l'identifiant est idAdresse, null si l'adresse n'existe pas dans la base
 	 */
 	public Adresse recupererAdresse(int idAdresse){
 		DAOFactory co = DAOFactory.getInstance();
