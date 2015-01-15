@@ -49,5 +49,4 @@ public class ModifierPersonneCtrl {
 			return -1;
 		}	
 	}
-
 }
