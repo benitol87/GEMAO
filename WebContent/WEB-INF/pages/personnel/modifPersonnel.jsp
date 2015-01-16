@@ -13,31 +13,31 @@
 			<tr>
 				<td>
 					<label for="nom">NOM : </label>
-					<c:out value="${personnel['nom']}" />
+					<c:out value="${sessionScope.personnel['nom']}" />
 				</td>
 				<td>
 					<label for="prenom">Prénom : </label>
-					<c:out value="${personnel['prenom']}" />
+					<c:out value="${sessionScope.personnel['prenom']}" />
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<label for="email">Email :</label>
-					<c:out value="${personnel['email']}" />
+					<input type="mail" name="email" value="${sessionScope.personnel['email']}"/>
 				</td>
 				<td>
 					<label for="civilite">Civilité :</label>
-					<c:out value="${personnel['civilite']}" />
+					<c:out value="${sessionScope.personnel['civilite']}" />
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<label for="fixe">Téléphone fixe :</label>
-					<input type="number" value="${personnel['telFixe']}" pattern="[0][0-9]{9}" />
+					<label for="telFixe">Téléphone fixe :</label>
+					<input type="text" name="telFixe" value="${sessionScope.personnel['telFixe']}" pattern="[0][0-9]{9}" />
 				</td>
 				<td>
-					<label for="fixe">Téléphone portable :</label>
-					<input type="number" value="${personnel['telPort']}" pattern="[0][0-9]{9}" />
+					<label for="telPort">Téléphone portable :</label>
+					<input type="text" name="telPort" value="${sessionScope.personnel['telPort']}" pattern="[0][0-9]{9}" />
 				</td>
 			</tr>
 		</table>	
@@ -46,32 +46,42 @@
 			<table>
 				<tr>
 					<td>
-						<label for="adresse">Numéro de rue :</label>
-						<input type="text" value="${personnel.adresse.numRue}" />
+						<label for="numRue">Numéro de rue :</label>
+					</td>
+					<td>
+						<input name="numRue" type="text" value="${sessionScope.personnel.adresse.numRue}" />
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="adresse">Nom de rue :</label>
-						<input type="text" value="${personnel.adresse.nomRue}" />
+						<label for="nomRue">Nom de rue :</label>
+					</td>
+					<td>
+						<input type="text" name="nomRue" value="${sessionScope.personnel.adresse.nomRue}" />
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="adresse">Informations complémentaires :</label>
-						<input type="text" value="${personnel.adresse.infoCompl}"/>
+						<label for="infoCompl">Informations complémentaires :</label>
+					</td>
+					<td>
+						<input type="text" name="infoCompl" value="${sessionScope.personnel.adresse.infoCompl}"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<label for="ville">Ville :</label>
-						<input type="text" value="${commune['nomCommune']}"/>
+					</td>
+					<td>
+						<input type="text" name="ville" value="${commune['nomCommune']}"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<label for="code">Code postal :</label>
-						<label for="codeResult">${commune['codePostal']}</label>
+					</td>
+					<td>
+						<input type="text" name="code" value="${commune['codePostal']}"/>
 					</td>
 				</tr>
 			</table>
@@ -81,6 +91,11 @@
 			<table>
 				<tr>
 					<td>
+						<input name="idContrat" type="number" hidden="true" value="${sessionScope.personnel.getContrat().getIdContrat()}"/>
+						<input name="pointsAncien" type="number" hidden="true" value="${sessionScope.personnel.getPointsAncien()}"/>
+						<input name="password" type="text" hidden="true" value="${sessionScope.personnel.getPassword()}"/>
+						<input name="login" type="text" hidden="true" value="${sessionScope.personnel.getLogin()}"/>
+						
 						<label for="diplome">Diplome :</label>
 						<c:forEach items="${listeDiplome}" var="dipl">
 						<tr>

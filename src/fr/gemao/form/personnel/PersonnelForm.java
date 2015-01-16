@@ -26,6 +26,14 @@ public class PersonnelForm {
 	private static final String CHAMP_LOGIN = "login";
 	private static final String CHAMP_PASSWORD = "password";
 	private static final String CHAMP_POINTSANCIEN = "pointsAncien";
+	private static final String CHAMP_NUMRUE = "numRue";
+	private static final String CHAMP_NOMRUE = "nomRue";
+	private static final String CHAMP_INFOCOMPL = "infoCompl";
+	private static final String CHAMP_VILLE = "ville";
+	private static final String CHAMP_CODE = "code";
+	private static final String CHAMP_TELFIXE = "telFixe";
+	private static final String CHAMP_TELPORT = "telPort";
+	private static final String CHAMP_EMAIL = "email";
 	
 	//Informations relatives à la personne
 	private String nom;
@@ -39,6 +47,7 @@ public class PersonnelForm {
 	
 	//Adresse
 	private Adresse adresse;
+	private Commune commune;
 	
 	//Commune
 	private Integer codePostal;
@@ -324,6 +333,11 @@ public class PersonnelForm {
 	 * @param request
 	 */
 	public Personnel testerPersonnel(HttpServletRequest request) {
+		int numRue;
+		String nomRue;
+		String infoCompl;
+		String ville;
+		int code;
 
 		/* Récupération des champs du formulaire */
 		String str = null;
@@ -346,6 +360,27 @@ public class PersonnelForm {
 		login = getValeurChamp(request, CHAMP_LOGIN);
 		password = getValeurChamp(request, CHAMP_PASSWORD);
 		pointsAncien = Integer.parseInt(getValeurChamp(request, CHAMP_POINTSANCIEN));
+		numRue = Integer.parseInt(getValeurChamp(request, CHAMP_NUMRUE));
+		nomRue = getValeurChamp(request, CHAMP_NOMRUE);
+		infoCompl = getValeurChamp(request, CHAMP_INFOCOMPL);
+		ville = getValeurChamp(request, CHAMP_VILLE);
+		code = Integer.parseInt(getValeurChamp(request, CHAMP_CODE));
+		telFixe = getValeurChamp(request, CHAMP_TELFIXE);
+		telPort = getValeurChamp(request, CHAMP_TELPORT);
+		email = getValeurChamp(request, CHAMP_EMAIL);
+		
+		
+		adresse = new Adresse();
+		commune = new Commune();
+		
+		adresse.setNumRue(numRue);
+		adresse.setNomRue(nomRue);
+		adresse.setInfoCompl(infoCompl);
+		
+		commune.setCodePostal(code);
+		commune.setNomCommune(ville);
+		
+		adresse.setCommune(commune);
 
 		/* Validation de l'ID du contrat */
 		try {
