@@ -223,7 +223,7 @@ public class AdherentForm {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		if (dateNaissance == null || dateNaissance.equals("") || dateNaiss.before(new Date())) {
+		if (dateNaissance == null || dateNaissance.equals("") || !dateNaiss.before(new Date())) {
 			throw new Exception("Merci de saisir une date de naissance valide.");
 		}
 	}
@@ -374,7 +374,7 @@ public class AdherentForm {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		if (dateEntree == null || dateEntree.equals("") || dateInsc.before(new Date())) {
+		if (dateEntree == null || dateEntree.equals("") || !dateInsc.before(new Date())) {
 			throw new Exception("Merci de spécifier une date d'inscription valide.");
 		}
 	}
