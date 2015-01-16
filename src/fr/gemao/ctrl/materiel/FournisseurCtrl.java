@@ -14,7 +14,7 @@ public class FournisseurCtrl {
 	 * @param nomFournisseur
 	 *            le nom du fournisseur a ajouter.
 	 */
-	public void ajoutFournisseur(String nomFournisseur) {
+	public static void ajoutFournisseur(String nomFournisseur) {
 		if (nomFournisseur == null) {
 			throw new NullPointerException(
 					"Le nom du fournisseur ne doit pas etre null");

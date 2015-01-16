@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.gemao.ctrl.materiel.CategorieCtrl;
 import fr.gemao.ctrl.materiel.DesignationCtrl;
+import fr.gemao.ctrl.materiel.FournisseurCtrl;
 import fr.gemao.ctrl.materiel.MarqueCtrl;
 import fr.gemao.ctrl.materiel.MaterielCtrl;
 import fr.gemao.entity.materiel.Categorie;
@@ -76,11 +77,11 @@ public class AjoutMaterielServlet extends HttpServlet {
 			DesignationCtrl.ajoutDesignation(request.getParameter("nomDes"));
 		}
 
-		/*
-		 * if (request.getParameter("nomFour") != null &&
-		 * !request.getParameter("nomFour").equals("")) {
-		 * FournisseurCtrl.ajoutFournisseur(request.getParameter("nomFour")); }
-		 */
+		
+		 if (request.getParameter("nomFour") != null &&
+		 !request.getParameter("nomFour").equals("")) {
+		 FournisseurCtrl.ajoutFournisseur(request.getParameter("nomFour")); }
+		 
 
 		if (request.getParameter("nomMarque") != null
 				&& !request.getParameter("nomMarque").equals("")) {
