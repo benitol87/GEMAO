@@ -90,14 +90,14 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
 			ajouterCommuneCtrl.ajoutCommune(communeNaiss);
 		}
-//		communeNaiss = communeDAO.existNomCodePostal(communeNaiss);
+		communeNaiss = communeDAO.existNomCodePostal(communeNaiss);
 		adherent.setCommuneNaiss(communeNaiss);
 
 		if (communeDAO.existNomCodePostal(commune) == null) {
 			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
 			ajouterCommuneCtrl.ajoutCommune(commune);
 		}
-//		commune = communeDAO.existNomCodePostal(commune);
+		commune = communeDAO.existNomCodePostal(commune);
 		adresse.setCommune(commune);
 
 		AdresseDAO adresseDAO = factory.getAdresseDAO();

@@ -8,9 +8,9 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script
-	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="<c:url value="/js/jquery.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
+<script src="<c:url value="/js/datepicker.js"/>"></script>
 <script src="<c:url value="/js/AjouterAdherent.js"/>"></script>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/css/datepicker.css"/>" />
@@ -19,7 +19,7 @@
 	<table>
 		<tr>
 			<td>
-				<p>Civilité : </p>
+				<p>Civilité :</p>
 			</td>
 			<td><input type="radio" name="civilite" value="M"
 				checked="checked" /> <label for="civilite">M.</label> <input
@@ -33,7 +33,7 @@
 			<td><input type="text" name="prenom" required="required"
 				autocomplete="off" /></td>
 			<td><label for="dateNaiss">Date de naissance : </label></td>
-			<td><input type="text" name="dateNaiss" id="dateNaiss"
+			<td><input type="text" name="dateNaiss" class="datepicker"
 				required="required" autocomplete="off" /></td>
 		</tr>
 		<tr>
@@ -107,7 +107,7 @@
 		</tr>
 		<tr>
 			<td><label for="dateInscri">Date d'inscripton : </label></td>
-			<td><input type="text" name="dateInscri" id="dateInscri"
+			<td><input type="text" name="dateInscri" class="datepicker"
 				required="required" autocomplete="off" /></td>
 		</tr>
 	</table>

@@ -71,7 +71,7 @@ public class QuotientFamilialForm {
 	 * @throws Exception
 	 */
 	private void validationNbPersonnes(Integer nbPersonnes) throws Exception {
-		if (nbPersonnes == null || nbPersonnes.equals("")) {
+		if (nbPersonnes == null || nbPersonnes.equals("") || nbPersonnes <= 0) {
 			throw new Exception("Merci de saisir un nombre de personnes valide.");
 		}
 	}
@@ -82,7 +82,7 @@ public class QuotientFamilialForm {
 	 * @throws Exception
 	 */
 	private void validationNbEnfants(Integer nbEnfants) throws Exception {
-		if (nbEnfants == null || nbEnfants.equals("")) {
+		if (nbEnfants == null || nbEnfants.equals("") || nbEnfants < 0) {
 			throw new Exception("Merci de saisir un nombre d'enfants valide.");
 		}
 	}
@@ -93,7 +93,7 @@ public class QuotientFamilialForm {
 	 * @throws Exception
 	 */
 	private void validationRevenusAnnuels(Float revenusAnnuels) throws Exception {
-		if (revenusAnnuels == null || revenusAnnuels.equals("")) {
+		if (revenusAnnuels == null || revenusAnnuels.equals("") || revenusAnnuels < 0.0) {
 			throw new Exception("Merci de saisir des revenus annuels valides.");
 		}
 	}

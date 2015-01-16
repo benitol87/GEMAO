@@ -14,4 +14,5 @@
 		<link rel="stylesheet" type="text/css" href="<c:url value="/css/icons.css"/>" />
 		<link rel="stylesheet" type="text/css" href="<c:url value="/css/component.css"/>" />
 		<script src="<c:url value="/js/modernizr.custom.js"/>" ></script>
+		<script src="<c:url value="/js/script.js"/>" ></script>
 	</head>

@@ -45,8 +45,8 @@ public class AdherentForm {
 	private static final String CHAMP_DROITIMAGE = "droitImage";
 	
 	//Discipline (à modifier !)
-	private static final String CHAMP_DISCIPLINES = "disciplines";
-	//private static final String CHAMP_CLASSES = "classes";
+	/*private static final String CHAMP_DISCIPLINES = "disciplines";
+	private static final String CHAMP_CLASSES = "classes";*/
 	
 	//Inscription
 	private static final String CHAMP_DATEINSCRI = "dateInscri";
@@ -77,14 +77,18 @@ public class AdherentForm {
 	private String droitImage;
 	
 	//Discipline
-	private List<Discipline> disciplines;
-	//private List<Classe> classes;
+	/*private List<Discipline> disciplines;
+	private List<Classe> classes;*/
 	
 	//Inscription
 	private String dateEntree;
 	
+	//Gestion des erreurs
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
+	
+	//Format des dates
+	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public String getResultat(){
 		return this.resultat;
@@ -151,12 +155,12 @@ public class AdherentForm {
 	}
 	
 	//A modifier !
-	public List<Discipline> getDisciplines(){
+	/*public List<Discipline> getDisciplines(){
 		return this.disciplines;
 	}
 	
 	//A modifier !
-/*	public List<Classe> getClasses(){
+	public List<Classe> getClasses(){
 		return this.classes;
 	}*/
 	
@@ -213,7 +217,13 @@ public class AdherentForm {
 	 * @throws Exception
 	 */
 	private void validationDateNaissance(String dateNaissance) throws Exception {
-		if (dateNaissance == null || dateNaissance.equals("") || !this.dateIsBeforeNow(dateNaissance)) {
+		Date dateNaiss = new Date();
+		try {
+			dateNaiss = dateFormat.parse(dateNaissance);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		if (dateNaissance == null || dateNaissance.equals("") || !dateNaiss.before(new Date())) {
 			throw new Exception("Merci de saisir une date de naissance valide.");
 		}
 	}
@@ -334,19 +344,19 @@ public class AdherentForm {
 	 * @throws Exception
 	 */
 	//A modifier !
-	private void validationDisciplines(List<Discipline> disciplines) throws Exception {
+	/*private void validationDisciplines(List<Discipline> disciplines) throws Exception {
 		if (disciplines.isEmpty() || disciplines == null) {
 			throw new Exception("Merci de saisir au moins une discipline.");
 		}
 	}
 	
-	/**
+	*//**
 	 * Méthode permettant de valider la/les classe(s) de l'adhérent
 	 * @param classes
 	 * @throws Exception
-	 */
+	 *//*
 	//A modifier !
-	/*private void validationClasses(List<Classe> classes) throws Exception {
+	private void validationClasses(List<Classe> classes) throws Exception {
 		if (classes.isEmpty() || classes == null) {
 			throw new Exception("Merci de saisir au moins une classe.");
 		}
@@ -358,7 +368,13 @@ public class AdherentForm {
 	 * @throws Exception
 	 */
 	private void validationDateEntree(String dateEntree) throws Exception {
-		if (dateEntree == null || dateEntree.equals("") || !this.dateIsBeforeNow(dateEntree)) {
+		Date dateInsc = new Date();
+		try {
+			dateInsc = dateFormat.parse(dateEntree);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		if (dateEntree == null || dateEntree.equals("") || !dateInsc.before(new Date())) {
 			throw new Exception("Merci de spécifier une date d'inscription valide.");
 		}
 	}
@@ -380,7 +396,7 @@ public class AdherentForm {
 		codePostal = Integer.parseInt(getValeurChamp(request, CHAMP_CODEPOSTAL));
 		nomCommune = getValeurChamp(request, CHAMP_COMMUNE);
 		droitImage = getValeurChamp(request, CHAMP_DROITIMAGE);
-		String str = null;
+		/*String str = null;
 		Discipline disc;
 		int i = 1;
 		
@@ -394,7 +410,7 @@ public class AdherentForm {
 			}
 			
 		} while(str != null);
-		/*str = null;
+		str = null;
 		Classe clas;
 		i = 1;
 		
@@ -502,14 +518,14 @@ public class AdherentForm {
 		}
 		
 		//Validation du champ discipline (A modifier !)
-		try {
+		/*try {
 			validationDisciplines(disciplines);
 		} catch (Exception e) {
 			setErreur(CHAMP_DISCIPLINES, e.getMessage());
 		}
 		
 		//Validation du champ classe (A modifier !)
-		/*try {
+		try {
 			validationClasses(classes);
 		} catch (Exception e) {
 			setErreur(CHAMP_CLASSES, e.getMessage());
@@ -528,37 +544,5 @@ public class AdherentForm {
 		else{
 			resultat = "Échec de l'ajout.";
 		}
-	}
-	
-	/**
-	 * Méthode permettant de vérifier qu'une date sous le format d'une chaîne est bien antérieure à la date actuelle.
-	 * @param dateAVerifier
-	 * @return true si la date fournie est antérieure, false sinon
-	 * @throws ParseException 
-	 */
-	public boolean dateIsBeforeNow(String dateAVerifier) throws ParseException{
-		//Format de la chaîne indiquant la date
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		
-		//Date d'aujourd'hui
-		Date dateActuelle = new Date();
-		String dateToday = dateFormat.format(dateActuelle);
-
-		//Calcul
-	    long nbDaysD1 = 0;
-	    long nbDaysD2 = 0; 
-	    Date d1 = dateFormat.parse(dateToday);
-	    Date d2 = dateFormat.parse(dateAVerifier);
-	    long DayInMillisecond = 24*60*60*1000;
-	    nbDaysD1 = d1.getTime()/DayInMillisecond;
-	    nbDaysD2 = d2.getTime()/DayInMillisecond;
-	 
-	    long nbJours = nbDaysD1-nbDaysD2;
-	    
-	    if(nbJours < 0){
-	    	return false;
-	    }
-	    
-	    return true;
 	}
 }
