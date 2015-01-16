@@ -369,7 +369,7 @@ public class MaterielForm {
 	 */
 	private void validationValeurReapprovisionnement(float valRea2)
 			throws Exception {
-		if (valRea2 <= 0) {
+		if (valRea2 < 0) {
 			throw new Exception(
 					"Merci de saisir une valeur de reapprovisionnement valide");
 		}
@@ -392,7 +392,7 @@ public class MaterielForm {
 	 * Valide la valeur d'achat saisie.
 	 */
 	private void validationValeurAchat(float valAch2) throws Exception {
-		if (valAch2 <= 0) {
+		if (valAch2 < 0) {
 			throw new Exception("Merci de saisir une valeur d'achat valide");
 		}
 	}
@@ -410,7 +410,7 @@ public class MaterielForm {
 	 * Valide le prix unitaire saisi.
 	 */
 	private void validationPrixUnitaire(float prixU) throws Exception {
-		if (prixU <= 0) {
+		if (prixU < 0) {
 			throw new Exception("Merci de saisir un prix unitaire valide.");
 		}
 	}
