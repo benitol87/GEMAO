@@ -7,10 +7,11 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src=<c:url value="/js/jquery.min.js"/>"></script>
 <script
-	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script src="<c:url value="/js/AjouterPersonnel.js"/>"></script>
+	src=<c:url value="/js/jquery-ui.min.js"/>"></script>
+<script src="<c:url value="/js/datepicker.js"/>"></script>
+<script src=<c:url value="/js/AjouterPersonnel.js"/>"></script>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/css/datepicker.css"/>" />
 	<!-- 1er partie du formulaire -->
@@ -83,25 +84,29 @@
 		</fieldset>
 		<fieldset>
 			<legend>Professionnel</legend>
+		<table>
+			<tbody id="diplomes">
+				<tr>
+					<td><label for="diplome">Diplome:</label></td>
+					<td><input type="text" name="diplome" /></td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+				<input type="button" value="+" id="ajoutDiplome"/>
+				<input type="button" value="-" id="retireDiplome"/>
+			</div>
 			<table>
-				<tr><td>
-				<label for="diplome">Diplome:</label>
-				</td><td>
-				<input type="text" name="diplome" />
-				</td></tr>
-				<tr><td>
-				<input type="button" value="+" action=""/>
-				<input type="button" value="-" action=""/>
-				</td></tr>
-				<tr><td>
+				<tbody id="diplomes">
 				<label for="fonction">*Fonction:</label>
 				</td><td>
 				<input type="text" name="fonction1" required />
 				</td></tr>
 				<tr><td>
-				<input type="button" value="+" action=""/>
-				<input type="button" value="-" action=""/>
+				<input type="button" value="+" id="ajoutDiplome"/>
+				<input type="button" value="-" id="retireDiplome"/>
 				</td></tr>
+				</tbody>
 			</table>
 		</fieldset></p>
 		<br/>

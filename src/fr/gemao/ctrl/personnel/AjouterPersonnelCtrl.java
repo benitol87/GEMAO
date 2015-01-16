@@ -59,4 +59,11 @@ public class AjouterPersonnelCtrl {
 			System.out.println("Les informations du personnel ne sont pas valides");
 		}
 	}
+	
+	public String genererLogin(String nom){
+		PersonnelDAO persoDAO = DAOFactory.getInstance().getPersonnelDAO();
+		int nb = persoDAO.getNbNomPersonnel(nom);
+		nb++;
+		return nom+nb;
+	}
 }
