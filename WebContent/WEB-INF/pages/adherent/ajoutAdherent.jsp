@@ -110,13 +110,15 @@
 			<td><input type="text" name="dateInscri" class="datepicker"
 				required="required" autocomplete="off" /></td>
 		</tr>
+		<tr>
+			<td>
+				<span>Droit à l'image :</span> <input type="radio" name="droitImage"
+				value="true" checked="checked" /> <label for="droitImage">Oui</label>
+				<input type="radio" name="droitImage" value="false" /> <label
+				for="droitImage">Non</label>
+			</td>
+		</tr>
 	</table>
-	<div>
-		<span>Droit à l'image : </span> <input type="radio" name="droitImage"
-			value="true" checked="checked" /> <label for="droitImage">Oui</label>
-		<input type="radio" name="droitImage" value="false" /> <label
-			for="droitImage">Non</label>
-	</div>
 	<div>
 		<input type="button" value="Annuler" /> <input type="submit"
 			value="Suivant" />
