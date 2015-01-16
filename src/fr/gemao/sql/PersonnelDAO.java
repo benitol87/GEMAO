@@ -47,7 +47,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		String sql = "INSERT INTO personnel(idPersonne, idContrat, login, pwd, pointAnciennete)"
 				+ "VALUES (?, ?, ?, ?, ?);";
 		
-		PersonneDAO personneDAO = factory.getPersonneDAO();
+		//PersonneDAO personneDAO = factory.getPersonneDAO();
 		
 		ResponsabiliteDAO responsabiliteDAO = factory.getResponsabiliteDAO();
 		List<Responsabilite> listResponsabilite;
@@ -58,7 +58,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		ContratDAO contratDAO = factory.getContratDAO();
 		Contrat contrat = contratDAO.create(obj.getContrat());
 		try {
-			obj = (Personnel) personneDAO.create(obj);
+			//obj = (Personnel) personneDAO.create(obj);
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false,
 					obj.getIdPersonne(),

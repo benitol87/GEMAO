@@ -34,11 +34,11 @@ public class AdherentDAO extends IDAO<Adherent> {
 				+ "	dateEntree, dateSortie, qf, cotisation)"
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		
-		PersonneDAO personneDAO = factory.getPersonneDAO();
+		//PersonneDAO personneDAO = factory.getPersonneDAO();
 		Integer idMotif = null;
 		Long idResponsable = null;
 		try {
-			obj = (Adherent) personneDAO.create(obj);
+			//obj = (Adherent) personneDAO.create(obj);
 			if(obj.getResponsable() != null){
 				idResponsable = obj.getResponsable().getIdResponsable();
 			}
