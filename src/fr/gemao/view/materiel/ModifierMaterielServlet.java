@@ -85,6 +85,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 		if (form.getErreurs().isEmpty()) {
 			response.sendRedirect(request.getContextPath() + VUE_LISTE);
 		} else {
+			request.setAttribute("form", form);
 			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
 					.forward(request, response);
 		}
