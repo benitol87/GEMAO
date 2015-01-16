@@ -60,7 +60,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 						"Échec de la création de l'adhérent, aucune ligne ajoutée dans la table.");
 			}
 			
-			if(!obj.getDisciplines().isEmpty()){
+			if(obj.getDisciplines() != null){
 				DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
 				disciplineDAO.addAllDisciplineParAdherent(obj.getDisciplines(), obj.getIdPersonne());
 			}
