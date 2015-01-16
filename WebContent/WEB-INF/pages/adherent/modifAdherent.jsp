@@ -12,11 +12,11 @@
 	<table>
 		<tr>
 			<td><label for="nom">Nom : </label></td>
-			<td><p>NOM ICI</p></td>
+			<td><p><c:out value="${ sessionScope.adherent.nom}"></c:out></p></td>
 			<td><label for="prenom">Prénom : </label></td>
-			<td><p>PRENOM ICI</p></td>
+			<td><p><c:out value="${ sessionScope.adherent.prenom }"></c:out></p></td>
 			<td><label for="dateNaiss">Date de naissance : </label></td>
-			<td><p>DATE DE NAISSANCE ICI</p></td>
+			<td><p>c:out value</p></td>
 		</tr>
 		<tr>
 			<td><label for="telFixe">Téléphone fixe : </label></td>
