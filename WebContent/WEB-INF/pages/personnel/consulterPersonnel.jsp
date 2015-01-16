@@ -18,6 +18,8 @@
 	<tr>
 		<td><label for="email">Email : </label></td>
 		<td><c:out value="${personnel['email']}" /></td>
+		<td><label for="civilite">Civilité : </label></td>
+		<td><c:out value="${personnel['civilite']}" /></td>
 	</tr>
 	<tr>
 		<td><label for="fixe">Téléphone fixe : </label></td>
