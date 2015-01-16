@@ -41,7 +41,6 @@ public class ConsulteAdherentServlet extends HttpServlet {
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String dateNaissance = formatter.format(adherent.getDateNaissance());
-
 		String dateInscription = formatter.format(adherent.getDateEntree());
 
 //		if (adherent.getResponsable() != null) {

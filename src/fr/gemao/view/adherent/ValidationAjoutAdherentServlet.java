@@ -1,6 +1,7 @@
 package fr.gemao.view.adherent;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,7 +56,13 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		CalculerCotisationCtrl calculerCotisationCtrl = new CalculerCotisationCtrl();
 		adherent.setCotisation(calculerCotisationCtrl
 				.calculerCotisations(adherent.getQf()));
-
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		String dateNaissance = formatter.format(adherent.getDateNaissance());
+		String dateInscription = formatter.format(adherent.getDateEntree());
+		
+		request.setAttribute("dateNaissance", dateNaissance);
+		request.setAttribute("dateInscription", dateInscription);
 		request.setAttribute("adherent", adherent);
 		request.setAttribute("commune", commune);
 		request.setAttribute("communeNaiss", communeNaiss);

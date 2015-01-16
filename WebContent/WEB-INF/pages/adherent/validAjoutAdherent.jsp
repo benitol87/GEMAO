@@ -28,7 +28,7 @@
 			</p></td>
 		<td><label for="dateNaiss">Date de naissance : </label></td>
 		<td><p>
-				<c:out value="${adherent['dateNaissance']}" />
+				<c:out value="${dateNaissance}" />
 			</p></td>
 	</tr>
 	<tr>
@@ -108,7 +108,7 @@
 	<tr>
 		<td><label for="dateInscri">Date d'inscripton : </label></td>
 		<td><p>
-				<c:out value="${adherent['dateEntree']}" />
+				<c:out value="${dateInscription}" />
 			</p></td>
 		<td><label for="cotisation">Cotisation : </label></td>
 		<td><p>
