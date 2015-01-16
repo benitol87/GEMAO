@@ -150,7 +150,7 @@ public class ResponsableDAO extends IDAO<Responsable> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "SELECT * from responsable where nom = ? and prenom = ?"
-				+ " and tel = ? and mail = ?";
+				+ " and tel = ? and email = ?";
 		Responsable verif = null;
 		try {
 			connexion = factory.getConnection();
