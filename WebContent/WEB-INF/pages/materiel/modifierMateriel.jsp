@@ -82,7 +82,7 @@
 						<tr>
 							<td><label for="numSerieResult">Numéro de série : </label></td>
 							<td><label for="numSerieResult">${sessionScope.sessionObjectMateriel.getNumSerie()}</label>
-								<input hidden="true" name="numSerie" type="number"
+								<input hidden="true" name="numSerie" type="text"
 								value="${sessionScope.sessionObjectMateriel.getNumSerie()}" />
 							</td>
 						</tr>
