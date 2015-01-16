@@ -45,6 +45,7 @@ public class CalculerQFServlet extends HttpServlet {
 		CalculerQuotientCtrl calculerQuotientCtrl = new CalculerQuotientCtrl();
 
 		Float quotient = calculerQuotientCtrl.calculerQuotient(request);
+		
 		HttpSession session = request.getSession();
 		Adherent adherent = (Adherent) session
 				.getAttribute("ajout_adh_adherent");
