@@ -45,14 +45,9 @@ public class ContratDAO extends IDAO<Contrat> {
 				idMotif = motif.getIdMotif();
 			}
 			
-			TypeContratDAO typeDAO = factory.getTypeContratDAO();
 			TypeContrat type = obj.getTypeContrat();
-			Integer idType = null;
-			if(type != null){
-				type = typeDAO.create(type);
-				obj.setTypeContrat(type);
-				idType = type.getIdContrat();
-			}
+			Integer idType = type==null?null:type.getIdContrat();
+
 			
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, true, idType, idMotif,
@@ -63,9 +58,6 @@ public class ContratDAO extends IDAO<Contrat> {
 				throw new DAOException(
 						"Échec de la création du contrat, aucune ligne ajoutée dans la table.");
 			}
-			
-			
-			
 			
 			result = requete.getGeneratedKeys();
 			if (result != null && result.first()) {
