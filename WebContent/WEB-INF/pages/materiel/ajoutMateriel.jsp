@@ -41,6 +41,8 @@
 				<input type="text" name="nomFour" id="nomFour" class="hidden"/>
 			</td>
 		</tr>
+			
+		
 		<tr>
 			<td>
 				<fieldset>
@@ -85,7 +87,13 @@
 								<input type="text" name="nomMarque" id="nomMarque" class="hidden"/>
 							</td>
 						</tr>
-
+						<tr>
+							<td><label for="situation">Situation : </label></td>
+							<td>
+								<select name="situation" id="situation">
+								</select>
+							</td>
+						</tr>
 						<tr>
 							<td><label for="quantite">Quantité : </label></td>
 							<td><input type="text" name="quantite" id="quantite" /></td>
@@ -93,6 +101,10 @@
 						<tr>
 							<td><label for="numSerie">Numéro de série : </label></td>
 							<td><input type="text" name="numSerie" /></td>
+						</tr>
+						<tr>
+							<td><label for="deplacable">Deplacable</label></td>
+							<td><input type="checkbox" name="deplacable" value="on" /></td>
 						</tr>
 					</table>
 				</fieldset>
@@ -102,18 +114,15 @@
 					<tr>
 						<td>
 							<fieldset>
-								<legend>louable</legend>
+								<legend>Ouvert à la location</legend>
 								<table>
 									<tr>
-										<td><label for="valRea">Valeur de
-												réaprovisionnement : </label></td>
+										<td><label for="valRea">Valeur de réaprovisionnement : </label></td>
 										<td><input type="text" name="valRea" /></td>
 									</tr>
 									<tr>
-
-										<td><label> <input type="checkbox"
-												name="deplacable" value="on" /> Deplacable
-										</label></td>
+										<td><label>Louable :</label></td>
+										<td><input type="checkbox" name="louable" value="on" /></td>
 									</tr>
 								</table>
 							</fieldset>
