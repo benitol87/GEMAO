@@ -22,13 +22,13 @@
 			</td>
 			<td> 
 				<label for="ValeurAch">Valeur d'achat : </label> 
-				<input type="text" name="ValeurAch" /> 
+				<input type="text" name="ValeurAch" value="${sessionScope.INFOS['valeurAchat']}"/> 
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<label for="dateAch">Date d'achat : </label> 
-				<input type="date" name="dateAch" class="datePicker"/> 
+				<input type="date" name="dateAch" class="datePicker" value="${sessionScope.INFOS['dateAchat']}"/> 
 			</td>
 			<td>
 				<label for="fournisseur">Fournisseur: </label> 
@@ -61,7 +61,7 @@
 						</tr>
 						<tr>
 							<td><label for="type">Type : </label></td>
-							<td><input type="text" name="type" /></td>
+							<td><input type="text" name="type" value="${sessionScope.INFOS['typeMat']}"/></td>
 						</tr>
 						<tr>
 							<td><label for="etat">Etat : </label></td>
@@ -96,10 +96,11 @@
 						</tr>
 						<tr>
 							<td><label for="quantite">Quantité : </label></td>
-							<td><input type="text" name="quantite" id="quantite" /></td>
+							<td><input type="text" name="quantite" id="quantite" value="${sessionScope.INFOS['quantite']}"/></td>
 						</tr>
 						<tr>
 							<td><label for="numSerie">Numéro de série : </label></td>
+							<td><input type="text" name="numSerie" value="${sessionScope.INFOS['numSerie']}"/></td>
 							<td><input type="text" name="numSerie" /></td>
 						</tr>
 						<tr>
@@ -117,8 +118,13 @@
 								<legend>Ouvert à la location</legend>
 								<table>
 									<tr>
+
+										<td><label for="valRea">Valeur de
+												réaprovisionnement : </label></td>
+										<td><input type="text" name="valRea" value="${sessionScope.INFOS['valeurReap']}"/></td>
 										<td><label for="valRea">Valeur de réaprovisionnement : </label></td>
 										<td><input type="text" name="valRea" /></td>
+
 									</tr>
 									<tr>
 										<td><label>Louable :</label></td>
@@ -130,7 +136,7 @@
 					</tr>
 					<tr>
 						<td><label for="observation">Observation : </label> <textarea
-								name="observation" rows="5" cols="50"></textarea></td>
+								name="observation" rows="5" cols="50" value="${sessionScope.INFOS['observation']}"></textarea></td>
 					</tr>
 				</table>
 			</td>

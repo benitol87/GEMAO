@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.materiel.CategorieCtrl;
 import fr.gemao.ctrl.materiel.DesignationCtrl;
@@ -66,25 +67,75 @@ public class AjoutMaterielServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
+
+		HttpSession session = request.getSession();
+
 		if (request.getParameter("nomCat") != null
 				&& !request.getParameter("nomCat").equals("")) {
+
+			Materiel infoMat = new Materiel();
+			infoMat.setTypeMat(request.getParameter("type"));
+			infoMat.setQuantite(Integer.parseInt(request
+					.getParameter("quantite")));
+			infoMat.setValeurAchat(Float.parseFloat(request
+					.getParameter("ValeurAch")));
+			infoMat.setValeurReap(Float.parseFloat(request
+					.getParameter("valRea")));
+			
+			infoMat.setObservation(request.getParameter("observation"));
+			infoMat.setNumSerie(request.getParameter("numSerie"));
+			session.setAttribute("INFOS", infoMat);
 			CategorieCtrl.ajoutCategorie(request.getParameter("nomCat"));
-			request.setAttribute("ValeurAch", request.getParameter("ValeurAch"));
 		}
 
 		if (request.getParameter("nomDes") != null
 				&& !request.getParameter("nomDes").equals("")) {
+			Materiel infoMat = new Materiel();
+			infoMat.setTypeMat(request.getParameter("type"));
+			infoMat.setQuantite(Integer.parseInt(request
+					.getParameter("quantite")));
+			infoMat.setValeurAchat(Float.parseFloat(request
+					.getParameter("ValeurAch")));
+			infoMat.setValeurReap(Float.parseFloat(request
+					.getParameter("valRea")));
+			infoMat.setObservation(request.getParameter("observation"));
+			infoMat.setNumSerie(request.getParameter("numSerie"));
+
+			session.setAttribute("INFOS", infoMat);
 			DesignationCtrl.ajoutDesignation(request.getParameter("nomDes"));
 		}
 
-		
-		 if (request.getParameter("nomFour") != null &&
-		 !request.getParameter("nomFour").equals("")) {
-		 FournisseurCtrl.ajoutFournisseur(request.getParameter("nomFour")); }
-		 
+		if (request.getParameter("nomFour") != null
+				&& !request.getParameter("nomFour").equals("")) {
+			Materiel infoMat = new Materiel();
+			infoMat.setTypeMat(request.getParameter("type"));
+			infoMat.setQuantite(Integer.parseInt(request
+					.getParameter("quantite")));
+			infoMat.setValeurAchat(Float.parseFloat(request
+					.getParameter("ValeurAch")));
+			infoMat.setValeurReap(Float.parseFloat(request
+					.getParameter("valRea")));
+			infoMat.setObservation(request.getParameter("observation"));
+			infoMat.setNumSerie(request.getParameter("numSerie"));
+
+			session.setAttribute("INFOS", infoMat);
+			FournisseurCtrl.ajoutFournisseur(request.getParameter("nomFour"));
+		}
 
 		if (request.getParameter("nomMarque") != null
 				&& !request.getParameter("nomMarque").equals("")) {
+			Materiel infoMat = new Materiel();
+			infoMat.setTypeMat(request.getParameter("type"));
+			infoMat.setQuantite(Integer.parseInt(request
+					.getParameter("quantite")));
+			infoMat.setValeurAchat(Float.parseFloat(request
+					.getParameter("ValeurAch")));
+			infoMat.setValeurReap(Float.parseFloat(request
+					.getParameter("valRea")));
+			infoMat.setObservation(request.getParameter("observation"));
+			infoMat.setNumSerie(request.getParameter("numSerie"));
+
+			session.setAttribute("INFOS", infoMat);
 			MarqueCtrl.ajouterMarque(request.getParameter("nomMarque"));
 		}
 
@@ -174,7 +225,9 @@ public class AjoutMaterielServlet extends HttpServlet {
 					materiel.getDateAchat(), materiel.getValeurAchat(),
 					materiel.getValeurReap(), materiel.isDeplacable(),
 					materiel.getObservation(), Integer.parseInt(quantite));
+			session.removeAttribute("INFOS");
 		}
+
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}
