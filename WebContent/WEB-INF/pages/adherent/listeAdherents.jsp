@@ -15,7 +15,12 @@
 		<tr>
 			<td><c:out value="${adh['nom']}" /></td>
 			<td><c:out value="${adh['prenom']}" /></td>
-			<td><a href="ConsulteAdherent?id=<c:out value="${adh['idPersonne']}" />"><input type="button" value="Détails" /></a><td>
+			<c:if test="${(!empty type) && type == 1}">
+				<td><a href="ConsulteAdherent?id=<c:out value="${adh['idPersonne']}" />"><input type="button" value="Détails" /></a><td>
+			</c:if>
+			<c:if test="${(!empty type) && type == 2}">
+				<td><a href="ModifierAdherent?id=<c:out value="${adh['idPersonne']}" />"><input type="button" value="Modifier" /></a><td>
+			</c:if>
 		</tr>
 	</c:forEach>
 </table>
