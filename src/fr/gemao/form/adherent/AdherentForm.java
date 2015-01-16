@@ -1,6 +1,7 @@
 package fr.gemao.form.adherent;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,10 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tomcat.util.bcel.classfile.ClassElementValue;
-
 import fr.gemao.entity.Discipline;
-import fr.gemao.entity.Responsabilite;
 
 /**
  * Classe pour la validation du formulaire d'ajout d'un adhérent
@@ -48,7 +46,7 @@ public class AdherentForm {
 	
 	//Discipline (à modifier !)
 	private static final String CHAMP_DISCIPLINES = "disciplines";
-	private static final String CHAMP_CLASSES = "classes";
+	//private static final String CHAMP_CLASSES = "classes";
 	
 	//Inscription
 	private static final String CHAMP_DATEINSCRI = "dateInscri";
@@ -80,7 +78,7 @@ public class AdherentForm {
 	
 	//Discipline
 	private List<Discipline> disciplines;
-	private List<Classe> classes;
+	//private List<Classe> classes;
 	
 	//Inscription
 	private String dateEntree;
@@ -158,9 +156,9 @@ public class AdherentForm {
 	}
 	
 	//A modifier !
-	public List<Classe> getClasses(){
+/*	public List<Classe> getClasses(){
 		return this.classes;
-	}
+	}*/
 	
 	public String getDateEntree(){
 		return this.dateEntree;
@@ -348,11 +346,11 @@ public class AdherentForm {
 	 * @throws Exception
 	 */
 	//A modifier !
-	private void validationClasses(List<Classe> classes) throws Exception {
+	/*private void validationClasses(List<Classe> classes) throws Exception {
 		if (classes.isEmpty() || classes == null) {
 			throw new Exception("Merci de saisir au moins une classe.");
 		}
-	}
+	}*/
 	
 	/**
 	 * Méthode permettant de valider la date d'entrée de l'adhérent
@@ -396,7 +394,7 @@ public class AdherentForm {
 			}
 			
 		} while(str != null);
-		str = null;
+		/*str = null;
 		Classe clas;
 		i = 1;
 		
@@ -409,7 +407,7 @@ public class AdherentForm {
 				classes.add(clas);
 			}
 			
-		} while(str != null);
+		} while(str != null);*/
 		dateEntree = getValeurChamp(request, CHAMP_DATEINSCRI);
 
 		//Validation du champ nom
@@ -511,11 +509,11 @@ public class AdherentForm {
 		}
 		
 		//Validation du champ classe (A modifier !)
-		try {
+		/*try {
 			validationClasses(classes);
 		} catch (Exception e) {
 			setErreur(CHAMP_CLASSES, e.getMessage());
-		}
+		}*/
 		
 		//Validation du champ date d'entrée
 		try {
@@ -536,8 +534,9 @@ public class AdherentForm {
 	 * Méthode permettant de vérifier qu'une date sous le format d'une chaîne est bien antérieure à la date actuelle.
 	 * @param dateAVerifier
 	 * @return true si la date fournie est antérieure, false sinon
+	 * @throws ParseException 
 	 */
-	public boolean dateIsBeforeNow(String dateAVerifier){
+	public boolean dateIsBeforeNow(String dateAVerifier) throws ParseException{
 		//Format de la chaîne indiquant la date
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		
