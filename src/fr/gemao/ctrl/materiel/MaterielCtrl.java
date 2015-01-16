@@ -42,7 +42,7 @@ public class MaterielCtrl {
 	 * @param observation : l'observation
 	 * @param quantite : la quantité
 	 */
-	public void ajoutMateriel(Etat etat, Categorie categorie, Marque marque, Designation designation,Fournisseur fournisseur, String typeMat, String numSerie, Date dateAchat, float valeurAchat, float valeurReap, boolean deplacable, String observation, int quantite) {
+	public static void ajoutMateriel(Etat etat, Categorie categorie, Marque marque, Designation designation,Fournisseur fournisseur, String typeMat, String numSerie, Date dateAchat, float valeurAchat, float valeurReap, boolean deplacable, String observation, int quantite) {
 		if (etat == null) {
 			throw new NullPointerException("L'etat ne doit pas etre null");
 		}

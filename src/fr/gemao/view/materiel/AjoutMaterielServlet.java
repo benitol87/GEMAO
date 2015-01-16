@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.gemao.ctrl.materiel.CategorieCtrl;
+import fr.gemao.ctrl.materiel.DesignationCtrl;
+import fr.gemao.ctrl.materiel.MarqueCtrl;
 import fr.gemao.ctrl.materiel.MaterielCtrl;
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;
@@ -62,6 +65,27 @@ public class AjoutMaterielServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
+		if (request.getParameter("nomCat") != null
+				&& !request.getParameter("nomCat").equals("")) {
+			CategorieCtrl.ajoutCategorie(request.getParameter("nomCat"));
+			request.setAttribute("ValeurAch", request.getParameter("ValeurAch"));
+		}
+
+		if (request.getParameter("nomDes") != null
+				&& !request.getParameter("nomDes").equals("")) {
+			DesignationCtrl.ajoutDesignation(request.getParameter("nomDes"));
+		}
+
+		/*
+		 * if (request.getParameter("nomFour") != null &&
+		 * !request.getParameter("nomFour").equals("")) {
+		 * FournisseurCtrl.ajoutFournisseur(request.getParameter("nomFour")); }
+		 */
+
+		if (request.getParameter("nomMarque") != null
+				&& !request.getParameter("nomMarque").equals("")) {
+			MarqueCtrl.ajouterMarque(request.getParameter("nomMarque"));
+		}
 
 		List<Categorie> listCat = new ArrayList<Categorie>();
 		listCat = new CategorieDAO(DAOFactory.getInstance()).getAll();
@@ -83,68 +107,75 @@ public class AjoutMaterielServlet extends HttpServlet {
 		listFourn = new FournisseurDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute("LISTE_FOURNISSEUR", listFourn);
 
-		String fournisseur = request.getParameter("fournisseur");
-		String etat = request.getParameter("etat");
-		String categorie = request.getParameter("categorie");
-		String designation = request.getParameter("designation");
-		float valAchat = Float.parseFloat(request.getParameter("ValeurAch"));
-		float valReap = Float.parseFloat(request.getParameter("valRea"));
-		String dateAchat = request.getParameter("dateAch");
-		String type = request.getParameter("type");
-		String marque = request.getParameter("marque");
-		String observation = request.getParameter("observation");
-		String numSerie = request.getParameter("numSerie");
-		String quantite = request.getParameter("quantite");
+		if (request.getParameter("nomMarque").equals("")
+				&& request.getParameter("nomFour").equals("")
+				&& request.getParameter("nomCat").equals("")
+				&& request.getParameter("nomDes").equals("")) {
 
-		boolean deplacable = false;
+			String fournisseur = request.getParameter("fournisseur");
+			String etat = request.getParameter("etat");
+			String categorie = request.getParameter("categorie");
+			String designation = request.getParameter("designation");
+			float valAchat = Float
+					.parseFloat(request.getParameter("ValeurAch"));
+			float valReap = Float.parseFloat(request.getParameter("valRea"));
+			String dateAchat = request.getParameter("dateAch");
+			String type = request.getParameter("type");
+			String marque = request.getParameter("marque");
+			String observation = request.getParameter("observation");
+			String numSerie = request.getParameter("numSerie");
+			String quantite = request.getParameter("quantite");
 
-		if (request.getParameter("deplacable") != null) {
-			if (request.getParameter("deplacable").equals("on")) {
-				deplacable = true;
+			boolean deplacable = false;
+
+			if (request.getParameter("deplacable") != null) {
+				if (request.getParameter("deplacable").equals("on")) {
+					deplacable = true;
+				}
 			}
+
+			Materiel materiel = new Materiel();
+
+			EtatDAO etatDAO = new EtatDAO(DAOFactory.getInstance());
+			materiel.setEtat(etatDAO.get(Long.parseLong(etat)));
+
+			CategorieDAO catDAO = new CategorieDAO(DAOFactory.getInstance());
+			materiel.setCategorie(catDAO.get(Long.parseLong(categorie)));
+
+			DesignationDAO desDAO = new DesignationDAO(DAOFactory.getInstance());
+			materiel.setDesignation(desDAO.get(Long.parseLong(designation)));
+			FournisseurDAO fourDAO = new FournisseurDAO(
+					DAOFactory.getInstance());
+			materiel.setFournisseur(fourDAO.get(Long.parseLong(fournisseur)));
+
+			materiel.setValeurAchat(valAchat);
+			materiel.setValeurReap(valReap);
+			materiel.setObservation(observation);
+			materiel.setNumSerie(numSerie);
+			materiel.setDeplacable(deplacable);
+
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+				materiel.setDateAchat(new java.sql.Date(formatter.parse(
+						dateAchat).getTime()));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			materiel.setTypeMat(type);
+
+			MarqueDAO marqDAO = new MarqueDAO(DAOFactory.getInstance());
+			materiel.setMarque(marqDAO.get(Long.parseLong(marque)));
+
+			MaterielCtrl.ajoutMateriel(materiel.getEtat(),
+					materiel.getCategorie(), materiel.getMarque(),
+					materiel.getDesignation(), materiel.getFournisseur(),
+					materiel.getTypeMat(), materiel.getNumSerie(),
+					materiel.getDateAchat(), materiel.getValeurAchat(),
+					materiel.getValeurReap(), materiel.isDeplacable(),
+					materiel.getObservation(), Integer.parseInt(quantite));
 		}
-
-		Materiel materiel = new Materiel();
-
-		EtatDAO etatDAO = new EtatDAO(DAOFactory.getInstance());
-		materiel.setEtat(etatDAO.get(Long.parseLong(etat)));
-
-		CategorieDAO catDAO = new CategorieDAO(DAOFactory.getInstance());
-		materiel.setCategorie(catDAO.get(Long.parseLong(categorie)));
-
-		DesignationDAO desDAO = new DesignationDAO(DAOFactory.getInstance());
-		materiel.setDesignation(desDAO.get(Long.parseLong(designation)));
-		FournisseurDAO fourDAO = new FournisseurDAO(DAOFactory.getInstance());
-		materiel.setFournisseur(fourDAO.get(Long.parseLong(fournisseur)));
-
-		materiel.setValeurAchat(valAchat);
-		materiel.setValeurReap(valReap);
-		materiel.setObservation(observation);
-		materiel.setNumSerie(numSerie);
-		materiel.setDeplacable(deplacable);
-
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			materiel.setDateAchat(new java.sql.Date(formatter.parse(dateAchat)
-					.getTime()));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		materiel.setTypeMat(type);
-
-		MarqueDAO marqDAO = new MarqueDAO(DAOFactory.getInstance());
-		materiel.setMarque(marqDAO.get(Long.parseLong(marque)));
-
-		MaterielCtrl matCtrl = new MaterielCtrl();
-		matCtrl.ajoutMateriel(materiel.getEtat(), materiel.getCategorie(),
-				materiel.getMarque(), materiel.getDesignation(),
-				materiel.getFournisseur(), materiel.getTypeMat(),
-				materiel.getNumSerie(), materiel.getDateAchat(),
-				materiel.getValeurAchat(), materiel.getValeurReap(),
-				materiel.isDeplacable(), materiel.getObservation(),
-				Integer.parseInt(quantite));
-
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}
+
 }

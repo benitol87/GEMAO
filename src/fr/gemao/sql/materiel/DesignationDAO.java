@@ -30,12 +30,12 @@ public class DesignationDAO extends IDAO<Designation> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 
-		String sql = "INSERT INTO designation(idDesignation, libelle)"
-				+ "VALUES (?, ?);";
+		String sql = "INSERT INTO designation(libelle)"
+				+ "VALUES (?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getIdDesignation(),
+					sql, false,
 					obj.getLibelleDesignation());
 
 			int status = requete.executeUpdate();

@@ -30,12 +30,12 @@ public class CategorieDAO extends IDAO<Categorie> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 
-		String sql = "INSERT INTO Categorie(idCategorie, libelle)"
-				+ "VALUES (?, ?);";
+		String sql = "INSERT INTO Categorie(libelle)"
+				+ "VALUES (?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getIdCategorie(), obj.getLibelleCat());
+					sql, false, obj.getLibelleCat());
 
 			int status = requete.executeUpdate();
 
