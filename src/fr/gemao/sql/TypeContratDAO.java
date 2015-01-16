@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.TypeContrat;
+import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -95,8 +97,30 @@ public class TypeContratDAO extends IDAO<TypeContrat> {
 
 	@Override
 	public List<TypeContrat> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<TypeContrat> liste = new ArrayList<>();
+
+		TypeContrat typeContrat = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM typecontrat;";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false);
+			result = requete.executeQuery();
+
+			while (result.next()) {
+				typeContrat = this.map(result);
+				liste.add(typeContrat);
+			}
+		} catch (SQLException e1) {
+			throw new DAOException(e1);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return liste;
 	}
 	
 	public TypeContrat exist(TypeContrat typeContrat){
