@@ -31,7 +31,6 @@ public class ListeAdherentServlet extends HttpServlet {
 		List<Adherent> adherents = recupererAdherentCtrl
 				.recupererTousAdherents();
 		request.setAttribute("listeAdherents", adherents);
-		request.setAttribute("type", 1);
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}

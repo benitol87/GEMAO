@@ -15,10 +15,10 @@
 		<tr>
 			<td><c:out value="${adh['nom']}" /></td>
 			<td><c:out value="${adh['prenom']}" /></td>
-			<c:if test="${(!empty type) && type == 1}">
+			<c:if test="${lien == '/adherent/ConsulteAdherent' || lien == null}">
 				<td><a href="ConsulteAdherent?id=<c:out value="${adh['idPersonne']}" />"><input type="button" value="Détails" /></a><td>
 			</c:if>
-			<c:if test="${(!empty type) && type == 2}">
+			<c:if test="${lien == '/adherent/ModifierAdherent'}">
 				<td><a href="ModifierAdherent?id=<c:out value="${adh['idPersonne']}" />"><input type="button" value="Modifier" /></a><td>
 			</c:if>
 		</tr>

@@ -25,37 +25,42 @@ public class ConsulteAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public static final String VUE = "/WEB-INF/pages/adherent/consulteAdherent.jsp";
+	public static final String VUE_LISTE = "/WEB-INF/pages/adherent/listeAdherents.jsp";
 	public final String PARAM_DATE_NAISSANCE = "dateNaissance";
 	public final String PARAM_DATE_INSCRIPTION = "dateInscription";
 	public final String PARAM_ADHERENT = "adherent";
-	
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
-		Adherent adherent = recupererAdherentCtrl.recupererAdherent(id);
+		if (request.getParameter("id") == null) {
+			request.setAttribute("lien", "/adherent/ConsulteAdherent");
+			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
+			List<Adherent> adherents = recupererAdherentCtrl
+					.recupererTousAdherents();
+			request.setAttribute("listeAdherents", adherents);
+			this.getServletContext().getRequestDispatcher(VUE_LISTE)
+					.forward(request, response);
+		} else {
 
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		String dateNaissance = formatter.format(adherent.getDateNaissance());
-		String dateInscription = formatter.format(adherent.getDateEntree());
+			int id = Integer.parseInt(request.getParameter("id"));
+			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
+			Adherent adherent = recupererAdherentCtrl.recupererAdherent(id);
 
-//		if (adherent.getResponsable() != null) {
-//			RecupererResponsableCtrl recupererResponsableCtrl = new RecupererResponsableCtrl();
-//			Responsable responsable = recupererResponsableCtrl
-//					.recupererResponsable(adherent.getResponsable().getIdResponsable());
-//			request.setAttribute("responsable", responsable);
-//		}
-		
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			String dateNaissance = formatter
+					.format(adherent.getDateNaissance());
+			String dateInscription = formatter.format(adherent.getDateEntree());
 
-		request.setAttribute(PARAM_ADHERENT, adherent);
-		request.setAttribute(PARAM_DATE_NAISSANCE, dateNaissance);
-		request.setAttribute(PARAM_DATE_INSCRIPTION, dateInscription);
-		this.getServletContext().getRequestDispatcher(VUE)
-				.forward(request, response);
+			request.setAttribute("adherent", adherent);
+			request.setAttribute("dateNaissance", dateNaissance);
+			request.setAttribute("dateInscription", dateInscription);
+			this.getServletContext().getRequestDispatcher(VUE)
+					.forward(request, response);
+		}
 	}
 
 }
