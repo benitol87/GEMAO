@@ -215,7 +215,6 @@ public class AdherentForm {
 	 * @throws Exception
 	 */
 	private void validationDateNaissance(String dateNaissance) throws Exception {
-		//Attention : vérifier dateNaissance avant maintenant
 		if (dateNaissance == null || dateNaissance.equals("") || !this.dateIsBeforeNow(dateNaissance)) {
 			throw new Exception("Merci de saisir une date de naissance valide.");
 		}
@@ -361,7 +360,6 @@ public class AdherentForm {
 	 * @throws Exception
 	 */
 	private void validationDateEntree(String dateEntree) throws Exception {
-		//Attention : vérifier dateEntree avant maintenant
 		if (dateEntree == null || dateEntree.equals("") || !this.dateIsBeforeNow(dateEntree)) {
 			throw new Exception("Merci de spécifier une date d'inscription valide.");
 		}
@@ -534,6 +532,11 @@ public class AdherentForm {
 		}
 	}
 	
+	/**
+	 * Méthode permettant de vérifier qu'une date sous le format d'une chaîne est bien antérieure à la date actuelle.
+	 * @param dateAVerifier
+	 * @return true si la date fournie est antérieure, false sinon
+	 */
 	public boolean dateIsBeforeNow(String dateAVerifier){
 		//Format de la chaîne indiquant la date
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
