@@ -7,7 +7,8 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<img alt="Logo Anacrouse" src="<c:url value="/ressources/images/Anacrouse.png"/>" width="50%" height="20%" align="middle"/>
-	
+<div id="logo">
+	<img alt="Logo Anacrouse" src="<c:url value="/ressources/images/Anacrouse.png"/>" width="50%" height="20%" align="middle"/>
+</div>
 
 <c:import url="/inc/footer.inc.jsp" />
