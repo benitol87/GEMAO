@@ -39,15 +39,6 @@
 
 var compteur=1;
 
-function ajouteEvent(objet, typeEvent, nomFunction, typePropagation){
-	
-	if(objet.addEventListener){
-		objet.addEventListener(typeEvent,nomFunction,typePropagation);
-	} else if(objet.attachEvent){
-		objet.attachEvent('on'+typeEvent,nomFunction);
-	}
-}
-
 function retireDiscipline(){
 	if(compteur>1){
 		document.getElementById("disciplines").deleteRow(-1);
@@ -72,3 +63,5 @@ $(function() {
 	ajouteEvent(bouton1, 'click', ajoutDiscipline, false);
 	ajouteEvent(bouton2, 'click', retireDiscipline, false);
 });
+
+
