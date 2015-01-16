@@ -12,6 +12,7 @@
 		<tr>
 			<td><label for="categorie">Catégorie : </label> <label
 				for="categorieResult">${sessionScope.sessionObjectMateriel.getCategorie().getLibelleCat()}</label>
+
 				<input type="number" id="categorie" name="categorie" hidden="true"
 				value="${sessionScope.sessionObjectMateriel.getCategorie().getIdCategorie()}" />
 			</td>
@@ -56,7 +57,7 @@
 									<c:forEach items="${listeEtats}" var="etat">
 										<option value="${etat.getIdEtat()}">${etat.getLibelleEtat()}</option>
 									</c:forEach>
-							</select></td>
+							</select> <label>${form.erreurs['etat'] }</label></td>
 						</tr>
 
 						<tr>
@@ -69,7 +70,8 @@
 						<tr>
 							<td><label for="quantite">Quantité : </label></td>
 							<td><input name="quantite" type="number"
-								value="${sessionScope.sessionObjectMateriel.getQuantite()}" /></td>
+								value="${sessionScope.sessionObjectMateriel.getQuantite()}" />
+								<label>${form.erreurs['quantite'] }</label></td>
 						</tr>
 						<tr>
 							<td><label for="prixU">Prix unitaire : </label></td>
@@ -105,7 +107,7 @@
 										<td><label for="valRea">Valeur de
 												réaprovisionnement : </label></td>
 										<td><input type="number" name="valRea"
-											value="${sessionScope.sessionObjectMateriel.getValeurReap()}" /></td>
+											value="${sessionScope.sessionObjectMateriel.getValeurReap()}" /><label>${form.erreurs['valRea'] }</label></td>
 									</tr>
 									<tr>
 										<td><label for="deplacable">Déplaçable : </label></td>
@@ -113,17 +115,19 @@
 												<c:when
 													test="${sessionScope.sessionObjectMateriel.isDeplacable()==true}">
 													<label for="deplacableOui">oui</label>
-													<input type="radio" name="deplacable" id="deplacable" value="oui"
-														checked="checked">
+													<input type="radio" name="deplacable" id="deplacable"
+														value="oui" checked="checked">
 													<label for="deplacableNon">non</label>
-													<input type="radio" name="deplacable" id="deplacable" value="non">
+													<input type="radio" name="deplacable" id="deplacable"
+														value="non">
 												</c:when>
 												<c:otherwise>
 													<label for="deplacableOui">oui</label>
-													<input type="radio" name="deplacable" id="deplacable" value="oui">
+													<input type="radio" name="deplacable" id="deplacable"
+														value="oui">
 													<label for="deplacableNon">non</label>
-													<input type="radio" name="deplacable" id="deplacable" value="non"
-														checked="checked">
+													<input type="radio" name="deplacable" id="deplacable"
+														value="non" checked="checked">
 												</c:otherwise>
 											</c:choose></td>
 									</tr>
@@ -142,7 +146,8 @@
 			<td><input type="submit" name="valider" value="Valider" /></td>
 			<td></td>
 			<td></td>
-			<td><input type="button" name="annuler" value="Retour" onClick="javascript:window.history.go(-1)" /></td>
+			<td><input type="button" name="annuler" value="Retour"
+				onClick="javascript:window.history.go(-1)" /></td>
 		</tr>
 	</table>
 </form>
