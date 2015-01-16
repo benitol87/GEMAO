@@ -21,10 +21,10 @@
 		<tr>
 			<td><label for="tel">Téléphone : </label></td>
 			<td><input type="text" name="tel" pattern="[0][1-9][0-9]{8}"
-				required="required" autocomplete="off" /></td>
+				required="required" autocomplete="on" /></td>
 			<td><label for="email">E-mail : </label></td>
 			<td><input type="text" name="email" required="required"
-				autocomplete="off" /></td>
+				autocomplete="on" /></td>
 		</tr>
 	</table>
 	<div>
