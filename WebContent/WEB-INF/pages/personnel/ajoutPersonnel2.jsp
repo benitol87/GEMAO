@@ -20,12 +20,12 @@
 			<tr><td>
 				<label for="nom">NOM:</label>
 			</td><td>
-				<label for="nomResult"></label>
+				<label for="nomResult"><c:out value="${personnel['nom']}" /></label>
 			</td></td>
 			</td><td>
-				<label for="prenom">Pr�nom:</label>
+				<label for="prenom">Prénom:</label>
 			</td><td>
-				<label for="prenomResult"></label>
+				<label for="prenomResult"><c:out value="${personnel['prenom']}" /></label>
 			</td></tr>
 			<tr><td>
 				<label for="type">Type de contrat:</label>
@@ -34,23 +34,18 @@
 					<option>CDD</option>
 					<option>CDI</option>
 					<option>CTT</option>
-					<option>B�n�volat</option>
+					<option>Bénévolat</option>
 				</select>
 			</td></tr>
 			<tr><td>
-				<label for="datedeb">Date de d�but:</label>
+				<label for="datedeb">Date de début:</label>
 			</td><td>
 				<input type="text" name="datedeb" class="datepicker"/>
 			</td></tr>
 			<tr><td>
-				<label for="duree">Dur�e:</label>
+				<label for="duree">Durée:</label>
 			</td><td>
 				<input type="text" name="duree" size="2"/> mois
-			</td></tr>
-			<tr><td>
-				<label for="datefin">Date de fin:</label>
-			</td><td>
-				<input type="text" name="datefin" class="datepicker"/>
 			</td></tr>
 		</table>
 		<br/>
