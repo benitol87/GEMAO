@@ -23,14 +23,24 @@
 			<td><c:out value="${mat.designation.libelleDesignation}" /></td>
 			<td><c:out value="${mat.categorie.libelleCat}" /></td>
 			<td><c:out value="${mat.quantite}" /></td>
-			<td><a
-				href="ModifierMateriel?idMateriel=<c:out value="${mat.idMateriel}" />"><input
-					type="button" value="Modifier" /></a>
-			<td>
-			<td><a
-				href="ConsulterMateriel?idMateriel=<c:out value="${mat.idMateriel}" />"><input
-					type="button" value="Consulter" /></a>
-			<td>
+
+			<c:choose>
+				<c:when test="${!empty page}">
+					<td><a
+						href="ModifierMateriel?idMateriel=<c:out value="${mat.idMateriel}" />"><input
+							type="button" value="Modifier" /></a>
+					<td>
+				</c:when>
+				<c:otherwise>
+					<td><a
+						href="ConsulterMateriel?idMateriel=<c:out value="${mat.idMateriel}" />"><input
+							type="button" value="Consulter" /></a>
+					<td>
+				</c:otherwise>
+			</c:choose>
+
+
+
 		</tr>
 	</c:forEach>
 </table>

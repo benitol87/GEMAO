@@ -49,6 +49,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
 					.forward(request, response);
 		} else {
+			request.setAttribute("page", "modifier");
 			this.getServletContext().getRequestDispatcher(VUE_LISTE)
 					.forward(request, response);
 		}
