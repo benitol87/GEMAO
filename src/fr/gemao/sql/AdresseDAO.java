@@ -146,10 +146,11 @@ public class AdresseDAO extends IDAO<Adresse> {
 		ResultSet result = null;
 		String sql = "SELECT * from adresse where idCommune = ? and numRue = ? and nomRue = ? and infoCompl = ?;";
 		Adresse verif = null;
+		Commune commune = adresse.getCommune();
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, adresse.getCommune().getIdCommune(),
+					sql, false, commune==null?null:commune.getIdCommune(),
 					adresse.getNumRue(), adresse.getNomRue(), adresse.getInfoCompl());
 			result = requete.executeQuery();
 
@@ -167,9 +168,9 @@ public class AdresseDAO extends IDAO<Adresse> {
 
 	@Override
 	protected Adresse map(ResultSet result) throws SQLException {
-		Commune commune = factory.getCommuneDAO().get(result.getInt("idCommune"));
+		Integer idCommune = result.getInt("idCommune");
 		return new Adresse(result.getInt("idAdresse"),
-				commune,
+				idCommune==null?null:factory.getCommuneDAO().get(idCommune),
 				result.getInt("numRue"),
 				result.getString("nomRue"), result.getString("infoCompl"));
 	}

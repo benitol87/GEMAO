@@ -76,7 +76,7 @@
 			</tr>
 			<c:forEach items="${requestScope.adherent['disciplines']}" var="discipline">
 				<tr>
-					<td><p>discipline</p></td>
+					<td><p><c:out value="${discipline }"></c:out></p></td>
 				</tr>
 			</c:forEach>
 		</tbody>

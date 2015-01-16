@@ -244,4 +244,30 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		
 		return personnel; 
 	}
+	
+	public int getNbNomPersonnel(String nom){
+		Personnel personnel = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		int nb = 0;
+		
+		String sql = "SELECT * FROM personnel pl inner join personne p on pl.idPersonne = p.idPersonne WHERE nom = ?;";
+		
+		try {
+			
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, nom);
+			result = requete.executeQuery();
+			result.last();
+			nb = result.getRow();
+			result.beforeFirst();
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		
+		return nb; 
+	}
 }

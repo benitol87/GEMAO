@@ -1,9 +1,18 @@
 package fr.gemao.form.adherent;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.tomcat.util.bcel.classfile.ClassElementValue;
+
+import fr.gemao.entity.Discipline;
+import fr.gemao.entity.Responsabilite;
 
 /**
  * Classe pour la validation du formulaire d'ajout d'un adhérent
@@ -38,8 +47,8 @@ public class AdherentForm {
 	private static final String CHAMP_DROITIMAGE = "droitImage";
 	
 	//Discipline (à modifier !)
-	private static final String CHAMP_DISCIPLINE = "discipline";
-	private static final String CHAMP_CLASSE = "classe";
+	private static final String CHAMP_DISCIPLINES = "disciplines";
+	private static final String CHAMP_CLASSES = "classes";
 	
 	//Inscription
 	private static final String CHAMP_DATEINSCRI = "dateInscri";
@@ -70,8 +79,8 @@ public class AdherentForm {
 	private String droitImage;
 	
 	//Discipline
-	private String discipline;
-	private String classe;
+	private List<Discipline> disciplines;
+	private List<Classe> classes;
 	
 	//Inscription
 	private String dateEntree;
@@ -144,13 +153,13 @@ public class AdherentForm {
 	}
 	
 	//A modifier !
-	public String getDiscipline(){
-		return this.discipline;
+	public List<Discipline> getDisciplines(){
+		return this.disciplines;
 	}
 	
 	//A modifier !
-	public String getClasse(){
-		return this.classe;
+	public List<Classe> getClasses(){
+		return this.classes;
 	}
 	
 	public String getDateEntree(){
@@ -328,8 +337,8 @@ public class AdherentForm {
 	 * @throws Exception
 	 */
 	//A modifier !
-	private void validationDiscipline(String discipline) throws Exception {
-		if (discipline == null || discipline.equals("")) {
+	private void validationDisciplines(List<Discipline> disciplines) throws Exception {
+		if (disciplines.isEmpty() || disciplines == null) {
 			throw new Exception("Merci de saisir au moins une discipline.");
 		}
 	}
@@ -340,8 +349,8 @@ public class AdherentForm {
 	 * @throws Exception
 	 */
 	//A modifier !
-	private void validationClasse(String classe) throws Exception {
-		if (classe == null || classe.equals("")) {
+	private void validationClasses(List<Classe> classes) throws Exception {
+		if (classes.isEmpty() || classes == null) {
 			throw new Exception("Merci de saisir au moins une classe.");
 		}
 	}
@@ -375,8 +384,34 @@ public class AdherentForm {
 		codePostal = Integer.parseInt(getValeurChamp(request, CHAMP_CODEPOSTAL));
 		nomCommune = getValeurChamp(request, CHAMP_COMMUNE);
 		droitImage = getValeurChamp(request, CHAMP_DROITIMAGE);
-		discipline = getValeurChamp(request, CHAMP_DISCIPLINE);
-		classe = getValeurChamp(request, CHAMP_CLASSE);
+		String str = null;
+		Discipline disc;
+		int i = 1;
+		
+		do {
+			str = getValeurChamp(request, CHAMP_DISCIPLINES+i);
+			i++;
+			
+			if (str != null && !str.equals("")) {
+				disc = new Discipline(null, str);
+				disciplines.add(disc);
+			}
+			
+		} while(str != null);
+		str = null;
+		Classe clas;
+		i = 1;
+		
+		do {
+			str = getValeurChamp(request, CHAMP_CLASSES+i);
+			i++;
+			
+			if (str != null && !str.equals("")) {
+				clas = new Classe(null, str);
+				classes.add(clas);
+			}
+			
+		} while(str != null);
 		dateEntree = getValeurChamp(request, CHAMP_DATEINSCRI);
 
 		//Validation du champ nom
@@ -471,24 +506,31 @@ public class AdherentForm {
 		}
 		
 		//Validation du champ discipline (A modifier !)
-//		try {
-//			validationDiscipline(discipline);
-//		} catch (Exception e) {
-//			setErreur(CHAMP_DISCIPLINE, e.getMessage());
-//		}
+		try {
+			validationDisciplines(disciplines);
+		} catch (Exception e) {
+			setErreur(CHAMP_DISCIPLINES, e.getMessage());
+		}
 		
 		//Validation du champ classe (A modifier !)
-//		try {
-//			validationClasse(classe);
-//		} catch (Exception e) {
-//			setErreur(CHAMP_CLASSE, e.getMessage());
-//		}
+		try {
+			validationClasses(classes);
+		} catch (Exception e) {
+			setErreur(CHAMP_CLASSES, e.getMessage());
+		}
 		
 		//Validation du champ date d'entrée
 		try {
 			validationDateEntree(dateEntree);
 		} catch (Exception e) {
 			setErreur(CHAMP_DATEINSCRI, e.getMessage());
+		}
+		
+		if(erreurs.isEmpty()){
+			resultat = "Succès de l'ajout.";
+		}
+		else{
+			resultat = "Échec de l'ajout.";
 		}
 	}
 }
