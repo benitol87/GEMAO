@@ -545,36 +545,4 @@ public class AdherentForm {
 			resultat = "Échec de l'ajout.";
 		}
 	}
-	
-	/**
-	 * Méthode permettant de vérifier qu'une date sous le format d'une chaîne est bien antérieure à la date actuelle.
-	 * @param dateAVerifier
-	 * @return true si la date fournie est antérieure, false sinon
-	 * @throws ParseException 
-	 */
-	public boolean dateIsBeforeNow(String dateAVerifier) throws ParseException{
-		//Format de la chaîne indiquant la date
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		
-		//Date d'aujourd'hui
-		Date dateActuelle = new Date();
-		String dateToday = dateFormat.format(dateActuelle);
-
-		//Calcul
-	    long nbDaysD1 = 0;
-	    long nbDaysD2 = 0; 
-	    Date d1 = dateFormat.parse(dateToday);
-	    Date d2 = dateFormat.parse(dateAVerifier);
-	    long DayInMillisecond = 24*60*60*1000;
-	    nbDaysD1 = d1.getTime()/DayInMillisecond;
-	    nbDaysD2 = d2.getTime()/DayInMillisecond;
-	 
-	    long nbJours = nbDaysD1-nbDaysD2;
-	    
-	    if(nbJours < 0){
-	    	return false;
-	    }
-	    
-	    return true;
-	}
 }
