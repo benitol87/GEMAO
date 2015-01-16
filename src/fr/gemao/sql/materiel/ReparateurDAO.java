@@ -168,7 +168,7 @@ public class ReparateurDAO extends IDAO<Reparateur> {
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				reparateur = this.map(result)
+				reparateur = this.map(result);
 				liste.add(reparateur);
 			}
 		} catch (SQLException e1) {
