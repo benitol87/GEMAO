@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import fr.gemao.Config;
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
+import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Diplome;
@@ -102,6 +103,8 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		if(civilite.equals("Madame")){
 			personnel.setCivilite(Civilite.MADAME);
 		}
+		AjouterPersonnelCtrl apc = new AjouterPersonnelCtrl();
+		
 		personnel.setCommuneNaiss(commune);
 		personnel.setEmail(mail);
 		personnel.setListeDiplomes(listdi);
@@ -111,6 +114,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		personnel.setTelFixe(telFixe);
 		personnel.setTelPort(telPortable);	
 		personnel.setPassword(Config.MOTDEPASSE);
+		personnel.setLogin(apc.genererLogin(nom));
 		
 		System.out.println(personnel);
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
