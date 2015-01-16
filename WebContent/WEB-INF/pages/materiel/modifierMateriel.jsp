@@ -57,7 +57,9 @@
 									<c:forEach items="${listeEtats}" var="etat">
 										<option value="${etat.getIdEtat()}">${etat.getLibelleEtat()}</option>
 									</c:forEach>
-							</select> <label>${form.erreurs['etat'] }</label></td>
+							</select> <label>${form.erreurs['etat'] }</label> <input type="button"
+								name="ajoutEtat" id="ajoutEtat" value="+" /> <input type="text"
+								name="nomEtat" id="nomEtat" class="hidden" /></td>
 						</tr>
 
 						<tr>
@@ -114,18 +116,18 @@
 										<td><c:choose>
 												<c:when
 													test="${sessionScope.sessionObjectMateriel.isDeplacable()==true}">
-													<label for="deplacableOui">oui</label>
+													<label for="deplacableOui">Oui</label>
 													<input type="radio" name="deplacable" id="deplacable"
 														value="oui" checked="checked">
-													<label for="deplacableNon">non</label>
+													<label for="deplacableNon">Non</label>
 													<input type="radio" name="deplacable" id="deplacable"
 														value="non">
 												</c:when>
 												<c:otherwise>
-													<label for="deplacableOui">oui</label>
+													<label for="deplacableOui">Oui</label>
 													<input type="radio" name="deplacable" id="deplacable"
 														value="oui">
-													<label for="deplacableNon">non</label>
+													<label for="deplacableNon">Non</label>
 													<input type="radio" name="deplacable" id="deplacable"
 														value="non" checked="checked">
 												</c:otherwise>
@@ -136,19 +138,27 @@
 						</td>
 					</tr>
 					<tr>
-						<td><label for="observation">Observation : </label> <textarea
+						<td><label for="observation">Observations : </label> <textarea
 								name="observation" id="observation" rows="5" cols="30">${sessionScope.sessionObjectMateriel.getObservation()}</textarea></td>
 					</tr>
 				</table>
 			</td>
 		</tr>
 		<tr>
+			<td><p>${form.erreurs['Modification']}</p></td>
+		</tr>
+		<tr>
+			<td><input type="button" name="precedent" value="Précédent"
+				onClick="javascript:window.history.go(-1)" /></td>
+			<td></td>
+
+
+
+
 			<td><input type="submit" name="valider" value="Valider" /></td>
 			<td></td>
-			<td></td>
-			<td><input type="button" name="annuler" value="Retour"
-				onClick="javascript:window.history.go(-1)" /></td>
 		</tr>
 	</table>
 </form>
+<script src="<c:url value="/js/ajouterMateriel.js"/>"></script>
 <c:import url="/inc/footer.inc.jsp" />

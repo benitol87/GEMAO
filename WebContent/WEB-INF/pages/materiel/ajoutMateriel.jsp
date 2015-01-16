@@ -69,6 +69,8 @@
 										<option value="${etat.getIdEtat()}">${etat.getLibelleEtat()}</option>
 									</c:forEach>
 								</select>
+								<input type="button" name="ajoutEtat" id="ajoutEtat" value="+" />
+								<input type="text" name="nomEtat" id="nomEtat" class="hidden"/>
 							</td>
 						</tr>
 						<tr>

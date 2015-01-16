@@ -176,6 +176,10 @@ public class DesignationDAO extends IDAO<Designation> {
 
 		return liste;
 	}
+	
+	public Designation exist(Designation desigantion){
+		return this.get(desigantion.getLibelleDesignation());
+	}
 
 	@Override
 	protected Designation map(ResultSet result) throws SQLException {

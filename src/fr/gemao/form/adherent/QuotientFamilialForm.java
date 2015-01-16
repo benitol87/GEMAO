@@ -82,7 +82,7 @@ public class QuotientFamilialForm {
 	 * @throws Exception
 	 */
 	private void validationNbEnfants(Integer nbEnfants) throws Exception {
-		if (nbEnfants == null || nbEnfants.equals("") || nbEnfants < 0) {
+		if (nbEnfants == null || nbEnfants.equals("") || nbEnfants < 0 || nbEnfants >= nbPersonnes) {
 			throw new Exception("Merci de saisir un nombre d'enfants valide.");
 		}
 	}

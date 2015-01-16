@@ -1,7 +1,9 @@
 package fr.gemao.view.materiel;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -84,8 +86,15 @@ public class ModifierMaterielServlet extends HttpServlet {
 			}
 		}
 		if (form.getErreurs().isEmpty()) {
-			response.sendRedirect(request.getContextPath() + VUE_LISTE);
+			form.getErreurs().put("Modification",
+					"Le materiel à bien été modifié");
+			request.setAttribute("form", form);
+			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
+					.forward(request, response);
+			// response.sendRedirect(request.getContextPath() + VUE_LISTE);
 		} else {
+			form.getErreurs().put("Modification",
+					"Erreur lors de la modification du formulaire");
 			request.setAttribute("form", form);
 			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
 					.forward(request, response);

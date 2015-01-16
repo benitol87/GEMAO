@@ -26,20 +26,29 @@ function ajoutFournisseur(){
 }
 
 function ajoutCategorie(){
-	var answer = prompt ("Ajouter une catégorie");
+	var answer = prompt ("Ajouter une catégorie.");
 	if(answer!=""){
 		var input=document.getElementById("nomCat");
 		input.value=answer;
 		document.getElementById("ajouterMateriel").submit();
 	}
 }
- 
+
+function ajoutEtat(){
+	var answer = prompt ("Ajouter un etat.");
+	if(answer!=""){
+		var input=document.getElementById("nomEtat");
+		input.value=answer;
+		document.getElementById("ajouterMateriel").submit();
+	}
+}
 
 function dispatchEvents(){
 	var des = document.getElementById("ajoutDes");
 	var marque = document.getElementById("ajoutMarque");
 	var four = document.getElementById("ajoutFour");
 	var cat = document.getElementById("ajoutCat");
+	var etat = document.getElementById("ajoutEtat");
 	if(des)
 		ajouteEvent(des,"click",ajoutDesignation,false);
 	if(marque)
@@ -48,6 +57,8 @@ function dispatchEvents(){
 		ajouteEvent(four,"click",ajoutFournisseur,false);
 	if(cat)
 		ajouteEvent(cat,"click",ajoutCategorie,false);
+	if(etat)
+		ajouteEvent(etat,"click",ajoutEtat,false);
 }
 
 window.onload=function(){
