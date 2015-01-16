@@ -17,7 +17,7 @@
 	<h1>Ajout d'un personnel</h1>
 	<form id="ajoutp1" method="post" action="<c:url value="/personnel/AjoutPersonnel" />">
 		<table>
-		<tr><td><input type="radio" name="civilite" value="Madame">Madame</td>
+		<tr><td><input type="radio" name="civilite" value="Madame" checked>Madame</td>
 			<td><input type="radio" name="civilite" value="Monsieur">Monsieur</td>
 		</tr>
 			<tr><td>

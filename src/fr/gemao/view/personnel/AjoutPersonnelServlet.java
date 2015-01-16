@@ -96,10 +96,10 @@ public class AjoutPersonnelServlet extends HttpServlet {
 
 		Personnel personnel = new Personnel();
 		personnel.setAdresse(adrss);
-		if(civilite == "Monsieur"){
+		if(civilite.equals("Monsieur")){
 			personnel.setCivilite(Civilite.MONSIEUR);
 		}
-		if(civilite == "Madame"){
+		if(civilite.equals("Madame")){
 			personnel.setCivilite(Civilite.MADAME);
 		}
 		personnel.setCommuneNaiss(commune);
@@ -112,7 +112,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		personnel.setTelPort(telPortable);	
 		personnel.setPassword(Config.MOTDEPASSE);
 		
-		
+		System.out.println(personnel);
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
 		try {
 			personnel.setDateNaissance(new java.sql.Date(formatter.parse(dateNaissance)

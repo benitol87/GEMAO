@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.gemao.entity.Contrat;
 import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.Responsabilite;
@@ -54,16 +55,14 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		DiplomeDAO diplomeDAO = factory.getDiplomeDAO();
 		List<Diplome> listeDiplome;
 		
-		Integer idContrat = null;
+		ContratDAO contratDAO = factory.getContratDAO();
+		Contrat contrat = contratDAO.create(obj.getContrat());
 		try {
-			if(obj.getContrat() != null){
-				idContrat = obj.getContrat().getIdContrat();
-			}
 			obj = (Personnel) personneDAO.create(obj);
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false,
 					obj.getIdPersonne(),
-					idContrat,
+					contrat.getIdContrat(),
 					obj.getLogin(),
 					obj.getPassword(),
 					obj.getPointsAncien());
