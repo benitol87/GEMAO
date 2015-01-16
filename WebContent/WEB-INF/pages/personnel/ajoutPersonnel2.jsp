@@ -34,7 +34,7 @@
 					<option>CDD</option>
 					<option>CDI</option>
 					<option>CTT</option>
-					<option>Bénévolat</option>
+					<option>Bénévole</option>
 				</select>
 			</td></tr>
 			<tr><td>

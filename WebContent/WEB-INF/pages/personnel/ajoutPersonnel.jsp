@@ -55,12 +55,12 @@
 			<legend>Adresse</legend>
 			<table>
 				<tr><td>
-					<label for="numRue">*N° rue:</label>
+					<label for="numRue">*N°:</label>
 				</td><td>
 					<input type="text" name="numRue" size="2" required/>
 				</td></tr>
 				<tr><td>
-					<label for="nomRue">*Nom rue:</label>
+					<label for="nomRue">*Nom:</label>
 				</td><td>
 					<input type="text" name="nomRue" required/>
 				</td></tr>
