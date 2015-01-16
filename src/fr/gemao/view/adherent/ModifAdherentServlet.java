@@ -31,10 +31,7 @@ public class ModifAdherentServlet extends HttpServlet {
         String param = request.getParameter("id");
         if (param != null) {
 			 int idParametre = Integer.parseInt(param);
-			 PersonneCtrl persCtrl = new PersonneCtrl();
-			 Personnel pers = persCtrl.recupererPersonnel(idParametre);
 			 
-			 session.setAttribute("sessionObjectPersonnel", pers);
 			 
 			 this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		 } else {
