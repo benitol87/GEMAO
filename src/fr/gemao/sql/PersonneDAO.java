@@ -199,7 +199,7 @@ public class PersonneDAO extends IDAO<Personne> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "SELECT * from personne where nom = ? and prenom = ?"
-				+ " and idCommuneNaiss = ? and dateNaiss = ?"
+				+ " and idCommuneNaiss = ? and dateNaissance = ?"
 				+ " and sexe = ?;";
 		Personne verif = null;
 		Integer idAdresse = null;
