@@ -146,7 +146,7 @@
 			<td><input type="submit" name="valider" value="Valider" /></td>
 			<td></td>
 			<td></td>
-			<td><input type="button" name="annuler" value="Retour"
+			<td><input type="button" name="precedent" value="Précédent"
 				onClick="javascript:window.history.go(-1)" /></td>
 		</tr>
 	</table>
