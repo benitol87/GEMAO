@@ -11,12 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.gemao.ctrl.PersonneCtrl;
+import fr.gemao.ctrl.AjouterCommuneCtrl;
+import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
+import fr.gemao.ctrl.adherent.ModifierResponsableCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
-import fr.gemao.ctrl.adherent.RecupererResponsableCtrl;
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.Commune;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.Responsable;
+import fr.gemao.sql.CommuneDAO;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.ResponsableDAO;
 
 /**
  * Servlet implementation class ModifAdherentServlet
@@ -27,7 +31,7 @@ public class ModifAdherentServlet extends HttpServlet {
 
 	private static final String VUE_LISTE = "/WEB-INF/pages/adherent/listeAdherents.jsp";
 	private static final String VUE = "/WEB-INF/pages/adherent/modifAdherent.jsp";
-	
+
 	public final String PARAM_DATE_NAISSANCE = "dateNaissance";
 	public final String PARAM_ADHERENT = "adherent";
 
@@ -37,7 +41,10 @@ public class ModifAdherentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
+		HttpSession session = request.getSession();
+		session.setAttribute("modif_adh_adherent", null);
+
 		if (request.getParameter("id") == null) {
 			request.setAttribute("lien", "/adherent/ModifierAdherent");
 			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
@@ -47,53 +54,22 @@ public class ModifAdherentServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher(VUE_LISTE)
 					.forward(request, response);
 		} else {
-			int id = Integer.parseInt(request.getParameter("id")); 
+			int id = Integer.parseInt(request.getParameter("id"));
 			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
 			Adherent adherent = recupererAdherentCtrl.recupererAdherent(id);
-			
+
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			String dateNaissance = formatter
 					.format(adherent.getDateNaissance());
 			String dateInscription = formatter.format(adherent.getDateEntree());
 
+			session.setAttribute("modif_adh_adherent", adherent);
 			request.setAttribute("adherent", adherent);
 			request.setAttribute("dateNaissance", dateNaissance);
-			request.setAttribute("dateInscription", dateInscription);			
+			request.setAttribute("dateInscription", dateInscription);
 			this.getServletContext().getRequestDispatcher(VUE)
-			.forward(request, response);
+					.forward(request, response);
 		}
-		
-//		HttpSession session = request.getSession();
-//		String param = request.getParameter("id");
-//		if (param != null) {
-//			int idParametre = Integer.parseInt(param);
-//			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
-//			Adherent adherent = recupererAdherentCtrl.recupererAdherent(idParametre);
-//
-//			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//			String dateNaissance = formatter.format(adherent.getDateNaissance());
-//
-//			if (adherent.getResponsable() != null) {
-//				RecupererResponsableCtrl recupererResponsableCtrl = new RecupererResponsableCtrl();
-//				Responsable responsable = recupererResponsableCtrl
-//						.recupererResponsable(adherent.getResponsable().getIdResponsable());
-//				request.setAttribute("responsable", responsable);
-//			}
-//			
-//
-//			request.setAttribute(PARAM_ADHERENT, adherent);
-//			request.setAttribute(PARAM_DATE_NAISSANCE, dateNaissance);
-//			this.getServletContext().getRequestDispatcher(VUE)
-//					.forward(request, response);
-//		} else {
-//			request.setAttribute("type", 2);
-//			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
-//			List<Adherent> adherents = recupererAdherentCtrl
-//					.recupererTousAdherents();
-//			request.setAttribute("listeAdherents", adherents);
-//			this.getServletContext().getRequestDispatcher(VUE_LISTE)
-//					.forward(request, response);
-//		}
 	}
 
 	/**
@@ -102,9 +78,64 @@ public class ModifAdherentServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		/* Transmission � la page JSP en charge de l'affichage des donn�es */
-		this.getServletContext().getRequestDispatcher(VUE)
-				.forward(request, response);
-	}
+		HttpSession session = request.getSession();
+		Adherent adherent = (Adherent) session.getAttribute("modif_adh_adherent");
 
+			String telFixe = request.getParameter("telFixe");
+			adherent.setTelFixe(telFixe);
+			String telPort = request.getParameter("telPort");
+			adherent.setTelPort(telPort);
+			String email = request.getParameter("email");
+			adherent.setEmail(email);
+			
+			Integer numRue = Integer.parseInt(request.getParameter("num"));
+			adherent.getAdresse().setNumRue(numRue);
+			String nomRue = request.getParameter("rue");
+			adherent.getAdresse().setNomRue(nomRue);
+			String infoCompl = request.getParameter("compl");
+			adherent.getAdresse().setInfoCompl(infoCompl);
+			
+			String nomCommune = request.getParameter("commune");
+			Integer codePostal = Integer.parseInt(request.getParameter("codePostal"));
+			Commune commune = new Commune(null, codePostal, nomCommune, false);
+			
+			DAOFactory factory = DAOFactory.getInstance();
+			CommuneDAO communeDAO = factory.getCommuneDAO();
+			
+			if (communeDAO.existNomCodePostal(commune) == null) {
+				AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
+				ajouterCommuneCtrl.ajoutCommune(commune);
+			}
+			commune = communeDAO.existNomCodePostal(commune);
+			
+			adherent.getAdresse().setCommune(commune);
+			
+			String droitImage = request.getParameter("droitImage");
+			adherent.setDroitImage(Boolean.parseBoolean(droitImage));
+			
+			if (adherent.getResponsable()!=null) {
+				ResponsableDAO responsableDAO = factory.getResponsableDAO();
+				Responsable responsable = responsableDAO.exist(adherent.getResponsable());
+				System.out.println(responsable);
+				String nomResp = request.getParameter("nomResp");
+				responsable.setNom(nomResp);
+				String prenomResp = request.getParameter("prenomResp");
+				responsable.setPrenom(prenomResp);
+				String telResp = request.getParameter("telResp");
+				responsable.setTelephone(telResp);
+				String emailResp = request.getParameter("emailResp");
+				responsable.setEmail(emailResp);
+				
+				ModifierResponsableCtrl modifierResponsableCtrl = new ModifierResponsableCtrl();
+				modifierResponsableCtrl.modifierResponsable(responsable);
+			}
+			
+			ModifierAdherentCtrl modifierAdherentCtrl = new ModifierAdherentCtrl();
+			modifierAdherentCtrl.modifierAdherent(adherent);
+			
+			session.setAttribute("modif_adh_adherent", null);
+			this.getServletContext().getRequestDispatcher(VUE)
+					.forward(request, response);
+
+	}
 }

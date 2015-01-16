@@ -129,30 +129,25 @@
 				<th>Responsable</th>
 			</tr>
 			<tr>
-				<td><label for="nom">Nom : </label></td>
-				<td><p>
-						<c:out value="${adherent.responsable['nom']}" />
-					</p></td>
-				<td><label for="prenom">Prénom : </label></td>
-				<td><p>
-						<c:out value="${adherent.responsable['prenom']}" />
-					</p></td>
+				<td><label for="nomResp">Nom : </label></td>
+				<td><input type="text" name="nomResp"
+					value="<c:out value="${adherent.responsable['nom']}" />" /></td>
+				<td><label for="prenomResp">Prénom : </label></td>
+				<td><input type="text" name="prenomResp"
+					value="<c:out value="${adherent.responsable['prenom']}" />" /></td>
 			</tr>
 			<tr>
-				<td><label for="tel">Téléphone : </label></td>
-				<td><p>
-						<c:out value="${adherent.responsable['telephone']}" />
-					</p></td>
-				<td><label for="email">E-mail : </label></td>
-				<td><p>
-						<c:out value="${adherent.responsable['email']}" />
-					</p></td>
+				<td><label for="telResp">Téléphone : </label></td>
+				<td><input type="text" name="telResp"
+					value="<c:out value="${adherent.responsable['telephone']}" />" /></td>
+				<td><label for="emailResp">E-mail : </label></td>
+				<td><input type="text" name="emailResp"
+					value="<c:out value="${adherent.responsable['email']}" />" /></td>
 			</tr>
 		</c:if>
 	</table>
 	<div>
-		<input type="button" value="Annuler" /> <input type="button"
-			value="Suivant" /> <input type="button" value="Valider" />
+		<input type="button" value="Annuler" /> <input type="submit" value="Valider" />
 	</div>
 </form>
 <c:import url="/inc/footer.inc.jsp" />
