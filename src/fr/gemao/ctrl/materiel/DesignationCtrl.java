@@ -20,14 +20,14 @@ public class DesignationCtrl {
 	 * @param libelle
 	 *            Libelle de la designation a ajouter.
 	 */
-	public void ajoutDesignation(int idDesination, String libelle) {
+	public static void ajoutDesignation(String libelle) {
 		if (libelle == null) {
 			throw new NullPointerException("Le Libelle ne doit pas etre null");
 		}
 		if (libelle == "") {
 			throw new NullPointerException("Le Libelle ne doit pas etre vide");
 		}
-		Designation designation = new Designation(idDesination, libelle);
+		Designation designation = new Designation(0, libelle);
 
 		new DesignationDAO(DAOFactory.getInstance()).create(designation);
 	}
