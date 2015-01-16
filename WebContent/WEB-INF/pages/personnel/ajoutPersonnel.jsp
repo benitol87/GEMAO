@@ -17,6 +17,9 @@
 	<h1>Ajout d'un personnel</h1>
 	<form id="ajoutp1" method="post" action="<c:url value="/personnel/AjoutPersonnel" />">
 		<table>
+		<tr><td><input type="radio" name="civilite" value="Madame">Madame</td>
+			<td><input type="radio" name="civilite" value="Monsieur">Monsieur</td>
+		</tr>
 			<tr><td>
 					<label for="nom">*NOM:</label>
 				</td><td>
@@ -60,6 +63,11 @@
 					<label for="nomRue">*Nom rue:</label>
 				</td><td>
 					<input type="text" name="nomRue" required/>
+				</td></tr>
+				<tr><td>
+					<label for="infoComplem">Complément :</label>
+				</td><td>
+					<input type="text" name="infoComplem" />
 				</td></tr>
 				<tr><td>
 					<label for="ville">Ville:</label>
