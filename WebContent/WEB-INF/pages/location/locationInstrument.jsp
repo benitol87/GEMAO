@@ -8,10 +8,10 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="<c:url value="/js/jquery.min.js"/>"></script>
 <script
-	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script src="<c:url value="/js/locationInstrument.js"/>"></script>
+	src="<c:url value="/js/jquery-ui.min.js"/>"></script>
+<script src="<c:url value="/js/datepicker.js"/>"></script>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/css/datepicker.css"/>" />
 
@@ -37,15 +37,20 @@
 						</c:otherwise>
 					</c:choose>
 					
-					<c:if test="${!empty requestScope.listeDesignation}">
-						<label for="designation">Désignation :</label>
-						<select name="designation">
-						<c:forEach items="${requestScope.listeDesignation}" var="designation">
-							<option value="<c:out value="${designation['idDesignation']}" />"><c:out
-									value="${designation['libelleDesignation']}" /></option>
-						</c:forEach>
-						</select>
-					</c:if>
+					<c:choose>
+						<c:when test="${!empty requestScope.listeDesignation}">
+							<label for="designation">Désignation :</label>
+							<select name="designation">
+							<c:forEach items="${requestScope.listeDesignation}" var="designation">
+								<option value="<c:out value="${designation['idDesignation']}" />"><c:out
+										value="${designation['libelleDesignation']}" /></option>
+							</c:forEach>
+							</select>
+						</c:when>
+						<c:when test="${!empty requestScope.nomDesignation}">
+							<p>Désignation : <c:out value="${nomDesignation}" /></p>
+						</c:when>
+					</c:choose>
 					
 				</fieldset>
 				<c:if test="${!empty requestScope.listeAdherent}">

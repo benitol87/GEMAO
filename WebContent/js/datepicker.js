@@ -1,3 +1,7 @@
+// Nécessite l'inclusion préalable de jQuery
+// Il suffit ensuite de donner la classe "datepicker" aux inputs
+// récupérant des dates
+// Format de la date : dd/mm/yyyy
 (function(factory) {
 	if (typeof define === "function" && define.amd) {
 
