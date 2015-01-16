@@ -57,7 +57,10 @@
 									<c:forEach items="${listeEtats}" var="etat">
 										<option value="${etat.getIdEtat()}">${etat.getLibelleEtat()}</option>
 									</c:forEach>
-							</select> <label>${form.erreurs['etat'] }</label></td>
+							</select>
+							 <label>${form.erreurs['etat'] }</label>
+							 <input type="button" name="ajoutEtat" id="ajoutEtat" value="+" />
+							<input type="text" name="nomEtat" id="nomEtat" class="hidden"/></td>
 						</tr>
 
 						<tr>
@@ -153,4 +156,5 @@
 		</tr>
 	</table>
 </form>
+<script src="<c:url value="/js/ajouterMateriel.js"/>" ></script>
 <c:import url="/inc/footer.inc.jsp" />
