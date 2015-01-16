@@ -45,8 +45,8 @@ public class AdherentForm {
 	private static final String CHAMP_DROITIMAGE = "droitImage";
 	
 	//Discipline (à modifier !)
-	/*private static final String CHAMP_DISCIPLINES = "disciplines";
-	private static final String CHAMP_CLASSES = "classes";*/
+	private static final String CHAMP_DISCIPLINES = "disciplines";
+	/*private static final String CHAMP_CLASSES = "classes";*/
 	
 	//Inscription
 	private static final String CHAMP_DATEINSCRI = "dateInscri";
@@ -77,8 +77,8 @@ public class AdherentForm {
 	private String droitImage;
 	
 	//Discipline
-	/*private List<Discipline> disciplines;
-	private List<Classe> classes;*/
+	private List<Discipline> disciplines;
+	/*private List<Classe> classes;*/
 	
 	//Inscription
 	private String dateEntree;
@@ -155,12 +155,12 @@ public class AdherentForm {
 	}
 	
 	//A modifier !
-	/*public List<Discipline> getDisciplines(){
+	public List<Discipline> getDisciplines(){
 		return this.disciplines;
 	}
 	
 	//A modifier !
-	public List<Classe> getClasses(){
+	/*public List<Classe> getClasses(){
 		return this.classes;
 	}*/
 	
@@ -344,13 +344,13 @@ public class AdherentForm {
 	 * @throws Exception
 	 */
 	//A modifier !
-	/*private void validationDisciplines(List<Discipline> disciplines) throws Exception {
+	private void validationDisciplines(List<Discipline> disciplines) throws Exception {
 		if (disciplines.isEmpty() || disciplines == null) {
 			throw new Exception("Merci de saisir au moins une discipline.");
 		}
 	}
 	
-	*//**
+	/**
 	 * Méthode permettant de valider la/les classe(s) de l'adhérent
 	 * @param classes
 	 * @throws Exception
@@ -402,7 +402,7 @@ public class AdherentForm {
 		codePostal = Integer.parseInt(getValeurChamp(request, CHAMP_CODEPOSTAL));
 		nomCommune = getValeurChamp(request, CHAMP_COMMUNE);
 		droitImage = getValeurChamp(request, CHAMP_DROITIMAGE);
-		/*String str = null;
+		String str = null;
 		Discipline disc;
 		int i = 1;
 		
@@ -416,7 +416,8 @@ public class AdherentForm {
 			}
 			
 		} while(str != null);
-		str = null;
+		
+		/*str = null;
 		Classe clas;
 		i = 1;
 		

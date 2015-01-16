@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Discipline;
@@ -47,6 +48,9 @@ public class AjoutAdherentServlet extends HttpServlet {
 		session.setAttribute("ajout_adh_communeNaiss", null);
 		session.setAttribute("ajout_adh_adresse", null);
 		session.setAttribute("ajout_adh_responsable", null);
+		
+		RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
+		session.setAttribute("listDiscipline", recupDisciplineCtrl.recupererAllDiscipline());
 		
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
@@ -97,7 +101,8 @@ public class AjoutAdherentServlet extends HttpServlet {
 					null, null, 0.0f, list);
 			if (civilite=="F") {
 				adherent.setCivilite(Civilite.MADAME);
-			}			
+			}
+			adherent.setDisciplines(adherentForm.getDisciplines());
 
 			/**
 			 * Réupération des données de la commune de naissance
@@ -141,12 +146,13 @@ public class AjoutAdherentServlet extends HttpServlet {
 			session.setAttribute("ajout_adh_commune", commune);
 			session.setAttribute("ajout_adh_adresse", adresse);
 
-			Calendar calendar = Calendar.getInstance();
-			calendar.set(calendar.get(Calendar.YEAR) - 18,
-					calendar.get(Calendar.MONTH),
-					calendar.get(Calendar.DAY_OF_MONTH));
+			Calendar dateMineur = Calendar.getInstance();
+			dateMineur.set(dateMineur.get(Calendar.YEAR) - 18,
+					dateMineur.get(Calendar.MONTH),
+					dateMineur.get(Calendar.DAY_OF_MONTH));
+			
 
-			if (dateNaiss.after(calendar.getTime())) {
+			if (dateNaiss.after(dateMineur.getTime())) {
 				response.sendRedirect(URL_RESPONSABLE);
 			} else {
 				response.sendRedirect(URL_VALIDATION);

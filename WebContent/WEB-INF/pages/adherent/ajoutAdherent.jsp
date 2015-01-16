@@ -98,8 +98,9 @@
 							</tr>
 							<tr id="1">
 								<td><select size="1" name="dis1">
-										<option value="1">Test 1</option>
-										<option value="2">Test 2</option>
+									<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
+										<option value="${ discipline.getIdDiscipline() }">${ discipline.getNom() }</option>
+									</c:forEach>		
 								</select></td>
 								<td><select size="1" name="clas1">
 										<option value="1">Test 1</option>
