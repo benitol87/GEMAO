@@ -112,10 +112,10 @@ public class PersonneDAO extends IDAO<Personne> {
 		try {
 
 			connexion = factory.getConnection();
-			if(obj.getAdresse() == null){
+			if(obj.getAdresse() != null){
 				idAdresse = obj.getAdresse().getIdAdresse();
 			}
-			if(obj.getCommuneNaiss() == null){
+			if(obj.getCommuneNaiss() != null){
 				idCommuneNaiss = obj.getCommuneNaiss().getIdCommune();
 			}
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
@@ -207,10 +207,10 @@ public class PersonneDAO extends IDAO<Personne> {
 		try {
 
 			connexion = factory.getConnection();
-			if(personne.getAdresse() == null){
+			if(personne.getAdresse() != null){
 				idAdresse = personne.getAdresse().getIdAdresse();
 			}
-			if(personne.getCommuneNaiss() == null){
+			if(personne.getCommuneNaiss() != null){
 				idCommuneNaiss = personne.getCommuneNaiss().getIdCommune();
 			}
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
