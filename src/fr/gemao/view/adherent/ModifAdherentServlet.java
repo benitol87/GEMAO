@@ -1,6 +1,7 @@
 package fr.gemao.view.adherent;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.PersonneCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
+import fr.gemao.ctrl.adherent.RecupererResponsableCtrl;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.entity.adherent.Responsable;
 
 /**
  * Servlet implementation class ModifAdherentServlet
@@ -25,6 +28,9 @@ public class ModifAdherentServlet extends HttpServlet {
 	private static final String VUE_LISTE = "/WEB-INF/pages/adherent/listeAdherents.jsp";
 
 	private String VUE = "/WEB-INF/pages/adherent/modifAdherent.jsp";
+	
+	public final String PARAM_DATE_NAISSANCE = "dateNaissance";
+	public final String PARAM_ADHERENT = "adherent";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -36,7 +42,22 @@ public class ModifAdherentServlet extends HttpServlet {
 		String param = request.getParameter("id");
 		if (param != null) {
 			int idParametre = Integer.parseInt(param);
+			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
+			Adherent adherent = recupererAdherentCtrl.recupererAdherent(idParametre);
 
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			String dateNaissance = formatter.format(adherent.getDateNaissance());
+
+			if (adherent.getResponsable() != null) {
+				RecupererResponsableCtrl recupererResponsableCtrl = new RecupererResponsableCtrl();
+				Responsable responsable = recupererResponsableCtrl
+						.recupererResponsable(adherent.getResponsable().getIdResponsable());
+				request.setAttribute("responsable", responsable);
+			}
+			
+
+			request.setAttribute(PARAM_ADHERENT, adherent);
+			request.setAttribute(PARAM_DATE_NAISSANCE, dateNaissance);
 			this.getServletContext().getRequestDispatcher(VUE)
 					.forward(request, response);
 		} else {
