@@ -31,7 +31,7 @@ public class ResponsableDAO extends IDAO<Responsable> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO responsable(idResponsable, nom, prenom, telephone, email)"
+		String sql = "INSERT INTO responsable(idResponsable, nom, prenom, tel, email)"
 				+ "VALUES (?, ?, ?, ?, ?);";
 		try {
 			connexion = factory.getConnection();
