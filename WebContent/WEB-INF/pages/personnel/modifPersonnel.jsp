@@ -12,34 +12,32 @@
 		<table>
 			<tr>
 				<td>
-					<label for="nom">NOM :</label>
-					<label for="nomResult">${sessionScope.sessionObjectPersonnel.getNom()}</label>
+					<label for="nom">NOM : </label>
+					<c:out value="${personnel['nom']}" />
 				</td>
 				<td>
-					<label for="prenom">Prénom :</label>
-					<label for="prenomResult">${sessionScope.sessionObjectPersonnel.getPrenom()}</label>
+					<label for="prenom">Prénom : </label>
+					<c:out value="${personnel['prenom']}" />
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<label for="email">Email :</label>
-					<label for="emailResult">${sessionScope.sessionObjectPersonnel.getEmail()}</label>
+					<c:out value="${personnel['email']}" />
+				</td>
+				<td>
+					<label for="civilite">Civilité :</label>
+					<c:out value="${personnel['civilite']}" />
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<label for="fixe">Téléphone fixe :</label>
-					<label for="fixeResult">${sessionScope.sessionObjectPersonnel.getTelFixe()}</label>
+					<input type="number" value="${personnel['telFixe']}" pattern="[0][0-9]{9}" />
 				</td>
 				<td>
-					<input type="text" name="fixe" pattern="[0][0-9]{9}" />
-				</td>
-				<td>
-					<label for="portable">Téléphone portable :</label>
-					<label for="portableResult">${sessionScope.sessionObjectPersonnel.getTelPort()}</label>
-				</td>
-				<td>
-					<input type="text" name="portable" pattern="[0][0-9]{9}" />
+					<label for="fixe">Téléphone portable :</label>
+					<input type="number" value="${personnel['telPort']}" pattern="[0][0-9]{9}" />
 				</td>
 			</tr>
 		</table>	
@@ -48,20 +46,32 @@
 			<table>
 				<tr>
 					<td>
-						<label for="adresse">Adresse :</label>
-						<label for="adresseResult">${sessionScope.sessionObjectPersonnel.getIdAdresse()}</label>
+						<label for="adresse">Numéro de rue :</label>
+						<input type="text" value="${personnel.adresse.numRue}" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="adresse">Nom de rue :</label>
+						<input type="text" value="${personnel.adresse.nomRue}" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="adresse">Informations complémentaires :</label>
+						<input type="text" value="${personnel.adresse.infoCompl}"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<label for="ville">Ville :</label>
-						<label for="villeResult">${sessionScope.sessionObjectPersonnel.getCommune.getNomCommune()}</label>
+						<input type="text" value="${commune['nomCommune']}"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<label for="code">Code postal :</label>
-						<label for="codeResult">${sessionScope.sessionObjectPersonnel.getCommune().getCodePostal()}</label>
+						<label for="codeResult">${commune['codePostal']}</label>
 					</td>
 				</tr>
 			</table>
@@ -72,7 +82,13 @@
 				<tr>
 					<td>
 						<label for="diplome">Diplome :</label>
-						<label for="diplomeResult">${sessionScope.sessionObjectPersonnel.get }</label>
+						<c:forEach items="${listeDiplome}" var="dipl">
+						<tr>
+							<td>
+								 - <c:out value="${dipl['nomDiplome']}" />
+							</td>
+						</tr>
+						</c:forEach>
 					</td>
 				</tr>
 				<tr>
@@ -84,6 +100,13 @@
 				<tr>
 					<td>
 						<label for="fonction">Fonction :</label>
+						<c:forEach items="${listeResponsabilite}" var="resp">
+						<tr>
+							<td>
+								- <c:out value="${resp['libelle']}" />
+							</td>
+						</tr>
+						</c:forEach>
 					</td>
 				</tr>
 				<tr>
@@ -95,7 +118,7 @@
 			</table>
 		</fieldset>
 		<br/>
-			<input type="reset" value="Annuler"/>
-			<input type="submit" value="Modifier"/>
+		<input type="reset" value="Annuler"/>
+		<input type="submit" value="Modifier"/>
 	</form>
 <c:import url="/inc/footer.inc.jsp" />
