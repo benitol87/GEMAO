@@ -211,7 +211,7 @@ public class Personnel extends Personne {
 	 */
 	@Override
 	public String toString() {
-		return "Personnel [listeResponsabilite=" + listeResponsabilite
+		return super.toString() + " Personnel [listeResponsabilite=" + listeResponsabilite
 				+ ", listeDiplomes=" + listeDiplomes + ", contrat=" + contrat
 				+ ", login=" + login + ", password=" + password
 				+ ", pointsAncien=" + pointsAncien + "]";
