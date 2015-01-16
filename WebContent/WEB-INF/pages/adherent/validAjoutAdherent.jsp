@@ -13,6 +13,11 @@
 
 <table>
 	<tr>
+		<td><p>Civilité :</p></td>
+		<td><p>
+				<c:out value="${adherent['civilite']}"></c:out>
+	</tr>
+	<tr>
 		<td><label for="nom">Nom : </label></td>
 		<td><p>
 				<c:out value="${adherent['nom']}" />

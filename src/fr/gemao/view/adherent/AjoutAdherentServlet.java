@@ -75,6 +75,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 			String email = adherentForm.getEmail();
 			String droitImage = adherentForm.getDroitImage();
 			String dateInscription = adherentForm.getDateEntree();
+			String civilite = request.getParameter("civilite");
 
 			/**
 			 * Création de l'adhérent
@@ -93,6 +94,9 @@ public class AjoutAdherentServlet extends HttpServlet {
 					dateNaiss, telFixe, telPortable, email, Civilite.MONSIEUR,
 					null, null, Boolean.parseBoolean(droitImage), dateInscri,
 					null, null, 0.0f, list);
+			if (civilite=="F") {
+				adherent.setCivilite(Civilite.MADAME);
+			}			
 
 			/**
 			 * Réupération des données de la commune de naissance
@@ -103,16 +107,8 @@ public class AjoutAdherentServlet extends HttpServlet {
 			/**
 			 * Création de la commune de naissance
 			 */
-			// DAOFactory factory = DAOFactory.getInstance();
-			// CommuneDAO communeDAO = factory.getCommuneDAO();
-
 			Commune communeNaiss = new Commune(null, codePostNaiss, comNaiss,
 					false);
-			// if (communeDAO.existNomCodePostal(communeNaiss) == null) {
-			// AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
-			// ajouterCommuneCtrl.ajoutCommune(communeNaiss);
-			// }
-			// communeNaiss = communeDAO.existNomCodePostal(communeNaiss);
 
 			/**
 			 * Réupération des données de la commune
@@ -124,11 +120,6 @@ public class AjoutAdherentServlet extends HttpServlet {
 			 * Création de la commune
 			 */
 			Commune commune = new Commune(null, codePostal, com, false);
-			// if (communeDAO.existNomCodePostal(commune) == null) {
-			// AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
-			// ajouterCommuneCtrl.ajoutCommune(commune);
-			// }
-			// commune = communeDAO.existNomCodePostal(commune);
 
 			/**
 			 * Réupération des données de l'adresse
@@ -142,16 +133,6 @@ public class AjoutAdherentServlet extends HttpServlet {
 			 */
 			Adresse adresse = new Adresse(null, null, numAdresse, rueAdresse,
 					complAdresse);
-
-			// AdresseDAO adresseDAO = factory.getAdresseDAO();
-			// if (adresseDAO.exist(adresse) == null) {
-			// AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
-			// ajouterAdresseCtrl.ajoutAdresse(adresse);
-			// }
-			// adresse = adresseDAO.exist(adresse);
-			//
-			// adherent.setIdCommuneNaiss(communeNaiss.getIdCommune());
-			// adherent.setIdAdresse(adresse.getIdAdresse());
 
 			HttpSession session = request.getSession();
 			session.setAttribute("ajout_adh_adherent", adherent);

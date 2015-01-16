@@ -31,10 +31,10 @@ public class AjouterAdherentCtrl {
 		Date date = new Date();
 		
 		//Vérification de l'idMotif
-		if(adherent.getMotif() == null || adherent.getMotif().getIdMotif() <= 0){
-			System.out.println("L'idMotif est invalide...");
-			return false;
-		}
+//		if(adherent.getMotif() == null || adherent.getMotif().getIdMotif() <= 0){
+//			System.out.println("L'idMotif est invalide...");
+//			return false;
+//		}
 		
 		//Vérification de l'idResponsable
 		if(adherent.getResponsable() != null && adherent.getResponsable().getIdResponsable() <= 0){
@@ -60,10 +60,10 @@ public class AjouterAdherentCtrl {
 		}
 		
 		//Vérification de la/des disciplines
-		if(adherent.getDisciplines().isEmpty()){
-			System.out.println("L'adhérent doit être inscrit à au moins une discipline...");
-			return false;
-		}
+//		if(adherent.getDisciplines().isEmpty()){
+//			System.out.println("L'adhérent doit être inscrit à au moins une discipline...");
+//			return false;
+//		}
 		
 		return true;
 	}

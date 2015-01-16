@@ -18,6 +18,14 @@
 <form action="#" method="post">
 	<table>
 		<tr>
+			<td>
+				<p>Civilité : </p>
+			</td>
+			<td><input type="radio" name="civilite" value="M"
+				checked="checked" /> <label for="civilite">M.</label> <input
+				type="radio" name="civilite" value="F" /> <label for="civilite">Mme.</label></td>
+		</tr>
+		<tr>
 			<td><label for="nom">Nom : </label></td>
 			<td><input type="text" name="nom" required="required"
 				autocomplete="off" /></td>

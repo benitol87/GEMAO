@@ -62,8 +62,6 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		request.setAttribute("adresse", adresse);
 		request.setAttribute("responsable", responsable);
 
-		System.out.println(responsable);
-
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	} 
@@ -92,14 +90,14 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
 			ajouterCommuneCtrl.ajoutCommune(communeNaiss);
 		}
-		communeNaiss = communeDAO.existNomCodePostal(communeNaiss);
+//		communeNaiss = communeDAO.existNomCodePostal(communeNaiss);
 		adherent.setCommuneNaiss(communeNaiss);
 
 		if (communeDAO.existNomCodePostal(commune) == null) {
 			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
 			ajouterCommuneCtrl.ajoutCommune(commune);
 		}
-		commune = communeDAO.existNomCodePostal(commune);
+//		commune = communeDAO.existNomCodePostal(commune);
 		adresse.setCommune(commune);
 
 		AdresseDAO adresseDAO = factory.getAdresseDAO();
@@ -107,7 +105,6 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 			AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
 			ajouterAdresseCtrl.ajoutAdresse(adresse);
 		}
-		adresse = adresseDAO.exist(adresse);
 		adherent.setAdresse(adresse);
 
 		if (responsable != null) {
@@ -119,9 +116,6 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 			responsable = responsableDAO.exist(responsable);			
 			adherent.setResponsable(responsable);
 		}
-
-		
-		
 
 		PersonneDAO personneDAO = factory.getPersonneDAO();
 
