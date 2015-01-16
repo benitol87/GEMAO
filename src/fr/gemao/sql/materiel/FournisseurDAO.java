@@ -166,6 +166,10 @@ public class FournisseurDAO extends IDAO<Fournisseur> {
 		}
 		return liste;
 	}
+	
+	public Fournisseur exist(Fournisseur fournisseur){
+		return this.get(fournisseur.getNomFournisseur());
+	}
 
 	@Override
 	protected Fournisseur map(ResultSet result) throws SQLException {
