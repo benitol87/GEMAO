@@ -78,6 +78,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 
 				matctrl.modifierMateriel(mat);
 				session.removeAttribute("materiel");
+				session.removeAttribute("listeEtats");
 			} else {
 				form.setErreur("Modification", "Probleme de session");
 			}
