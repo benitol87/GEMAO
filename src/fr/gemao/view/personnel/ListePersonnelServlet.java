@@ -22,27 +22,23 @@ public class ListePersonnelServlet extends HttpServlet {
 	public static final String VUE_LISTEPERSONNELS = "/WEB-INF/pages/personnel/listePersonnel.jsp";
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RecupererPersonnelCtrl recupererPersonnelCtrl = new RecupererPersonnelCtrl();
 		List<Personnel> personnels = recupererPersonnelCtrl.recupererTousPersonnels();
 		request.setAttribute("listePersonnels", personnels);
+		request.setAttribute("lien", "/personnel/ConsulterPersonnel");
 		this.getServletContext().getRequestDispatcher( VUE_LISTEPERSONNELS ).forward( request, response );
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RecupererPersonnelCtrl recupererPersonnelCtrl = new RecupererPersonnelCtrl();
 		List<Personnel> personnels = recupererPersonnelCtrl.recupererTousPersonnels();
 		request.setAttribute("listePersonnels", personnels);
 		this.getServletContext().getRequestDispatcher( VUE_LISTEPERSONNELS ).forward( request, response );
 	}
-
 }
