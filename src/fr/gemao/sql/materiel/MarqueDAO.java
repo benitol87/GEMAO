@@ -194,6 +194,10 @@ public class MarqueDAO extends IDAO<Marque> {
 		}
 		return liste;
 	}
+	
+	public Marque exist(Marque marque){
+		return this.get(marque.getNomMarque());
+	}
 
 	@Override
 	protected Marque map(ResultSet result) throws SQLException {

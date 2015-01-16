@@ -13,9 +13,10 @@
 		<tr>
 			<td><c:out value="${pers['nom']}" /></td>
 			<td><c:out value="${pers['prenom']}" /></td>
-			<td><a
-				href="ConsulterPersonnel?id=<c:out value="${pers['idPersonne']}" />"><input
-					type="button" value="Détails" /></a>
+			<td>
+				<a href=<c:url value="${lien}?id=${pers['idPersonne']}"/> 	>
+					<input type="button" value="Détails" />
+				</a>
 			<td>
 		</tr>
 	</c:forEach>

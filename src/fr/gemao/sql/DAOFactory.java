@@ -16,6 +16,7 @@ import fr.gemao.sql.materiel.EtatDAO;
 import fr.gemao.sql.materiel.FournisseurDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
 import fr.gemao.sql.materiel.MaterielDAO;
+import fr.gemao.sql.materiel.ReparateurDAO;
 import fr.gemao.sql.materiel.ReparationDAO;
 
 public class DAOFactory {
@@ -206,5 +207,9 @@ public class DAOFactory {
 
 	public MotifSortieDAO getMotifSortieDAO() {
 		return new MotifSortieDAO(this);
+	}
+
+	public ReparateurDAO getReparateurDAO() {
+		return new ReparateurDAO(this);
 	}
 }

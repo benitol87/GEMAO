@@ -200,8 +200,10 @@ public class ReparationDAO extends IDAO<Reparation> {
 
 	@Override
 	protected Reparation map(ResultSet result) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Reparation(result.getInt("idReparation"),
+				factory.getReparateurDAO().get(result
+						.getInt("idReparateur")),
+				result.getDate("dateCertificat"));
 	}
 
 }

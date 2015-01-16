@@ -134,8 +134,7 @@ public class ReparateurDAO extends IDAO<Reparateur> {
 			result = requete.executeQuery();
 
 			if (result.first()) {
-				reparateur = new Reparateur(result.getInt("idReparateur"),
-						result.getString("nom"));
+				reparateur = this.map(result);
 
 			}
 		} catch (SQLException e1) {
@@ -169,8 +168,7 @@ public class ReparateurDAO extends IDAO<Reparateur> {
 			result = requete.executeQuery();
 
 			while (result.next()) {
-				reparateur = new Reparateur(result.getInt("idReparateur"),
-						result.getString("nom"));
+				reparateur = this.map(result);
 				liste.add(reparateur);
 			}
 		} catch (SQLException e1) {
@@ -193,8 +191,8 @@ public class ReparateurDAO extends IDAO<Reparateur> {
 
 	@Override
 	protected Reparateur map(ResultSet result) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Reparateur(result.getInt("idReparateur"),
+				result.getString("nom"));
 	}
 
 }

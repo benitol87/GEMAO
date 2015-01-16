@@ -161,6 +161,10 @@ public class EtatDAO extends IDAO<Etat> {
 		}
 		return liste;
 	}
+	
+	public Etat exist(Etat etat){
+		return this.get(etat.getLibelleEtat());
+	}
 
 	@Override
 	protected Etat map(ResultSet result) throws SQLException {
