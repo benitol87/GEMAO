@@ -8,11 +8,11 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<label><c:out value="${personnel['nom']}" /></label>
+<label>NOM : <c:out value="${personnel['nom']}" /></label>
 <br>
-<label><c:out value="${personnel['prenom']}" /></label>
+<label>Prénom : <c:out value="${personnel['prenom']}" /></label>
 <br>
-<label><c:out value="${personnel['login']}" /></label>
+<label>Login : <c:out value="${personnel['login']}" /></label>
 <br>
-<label><c:out value="${personnel['password']}" /></label>
+<label>Mot de passe : <c:out value="${personnel['password']}" /></label>
 <c:import url="/inc/footer.inc.jsp" />
