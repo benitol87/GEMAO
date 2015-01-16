@@ -374,7 +374,13 @@ public class AdherentForm {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		if (dateEntree == null || dateEntree.equals("") || !dateInsc.before(new Date())) {
+		Date dateNaiss = new Date();
+		try {
+			dateNaiss = dateFormat.parse(dateNaissance);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		if (dateEntree == null || dateEntree.equals("") || !dateInsc.before(new Date()) || dateInsc.after(dateNaiss)) {
 			throw new Exception("Merci de spécifier une date d'inscription valide.");
 		}
 	}
