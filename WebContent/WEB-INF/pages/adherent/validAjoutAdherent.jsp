@@ -112,8 +112,8 @@
 		<td><span>Droit à l'image :<c:choose>
 					<c:when test="${adherent['droitImage']==true}">Oui</c:when>
 					<c:otherwise>Non</c:otherwise>
-				</c:choose></td>
-		</span>
+				</c:choose>
+		</span></td>
 	</tr>
 	<c:if test="${responsable!=null}">
 		<tr>

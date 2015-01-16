@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.adherent.AjouterAdherentCtrl;
+import fr.gemao.ctrl.adherent.AjouterResponsableCtrl;
 import fr.gemao.ctrl.adherent.CalculerCotisationCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
@@ -21,6 +22,7 @@ import fr.gemao.sql.AdresseDAO;
 import fr.gemao.sql.CommuneDAO;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
+import fr.gemao.sql.ResponsableDAO;
 
 /**
  * Servlet implementation class ValidationAjoutAdherentServlet
@@ -30,7 +32,8 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String VUE = "/WEB-INF/pages/adherent/validAjoutAdherent.jsp";
 	private String VUE_INSERTION = "/index.jsp";
-	private String VUE_ERREUR = "/WEB-INF/pages/adherent/ajoutAdherent.jsp";
+	private String VUE_ERREUR = "/WEB-INF/pages/erreurs/404.jsp";
+	private String VUE_DEJA_INSCRIT = "/WEB-INF/pages/adherent/ajoutAdherent.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -38,6 +41,7 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		Adherent adherent = (Adherent) session
 				.getAttribute("ajout_adh_adherent");
@@ -57,12 +61,12 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		request.setAttribute("communeNaiss", communeNaiss);
 		request.setAttribute("adresse", adresse);
 		request.setAttribute("responsable", responsable);
-		
+
 		System.out.println(responsable);
-		
+
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
-	}
+	} 
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -89,12 +93,14 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 			ajouterCommuneCtrl.ajoutCommune(communeNaiss);
 		}
 		communeNaiss = communeDAO.existNomCodePostal(communeNaiss);
+		adherent.setCommuneNaiss(communeNaiss);
 
 		if (communeDAO.existNomCodePostal(commune) == null) {
 			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
 			ajouterCommuneCtrl.ajoutCommune(commune);
 		}
 		commune = communeDAO.existNomCodePostal(commune);
+		adresse.setCommune(commune);
 
 		AdresseDAO adresseDAO = factory.getAdresseDAO();
 		if (adresseDAO.exist(adresse) == null) {
@@ -102,14 +108,20 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 			ajouterAdresseCtrl.ajoutAdresse(adresse);
 		}
 		adresse = adresseDAO.exist(adresse);
+		adherent.setAdresse(adresse);
 
 		if (responsable != null) {
-			// if exist pour le responsable comme d'hab
+			ResponsableDAO responsableDAO = factory.getResponsableDAO();
+			if (responsableDAO.exist(responsable) == null) {
+				AjouterResponsableCtrl ajouterResponsableCtrl = new AjouterResponsableCtrl();
+				ajouterResponsableCtrl.ajouterResponsable(responsable);
+			}
+			responsable = responsableDAO.exist(responsable);			
 			adherent.setResponsable(responsable);
 		}
 
-		adherent.setCommuneNaiss(communeNaiss);
-		adherent.setAdresse(adresse);
+		
+		
 
 		PersonneDAO personneDAO = factory.getPersonneDAO();
 
@@ -120,7 +132,7 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 					.forward(request, response);
 		} else {
 			System.out.println("La personne existe déja");
-			this.getServletContext().getRequestDispatcher(VUE_ERREUR)
+			this.getServletContext().getRequestDispatcher(VUE_DEJA_INSCRIT)
 					.forward(request, response);
 		}
 

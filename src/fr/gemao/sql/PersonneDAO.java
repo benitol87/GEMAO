@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.PersistenceContextType;
+
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.sql.exception.DAOException;
@@ -204,6 +206,7 @@ public class PersonneDAO extends IDAO<Personne> {
 		Personne verif = null;
 		Integer idAdresse = null;
 		Integer idCommuneNaiss = null;
+		Civilite civilite = personne.getCivilite();
 		try {
 
 			connexion = factory.getConnection();
@@ -215,7 +218,7 @@ public class PersonneDAO extends IDAO<Personne> {
 			}
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false, personne.getNom(), personne.getPrenom(),
-					idAdresse, idCommuneNaiss, personne.getCivilite().getSexe());
+					idAdresse, idCommuneNaiss, civilite==null?null:civilite.getSexe());
 			result = requete.executeQuery();
 
 			if (result.first()) {

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.TypeContratCtrl;
 import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.ctrl.personnel.CalculerDateFinContratCtrl;
 import fr.gemao.entity.Contrat;
@@ -63,7 +64,8 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 			e.printStackTrace();
 		}
         contrat.setDateFin(calculerDateFinContratCtrl.CalculerDateFinContrat(contrat.getDateDebut(), Integer.parseInt(duree)));
-        contrat.setTypeContrat(new TypeContrat(null, typeContrat));
+        TypeContratCtrl typeContratCtrl = new TypeContratCtrl();
+        contrat.setTypeContrat(typeContratCtrl.recupererTypeContrat(new TypeContrat(null, typeContrat)));
         
         perso.setContrat(contrat);
         
@@ -72,7 +74,7 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
         
         /* Transmission à la page JSP en charge de l'affichage des données */
      		this.getServletContext()
-     				.getRequestDispatcher(VUE)
+     				.getRequestDispatcher(VUE_PAGE3)
      				.forward(request, response);
 	}
 

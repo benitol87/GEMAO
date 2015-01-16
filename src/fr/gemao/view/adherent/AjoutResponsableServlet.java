@@ -20,6 +20,7 @@ public class AjoutResponsableServlet extends HttpServlet {
 
 	private String VUE = "/WEB-INF/pages/adherent/ajoutResponsable.jsp";
 	private String URL_QF = "/GEMAO/adherent/CalculerQF";
+	private String VUE_ERREUR = "/WEB-INF/pages/erreurs/404.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -27,6 +28,7 @@ public class AjoutResponsableServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}
@@ -36,17 +38,18 @@ public class AjoutResponsableServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {		
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String tel = request.getParameter("tel");
-		String email = request.getParameter("email");		
+		String email = request.getParameter("email");
 		Responsable responsable = new Responsable(null, nom, prenom, tel, email);
+
 		session.setAttribute("ajout_adh_responsable", responsable);
-		
-		response.sendRedirect(URL_QF);		
+
+		response.sendRedirect(URL_QF);
 	}
 
 }
