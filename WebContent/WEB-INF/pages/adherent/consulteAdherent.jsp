@@ -81,70 +81,70 @@
 				<c:out value="${adherent.adresse.commune['codePostal']}" />
 			</p></td>
 	</tr>
-	<tr>
-		<td>
-			<table>
-				<tbody id="disciplines">
-					<tr>
-						<th><p>Disciplines</p></th>
-					</tr>
-					<tr>
-						<td>Discipline</td>
-						<td>Classe</td>
-					</tr>
-					<tr>
-						<td>test</td>
-						<td>test</td>
-					</tr>
-				</tbody>
-			</table>
-		</td>
-	</tr>
-
-	<tr>
-		<th>Informations supplémentaires</th>
-	</tr>
-	<tr>
-		<td><label for="dateInscri">Date d'inscripton : </label></td>
-		<td><p>
-				<c:out value="${dateInscription}" />
-			</p></td>
-		<td><label for="cotisation">Cotisation : </label></td>
-		<td><p>
-				<c:out value="${adherent['cotisation']}" />
-			</p></td>
-		<td><span>Droit à l'image :<c:choose>
-					<c:when test="${adherent['droitImage']==true}">Oui</c:when>
-					<c:otherwise>Non</c:otherwise>
-				</c:choose>
-		</span></td>
-	</tr>
-	<c:if test="${adherent.responsable!=null}">
-		<tr>
-			<th>Responsable</th>
-		</tr>
-		<tr>
-			<td><label for="nom">Nom : </label></td>
-			<td><p>
-					<c:out value="${adherent.responsable['nom']}" />
-				</p></td>
-			<td><label for="prenom">Prénom : </label></td>
-			<td><p>
-					<c:out value="${adherent.responsable['prenom']}" />
-				</p></td>
-		</tr>
-		<tr>
-			<td><label for="tel">Téléphone : </label></td>
-			<td><p>
-					<c:out value="${adherent.responsable['telephone']}" />
-				</p></td>
-			<td><label for="email">E-mail : </label></td>
-			<td><p>
-					<c:out value="${adherent.responsable['email']}" />
-				</p></td>
-		</tr>
-	</c:if>
 </table>
+<table>
+	<tbody id="disciplines">
+		<tr>
+			<th><p>Disciplines</p></th>
+		</tr>
+		<tr>
+			<td>Discipline</td>
+			<td>Classe</td>
+		</tr>
+		<tr>
+			<td>test</td>
+			<td>test</td>
+		</tr>
+	</tbody>
+</table>
+
+<table>
+<tr>
+	<th>Informations supplémentaires</th>
+</tr>
+<tr>
+	<td><label for="dateInscri">Date d'inscripton : </label></td>
+	<td><p>
+			<c:out value="${dateInscription}" />
+		</p></td>
+	<td><label for="cotisation">Cotisation : </label></td>
+	<td><p>
+			<c:out value="${adherent['cotisation']}" />
+		</p></td>
+	<td><span>Droit à l'image :<c:choose>
+				<c:when test="${adherent['droitImage']==true}">Oui</c:when>
+				<c:otherwise>Non</c:otherwise>
+			</c:choose>
+	</span></td>
+</tr>
+</table>
+
+<c:if test="${adherent.responsable!=null}">
+<table>
+	<caption>Responsable</caption>
+	<tr>
+		<td><label for="nom">Nom : </label></td>
+		<td><p>
+				<c:out value="${adherent.responsable['nom']}" />
+			</p></td>
+		<td><label for="prenom">Prénom : </label></td>
+		<td><p>
+				<c:out value="${adherent.responsable['prenom']}" />
+			</p></td>
+	</tr>
+	<tr>
+		<td><label for="tel">Téléphone : </label></td>
+		<td><p>
+				<c:out value="${adherent.responsable['telephone']}" />
+			</p></td>
+		<td><label for="email">E-mail : </label></td>
+		<td><p>
+				<c:out value="${adherent.responsable['email']}" />
+			</p></td>
+	</tr>
+</table>
+</c:if>
+
 
 <div>
 	<a href="ListeAdherents"> <input type="button" value="Retour" />

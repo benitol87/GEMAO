@@ -15,6 +15,9 @@
 /* DatePicker Table */
 .ui-datepicker table {
 	width: 100%;
+	border: none;
+	margin: 0px;
+	padding: 0px;
 }
 
 .ui-datepicker-header {

@@ -1,12 +1,97 @@
-fieldset{
-	display: inline-block;
-	min-height:9em;
-}
-
 .hidden{
 	display: none;
 }
 
+.align-center{
+	text-align: center;
+}
+
+.align-left{
+	text-align: left;
+}
+
+.align-right{
+	text-align: right;
+}
+
+#boutonMenu{
+	margin-left: 15%;
+}
+
+#disconnect{
+	border-radius: 10px;
+	background-color: #34495e;
+	padding: 5px;
+	margin-top: -5px;
+}
+
 #logo{
-	text-align : center;
+	margin-left: 15%;
+}
+
+article{
+	margin-left: 15%;	
+}
+
+body {
+	margin: auto;
+}
+
+header, footer{
+	background-color: #263646;
+	font-size: 1.3em;
+	padding: 15px;
+	min-height: 55px;
+}
+
+header a{
+	float: right;
+}
+
+table{
+	border: solid 1px white;
+	margin: 20px;
+	padding: 10px;
+}
+
+fieldset table{
+	border: none;
+}
+
+table>caption{
+	text-align: left;
+	font-weight: bold;
+	margin-left: 30px;
+}
+
+tr {
+	margin: 15px;
+}
+
+@media (max-width:768px)
+{
+	table, fieldset{
+		width : 500px;
+	}
+}
+
+@media (min-width:768px) and (max-width:992px)
+{
+	table, fieldset{
+		width : 500px;
+	}
+}
+
+@media (min-width:992px) and (max-width:1200px)
+{
+	table, fieldset{
+		width : 750px;
+	}
+}
+
+@media (min-width:1200px)
+{	
+	table, fieldset{
+		width : 1000px;
+	}
 }

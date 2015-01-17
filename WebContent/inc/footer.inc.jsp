@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
+		</article>
     </div><!-- /pusher -->
 </div><!-- /container -->
 </body>
 <footer>
-	<p>Gemao v1.0</p>
+	<div>Gemao v1.0</div>
 </footer>
 <script src="/GEMAO/js/script.js"></script>
 <script src="/GEMAO/js/classie.js"></script>
