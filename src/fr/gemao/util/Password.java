@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import fr.gemao.Config;
+
 
 /**
  * Classe s'occupant du cryptage des mots de passe
@@ -58,5 +60,38 @@ public class Password {
 		String encryptedString = encrypt(chaineClair);
 		
 		return encryptedString.equals(chaineCryptee);
+	}
+	
+	/**
+	 * Méthode générant un mot de passe aléatoire de
+	 * 12 caractères contenant minuscules, majuscules
+	 * et chiffres
+	 * @return
+	 */
+	public static String generatePassword(){
+		return generatePassword(Config.DEFAULT_GENERATED_PASSWORD_SIZE);
+	}
+	
+	public static String generatePassword(int SIZE){
+		String res = "";
+		char character;
+		
+		if(SIZE<1){
+			throw new IllegalArgumentException("La taille du mot de passe doit être strictement positive");
+		}
+		
+		for(int i=0;i<SIZE;i++){
+			if(i<SIZE/3){
+				character = (char)(Math.random()*26 + 'A');
+			}
+			else if(i<SIZE*2/3){
+				character = (char)(Math.random()*26 + 'a');
+			} else {
+				character = (char)(Math.random()*10 + '0');
+			}
+			res += character;
+		}
+		
+		return res;
 	}
 }
