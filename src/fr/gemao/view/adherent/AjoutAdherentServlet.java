@@ -102,7 +102,8 @@ public class AjoutAdherentServlet extends HttpServlet {
 			if (civilite=="F") {
 				adherent.setCivilite(Civilite.MADAME);
 			}
-			adherent.setDisciplines(adherentForm.getDisciplines());
+			List<Discipline> listDiscipline = adherentForm.getDisciplines();
+			adherent.setDisciplines(listDiscipline);
 
 			/**
 			 * Réupération des données de la commune de naissance

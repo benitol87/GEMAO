@@ -3,6 +3,7 @@ package fr.gemao.form.adherent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
+import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.entity.Discipline;
 
 /**
@@ -77,7 +80,7 @@ public class AdherentForm {
 	private String droitImage;
 	
 	//Discipline
-	private List<Discipline> disciplines;
+	private List<Discipline> disciplines = new ArrayList<>();
 	/*private List<Classe> classes;*/
 	
 	//Inscription
@@ -404,6 +407,7 @@ public class AdherentForm {
 		droitImage = getValeurChamp(request, CHAMP_DROITIMAGE);
 		String str = null;
 		Discipline disc;
+		RecupererDisciplineCtrl recupererDisciplineCtrl = new RecupererDisciplineCtrl();
 		int i = 1;
 		
 		do {
@@ -411,7 +415,7 @@ public class AdherentForm {
 			i++;
 			
 			if (str != null && !str.equals("")) {
-				disc = new Discipline(null, str);
+				disc = recupererDisciplineCtrl.recupererDiscipline(Integer.parseInt(str));
 				disciplines.add(disc);
 			}
 			
@@ -525,12 +529,13 @@ public class AdherentForm {
 		}
 		
 		//Validation du champ discipline (A modifier !)
-		/*try {
+		try {
 			validationDisciplines(disciplines);
 		} catch (Exception e) {
 			setErreur(CHAMP_DISCIPLINES, e.getMessage());
 		}
 		
+		/*
 		//Validation du champ classe (A modifier !)
 		try {
 			validationClasses(classes);

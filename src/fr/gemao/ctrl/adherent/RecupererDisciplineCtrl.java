@@ -7,6 +7,12 @@ import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.DisciplineDAO;
 
 public class RecupererDisciplineCtrl {
+	
+	public Discipline recupererDiscipline(int idDiscipline){
+		DAOFactory factory = DAOFactory.getInstance();
+		DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
+		return disciplineDAO.get(idDiscipline);
+	}
 
 	public List<Discipline> recupererAllDiscipline(){
 		List<Discipline> list;

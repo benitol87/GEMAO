@@ -1,8 +1,14 @@
 package fr.gemao.entity;
 
-public class Discipline {
+import java.io.Serializable;
+
+public class Discipline implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer idDiscipline;
-	private String nom;
+	private String nom; 
 	
 	/**
 	 * @param idDiscipline

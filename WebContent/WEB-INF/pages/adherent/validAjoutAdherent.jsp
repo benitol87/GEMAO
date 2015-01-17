@@ -93,10 +93,11 @@
 						<td>Discipline</td>
 						<td>Classe</td>
 					</tr>
+					<c:forEach var="discipline" items="${sessionScope.ajout_adh_adherent.getDisciplines()}">
 					<tr>
-						<td>test</td>
-						<td>test</td>
+						<td>${ discipline.getNom() }</td>
 					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</td>
@@ -148,7 +149,7 @@
 </table>
 
 <form action="#" method="post">
-	<a href="index.jsp"><input type="button" value="Annuler" /></a><input
+	<a href="../index.jsp"><input type="button" value="Annuler" /></a><input
 		type="submit" value="Valider" />
 </form>
 

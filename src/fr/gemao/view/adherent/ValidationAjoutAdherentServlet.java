@@ -54,6 +54,7 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 				.getAttribute("ajout_adh_responsable");
 
 		CalculerCotisationCtrl calculerCotisationCtrl = new CalculerCotisationCtrl();
+		System.out.println(adherent);
 		adherent.setCotisation(calculerCotisationCtrl
 				.calculerCotisations(adherent.getQf()));
 		
@@ -90,40 +91,30 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		Responsable responsable = (Responsable) session
 				.getAttribute("ajout_adh_responsable");
 
-		DAOFactory factory = DAOFactory.getInstance();
-		CommuneDAO communeDAO = factory.getCommuneDAO();
-
-		if (communeDAO.existNomCodePostal(communeNaiss) == null) {
-			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
-			ajouterCommuneCtrl.ajoutCommune(communeNaiss);
-		}
-		communeNaiss = communeDAO.existNomCodePostal(communeNaiss);
+		
+		AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
+		
+		ajouterCommuneCtrl.ajoutCommune(communeNaiss);
 		adherent.setCommuneNaiss(communeNaiss);
 
-		if (communeDAO.existNomCodePostal(commune) == null) {
-			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
-			ajouterCommuneCtrl.ajoutCommune(commune);
-		}
-		commune = communeDAO.existNomCodePostal(commune);
+
+		ajouterCommuneCtrl.ajoutCommune(commune);
 		adresse.setCommune(commune);
 
-		AdresseDAO adresseDAO = factory.getAdresseDAO();
-		if (adresseDAO.exist(adresse) == null) {
-			AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
-			ajouterAdresseCtrl.ajoutAdresse(adresse);
-		}
+
+		AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
+		ajouterAdresseCtrl.ajoutAdresse(adresse);
+		
 		adherent.setAdresse(adresse);
 
 		if (responsable != null) {
-			ResponsableDAO responsableDAO = factory.getResponsableDAO();
-			if (responsableDAO.exist(responsable) == null) {
-				AjouterResponsableCtrl ajouterResponsableCtrl = new AjouterResponsableCtrl();
-				ajouterResponsableCtrl.ajouterResponsable(responsable);
-			}
-			responsable = responsableDAO.exist(responsable);			
+			AjouterResponsableCtrl ajouterResponsableCtrl = new AjouterResponsableCtrl();
+			ajouterResponsableCtrl.ajouterResponsable(responsable);
 			adherent.setResponsable(responsable);
 		}
 
+		//TODO à modifier : il ne devrait pas y avoir de DAO dans les servlet !
+		DAOFactory factory = DAOFactory.getInstance();
 		PersonneDAO personneDAO = factory.getPersonneDAO();
 
 		if (personneDAO.exist(adherent) == null) {
