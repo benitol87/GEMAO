@@ -15,15 +15,6 @@ function ajoutDiplome(){
 //	document.getElementById(compteur).lastElementChild.firstElementChild.name="clas"+compteur;	
 }
 
-function ajouteEvent(objet, typeEvent, nomFunction, typePropagation){
-	
-	if(objet.addEventListener){
-		objet.addEventListener(typeEvent,nomFunction,typePropagation);
-	} else if(objet.attachEvent){
-		objet.attachEvent('on'+typeEvent,nomFunction);
-	}
-}
-
 $(function() {
 	bouton1=document.getElementById("ajoutDiplome");
 	bouton2=document.getElementById("retireDiplome");
