@@ -69,11 +69,15 @@
 					<fieldset>
 						<legend>Dates</legend>
 						
-						<label for="datedeb">Date d'emprunt :</label>
-						<input class='datepicker' type="text" name="datedeb" required />
+						<div>
+							<label for="datedeb">Date d'emprunt :</label>
+							<input class='datepicker' type="text" name="datedeb" required />
+						</div>
 						
-						<label for="datefin">Date de retour :</label>
-						<input class='datepicker' type="text" name="datefin" required />
+						<div>
+							<label for="datefin">Date de retour :</label>
+							<input class='datepicker' type="text" name="datefin" required />
+						</div>
 					</fieldset>
 				</c:if>
 				

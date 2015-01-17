@@ -7,11 +7,11 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-<script src=<c:url value="/js/jquery.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.min.js"/>"></script>
 <script
-	src=<c:url value="/js/jquery-ui.min.js"/>"></script>
+	src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/datepicker.js"/>"></script>
-<script src=<c:url value="/js/AjouterPersonnel.js"/>"></script>
+<script src="<c:url value="/js/AjouterPersonnel.js"/>"></script>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/css/datepicker.css"/>" />
 	<!-- 1er partie du formulaire -->
