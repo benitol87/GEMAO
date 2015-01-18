@@ -4,10 +4,11 @@
 		</article>
     </div><!-- /pusher -->
 </div><!-- /container -->
-</body>
+
 <footer>
 	<div>Gemao v1.0</div>
 </footer>
+</body>
 <script src="/GEMAO/js/script.js"></script>
 <script src="/GEMAO/js/classie.js"></script>
 <script src="/GEMAO/js/mlpushmenu.js"></script>

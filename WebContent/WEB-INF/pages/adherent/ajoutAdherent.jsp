@@ -29,31 +29,31 @@
 		</div>
 		
 		<div>
-			<label for="nom">* Nom </label>
+			<label for="nom" class='required'>Nom </label>
 			<input type="text" name="nom" required="required"
 						autocomplete="off" />
 		</div>
 		
 		<div>
-			<label for="prenom">* Prénom </label>
+			<label for="prenom" class='required'>Prénom </label>
 			<input type="text" name="prenom" required="required"
 						autocomplete="off" />
 		</div>
 		
 		<div>
-			<label for="dateNaiss">* Date de naissance </label>
+			<label for="dateNaiss" class='required'>Date de naissance </label>
 			<input type="text" name="dateNaiss" class="datepicker"
 						required="required" autocomplete="off" />
 		</div>
 		
 		<div>
-			<label for="comNaiss">* Commune de naissance </label>
+			<label for="comNaiss" class='required'>Commune de naissance </label>
 			<input type="text" name="comNaiss" required="required"
 						autocomplete="off" />
 		</div>
 		
 		<div>	
-			<label for="codePNaiss">* Code postal </label>
+			<label for="codePNaiss" class='required'>Code postal </label>
 			<input type="text" name="codePostNaiss" required="required" maxlength="5"
 						autocomplete="off" />
 		</div>
@@ -109,13 +109,15 @@
 	</fieldset>
 	<fieldset>
 		<legend>Disciplines</legend>
-		<div>
-			<label>Cours </label>
-			<select size="1" name="disciplines1">
-				<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
-					<option value="${ discipline.getIdDiscipline() }">${ discipline.getNom() }</option>
-				</c:forEach>		
-			</select>
+		<div id='disciplines'>
+			<div>
+				<label>Cours</label>
+				<select size="1" name="disciplines1">
+					<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
+						<option value="${ discipline.getIdDiscipline() }">${ discipline.getNom() }</option>
+					</c:forEach>		
+				</select>
+			</div>
 		</div>
 		<div class='align-center'>
 			<input type="button" value="Retirer" id="retireDiscipline" />
@@ -125,12 +127,12 @@
 	<fieldset>
 		<legend>Informations complémentaires</legend>
 		<div>
-			<label for="dateInscri">* Date d'inscription </label>
+			<label for="dateInscri" class='required'>Date d'inscription </label>
 			<input type="text" name="dateInscri" class="datepicker"
 					required="required" autocomplete="off" />
 		</div>
 		<div>
-			<label>* Droit à l'image </label>
+			<label  class='required'>Droit à l'image </label>
 			<span>
 				<input type="radio" name="droitImage" value="true" checked="checked" />
 				<label for="droitImage">Oui</label>

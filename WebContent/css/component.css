@@ -4,12 +4,8 @@
 	box-sizing: border-box;
 }
 
-html, body, .container, .scroller {
+/*html, body,*/ .container, .scroller, .mp-pusher{
 	min-height: 800px;
-}
-
-.mp-pusher{
-	min-height: 800px;	
 }
 .scroller {
 	overflow-y: scroll;

@@ -156,7 +156,6 @@
 			</tr>
 		</table>
 	</fieldset>
-</form>
 </c:if>
 
 	<a href="../index.jsp"><input type="button" value="Annuler" /></a><input

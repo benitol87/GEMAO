@@ -11,143 +11,122 @@
 <h1>Consultation d'un adhérent</h1>
 
 <table>
+	<caption>Informations personnelles</caption>
 	<tr>
-		<td><p>Civilité :</p></td>
-		<td><p>
-				<c:out value="${adherent['civilite']}"></c:out>
+		<td>Civilité :</td>
+		<td><c:out value="${adherent['civilite']}"></c:out></td>
 	</tr>
 	<tr>
-		<td><label for="nom">Nom : </label></td>
-		<td><p>
-				<c:out value="${adherent['nom']}" />
-			</p></td>
-		<td><label for="prenom">Prénom : </label></td>
-		<td><p>
-				<c:out value="${adherent['prenom']}" />
-			</p></td>
-		<td><label for="dateNaiss">Date de naissance : </label></td>
-		<td><p>
-				<c:out value="${dateNaissance}" />
-			</p></td>
+		<td>Nom : </td>
+		<td><c:out value="${adherent['nom']}" /></td>
 	</tr>
 	<tr>
-		<td><label for="comNaiss">Commune de naissance : </label></td>
-		<td><p>
-				<c:out value="${adherent.communeNaiss['nomCommune']}" />
-			</p></td>
-		<td><label for="codePNaiss">Code postal : </label></td>
-		<td><p>
-				<c:out value="${adherent.communeNaiss['codePostal']}" />
-			</p></td>
+		<td>Prénom : </td>
+		<td><c:out value="${adherent['prenom']}" /></td>
 	</tr>
 	<tr>
-		<td><label for="telFixe">Téléphone fixe : </label></td>
-		<td><p>
-				<c:out value="${adherent['telFixe']}" />
-			</p></td>
-		<td><label for="telPort">Téléphone portable : </label></td>
-		<td><p>
-				<c:out value="${adherent['telPort']}" />
-			</p></td>
-		<td><label for="email">E-mail : </label></td>
-		<td><p>
-				<c:out value="${adherent['email']}" />
-			</p></td>
+		<td>Date de naissance : </td>
+		<td><c:out value="${dateNaissance}" /></td>
 	</tr>
 	<tr>
-		<th><p>Adresse</p></th>
+		<td>Commune de naissance : </td>
+		<td><c:out value="${adherent.communeNaiss['nomCommune']}" /></td>
 	</tr>
 	<tr>
-		<td><label for="num">Numéro : </label></td>
-		<td><p>
-				<c:out value="${adherent.adresse['numRue']}" />
-			</p></td>
-		<td><label for="rue">Rue : </label></td>
-		<td><p>
-				<c:out value="${adherent.adresse['nomRue']}" />
-			</p></td>
-		<td><label for="compl">Complémentaire : </label></td>
-		<td><p>
-				<c:out value="${adherent.adresse['infoCompl']}" />
-			</p></td>
+		<td>Code Postal : </td>
+		<td><c:out value="${adherent.communeNaiss['codePostal']}" /></td>
 	</tr>
 	<tr>
-		<td><label for="commune">Commune : </label></td>
-		<td><p>
-				<c:out value="${adherent.adresse.commune['nomCommune']}" />
-			</p></td>
-		<td><label for="codePostal">Code postal : </label></td>
-		<td><p>
-				<c:out value="${adherent.adresse.commune['codePostal']}" />
-			</p></td>
+		<td>Téléphone fixe : </td>
+		<td><c:out value="${adherent['telFixe']}" /></td>
+	</tr>
+	<tr>
+		<td>Téléphone portable : </td>
+		<td><c:out value="${adherent['telPort']}" /></td>
+	</tr>
+	<tr>
+		<td>E-mail : </td>
+		<td><c:out value="${adherent['email']}" /></td>
 	</tr>
 </table>
 <table>
+	<caption>Adresse</caption>
+	<tr>
+		<td>Numéro : </td>
+		<td><c:out value="${adherent.adresse['numRue']}" /></td>
+	</tr>
+	<tr>
+		<td>Rue : </td>
+		<td><c:out value="${adherent.adresse['nomRue']}" /></td>
+	</tr>
+	<tr>
+		<td>Complémentaire : </td>
+		<td><c:out value="${adherent.adresse['infoCompl']}" /></td>
+	</tr>
+	<tr>
+		<td>Commune : </td>
+		<td><c:out value="${adherent.adresse.commune['nomCommune']}" /></td>
+	</tr>
+	<tr>
+		<td>Code Postal : </td>
+		<td><c:out value="${adherent.adresse.commune['codePostal']}" /></td>
+	</tr>
+</table>
+<table>
+	<caption>Disciplines</caption>
 	<tbody id="disciplines">
 		<tr>
-			<th><p>Disciplines</p></th>
-		</tr>
-		<tr>
-			<td>Discipline</td>
-			<td>Classe</td>
-		</tr>
-		<tr>
-			<td>test</td>
-			<td>test</td>
+			<td>** A remplir **</td>
 		</tr>
 	</tbody>
 </table>
 
 <table>
-<tr>
-	<th>Informations complémentaires</th>
-</tr>
-<tr>
-	<td><label for="dateInscri">Date d'inscription : </label></td>
-	<td><p>
-			<c:out value="${dateInscription}" />
-		</p></td>
-	<td><label for="cotisation">Montant de la cotisation : </label></td>
-	<td><p>
-			<c:out value="${adherent['cotisation']}" />
-		</p></td>
-	<td><span>Droit à l'image :<c:choose>
+	<caption>Informations supplémentaires</caption>
+	<tr>
+		<td>Date d'inscripton : </td>
+		<td><c:out value="${dateInscription}" /></td>
+	</tr>
+	<tr>
+		<td>Cotisation : </td>
+		<td><c:out value="${adherent['cotisation']}" /></td>
+	</tr>
+	<tr>
+		<td>Droit à l'image :</td>
+		<td>
+			<c:choose>
 				<c:when test="${adherent['droitImage']==true}">Oui</c:when>
 				<c:otherwise>Non</c:otherwise>
 			</c:choose>
-	</span></td>
-</tr>
+		</td>
+	</tr>
 </table>
 
 <c:if test="${adherent.responsable!=null}">
 <table>
 	<caption>Responsable</caption>
 	<tr>
-		<td><label for="nom">Nom : </label></td>
-		<td><p>
-				<c:out value="${adherent.responsable['nom']}" />
-			</p></td>
-		<td><label for="prenom">Prénom : </label></td>
-		<td><p>
-				<c:out value="${adherent.responsable['prenom']}" />
-			</p></td>
+		<td>Nom : </td>
+		<td><c:out value="${adherent.responsable['nom']}" /></td>
 	</tr>
 	<tr>
-		<td><label for="tel">Téléphone : </label></td>
-		<td><p>
-				<c:out value="${adherent.responsable['telephone']}" />
-			</p></td>
-		<td><label for="email">E-mail : </label></td>
-		<td><p>
-				<c:out value="${adherent.responsable['email']}" />
-			</p></td>
+		<td>Prénom : </td>
+		<td><c:out value="${adherent.responsable['prenom']}" /></td>
+	</tr>
+	<tr>
+		<td>Téléphone : </td>
+		<td><c:out value="${adherent.responsable['telephone']}" /></td>
+	</tr>
+	<tr>
+		<td>E-mail : </td>
+		<td><c:out value="${adherent.responsable['email']}" /></td>
 	</tr>
 </table>
 </c:if>
 
 
-<div>
-	<a href="ListeAdherents"> <input type="button" value="Retour" />
+<div class='align-center'>
+	<a href="ListeAdherents"><input type="button" value="Retour" />
 	</a>
 </div>
 
