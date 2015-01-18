@@ -104,12 +104,12 @@
 			<input type="text" name="valRea" value="${sessionScope.INFOS['valeurReap']}"/>
 		</div>
 		<div>
-			<label>Louable :</label>
+			<label>Ouvert à la location :</label>
 			<input type="checkbox" name="louable" value="on" />
 		</div>
 	</fieldset>
 	<fieldset class='align-center'>
-		<label for="observation">Observation : </label>
+		<label for="observation">Observations : </label>
 		<div>
 			<textarea name="observation" rows="5" cols="50" >${sessionScope.INFOS['observation']}</textarea>
 		</div>

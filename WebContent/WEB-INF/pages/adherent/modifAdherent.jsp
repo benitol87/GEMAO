@@ -10,7 +10,7 @@
 <h1>Modification d'un adhérent</h1>
 <form action="#" method="post">
 	<fieldset>
-	<legend>Identitié personnelle</legend>
+	<legend>Informations personnelles</legend>
 		<table>
 			<tr>
 	
@@ -120,6 +120,7 @@
 			</tr>
 		</table>
 	</fieldset>
+	<c:if test="${responsable!=null}">
 	<fieldset>
 	<legend>Responsable</legend>
 		<table>
@@ -143,24 +144,28 @@
 			</c:if>
 		</table>
 	</fieldset>
-	<table>
-		<tr>
-			<td><label for="dateInscri">Date d'inscripton : </label></td>
-			<td><p>
-					<c:out value="${dateInscription}" />
-				</p></td>
-		</tr>
-		<tr>
-			<td><span>Droit à l'image :</span> <input type="radio"
-				name="droitImage" value="true"
-				<c:if test="${adherent['droitImage'] == true}"> checked="checked" 
-			</c:if> />
-				<label for="droitImage">Oui</label> <input type="radio"
-				name="droitImage" value="false"
-				<c:if test="${adherent['droitImage'] == false}"> checked="checked" </c:if> />
-				<label for="droitImage">Non</label></td>
-		</tr>
-	</table>
+	</c:if>
+	<fieldset>
+	<legend>Informations complémentaires</legend>
+		<table>
+			<tr>
+				<td><label for="dateInscri">Date d'inscription : </label></td>
+				<td><p>
+						<c:out value="${dateInscription}" />
+					</p></td>
+			</tr>
+			<tr>
+				<td><span>Droit à l'image :</span> <input type="radio"
+					name="droitImage" value="true"
+					<c:if test="${adherent['droitImage'] == true}"> checked="checked" 
+				</c:if> />
+					<label for="droitImage">Oui</label> <input type="radio"
+					name="droitImage" value="false"
+					<c:if test="${adherent['droitImage'] == false}"> checked="checked" </c:if> />
+					<label for="droitImage">Non</label></td>
+			</tr>
+		</table>
+	</fieldset>
 	<div>
 		<input type="button" value="Annuler" /> <input type="submit" value="Valider" />
 	</div>

@@ -100,14 +100,14 @@
 
 <table>
 <tr>
-	<th>Informations supplémentaires</th>
+	<th>Informations complémentaires</th>
 </tr>
 <tr>
-	<td><label for="dateInscri">Date d'inscripton : </label></td>
+	<td><label for="dateInscri">Date d'inscription : </label></td>
 	<td><p>
 			<c:out value="${dateInscription}" />
 		</p></td>
-	<td><label for="cotisation">Cotisation : </label></td>
+	<td><label for="cotisation">Montant de la cotisation : </label></td>
 	<td><p>
 			<c:out value="${adherent['cotisation']}" />
 		</p></td>

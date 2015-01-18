@@ -59,8 +59,6 @@
 			</tr>
 		</table>
 	</fieldset>
-</form>
-<form>
 	<fieldset>
 		<legend>Adresse</legend>
 		<table>
@@ -90,8 +88,6 @@
 			</tr>
 		</table>
 	</fieldset>
-</form>
-<form>
 	<fieldset>
 		<legend>Disciplines</legend>
 		<table>
@@ -114,8 +110,6 @@
 			</tr>
 		</table>
 	</fieldset>
-</form>
-<form>
 	<fieldset>
 		<legend>Informations complémentaires</legend>
 		<table>
@@ -136,9 +130,7 @@
 			</tr>
 		</table>
 	</fieldset>
-</form>
 <c:if test="${responsable!=null}">
-<form>
 	<fieldset>
 		<legend>Responsable</legend>
 		<table>
