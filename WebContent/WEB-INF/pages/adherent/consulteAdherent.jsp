@@ -31,6 +31,16 @@
 			</p></td>
 	</tr>
 	<tr>
+		<td><label for="comNaiss">Commune de naissance : </label></td>
+		<td><p>
+				<c:out value="${adherent.communeNaiss['nomCommune']}" />
+			</p></td>
+		<td><label for="codePNaiss">Code postal : </label></td>
+		<td><p>
+				<c:out value="${adherent.communeNaiss['codePostal']}" />
+			</p></td>
+	</tr>
+	<tr>
 		<td><label for="telFixe">Téléphone fixe : </label></td>
 		<td><p>
 				<c:out value="${adherent['telFixe']}" />
@@ -42,16 +52,6 @@
 		<td><label for="email">E-mail : </label></td>
 		<td><p>
 				<c:out value="${adherent['email']}" />
-			</p></td>
-	</tr>
-	<tr>
-		<td><label for="comNaiss">Commune de naissance : </label></td>
-		<td><p>
-				<c:out value="${adherent.communeNaiss['nomCommune']}" />
-			</p></td>
-		<td><label for="codePNaiss">Code Postal : </label></td>
-		<td><p>
-				<c:out value="${adherent.communeNaiss['codePostal']}" />
 			</p></td>
 	</tr>
 	<tr>
@@ -76,7 +76,7 @@
 		<td><p>
 				<c:out value="${adherent.adresse.commune['nomCommune']}" />
 			</p></td>
-		<td><label for="codePostal">Code Postal : </label></td>
+		<td><label for="codePostal">Code postal : </label></td>
 		<td><p>
 				<c:out value="${adherent.adresse.commune['codePostal']}" />
 			</p></td>

@@ -7,19 +7,19 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-<h1>Calcul du Quotient Familial</h1>
+<h1>Calcul du quotient familial</h1>
 <form action="#" method="post">
 	<fieldset>
 		<div>
-			<label for="nbPers">Nombre de personne(s) : </label>
-			<input type="number" name="nbPers" required="required" min="0" autocomplete="off" />
+			<label for="nbPers">* Nombre de personne(s) </label>
+			<input type="number" name="nbPers" required="required" min="1" value="1" autocomplete="off" />
 		</div>
 		<div>
-			<label for="nbEnf">Nombre d'enfant(s) : </label>
-			<input type="number" name="nbEnf" required="required" min="0" autocomplete="off" />
+			<label for="nbEnf">* dont nombre d'enfant(s) </label>
+			<input type="number" name="nbEnf" required="required" min="0" value="0" autocomplete="off" />
 		</div>
 		<div>
-			<label for="revenues">Revenus annuels : </label>
+			<label for="revenues">* Revenus annuels </label>
 			<input type="text" pattern="[0-9]*[0-9,.][0-9]*" name="revenues" required="required" autocomplete="off" />
 		</div>
 	</fieldset>

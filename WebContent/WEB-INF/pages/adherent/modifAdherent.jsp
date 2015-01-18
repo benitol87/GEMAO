@@ -34,6 +34,14 @@
 					</p></td>
 			</tr>
 			<tr>
+				<td><label for="comNaiss">Commune de naissance : </label></td>
+				<td><p>
+						<c:out value="${adherent.communeNaiss.nomCommune}" />
+					</p></td>
+				<td><label for="codePNaiss">Code postal : </label></td>
+				<td><c:out value="${adherent.communeNaiss.codePostal}" /></td>
+			</tr>
+			<tr>
 				<td><label for="telFixe">Téléphone fixe : </label></td>
 				<td><input type="text" name="telFixe" pattern="[0][1-9][0-9]{8}"
 					required="required" maxlength="10" autocomplete="on"
@@ -45,14 +53,6 @@
 				<td><label for="email">E-mail : </label></td>
 				<td><input type="text" name="email" required="required"
 					autocomplete="on" value="<c:out value="${adherent['email']}"/>" /></td>
-			</tr>
-			<tr>
-				<td><label for="comNaiss">Commune de naissance : </label></td>
-				<td><p>
-						<c:out value="${adherent.communeNaiss.nomCommune}" />
-					</p></td>
-				<td><label for="codePNaiss">Code Postal : </label></td>
-				<td><c:out value="${adherent.communeNaiss.codePostal}" /></td>
 			</tr>
 		</table>
 	</fieldset>
@@ -77,7 +77,7 @@
 				<td><input type="text" name="commune" required="required"
 					autocomplete="off"
 					value="<c:out value="${adherent.adresse.commune.nomCommune}"/>" /></td>
-				<td><label for="codePostal">Code Postal : </label></td>
+				<td><label for="codePostal">Code postal : </label></td>
 				<td><input type="text" name="codePostal" required="required" maxlength="5"
 					autocomplete="off"
 					value="<c:out value="${adherent.adresse.commune.codePostal}"/>" /></td>

@@ -8,23 +8,26 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 <h1>Ajout d'un responsable</h1>
+<p>
+	L'adhérent est mineur, veuillez indiquer un responsable.
+</p>
 <form action="#" method="post">
 	<fieldset>
 		<div>
-			<label for="nom">Nom</label>
+			<label for="nom">* Nom</label>
 			<input type="text" name="nom" required="required" autocomplete="off" />
 		</div>
 		<div>
-			<label for="prenom">Prénom</label>
+			<label for="prenom">* Prénom</label>
 			<input type="text" name="prenom" required="required" autocomplete="off" />
 		</div>
 		<div>
-			<label for="tel">Téléphone</label>
+			<label for="tel">* Téléphone</label>
 			<input type="text" name="tel" pattern="[0][1-9][0-9]{8}"
 				required="required" maxlength="10" autocomplete="on" />
 		</div>
 		<div>
-			<label for="email">E-mail : </label>
+			<label for="email">* E-mail : </label>
 			<input type="text" name="email" required="required"
 				autocomplete="on" />
 		</div>
