@@ -21,7 +21,7 @@
 		<div>
 			<label for="tel">Téléphone</label>
 			<input type="text" name="tel" pattern="[0][1-9][0-9]{8}"
-				required="required" autocomplete="on" />
+				required="required" maxlength="10" autocomplete="on" />
 		</div>
 		<div>
 			<label for="email">E-mail : </label>

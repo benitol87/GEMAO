@@ -123,7 +123,7 @@
 		</div>	
 	</fieldset>
 	<fieldset>
-		<legend>Autres</legend>
+		<legend>Informations complémentaires</legend>
 		<div>
 			<label for="dateInscri">Date d'inscription</label>
 			<input type="text" name="dateInscri" class="datepicker"
