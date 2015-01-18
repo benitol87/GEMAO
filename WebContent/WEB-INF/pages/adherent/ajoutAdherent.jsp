@@ -24,7 +24,7 @@
 			<span>
 				<input type="radio" name="civilite" value="M"
 							checked="checked" /><label for="civilite">M.</label>
-				<input type="radio" name="civilite" value="F" /> <label for="civilite">Mme.</label>
+				<input type="radio" name="civilite" value="F" /> <label for="civilite">Mme</label>
 			</span>
 		</div>
 		
@@ -47,6 +47,18 @@
 		</div>
 		
 		<div>
+			<label for="comNaiss">Commune de naissance</label>
+			<input type="text" name="comNaiss" required="required"
+						autocomplete="off" />
+		</div>
+		
+		<div>	
+			<label for="codePNaiss">Code postal</label>
+			<input type="text" name="codePostNaiss" required="required" maxlength="5"
+						autocomplete="off" />
+		</div>
+		
+		<div>
 			<label for="telFixe">Téléphone fixe</label>
 			<input type="text" name="telFixe" pattern="[0][1-9][0-9]{8}"
 						required="required"  maxlength="10" autocomplete="on" />
@@ -62,18 +74,6 @@
 			<label for="email">E-mail</label>
 			<input type="text" name="email" required="required"
 						autocomplete="on" />
-		</div>
-		
-		<div>
-			<label for="comNaiss">Commune de naissance</label>
-			<input type="text" name="comNaiss" required="required"
-						autocomplete="off" />
-		</div>
-		
-		<div>	
-			<label for="codePNaiss">Code Postal</label>
-			<input type="text" name="codePostNaiss" required="required" maxlength="5"
-						autocomplete="off" />
 		</div>
 	</fieldset>
 	<fieldset>
@@ -102,7 +102,7 @@
 		</div>
 		
 		<div>	
-			<label for="codePostal">Code Postal</label>
+			<label for="codePostal">Code postal</label>
 			<input type="text" name="codePostal" required="required" maxlength="5"
 					autocomplete="off" />
 		</div>
@@ -125,7 +125,7 @@
 	<fieldset>
 		<legend>Autres</legend>
 		<div>
-			<label for="dateInscri">Date d'inscripton</label>
+			<label for="dateInscri">Date d'inscription</label>
 			<input type="text" name="dateInscri" class="datepicker"
 					required="required" autocomplete="off" />
 		</div>
