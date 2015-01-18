@@ -10,7 +10,7 @@
 
 <h1>Validation</h1>
 
-<form>
+<form action="#" method="post">
 	<fieldset>
 		<legend>Informations personnelles</legend>
 		<table>
@@ -159,7 +159,6 @@
 </form>
 </c:if>
 
-<form action="#" method="post">
 	<a href="../index.jsp"><input type="button" value="Annuler" /></a><input
 		type="submit" value="Valider" />
 </form>

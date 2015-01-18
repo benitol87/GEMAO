@@ -22,56 +22,56 @@
 		<div>
 			<label>Civilité</label>
 			<span>
+				<input type="radio" name="civilite" value="F" /> <label for="civilite">Mme</label>
 				<input type="radio" name="civilite" value="M"
 							checked="checked" /><label for="civilite">M.</label>
-				<input type="radio" name="civilite" value="F" /> <label for="civilite">Mme</label>
 			</span>
 		</div>
 		
 		<div>
-			<label for="nom">* Nom</label>
+			<label for="nom">* Nom </label>
 			<input type="text" name="nom" required="required"
 						autocomplete="off" />
 		</div>
 		
 		<div>
-			<label for="prenom">* Prénom</label>
+			<label for="prenom">* Prénom </label>
 			<input type="text" name="prenom" required="required"
 						autocomplete="off" />
 		</div>
 		
 		<div>
-			<label for="dateNaiss">* Date de naissance</label>
+			<label for="dateNaiss">* Date de naissance </label>
 			<input type="text" name="dateNaiss" class="datepicker"
 						required="required" autocomplete="off" />
 		</div>
 		
 		<div>
-			<label for="comNaiss">* Commune de naissance</label>
+			<label for="comNaiss">* Commune de naissance </label>
 			<input type="text" name="comNaiss" required="required"
 						autocomplete="off" />
 		</div>
 		
 		<div>	
-			<label for="codePNaiss">* Code postal</label>
+			<label for="codePNaiss">* Code postal </label>
 			<input type="text" name="codePostNaiss" required="required" maxlength="5"
 						autocomplete="off" />
 		</div>
 		
 		<div>
-			<label for="telFixe">* Téléphone fixe</label>
+			<label for="telFixe">* Téléphone fixe </label>
 			<input type="text" name="telFixe" pattern="[0][1-9][0-9]{8}"
 						required="required"  maxlength="10" autocomplete="on" />
 		</div>
 		
 		<div>
-			<label for="telPort">* Téléphone portable</label>
+			<label for="telPort">* Téléphone portable </label>
 			<input type="text" name="telPort" pattern="[0][1-9][0-9]{8}"
 						required="required" maxlength="10" autocomplete="on" />
 		</div>
 		
 		<div>
-			<label for="email">* E-mail</label>
+			<label for="email">* E-mail </label>
 			<input type="text" name="email" required="required"
 						autocomplete="on" />
 		</div>
@@ -79,30 +79,30 @@
 	<fieldset>
 		<legend>Adresse</legend>
 		<div>
-			<label for="num">* Numéro</label>
+			<label for="num">* N° </label>
 			<input type="text" name="num" required="required"
 					pattern="\d*" autocomplete="off" />
 		</div>
 		
 		<div>	
-			<label for="rue">* Rue</label>
+			<label for="rue">* Rue </label>
 			<input type="text" name="rue" required="required"
 					autocomplete="off" />
 		</div>
 		
 		<div>	
-			<label for="compl">Complémentaire</label>
+			<label for="compl">Complément d'adresse </label>
 			<input type="text" name="compl" autocomplete="off" />
 		</div>
 		
 		<div>	
-			<label for="commune">* Commune</label>
+			<label for="commune">* Commune </label>
 			<input type="text" name="commune" required="required"
 					autocomplete="off" />
 		</div>
 		
 		<div>	
-			<label for="codePostal">* Code postal</label>
+			<label for="codePostal">* Code postal </label>
 			<input type="text" name="codePostal" required="required" maxlength="5"
 					autocomplete="off" />
 		</div>
@@ -110,7 +110,7 @@
 	<fieldset>
 		<legend>Disciplines</legend>
 		<div>
-			<label>Cours</label>
+			<label>Cours </label>
 			<select size="1" name="disciplines1">
 				<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
 					<option value="${ discipline.getIdDiscipline() }">${ discipline.getNom() }</option>
@@ -125,12 +125,12 @@
 	<fieldset>
 		<legend>Informations complémentaires</legend>
 		<div>
-			<label for="dateInscri">* Date d'inscription</label>
+			<label for="dateInscri">* Date d'inscription </label>
 			<input type="text" name="dateInscri" class="datepicker"
 					required="required" autocomplete="off" />
 		</div>
 		<div>
-			<label>* Droit à l'image</label>
+			<label>* Droit à l'image </label>
 			<span>
 				<input type="radio" name="droitImage" value="true" checked="checked" />
 				<label for="droitImage">Oui</label>

@@ -8,7 +8,10 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<label>NOM : <c:out value="${personnel['nom']}" /></label>
+<h1>Ajout d'un personnel</h1>
+<p>La personne suivante a été ajoutée avec succès à la liste du personnel.</p>
+
+<label>Nom : <c:out value="${personnel['nom']}" /></label>
 <br>
 <label>Prénom : <c:out value="${personnel['prenom']}" /></label>
 <br>

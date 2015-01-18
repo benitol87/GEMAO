@@ -8,18 +8,16 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 <h1>Consultation d'un personnel</h1>
+<fieldset>
+<legend>Informations personnelles</legend>
 <table>
 	<tr>
-		<td><label for="nom">NOM : </label></td>
+		<td><label for="civilite">Civilité : </label></td>
+		<td><c:out value="${personnel['civilite']}" /></td>
+		<td><label for="nom">Nom : </label></td>
 		<td><c:out value="${personnel['nom']}" /></td>
 		<td><label for="prenom">Prénom : </label></td>
 		<td><c:out value="${personnel['prenom']}" /></td>
-	</tr>
-	<tr>
-		<td><label for="email">Email : </label></td>
-		<td><c:out value="${personnel['email']}" /></td>
-		<td><label for="civilite">Civilité : </label></td>
-		<td><c:out value="${personnel['civilite']}" /></td>
 	</tr>
 	<tr>
 		<td><label for="fixe">Téléphone fixe : </label></td>
@@ -27,12 +25,17 @@
 		<td><label for="portable">Téléphone portable : </label></td>
 		<td><c:out value="${personnel['telPort']}" /></td>
 	</tr>
+	<tr>
+		<td><label for="email">E-mail : </label></td>
+		<td><c:out value="${personnel['email']}" /></td>
+	</tr>
 </table>
+</fieldset>
 <fieldset>
 	<legend>Adresse</legend>
 	<table>
 		<tr>
-			<td><label for="num">Numéro : </label></td>
+			<td><label for="num">N° : </label></td>
 			<td><p>
 					<c:out value="${adresse['numRue']}" />
 				</p></td>
@@ -44,13 +47,13 @@
 				</p></td>
 		</tr>
 		<tr>
-			<td><label for="compl">Complémentaire : </label></td>
+			<td><label for="compl">Complément d'adresse : </label></td>
 			<td><p>
 					<c:out value="${adresse['infoCompl']}" />
 				</p></td>
 		</tr>
 		<tr>
-			<td><label for="codeP">Code Postal : </label></td>
+			<td><label for="codeP">Code postal : </label></td>
 			<td><p>
 					<c:out value="${commune['codePostal']}" />
 				</p></td>
@@ -64,7 +67,7 @@
 	</table>
 </fieldset>
 <fieldset>
-	<legend>Professionnel</legend>
+	<legend>Informations professionnelles</legend>
 	<table>
 		<tr>
 			<td><label for="contrat">Contrat : </label>
@@ -100,7 +103,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td><label for="fonction">Responsabilité :</label> <c:forEach
+			<td><label for="fonction">Responsabilité : </label> <c:forEach
 					items="${listeResponsabilite}" var="resp">
 					<tr>
 						<td> - <c:out value="${resp['libelle']}" /></td>

@@ -7,14 +7,14 @@
 	
 	<form method="post" action="Connexion">
             <fieldset>
-                <legend>Connexion</legend>
+                <legend>Merci de vous authentifier</legend>
 
-                <label for="nom">Identifiant<span class="requis">*</span></label>
+                <label for="nom"><span class="requis">*</span> Identifiant </label>
                 <input type="text" id="login" name="login" value="<c:out value="${personnel.login}"/>" size="20" maxlength="60" />
                 <span>${form.erreurs['login']}</span>
                 <br />
 
-                <label for="motdepasse">Mot de passe<span class="requis">*</span></label>
+                <label for="motdepasse"><span class="requis">*</span> Mot de passe </label>
                 <input type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
                 <span>${form.erreurs['motdepasse']}</span>
                 <br />

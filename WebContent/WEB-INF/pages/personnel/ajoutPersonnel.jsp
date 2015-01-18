@@ -17,77 +17,81 @@
 	<!-- 1er partie du formulaire -->
 	<h1>Ajout d'un personnel</h1>
 	<form id="ajoutp1" method="post" action="<c:url value="/personnel/AjoutPersonnel" />">
+		<fieldset>
+		<legend>Informations personnelles</legend>
 		<table>
-		<tr><td><input type="radio" name="civilite" value="Madame" checked>Madame</td>
-			<td><input type="radio" name="civilite" value="Monsieur">Monsieur</td>
+		<tr>
+			<td><input type="radio" name="civilite" value="Madame" checked>Mme</td>
+			<td><input type="radio" name="civilite" value="Monsieur">M.</td>
 		</tr>
 			<tr><td>
-					<label for="nom">*NOM:</label>
+					<label for="nom">* Nom </label>
 				</td><td>
 					<input type="text" name="nom" required/>
 				</td><td>
-					<label for="prenom">*Prénom:</label>
+					<label for="prenom">* Prénom </label>
 				</td><td>
 					<input type="text" name="prenom" required/>
 				</td>
 			</tr><tr>
 				<td>
-					<label for="date">*Date de naissance:</label>
+					<label for="date">* Date de naissance </label>
 				</td><td>
 					<input type="text" name="date" class="datepicker" required/>
 				</td><td>
-					<label for="email">*Adresse Email:</label>
+					<label for="email">* E-mail </label>
 				</td><td>
 					<input type="email" name="email" required/>
 				</td>
 			</tr><tr>
 				<td>
-					<label for="fixe">Téléphone fixe:</label>
+					<label for="fixe">Téléphone fixe </label>
 				</td><td>
-					<input type="text" name="fixe" pattern="[0][0-9]{9}" />
+					<input type="text" name="fixe" maxlength="10" pattern="[0][0-9]{9}" />
 				</td><td>
-					<label for="portable">Téléphone portable:</label>
+					<label for="portable">Téléphone portable </label>
 				</td><td>
-					<input type="text" name="portable" pattern="[0][0-9]{9}" />
+					<input type="text" name="portable" maxlength="10" pattern="[0][0-9]{9}" />
 				</td></tr>
 		</table>
+		</fieldset>
 		<p>
 		<fieldset>
 			<legend>Adresse</legend>
 			<table>
 				<tr><td>
-					<label for="numRue">*N°:</label>
+					<label for="numRue">* N° </label>
 				</td><td>
 					<input type="text" name="numRue" size="2" required/>
 				</td></tr>
 				<tr><td>
-					<label for="nomRue">*Nom:</label>
+					<label for="nomRue">* Rue </label>
 				</td><td>
 					<input type="text" name="nomRue" required/>
 				</td></tr>
 				<tr><td>
-					<label for="infoComplem">Complément :</label>
+					<label for="infoComplem">Complément d'adresse</label>
 				</td><td>
 					<input type="text" name="infoComplem" />
 				</td></tr>
 				<tr><td>
-					<label for="ville">Ville:</label>
+					<label for="ville">Commune </label>
 				</td><td>
 					<input type="text" name="ville" />
 				</td></tr>
 				<tr><td>
-					<label for="code">Code postal:</label>
+					<label for="code">Code postal </label>
 				</td><td>
-					<input type="text" name="code" />
+					<input type="text" maxlength="5" name="code" />
 				</td></tr>
 			</table>
 		</fieldset>
 		<fieldset>
-			<legend>Professionnel</legend>
+			<legend>Informations professionnelles</legend>
 		<table>
 			<tbody id="diplomes">
 				<tr>
-					<td><label for="diplome">Diplome:</label></td>
+					<td><label for="diplome">Diplôme </label></td>
 					<td><input type="text" name="diplome" /></td>
 				</tr>
 			</tbody>
@@ -98,7 +102,7 @@
 			</div>
 			<table>
 				<tbody id="diplomes">
-				<label for="fonction">*Fonction:</label>
+				<label for="fonction">* Fonction </label>
 				</td><td>
 				<input type="text" name="fonction1" required />
 				</td></tr>

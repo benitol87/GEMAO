@@ -18,17 +18,17 @@
 	<form id="ajoutp2" method="post" action="<c:url value="/personnel/AjoutPersonnel2" />">
 		<table>
 			<tr><td>
-				<label for="nom">NOM:</label>
+				<label for="nom">Nom : </label>
 			</td><td>
 				<label for="nomResult"><c:out value="${personnel['nom']}" /></label>
 			</td></td>
 			</td><td>
-				<label for="prenom">Prénom:</label>
+				<label for="prenom">Prénom : </label>
 			</td><td>
 				<label for="prenomResult"><c:out value="${personnel['prenom']}" /></label>
 			</td></tr>
 			<tr><td>
-				<label for="type">Type de contrat:</label>
+				<label for="type">Type de contrat : </label>
 			</td><td>
 				<select name="type">
 					<option>CDD</option>
@@ -38,14 +38,14 @@
 				</select>
 			</td></tr>
 			<tr><td>
-				<label for="datedeb">Date de début:</label>
+				<label for="datedeb">Date de début : </label>
 			</td><td>
 				<input type="text" name="datedeb" class="datepicker"/>
 			</td></tr>
 			<tr><td>
-				<label for="duree">Durée:</label>
+				<label for="duree">Durée : </label>
 			</td><td>
-				<input type="text" name="duree" size="2"/> mois
+				<input type="number" name="duree" min="1" value="1"/> mois
 			</td></tr>
 		</table>
 		<br/>
