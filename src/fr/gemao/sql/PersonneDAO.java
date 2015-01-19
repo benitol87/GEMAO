@@ -204,21 +204,17 @@ public class PersonneDAO extends IDAO<Personne> {
 				+ " and idCommuneNaiss = ? and dateNaissance = ?"
 				+ " and sexe = ?;";
 		Personne verif = null;
-		Integer idAdresse = null;
 		Integer idCommuneNaiss = null;
 		Civilite civilite = personne.getCivilite();
 		try {
 
 			connexion = factory.getConnection();
-			if(personne.getAdresse() != null){
-				idAdresse = personne.getAdresse().getIdAdresse();
-			}
-			if(personne.getCommuneNaiss() != null){
+			if(personne.getCommuneNaiss()!= null){
 				idCommuneNaiss = personne.getCommuneNaiss().getIdCommune();
 			}
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false, personne.getNom(), personne.getPrenom(),
-					idAdresse, idCommuneNaiss, civilite==null?null:civilite.getSexe());
+					idCommuneNaiss, personne.getDateNaissance(), civilite==null?null:civilite.getSexe());
 			result = requete.executeQuery();
 
 			if (result.first()) {
