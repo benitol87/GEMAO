@@ -9,11 +9,11 @@ function retireDiscipline(){
 
 function ajoutDiscipline(){
 	compteur++;
-	var tr = document.getElementById("disciplines").lastElementChild.cloneNode(true);
-	tr.id=compteur;
-	document.getElementById("disciplines").appendChild(tr);
-	document.getElementById(compteur).firstElementChild.firstElementChild.name="dis"+compteur;
-	document.getElementById(compteur).lastElementChild.firstElementChild.name="clas"+compteur;	
+	var div = document.getElementById("disciplines").lastElementChild.cloneNode(true);
+	div.id="select"+compteur;
+	document.getElementById("disciplines").appendChild(div);
+	document.getElementById("select"+compteur).firstChild.nextSibling.nextSibling.nextSibling.name="disciplines"+compteur;
+	/*<!--document.getElementById(compteur).lastElementChild.firstElementChild.name="clas"+compteur;	-->*/
 }
 
 $(function() {
