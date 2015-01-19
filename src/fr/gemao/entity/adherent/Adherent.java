@@ -223,16 +223,30 @@ public class Adherent extends Personne {
 	public boolean removeDiscipline(Discipline discipline){
 		return disciplines.remove(discipline);
 	}
+	
+	public boolean addAllDisciplines(List<Discipline> list){
+		boolean rs = true;
+		for (Discipline discipline : list) {
+			rs = disciplines.add(discipline);
+			if(!rs){
+				rs = false;
+			}
+		}
+		return rs;
+	}
+
+	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Adherent [motif=" + motif + ", responsable=" + responsable
-				+ ", droitImage=" + droitImage + ", dateEntree=" + dateEntree
-				+ ", dateSortie=" + dateSortie + ", qf=" + qf + ", cotisation="
-				+ cotisation + ", disciplines=" + disciplines + "]";
+		return "Adherent [" + super.toString() + ", motif=" + motif
+				+ ", responsable=" + responsable + ", droitImage=" + droitImage
+				+ ", dateEntree=" + dateEntree + ", dateSortie=" + dateSortie
+				+ ", qf=" + qf + ", cotisation=" + cotisation
+				+ ", disciplines=" + disciplines + "]";
 	}
 
 	/* (non-Javadoc)
