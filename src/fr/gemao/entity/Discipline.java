@@ -36,16 +36,22 @@ public class Discipline implements Serializable {
 		this.nom = nom;
 	}
 
+	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((idDiscipline == null) ? 0 : idDiscipline.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -55,11 +61,6 @@ public class Discipline implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Discipline other = (Discipline) obj;
-		if (idDiscipline == null) {
-			if (other.idDiscipline != null)
-				return false;
-		} else if (!idDiscipline.equals(other.idDiscipline))
-			return false;
 		if (nom == null) {
 			if (other.nom != null)
 				return false;
