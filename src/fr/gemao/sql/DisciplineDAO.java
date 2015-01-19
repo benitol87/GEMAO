@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import fr.gemao.entity.Discipline;
 import fr.gemao.sql.exception.DAOException;
@@ -21,13 +24,13 @@ public class DisciplineDAO extends IDAO<Discipline> {
 	@Override
 	public Discipline create(Discipline obj) {
 		if (obj == null) {
-			throw new NullPointerException("La discipline ne doit pas être null");
+			throw new NullPointerException(
+					"La discipline ne doit pas être null");
 		}
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO discipline(idDiscpline,nom) "
-				+ "VALUES (?);";
+		String sql = "INSERT INTO discipline(idDiscpline,nom) " + "VALUES (?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
@@ -114,8 +117,8 @@ public class DisciplineDAO extends IDAO<Discipline> {
 
 		return liste;
 	}
-	
-	public List<Discipline> getDisciplineParAdherent(long idAdherent){
+
+	public List<Discipline> getDisciplineParAdherent(long idAdherent) {
 		List<Discipline> list = new ArrayList<>();
 		Discipline discipline = null;
 		Connection connexion = null;
@@ -124,59 +127,103 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		String sql = "SELECT * from discipline d inner join suit s on d.idDiscipline=s.idDiscipline WHERE idAdherent = ?;";
 		try {
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, idAdherent);
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, idAdherent);
 			result = requete.executeQuery();
-			
-			while(result.next()){
+
+			while (result.next()) {
 				discipline = this.map(result);
 				list.add(discipline);
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
-		}finally{
+		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 		return list;
 	}
-	
+
 	/**
 	 * Associe une discipline et un adhérent.
+	 * 
 	 * @param idDiscipline
 	 * @param idAdherent
 	 */
-	public void addDiscplineParAdherent(int idDiscipline, long idAdherent){
+	public void addDiscplineParAdherent(int idDiscipline, long idAdherent) {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		String sql = "INSERT INTO suit(idAdherent, idDiscipline) values ( ?, ?);";
 		try {
 			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, idAdherent, idDiscipline);
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, idAdherent, idDiscipline);
 			int status = requete.executeUpdate();
-			if(status == 0 ){
+			if (status == 0) {
 				throw new DAOException(
 						"Échec de la création de suit, aucune ligne ajoutée dans la table.");
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
-		} finally{
+		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(requete, connexion);
 		}
 	}
+
+	public void deleteDisciplineParAdherent(int idDiscipline, long adherent) {
+		Statement stat = null;
+		Connection connect = null;
+		try {
+			connect = factory.getConnection();
+			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			stat.execute("DELETE FROM suit WHERE idAdherent = "
+					+ adherent + " idDiscipline = " + idDiscipline + ";");
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(stat, connect);
+		}
+	}
 	
+	public void deleteAllDisciplinesParAdherent(List<Discipline> listDisciplines, long idAdherent){
+		for (Discipline d : listDisciplines) {
+			deleteDisciplineParAdherent(d.getIdDiscipline(), idAdherent);
+		}
+	}
+
+	public void updateAllDisciplineParAdherent(List<Discipline> listDiscipline,
+			long idAdherent) {
+		List<Discipline> dejaInscrit = this
+				.getDisciplineParAdherent(idAdherent);
+		// Permet de supprimer les doublons.
+		Set<Discipline> set = new HashSet<>(listDiscipline);
+		listDiscipline = new ArrayList<>(set);
+		for (Discipline d : listDiscipline) {
+			if (!dejaInscrit.contains(d)) {
+				this.addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
+				dejaInscrit.remove(d);
+			}
+		}
+		deleteAllDisciplinesParAdherent(dejaInscrit, idAdherent);
+	}
+
 	/**
 	 * Associe une liste de disciplines à une adhérent.
+	 * 
 	 * @param listDiscipline
 	 * @param idAdherent
 	 */
-	public void addAllDisciplineParAdherent(List<Discipline> listDiscipline, long idAdherent){
-		for(Discipline d : listDiscipline){
+	public void addAllDisciplineParAdherent(List<Discipline> listDiscipline,
+			long idAdherent) {
+		for (Discipline d : listDiscipline) {
 			addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
 		}
 	}
 
 	@Override
 	protected Discipline map(ResultSet result) throws SQLException {
-		return new Discipline(NumberUtil.getResultInteger(result, "idDiscipline"), result.getString("nom"));
+		return new Discipline(NumberUtil.getResultInteger(result,
+				"idDiscipline"), result.getString("nom"));
 	}
 
 }
