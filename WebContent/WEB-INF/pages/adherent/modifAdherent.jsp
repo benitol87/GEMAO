@@ -7,6 +7,9 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
+
+<script src="<c:url value="/js/jquery.min.js"/>"></script>
+<script src="<c:url value="/js/modifierAdherent.js"/>"></script>
 <h1>Modification d'un adhérent</h1>
 <form action="#" method="post">
 	<fieldset>
@@ -69,11 +72,22 @@
 	</fieldset>
 	<fieldset>
 		<legend>Disciplines</legend>
-		<div id="disciplines" class='align-center'>
-			<select size="1" name="dis1">
-				<option value="1">Test 1</option>
-				<option value="2">Test 2</option>
-			</select>
+		<div id="disciplines">
+			<c:forEach var="disciplines" items="${adherent.getDisciplines() }">
+				<div>
+					<label>Cours : </label>
+					<input name="${disciplines.getNom()}" value="${disciplines.getNom()}" disabled size=16> 
+					<input type="button" value="Supprimer" class="supprimerDiscipline">
+				</div>
+			</c:forEach>
+			<div id="select1">
+				<label>Cours : </label>
+				<select size="1" name="disciplines1">
+					<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
+						<option value="${ discipline.getIdDiscipline() }">${ discipline.getNom() }</option>
+					</c:forEach>		
+				</select>
+			</div>
 		</div>
 		<div class='align-center'>
 			<input type="button" value="Retirer" id="retireDiscipline" />
