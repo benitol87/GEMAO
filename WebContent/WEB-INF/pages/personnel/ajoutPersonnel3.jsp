@@ -9,13 +9,26 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <h1>Ajout d'un personnel</h1>
-<p>La personne suivante a été ajoutée avec succès à la liste du personnel.</p>
 
-<label>Nom : <c:out value="${personnel['nom']}" /></label>
-<br>
-<label>Prénom : <c:out value="${personnel['prenom']}" /></label>
-<br>
-<label>Login : <c:out value="${personnel['login']}" /></label>
-<br>
-<label>Mot de passe : <c:out value="${personnel['password']}" /></label>
+<p class='offset'>La personne suivante a été ajoutée avec succès à la liste du personnel.</p>
+
+<table>
+	<tr>
+		<td>Nom</td>
+		<td><c:out value="${personnel['nom']}" /></td>
+	</tr>
+	<tr>
+		<td>Prénom</td>
+		<td><c:out value="${personnel['prenom']}" /></td>
+	</tr>
+	<tr>
+		<td>Login</td>
+		<td><c:out value="${personnel['login']}" /></td>
+	</tr>
+	<tr>
+		<td>Mot de passe</td>
+		<td><c:out value="${personnel['password']}" /></td>
+	</tr>
+</table>
+
 <c:import url="/inc/footer.inc.jsp" />

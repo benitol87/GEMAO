@@ -116,16 +116,12 @@ input, select, textarea{
 	border-radius: 7px;
 }
 
-input[type=number]{
-	text-align: left;
-}
-
 input[type=checkbox]{
 	margin-left: 10px;
 	margin-right: 10px;
 }
 
-input[type=text], input[type=password], input[type=number]{
+input[type=text], input[type=password], input[type=number], input[type=email]{
 	padding-left: 10px;
 }
 

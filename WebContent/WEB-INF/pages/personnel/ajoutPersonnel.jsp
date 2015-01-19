@@ -50,7 +50,7 @@
 		
 		<div>
 			<label for="portable" class='required'>Téléphone portable </label>
-			<input type="text" name="portable" maxlength="10" required pattern="[0] [1-9][0-9]{8}"  autocomplete="on"/>
+			<input type="text" name="portable" maxlength="10" required pattern="[0][1-9][0-9]{8}"  autocomplete="on"/>
 		</div>
 		
 		<div>
