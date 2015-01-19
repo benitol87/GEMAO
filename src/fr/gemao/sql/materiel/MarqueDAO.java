@@ -31,7 +31,7 @@ public class MarqueDAO extends IDAO<Marque> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		try {
-			String sql = "INSERT INTO MARQUE(idMarque, nom)"
+			String sql = "INSERT INTO marque(idMarque, nom)"
 					+ "VALUES (?, ?);";
 			requete = factory.getConnection().prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);

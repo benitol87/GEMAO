@@ -84,6 +84,7 @@ fieldset div>label{
 	display: inline-block;
 	width: 45%;
 	text-align: right;
+	margin-right: 10px;
 }
 
 fieldset, table{
@@ -111,16 +112,17 @@ header a{
 	float: right;
 }
 
-input[type=text]{
-	padding-right: 10px;
-}
-
 input, select, textarea{
 	border-radius: 7px;
 }
 
 input[type=number]{
-	text-align: right;
+	text-align: left;
+}
+
+input[type=checkbox]{
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 input[type=text], input[type=password], input[type=number]{
@@ -130,6 +132,10 @@ input[type=text], input[type=password], input[type=number]{
 section{
 	margin-left: auto;
 	margin-right: auto;
+}
+
+select{
+	max-width: 200px;
 }
 
 table{
