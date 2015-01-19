@@ -8,12 +8,12 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<h1>Liste des Materiel</h1>
+<h1>Liste des matériels</h1>
 
 <table>
 	<tr>
-		<th>Designation</th>
-		<th>Categorie</th>
+		<th>Désignation</th>
+		<th>Catégorie</th>
 		<th>Quantité</th>
 		<th></th>
 		<th></th>
@@ -38,9 +38,6 @@
 					<td>
 				</c:otherwise>
 			</c:choose>
-
-
-
 		</tr>
 	</c:forEach>
 </table>

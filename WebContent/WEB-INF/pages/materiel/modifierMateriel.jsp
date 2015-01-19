@@ -7,6 +7,7 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
+<h1>Modification d'un matériel</h1>
 <form name="modifierMaterielInstrument" action="#" method="post">
 	<fieldset>
 		<table>

@@ -7,94 +7,106 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<form name="consulterMateriel" action="#" method="post">
-<fieldset>
+<h1>Consultation d'un matériel</h1>
+<table class='table-col-2'>
+	<caption>Informations générales</caption>
+	<tr>
+		<td>Catégorie : </td> 
+		<td>${sessionScope.sessionObjectMateriel.getCategorie().getLibelleCat()}</td>
+
+	</tr>
+	
+	<tr>
+			<td>Valeur d'achat : </td> 
+			<td>
+				${sessionScope.sessionObjectMateriel.getValeurAchat()}
+				<span class="euro"></span>
+			</td>
+			
+	</tr>
+	<tr>
+			<td>Date d'achat : </td> 
+			<td>${sessionScope.sessionObjectMateriel.getDateAchat()}</td>
+	</tr>
+	
+	<tr>
+		<td>Valeur de réaprovisionnement : </td>
+		<td>
+			${sessionScope.sessionObjectMateriel.getValeurReap()}
+			<span class="euro"></span>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>Fournisseur : </td>
+		<td>${sessionScope.sessionObjectMateriel.getFournisseur().getNomFournisseur()}</td>
+	</tr>
+</table>
+
+<table>
+	<caption>Informations détaillées</caption>
+	<tr>
+		<td>Désignation : </td> 
+		<td>${sessionScope.sessionObjectMateriel.getDesignation().getLibelleDesignation()}</td>
+	</tr>
+	
+	<tr>
+		<td>Type : </td>
+		<td>${sessionScope.sessionObjectMateriel.getTypeMat()}</td>
+	</tr>
+	<tr>
+		<td>Etat : </td>
+		<td>${sessionScope.sessionObjectMateriel.getEtat().getLibelleEtat()}</td>
+	</tr>
+
+	<tr>
+		<td>Marque : </td>
+		<td>${sessionScope.sessionObjectMateriel.getMarque().getNomMarque()}</td>
+	</tr>
+	
+	<!-- Ajouter situation -->
+	
+	<tr>
+		<td>Quantité : </td>
+		<td>${sessionScope.sessionObjectMateriel.getQuantite()}</td>
+	</tr>
+	<tr>
+		<td>Prix unitaire : </td>
+		<td>${sessionScope.sessionObjectMateriel.getValeurAchat()}</td>
+	</tr>
+	<tr>
+		<td>Numéro de série : </td>
+		<td>${sessionScope.sessionObjectMateriel.getNumSerie()}</td>
+	</tr>
+
+	<tr>
+		<td>Déplaçable : </td>
+		<td>
+			<c:choose>
+				<c:when
+					test="${sessionScope.sessionObjectMateriel.isDeplacable()==true}">
+					oui
+				</c:when>
+				<c:otherwise>
+					non
+				</c:otherwise>
+			</c:choose>
+		</td>
+	</tr>
+</table>
+
+<c:if test="${sessionScope.sessionObjectMateriel.getObservation() != null}">
 	<table>
-		<tr>
-			<td>
-				<label for="categorie">Catégorie : </label> 
-				<label for="categorieResult">${sessionScope.sessionObjectMateriel.getCategorie().getLibelleCat()}</label>
-			</td>
-
-			<td>
-				<label for="designation">Désignation : </label> 
-				<label for="designationResult">${sessionScope.sessionObjectMateriel.getDesignation().getLibelleDesignation()}</label>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label for="valeurAch">Valeur d'achat : </label> 
-				<label for="valeurAchResult">${sessionScope.sessionObjectMateriel.getValeurAchat()}€</label>
-			</td>
-
-			<td>
-				<label for="dateAch">Date d'achat : </label> 
-				<label for="dateAchResult">${sessionScope.sessionObjectMateriel.getDateAchat()}</label> 
-			</td>
-		</tr>
+		<caption>Observations</caption>
+			<tr>
+				<td>${sessionScope.sessionObjectMateriel.getObservation()}</td>
+			</tr>
 	</table>
-</fieldset>
-<fieldset>
-	<table>
-		<tr>
-			<td><label for="type">Type : </label></td>
-			<td><label for="typeResult">${sessionScope.sessionObjectMateriel.getTypeMat()}</label></td>
-		</tr>
-		<tr>
-			<!--% Etat à empêcher de s'améliorer -->
-			<td><label for="etat">Etat : </label></td>
-			<td><label for="etatResult">${sessionScope.sessionObjectMateriel.getEtat().getLibelleEtat()}</label>
-		</tr>
+</c:if>	
 
-		<tr>
-			<td><label for="marque">Marque : </label></td>
-			<td><label for="marqueResult">${sessionScope.sessionObjectMateriel.getMarque().getNomMarque()}</label></td>
-		</tr>
-		<tr>
-			<td><label for="quantite">Quantité : </label></td>
-			<td><label for="quantiteResult">${sessionScope.sessionObjectMateriel.getQuantite()}</label></td>
-		</tr>
-		<tr>
-			<td><label for="prixU">Prix unitaire : </label></td>
-			<td><label for="prixU">${sessionScope.sessionObjectMateriel.getValeurAchat()}</label></td>
-		</tr>
-		<tr>
-			<td><label for="numSerieResult">Numéro de série : </label></td>
-			<td><label for="numSerieResult">${sessionScope.sessionObjectMateriel.getNumSerie()}</label></td>
-		</tr>
-		<tr>
-			<td><label for="fournisseurResult">Fournisseur : </label></td>
-			<td><label for="fournisseurResult">${sessionScope.sessionObjectMateriel.getFournisseur().getNomFournisseur()}</label></td>
-		</tr>
-
-		<tr>
-			<td><label for="valRea">Valeur de
-					réaprovisionnement : </label></td>
-			<td><label for="valReaResult">${sessionScope.sessionObjectMateriel.getValeurReap()}</label></td>
-		</tr>
-		<tr>
-			<td><label for="deplacable">Déplaçable : </label></td>
-			<td><c:choose>
-					<c:when
-						test="${sessionScope.sessionObjectMateriel.isDeplacable()==true}">
-						<label for="deplacable">oui</label>
-					</c:when>
-					<c:otherwise>
-						<label for="deplacable">non</label>
-					</c:otherwise>
-				</c:choose></td>
-		</tr>
-
-		<tr>
-			<td><label for="observation">Observations : </label> 
-			<label for="observation">${sessionScope.sessionObjectMateriel.getObservation()}</label></td>
-		</tr>
-	</table>	
-</fieldset>
-	<table class='align-center no-border'>
-		<tr>
-			<td><input type="button" name="annuler" value="Retour" onClick="javascript:window.history.go(-1)" /></td>
-		</tr>
-	</table>
-</form>
+<div class='align-center'>
+	<a href="ListerMateriel"><input type="button" value="Retour" />
+	</a>
+</div>
+	
 <c:import url="/inc/footer.inc.jsp" />
