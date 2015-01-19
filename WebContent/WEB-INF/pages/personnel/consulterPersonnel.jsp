@@ -1,70 +1,62 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="titre" value="Consultation d'un personnel" scope="request" />
+<c:set var="titre" value="Consultation d'un membre du personnel" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-<h1>Consultation d'un personnel</h1>
+<h1>Consultation d'un membre du personnel</h1>
 <fieldset>
-<legend>Informations personnelles</legend>
-<table>
-	<tr>
-		<td><label for="civilite">Civilité : </label></td>
-		<td><c:out value="${personnel['civilite']}" /></td>
-		<td><label for="nom">Nom : </label></td>
-		<td><c:out value="${personnel['nom']}" /></td>
-		<td><label for="prenom">Prénom : </label></td>
-		<td><c:out value="${personnel['prenom']}" /></td>
-	</tr>
-	<tr>
-		<td><label for="fixe">Téléphone fixe : </label></td>
-		<td><c:out value="${personnel['telFixe']}" /></td>
-		<td><label for="portable">Téléphone portable : </label></td>
-		<td><c:out value="${personnel['telPort']}" /></td>
-	</tr>
-	<tr>
-		<td><label for="email">E-mail : </label></td>
-		<td><c:out value="${personnel['email']}" /></td>
-	</tr>
-</table>
+	<legend>Informations personnelles</legend>
+	<div>
+	<label for="civilite">Civilité : </label>
+	<c:out value="${personnel['civilite']}" />
+	</div>
+	<div>
+	<label for="nom">Nom : </label>
+	<c:out value="${personnel['nom']}" />
+	</div>
+	<div>
+	<label for="prenom">Prénom : </label>
+	<c:out value="${personnel['prenom']}" />
+	</div>
+	<div>
+	<label for="fixe">Téléphone fixe : </label>
+	<c:out value="${personnel['telFixe']}" />
+	</div>
+	<div>
+	<label for="portable">Téléphone portable : </label>
+	<c:out value="${personnel['telPort']}" />
+	</div>
+	<div>
+	<label for="email">E-mail : </label>
+	<c:out value="${personnel['email']}" />
+	</div>
 </fieldset>
 <fieldset>
 	<legend>Adresse</legend>
-	<table>
-		<tr>
-			<td><label for="num">N° : </label></td>
-			<td><p>
-					<c:out value="${adresse['numRue']}" />
-				</p></td>
-		</tr>
-		<tr>
-			<td><label for="rue">Rue : </label></td>
-			<td><p>
-					<c:out value="${adresse['nomRue']}" />
-				</p></td>
-		</tr>
-		<tr>
-			<td><label for="compl">Complément d'adresse : </label></td>
-			<td><p>
-					<c:out value="${adresse['infoCompl']}" />
-				</p></td>
-		</tr>
-		<tr>
-			<td><label for="codeP">Code postal : </label></td>
-			<td><p>
-					<c:out value="${commune['codePostal']}" />
-				</p></td>
-		</tr>
-		<tr>
-			<td><label for="commune">Commune : </label></td>
-			<td><p>
-					<c:out value="${commune['nomCommune']}" />
-				</p></td>
-		</tr>
-	</table>
+	<div>
+	<label for="num">N° : </label>
+	<c:out value="${adresse['numRue']}" />
+	</div>
+	<div>
+	<label for="rue">Rue : </label>
+	<c:out value="${adresse['nomRue']}" />
+	</div>
+	<div>
+	<label for="compl">Complément d'adresse : </label>
+	<c:out value="${adresse['infoCompl']}" />
+	</div>
+	<div>
+	<label for="codeP">Code postal : </label>
+	<c:out value="${commune['codePostal']}" />
+	</div>
+	<div>
+	<label for="commune">Commune : </label>
+	<c:out value="${commune['nomCommune']}" />
+	</div>
 </fieldset>
 <fieldset>
 	<legend>Informations professionnelles</legend>

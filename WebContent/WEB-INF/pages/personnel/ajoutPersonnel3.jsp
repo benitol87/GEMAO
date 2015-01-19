@@ -1,14 +1,14 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="titre" value="Personnel" scope="request" />
+<c:set var="titre" value="Ajout d'un membre du personnel - Résultat" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<h1>Ajout d'un personnel</h1>
+<h1>Ajout d'un membre du personnel</h1>
 
 <p class='offset'>La personne suivante a été ajoutée avec succès à la liste du personnel.</p>
 
