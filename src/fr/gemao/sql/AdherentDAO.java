@@ -63,7 +63,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 
 			if (obj.getDisciplines() != null) {
 				DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
-				disciplineDAO.addAllDisciplineParAdherent(obj.getDisciplines(),
+				disciplineDAO.updateAllDisciplineParAdherent(obj.getDisciplines(),
 						obj.getIdPersonne());
 			}
 
@@ -93,11 +93,11 @@ public class AdherentDAO extends IDAO<Adherent> {
 		String sql = "UPDATE adherent SET idMotifSortie = ?, idResponsable = ?, droitImage = ?, "
 				+ "dateEntree = ?, dateSortie = ?, qf = ?, cotisation = ? "
 				+ "WHERE idPersonne = ?;";
-		PersonneDAO personneDAO = factory.getPersonneDAO();
+
 		Integer idMotif = null;
 		Long idResponsable = null;
 		try {
-			obj = (Adherent) personneDAO.create(obj);
+
 			if (obj.getResponsable() != null) {
 				idResponsable = obj.getResponsable().getIdResponsable();
 			}
@@ -111,6 +111,12 @@ public class AdherentDAO extends IDAO<Adherent> {
 					DateUtil.toSqlDate(obj.getDateSortie()), obj.getQf(), obj
 							.getCotisation(), obj.getIdPersonne());
 			requete.executeUpdate();
+			
+			if (obj.getDisciplines() != null) {
+				DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
+				disciplineDAO.addAllDisciplineParAdherent(obj.getDisciplines(),
+						obj.getIdPersonne());
+			}
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -118,7 +124,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
-		return this.get(obj.getIdPersonne());
+		return obj;
 	}
 
 	@Override
