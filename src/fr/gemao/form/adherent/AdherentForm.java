@@ -388,6 +388,30 @@ public class AdherentForm {
 		}
 	}
 	
+	/**
+	 * Methode qui récupère la liste des displine
+	 * @param request
+	 */
+	public List<Discipline> lireDisciplines(HttpServletRequest request){
+		String str = null;
+		Discipline disc;
+		RecupererDisciplineCtrl recupererDisciplineCtrl = new RecupererDisciplineCtrl();
+		List<Discipline> listDisciplines = new ArrayList<>();
+		int i = 1;
+		
+		do {
+			str = getValeurChamp(request, CHAMP_DISCIPLINES+i);
+			i++;
+			
+			if (str != null && !str.equals("")) {
+				disc = recupererDisciplineCtrl.recupererDiscipline(Integer.parseInt(str));
+				listDisciplines.add(disc);
+			}
+			
+		} while(str != null);
+		return listDisciplines;
+	}
+	
 	public void testerAdherent(HttpServletRequest request) {
 
 		//Récupération des champs du formulaire
@@ -405,21 +429,7 @@ public class AdherentForm {
 		codePostal = Integer.parseInt(getValeurChamp(request, CHAMP_CODEPOSTAL));
 		nomCommune = getValeurChamp(request, CHAMP_COMMUNE);
 		droitImage = getValeurChamp(request, CHAMP_DROITIMAGE);
-		String str = null;
-		Discipline disc;
-		RecupererDisciplineCtrl recupererDisciplineCtrl = new RecupererDisciplineCtrl();
-		int i = 1;
-		
-		do {
-			str = getValeurChamp(request, CHAMP_DISCIPLINES+i);
-			i++;
-			
-			if (str != null && !str.equals("")) {
-				disc = recupererDisciplineCtrl.recupererDiscipline(Integer.parseInt(str));
-				disciplines.add(disc);
-			}
-			
-		} while(str != null);
+		disciplines = lireDisciplines(request);
 		
 		/*str = null;
 		Classe clas;
