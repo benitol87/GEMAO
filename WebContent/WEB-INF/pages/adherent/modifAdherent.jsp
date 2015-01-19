@@ -140,6 +140,9 @@
 			</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
+		<a href="ListeAdherents">
+			<input type="button" value="Retour" />
+		</a>
 		<input type="submit" value="Valider" />
 	</fieldset>
 </form>

@@ -18,7 +18,6 @@
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
 								<li><a href="<c:url value="/adherent/AjoutAdherent"/>">Ajouter</a></li>
-								<li><a href="<c:url value="/adherent/ModifierAdherent"/>">Modifier</a></li>
 								<li><a href="<c:url value="/adherent/ListeAdherents"/>">Lister</a></li>
 							</ul>
 						</div></li>

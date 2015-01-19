@@ -11,16 +11,19 @@
 <h1>Liste des adhérents</h1>
 
 <table>
+	<tr>
+		<th>Nom</th>
+		<th>Prénom</th>
+		<th>Actions</th>
+	</tr>
 	<c:forEach items="${listeAdherents}" var="adh">
 		<tr>
 			<td><c:out value="${adh['nom']}" /></td>
 			<td><c:out value="${adh['prenom']}" /></td>
-			<c:if test="${lien == '/adherent/ConsulteAdherent' || lien == null}">
-				<td><a href="ConsulteAdherent?id=<c:out value="${adh['idPersonne']}" />"><input type="button" value="Détails" /></a><td>
-			</c:if>
-			<c:if test="${lien == '/adherent/ModifierAdherent'}">
-				<td><a href="ModifierAdherent?id=<c:out value="${adh['idPersonne']}" />"><input type="button" value="Modifier" /></a><td>
-			</c:if>
+			<td>
+				<a class="icon icon-search" href="ConsulteAdherent?id=<c:out value="${adh['idPersonne']}" />" title='Afficher les détails'></a>
+				<a class="icon icon-pen" href="ModifierAdherent?id=<c:out value="${adh['idPersonne']}" />" title='Modifier les informations'></a>
+			</td>
 		</tr>
 	</c:forEach>
 </table>
