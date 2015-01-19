@@ -2,7 +2,7 @@ var compteur=1;
 
 function retireDiscipline(){
 	if(compteur>1){
-		document.getElementById("disciplines").deleteRow(-1);
+		document.getElementById("disciplines").removeChild(document.getElementById("disciplines").lastChild);
 		compteur--;
 	}
 }
