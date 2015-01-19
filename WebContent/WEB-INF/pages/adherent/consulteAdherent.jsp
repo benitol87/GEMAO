@@ -125,9 +125,13 @@
 </c:if>
 
 
-<div class='align-center'>
-	<a href="ListeAdherents"><input type="button" value="Retour" />
+<p class='align-center'>
+	<a href="ListeAdherents">
+		<input type="button" value="Retour" />
 	</a>
-</div>
+	<a href="ModifierAdherent<c:out value='?id=${adherent.idPersonne }'/>">
+		<input type="button" value="Modifier" />
+	</a>
+</p>
 
 <c:import url="/inc/footer.inc.jsp" />

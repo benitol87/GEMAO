@@ -7,7 +7,7 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-	<h2>Modification des informations</h2>
+	<h1>Modification des informations</h1>
 	<form id="modifp" method="post" action="#">
 		<fieldset>
 		<legend>Informations personnelles</legend>
@@ -25,7 +25,7 @@
 			<tr>
 				<td>
 					<label for="email">E-mail : </label>
-					<input type="mail" name="email" value="${sessionScope.personnel['email']}"/>
+					<input type="email" name="email" value="${sessionScope.personnel['email']}"/>
 				</td>
 				<td>
 					<label for="civilite">Civilité : </label>

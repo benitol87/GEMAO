@@ -127,9 +127,9 @@
 		</div>
 	</fieldset>
 	
-	<fieldset class='align-center'>
+	<fieldset>
 		<legend>Observations</legend>
-		<div>
+		<div class='align-center'>
 			<textarea name="observation" rows="5" cols="50" placeholder="Ajoutez ici toute information que vous jugez nécessaire de mentionner." >${sessionScope.INFOS['observation']}</textarea>
 		</div>
 	</fieldset>

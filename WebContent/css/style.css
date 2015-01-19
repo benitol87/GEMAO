@@ -152,7 +152,7 @@ tr {
 @media (max-width:768px)
 {
 	table, fieldset{
-		width : 350px;
+		width : 500px;
 	}
 }
 
