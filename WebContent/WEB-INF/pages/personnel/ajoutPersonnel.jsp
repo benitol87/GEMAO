@@ -15,108 +15,99 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/css/datepicker.css"/>" />
 	<!-- 1er partie du formulaire -->
-	<h1>Ajout d'un personnel</h1>
-	<form id="ajoutp1" method="post" action="<c:url value="/personnel/AjoutPersonnel" />">
-		<fieldset>
+<h1>Ajout d'un personnel</h1>
+<form id="ajoutp1" method="post" action="<c:url value="/personnel/AjoutPersonnel" />">
+	<fieldset>
 		<legend>Informations personnelles</legend>
-		<table>
-		<tr>
-			<td><input type="radio" name="civilite" value="Madame" checked>Mme</td>
-			<td><input type="radio" name="civilite" value="Monsieur">M.</td>
-		</tr>
-			<tr><td>
-					<label for="nom">* Nom </label>
-				</td><td>
-					<input type="text" name="nom" required/>
-				</td><td>
-					<label for="prenom">* Prénom </label>
-				</td><td>
-					<input type="text" name="prenom" required/>
-				</td>
-			</tr><tr>
-				<td>
-					<label for="date">* Date de naissance </label>
-				</td><td>
-					<input type="text" name="date" class="datepicker" required/>
-				</td><td>
-					<label for="email">* E-mail </label>
-				</td><td>
-					<input type="email" name="email" required/>
-				</td>
-			</tr><tr>
-				<td>
-					<label for="fixe">Téléphone fixe </label>
-				</td><td>
-					<input type="text" name="fixe" maxlength="10" pattern="[0][0-9]{9}" />
-				</td><td>
-					<label for="portable">Téléphone portable </label>
-				</td><td>
-					<input type="text" name="portable" maxlength="10" pattern="[0][0-9]{9}" />
-				</td></tr>
-		</table>
-		</fieldset>
-		<p>
-		<fieldset>
-			<legend>Adresse</legend>
-			<table>
-				<tr><td>
-					<label for="numRue">* N° </label>
-				</td><td>
-					<input type="text" name="numRue" size="2" required/>
-				</td></tr>
-				<tr><td>
-					<label for="nomRue">* Rue </label>
-				</td><td>
-					<input type="text" name="nomRue" required/>
-				</td></tr>
-				<tr><td>
-					<label for="infoComplem">Complément d'adresse</label>
-				</td><td>
-					<input type="text" name="infoComplem" />
-				</td></tr>
-				<tr><td>
-					<label for="ville">Commune </label>
-				</td><td>
-					<input type="text" name="ville" />
-				</td></tr>
-				<tr><td>
-					<label for="code">Code postal </label>
-				</td><td>
-					<input type="text" maxlength="5" name="code" />
-				</td></tr>
-			</table>
-		</fieldset>
-		<fieldset>
-			<legend>Informations professionnelles</legend>
-		<table>
-			<tbody id="diplomes">
-				<tr>
-					<td><label for="diplome">Diplôme </label></td>
-					<td><input type="text" name="diplome" /></td>
-				</tr>
-			</tbody>
-		</table>
+		
 		<div>
-				<input type="button" value="+" id="ajoutDiplome"/>
-				<input type="button" value="-" id="retireDiplome"/>
-			</div>
-			<table>
-				<tbody id="diplomes">
-				<label for="fonction">* Fonction </label>
-				</td><td>
-				<input type="text" name="fonction1" required />
-				</td></tr>
-				<tr><td>
-				<input type="button" value="+" id="ajoutDiplome"/>
-				<input type="button" value="-" id="retireDiplome"/>
-				</td></tr>
-				</tbody>
-			</table>
-		</fieldset></p>
-		<br/>
-			<input type="reset" value="Annuler"/>
-			<input type="submit" value="Valider"/>
-	</form>
+			<label>Civilité</label>
+			<span>
+				<input type="radio" name="civilite" value="Madame"> <label for="civilite">Mme</label>
+				<input type="radio" name="civilite" value="Monsieur" checked> <label for="civilite">M.</label>
+			</span>
+		</div>
+		
+		<div>
+			<label for="nom" class='required'>Nom </label>
+			<input type="text" name="nom" required autocomplete="off"/>
+		</div>
+		
+		<div>
+			<label for="prenom" class='required'>Prénom </label>
+			<input type="text" name="prenom" required autocomplete="off"/>
+		</div>
+		
+		<div>
+			<label for="date" class='required'>Date de naissance </label>
+			<input type="text" name="date" class="datepicker" required autocomplete="off"/>
+		</div>
+					
+		<div>
+			<label for="fixe" class='required'>Téléphone fixe </label>
+			<input type="text" name="fixe" maxlength="10" pattern="[0][1-9][0-9]{8}" required autocomplete="on"/>
+		</div>
+		
+		<div>
+			<label for="portable" class='required'>Téléphone portable </label>
+			<input type="text" name="portable" maxlength="10" required pattern="[0] [1-9][0-9]{8}"  autocomplete="on"/>
+		</div>
+		
+		<div>
+			<label for="email" class='required'>E-mail </label>
+			<input type="email" name="email" required autocomplete="on"/>
 	
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Adresse</legend>
+		
+		<div>
+			<label for="numRue" class='required'>N° </label>
+			<input type="text" name="numRue" required pattern="\d*" autocomplete="off"/>
+		</div>
+		
+		<div>
+			<label for="nomRue" class='required'>Rue </label>
+			<input type="text" name="nomRue" required autocomplete="off"/>
+		</div>
+		
+		<div>
+			<label for="infoComplem">Complément d'adresse</label>
+			<input type="text" name="infoComplem" autocomplete="off" />
+		</div>
+		
+		<div>
+			<label for="ville" class='required'>Commune </label>
+			<input type="text" name="ville" required autocomplete="off" />
+		</div>
+		
+		<div>
+			<label for="code" class='required'>Code postal </label>
+			<input type="text" maxlength="5" name="code" required autocomplete="off" />
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Informations professionnelles</legend>
+		<div>
+			<label for="diplome">Diplôme </label>
+			<input type="text" name="diplome" />
+			<input type="button" value="+" id="ajoutDiplome"/>
+			<input type="button" value="-" id="retireDiplome"/>
+		</div>
+
+		<div>
+			<label for="fonction" class='required'>Fonction </label>
+			<input type="text" name="fonction1" required />
+			<input type="button" value="+" id="ajoutDiplome"/>
+			<input type="button" value="-" id="retireDiplome"/>
+		</div>
+	</fieldset>
+	<fieldset class='align-center no-border'>
+		<input type="submit" value="Suivant"/>
+	</fieldset>
+</form>
 	
 <c:import url="/inc/footer.inc.jsp" />

@@ -33,7 +33,7 @@
 		<td><c:out value="${adherent.communeNaiss['nomCommune']}" /></td>
 	</tr>
 	<tr>
-		<td>Code Postal : </td>
+		<td>Code postal : </td>
 		<td><c:out value="${adherent.communeNaiss['codePostal']}" /></td>
 	</tr>
 	<tr>
@@ -52,7 +52,7 @@
 <table  class='table-col-2'>
 	<caption>Adresse</caption>
 	<tr>
-		<td>Numéro : </td>
+		<td>N° : </td>
 		<td><c:out value="${adherent.adresse['numRue']}" /></td>
 	</tr>
 	<tr>
@@ -60,7 +60,7 @@
 		<td><c:out value="${adherent.adresse['nomRue']}" /></td>
 	</tr>
 	<tr>
-		<td>Complémentaire : </td>
+		<td>Complément d'adresse : </td>
 		<td><c:out value="${adherent.adresse['infoCompl']}" /></td>
 	</tr>
 	<tr>
@@ -68,7 +68,7 @@
 		<td><c:out value="${adherent.adresse.commune['nomCommune']}" /></td>
 	</tr>
 	<tr>
-		<td>Code Postal : </td>
+		<td>Code postal : </td>
 		<td><c:out value="${adherent.adresse.commune['codePostal']}" /></td>
 	</tr>
 </table>
@@ -81,9 +81,9 @@
 	</tbody>
 </table>
 <table class='table-col-2'>
-	<caption>Informations supplémentaires</caption>
+	<caption>Informations complémentaires</caption>
 	<tr>
-		<td>Date d'inscripton : </td>
+		<td>Date d'inscription : </td>
 		<td><c:out value="${dateInscription}" /></td>
 	</tr>
 	<tr>
