@@ -63,6 +63,7 @@ public class Adherent extends Personne {
 		if(disciplines == null){
 			disciplines = new ArrayList<>();
 		}
+		this.disciplines = disciplines;
 	}
 
 	/**
@@ -90,6 +91,7 @@ public class Adherent extends Personne {
 		if(disciplines == null){
 			disciplines = new ArrayList<>();
 		}
+		this.disciplines = disciplines;
 	}
 
 	/**

@@ -75,9 +75,11 @@
 <table class='table-col-2'>
 	<caption>Disciplines</caption>
 	<tbody id="disciplines">
-		<tr>
-			<td>** A remplir **</td>
-		</tr>
+		<c:forEach var="discipline" items="${adherent.getDisciplines()}">
+			<tr>
+				<td class='align-center'>${ discipline.getNom() }</td>
+			</tr>
+		</c:forEach>	
 	</tbody>
 </table>
 <table class='table-col-2'>
