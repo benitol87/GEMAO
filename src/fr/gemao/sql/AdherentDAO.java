@@ -63,7 +63,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 
 			if (obj.getDisciplines() != null) {
 				DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
-				disciplineDAO.updateAllDisciplineParAdherent(obj.getDisciplines(),
+				disciplineDAO.addAllDisciplineParAdherent(obj.getDisciplines(),
 						obj.getIdPersonne());
 			}
 
@@ -114,7 +114,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 			
 			if (obj.getDisciplines() != null) {
 				DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
-				disciplineDAO.addAllDisciplineParAdherent(obj.getDisciplines(),
+				disciplineDAO.updateAllDisciplineParAdherent(obj.getDisciplines(),
 						obj.getIdPersonne());
 			}
 

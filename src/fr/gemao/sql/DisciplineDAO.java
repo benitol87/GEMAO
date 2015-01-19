@@ -177,7 +177,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
 			stat.execute("DELETE FROM suit WHERE idAdherent = "
-					+ adherent + " idDiscipline = " + idDiscipline + ";");
+					+ adherent + " and idDiscipline = " + idDiscipline + ";");
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {
@@ -198,6 +198,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		// Permet de supprimer les doublons.
 		Set<Discipline> set = new HashSet<>(listDiscipline);
 		listDiscipline = new ArrayList<>(set);
+		System.out.println("set " + listDiscipline);
 		for (Discipline d : listDiscipline) {
 			if (!dejaInscrit.contains(d)) {
 				this.addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
