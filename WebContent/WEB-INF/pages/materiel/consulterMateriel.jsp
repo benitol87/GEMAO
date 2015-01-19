@@ -43,7 +43,7 @@
 	</tr>
 </table>
 
-<table>
+<table class='table-col-2'>
 	<caption>Informations détaillées</caption>
 	<tr>
 		<td>Désignation : </td> 
@@ -104,9 +104,9 @@
 	</table>
 </c:if>	
 
-<div class='align-center'>
+<p class='align-center'>
 	<a href="ListerMateriel"><input type="button" value="Retour" />
 	</a>
-</div>
+</p>
 	
 <c:import url="/inc/footer.inc.jsp" />
