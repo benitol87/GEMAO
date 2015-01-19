@@ -30,6 +30,17 @@
 	content: '*';
 }
 
+.table-col-2 td{
+	width: 45%;
+}
+
+.text-label{
+	display: inline-block;
+	width: 45%;
+	text-align: right;
+	margin-right: 10px;
+}
+
 #boutonMenu{
 	margin-left: 15%;
 }
@@ -39,6 +50,10 @@
 	background-color: #34495e;
 	padding: 5px;
 	margin-top: -5px;
+}
+
+#formParametre input{
+	width : 100px;
 }
 
 #logo{
@@ -96,11 +111,19 @@ header a{
 	float: right;
 }
 
+input[type=text]{
+	padding-right: 10px;
+}
+
 input, select, textarea{
 	border-radius: 7px;
 }
 
-input[type=text], input[type=password]{
+input[type=number]{
+	text-align: right;
+}
+
+input[type=text], input[type=password], input[type=number]{
 	padding-left: 10px;
 }
 
@@ -150,8 +173,4 @@ tr {
 	table, fieldset{
 		width : 800px;
 	}
-}
-
-#formParametre input{
-	width : 100px;
 }

@@ -10,7 +10,7 @@
 
 <h1>Consultation d'un adhérent</h1>
 
-<table>
+<table class='table-col-2'>
 	<caption>Informations personnelles</caption>
 	<tr>
 		<td>Civilité :</td>
@@ -49,7 +49,7 @@
 		<td><c:out value="${adherent['email']}" /></td>
 	</tr>
 </table>
-<table>
+<table  class='table-col-2'>
 	<caption>Adresse</caption>
 	<tr>
 		<td>Numéro : </td>
@@ -72,7 +72,7 @@
 		<td><c:out value="${adherent.adresse.commune['codePostal']}" /></td>
 	</tr>
 </table>
-<table>
+<table class='table-col-2'>
 	<caption>Disciplines</caption>
 	<tbody id="disciplines">
 		<tr>
@@ -80,15 +80,14 @@
 		</tr>
 	</tbody>
 </table>
-
-<table>
+<table class='table-col-2'>
 	<caption>Informations supplémentaires</caption>
 	<tr>
 		<td>Date d'inscripton : </td>
 		<td><c:out value="${dateInscription}" /></td>
 	</tr>
 	<tr>
-		<td>Cotisation : </td>
+		<td>Montant de la cotisation : </td>
 		<td><c:out value="${adherent['cotisation']}" /></td>
 	</tr>
 	<tr>
@@ -101,9 +100,8 @@
 		</td>
 	</tr>
 </table>
-
 <c:if test="${adherent.responsable!=null}">
-<table>
+<table class='table-col-2'>
 	<caption>Responsable</caption>
 	<tr>
 		<td>Nom : </td>
