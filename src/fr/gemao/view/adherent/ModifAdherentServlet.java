@@ -114,7 +114,7 @@ public class ModifAdherentServlet extends HttpServlet {
 		
 		AdherentForm adherentForm = new AdherentForm();
 		List<Discipline> listDiscipline = adherentForm.lireDisciplines(request);
-		adherent.addAllDisciplines(listDiscipline);
+		adherent.setDisciplines(listDiscipline);
 
 		String droitImage = request.getParameter("droitImage");
 		adherent.setDroitImage(Boolean.parseBoolean(droitImage));

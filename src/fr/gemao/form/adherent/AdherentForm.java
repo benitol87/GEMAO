@@ -409,6 +409,18 @@ public class AdherentForm {
 			}
 			
 		} while(str != null);
+		
+		i = 1;
+		do {
+			str = getValeurChamp(request, CHAMP_DISCIPLINES+"Anciennes"+i);
+			i++;
+			
+			if (str != null && !str.equals("")) {
+				disc = recupererDisciplineCtrl.recupererDiscipline(str);
+				listDisciplines.add(disc);
+			}
+		} while(str != null);
+		System.out.println(listDisciplines);
 		return listDisciplines;
 	}
 	

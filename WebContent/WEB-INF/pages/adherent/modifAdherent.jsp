@@ -73,16 +73,18 @@
 	<fieldset>
 		<legend>Disciplines</legend>
 		<div id="disciplines">
+			<c:set var="i" value="1"></c:set>
 			<c:forEach var="disciplines" items="${adherent.getDisciplines() }">
 				<div>
 					<label>Cours : </label>
-					<input name="${disciplines.getNom()}" value="${disciplines.getNom()}" disabled size=16> 
+					<input name='<c:out value="disciplinesAnciennes${ i }"></c:out>' value="${disciplines.getNom()}" readonly> 
 					<input type="button" value="Supprimer" class="supprimerDiscipline">
 				</div>
+				<c:set var="i" value="${ i + 1}"></c:set>
 			</c:forEach>
 			<div id="select1">
 				<label>Cours : </label>
-				<select size="1" name="disciplines1">
+				<select size="1" name="disciplines1" id="disciplines1">
 					<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
 						<option value="${ discipline.getIdDiscipline() }">${ discipline.getNom() }</option>
 					</c:forEach>		

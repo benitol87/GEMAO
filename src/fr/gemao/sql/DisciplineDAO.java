@@ -117,6 +117,30 @@ public class DisciplineDAO extends IDAO<Discipline> {
 
 		return liste;
 	}
+	
+	public Discipline get(String nom) {
+		Discipline discipline = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM discipline WHERE nom = ?;";
+		try {
+
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, nom);
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				discipline = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		return discipline;
+	}
 
 	public List<Discipline> getDisciplineParAdherent(long idAdherent) {
 		List<Discipline> list = new ArrayList<>();
@@ -198,12 +222,11 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		// Permet de supprimer les doublons.
 		Set<Discipline> set = new HashSet<>(listDiscipline);
 		listDiscipline = new ArrayList<>(set);
-		System.out.println("set " + listDiscipline);
 		for (Discipline d : listDiscipline) {
 			if (!dejaInscrit.contains(d)) {
 				this.addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
-				dejaInscrit.remove(d);
 			}
+			dejaInscrit.remove(d);
 		}
 		deleteAllDisciplinesParAdherent(dejaInscrit, idAdherent);
 	}

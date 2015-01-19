@@ -6,6 +6,7 @@ function retireDiscipline(){
 		compteur--;
 	}else if(compteur == 1){
 		document.getElementById("select1").style.display="none";
+		document.getElementById("disciplines1").setAttribute("disabled", "disabled");
 		compteur --;
 	}
 }
@@ -13,6 +14,7 @@ function retireDiscipline(){
 function ajoutDiscipline(){
 	if(compteur == 0){
 		document.getElementById("select1").style.display="block";
+		document.getElementById("disciplines1").removeAttribute("disabled");
 		compteur++;
 	}else{
 		compteur++;
@@ -30,6 +32,8 @@ $(function() {
 	ajouteEvent(bouton1, 'click', ajoutDiscipline, false);
 	ajouteEvent(bouton2, 'click', retireDiscipline, false);
 	document.getElementById("select1").style.display="none";
+	
+	document.getElementById("disciplines1").setAttribute("disabled", "disabled");
 	
 	$(".supprimerDiscipline").click(function (e) {
 		var div = e.target.parentNode;

@@ -13,6 +13,12 @@ public class RecupererDisciplineCtrl {
 		DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
 		return disciplineDAO.get(idDiscipline);
 	}
+	
+	public Discipline recupererDiscipline(String nom){
+		DAOFactory factory = DAOFactory.getInstance();
+		DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
+		return disciplineDAO.get(nom);
+	}
 
 	public List<Discipline> recupererAllDiscipline(){
 		List<Discipline> list;
