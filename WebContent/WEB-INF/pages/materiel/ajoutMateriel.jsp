@@ -1,14 +1,22 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <c:set var="titre" value="Materiel" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
+<script src="<c:url value="/js/datepicker.js"/>"></script>
+<script src="<c:url value="/js/jquery.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
+<script src="<c:url value="/js/datepicker.js"/>"></script>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/css/datepicker.css"/>" />
+
+<h1>Ajout d'un matériel</h1>
 <form id="ajouterMateriel" action="#" method="post">
 	<fieldset>
+		<legend>Informations générales</legend>
 		<div>
 			<label for="categorie">Catégorie</label>
 			 <select name="categorie" id="categorie">
@@ -20,14 +28,24 @@
 			<input type="button" name="ajoutCat" id="ajoutCat" value="+" />
 			<input type="text" name="nomCat" id="nomCat" class="hidden"/>
 		</div>
+		
 		<div>
 			<label for="ValeurAch">Valeur d'achat</label> 
 			<input type="text" name="ValeurAch" value="${sessionScope.INFOS['valeurAchat']}"/> 
+			<span class="euro"></span>
 		</div>
+		
 		<div>
 			<label for="dateAch">Date d'achat</label> 
-			<input type="date" name="dateAch" class="datePicker" value="${sessionScope.INFOS['dateAchat']}"/> 
+			<input type="date" name="dateAch" class="datepicker" value="${sessionScope.INFOS['dateAchat']}"/> 
 		</div>
+		
+		<div>
+			<label for="valRea">Valeur de réaprovisionnement</label>
+			<input type="text" name="valRea" value="${sessionScope.INFOS['valeurReap']}"/> 
+			<span class="euro"></span>
+		</div>
+		
 		<div>
 			<label for="fournisseur">Fournisseur</label> 
 			<select name="fournisseur" id="fournisseur">
@@ -41,6 +59,7 @@
 	</fieldset>
 
 	<fieldset>
+		<legend>Informations détaillées</legend>
 		<div>
 			<label for="designation">Désignation</label>
 				
@@ -68,6 +87,7 @@
 			<input type="button" name="ajoutEtat" id="ajoutEtat" value="+" />
 			<input type="text" name="nomEtat" id="nomEtat" class="hidden"/>
 		</div>
+		
 		<div>
 			<label for="marque">Marque</label>
 			<select name="marque" id="marque">
@@ -78,47 +98,48 @@
 			<input type="button" name="ajoutMarque" id="ajoutMarque" value="+" />
 			<input type="text" name="nomMarque" id="nomMarque" class="hidden"/>
 		</div>
+		
 		<div>
 			<label for="situation">Situation</label>
 			<select name="situation" id="situation">
+					<option value="dispo">Disponible</option>
+					<option value="loue">En location</option>
 			</select>
 		</div>
 		<div>
 			<label for="quantite">Quantité</label>
-			<input type="text" name="quantite" id="quantite" value="${sessionScope.INFOS['quantite']}"/>
+			<input type="number" min="1" value="1" name="quantite" id="quantite" value="${sessionScope.INFOS['quantite']}"/>
 		</div>
+		
 		<div>
 			<label for="numSerie">Numéro de série</label>
 			<input type="text" name="numSerie" value="${sessionScope.INFOS['numSerie']}"/>
 		</div>
+		
 		<div>
 			<label for="deplacable">Déplaçable</label>
 			<input type="checkbox" name="deplacable" value="on" />
 		</div>
-	</fieldset>
-		
-	<fieldset>
-		<legend>Ouvert à la location</legend>
+	
 		<div>
-			<label for="valRea">Valeur de réaprovisionnement : </label>
-			<input type="text" name="valRea" value="${sessionScope.INFOS['valeurReap']}"/>
-		</div>
-		<div>
-			<label>Ouvert à la location :</label>
+			<label>Ouvert à la location</label>
 			<input type="checkbox" name="louable" value="on" />
 		</div>
 	</fieldset>
+	
 	<fieldset class='align-center'>
-		<label for="observation">Observations : </label>
+		<legend>Observations</legend>
 		<div>
-			<textarea name="observation" rows="5" cols="50" >${sessionScope.INFOS['observation']}</textarea>
+			<textarea name="observation" rows="5" cols="50" placeholder="Ajoutez ici toute information que vous jugez nécessaire de mentionner." >${sessionScope.INFOS['observation']}</textarea>
 		</div>
 	</fieldset>
+	
 	<fieldset class='align-center no-border'>
 		<div>
 			<input type="submit" name="valider" value="Valider" />
 		</div>
 	</fieldset>
 </form>
+
 <script src="<c:url value="/js/ajouterMateriel.js"/>" ></script>
 <c:import url="/inc/footer.inc.jsp" />
