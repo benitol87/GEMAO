@@ -68,8 +68,6 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		String nomrue = request.getParameter("nomRue");
 		String codePostal = request.getParameter("code");
 		String ville = request.getParameter("ville");
-		String diplome = request.getParameter("diplome");
-		String fonction = request.getParameter("fonction");
 		String civilite = request.getParameter("civilite");
 		String infoComplementaire = request.getParameter("infoComplem");
 

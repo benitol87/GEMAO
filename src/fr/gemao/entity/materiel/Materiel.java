@@ -40,7 +40,11 @@ public class Materiel {
 	 * @param deplacable : si le matériel est déplaçable ou non
 	 * @param observation : l'observation
 	 * @param quantite : la quantité
+<<<<<<< HEAD
 	 * @param louable : si le matériel est ouvert à la location ou non
+=======
+	 * @param est louable
+>>>>>>> branch 'master' of https://github.com/benitol87/GEMAO.git
 	 */
 	public Materiel(Long idMateriel, Etat etat, Categorie categorie,
 			Marque marque, Designation designation,Fournisseur fournisseur, String typeMat, String numSerie,
@@ -83,6 +87,7 @@ public class Materiel {
 				m.getObservation(),
 				m.getQuantite(),
 				m.isLouable());
+
 	}
 	
 	public Fournisseur getFournisseur() {
@@ -205,6 +210,10 @@ public class Materiel {
 		this.louable = louable;
 	}
 
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Materiel [idMateriel=" + idMateriel + ", etat=" + etat
@@ -320,4 +329,6 @@ public class Materiel {
 			return false;
 		return true;
 	}
+
+
 }
