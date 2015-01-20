@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/css/datepicker.css"/>" />
 
-	<h2>Location d'instrument</h2>
+	<h1>Location d'instrument</h1>
 
 	<c:choose >
 		<c:when test="${empty resultat}">
@@ -24,31 +24,35 @@
 					<legend>Instrument</legend>
 					<c:choose>
 						<c:when test="${!empty requestScope.listeCategorie}">
-							<label for="categorie">Catégorie :</label>
-							<select name="categorie">
-								<c:forEach items="${requestScope.listeCategorie}" var="categorie">
-									<option value="<c:out value="${categorie['idCategorie']}" />"><c:out
-											value="${categorie['libelleCat']}" /></option>
-								</c:forEach>
-							</select>
+							<div>
+								<label for="categorie">Catégorie :</label>
+								<select name="categorie">
+									<c:forEach items="${requestScope.listeCategorie}" var="categorie">
+										<option value="<c:out value="${categorie['idCategorie']}" />"><c:out
+												value="${categorie['libelleCat']}" /></option>
+									</c:forEach>
+								</select>
+							</div>
 						</c:when>
 						<c:otherwise>
-							<p>Catégorie : <c:out value="${nomCategorie}" /></p>
+							<div><span class='text-label'>Catégorie : </span><c:out value="${nomCategorie}" /></div>
 						</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
 						<c:when test="${!empty requestScope.listeDesignation}">
-							<label for="designation">Désignation :</label>
-							<select name="designation">
-							<c:forEach items="${requestScope.listeDesignation}" var="designation">
-								<option value="<c:out value="${designation['idDesignation']}" />"><c:out
-										value="${designation['libelleDesignation']}" /></option>
-							</c:forEach>
-							</select>
+							<div>
+								<label for="designation">Désignation :</label>
+								<select name="designation">
+								<c:forEach items="${requestScope.listeDesignation}" var="designation">
+									<option value="<c:out value="${designation['idDesignation']}" />"><c:out
+											value="${designation['libelleDesignation']}" /></option>
+								</c:forEach>
+								</select>
+							</div>
 						</c:when>
 						<c:when test="${!empty requestScope.nomDesignation}">
-							<p>Désignation : <c:out value="${nomDesignation}" /></p>
+							<div><span class='text-label'>Désignation : </span><c:out value="${nomDesignation}" /></div>
 						</c:when>
 					</c:choose>
 					
@@ -56,14 +60,16 @@
 				<c:if test="${!empty requestScope.listeAdherent}">
 					<fieldset>
 						<legend>Adhérent</legend>
-						<label for="adherent">Nom :</label>
-						<select name="adherent">
-							<c:forEach items="${requestScope.listeAdherent}" var="adherent">
-								<option value="<c:out value="${adherent['idPersonne']}" />">
-									<c:out value="${adherent['nom']} ${adherent['prenom']}" />
-								</option>
-							</c:forEach>
-						</select>
+						<div>
+							<label for="adherent">Nom :</label>
+							<select name="adherent">
+								<c:forEach items="${requestScope.listeAdherent}" var="adherent">
+									<option value="<c:out value="${adherent['idPersonne']}" />">
+										<c:out value="${adherent['nom']} ${adherent['prenom']}" />
+									</option>
+								</c:forEach>
+							</select>
+						</div>
 					</fieldset>
 					
 					<fieldset>
@@ -80,9 +86,9 @@
 						</div>
 					</fieldset>
 				</c:if>
-				
-				<input type="submit" value="Valider" />
-				
+				<fieldset class='align-center no-border'>
+					<input type="submit" value="Valider" />
+				</fieldset>
 			</form>
 		</c:when>
 		<c:otherwise>

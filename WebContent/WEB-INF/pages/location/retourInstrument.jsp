@@ -8,44 +8,62 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 	<form id="retour" method="post" action="#">
-			<h2>Retour d'un instrument</h2>	
+		<h1>Enregistrer le retour d'un instrument</h1>	
 		<fieldset>
 			<legend>Instrument</legend>
-			<label for="categorie">Catégorie :</label>
-			<label for="categorieResult">Cuivre</label>
-			<br/><br/>
-			<label for="designation">Désignation :</label>
-			<label for="designationResult">Trompette01 :</label>
-			<br/><br/>
-			<label for="etat">Etat :</label>
-			<label for="etatResult">Neuf</label>
+			<div>
+				<label for="categorie">Catégorie :</label>
+				<span>** A remplir automatiquement **</span>
+			</div>
+			<div>
+				<label for="designation">Désignation :</label>
+				<span>** A remplir automatiquement **</span>
+			</div>
+			<div>
+				<label for="etat">Etat :</label>
+				<span>** A remplir automatiquement **</span>
+			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Adhérent</legend>
-			<label for="adherentNom">Nom :</label>
-			<label for="adherentNomResult">Chirac</label>
-			<br/><br/>
-			<label for="adherentPrenom">Prenom :</label>
-			<label for="adherentPrenomResult">Patrick</label>
-			<br/><br/>
-			<label for="reparation">Réparation : </label>
-			<label for="reparationOui"> 
-			<input type="radio" checked="checked" name="reparation" value="oui"/> oui</label>
-			<label for="reparationNon"> 
-			<input type="radio" checked="checked" name="reparation" value="non"/> non</label>
+			<div>
+				<label for="adherentNom">Nom :</label>
+				<span>** A remplir automatiquement **</span>
+			</div>
+			<div>
+				<label for="adherentPrenom">Prenom :</label>
+				<span>** A remplir automatiquement **</span>
+			</div>
+			<div>
+				<label for="reparation">Réparation : </label>
+				<span>
+					<label for="reparationOui">Oui</label>
+					<input type="radio" checked="checked" name="reparation" value="oui"/>
+					<label for="reparationNon">Non</label>
+					<input type="radio" checked="checked" name="reparation" value="non"/>
+				</span>
+			</div>
+			Nom réparateur,date réparation?
 		</fieldset>
-		<br/><br/>
-		<label for="datedeb">Date d'emprunt :</label>
-		<label for="datedebResult">01/02/2003</label>
-		<br/>
-		<label for="datefin">Date de retour :</label>
-		<label for="datefinResult">01/02/2004</label>
-		<br/>
-		<label for="dateRetourEffectif">Date de retour effectif :</label>
-		<label for="dateRetourEffectifResult">02/02/2004</label>
-		<br/><br/>
-		<input type="reset" value="Annuler"/>
-		<input type="submit" value="Valider"/>
+		<fieldset>
+			<legend>Dates</legend>
+			<div>
+				<label for="datedeb">Date d'emprunt :</label>
+				<span>** A remplir automatiquement **</span>
+			</div>
+			<div>
+				<label for="datefin">Date limite de retour :</label>
+				<span>** A remplir automatiquement **</span>
+			</div>
+			<div>
+				<label for="dateRetourEffectif">Date de retour :</label>
+				<span>** A remplir automatiquement (input avec date du jour par défaut) **</span>
+			</div>
+		</fieldset>
+		<fieldset class='align-center no-border'>
+			<input type="reset" value="Annuler"/>
+			<input type="submit" value="Valider"/>
+		</fieldset>
 	</form>
 
 <c:import url="/inc/footer.inc.jsp" />
