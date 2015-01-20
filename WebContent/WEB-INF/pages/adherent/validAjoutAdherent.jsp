@@ -60,10 +60,12 @@
 			<span class='text-label'>Rue : </span>
 			<c:out value="${adresse['nomRue']}" />
 		</div>
-		<div>
-			<span class='text-label'>Complémentaire : </span>
-			<c:out value="${adresse['infoCompl']}" />
-		</div>
+		<c:if test="${adresse['infoCompl'] != null}">
+			<div>
+				<span class='text-label'>Complément d'adresse : </span>
+				<c:out value="${adresse['infoCompl']}" />
+			</div>
+		</c:if>
 		<div>
 			<span class='text-label'>Commune : </span>
 			<c:out value="${commune['nomCommune']}" />
@@ -88,6 +90,7 @@
 		<div>
 			<span class='text-label'>Montant de la cotisation : </span>
 			<c:out value="${adherent['cotisation']}" />
+			<span class="euro"></span>
 		</div>
 		<div>
 			<span class='text-label'>Droit à l'image : </span><c:choose>

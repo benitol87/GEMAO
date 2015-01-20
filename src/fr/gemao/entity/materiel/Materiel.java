@@ -18,6 +18,7 @@ public class Materiel {
 	private boolean deplacable;
 	private String observation;
 	private int quantite;
+	private boolean louable;
 	
 	public Materiel() {
 		this.idMateriel = null;
@@ -39,11 +40,12 @@ public class Materiel {
 	 * @param deplacable : si le matériel est déplaçable ou non
 	 * @param observation : l'observation
 	 * @param quantite : la quantité
+	 * @param louable : si le matériel est ouvert à la location ou non
 	 */
 	public Materiel(Long idMateriel, Etat etat, Categorie categorie,
 			Marque marque, Designation designation,Fournisseur fournisseur, String typeMat, String numSerie,
 			Date dateAchat, float valeurAchat, float valeurReap,
-			boolean deplacable, String observation, int quantite) {
+			boolean deplacable, String observation, int quantite, boolean louable) {
 		this.idMateriel = idMateriel;
 		this.etat = etat;
 		this.categorie = categorie;
@@ -58,6 +60,7 @@ public class Materiel {
 		this.deplacable = deplacable;
 		this.observation = observation;
 		this.quantite = quantite;
+		this.louable = louable;
 	}
 
 	/**
@@ -78,7 +81,8 @@ public class Materiel {
 				m.getValeurReap(),
 				m.isDeplacable(),
 				m.getObservation(),
-				m.getQuantite());
+				m.getQuantite(),
+				m.isLouable());
 	}
 	
 	public Fournisseur getFournisseur() {
@@ -140,6 +144,10 @@ public class Materiel {
 	public int getQuantite() {
 		return quantite;
 	}
+	
+	public boolean isLouable(){
+		return louable;
+	}
 
 	public void setIdMateriel(Long idMateriel) {
 		this.idMateriel = idMateriel;
@@ -192,6 +200,10 @@ public class Materiel {
 	public void setQuantite(int quantite) {
 		this.quantite = quantite;
 	}
+	
+	public void setLouable(boolean louable){
+		this.louable = louable;
+	}
 
 	@Override
 	public String toString() {
@@ -202,7 +214,8 @@ public class Materiel {
 				+ numSerie + ", dateAchat=" + dateAchat + ", valeurAchat="
 				+ valeurAchat + ", valeurReap=" + valeurReap + ", deplacable="
 				+ deplacable + ", observation=" + observation + ", quantite="
-				+ quantite + "]";
+				+ quantite + ", louable="
+						+ louable + "]";
 	}
 
 	@Override
@@ -221,6 +234,7 @@ public class Materiel {
 				+ ((fournisseur == null) ? 0 : fournisseur.hashCode());
 		result = prime * result
 				+ ((idMateriel == null) ? 0 : idMateriel.hashCode());
+		result = prime * result + (louable ? 1231 : 1237);
 		result = prime * result + ((marque == null) ? 0 : marque.hashCode());
 		result = prime * result
 				+ ((numSerie == null) ? 0 : numSerie.hashCode());
@@ -274,6 +288,8 @@ public class Materiel {
 				return false;
 		} else if (!idMateriel.equals(other.idMateriel))
 			return false;
+		if (louable != other.louable)
+			return false;
 		if (marque == null) {
 			if (other.marque != null)
 				return false;
@@ -304,8 +320,4 @@ public class Materiel {
 			return false;
 		return true;
 	}
-
-	
-
-
 }

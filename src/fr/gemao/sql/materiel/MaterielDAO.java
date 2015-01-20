@@ -228,7 +228,8 @@ public class MaterielDAO extends IDAO<Materiel> {
 				result.getFloat("ValeurReapprov"),
 				result.getBoolean("deplaceConcert"),
 				result.getString("observation"),
-				result.getInt("quantite"));
+				result.getInt("quantite"),
+				result.getBoolean("louable"));
 	}
 
 }

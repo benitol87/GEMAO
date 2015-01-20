@@ -14,20 +14,20 @@
 <form action="#" method="post">
 	<fieldset>
 		<div>
-			<label for="nom" class='required'>Nom</label>
+			<label for="nom" class='required'>Nom </label>
 			<input type="text" name="nom" required="required" autocomplete="off" />
 		</div>
 		<div>
-			<label for="prenom" class='required'>Prénom</label>
+			<label for="prenom" class='required'>Prénom </label>
 			<input type="text" name="prenom" required="required" autocomplete="off" />
 		</div>
 		<div>
-			<label for="tel" class='required'>Téléphone</label>
+			<label for="tel" class='required'>Téléphone </label>
 			<input type="text" name="tel" pattern="[0][1-9][0-9]{8}"
 				required="required" maxlength="10" autocomplete="on" />
 		</div>
 		<div>
-			<label for="email" class='required'>E-mail : </label>
+			<label for="email" class='required'>E-mail </label>
 			<input type="text" name="email" required="required"
 				autocomplete="on" />
 		</div>

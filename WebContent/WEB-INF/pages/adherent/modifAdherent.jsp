@@ -41,7 +41,7 @@
 	<fieldset>
 		<legend>Adresse</legend>
 		<div>
-			<label for="num">Numéro : </label>
+			<label for="num">N° : </label>
 			<input type="text" name="num" required="required"
 				pattern="\d*" autocomplete="off"
 				value="<c:out value="${adherent.adresse.numRue}"/>" />
@@ -53,7 +53,7 @@
 				value="<c:out value="${adherent.adresse.nomRue}"/>" />
 		</div>
 		<div>
-			<label for="compl">Complémentaire : </label>
+			<label for="compl">Complément d'adresse : </label>
 			<input type="text" name="compl" autocomplete="off"
 				value="<c:out value="${adherent.adresse.infoCompl}"/>" />
 		</div>
@@ -92,8 +92,8 @@
 			</div>
 		</div>
 		<div class='align-center'>
-			<input type="button" value="Retirer" id="retireDiscipline" />
-			<input type="button" value="Ajouter" id="ajoutDiscipline" />
+			<input type="button" value="-" id="retireDiscipline" title="Retirer"/>
+			<input type="button" value="+" id="ajoutDiscipline" title="Ajouter"/>
 		</div>
 	</fieldset>
 	<c:if test="${ ! empty adherent.responsable }">
