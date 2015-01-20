@@ -40,7 +40,7 @@
 		
 		<div>
 			<label for="dateAch">Date d'achat</label> 
-			<input type="date" name="dateAch" class="datepicker" value="${sessionScope.INFOS['dateAchat']}"/> 
+			<input type="text" name="dateAch" class="datepicker" value="${sessionScope.INFOS['dateAchat']}"/> 
 		</div>
 		
 		<div>

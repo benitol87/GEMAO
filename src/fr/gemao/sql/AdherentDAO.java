@@ -102,7 +102,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 				idResponsable = obj.getResponsable().getIdResponsable();
 			}
 			if (obj.getMotif() != null) {
-				idMotif = obj.getAdresse().getIdAdresse();
+				idMotif = obj.getMotif().getIdMotif();
 			}
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,

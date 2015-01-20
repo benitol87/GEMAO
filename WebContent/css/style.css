@@ -116,6 +116,10 @@ input, select, textarea{
 	border-radius: 7px;
 }
 
+input[readonly]{
+	background-color: #CCC;
+}
+
 input[type=checkbox]{
 	margin-left: 10px;
 	margin-right: 10px;
