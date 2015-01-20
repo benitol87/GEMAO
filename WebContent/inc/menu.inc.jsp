@@ -19,6 +19,7 @@
 							<ul>
 								<li><a href="<c:url value="/adherent/AjoutAdherent"/>">Ajouter</a></li>
 								<li><a href="<c:url value="/adherent/ListeAdherents"/>">Lister</a></li>
+								<li><a href="<c:url value="/adherent/Parametres"/>">Paramètres</a></li>
 							</ul>
 						</div></li>
 					<li class="icon icon-arrow-left"><a href="#">Personnel</a>
