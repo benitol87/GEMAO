@@ -91,18 +91,22 @@
 	
 	<fieldset>
 		<legend>Informations professionnelles</legend>
-		<div>
-			<label for="diplome">Diplôme </label>
-			<input type="text" name="diplome" />
-			<input type="button" value="+" id="ajoutDiplome"/>
-			<input type="button" value="-" id="retireDiplome"/>
+		<div id="diplomes">
+			<div id="divDiplome1">
+				<label for="diplome1">Diplôme </label>
+				<input type="text" name="diplome1" />
+				<input type="button" value="+" id="ajoutDiplome"/>
+				<input type="button" value="-" id="retireDiplome"/>
+			</div>
 		</div>
 
-		<div>
-			<label for="fonction" class='required'>Fonction </label>
-			<input type="text" name="fonction1" required />
-			<input type="button" value="+" id="ajoutDiplome"/>
-			<input type="button" value="-" id="retireDiplome"/>
+		<div id="fonctions">
+			<div id="divFonction1">
+				<label for="fonction1" class='required'>Fonction </label>
+				<input type="text" name="fonction1" required />
+				<input type="button" value="+" id="ajoutFonction"/>
+				<input type="button" value="-" id="retireFonction"/>
+			</div>
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
