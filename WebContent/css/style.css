@@ -56,8 +56,8 @@
 	width : 100px;
 }
 
-#logo{
-	margin-left: 15%;
+#logo img{
+	border-radius: 10px;
 }
 
 #pageConnexion{

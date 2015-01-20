@@ -17,7 +17,7 @@
 							<h2>Adhérent</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
-								<li><a href="<c:url value="/adherent/AjoutAdherent"/>">Ajouter</a></li>
+								<li><a href="<c:url value="/adherent/AjoutAdherent"/>">Créer</a></li>
 								<li><a href="<c:url value="/adherent/ListeAdherents"/>">Lister</a></li>
 								<li><a href="<c:url value="/adherent/Parametres"/>">Paramètres</a></li>
 							</ul>
@@ -27,7 +27,7 @@
 							<h2>Personnel</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
-								<li><a href="<c:url value="/personnel/AjoutPersonnel"/>">Ajouter</a></li>
+								<li><a href="<c:url value="/personnel/AjoutPersonnel"/>">Créer</a></li>
 								<li><a href="<c:url value="/personnel/ListePersonnel"/>">Lister</a></li>
 							</ul>
 						</div></li>
@@ -36,7 +36,7 @@
 							<h2>Matériel</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
-								<li><a href="<c:url value="/materiel/AjouterMateriel"/>">Ajouter</a></li>
+								<li><a href="<c:url value="/materiel/AjouterMateriel"/>">Créer</a></li>
 								<li><a href="<c:url value="/materiel/ListerMateriel"/>">Lister</a></li>
 							</ul>
 						</div></li>

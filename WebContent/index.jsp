@@ -8,7 +8,7 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <h1>Accueil</h1>
-<div id="logo">
+<div id="logo" class='offset'>
 	<img alt="Logo Anacrouse" src="<c:url value="/ressources/images/Anacrouse.png"/>" width="50%" height="20%" align="middle"/>
 </div>
 
