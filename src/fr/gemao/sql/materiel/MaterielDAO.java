@@ -34,8 +34,8 @@ public class MaterielDAO extends IDAO<Materiel> {
 				+ "idMarque," + "idDesignation," + "idFournisseur,"
 				+ "typeMateriel," + "numSerie," + "dateAchat," + "valeurAchat,"
 				+ "valeurReapprov," + "deplaceConcert,"
-				+ "observation, quantite)"
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+				+ "observation, quantite, estLouable)"
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		
 		Integer idCategorie = null;
 		Integer idMarque = null;
@@ -68,8 +68,8 @@ public class MaterielDAO extends IDAO<Materiel> {
 					obj.getValeurReap(),
 					obj.isDeplacable(),
 					obj.getObservation(),
-					obj.getQuantite());
-			System.out.println(requete);
+					obj.getQuantite(), 
+					obj.isEstLouable());
 			int status = requete.executeUpdate();
 
 			if (status == 0) {
@@ -94,7 +94,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 	@Override
 	public void delete(Materiel obj) {
 		if (obj == null) {
-			throw new NullPointerException("Le materiel ne doit pas �tre null");
+			throw new NullPointerException("Le materiel ne doit pas être null");
 		}
 
 		if (obj.getIdMateriel() == 0) {
@@ -133,7 +133,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 				+ "idCategorie = ?, idMarque = ?, idDesignation = ?,"
 				+ "typeMateriel = ?, numSerie = ?, dateAchat = ?,"
 				+ "valeurAchat = ?, valeurReapprov = ?, deplaceConcert = ?,"
-				+ "observation = ?, quantite = ? WHERE idMateriel = ?;";
+				+ "observation = ?, quantite = ?, estLouable=? WHERE idMateriel = ?;";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
@@ -143,7 +143,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 					obj.getNumSerie(), obj.getDateAchat(),
 					obj.getValeurAchat(), obj.getValeurReap(), obj
 							.isDeplacable(), obj.getObservation(), obj
-							.getQuantite(), obj.getIdMateriel());
+							.getQuantite(), obj.isDeplacable(), obj.getIdMateriel());
 			int status = requete.executeUpdate();
 			if (status == 0) {
 				throw new DAOException(
@@ -228,7 +228,8 @@ public class MaterielDAO extends IDAO<Materiel> {
 				result.getFloat("ValeurReapprov"),
 				result.getBoolean("deplaceConcert"),
 				result.getString("observation"),
-				result.getInt("quantite"));
+				result.getInt("quantite"),
+				result.getBoolean("estLouable"));
 	}
 
 }
