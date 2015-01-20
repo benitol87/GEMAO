@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
 import fr.gemao.ctrl.adherent.ModifierResponsableCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
+import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Discipline;
 import fr.gemao.entity.adherent.Adherent;
@@ -95,13 +97,6 @@ public class ModifAdherentServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		adherent.setEmail(email);
 
-		Integer numRue = Integer.parseInt(request.getParameter("num"));
-		adherent.getAdresse().setNumRue(numRue);
-		String nomRue = request.getParameter("rue");
-		adherent.getAdresse().setNomRue(nomRue);
-		String infoCompl = request.getParameter("compl");
-		adherent.getAdresse().setInfoCompl(infoCompl);
-
 		String nomCommune = request.getParameter("commune");
 		Integer codePostal = Integer.parseInt(request
 				.getParameter("codePostal"));
@@ -109,8 +104,19 @@ public class ModifAdherentServlet extends HttpServlet {
 
 		AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
 		ajouterCommuneCtrl.ajoutCommune(commune);
+		
+		AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
+		Adresse adresse = new Adresse();
+		Integer numRue = Integer.parseInt(request.getParameter("num"));
+		adresse.setNumRue(numRue);
+		String nomRue = request.getParameter("rue");
+		adresse.setNomRue(nomRue);
+		String infoCompl = request.getParameter("compl");
+		adresse.setInfoCompl(infoCompl);
+		adresse.setCommune(commune);
+		ajouterAdresseCtrl.ajoutAdresse(adresse);
 
-		adherent.getAdresse().setCommune(commune);
+		adherent.setAdresse(adresse);
 		
 		AdherentForm adherentForm = new AdherentForm();
 		List<Discipline> listDiscipline = adherentForm.lireDisciplines(request);
