@@ -18,6 +18,7 @@ public class Materiel {
 	private boolean deplacable;
 	private String observation;
 	private int quantite;
+	boolean estLouable;
 	
 	public Materiel() {
 		this.idMateriel = null;
@@ -39,11 +40,12 @@ public class Materiel {
 	 * @param deplacable : si le matériel est déplaçable ou non
 	 * @param observation : l'observation
 	 * @param quantite : la quantité
+	 * @param est louable
 	 */
 	public Materiel(Long idMateriel, Etat etat, Categorie categorie,
 			Marque marque, Designation designation,Fournisseur fournisseur, String typeMat, String numSerie,
 			Date dateAchat, float valeurAchat, float valeurReap,
-			boolean deplacable, String observation, int quantite) {
+			boolean deplacable, String observation, int quantite, boolean estLouable) {
 		this.idMateriel = idMateriel;
 		this.etat = etat;
 		this.categorie = categorie;
@@ -58,6 +60,7 @@ public class Materiel {
 		this.deplacable = deplacable;
 		this.observation = observation;
 		this.quantite = quantite;
+		this.estLouable = estLouable;
 	}
 
 	/**
@@ -78,7 +81,8 @@ public class Materiel {
 				m.getValeurReap(),
 				m.isDeplacable(),
 				m.getObservation(),
-				m.getQuantite());
+				m.getQuantite(),
+				m.estLouable);
 	}
 	
 	public Fournisseur getFournisseur() {
@@ -192,7 +196,24 @@ public class Materiel {
 	public void setQuantite(int quantite) {
 		this.quantite = quantite;
 	}
+	
+	/**
+	 * @return the estLouable
+	 */
+	public boolean isEstLouable() {
+		return estLouable;
+	}
 
+	/**
+	 * @param estLouable the estLouable to set
+	 */
+	public void setEstLouable(boolean estLouable) {
+		this.estLouable = estLouable;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Materiel [idMateriel=" + idMateriel + ", etat=" + etat
@@ -202,9 +223,12 @@ public class Materiel {
 				+ numSerie + ", dateAchat=" + dateAchat + ", valeurAchat="
 				+ valeurAchat + ", valeurReap=" + valeurReap + ", deplacable="
 				+ deplacable + ", observation=" + observation + ", quantite="
-				+ quantite + "]";
+				+ quantite + ", estLouable=" + estLouable + "]";
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -216,6 +240,7 @@ public class Materiel {
 		result = prime * result + (deplacable ? 1231 : 1237);
 		result = prime * result
 				+ ((designation == null) ? 0 : designation.hashCode());
+		result = prime * result + (estLouable ? 1231 : 1237);
 		result = prime * result + ((etat == null) ? 0 : etat.hashCode());
 		result = prime * result
 				+ ((fournisseur == null) ? 0 : fournisseur.hashCode());
@@ -233,6 +258,9 @@ public class Materiel {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -258,6 +286,8 @@ public class Materiel {
 			if (other.designation != null)
 				return false;
 		} else if (!designation.equals(other.designation))
+			return false;
+		if (estLouable != other.estLouable)
 			return false;
 		if (etat == null) {
 			if (other.etat != null)
@@ -304,8 +334,5 @@ public class Materiel {
 			return false;
 		return true;
 	}
-
-	
-
 
 }
