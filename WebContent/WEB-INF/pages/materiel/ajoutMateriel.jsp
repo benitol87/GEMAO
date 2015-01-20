@@ -44,7 +44,7 @@
 		</div>
 		
 		<div>
-			<label for="valRea">Valeur de réaprovisionnement</label>
+			<label for="valRea">Valeur de réapprovisionnement</label>
 			<input type="text" name="valRea" value="${sessionScope.INFOS['valeurReap']}"/> 
 			<span class="euro"></span>
 		</div>

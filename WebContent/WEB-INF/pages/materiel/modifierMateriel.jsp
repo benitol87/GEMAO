@@ -20,10 +20,6 @@
 			value="${sessionScope.sessionObjectMateriel.getCategorie().getIdCategorie()}" />
 			
 		<div>
-			<label for="designation">Désignation : </label>
-			<span>${sessionScope.sessionObjectMateriel.getDesignation().getLibelleDesignation()}</span>
-		</div>
-		<div>
 			<label for="valeurAch">Valeur d'achat : </label>
 			<span class='euro'>${sessionScope.sessionObjectMateriel.getValeurAchat()}</span>
 		</div>
@@ -37,7 +33,29 @@
 			value="${sessionScope.sessionObjectMateriel.getDesignation().getIdDesignation()}" />
 		<input type="number" hidden="true" id="valeurAch" name="valeurAch"
 			value="${sessionScope.sessionObjectMateriel.getValeurAchat()}" />
+			
+		<div>
+			<label for="valRea">Valeur de réapprovisionnement : </label>
+			<input type="text" name="valRea"
+				value="${sessionScope.sessionObjectMateriel.getValeurReap()}" />
+			<span class="euro"></span>
+		</div>
+		<p>${form.erreurs['valRea'] }</p>
+		
+		<div>
+			<label for="fournisseurResult">Fournisseur : </label>
+			<span>${sessionScope.sessionObjectMateriel.getFournisseur().getNomFournisseur()}</span>
+		</div>
+		
+	</fieldset>
 	
+	<fieldset>
+		<legend>Informations détaillées</legend>
+		<div>
+			<label for="designation">Désignation : </label>
+			<span>${sessionScope.sessionObjectMateriel.getDesignation().getLibelleDesignation()}</span>
+		</div>
+		
 		<div>
 			<label for="type">Type : </label>
 			<span>${sessionScope.sessionObjectMateriel.getTypeMat()}</span>
@@ -74,13 +92,14 @@
 			
 		<div>
 			<label for="quantite">Quantité : </label>
-			<input name="quantite" type="number" value="${sessionScope.sessionObjectMateriel.getQuantite()}" />
+			<input name="quantite" type="number" min="1" value="${sessionScope.sessionObjectMateriel.getQuantite()}" />
 		</div>
 		<p>${form.erreurs['quantite'] }</p>
 		
 		<div>
 			<label for="prixU">Prix unitaire : </label>
-			<span>${sessionScope.sessionObjectMateriel.getValeurAchat()}</span>
+			<span>${sessionScope.sessionObjectMateriel.calculerPrixUnitaire()}</span>
+			<span class="euro"></span>
 		</div>
 
 		<input hidden="true" name="prixU" type="number"
@@ -93,21 +112,11 @@
 
 		<input hidden="true" name="numSerie" type="text"
 			value="${sessionScope.sessionObjectMateriel.getNumSerie()}" />
-			
-		<div>
-			<label for="fournisseurResult">Fournisseur : </label>
-			<span>${sessionScope.sessionObjectMateriel.getFournisseur().getNomFournisseur()}</span>
-		</div>
 		
 		<input hidden="true" name="fournisseur" type="number"
 			value="${sessionScope.sessionObjectMateriel.getFournisseur().getIdFournisseur()}" />
 	
-		<div>
-			<label for="valRea">Valeur de réaprovisionnement : </label>
-			<input type="number" name="valRea"
-				value="${sessionScope.sessionObjectMateriel.getValeurReap()}" />
-		</div>
-		<p>${form.erreurs['valRea'] }</p>
+
 		<div>
 			<label for="deplacable">Déplaçable : </label>
 			<span>
@@ -161,7 +170,7 @@
 		<legend>Observations</legend>
 
 		<div class='align-center'>
-			<textarea name="observation" id="observation" rows="5" cols="30">${sessionScope.sessionObjectMateriel.getObservation()}</textarea>
+			<textarea name="observation" id="observation" rows="5" placeholder="Ajoutez ici toute information que vous jugez nécessaire de mentionner." cols="30">${sessionScope.sessionObjectMateriel.getObservation()}</textarea>
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>

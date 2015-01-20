@@ -209,6 +209,10 @@ public class Materiel {
 	public void setLouable(boolean louable){
 		this.louable = louable;
 	}
+	
+	public float calculerPrixUnitaire(){
+		return this.valeurAchat/this.quantite;
+	}
 
 
 	/* (non-Javadoc)
