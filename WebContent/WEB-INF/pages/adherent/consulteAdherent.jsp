@@ -59,10 +59,12 @@
 		<td>Rue : </td>
 		<td><c:out value="${adherent.adresse['nomRue']}" /></td>
 	</tr>
-	<tr>
-		<td>Complément d'adresse : </td>
-		<td><c:out value="${adherent.adresse['infoCompl']}" /></td>
-	</tr>
+	<c:if test="${adherent.adresse['infoCompl']} != null}">
+		<tr>
+			<td>Complément d'adresse : </td>
+			<td><c:out value="${adherent.adresse['infoCompl']}" /></td>
+		</tr>
+	</c:if>	
 	<tr>
 		<td>Commune : </td>
 		<td><c:out value="${adherent.adresse.commune['nomCommune']}" /></td>
@@ -90,7 +92,7 @@
 	</tr>
 	<tr>
 		<td>Montant de la cotisation : </td>
-		<td><c:out value="${adherent['cotisation']}" /></td>
+		<td><c:out value="${adherent['cotisation']}" /><span class="euro"></span></td>
 	</tr>
 	<tr>
 		<td>Droit à l'image :</td>
