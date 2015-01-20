@@ -192,9 +192,16 @@ public class AjoutMaterielServlet extends HttpServlet {
 			String etat = request.getParameter("etat");
 			String categorie = request.getParameter("categorie");
 			String designation = request.getParameter("designation");
-			float valAchat = Float
-					.parseFloat(request.getParameter("ValeurAch"));
-			float valReap = Float.parseFloat(request.getParameter("valRea"));
+			float valReap=(float) 0.0;
+			float valAchat=(float) 0.0;
+			if (!request.getParameter("ValeurAch").equals("")) {
+				valAchat = Float.parseFloat(request
+						.getParameter("ValeurAch"));
+			}
+			if (!request.getParameter("valRea").equals("")) {
+				valReap = Float
+						.parseFloat(request.getParameter("valRea"));
+			}
 			String dateAchat = request.getParameter("dateAch");
 			String type = request.getParameter("type");
 			String marque = request.getParameter("marque");
