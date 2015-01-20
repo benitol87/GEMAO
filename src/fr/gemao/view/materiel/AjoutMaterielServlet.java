@@ -1,7 +1,6 @@
 package fr.gemao.view.materiel;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +24,10 @@ import fr.gemao.entity.materiel.Etat;
 import fr.gemao.entity.materiel.Fournisseur;
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.entity.materiel.Materiel;
+import fr.gemao.form.materiel.MaterielForm;
+import fr.gemao.form.util.Form;
 import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
 import fr.gemao.sql.materiel.EtatDAO;
@@ -36,6 +38,7 @@ import fr.gemao.sql.materiel.MarqueDAO;
 public class AjoutMaterielServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static String ERREUR_AJOUT_CATEGORIE = "erreurCat";
 	private static String VUE = "/WEB-INF/pages/materiel/ajoutMateriel.jsp";
 
 	protected void doGet(HttpServletRequest request,
@@ -66,101 +69,49 @@ public class AjoutMaterielServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-
 		HttpSession session = request.getSession();
+		MaterielForm form = new MaterielForm();
+		
+		// Récupération des données
+		Materiel infoMat = new Materiel();
+		infoMat.setTypeMat(Form.getValeurChamp(request, "type"));
 
-		if (request.getParameter("nomCat") != null
-				&& !request.getParameter("nomCat").equals("")) {
+		String nombre = Form.getValeurChamp(request, "quantite");
+		if(nombre!=null)
+			infoMat.setQuantite(Integer.parseInt(nombre));
+		
+		nombre = Form.getValeurChamp(request, "ValeurAch");
+		if(nombre!=null)
+			infoMat.setValeurAchat(Float.parseFloat(nombre));
+		
+		nombre = Form.getValeurChamp(request, "valRea");
+		if(nombre!=null)
+			infoMat.setValeurReap(Float.parseFloat(nombre));
+		
+		infoMat.setObservation(Form.getValeurChamp(request, "observation"));
+		infoMat.setNumSerie(Form.getValeurChamp(request, "numSerie"));
+		session.setAttribute("INFOS", infoMat);
 
-			Materiel infoMat = new Materiel();
-			infoMat.setTypeMat(request.getParameter("type"));
-			infoMat.setQuantite(Integer.parseInt(request
-					.getParameter("quantite")));
-			if (!request.getParameter("ValeurAch").equals("")) {
-				infoMat.setValeurAchat(Float.parseFloat(request
-						.getParameter("ValeurAch")));
+		// Ajout d'une catégorie, le fait qu'elle ne soit pas vide
+		// a déjà été testé
+		if (Form.getValeurChamp(request, "nomCat") != null) {
+			try{
+			CategorieCtrl.ajoutCategorie(Form.getValeurChamp(request, "nomCat"));
+			}catch(DAOException e){
+				form.setErreur(ERREUR_AJOUT_CATEGORIE, "La catégorie existe déjà");
 			}
-			System.out.println(request.getParameter("valRea"));
-			if (!request.getParameter("valRea").equals("")) {
-				infoMat.setValeurReap(Float.parseFloat(request
-						.getParameter("valRea")));
-			}
-
-			infoMat.setObservation(request.getParameter("observation"));
-			infoMat.setNumSerie(request.getParameter("numSerie"));
-			session.setAttribute("INFOS", infoMat);
-			CategorieCtrl.ajoutCategorie(request.getParameter("nomCat"));
 		}
 
-		if (request.getParameter("nomDes") != null
-				&& !request.getParameter("nomDes").equals("")) {
-			Materiel infoMat = new Materiel();
-
-			infoMat.setTypeMat(request.getParameter("type"));
-			infoMat.setQuantite(Integer.parseInt(request
-					.getParameter("quantite")));
-
-			if (!request.getParameter("ValeurAch").equals("")) {
-				infoMat.setValeurAchat(Float.parseFloat(request
-						.getParameter("ValeurAch")));
-			}
-			System.out.println(request.getParameter("valRea"));
-			if (!request.getParameter("valRea").equals("")) {
-				infoMat.setValeurReap(Float.parseFloat(request
-						.getParameter("valRea")));
-			}
-
-			infoMat.setObservation(request.getParameter("observation"));
-			infoMat.setNumSerie(request.getParameter("numSerie"));
-
-			session.setAttribute("INFOS", infoMat);
-			DesignationCtrl.ajoutDesignation(request.getParameter("nomDes"));
+		if (Form.getValeurChamp(request, "nomDes") != null) {
+			DesignationCtrl.ajoutDesignation(Form.getValeurChamp(request, "nomDes"));
 		}
 
-		if (request.getParameter("nomFour") != null
-				&& !request.getParameter("nomFour").equals("")) {
-			Materiel infoMat = new Materiel();
-			infoMat.setTypeMat(request.getParameter("type"));
-			infoMat.setQuantite(Integer.parseInt(request
-					.getParameter("quantite")));
-
-			if (!request.getParameter("ValeurAch").equals("")) {
-				infoMat.setValeurAchat(Float.parseFloat(request
-						.getParameter("ValeurAch")));
-			}
-			System.out.println(request.getParameter("valRea"));
-			if (!request.getParameter("valRea").equals("")) {
-				infoMat.setValeurReap(Float.parseFloat(request
-						.getParameter("valRea")));
-			}
-
-			infoMat.setObservation(request.getParameter("observation"));
-			infoMat.setNumSerie(request.getParameter("numSerie"));
-
-			session.setAttribute("INFOS", infoMat);
-			FournisseurCtrl.ajoutFournisseur(request.getParameter("nomFour"));
+		if (Form.getValeurChamp(request, "nomFour") != null) {
+			FournisseurCtrl.ajoutFournisseur(Form.getValeurChamp(request, "nomFour"));
 		}
 
-		if (request.getParameter("nomMarque") != null
-				&& !request.getParameter("nomMarque").equals("")) {
-			Materiel infoMat = new Materiel();
-			infoMat.setTypeMat(request.getParameter("type"));
-			infoMat.setQuantite(Integer.parseInt(request
-					.getParameter("quantite")));
-			if (!request.getParameter("ValeurAch").equals("")) {
-				infoMat.setValeurAchat(Float.parseFloat(request
-						.getParameter("ValeurAch")));
-			}
-			if (!request.getParameter("valRea").equals("")) {
-				infoMat.setValeurReap(Float.parseFloat(request
-						.getParameter("valRea")));
-			}
-			infoMat.setObservation(request.getParameter("observation"));
-			infoMat.setNumSerie(request.getParameter("numSerie"));
-
-			session.setAttribute("INFOS", infoMat);
-			MarqueCtrl.ajouterMarque(request.getParameter("nomMarque"));
+		if (Form.getValeurChamp(request, "nomMarque") != null) {
+			MarqueCtrl.ajouterMarque(Form.getValeurChamp(request, "nomMarque"));
 		}
 
 		List<Categorie> listCat = new ArrayList<Categorie>();
@@ -192,16 +143,9 @@ public class AjoutMaterielServlet extends HttpServlet {
 			String etat = request.getParameter("etat");
 			String categorie = request.getParameter("categorie");
 			String designation = request.getParameter("designation");
-			float valReap=(float) 0.0;
-			float valAchat=(float) 0.0;
-			if (!request.getParameter("ValeurAch").equals("")) {
-				valAchat = Float.parseFloat(request
-						.getParameter("ValeurAch"));
-			}
-			if (!request.getParameter("valRea").equals("")) {
-				valReap = Float
-						.parseFloat(request.getParameter("valRea"));
-			}
+			float valAchat = Float
+					.parseFloat(request.getParameter("ValeurAch"));
+			float valReap = Float.parseFloat(request.getParameter("valRea"));
 			String dateAchat = request.getParameter("dateAch");
 			String type = request.getParameter("type");
 			String marque = request.getParameter("marque");
@@ -258,7 +202,8 @@ public class AjoutMaterielServlet extends HttpServlet {
 					materiel.getObservation(), Integer.parseInt(quantite));
 			session.removeAttribute("INFOS");
 		}
-
+		
+		request.setAttribute("form", form);
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
 	}

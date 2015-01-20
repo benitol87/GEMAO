@@ -28,6 +28,9 @@
 			<input type="button" name="ajoutCat" id="ajoutCat" value="+" />
 			<input type="text" name="nomCat" id="nomCat" class="hidden"/>
 		</div>
+		<c:if test="${!empty requestScope.form.erreurs['erreurCat'] }">
+			<div class='align-center'><c:out value="${requestScope.form.erreurs['erreurCat']}"/></div>
+		</c:if>
 		
 		<div>
 			<label for="ValeurAch">Valeur d'achat</label> 

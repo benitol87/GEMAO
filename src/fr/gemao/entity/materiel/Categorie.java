@@ -3,8 +3,10 @@ package fr.gemao.entity.materiel;
 public class Categorie {
 	private int idCategorie;
 	private String libelleCat;
+	private boolean estLouable;
 	
 	public Categorie() {
+		
 	}
 	
 	/**
@@ -13,9 +15,10 @@ public class Categorie {
 	 * @param l the l
 	 * @param libelleCat the libelle cat
 	 */
-	public Categorie(int l, String libelleCat) {
+	public Categorie(int l, String libelleCat, boolean estLouable) {
 		this.idCategorie = l;
 		this.libelleCat = libelleCat;
+		this.estLouable = estLouable;
 	}
 
 	/**
@@ -24,11 +27,19 @@ public class Categorie {
 	 * @param categorie the categorie
 	 */
 	public Categorie(Categorie categorie){
-		this(categorie.getIdCategorie(),categorie.getLibelleCat());
+		this(categorie.getIdCategorie(),categorie.getLibelleCat(), categorie.isEstLouable());
 	}
 	
 	
 	
+	public boolean isEstLouable() {
+		return estLouable;
+	}
+
+	public void setEstLouable(boolean estLouable) {
+		this.estLouable = estLouable;
+	}
+
 	public void setIdCategorie(int idCategorie) {
 		this.idCategorie = idCategorie;
 	}

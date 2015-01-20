@@ -30,12 +30,12 @@ public class CategorieDAO extends IDAO<Categorie> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 
-		String sql = "INSERT INTO Categorie(libelle)"
-				+ "VALUES (?);";
+		String sql = "INSERT INTO categorie(libelle, estLouable)"
+				+ "VALUES (?, ?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getLibelleCat());
+					sql, false, obj.getLibelleCat(), obj.isEstLouable());
 
 			int status = requete.executeUpdate();
 
@@ -91,19 +91,19 @@ public class CategorieDAO extends IDAO<Categorie> {
 	@Override
 	public Categorie update(Categorie obj) {
 		if (obj == null) {
-			throw new NullPointerException("La categorie ne doit pas etre nul");
+			throw new NullPointerException("La catégorie ne doit pas être nul");
 		}
 
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "UPDATE categorie SET libelle = ?"
+		String sql = "UPDATE categorie SET libelle = ?, estLouable = ?"
 				+ "WHERE idCategorie = ?;";
 		try {
 
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getLibelleCat(), obj.getIdCategorie());
+					sql, false, obj.getLibelleCat(), obj.isEstLouable(), obj.getIdCategorie());
 			requete.executeUpdate();
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -130,7 +130,7 @@ public class CategorieDAO extends IDAO<Categorie> {
 
 			if (result.first()) {
 				categorie = new Categorie(result.getInt("idCategorie"),
-						result.getString("libelle"));
+						result.getString("libelle"), result.getBoolean("estLouable"));
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -155,7 +155,7 @@ public class CategorieDAO extends IDAO<Categorie> {
 
 			if (result.first()) {
 				categorie = new Categorie(result.getInt("idCategorie"),
-						result.getString("libelle"));
+						result.getString("libelle"), result.getBoolean("estLouable"));
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -181,7 +181,7 @@ public class CategorieDAO extends IDAO<Categorie> {
 
 			while (result.next()) {
 				categorie = new Categorie(result.getInt("idCategorie"),
-						result.getString("libelle"));
+						result.getString("libelle"), result.getBoolean("estLouable"));
 				liste.add(categorie);
 			}
 		} catch (SQLException e) {
@@ -195,7 +195,7 @@ public class CategorieDAO extends IDAO<Categorie> {
 
 	@Override
 	protected Categorie map(ResultSet result) throws java.sql.SQLException {
-		return new Categorie(result.getInt("idCategorie"), result.getString("libelle"));
+		return new Categorie(result.getInt("idCategorie"), result.getString("libelle"), result.getBoolean("estLouable"));
 	}
 
 }

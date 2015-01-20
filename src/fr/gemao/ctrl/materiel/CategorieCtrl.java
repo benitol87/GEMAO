@@ -21,7 +21,7 @@ public class CategorieCtrl {
 		if (libelle == "") {
 			throw new NullPointerException("Le libelle ne doit pas etre vide");
 		}
-		Categorie categorie = new Categorie(0,libelle);
+		Categorie categorie = new Categorie(0,libelle, false);
 
 		new CategorieDAO(DAOFactory.getInstance()).create(categorie);
 	}
