@@ -77,11 +77,16 @@ public class AjoutMaterielServlet extends HttpServlet {
 			infoMat.setTypeMat(request.getParameter("type"));
 			infoMat.setQuantite(Integer.parseInt(request
 					.getParameter("quantite")));
-			infoMat.setValeurAchat(Float.parseFloat(request
-					.getParameter("ValeurAch")));
-			infoMat.setValeurReap(Float.parseFloat(request
-					.getParameter("valRea")));
-			
+			if (!request.getParameter("ValeurAch").equals("")) {
+				infoMat.setValeurAchat(Float.parseFloat(request
+						.getParameter("ValeurAch")));
+			}
+			System.out.println(request.getParameter("valRea"));
+			if (!request.getParameter("valRea").equals("")) {
+				infoMat.setValeurReap(Float.parseFloat(request
+						.getParameter("valRea")));
+			}
+
 			infoMat.setObservation(request.getParameter("observation"));
 			infoMat.setNumSerie(request.getParameter("numSerie"));
 			session.setAttribute("INFOS", infoMat);
@@ -91,13 +96,21 @@ public class AjoutMaterielServlet extends HttpServlet {
 		if (request.getParameter("nomDes") != null
 				&& !request.getParameter("nomDes").equals("")) {
 			Materiel infoMat = new Materiel();
+
 			infoMat.setTypeMat(request.getParameter("type"));
 			infoMat.setQuantite(Integer.parseInt(request
 					.getParameter("quantite")));
-			infoMat.setValeurAchat(Float.parseFloat(request
-					.getParameter("ValeurAch")));
-			infoMat.setValeurReap(Float.parseFloat(request
-					.getParameter("valRea")));
+
+			if (!request.getParameter("ValeurAch").equals("")) {
+				infoMat.setValeurAchat(Float.parseFloat(request
+						.getParameter("ValeurAch")));
+			}
+			System.out.println(request.getParameter("valRea"));
+			if (!request.getParameter("valRea").equals("")) {
+				infoMat.setValeurReap(Float.parseFloat(request
+						.getParameter("valRea")));
+			}
+
 			infoMat.setObservation(request.getParameter("observation"));
 			infoMat.setNumSerie(request.getParameter("numSerie"));
 
@@ -111,10 +124,17 @@ public class AjoutMaterielServlet extends HttpServlet {
 			infoMat.setTypeMat(request.getParameter("type"));
 			infoMat.setQuantite(Integer.parseInt(request
 					.getParameter("quantite")));
-			infoMat.setValeurAchat(Float.parseFloat(request
-					.getParameter("ValeurAch")));
-			infoMat.setValeurReap(Float.parseFloat(request
-					.getParameter("valRea")));
+
+			if (!request.getParameter("ValeurAch").equals("")) {
+				infoMat.setValeurAchat(Float.parseFloat(request
+						.getParameter("ValeurAch")));
+			}
+			System.out.println(request.getParameter("valRea"));
+			if (!request.getParameter("valRea").equals("")) {
+				infoMat.setValeurReap(Float.parseFloat(request
+						.getParameter("valRea")));
+			}
+
 			infoMat.setObservation(request.getParameter("observation"));
 			infoMat.setNumSerie(request.getParameter("numSerie"));
 
@@ -128,10 +148,14 @@ public class AjoutMaterielServlet extends HttpServlet {
 			infoMat.setTypeMat(request.getParameter("type"));
 			infoMat.setQuantite(Integer.parseInt(request
 					.getParameter("quantite")));
-			infoMat.setValeurAchat(Float.parseFloat(request
-					.getParameter("ValeurAch")));
-			infoMat.setValeurReap(Float.parseFloat(request
-					.getParameter("valRea")));
+			if (!request.getParameter("ValeurAch").equals("")) {
+				infoMat.setValeurAchat(Float.parseFloat(request
+						.getParameter("ValeurAch")));
+			}
+			if (!request.getParameter("valRea").equals("")) {
+				infoMat.setValeurReap(Float.parseFloat(request
+						.getParameter("valRea")));
+			}
 			infoMat.setObservation(request.getParameter("observation"));
 			infoMat.setNumSerie(request.getParameter("numSerie"));
 
@@ -168,9 +192,16 @@ public class AjoutMaterielServlet extends HttpServlet {
 			String etat = request.getParameter("etat");
 			String categorie = request.getParameter("categorie");
 			String designation = request.getParameter("designation");
-			float valAchat = Float
-					.parseFloat(request.getParameter("ValeurAch"));
-			float valReap = Float.parseFloat(request.getParameter("valRea"));
+			float valReap=(float) 0.0;
+			float valAchat=(float) 0.0;
+			if (!request.getParameter("ValeurAch").equals("")) {
+				valAchat = Float.parseFloat(request
+						.getParameter("ValeurAch"));
+			}
+			if (!request.getParameter("valRea").equals("")) {
+				valReap = Float
+						.parseFloat(request.getParameter("valRea"));
+			}
 			String dateAchat = request.getParameter("dateAch");
 			String type = request.getParameter("type");
 			String marque = request.getParameter("marque");
