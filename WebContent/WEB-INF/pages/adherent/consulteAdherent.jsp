@@ -59,7 +59,7 @@
 		<td>Rue : </td>
 		<td><c:out value="${adherent.adresse['nomRue']}" /></td>
 	</tr>
-	<c:if test="${adherent.adresse['infoCompl']} != null}">
+	<c:if test="${adherent.adresse.getInfoCompl()} != null}">
 		<tr>
 			<td>Complément d'adresse : </td>
 			<td><c:out value="${adherent.adresse['infoCompl']}" /></td>
