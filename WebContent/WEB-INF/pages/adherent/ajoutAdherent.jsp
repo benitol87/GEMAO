@@ -31,31 +31,31 @@
 		<div>
 			<label for="nom" class='required'>Nom </label>
 			<input type="text" name="nom" required="required"
-						autocomplete="off" />
+						 />
 		</div>
 		
 		<div>
 			<label for="prenom" class='required'>Prénom </label>
 			<input type="text" name="prenom" required="required"
-						autocomplete="off" />
+						 />
 		</div>
 		
 		<div>
 			<label for="dateNaiss" class='required'>Date de naissance </label>
 			<input type="text" name="dateNaiss" class="datepicker"
-						required="required" autocomplete="off" />
+						required="required"  />
 		</div>
 		
 		<div>
 			<label for="comNaiss" class='required'>Commune de naissance </label>
 			<input type="text" name="comNaiss" required="required"
-						autocomplete="off" />
+						 />
 		</div>
 		
 		<div>	
 			<label for="codePNaiss" class='required'>Code postal </label>
 			<input type="text" name="codePostNaiss" required="required" maxlength="5"
-						autocomplete="off" />
+						 />
 		</div>
 		
 		<div>
@@ -81,30 +81,30 @@
 		<div>
 			<label for="num" class='required'>N° </label>
 			<input type="text" name="num" required="required"
-					pattern="\d*" autocomplete="off" />
+					pattern="\d*"  />
 		</div>
 		
 		<div>	
 			<label for="rue" class='required'>Rue </label>
 			<input type="text" name="rue" required="required"
-					autocomplete="off" />
+					 />
 		</div>
 		
 		<div>	
 			<label for="compl">Complément d'adresse </label>
-			<input type="text" name="compl" autocomplete="off" />
+			<input type="text" name="compl"  />
 		</div>
 		
 		<div>	
 			<label for="commune" class='required'>Commune </label>
 			<input type="text" name="commune" required="required"
-					autocomplete="off" />
+					 />
 		</div>
 		
 		<div>	
 			<label for="codePostal" class='required'>Code postal </label>
 			<input type="text" name="codePostal" required="required" maxlength="5"
-					autocomplete="off" />
+					 />
 		</div>
 	</fieldset>
 	<fieldset>
@@ -129,7 +129,7 @@
 		<div>
 			<label for="dateInscri" class='required'>Date d'inscription </label>
 			<input type="text" name="dateInscri" class="datepicker"
-					required="required" autocomplete="off" />
+					required="required"  />
 		</div>
 		<div>
 			<label  class='required'>Droit à l'image </label>
