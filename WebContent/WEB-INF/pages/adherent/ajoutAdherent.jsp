@@ -22,9 +22,8 @@
 		<div>
 			<label>Civilité</label>
 			<span>
-				<input type="radio" name="civilite" value="F" /> <label for="civilite">Mme</label>
-				<input type="radio" name="civilite" value="M"
-							checked="checked" /><label for="civilite">M.</label>
+				<input type="radio" name="civilite" value="F" checked="checked" /> <label for="civilite">Mme</label>
+				<input type="radio" name="civilite" value="M" /><label for="civilite">M.</label>
 			</span>
 		</div>
 		
