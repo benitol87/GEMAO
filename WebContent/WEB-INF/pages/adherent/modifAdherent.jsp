@@ -96,10 +96,9 @@
 			<input type="button" value="Ajouter" id="ajoutDiscipline" />
 		</div>
 	</fieldset>
-	<c:if test="${responsable!=null}">
+	<c:if test="${ ! empty adherent.responsable }">
 	<fieldset>
 		<legend>Responsable</legend>
-		<c:if test="${adherent.responsable!=null}">
 			<div>
 				<label for="nomResp">Nom : </label>
 				<input type="text" name="nomResp"
@@ -120,7 +119,6 @@
 				<input type="text" name="emailResp"
 					value="<c:out value="${adherent.responsable['email']}" />" />
 			</div>
-		</c:if>
 	</fieldset>
 	</c:if>
 	<fieldset>
