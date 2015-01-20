@@ -32,7 +32,7 @@ import fr.gemao.sql.ResponsableDAO;
 public class ModifAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String VUE_LISTE = "/WEB-INF/pages/adherent/listeAdherents.jsp";
+	private static final String VUE_LISTE = "/adherent/ListeAdherents";
 	private static final String VUE = "/WEB-INF/pages/adherent/modifAdherent.jsp";
 
 	public final String PARAM_DATE_NAISSANCE = "dateNaissance";
@@ -140,8 +140,7 @@ public class ModifAdherentServlet extends HttpServlet {
 		modifierAdherentCtrl.modifierAdherent(adherent);
 
 		session.setAttribute("modif_adh_adherent", null);
-		this.getServletContext().getRequestDispatcher(VUE)
-				.forward(request, response);
+		response.sendRedirect(request.getContextPath() + VUE_LISTE);
 
 	}
 }
