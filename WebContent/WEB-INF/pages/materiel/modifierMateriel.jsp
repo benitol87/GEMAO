@@ -132,6 +132,30 @@
 				</c:choose>
 			</span>
 		</div>
+		<div>
+			<label for="louable">Ouvert à la location : </label>
+			<span>
+				<c:choose>
+					<c:when
+						test="${sessionScope.sessionObjectMateriel.isLouable()==true}">
+						<label for="louableeOui">Oui</label>
+						<input type="radio" name="louable" id="louable"
+							value="oui" checked="checked">
+						<label for="louableNon">Non</label>
+						<input type="radio" name="louable" id="louable"
+							value="non">
+					</c:when>
+					<c:otherwise>
+						<label for="louableOui">Oui</label>
+						<input type="radio" name="louable" id="louable"
+							value="oui">
+						<label for="louableNon">Non</label>
+						<input type="radio" name="louable" id="louable"
+							value="non" checked="checked">
+					</c:otherwise>
+				</c:choose>
+			</span>
+		</div>
 	</fieldset>
 	<fieldset>
 		<legend>Observations</legend>

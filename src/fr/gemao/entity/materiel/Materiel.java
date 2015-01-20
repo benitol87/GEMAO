@@ -18,7 +18,7 @@ public class Materiel {
 	private boolean deplacable;
 	private String observation;
 	private int quantite;
-	boolean estLouable;
+	private boolean louable;
 	
 	public Materiel() {
 		this.idMateriel = null;
@@ -40,12 +40,16 @@ public class Materiel {
 	 * @param deplacable : si le matériel est déplaçable ou non
 	 * @param observation : l'observation
 	 * @param quantite : la quantité
+<<<<<<< HEAD
+	 * @param louable : si le matériel est ouvert à la location ou non
+=======
 	 * @param est louable
+>>>>>>> branch 'master' of https://github.com/benitol87/GEMAO.git
 	 */
 	public Materiel(Long idMateriel, Etat etat, Categorie categorie,
 			Marque marque, Designation designation,Fournisseur fournisseur, String typeMat, String numSerie,
 			Date dateAchat, float valeurAchat, float valeurReap,
-			boolean deplacable, String observation, int quantite, boolean estLouable) {
+			boolean deplacable, String observation, int quantite, boolean louable) {
 		this.idMateriel = idMateriel;
 		this.etat = etat;
 		this.categorie = categorie;
@@ -60,7 +64,7 @@ public class Materiel {
 		this.deplacable = deplacable;
 		this.observation = observation;
 		this.quantite = quantite;
-		this.estLouable = estLouable;
+		this.louable = louable;
 	}
 
 	/**
@@ -82,7 +86,8 @@ public class Materiel {
 				m.isDeplacable(),
 				m.getObservation(),
 				m.getQuantite(),
-				m.estLouable);
+				m.isLouable());
+
 	}
 	
 	public Fournisseur getFournisseur() {
@@ -144,6 +149,10 @@ public class Materiel {
 	public int getQuantite() {
 		return quantite;
 	}
+	
+	public boolean isLouable(){
+		return louable;
+	}
 
 	public void setIdMateriel(Long idMateriel) {
 		this.idMateriel = idMateriel;
@@ -197,19 +206,10 @@ public class Materiel {
 		this.quantite = quantite;
 	}
 	
-	/**
-	 * @return the estLouable
-	 */
-	public boolean isEstLouable() {
-		return estLouable;
+	public void setLouable(boolean louable){
+		this.louable = louable;
 	}
 
-	/**
-	 * @param estLouable the estLouable to set
-	 */
-	public void setEstLouable(boolean estLouable) {
-		this.estLouable = estLouable;
-	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -223,12 +223,10 @@ public class Materiel {
 				+ numSerie + ", dateAchat=" + dateAchat + ", valeurAchat="
 				+ valeurAchat + ", valeurReap=" + valeurReap + ", deplacable="
 				+ deplacable + ", observation=" + observation + ", quantite="
-				+ quantite + ", estLouable=" + estLouable + "]";
+				+ quantite + ", louable="
+						+ louable + "]";
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -240,12 +238,12 @@ public class Materiel {
 		result = prime * result + (deplacable ? 1231 : 1237);
 		result = prime * result
 				+ ((designation == null) ? 0 : designation.hashCode());
-		result = prime * result + (estLouable ? 1231 : 1237);
 		result = prime * result + ((etat == null) ? 0 : etat.hashCode());
 		result = prime * result
 				+ ((fournisseur == null) ? 0 : fournisseur.hashCode());
 		result = prime * result
 				+ ((idMateriel == null) ? 0 : idMateriel.hashCode());
+		result = prime * result + (louable ? 1231 : 1237);
 		result = prime * result + ((marque == null) ? 0 : marque.hashCode());
 		result = prime * result
 				+ ((numSerie == null) ? 0 : numSerie.hashCode());
@@ -258,9 +256,6 @@ public class Materiel {
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -287,8 +282,6 @@ public class Materiel {
 				return false;
 		} else if (!designation.equals(other.designation))
 			return false;
-		if (estLouable != other.estLouable)
-			return false;
 		if (etat == null) {
 			if (other.etat != null)
 				return false;
@@ -303,6 +296,8 @@ public class Materiel {
 			if (other.idMateriel != null)
 				return false;
 		} else if (!idMateriel.equals(other.idMateriel))
+			return false;
+		if (louable != other.louable)
 			return false;
 		if (marque == null) {
 			if (other.marque != null)
@@ -334,5 +329,6 @@ public class Materiel {
 			return false;
 		return true;
 	}
+
 
 }

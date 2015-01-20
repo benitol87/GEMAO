@@ -119,8 +119,8 @@
 			</div>
 		</div>
 		<div class='align-center'>
-			<input type="button" value="Retirer" id="retireDiscipline" />
-			<input type="button" value="Ajouter" id="ajoutDiscipline" />
+			<input type="button" value="-" id="retireDiscipline" title="Retirer"/>
+			<input type="button" value="+" id="ajoutDiscipline" title="Ajouter"/>
 		</div>	
 	</fieldset>
 	<fieldset>

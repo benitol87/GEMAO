@@ -72,7 +72,7 @@
 	</tr>
 	<tr>
 		<td>Prix unitaire : </td>
-		<td>${sessionScope.sessionObjectMateriel.getValeurAchat()}</td>
+		<td>${sessionScope.sessionObjectMateriel.getValeurAchat()} <span class="euro"></span></td>
 	</tr>
 	<tr>
 		<td>Numéro de série : </td>
@@ -93,9 +93,24 @@
 			</c:choose>
 		</td>
 	</tr>
+	
+	<tr>
+		<td>Ouvert à la location : </td>
+		<td>
+			<c:choose>
+				<c:when
+					test="${sessionScope.sessionObjectMateriel.isLouable()==true}">
+					oui
+				</c:when>
+				<c:otherwise>
+					non
+				</c:otherwise>
+			</c:choose>
+		</td>
+	</tr>
 </table>
 
-<c:if test="${sessionScope.sessionObjectMateriel.getObservation() != null}">
+<c:if test="${sessionScope.sessionObjectMateriel.getObservation()} != null">
 	<table>
 		<caption>Observations</caption>
 			<tr>

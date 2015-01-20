@@ -41,8 +41,9 @@ public class MaterielCtrl {
 	 * @param deplacable : si le matériel est déplaçable ou non
 	 * @param observation : l'observation
 	 * @param quantite : la quantité
+	 * @param louable : si le matériel est louable ou non
 	 */
-	public static void ajoutMateriel(Etat etat, Categorie categorie, Marque marque, Designation designation,Fournisseur fournisseur, String typeMat, String numSerie, Date dateAchat, float valeurAchat, float valeurReap, boolean deplacable, String observation, int quantite) {
+	public static void ajoutMateriel(Etat etat, Categorie categorie, Marque marque, Designation designation,Fournisseur fournisseur, String typeMat, String numSerie, Date dateAchat, float valeurAchat, float valeurReap, boolean deplacable, String observation, int quantite, boolean louable) {
 		if (etat == null) {
 			throw new NullPointerException("L'etat ne doit pas etre null");
 		}
@@ -86,7 +87,7 @@ public class MaterielCtrl {
 			throw new IllegalArgumentException("La quantité ne peut pas être négative");
 		}
 		
-		Materiel materiel = new Materiel(null, etat, categorie, marque, designation,fournisseur, typeMat, numSerie, dateAchat, valeurAchat, valeurReap, deplacable, observation, quantite);
+		Materiel materiel = new Materiel(null, etat, categorie, marque, designation,fournisseur, typeMat, numSerie, dateAchat, valeurAchat, valeurReap, deplacable, observation, quantite, louable);
 		
 		new MaterielDAO(DAOFactory.getInstance()).create(materiel);		
 	}

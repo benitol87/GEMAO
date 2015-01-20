@@ -199,7 +199,8 @@ public class AjoutMaterielServlet extends HttpServlet {
 					materiel.getTypeMat(), materiel.getNumSerie(),
 					materiel.getDateAchat(), materiel.getValeurAchat(),
 					materiel.getValeurReap(), materiel.isDeplacable(),
-					materiel.getObservation(), Integer.parseInt(quantite));
+					materiel.getObservation(), Integer.parseInt(quantite),
+					materiel.isLouable());
 			session.removeAttribute("INFOS");
 		}
 		

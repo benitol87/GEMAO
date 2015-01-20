@@ -69,7 +69,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 					obj.isDeplacable(),
 					obj.getObservation(),
 					obj.getQuantite(), 
-					obj.isEstLouable());
+					obj.isLouable());
 			int status = requete.executeUpdate();
 
 			if (status == 0) {
@@ -143,7 +143,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 					obj.getNumSerie(), obj.getDateAchat(),
 					obj.getValeurAchat(), obj.getValeurReap(), obj
 							.isDeplacable(), obj.getObservation(), obj
-							.getQuantite(), obj.isDeplacable(), obj.getIdMateriel());
+							.getQuantite(), obj.isLouable(), obj.getIdMateriel());
 			int status = requete.executeUpdate();
 			if (status == 0) {
 				throw new DAOException(

@@ -74,6 +74,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 				mat.setObservation(form.getObservation());
 				mat.setValeurReap(form.getValRea());
 				mat.setDeplacable(form.getDeplacable());
+				mat.setLouable(form.getLouable());
 
 				EtatCtrl etatctrl = new EtatCtrl();
 				Etat etat = etatctrl.recupererEtat(form.getEtat());
