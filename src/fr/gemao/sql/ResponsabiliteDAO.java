@@ -238,7 +238,13 @@ public class ResponsabiliteDAO extends IDAO<Responsabilite> {
 	public List<Responsabilite> addAllResponsabiliteParPersonnel(long idPersonne, List<Responsabilite> responsabilites){
 		List<Responsabilite> results = new ArrayList<>();
 		results = this.createAll(responsabilites);
+		Responsabilite r;
 		for(Responsabilite resp : responsabilites){
+			if((r=this.exist(resp)) == null){
+				resp = this.create(resp);
+			}else{
+				resp = r;
+			}
 			this.addResponsabiliteParPersonnel(idPersonne, resp);
 		}
 		return results;

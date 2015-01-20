@@ -1,5 +1,6 @@
 package fr.gemao.form.personnel;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,13 +16,15 @@ import fr.gemao.entity.Responsabilite;
 
 /**
  * Classe de validation du formulaire Personnel
+ * 
  * @author Coco
  *
  */
 public class PersonnelForm {
-	
-	//Informations relatives à la personne
+
+	// Informations relatives à la personne
 	private static final String CHAMP_LISTERESPONSABILITE = "fonction";
+	private static final String CHAMP_LISTEDIPLOME = "diplome";
 	private static final String CHAMP_IDCONTRAT = "idContrat";
 	private static final String CHAMP_LOGIN = "login";
 	private static final String CHAMP_PASSWORD = "password";
@@ -34,8 +37,8 @@ public class PersonnelForm {
 	private static final String CHAMP_TELFIXE = "telFixe";
 	private static final String CHAMP_TELPORT = "telPort";
 	private static final String CHAMP_EMAIL = "email";
-	
-	//Informations relatives à la personne
+
+	// Informations relatives à la personne
 	private String nom;
 	private String prenom;
 	private Date dateNaissance;
@@ -44,39 +47,39 @@ public class PersonnelForm {
 	private String telFixe;
 	private String telPort;
 	private String email;
-	
-	//Adresse
+
+	// Adresse
 	private Adresse adresse;
 	private Commune commune;
-	
-	//Commune
+
+	// Commune
 	private Integer codePostal;
 	private String nomCommune;
-	
-	//Droit à l'image
+
+	// Droit à l'image
 	private String droitImage;
-	
-	//Discipline
+
+	// Discipline
 	private String discipline;
 	private String classe;
-	
-	//Inscription
+
+	// Inscription
 	private String dateEntree;
-	
+
 	private List<Responsabilite> listeResponsabilite;
 	private List<Diplome> listeDiplomes;
 	private Integer idContrat;
 	private String login;
 	private String password;
 	private int pointsAncien;
-	
+
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
-	
+
 	public List<Responsabilite> getListeResponsabilite() {
 		return listeResponsabilite;
 	}
-	
+
 	public List<Diplome> getListeDiplomes() {
 		return listeDiplomes;
 	}
@@ -152,7 +155,7 @@ public class PersonnelForm {
 	public String getDateEntree() {
 		return dateEntree;
 	}
-	
+
 	public Adresse getAdresse() {
 		return adresse;
 	}
@@ -244,7 +247,7 @@ public class PersonnelForm {
 	public void setErreurs(Map<String, String> erreurs) {
 		this.erreurs = erreurs;
 	}
-	
+
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
@@ -256,37 +259,46 @@ public class PersonnelForm {
 	public Map<String, String> getErreurs() {
 		return erreurs;
 	}
-	
-	/* Méthode utilitaire qui retourne null si un champ est vide, et son contenu sinon */
-	public static String getValeurChamp(HttpServletRequest request, String nomChamp) {
+
+	/*
+	 * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
+	 * sinon
+	 */
+	public static String getValeurChamp(HttpServletRequest request,
+			String nomChamp) {
 		String valeur = request.getParameter(nomChamp);
-		
+
 		if (valeur == null || valeur.trim().length() == 0) {
 			return null;
 		} else {
 			return valeur;
 		}
 	}
-	
+
 	/* Ajoute un message correspondant au champ spécifié à la map des erreurs. */
 	public void setErreur(String champ, String message) {
 		erreurs.put(champ, message);
 	}
-	
+
 	/**
 	 * Méthode permettant de valider la liste des responsabilités
+	 * 
 	 * @param listeResponsabilites
 	 * @throws Exception
 	 */
-	private void validationListeResponsabilites(List<Responsabilite> listeResponsabilites) throws Exception {
+	private void validationListeResponsabilites(
+			List<Responsabilite> listeResponsabilites) throws Exception {
 		if (listeResponsabilites == null) {
-			throw new Exception("Merci de saisir une liste de responsabilités valide.");
+			throw new Exception(
+					"Merci de saisir une liste de responsabilités valide.");
 		}
 	}
-	
+
 	/**
 	 * Méthode permettant de valider l'ID du contrat
-	 * @param idContrat : l'ID du contrat
+	 * 
+	 * @param idContrat
+	 *            : l'ID du contrat
 	 * @throws Exception
 	 */
 	private void validationIdContrat(Integer idContrat) throws Exception {
@@ -294,10 +306,12 @@ public class PersonnelForm {
 			throw new Exception("Merci de saisir un ID de contrat valide.");
 		}
 	}
-	
+
 	/**
 	 * Méthode permettant de valider le login du personnel
-	 * @param login : le login
+	 * 
+	 * @param login
+	 *            : le login
 	 * @throws Exception
 	 */
 	private void validationLogin(String login) throws Exception {
@@ -308,7 +322,9 @@ public class PersonnelForm {
 
 	/**
 	 * Méthode permettant de valider le password du personnel
-	 * @param password : le password
+	 * 
+	 * @param password
+	 *            : le password
 	 * @throws Exception
 	 */
 	private void validationPassword(String password) throws Exception {
@@ -319,7 +335,9 @@ public class PersonnelForm {
 
 	/**
 	 * Méthode permettant de valider le nombre de points d'ancienneté
-	 * @param pointsAncien : le nombre de points d'ancienneté
+	 * 
+	 * @param pointsAncien
+	 *            : le nombre de points d'ancienneté
 	 * @throws Exception
 	 */
 	private void validationPointsAncien(int pointsAncien) throws Exception {
@@ -327,9 +345,50 @@ public class PersonnelForm {
 			throw new Exception("Merci de saisir un nombre de points valide.");
 		}
 	}
-	
+
+	public List<Responsabilite> lireResponsabilites(HttpServletRequest request) {
+		List<Responsabilite> list = new ArrayList<>();
+		String str = null;
+		Responsabilite res;
+		int i = 1;
+
+		do {
+			str = getValeurChamp(request, CHAMP_LISTERESPONSABILITE + i);
+
+			if (str != null && !str.equals("")) {
+				res = new Responsabilite();
+				res.setLibelle(str);
+				list.add(res);
+			}
+			i++;
+			System.out.println(str);
+
+		} while (str != null);
+		return list;
+	}
+
+	public List<Diplome> lireDiplomes(HttpServletRequest request) {
+		List<Diplome> list = new ArrayList<>();
+		String str = null;
+		Diplome dip;
+		int i = 1;
+
+		do {
+			str = getValeurChamp(request, CHAMP_LISTEDIPLOME + i);
+
+			if (str != null && !str.equals("")) {
+				dip = new Diplome(null, str);
+				list.add(dip);
+			}
+			i++;
+			System.out.println(str);
+		} while (str != null);
+		return list;
+	}
+
 	/**
 	 * Méthode permettant de tester un personnel
+	 * 
 	 * @param request
 	 */
 	public Personnel testerPersonnel(HttpServletRequest request) {
@@ -339,27 +398,14 @@ public class PersonnelForm {
 		String ville;
 		int code;
 
-		/* Récupération des champs du formulaire */
-		String str = null;
-		Responsabilite res;
-		int i = 1;
-		
-		do {
-			str = getValeurChamp(request, CHAMP_LISTERESPONSABILITE+i);
-			i++;
-			
-			if (str != null && str.equals("")) {
-				res = new Responsabilite();
-				res.setLibelle(str);
-				listeResponsabilite.add(res);
-			}
-			
-		} while(str != null);
-		
+		listeResponsabilite = lireResponsabilites(request);
+		listeDiplomes = lireDiplomes(request);
+
 		idContrat = Integer.parseInt(getValeurChamp(request, CHAMP_IDCONTRAT));
 		login = getValeurChamp(request, CHAMP_LOGIN);
 		password = getValeurChamp(request, CHAMP_PASSWORD);
-		pointsAncien = Integer.parseInt(getValeurChamp(request, CHAMP_POINTSANCIEN));
+		pointsAncien = Integer.parseInt(getValeurChamp(request,
+				CHAMP_POINTSANCIEN));
 		numRue = Integer.parseInt(getValeurChamp(request, CHAMP_NUMRUE));
 		nomRue = getValeurChamp(request, CHAMP_NOMRUE);
 		infoCompl = getValeurChamp(request, CHAMP_INFOCOMPL);
@@ -368,18 +414,17 @@ public class PersonnelForm {
 		telFixe = getValeurChamp(request, CHAMP_TELFIXE);
 		telPort = getValeurChamp(request, CHAMP_TELPORT);
 		email = getValeurChamp(request, CHAMP_EMAIL);
-		
-		
+
 		adresse = new Adresse();
 		commune = new Commune();
-		
+
 		adresse.setNumRue(numRue);
 		adresse.setNomRue(nomRue);
 		adresse.setInfoCompl(infoCompl);
-		
+
 		commune.setCodePostal(code);
 		commune.setNomCommune(ville);
-		
+
 		adresse.setCommune(commune);
 
 		/* Validation de l'ID du contrat */
@@ -409,12 +454,12 @@ public class PersonnelForm {
 		} catch (Exception e) {
 			setErreur(CHAMP_POINTSANCIEN, e.getMessage());
 		}
-		
+
 		if (getErreurs().isEmpty()) {
 			Personnel pers = new Personnel();
 			return pers;
 		}
-		
+
 		return null;
 	}
 }

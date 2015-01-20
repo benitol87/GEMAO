@@ -114,7 +114,7 @@ public class DiplomeDAO extends IDAO<Diplome> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 
-		String sql = "SELECT * FROM responsabilite WHERE nomDiplome = ?;";
+		String sql = "SELECT * FROM diplome WHERE nomDiplome = ?;";
 
 		try {
 			connexion = factory.getConnection();
@@ -143,8 +143,14 @@ public class DiplomeDAO extends IDAO<Diplome> {
 	public List<Diplome> addAllDiplomesParPersonnel(long idPersonne, List<Diplome> listeDiplome){
 		List<Diplome> results = new ArrayList<>();
 		results = this.createAll(listeDiplome);
-		for(Diplome resp : listeDiplome){
-			this.addDiplomeParPersonnel(idPersonne, resp);
+		Diplome d;
+		for(Diplome dip : listeDiplome){
+			if((d=this.exist(dip)) == null){
+				dip = this.create(dip);
+			}else{
+				dip = d;
+			}
+			this.addDiplomeParPersonnel(idPersonne, dip);
 		}
 		return results;
 	}

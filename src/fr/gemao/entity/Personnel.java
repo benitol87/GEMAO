@@ -206,12 +206,15 @@ public class Personnel extends Personne {
 		this.listeDiplomes = listeDiplomes;
 	}
 
+	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + " Personnel [listeResponsabilite=" + listeResponsabilite
+		return "Personnel [" + super.toString()
+				+ ", listeResponsabilite=" + listeResponsabilite
 				+ ", listeDiplomes=" + listeDiplomes + ", contrat=" + contrat
 				+ ", login=" + login + ", password=" + password
 				+ ", pointsAncien=" + pointsAncien + "]";

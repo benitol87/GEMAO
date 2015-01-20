@@ -23,6 +23,7 @@ import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.Responsabilite;
 import fr.gemao.entity.util.Civilite;
+import fr.gemao.form.personnel.PersonnelForm;
 
 /**
  * Servlet implementation class AjoutPersonnelServlet
@@ -76,9 +77,6 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		 * Création du personnel
 		 * TODO manque diplome et fonction
 		 */
-		
-		List<Responsabilite> list = new ArrayList<>();
-		List<Diplome> listdi = new ArrayList<>();
 
 		/**
 		 * Création de la commune
@@ -103,12 +101,16 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		if(civilite.equals("Madame")){
 			personnel.setCivilite(Civilite.MADAME);
 		}
+		
+		//Lecture des listes
+		PersonnelForm personnelForm = new PersonnelForm();
+		personnel.setListeResponsabilite(personnelForm.lireResponsabilites(request));
+		personnel.setListeDiplomes(personnelForm.lireDiplomes(request));
+		
 		AjouterPersonnelCtrl apc = new AjouterPersonnelCtrl();
 		
 		personnel.setCommuneNaiss(commune);
 		personnel.setEmail(mail);
-		personnel.setListeDiplomes(listdi);
-		personnel.setListeResponsabilite(list);
 		personnel.setNom(nom);
 		personnel.setPrenom(prenom);
 		personnel.setTelFixe(telFixe);
