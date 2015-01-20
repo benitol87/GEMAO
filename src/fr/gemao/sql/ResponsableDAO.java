@@ -12,6 +12,7 @@ import fr.gemao.entity.Personne;
 import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
+import fr.gemao.sql.util.DateUtil;
 
 public class ResponsableDAO extends IDAO<Responsable> {
 
@@ -88,8 +89,27 @@ public class ResponsableDAO extends IDAO<Responsable> {
 
 	@Override
 	public Responsable update(Responsable obj) {
-		// TODO Auto-generated method stub
-		return null;
+		if (obj == null) {
+			throw new NullPointerException("Le responsable ne doit pas être null");
+		}
+
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "UPDATE responsable SET nom = ?, prenom = ?, tel = ?, "
+				+ "email = ?;";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, obj.getNom(), obj.getPrenom(), obj.getTelephone(), obj.getEmail());
+			requete.executeUpdate();
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return obj;
 	}
 
 	@Override
@@ -149,14 +169,12 @@ public class ResponsableDAO extends IDAO<Responsable> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * from responsable where nom = ? and prenom = ?"
-				+ " and tel = ? and email = ?";
+		String sql = "SELECT * from responsable where nom = ? and prenom = ?";
 		Responsable verif = null;
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, responsable.getNom(), responsable.getPrenom(),
-					responsable.getTelephone(), responsable.getEmail());
+					sql, false, responsable.getNom(), responsable.getPrenom());
 			result = requete.executeQuery();
 
 			if (result.first()) {

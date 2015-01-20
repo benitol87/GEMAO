@@ -38,7 +38,8 @@ public class ModifierResponsableCtrl {
 				}
 			}
 			else{
-				throw new IllegalArgumentException("Le responsable n'existe pas dans la base...");
+				responsable.setIdResponsable(null);
+				ajoutResp.ajouterResponsable(responsable);
 			}			
 		}
 		else{
