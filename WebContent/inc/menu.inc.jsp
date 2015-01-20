@@ -27,7 +27,6 @@
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
 								<li><a href="<c:url value="/personnel/AjoutPersonnel"/>">Ajouter</a></li>
-								<li><a href="<c:url value="/personnel/ModifPersonnel"/>">Modifier</a></li>
 								<li><a href="<c:url value="/personnel/ListePersonnel"/>">Lister</a></li>
 							</ul>
 						</div></li>
@@ -37,8 +36,6 @@
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
 								<li><a href="<c:url value="/materiel/AjouterMateriel"/>">Ajouter</a></li>
-								<li><a
-									href="<c:url value="/materiel/ModifierMateriel"/>">Modifier</a></li>
 								<li><a href="<c:url value="/materiel/ListerMateriel"/>">Lister</a></li>
 							</ul>
 						</div></li>

@@ -10,133 +10,85 @@
 	<h1>Modification des informations</h1>
 	<form id="modifp" method="post" action="#">
 		<fieldset>
-		<legend>Informations personnelles</legend>
-		<table>
-			<tr>
-				<td>
-					<label for="nom">Nom : </label>
-					<c:out value="${sessionScope.personnel['nom']}" />
-				</td>
-				<td>
-					<label for="prenom">Prénom : </label>
-					<c:out value="${sessionScope.personnel['prenom']}" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label for="email">E-mail : </label>
-					<input type="email" name="email" value="${sessionScope.personnel['email']}"/>
-				</td>
-				<td>
-					<label for="civilite">Civilité : </label>
-					<c:out value="${sessionScope.personnel['civilite']}" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label for="telFixe">Téléphone fixe : </label>
-					<input type="text" name="telFixe" value="${sessionScope.personnel['telFixe']}" pattern="[0][0-9]{9}" />
-				</td>
-				<td>
-					<label for="telPort">Téléphone portable : </label>
-					<input type="text" name="telPort" value="${sessionScope.personnel['telPort']}" pattern="[0][0-9]{9}" />
-				</td>
-			</tr>
-		</table>	
+			<legend>Informations personnelles</legend>
+			<div>
+				<label for="nom">Nom</label>
+				<c:out value="${sessionScope.personnel['nom']}" />
+			</div>
+			<div>
+				<label for="prenom">Prénom</label>
+				<c:out value="${sessionScope.personnel['prenom']}" />
+			</div>
+			<div>
+				<label for="email">E-mail</label>
+				<input type="email" name="email" value="${sessionScope.personnel['email']}"/>
+			</div>
+			<div>
+				<label for="civilite">Civilité</label>
+				<c:out value="${sessionScope.personnel['civilite']}" />
+			</div>
+			<div>
+				<label for="telFixe">Téléphone fixe</label>
+				<input type="text" name="telFixe" value="${sessionScope.personnel['telFixe']}" pattern="[0][0-9]{9}" />
+			</div>
+			<div>
+				<label for="telPort">Téléphone portable</label>
+				<input type="text" name="telPort" value="${sessionScope.personnel['telPort']}" pattern="[0][0-9]{9}" />
+			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Adresse</legend>
-			<table>
-				<tr>
-					<td>
-						<label for="numRue">N° : </label>
-					</td>
-					<td>
-						<input name="numRue" type="text" value="${sessionScope.personnel.adresse.numRue}" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="nomRue">Rue : </label>
-					</td>
-					<td>
-						<input type="text" name="nomRue" value="${sessionScope.personnel.adresse.nomRue}" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="infoCompl">Complément d'adresse : </label>
-					</td>
-					<td>
-						<input type="text" name="infoCompl" value="${sessionScope.personnel.adresse.infoCompl}"/>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="ville">Commune : </label>
-					</td>
-					<td>
-						<input type="text" name="ville" value="${commune['nomCommune']}"/>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="code">Code postal : </label>
-					</td>
-					<td>
-						<input type="text" name="code" value="${commune['codePostal']}"/>
-					</td>
-				</tr>
-			</table>
+			<div>
+				<label for="numRue">N°</label>
+				<input name="numRue" type="text" value="${sessionScope.personnel.adresse.numRue}" />
+			</div>
+			<div>
+				<label for="nomRue">Rue</label>
+				<input type="text" name="nomRue" value="${sessionScope.personnel.adresse.nomRue}" />
+			</div>
+			<div>
+				<label for="infoCompl">Complément d'adresse</label>
+				<input type="text" name="infoCompl" value="${sessionScope.personnel.adresse.infoCompl}"/>
+			</div>
+			<div>
+				<label for="ville">Commune</label>
+				<input type="text" name="ville" value="${commune['nomCommune']}"/>
+			</div>
+			<div>
+				<label for="code">Code postal</label>
+				<input type="text" name="code" value="${commune['codePostal']}"/>
+			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Informations professionnelles</legend>
-			<table>
-				<tr>
-					<td>
-						<input name="idContrat" type="number" hidden="true" value="${sessionScope.personnel.getContrat().getIdContrat()}"/>
-						<input name="pointsAncien" type="number" hidden="true" value="${sessionScope.personnel.getPointsAncien()}"/>
-						<input name="password" type="text" hidden="true" value="${sessionScope.personnel.getPassword()}"/>
-						<input name="login" type="text" hidden="true" value="${sessionScope.personnel.getLogin()}"/>
-						
-						<label for="diplome">Diplôme : </label>
-						<c:forEach items="${listeDiplome}" var="dipl">
-						<tr>
-							<td>
-								 - <c:out value="${dipl['nomDiplome']}" />
-							</td>
-						</tr>
-						</c:forEach>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="button" value="+" />
-						<input type="button" value="-"/>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="fonction">Fonction : </label>
-						<c:forEach items="${listeResponsabilite}" var="resp">
-						<tr>
-							<td>
-								- <c:out value="${resp['libelle']}" />
-							</td>
-						</tr>
-						</c:forEach>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="button" value="+"/>
-						<input type="button" value="-" />
-					</td>
-				</tr>
-			</table>
+			<input name="idContrat" type="number" hidden="true" value="${sessionScope.personnel.getContrat().getIdContrat()}"/>
+			<input name="pointsAncien" type="number" hidden="true" value="${sessionScope.personnel.getPointsAncien()}"/>
+			<input name="password" type="text" hidden="true" value="${sessionScope.personnel.getPassword()}"/>
+			<input name="login" type="text" hidden="true" value="${sessionScope.personnel.getLogin()}"/>
+					
+			<div>	
+				<label for="diplome">Diplôme : </label>
+				<c:forEach items="${listeDiplome}" var="dipl">
+					<c:out value="${dipl['nomDiplome']}" />
+				</c:forEach>
+				<input type="button" value="+" />
+				<input type="button" value="-"/>
+			</div>
+			
+			<div>
+				<label for="fonction">Fonction : </label>
+				<c:forEach items="${listeResponsabilite}" var="resp">
+					<c:out value="${resp['libelle']}" />
+				</c:forEach>
+				<input type="button" value="+"/>
+				<input type="button" value="-" />
+			</div>
 		</fieldset>
-		<br/>
-		<input type="reset" value="Annuler"/>
-		<input type="submit" value="Modifier"/>
+		<fieldset class='align-center no-border'>
+			<a href="ListePersonnel">
+				<input type="button" value="Retour" />
+			</a>
+			<input type="submit" value="Modifier"/>
+		</fieldset>
 	</form>
 <c:import url="/inc/footer.inc.jsp" />
