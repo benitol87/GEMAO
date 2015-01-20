@@ -15,29 +15,17 @@
 		<th>Désignation</th>
 		<th>Catégorie</th>
 		<th>Quantité</th>
-		<th></th>
-		<th></th>
+		<th>Actions</th>
 	</tr>
 	<c:forEach items="${listeMateriels}" var="mat">
 		<tr>
 			<td><c:out value="${mat.designation.libelleDesignation}" /></td>
 			<td><c:out value="${mat.categorie.libelleCat}" /></td>
 			<td><c:out value="${mat.quantite}" /></td>
-
-			<c:choose>
-				<c:when test="${!empty page}">
-					<td><a
-						href="ModifierMateriel?idMateriel=<c:out value="${mat.idMateriel}" />"><input
-							type="button" value="Modifier" /></a>
-					<td>
-				</c:when>
-				<c:otherwise>
-					<td><a
-						href="ConsulterMateriel?idMateriel=<c:out value="${mat.idMateriel}" />"><input
-							type="button" value="Consulter" /></a>
-					<td>
-				</c:otherwise>
-			</c:choose>
+			<td>
+				<a class="icon icon-search" href="ConsulterMateriel?idMateriel=<c:out value="${mat.idMateriel}" />" title='Afficher les détails'></a>
+				<a class="icon icon-pen" href="ModifierMateriel?idMateriel=<c:out value="${mat.idMateriel}" />" title='Modifier les informations'></a>
+			</td>
 		</tr>
 	</c:forEach>
 </table>
