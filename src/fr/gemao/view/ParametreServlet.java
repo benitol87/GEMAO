@@ -15,11 +15,11 @@ import fr.gemao.form.ParametreForm;
 /**
  * Servlet implementation class ParametreServlet
  */
-@WebServlet("/Parametres")
+@WebServlet("/adherent/Parametres")
 public class ParametreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public static final String VUE_PARAMETRE = "/WEB-INF/pages/parametre.jsp";
+	public static final String VUE_PARAMETRE = "/WEB-INF/pages/adherent/parametre.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
