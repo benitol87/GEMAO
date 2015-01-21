@@ -39,6 +39,9 @@ public class AjoutMaterielServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static String ERREUR_AJOUT_CATEGORIE = "erreurCat";
+	private static String ERREUR_AJOUT_DESIGNATION = "erreurDes";
+	private static String ERREUR_AJOUT_FOURNISSEUR = "erreurFour";
+	private static String ERREUR_AJOUT_MARQUE = "erreurMarque";
 	private static String VUE = "/WEB-INF/pages/materiel/ajoutMateriel.jsp";
 
 	protected void doGet(HttpServletRequest request,
@@ -71,23 +74,23 @@ public class AjoutMaterielServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		MaterielForm form = new MaterielForm();
-		
+
 		// Récupération des données
 		Materiel infoMat = new Materiel();
 		infoMat.setTypeMat(Form.getValeurChamp(request, "type"));
 
 		String nombre = Form.getValeurChamp(request, "quantite");
-		if(nombre!=null)
+		if (nombre != null)
 			infoMat.setQuantite(Integer.parseInt(nombre));
-		
+
 		nombre = Form.getValeurChamp(request, "ValeurAch");
-		if(nombre!=null)
+		if (nombre != null)
 			infoMat.setValeurAchat(Float.parseFloat(nombre));
-		
+
 		nombre = Form.getValeurChamp(request, "valRea");
-		if(nombre!=null)
+		if (nombre != null)
 			infoMat.setValeurReap(Float.parseFloat(nombre));
-		
+
 		infoMat.setObservation(Form.getValeurChamp(request, "observation"));
 		infoMat.setNumSerie(Form.getValeurChamp(request, "numSerie"));
 		session.setAttribute("INFOS", infoMat);
@@ -95,23 +98,43 @@ public class AjoutMaterielServlet extends HttpServlet {
 		// Ajout d'une catégorie, le fait qu'elle ne soit pas vide
 		// a déjà été testé
 		if (Form.getValeurChamp(request, "nomCat") != null) {
-			try{
-			CategorieCtrl.ajoutCategorie(Form.getValeurChamp(request, "nomCat"));
-			}catch(DAOException e){
-				form.setErreur(ERREUR_AJOUT_CATEGORIE, "La catégorie existe déjà");
+			try {
+				CategorieCtrl.ajoutCategorie(Form.getValeurChamp(request,
+						"nomCat"));
+			} catch (DAOException e) {
+				form.setErreur(ERREUR_AJOUT_CATEGORIE,
+						"La catégorie existe déjà");
 			}
 		}
 
 		if (Form.getValeurChamp(request, "nomDes") != null) {
-			DesignationCtrl.ajoutDesignation(Form.getValeurChamp(request, "nomDes"));
+			try {
+				DesignationCtrl.ajoutDesignation(Form.getValeurChamp(request,
+						"nomDes"));
+			} catch (DAOException e) {
+				form.setErreur(ERREUR_AJOUT_DESIGNATION,
+						"La designation existe déjà");
+			}
 		}
 
 		if (Form.getValeurChamp(request, "nomFour") != null) {
-			FournisseurCtrl.ajoutFournisseur(Form.getValeurChamp(request, "nomFour"));
+			try {
+				FournisseurCtrl.ajoutFournisseur(Form.getValeurChamp(request,
+						"nomFour"));
+			} catch (DAOException e) {
+				form.setErreur(ERREUR_AJOUT_FOURNISSEUR,
+						"Le Fournisseur existe déjà");
+			}
 		}
 
 		if (Form.getValeurChamp(request, "nomMarque") != null) {
-			MarqueCtrl.ajouterMarque(Form.getValeurChamp(request, "nomMarque"));
+			try {
+				MarqueCtrl.ajouterMarque(Form.getValeurChamp(request,
+						"nomMarque"));
+			} catch (DAOException e) {
+				form.setErreur(ERREUR_AJOUT_MARQUE,
+						"La marque existe déjà");
+			}
 		}
 
 		List<Categorie> listCat = new ArrayList<Categorie>();
@@ -203,7 +226,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 					materiel.isLouable());
 			session.removeAttribute("INFOS");
 		}
-		
+
 		request.setAttribute("form", form);
 		this.getServletContext().getRequestDispatcher(VUE)
 				.forward(request, response);
