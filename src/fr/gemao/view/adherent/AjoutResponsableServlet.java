@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.entity.Commune;
 import fr.gemao.entity.adherent.Responsable;
 
 /**
@@ -21,6 +22,7 @@ public class AjoutResponsableServlet extends HttpServlet {
 	private String VUE = "/WEB-INF/pages/adherent/ajoutResponsable.jsp";
 	private String URL_QF = "/GEMAO/adherent/CalculerQF";
 	private String VUE_ERREUR = "/WEB-INF/pages/erreurs/404.jsp";
+	private String URL_VALIDATION = "/GEMAO/adherent/ValidationAjoutAdherent";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -46,10 +48,16 @@ public class AjoutResponsableServlet extends HttpServlet {
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
 		Responsable responsable = new Responsable(null, nom, prenom, tel, email);
+		System.out.println("Ajout resp " + responsable);
 
 		session.setAttribute("ajout_adh_responsable", responsable);
+		Commune commune = (Commune) session.getAttribute("ajout_adh_commune"); 
 
-		response.sendRedirect(URL_QF);
+		if(commune.isAvantage()){
+			response.sendRedirect(URL_QF);
+		}else{
+			response.sendRedirect(URL_VALIDATION);
+		}
 	}
 
 }

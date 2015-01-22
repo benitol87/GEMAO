@@ -22,6 +22,8 @@ import fr.gemao.entity.Discipline;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.form.adherent.AdherentForm;
+import fr.gemao.sql.CommuneDAO;
+import fr.gemao.sql.DAOFactory;
 
 /**
  * Servlet implementation class AjoutAdherent
@@ -127,6 +129,11 @@ public class AjoutAdherentServlet extends HttpServlet {
 			 * Création de la commune
 			 */
 			Commune commune = new Commune(null, codePostal, com, false);
+			CommuneDAO communeDAO = DAOFactory.getInstance().getCommuneDAO();
+			Commune c = communeDAO.existNomCodePostal(commune);
+			if(c!=null){
+				commune = c;
+			}
 
 			/**
 			 * Réupération des données de l'adresse
