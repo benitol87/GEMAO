@@ -87,11 +87,11 @@ public class MaterielForm {
 		String fourniss = getValeurChamp(request, CHAMP_FOURNISSEUR);
 
 		/* Validation du champ categorie. */
-		try {
+		/*try {
 			validationCategorie(idCategorie);
 		} catch (Exception e) {
 			setErreur(CHAMP_CATEGORIE, e.getMessage());
-		}
+		}*/
 
 		/* Validation du champ categorie. */
 		try {
