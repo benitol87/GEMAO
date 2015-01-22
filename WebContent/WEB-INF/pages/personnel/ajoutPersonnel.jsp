@@ -23,8 +23,8 @@
 		<div>
 			<label>Civilité</label>
 			<span>
-				<input type="radio" name="civilite" value="Madame"> <label for="civilite">Mme</label>
-				<input type="radio" name="civilite" value="Monsieur" checked> <label for="civilite">M.</label>
+				<input type="radio" name="civilite" value="Madame" checked> <label for="civilite">Mme</label>
+				<input type="radio" name="civilite" value="Monsieur"> <label for="civilite">M.</label>
 			</span>
 		</div>
 		
