@@ -8,7 +8,7 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <h1>Paramètres</h1>
-<form action="<c:url value="/Parametres" />" id="formParametre" method="post">
+<form action="<c:url value="/adherent/Parametres" />" id="formParametre" method="post">
 	<fieldset>
 		<legend>Allocations familiales</legend>
 		<div>
