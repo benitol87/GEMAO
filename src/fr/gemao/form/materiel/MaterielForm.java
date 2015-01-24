@@ -280,7 +280,7 @@ public class MaterielForm {
 	 * 
 	 * @return l'id du type.
 	 */
-	public String getIdType() {
+	public String getType() {
 		return type;
 	}
 

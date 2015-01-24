@@ -1,9 +1,10 @@
 package fr.gemao.view.materiel;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.materiel.CategorieCtrl;
+import fr.gemao.ctrl.materiel.DesignationCtrl;
 import fr.gemao.ctrl.materiel.EtatCtrl;
+import fr.gemao.ctrl.materiel.FournisseurCtrl;
+import fr.gemao.ctrl.materiel.MarqueCtrl;
 import fr.gemao.ctrl.materiel.MaterielCtrl;
+import fr.gemao.entity.materiel.Categorie;
+import fr.gemao.entity.materiel.Designation;
 import fr.gemao.entity.materiel.Etat;
+import fr.gemao.entity.materiel.Fournisseur;
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.form.materiel.MaterielForm;
 
@@ -40,11 +48,34 @@ public class ModifierMaterielServlet extends HttpServlet {
 			MaterielCtrl matctrl = new MaterielCtrl();
 			Materiel mat = matctrl.recupererMateriel(idParametre);
 			EtatCtrl etatctrl = new EtatCtrl();
+			CategorieCtrl catctrl = new CategorieCtrl();
+			FournisseurCtrl fournctrl = new FournisseurCtrl();
+			DesignationCtrl desctrl = new DesignationCtrl();
+			MarqueCtrl marquectrl = new MarqueCtrl();
 
 			session.setAttribute("sessionObjectMateriel", mat);
+
 			List<Etat> listEtats = etatctrl.getListeEtat();
 			listEtats.remove(mat.getEtat());
 			session.setAttribute("listeEtats", listEtats);
+
+			List<Categorie> listCat = catctrl.recupererToutesCategories();
+			listCat.remove(mat.getCategorie());
+			session.setAttribute("listeCat", listCat);
+
+			List<Fournisseur> listFourn = fournctrl.getListeFournisseur();
+			listFourn.remove(mat.getFournisseur());
+			session.setAttribute("listeFourn", listFourn);
+
+			List<Designation> listDes = desctrl.recupererToutesDesignations();
+			listDes.remove(mat.getDesignation());
+			session.setAttribute("listeDes", listDes);
+
+			/*
+			 * List<Marque> listMarque = marquectrl.
+			 * listDes.remove(mat.getDesignation());
+			 * session.setAttribute("listeDes", listFourn);
+			 */
 
 			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
 					.forward(request, response);
@@ -70,19 +101,41 @@ public class ModifierMaterielServlet extends HttpServlet {
 			if (session.getAttribute("sessionObjectMateriel").getClass() == Materiel.class) {
 				mat = (Materiel) session.getAttribute("sessionObjectMateriel");
 
-				mat.setQuantite(form.getQuantite());
-				mat.setObservation(form.getObservation());
+				CategorieCtrl catctrl = new CategorieCtrl();
+				FournisseurCtrl fournctrl = new FournisseurCtrl();
+				DesignationCtrl desctrl = new DesignationCtrl();
+				EtatCtrl etatctrl = new EtatCtrl();
+
+				mat.setCategorie(catctrl.recupererCategorie(form.getCategorie()));
+				mat.setValeurAchat(form.getValAch());
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				try {
+					mat.setDateAchat(new java.sql.Date(formatter.parse(
+							form.getDateAch()).getTime()));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
 				mat.setValeurReap(form.getValRea());
+				mat.setFournisseur(fournctrl.recupererFournisseur(form
+						.getFournisseur()));
+				mat.setDesignation(desctrl.recupererDesignationCtrl(form
+						.getDesignation()));
+				mat.setTypeMat(form.getType());
+				mat.setEtat(etatctrl.recupererEtat(form.getEtat()));
+				// Marque
+				mat.setQuantite(form.getQuantite());
+				mat.setNumSerie(form.getNumserie());
 				mat.setDeplacable(form.getDeplacable());
 				mat.setLouable(form.getLouable());
-
-				EtatCtrl etatctrl = new EtatCtrl();
-				Etat etat = etatctrl.recupererEtat(form.getEtat());
-				mat.setEtat(etat);
+				mat.setObservation(form.getObservation());
+				mat.setEtat(etatctrl.recupererEtat(form.getEtat()));
 
 				matctrl.modifierMateriel(mat);
 				session.removeAttribute("materiel");
 				session.removeAttribute("listeEtats");
+				session.removeAttribute("listeCat");
+				session.removeAttribute("listeFourn");
+				session.removeAttribute("listeDes");
 			} else {
 				form.setErreur("Modification", "Probleme de session");
 			}
