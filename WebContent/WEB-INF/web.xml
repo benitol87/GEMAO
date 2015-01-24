@@ -5,6 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>GEMAO</display-name>
 
+	<!-- Filtre s'assurant du bon encodage des caractères lors de l'envoi de requêtes au serveur -->
 	<filter>
 		<filter-name>Set Character Encoding</filter-name>
 		<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
@@ -22,6 +23,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- Autoriser tout le temps l'accès au CSS (AllowAccessFilter "désactive" le filtre CheckConnectedFilter) -->
 	<filter>
 		<filter-name>AllowAccessCSS</filter-name>
 		<filter-class>fr.gemao.filters.AllowAccessFilter</filter-class>
@@ -31,6 +33,7 @@
 		<url-pattern>/css/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- Empêcher l'accès à TOUTES les ressources si l'utilisateur n'est pas connecté -->
 	<filter>
 		<filter-name>CheckConnected</filter-name>
 		<filter-class>fr.gemao.filters.CheckConnectedFilter</filter-class>
@@ -39,7 +42,8 @@
 		<filter-name>CheckConnected</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+	
+	<!-- Redirection des erreurs 404 vers une page personnallisée -->
 	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/pages/erreurs/404.jsp</location>
