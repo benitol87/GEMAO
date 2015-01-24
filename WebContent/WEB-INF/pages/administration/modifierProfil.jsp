@@ -20,10 +20,10 @@
 		</div>
 		
 		<ul>
-			<c:forEach items="${listeModules}" var="module">
+			<c:forEach items="${requestScope.listeModules}" var="module">
 				<li>
 					<input type="checkbox" name="module<c:out value="${module.idModule}"/>" 
-						<c:if test="${empty profil.listeModules[module.nomModule] }"> checked </c:if>
+						<c:if test="${!empty requestScope.profil.listeModules[module.nomModule] }"> checked </c:if>
 					/>
 					<label for="module<c:out value="${module.idModule}"/>"><c:out value="${module.nomModule}"/></label>
 				</li>

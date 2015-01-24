@@ -13,7 +13,7 @@
 		<th>Nom</th>
 		<th>Actions</th>
 	</tr>
-	<c:forEach items="${listeProfils}" var="profil">
+	<c:forEach items="${requestScope.listeProfils}" var="profil">
 		<tr>
 			<td><c:out value="${profil.nomProfil}" /></td>
 			<td>

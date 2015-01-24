@@ -17,7 +17,7 @@
 		</th>
 	</tr>
 
-	<c:forEach items="${listeModules}" var="module">
+	<c:forEach items="${requestScope.listeModules}" var="module">
 		<tr>
 			<td><c:out value="${module.nomModule}" /></td>
 		</tr>
