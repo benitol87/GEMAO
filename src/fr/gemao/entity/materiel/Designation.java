@@ -1,6 +1,13 @@
 package fr.gemao.entity.materiel;
 
-public class Designation {
+import java.io.Serializable;
+
+public class Designation implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int idDesignation;
 	private String libelleDesignation;
 	

@@ -1,7 +1,13 @@
 package fr.gemao.entity.adherent;
 
-public class Responsable {
+import java.io.Serializable;
 
+public class Responsable implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Long idResponsable;
 	private String nom;
 	private String prenom;

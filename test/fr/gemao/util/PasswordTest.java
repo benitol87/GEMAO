@@ -71,7 +71,7 @@ public class PasswordTest {
 		// Act
 		boolean res = Password.compare(str1, str2);
 
-		// Assert
+		// Assert (false car la deuxième doit être cryptée)
 		assertFalse(res);
 	}
 	

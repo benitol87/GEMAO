@@ -1,6 +1,13 @@
 package fr.gemao.entity.adherent;
 
-public class MotifSortie {
+import java.io.Serializable;
+
+public class MotifSortie implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer idMotif;
 	private String libelle;
 	/**

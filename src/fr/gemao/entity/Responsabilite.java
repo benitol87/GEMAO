@@ -1,11 +1,17 @@
 package fr.gemao.entity;
 
+import java.io.Serializable;
+
 /**
  * Classe Responsabilité
  * @author Coco
  *
  */
-public class Responsabilite {
+public class Responsabilite implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private int idResponsabilite;
 	private String libelle;

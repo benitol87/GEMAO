@@ -1,6 +1,13 @@
 package fr.gemao.entity.materiel;
 
-public class Etat {
+import java.io.Serializable;
+
+public class Etat implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int idEtat;
 	private String libelleEtat;
 	

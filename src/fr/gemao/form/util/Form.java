@@ -1,8 +1,15 @@
 package fr.gemao.form.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 public class Form {
+	
+	private String resultat;
+	private Map<String, String> erreurs = new HashMap<String, String>();
+	
 	/**
 	 * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
 	 * sinon.
@@ -15,5 +22,24 @@ public class Form {
 		} else {
 			return valeur;
 		}
+	}
+	
+	/*
+	 * Ajoute un message correspondant au champ spécifié à la map des erreurs.
+	 */
+	public void setErreur(String champ, String message) {
+		erreurs.put(champ, message);
+	}
+	
+	public void setResultat(String resultat) {
+		this.resultat = resultat;
+	}
+
+	public String getResultat() {
+		return resultat;
+	}
+
+	public Map<String, String> getErreurs() {
+		return erreurs;
 	}
 }

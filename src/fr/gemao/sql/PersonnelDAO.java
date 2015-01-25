@@ -14,6 +14,7 @@ import fr.gemao.entity.Responsabilite;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
+import fr.gemao.util.Password;
 
 /**
  * Classe PersonnelDAO
@@ -64,7 +65,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 					obj.getIdPersonne(),
 					contrat.getIdContrat(),
 					obj.getLogin(),
-					obj.getPassword(),
+					Password.encrypt(obj.getPassword()),
 					obj.getPointsAncien());
 			
 			int status = requete.executeUpdate();
@@ -109,17 +110,15 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		
 		String sql = "UPDATE personnel SET idContrat = ?, login = ?, pwd = ?, pointAnciennete = ? "
 				+ "WHERE idPersonne = ?;";
-		Integer idContrat = null;
+
 		try {
-			if(obj.getContrat() != null){
-				idContrat = obj.getContrat().getIdContrat();
-			}
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, 
-					obj.getContrat(),
+					obj.getContrat().getIdContrat(),
 					obj.getLogin(),
-					obj.getPassword(),
-					obj.getPointsAncien());
+					Password.encrypt(obj.getPassword()),
+					obj.getPointsAncien(),
+					obj.getIdPersonne());
 			requete.executeUpdate();
 
 		} catch (SQLException e) {
@@ -245,7 +244,6 @@ public class PersonnelDAO extends IDAO<Personnel>{
 	}
 	
 	public int getNbNomPersonnel(String nom){
-		Personnel personnel = null;
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;

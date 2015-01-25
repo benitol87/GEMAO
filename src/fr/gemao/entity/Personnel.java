@@ -1,5 +1,6 @@
 package fr.gemao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -11,8 +12,12 @@ import fr.gemao.entity.util.Civilite;
  * @author Coco
  *
  */
-public class Personnel extends Personne {
-
+public class Personnel extends Personne implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private List<Responsabilite> listeResponsabilite;
 	private List<Diplome> listeDiplomes;
 	private Contrat contrat;

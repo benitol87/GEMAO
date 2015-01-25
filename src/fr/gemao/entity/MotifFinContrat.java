@@ -1,12 +1,18 @@
 package fr.gemao.entity;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author jarrige
  *
  */
-public class MotifFinContrat {
-
+public class MotifFinContrat implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer idMotif;
 	private String libelle;
 	/**

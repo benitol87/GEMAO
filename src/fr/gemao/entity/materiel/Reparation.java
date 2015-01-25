@@ -1,12 +1,17 @@
 package fr.gemao.entity.materiel;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Reparation.
  */
-public class Reparation {
+public class Reparation implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	/** The id reparation. */
 	private int idReparation;

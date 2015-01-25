@@ -1,5 +1,6 @@
 package fr.gemao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,12 @@ import java.util.Date;
  * @author Coco
  */
 
-public class Contrat {
+public class Contrat implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer idContrat;
 	private TypeContrat typeContrat;
 	private MotifFinContrat motifFinContrat;

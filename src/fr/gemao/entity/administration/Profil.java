@@ -1,5 +1,6 @@
 package fr.gemao.entity.administration;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,12 @@ import java.util.List;
  * @author Benoît
  *
  */
-public class Profil {
+public class Profil implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int idProfil;
 	private String nomProfil;
 	private List<Module> listeModules;

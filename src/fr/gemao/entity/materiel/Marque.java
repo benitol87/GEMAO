@@ -1,6 +1,13 @@
 package fr.gemao.entity.materiel;
 
-public class Marque {
+import java.io.Serializable;
+
+public class Marque implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int idMarque;
 	private String nomMarque;
 	

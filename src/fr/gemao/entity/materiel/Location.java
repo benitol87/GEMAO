@@ -1,5 +1,6 @@
 package fr.gemao.entity.materiel;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import fr.gemao.entity.Personne;
@@ -8,7 +9,11 @@ import fr.gemao.entity.Personne;
 /**
  * The Class Location.
  */
-public class Location {
+public class Location implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	/** The personne. */
 	private Personne personne;

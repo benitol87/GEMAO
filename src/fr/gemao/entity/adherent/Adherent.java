@@ -1,5 +1,6 @@
 package fr.gemao.entity.adherent;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,12 @@ import fr.gemao.entity.Discipline;
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.util.Civilite;
 
-public class Adherent extends Personne {
+public class Adherent extends Personne implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private MotifSortie motif;
 	private Responsable responsable;
 	private boolean droitImage;

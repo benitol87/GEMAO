@@ -1,6 +1,13 @@
 package fr.gemao.entity.materiel;
 
-public class Categorie {
+import java.io.Serializable;
+
+public class Categorie implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int idCategorie;
 	private String libelleCat;
 	private boolean estLouable;

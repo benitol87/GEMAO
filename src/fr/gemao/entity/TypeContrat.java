@@ -1,6 +1,13 @@
 package fr.gemao.entity;
 
-public class TypeContrat {
+import java.io.Serializable;
+
+public class TypeContrat implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer idContrat;
 	private String libelle;
 	/**

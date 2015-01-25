@@ -1,6 +1,13 @@
 package fr.gemao.entity;
 
-public class Commune {
+import java.io.Serializable;
+
+public class Commune implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer idCommune, codePostal;
 	private String nomCommune;
 	private boolean avantage;

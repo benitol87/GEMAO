@@ -1,9 +1,14 @@
 package fr.gemao.entity.materiel;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Materiel {
-
+public class Materiel implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Long idMateriel;
 	private Etat etat;
 	private Categorie categorie;

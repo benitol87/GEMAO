@@ -13,12 +13,24 @@ import fr.gemao.Config;
  *
  */
 public class Password {
+	private static String SALT = "!8Z$";
 	/**
 	 * Méthode cryptant la chaîne passée en paramètre
 	 * @param chaine : objet String non crypté, non nul
 	 * @return un objet String contenant la chaîne cryptée (32 caractères)
 	 */
 	public static String encrypt(String chaine){
+		String res = Password.md5(chaine);
+		res += SALT;
+		res = Password.md5(res);
+		return res;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(encrypt("lapin"));
+	}
+	
+	private static String md5(String chaine){
 		if(chaine==null)
 			throw new IllegalArgumentException("Can't encrypt a null string");
 		

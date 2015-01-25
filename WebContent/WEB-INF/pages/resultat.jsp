@@ -10,10 +10,10 @@
 
 <h1>Changer son mot de passe</h1>
 
-<p class='offset'><c:out value="${requestScope.resultat }"></c:out> </p>
+<p class='offset text-success'><c:out value="${requestScope.resultat }"></c:out> </p>
 
-<c:if test="${!empty requestScope.lien }">
-	<a href='<c:out value="${requestScope.lien }"/>'><input type='button' value='Retour'/></a>
-</c:if>
+<div class="align-center">
+	<a href='<c:url value="${requestScope.lienBouton }"/>'><input type='button' value='<c:out value="${requestScope.nomBouton }"/>'/></a>
+</div>
 	
 <c:import url="/inc/footer.inc.jsp" />

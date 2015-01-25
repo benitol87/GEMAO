@@ -1,11 +1,16 @@
 package fr.gemao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import fr.gemao.entity.util.Civilite;
 
-public class Personne {
-
+public class Personne implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Long idPersonne;
 	private Adresse adresse;
 	private Commune communeNaiss;

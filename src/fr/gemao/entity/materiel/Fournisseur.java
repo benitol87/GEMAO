@@ -1,6 +1,13 @@
 package fr.gemao.entity.materiel;
 
-public class Fournisseur {
+import java.io.Serializable;
+
+public class Fournisseur implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int idFournisseur;
 	private String nomFournisseur;
 	@Override

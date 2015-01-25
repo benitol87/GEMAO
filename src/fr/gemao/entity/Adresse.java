@@ -1,6 +1,13 @@
 package fr.gemao.entity;
 
-public class Adresse {
+import java.io.Serializable;
+
+public class Adresse implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer idAdresse;
 	private Commune commune;
 	private Integer numRue;

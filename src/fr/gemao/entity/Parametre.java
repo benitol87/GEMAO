@@ -1,8 +1,14 @@
 package fr.gemao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Parametre {
+public class Parametre implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private long idParam;
 	private float alloc2;
 	private float alloc3;

@@ -1,12 +1,19 @@
 package fr.gemao.entity.administration;
 
+import java.io.Serializable;
+
 
 /**
  * Classe représentant un module développé pour cette application
  * @author Benoît
  *
  */
-public class Module {
+public class Module implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int idModule;
 	private String nomModule;
 	

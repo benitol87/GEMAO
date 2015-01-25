@@ -10,28 +10,31 @@
 
 <h1>Changer son mot de passe</h1>
 
-<form method="post" action="<c:url value="/profil/ModifierProfil" />">
+<form method="post" action="<c:url value="/ChangerMotDePasse" />">
 	<fieldset>
 		<legend>Informations</legend>
 		
 		<div>
 			<label for="ancien" class='required'>Saisir l'ancien mot de passe </label>
-			<input type="password" name="ancien" required autocomplete="off"/>
+			<input type="password" name="ancien" required/>
 		</div>
+		
+		<div class='align-center text-danger'><c:out value="${requestScope.form.erreurs['ancien'] }"></c:out> </div>
 		
 		<div>
 			<label for="nouveau1" class='required'>Saisir le nouveau mot de passe </label>
-			<input type="password" name="nouveau1" required autocomplete="off"/>
+			<input type="password" name="nouveau1" required/>
 		</div>
 		
 		<div>
 			<label for="nouveau2" class='required'>Resaisir le nouveau mot de passe </label>
-			<input type="password" name="nouveau2" required autocomplete="off"/>
+			<input type="password" name="nouveau2" required/>
 		</div>		
+		
+		<div class='align-center text-danger'><c:out value="${requestScope.form.erreurs['nouveau'] }"></c:out> </div>
 	</fieldset>
 	
 	<fieldset class='align-center no-border'>
-		<a href="ListerProfils"><input type="button" value="Retour" /></a>
 		<input type="submit" value="Valider"/>
 	</fieldset>
 </form>

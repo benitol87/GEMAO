@@ -1,6 +1,13 @@
 package fr.gemao.entity;
 
-public class Diplome {
+import java.io.Serializable;
+
+public class Diplome implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer idDiplome;
 	private String nomDiplome;
 	/**
