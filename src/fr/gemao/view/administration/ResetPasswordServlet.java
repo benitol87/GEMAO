@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.gemao.ctrl.ChangerMotDePasseCtrl;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
 import fr.gemao.entity.Personnel;
 import fr.gemao.form.util.Form;
-import fr.gemao.sql.DAOFactory;
 import fr.gemao.util.Password;
+import fr.gemao.view.ConnexionServlet;
 
 /**
  * Servlet implementation class ResetPasswordServlet
@@ -23,9 +24,11 @@ public class ResetPasswordServlet extends HttpServlet {
 	
 	public static String ATTR_LISTE_PERSONNEL = "listePersonnel",
 			ATTR_PERSONNE = "personne",
+			ATTR_ERREUR = "erreur",
 			VUE = "/WEB-INF/pages/administration/resetPassword.jsp",
 			CHAMP_ID_PERSONNEL = "idPersonne",
-			CHAMP_CACHE = "id";
+			CHAMP_CACHE = "id",
+			CHAMP_MOT_DE_PASSE = "password";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,18 +44,37 @@ public class ResetPasswordServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RecupererPersonnelCtrl ctrl = new RecupererPersonnelCtrl();
+		RecupererPersonnelCtrl recupPersonneCtrl = new RecupererPersonnelCtrl();
+		ChangerMotDePasseCtrl changerMdpCtrl = new ChangerMotDePasseCtrl();
 		
 		long id = Long.parseLong(Form.getValeurChamp(request, CHAMP_ID_PERSONNEL));
-		Personnel personne = ctrl.recupererPersonnel(id);
+		Personnel personne = recupPersonneCtrl.recupererPersonnel(id);
 		
 		if(Form.getValeurChamp(request, CHAMP_CACHE)==null){
 			// Envoi déclenché par la liste déroulante
-			request.setAttribute(ATTR_LISTE_PERSONNEL, ctrl.recupererTousPersonnels());
+			request.setAttribute(ATTR_LISTE_PERSONNEL, recupPersonneCtrl.recupererTousPersonnels());
 			request.setAttribute(CHAMP_ID_PERSONNEL, Form.getValeurChamp(request, CHAMP_ID_PERSONNEL));
 		} else {
-			// TODO Modifier le mot de passe dans la base
-			personne.setPassword(Password.generatePassword());
+			// Clic sur le bouton 'Valider'
+			
+			// Test du mot de passe de la personne effectuant la modification
+			String password = Form.getValeurChamp(request, CHAMP_MOT_DE_PASSE);
+			String login = ((Personnel)request.getSession().getAttribute(ConnexionServlet.ATT_SESSION_USER)).getLogin();
+			
+			if(!changerMdpCtrl.controlerMotDePasse(login, password)){
+				//Mot de passe incorrect
+				request.setAttribute(ATTR_ERREUR, "Le mot de passe saisi est incorrect.");
+				request.setAttribute(ATTR_LISTE_PERSONNEL, recupPersonneCtrl.recupererTousPersonnels());
+				request.setAttribute(CHAMP_ID_PERSONNEL, Form.getValeurChamp(request, CHAMP_ID_PERSONNEL));
+			} else {
+				// Modification du mot de passe
+				personne.setPassword(Password.generatePassword());
+				if(!changerMdpCtrl.changerMotDePasse(personne)){
+					request.setAttribute(ATTR_ERREUR, "Un problème est survenu lors du changement de mot de passe.");
+					request.setAttribute(ATTR_LISTE_PERSONNEL, recupPersonneCtrl.recupererTousPersonnels());
+					request.setAttribute(CHAMP_ID_PERSONNEL, Form.getValeurChamp(request, CHAMP_ID_PERSONNEL));
+				}
+			}
 		}
 		
 		request.setAttribute(ATTR_PERSONNE, personne);

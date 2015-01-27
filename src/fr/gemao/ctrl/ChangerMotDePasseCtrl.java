@@ -16,10 +16,10 @@ public class ChangerMotDePasseCtrl {
 
 	public boolean controlerMotDePasse(String login, String passwd) {
 		if (login == null) {
-			throw new IllegalArgumentException("Le login ne peut être null");
+			return false;
 		}
 		if (passwd == null) {
-			throw new IllegalArgumentException("Le mot de passe ne peut être null");
+			return false;
 		}
 
 		Personnel personnel = personnelDAO.getLoginParPersonnel(login);
@@ -36,6 +36,16 @@ public class ChangerMotDePasseCtrl {
 		Personnel personnel = personnelDAO.getLoginParPersonnel(login);
 		personnel.setPassword(nouveauMotDePasse);
 		
+		return personnelDAO.update(personnel)!=null;
+	}
+	
+	/**
+	 * Remplace le mot de passe contenu adns la base de données par
+	 * celui présent dans l'objet Personnel passé en paramètre
+	 * @param personnel
+	 * @return
+	 */
+	public boolean changerMotDePasse(Personnel personnel){
 		return personnelDAO.update(personnel)!=null;
 	}
 }

@@ -16,26 +16,20 @@
 	                <input type="text" id="login" name="login" value="<c:out value="${personnel.login}"/>" size="20" maxlength="60" />
 	            </div>
                 
-				<div>
-	                <span>${form.erreurs['login']}</span>
-                </div>
+				<div class='align-center text-danger'>${form.erreurs['login']}</div>
                 
 				<div>
 	                <label class="required" for="motdepasse">Mot de passe</label>
 	                <input type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
 	            </div>
                 
-				<div>
-	                <span>${form.erreurs['motdepasse']}</span>
-                </div>
+				<div class='align-center text-danger'>${form.erreurs['motdepasse']}</div>
                 
 				<div class='align-center'>
              	   <input type="submit" value="Connexion"/>
 				</div>
 				
-				<div>
-                <p>${form.erreurs['Connexion']}</p>
-                </div>
+				<div class='align-center text-danger'>${form.erreurs['Connexion']}</div>
                 
                 <%-- Vérification de la présence d'un objet personnel en session --%>
                 <c:if test="${!empty sessionScope.sessionObjectPersonnel}">

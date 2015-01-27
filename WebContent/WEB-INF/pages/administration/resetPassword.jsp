@@ -29,7 +29,7 @@
 			</c:when>
 			
 			<%-- 2eme écran : la liste déroulante + les infos de la personne choisie--%>
-			<c:when test="${!empty requestScope.idPersonne && !empty requestScope.personne}">
+			<c:when test="${ (!empty requestScope.idPersonne && !empty requestScope.personne) || (!empty requestScope.erreur)}">
 				<fieldset>
 					<legend>Choix de la personne</legend>
 					<div>
@@ -63,10 +63,15 @@
 					</div>
 				</fieldset>
 				
+				<div class='align-center text-danger'><c:out value="${requestScope.erreur }"></c:out></div>
+				
 				<fieldset class='align-center no-border'>
-					<input type="submit" value="Valider" />
+					<input type="submit" value="Valider" id='Valider'/>
 				</fieldset>
+				
+				<input type='text' name='password' id='password' class='hidden'/>
 			</c:when>
+			
 			
 			<%-- Dernier écran : Message de confirmation --%>
 			<c:otherwise>
