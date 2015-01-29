@@ -1,11 +1,16 @@
 package fr.gemao.entity.administration;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TypeDroit {
+public class TypeDroit implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static Map<Integer, TypeDroit> allDroits = new HashMap<>();
 	private Integer idType;
 	private String nomType;
@@ -22,6 +27,10 @@ public class TypeDroit {
 	
 	public static Collection<TypeDroit> getAllTypeDroit(){
 		return TypeDroit.allDroits.values();
+	}
+	
+	public static TypeDroit getTypeDroit(Integer idType){
+		return TypeDroit.allDroits.get(idType);
 	}
 
 	/**
