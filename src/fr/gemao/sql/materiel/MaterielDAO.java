@@ -36,40 +36,32 @@ public class MaterielDAO extends IDAO<Materiel> {
 				+ "valeurReapprov," + "deplaceConcert,"
 				+ "observation, quantite, estLouable)"
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-		
+
 		Integer idCategorie = null;
 		Integer idMarque = null;
 		Integer idDesignation = null;
 		Integer idFournisseur = null;
 		try {
-			if(obj.getCategorie() != null){
+			if (obj.getCategorie() != null) {
 				idCategorie = obj.getCategorie().getIdCategorie();
 			}
-			if(obj.getMarque() != null){
+			if (obj.getMarque() != null) {
 				idMarque = obj.getMarque().getIdMarque();
 			}
-			if(obj.getDesignation() != null){
+			if (obj.getDesignation() != null) {
 				idDesignation = obj.getDesignation().getIdDesignation();
 			}
-			if(obj.getFournisseur() != null){
+			if (obj.getFournisseur() != null) {
 				idFournisseur = obj.getFournisseur().getIdFournisseur();
 			}
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, true, obj.getEtat().getIdEtat(),
-					idCategorie,
-					idMarque,
-					idDesignation,
-					idFournisseur,
-					obj.getTypeMat(),
-					obj.getNumSerie(),
-					obj.getDateAchat(),
-					obj.getValeurAchat(),
-					obj.getValeurReap(),
-					obj.isDeplacable(),
-					obj.getObservation(),
-					obj.getQuantite(), 
-					obj.isLouable());
+					sql, true, obj.getEtat().getIdEtat(), idCategorie,
+					idMarque, idDesignation, idFournisseur, obj.getTypeMat(),
+					obj.getNumSerie(), obj.getDateAchat(),
+					obj.getValeurAchat(), obj.getValeurReap(),
+					obj.isDeplacable(), obj.getObservation(),
+					obj.getQuantite(), obj.isLouable());
 			int status = requete.executeUpdate();
 
 			if (status == 0) {
@@ -130,7 +122,7 @@ public class MaterielDAO extends IDAO<Materiel> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "UPDATE materiel SET idEtat = ?,"
-				+ "idCategorie = ?, idMarque = ?, idDesignation = ?,"
+				+ "idCategorie = ?, idMarque = ?, idDesignation = ?, idFournisseur = ?,"
 				+ "typeMateriel = ?, numSerie = ?, dateAchat = ?,"
 				+ "valeurAchat = ?, valeurReapprov = ?, deplaceConcert = ?,"
 				+ "observation = ?, quantite = ?, estLouable=? WHERE idMateriel = ?;";
@@ -139,11 +131,13 @@ public class MaterielDAO extends IDAO<Materiel> {
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false, obj.getEtat().getIdEtat(), obj.getCategorie()
 							.getIdCategorie(), obj.getMarque().getIdMarque(),
-					obj.getDesignation().getIdDesignation(), obj.getTypeMat(),
-					obj.getNumSerie(), obj.getDateAchat(),
-					obj.getValeurAchat(), obj.getValeurReap(), obj
-							.isDeplacable(), obj.getObservation(), obj
-							.getQuantite(), obj.isLouable(), obj.getIdMateriel());
+					obj.getDesignation().getIdDesignation(), obj
+							.getFournisseur().getIdFournisseur(), obj
+							.getTypeMat(), obj.getNumSerie(), obj
+							.getDateAchat(), obj.getValeurAchat(), obj
+							.getValeurReap(), obj.isDeplacable(), obj
+							.getObservation(), obj.getQuantite(), obj
+							.isLouable(), obj.getIdMateriel());
 			int status = requete.executeUpdate();
 			if (status == 0) {
 				throw new DAOException(
@@ -211,24 +205,21 @@ public class MaterielDAO extends IDAO<Materiel> {
 
 	@Override
 	protected Materiel map(ResultSet result) throws SQLException {
-		Integer idMarque = result.getInt("idMarque"),
-			idFournisseur = result.getInt("idFournisseur");
-			
-		
-		return new Materiel(result.getLong("idMateriel"),
-				factory.getEtatDAO().get(result.getInt("idEtat")),
-				factory.getCategorieDAO().get(result.getInt("idCategorie")),
-				idMarque==null?null:factory.getMarqueDAO().get(idMarque),
-				factory.getDesignationDAO().get(result.getInt("idDesignation")),
-				idFournisseur==null?null:factory.getFournisseurDAO().get(idFournisseur),
-				result.getString("typeMateriel"),
-				result.getString("numSerie"),
-				result.getDate("dateAchat"),
+		Integer idMarque = result.getInt("idMarque"), idFournisseur = result
+				.getInt("idFournisseur");
+
+		return new Materiel(result.getLong("idMateriel"), factory.getEtatDAO()
+				.get(result.getInt("idEtat")), factory.getCategorieDAO().get(
+				result.getInt("idCategorie")), idMarque == null ? null
+				: factory.getMarqueDAO().get(idMarque), factory
+				.getDesignationDAO().get(result.getInt("idDesignation")),
+				idFournisseur == null ? null : factory.getFournisseurDAO().get(
+						idFournisseur), result.getString("typeMateriel"),
+				result.getString("numSerie"), result.getDate("dateAchat"),
 				result.getFloat("valeurAchat"),
 				result.getFloat("ValeurReapprov"),
 				result.getBoolean("deplaceConcert"),
-				result.getString("observation"),
-				result.getInt("quantite"),
+				result.getString("observation"), result.getInt("quantite"),
 				result.getBoolean("estLouable"));
 	}
 
