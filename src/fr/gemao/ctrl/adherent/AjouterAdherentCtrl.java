@@ -72,7 +72,7 @@ public class AjouterAdherentCtrl {
 	 * Méthode permettant d'ajouter un adhérent dans la BD
 	 * @param adherent : l'adhérent à ajouter
 	 */
-	public void ajoutAdherent(Adherent adherent) {
+	public boolean ajoutAdherent(Adherent adherent) {
 		AjouterPersonneCtrl ajoutPers = new AjouterPersonneCtrl();
 		
 		//Ajout de la personne dans la base
@@ -89,6 +89,7 @@ public class AjouterAdherentCtrl {
 					System.out.println("Une erreur est survenue lors de l'insertion...");
 				} else {
 					System.out.println("L'adhérent a bien été ajouté.");
+					return true;
 				}
 			}
 			else{
@@ -100,5 +101,6 @@ public class AjouterAdherentCtrl {
 			System.out.println("Une erreur est survenue lors de l'insertion...");
 
 		}
+		return false;
 	}
 }

@@ -32,9 +32,9 @@ import fr.gemao.sql.ResponsableDAO;
 public class ValidationAjoutAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String VUE = "/WEB-INF/pages/adherent/validAjoutAdherent.jsp";
-	private String VUE_INSERTION = "/index.jsp";
+	private String VUE_CONFIRMATION = "/WEB-INF/pages/adherent/confirmationAjoutAdherent.jsp";
+	private String VUE_ECHEC = "/WEB-INF/pages/adherent/echecAjoutAdherent.jsp";
 	private String VUE_ERREUR = "/WEB-INF/pages/erreurs/404.jsp";
-	private String VUE_DEJA_INSCRIT = "/WEB-INF/pages/adherent/ajoutAdherent.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -117,14 +117,23 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		DAOFactory factory = DAOFactory.getInstance();
 		PersonneDAO personneDAO = factory.getPersonneDAO();
 
+		request.setAttribute("adherent", adherent);
+		
 		if (personneDAO.exist(adherent) == null) {
 			AjouterAdherentCtrl ajouterAdherentCtrl = new AjouterAdherentCtrl();
-			ajouterAdherentCtrl.ajoutAdherent(adherent);
-			this.getServletContext().getRequestDispatcher(VUE_INSERTION)
-					.forward(request, response);
+			if(ajouterAdherentCtrl.ajoutAdherent(adherent))
+				this.getServletContext().getRequestDispatcher(VUE_CONFIRMATION)
+						.forward(request, response);
+			else{
+				System.out.println("Echec de l'ajout");
+				request.setAttribute("dejaInscrit", false);
+				this.getServletContext().getRequestDispatcher(VUE_ECHEC)
+						.forward(request, response);
+			}
 		} else {
 			System.out.println("La personne existe déja");
-			this.getServletContext().getRequestDispatcher(VUE_DEJA_INSCRIT)
+			request.setAttribute("dejaInscrit", true);
+			this.getServletContext().getRequestDispatcher(VUE_ECHEC)
 					.forward(request, response);
 		}
 
