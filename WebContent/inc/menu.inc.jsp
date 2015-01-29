@@ -48,7 +48,17 @@
 								<li><a href="<c:url value="/location/locationInstrument"/>">Prêt</a></li>
 								<li><a href="<c:url value="/location/retourInstrument"/>">Retour</a></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
+					<li class="icon icon-arrow-left"><a href="#">Administration</a>
+						<div class="mp-level">
+							<h2>Administration</h2>
+							<a class="mp-back" href="#">Retour</a>
+							<ul>
+								<li><a href="<c:url value="/administration/ReinitMotDePasse"/>">Réinit. mot de passe</a></li>
+							</ul>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</nav>
