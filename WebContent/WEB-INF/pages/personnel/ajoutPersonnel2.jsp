@@ -28,9 +28,9 @@
 			</div>
 			<div>
 				<label for="type">Type de contrat : </label>
-				<select name="type">
+				<select name="type" id="type" >
+					<option value="cdi">CDI</option>
 					<option>CDD</option>
-					<option>CDI</option>
 					<option>CTT</option>
 					<option>Bénévole</option>
 				</select>
@@ -39,9 +39,9 @@
 				<label for="datedeb" class="required">Date de début : </label>
 				<input type="text" name="datedeb" class="datepicker" required/>
 			</div>
-			<div>
+			<div hidden="true" id="duree" >
 				<label for="duree">Durée : </label>
-				<input type="number" name="duree" min="1" value="1"/> mois
+				<input type="number" name="duree" min="1" value="1" /> mois
 			</div>
 		</fieldset>
 		<fieldset class='align-center no-border'>
