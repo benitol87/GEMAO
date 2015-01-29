@@ -124,6 +124,10 @@ public class MaterielCtrl {
 			throw new NullPointerException("la marque ne doit pas etre null");
 		}
 		
+		if (materiel.getFournisseur() == null) {
+			throw new NullPointerException("le fournisseur ne doit pas etre null");
+		}
+		
 		if (materiel.getDesignation() == null) {
 			throw new NullPointerException("La designation ne doit pas etre null");
 		}
