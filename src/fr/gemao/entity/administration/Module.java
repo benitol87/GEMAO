@@ -14,23 +14,23 @@ public class Module implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int idModule;
+	private Integer idModule;
 	private String nomModule;
 	
 	public Module() {
 		
 	}
 	
-	public Module(int idModule, String nomModule) {
+	public Module(Integer idModule, String nomModule) {
 		this.idModule = idModule;
 		this.nomModule = nomModule;
 	}
 	
-	public int getIdModule() {
+	public Integer getIdModule() {
 		return idModule;
 	}
 	
-	public void setIdModule(int idModule) {
+	public void setIdModule(Integer idModule) {
 		this.idModule = idModule;
 	}
 	
