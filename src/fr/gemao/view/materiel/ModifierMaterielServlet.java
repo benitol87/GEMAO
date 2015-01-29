@@ -3,7 +3,6 @@ package fr.gemao.view.materiel;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,6 +22,7 @@ import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.entity.materiel.Etat;
 import fr.gemao.entity.materiel.Fournisseur;
+import fr.gemao.entity.materiel.Marque;
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.form.materiel.MaterielForm;
 
@@ -71,11 +71,10 @@ public class ModifierMaterielServlet extends HttpServlet {
 			listDes.remove(mat.getDesignation());
 			session.setAttribute("listeDes", listDes);
 
-			/*
-			 * List<Marque> listMarque = marquectrl.
-			 * listDes.remove(mat.getDesignation());
-			 * session.setAttribute("listeDes", listFourn);
-			 */
+			
+			List<Marque> listMarque = marquectrl.recupererToutesMarques();
+			listMarque.remove(mat.getMarque());
+			session.setAttribute("listeMarque", listMarque);
 
 			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
 					.forward(request, response);
@@ -105,6 +104,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 				FournisseurCtrl fournctrl = new FournisseurCtrl();
 				DesignationCtrl desctrl = new DesignationCtrl();
 				EtatCtrl etatctrl = new EtatCtrl();
+				MarqueCtrl marquectrl = new MarqueCtrl();
 
 				mat.setCategorie(catctrl.recupererCategorie(form.getCategorie()));
 				mat.setValeurAchat(form.getValAch());
@@ -116,13 +116,16 @@ public class ModifierMaterielServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				mat.setValeurReap(form.getValRea());
-				mat.setFournisseur(fournctrl.recupererFournisseur(form
-						.getFournisseur()));
+				
+				Fournisseur four = fournctrl.recupererFournisseur(form
+						.getFournisseur());
+				System.out.println(four);
+				mat.setFournisseur(four);
 				mat.setDesignation(desctrl.recupererDesignationCtrl(form
 						.getDesignation()));
 				mat.setTypeMat(form.getType());
 				mat.setEtat(etatctrl.recupererEtat(form.getEtat()));
-				// Marque
+				mat.setMarque(marquectrl.recupererMarque(form.getMarque()));
 				mat.setQuantite(form.getQuantite());
 				mat.setNumSerie(form.getNumserie());
 				mat.setDeplacable(form.getDeplacable());

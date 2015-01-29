@@ -98,8 +98,14 @@
 
 
 		<div>
-			<label for="marque">Marque : </label> <span>${sessionScope.sessionObjectMateriel.getMarque().getNomMarque()}</span>
-			<input type="number" hidden="true" name="marque" id="marque" value="${sessionScope.sessionObjectMateriel.getMarque().getIdMarque()}" />
+			<label for="marque">Marque : </label> <select name="marque"
+				id="marque">
+				<option
+					value="${sessionScope.sessionObjectMateriel.getMarque().getIdMarque()}">${sessionScope.sessionObjectMateriel.getMarque().getNomMarque()}</option>
+				<c:forEach items="${listeMarque}" var="marque">
+					<option value="${marque.getIdMarque()}">${marque.getNomMarque()}</option>
+				</c:forEach>
+			</select>
 		</div>
 
 
