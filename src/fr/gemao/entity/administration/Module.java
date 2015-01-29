@@ -1,6 +1,9 @@
 package fr.gemao.entity.administration;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -14,14 +17,29 @@ public class Module implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private static Map<Integer, Module> allModules = new HashMap<>();
+	
 	private Integer idModule;
 	private String nomModule;
 	
-	public Module() {
+	public static Module put(Integer idModule, String nomModule){
+		Module module = new Module(idModule, nomModule);
+		return Module.allModules.put(idModule, module);
+	}
+	
+	public static Collection<Module> getAllModules(){
+		return Module.allModules.values();
+	}
+	
+	public static Module getModule(Integer idModule){
+		return Module.allModules.get(idModule);
+	}
+	
+	private Module() {
 		
 	}
 	
-	public Module(Integer idModule, String nomModule) {
+	private Module(Integer idModule, String nomModule) {
 		this.idModule = idModule;
 		this.nomModule = nomModule;
 	}

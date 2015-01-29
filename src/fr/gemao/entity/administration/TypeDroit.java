@@ -20,9 +20,9 @@ public class TypeDroit implements Serializable{
 		this.nomType = nomType;
 	}
 	
-	public static void put(Integer idType, String nomType){
+	public static TypeDroit put(Integer idType, String nomType){
 		TypeDroit type = new TypeDroit(idType, nomType);
-		TypeDroit.allDroits.put(idType, type);
+		return TypeDroit.allDroits.put(idType, type);
 	}
 	
 	public static Collection<TypeDroit> getAllTypeDroit(){

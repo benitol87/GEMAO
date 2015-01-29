@@ -1,7 +1,10 @@
 package fr.gemao.entity.administration;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Classe représentant un profil, lié à un ou plusieurs membres
@@ -15,26 +18,58 @@ public class Profil implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int idProfil;
+	private static Map<Integer, Profil> allProfils = new HashMap<>();
+	
+	private Integer idProfil;
 	private String nomProfil;
 	private List<Droit> listDroits;
+	
+	public static void load(List<Profil> profils){
+		if(!Profil.allProfils.isEmpty()){
+			throw new UnsupportedOperationException("Les profils semble être déjà chargés");
+		}
+		for(Profil p : profils){
+			Profil.allProfils.put(p.idProfil, p);
+		}
+	}
+	
+	public static void put(Profil profil){
+		if(profil == null){
+			throw new NullPointerException("Le profil ne peut pas être null");
+		}
+		if(profil.getIdProfil() == null){
+			throw new NullPointerException("L'identifiant du profil ne doit pas être null");
+		}
+		if(profil.getNomProfil() == null){
+			throw new NullPointerException("Le nom du profil ne doit pas être null");
+		}
+		Profil.allProfils.put(profil.getIdProfil(), profil);
+	}
+	
+	public static Collection<Profil> getAllProfils(){
+		return Profil.allProfils.values();
+	}
+	
+	public static Profil getProfil(Integer idProfil){
+		return Profil.allProfils.get(idProfil);
+	}
 	
 	public Profil() {
 
 	}
 
-	public Profil(int idProfil, String nomProfil, List<Droit> listDroit) {
+	public Profil(Integer idProfil, String nomProfil, List<Droit> listDroit) {
 		super();
 		this.idProfil = idProfil;
 		this.nomProfil = nomProfil;
 		this.listDroits = listDroit;
 	}
 
-	public int getIdProfil() {
+	public Integer getIdProfil() {
 		return idProfil;
 	}
 
-	public void setIdProfil(int idProfil) {
+	public void setIdProfil(Integer idProfil) {
 		this.idProfil = idProfil;
 	}
 
