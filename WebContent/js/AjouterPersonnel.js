@@ -75,3 +75,13 @@ function ajoutEventRetireFonction(){
 	bouton2=document.getElementById("retireFonction");
 	ajouteEvent(bouton2, 'click', retireFonction, false);
 }
+
+function afficherDuree(){
+	var duree= document.getElementById("duree");
+	var liste= document.getElementById("type");
+	var option= liste.options.selectedIndex;
+	if(option.value!= "cdi"){
+		duree.style.visibility="visible";
+	}
+	
+}
