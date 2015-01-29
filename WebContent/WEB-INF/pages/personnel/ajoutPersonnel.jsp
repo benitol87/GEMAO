@@ -49,13 +49,13 @@
 		</div>
 		
 		<div>
-			<label for="portable" class='required'>Téléphone portable </label>
-			<input type="text" name="portable" maxlength="10" required pattern="[0][1-9][0-9]{8}"  autocomplete="on"/>
+			<label for="portable">Téléphone portable </label>
+			<input type="text" name="portable" maxlength="10" pattern="[0][1-9][0-9]{8}"  autocomplete="on"/>
 		</div>
 		
 		<div>
-			<label for="email" class='required'>E-mail </label>
-			<input type="email" name="email" required autocomplete="on"/>
+			<label for="email">E-mail </label>
+			<input type="email" name="email" autocomplete="on"/>
 	
 		</div>
 	</fieldset>
@@ -64,8 +64,8 @@
 		<legend>Adresse</legend>
 		
 		<div>
-			<label for="numRue" class='required'>N° </label>
-			<input type="text" name="numRue" required pattern="\d*" autocomplete="off"/>
+			<label for="numRue">N° </label>
+			<input type="text" name="numRue" pattern="\d*" autocomplete="off"/>
 		</div>
 		
 		<div>
@@ -103,7 +103,11 @@
 		<div id="fonctions">
 			<div id="divFonction1">
 				<label for="fonction1" class='required'>Fonction </label>
-				<input type="text" name="fonction1" required />
+				<select name="fonction1" required>
+					<option>Professeur</option>
+					<option>Secrétaire</option>
+					<option>Trésorier</option>
+				</select>
 				<input type="button" value="+" id="ajoutFonction"/>
 				<input type="button" value="-" id="retireFonction"/>
 			</div>
