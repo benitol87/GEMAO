@@ -42,40 +42,28 @@
 		</div>
 		
 		<div>
-			<label for="comNaiss" class='required'>Commune de naissance </label>
-			<input type="text" name="comNaiss" required="required"
-						 />
-		</div>
-		
-		<div>	
-			<label for="codePNaiss" class='required'>Code postal </label>
-			<input type="text" name="codePostNaiss" required="required" maxlength="5"
-						 />
-		</div>
-		
-		<div>
 			<label for="telFixe" class='required'>Téléphone fixe </label>
 			<input type="text" name="telFixe" pattern="[0][1-9][0-9]{8}"
 						required="required"  maxlength="10" autocomplete="on" />
 		</div>
 		
 		<div>
-			<label for="telPort" class='required'>Téléphone portable </label>
+			<label for="telPort">Téléphone portable </label>
 			<input type="text" name="telPort" pattern="[0][1-9][0-9]{8}"
-						required="required" maxlength="10" autocomplete="on" />
+						 maxlength="10" autocomplete="on" />
 		</div>
 		
 		<div>
-			<label for="email" class='required'>E-mail </label>
-			<input type="text" name="email" required="required"
+			<label for="email">E-mail </label>
+			<input type="text" name="email"
 						autocomplete="on" />
 		</div>
 	</fieldset>
 	<fieldset>
 		<legend>Adresse</legend>
 		<div>
-			<label for="num" class='required'>N° </label>
-			<input type="text" name="num" required="required"
+			<label for="num">N° </label>
+			<input type="text" name="num"
 					pattern="\d*"  />
 		</div>
 		

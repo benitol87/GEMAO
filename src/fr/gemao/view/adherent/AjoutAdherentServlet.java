@@ -45,7 +45,6 @@ public class AjoutAdherentServlet extends HttpServlet {
 
 		session.setAttribute("ajout_adh_adherent", null);
 		session.setAttribute("ajout_adh_commune", null);
-		session.setAttribute("ajout_adh_communeNaiss", null);
 		session.setAttribute("ajout_adh_adresse", null);
 		session.setAttribute("ajout_adh_responsable", null);
 		
@@ -106,18 +105,6 @@ public class AjoutAdherentServlet extends HttpServlet {
 			adherent.setDisciplines(listDiscipline);
 
 			/**
-			 * Réupération des données de la commune de naissance
-			 */
-			String comNaiss = adherentForm.getComNaiss();
-			Integer codePostNaiss = adherentForm.getCodePostNaiss();
-
-			/**
-			 * Création de la commune de naissance
-			 */
-			Commune communeNaiss = new Commune(null, codePostNaiss, comNaiss,
-					false);
-
-			/**
 			 * Réupération des données de la commune
 			 */
 			String com = adherentForm.getNomCommune();
@@ -148,7 +135,6 @@ public class AjoutAdherentServlet extends HttpServlet {
 
 			HttpSession session = request.getSession();
 			session.setAttribute("ajout_adh_adherent", adherent);
-			session.setAttribute("ajout_adh_communeNaiss", communeNaiss);
 			session.setAttribute("ajout_adh_commune", commune);
 			session.setAttribute("ajout_adh_adresse", adresse);
 

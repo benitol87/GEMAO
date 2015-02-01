@@ -29,8 +29,6 @@ public class AdherentForm {
 	private static final String CHAMP_NOM = "nom";
 	private static final String CHAMP_PRENOM = "prenom";
 	private static final String CHAMP_DATENAISS = "dateNaiss";
-	private static final String CHAMP_CODEPOSTNAISS = "codePostNaiss";
-	private static final String CHAMP_COMNAISS = "comNaiss";
 	private static final String CHAMP_TELFIXE = "telFixe";
 	private static final String CHAMP_TELPORT = "telPort";
 	private static final String CHAMP_EMAIL = "email";
@@ -61,8 +59,6 @@ public class AdherentForm {
 	private String nom;
 	private String prenom;
 	private String dateNaissance;
-	private Integer codePostNaiss;
-	private String comNaiss;
 	private String telFixe;
 	private String telPort;
 	private String email;
@@ -111,14 +107,6 @@ public class AdherentForm {
 	
 	public String getDateNaissance(){
 		return this.dateNaissance;
-	}
-	
-	public Integer getCodePostNaiss(){
-		return this.codePostNaiss;
-	}
-	
-	public String getComNaiss(){
-		return this.comNaiss;
 	}
 	
 	public String getTelFixe(){
@@ -232,28 +220,6 @@ public class AdherentForm {
 	}
 	
 	/**
-	 * Méthode permettant de valider le code postal de naissance de l'adhérent
-	 * @param codePostNaiss
-	 * @throws Exception
-	 */
-	private void validationCodePostNaiss(Integer codePostNaiss) throws Exception {
-		if (codePostNaiss == null || codePostNaiss.equals("")) {
-			throw new Exception("Merci de saisir un code postal de naissance valide.");
-		}
-	}
-	
-	/**
-	 * Méthode permettant de valider la commune de naissance de l'adhérent
-	 * @param comNaiss
-	 * @throws Exception
-	 */
-	private void validationComNaiss(String comNaiss) throws Exception {
-		if (comNaiss == null || comNaiss.equals("")) {
-			throw new Exception("Merci de saisir une commune de naissance valide.");
-		}
-	}
-	
-	/**
 	 * Méthode permettant de valider le numéro de téléphone fixe de l'adhérent
 	 * @param telFixe
 	 * @throws Exception
@@ -261,39 +227,6 @@ public class AdherentForm {
 	private void validationTelFixe(String telFixe) throws Exception {
 		if (telFixe == null || telFixe.equals("")) {
 			throw new Exception("Merci de saisir un numéro de téléphone fixe valide.");
-		}
-	}
-	
-	/**
-	 * Méthode permettant de valider le numéro de téléphone portable de l'adhérent
-	 * @param telPort
-	 * @throws Exception
-	 */
-	private void validationTelPort(String telPort) throws Exception {
-		if (telPort == null || telPort.equals("")) {
-			throw new Exception("Merci de saisir un numéro de téléphone portable valide.");
-		}
-	}
-	
-	/**
-	 * Méthode permettant de valider l'adresse email de l'adhérent
-	 * @param email
-	 * @throws Exception
-	 */
-	private void validationEmail(String email) throws Exception {
-		if (email == null || email.equals("")) {
-			throw new Exception("Merci de saisir une adresse email valide.");
-		}
-	}
-	
-	/**
-	 * Méthode permettant de valider le numéro de rue de l'adhérent
-	 * @param numRue
-	 * @throws Exception
-	 */
-	private void validationNumRue(Integer numRue) throws Exception {
-		if (numRue == null || numRue.equals("") || numRue <= 0) {
-			throw new Exception("Merci de saisir un numéro de rue valide.");
 		}
 	}
 	
@@ -430,8 +363,6 @@ public class AdherentForm {
 		nom = getValeurChamp(request, CHAMP_NOM);
 		prenom = getValeurChamp(request, CHAMP_PRENOM);
 		dateNaissance = getValeurChamp(request, CHAMP_DATENAISS);
-		codePostNaiss = Integer.parseInt(getValeurChamp(request, CHAMP_CODEPOSTNAISS));
-		comNaiss = getValeurChamp(request, CHAMP_COMNAISS);
 		telFixe = getValeurChamp(request, CHAMP_TELFIXE);
 		telPort = getValeurChamp(request, CHAMP_TELPORT);
 		email = getValeurChamp(request, CHAMP_EMAIL);
@@ -480,46 +411,11 @@ public class AdherentForm {
 			setErreur(CHAMP_DATENAISS, e.getMessage());
 		}	
 		
-		//Validation du champ code postal de naissance
-		try {
-			validationCodePostNaiss(codePostNaiss);
-		} catch (Exception e) {
-			setErreur(CHAMP_CODEPOSTNAISS, e.getMessage());
-		}	
-		
-		//Validation du champ commune de naissance
-		try {
-			validationComNaiss(comNaiss);
-		} catch (Exception e) {
-			setErreur(CHAMP_COMNAISS, e.getMessage());
-		}	
-		
 		//Validation du champ téléphone fixe
 		try {
 			validationTelFixe(telFixe);
 		} catch (Exception e) {
 			setErreur(CHAMP_TELFIXE, e.getMessage());
-		}
-		
-		//Validation du champ téléphone portable
-		try {
-			validationTelPort(telPort);
-		} catch (Exception e) {
-			setErreur(CHAMP_TELPORT, e.getMessage());
-		}
-		
-		//Validation du champ email
-		try {
-			validationEmail(email);
-		} catch (Exception e) {
-			setErreur(CHAMP_EMAIL, e.getMessage());
-		}
-		
-		//Validation du champ numéro de rue
-		try {
-			validationNumRue(numRue);
-		} catch (Exception e) {
-			setErreur(CHAMP_NUM, e.getMessage());
 		}
 		
 		//Validation du champ nom de rue
