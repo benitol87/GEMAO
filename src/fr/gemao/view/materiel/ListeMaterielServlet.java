@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import fr.gemao.ctrl.materiel.MaterielCtrl;
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
-@WebServlet("/materiel/ListerMateriel")
+@WebServlet(Pattern.MATERIEL_LISTER)
 public class ListeMaterielServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
