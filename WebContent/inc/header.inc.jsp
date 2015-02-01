@@ -4,7 +4,7 @@
 <body>
 	<header>
 		<span>${sessionScope.sessionObjectPersonnel.prenom} ${sessionScope.sessionObjectPersonnel.nom}</span>
-		<a href="<c:url value="/Deconnexion"/>" id="disconnect">Déconnexion</a>
+		<a href="<c:url value="/Deconnexion"/>" id="disconnect" class='btn'>Déconnexion</a>
 		<a class="icon icon-settings" title="Paramètres" href="<c:url value="/Configuration"/>"></a>
 		
 	</header>

@@ -11,21 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
-import fr.gemao.ctrl.adherent.RecupererResponsableCtrl;
-import fr.gemao.entity.Discipline;
 import fr.gemao.entity.adherent.Adherent;
-import fr.gemao.entity.adherent.Responsable;
-import fr.gemao.sql.DisciplineDAO;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class ConsulteAdherentServlet
  */
-@WebServlet("/adherent/ConsulteAdherent")
+@WebServlet(Pattern.ADHERENT_CONSULTER)
 public class ConsulteAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public static final String VUE = "/WEB-INF/pages/adherent/consulteAdherent.jsp";
-	public static final String VUE_LISTE = "/WEB-INF/pages/adherent/listeAdherents.jsp";
 	public final String PARAM_DATE_NAISSANCE = "dateNaissance";
 	public final String PARAM_DATE_INSCRIPTION = "dateInscription";
 	public final String PARAM_ADHERENT = "adherent";
@@ -42,7 +38,7 @@ public class ConsulteAdherentServlet extends HttpServlet {
 			List<Adherent> adherents = recupererAdherentCtrl
 					.recupererTousAdherents();
 			request.setAttribute("listeAdherents", adherents);
-			this.getServletContext().getRequestDispatcher(VUE_LISTE)
+			this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_LISTER)
 					.forward(request, response);
 		} else {
 
@@ -58,7 +54,7 @@ public class ConsulteAdherentServlet extends HttpServlet {
 			request.setAttribute("adherent", adherent);
 			request.setAttribute("dateNaissance", dateNaissance);
 			request.setAttribute("dateInscription", dateInscription);
-			this.getServletContext().getRequestDispatcher(VUE)
+			this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_CONSULTER)
 					.forward(request, response);
 		}
 	}

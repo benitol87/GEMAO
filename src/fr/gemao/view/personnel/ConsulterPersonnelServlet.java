@@ -20,16 +20,15 @@ import fr.gemao.entity.Contrat;
 import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.Responsabilite;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class ConsulterPersonnelServlet
  */
-@WebServlet("/personnel/ConsulterPersonnel")
+@WebServlet(Pattern.PERSONNEL_CONSULTER)
 public class ConsulterPersonnelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private String VUE = "/WEB-INF/pages/personnel/consulterPersonnel.jsp";
-	private String VUE_ERREUR = "/WEB-INF/pages/erreurs/404.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -39,7 +38,7 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		if(request.getParameter("id") == null){
-			this.getServletContext().getRequestDispatcher(VUE_ERREUR)
+			this.getServletContext().getRequestDispatcher(JSPFile.ERREUR_404)
 			.forward(request, response);
 		}
 
@@ -85,17 +84,8 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 		request.setAttribute("contrat", contrat);
 		request.setAttribute("dateDebutContrat", dateDebutContrat);
 		request.setAttribute("dateFinContrat", dateFinContrat);
-		this.getServletContext().getRequestDispatcher(VUE)
+		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_CONSULTER)
 				.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

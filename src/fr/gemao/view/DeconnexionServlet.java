@@ -12,12 +12,9 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class Deconnexion
  */
-@WebServlet("/Deconnexion")
+@WebServlet(Pattern.DECONNEXION)
 public class DeconnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	public static final String URL_REDIRECTION = "/GEMAO/Connexion";
-
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -29,7 +26,7 @@ public class DeconnexionServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.invalidate();
 
-        response.sendRedirect( URL_REDIRECTION );
+        response.sendRedirect( request.getContextPath() + Pattern.CONNEXION );
 	}
 
 }

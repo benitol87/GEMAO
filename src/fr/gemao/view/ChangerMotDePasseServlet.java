@@ -15,12 +15,10 @@ import fr.gemao.form.ChangerMotDePasseForm;
 /**
  * Servlet implementation class ChangerMotDePasseServlet
  */
-@WebServlet("/ChangerMotDePasse")
+@WebServlet(Pattern.CHANGER_MOT_DE_PASSE)
 public class ChangerMotDePasseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    private final String VUE_FORMULAIRE = "/WEB-INF/pages/changerMotDePasse.jsp",
-    		VUE_RESULTAT = "/WEB-INF/pages/resultat.jsp";
     public static String ATTR_FORM = "form", ATTR_RESULTAT = "resultat",
     		ATTR_LIEN_BOUTON="lienBouton", ATTR_NOM_BOUTON = "nomBouton",
     		VALEUR_LIEN_BOUTON="/";
@@ -30,7 +28,7 @@ public class ChangerMotDePasseServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Première arrivée sur la page : on affiche le formulaire
-		request.getRequestDispatcher(VUE_FORMULAIRE).forward(request, response);
+		request.getRequestDispatcher(JSPFile.CHANGER_MOT_DE_PASSE).forward(request, response);
 	}
 
 	/**
@@ -61,11 +59,11 @@ public class ChangerMotDePasseServlet extends HttpServlet {
 			request.setAttribute(ATTR_LIEN_BOUTON, VALEUR_LIEN_BOUTON);
 			request.setAttribute(ATTR_NOM_BOUTON, "Retour");
 			request.setAttribute(ATTR_RESULTAT, "Le changement de mot de passe a bien été effectué.");
-			request.getRequestDispatcher(VUE_RESULTAT).forward(request, response);
+			request.getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);
 		} else {
 			// Retour au formulaire
 			request.setAttribute(ATTR_FORM, form);
-			request.getRequestDispatcher(VUE_FORMULAIRE).forward(request, response);
+			request.getRequestDispatcher(JSPFile.CHANGER_MOT_DE_PASSE).forward(request, response);
 		}
 		
 	}

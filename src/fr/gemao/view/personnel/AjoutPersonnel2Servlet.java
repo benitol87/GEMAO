@@ -18,21 +18,21 @@ import fr.gemao.ctrl.personnel.CalculerDateFinContratCtrl;
 import fr.gemao.entity.Contrat;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.TypeContrat;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class AjoutPersonnel2Servlet
  */
-@WebServlet("/personnel/AjoutPersonnel2")
+@WebServlet(Pattern.PERSONNEL_AJOUT2)
 public class AjoutPersonnel2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private String VUE = "/WEB-INF/pages/personnel/ajoutPersonnel2.jsp";
-	private String VUE_PAGE3 = "/WEB-INF/pages/personnel/ajoutPersonnel3.jsp";
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( JSPFile.PERSONNEL_AJOUT2 ).forward( request, response );
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
         
         /* Transmission à la page JSP en charge de l'affichage des données */
      		this.getServletContext()
-     				.getRequestDispatcher(VUE_PAGE3)
+     				.getRequestDispatcher(JSPFile.PERSONNEL_AJOUT3)
      				.forward(request, response);
 	}
 

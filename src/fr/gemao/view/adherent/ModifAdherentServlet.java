@@ -23,19 +23,15 @@ import fr.gemao.entity.Discipline;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.form.adherent.AdherentForm;
-import fr.gemao.sql.CommuneDAO;
-import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.ResponsableDAO;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class ModifAdherentServlet
  */
-@WebServlet("/adherent/ModifierAdherent")
+@WebServlet()
 public class ModifAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private static final String VUE_LISTE = "/adherent/ListeAdherents";
-	private static final String VUE = "/WEB-INF/pages/adherent/modifAdherent.jsp";
 
 	public final String PARAM_DATE_NAISSANCE = "dateNaissance";
 	public final String PARAM_ADHERENT = "adherent";
@@ -51,12 +47,12 @@ public class ModifAdherentServlet extends HttpServlet {
 		session.setAttribute("modif_adh_adherent", null);
 
 		if (request.getParameter("id") == null) {
-			request.setAttribute("lien", "/adherent/ModifierAdherent");
+			request.setAttribute("lien", Pattern.ADHERENT_MODIFIER);
 			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
 			List<Adherent> adherents = recupererAdherentCtrl
 					.recupererTousAdherents();
 			request.setAttribute("listeAdherents", adherents);
-			this.getServletContext().getRequestDispatcher(VUE_LISTE)
+			this.getServletContext().getRequestDispatcher(Pattern.ADHERENT_LISTER)
 					.forward(request, response);
 		} else {
 			int id = Integer.parseInt(request.getParameter("id"));
@@ -75,7 +71,7 @@ public class ModifAdherentServlet extends HttpServlet {
 			RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
 			session.setAttribute("listDiscipline",
 					recupDisciplineCtrl.recupererAllDiscipline());
-			this.getServletContext().getRequestDispatcher(VUE)
+			this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_MODIFIER_ADHERENT)
 					.forward(request, response);
 		}
 	}
@@ -146,7 +142,7 @@ public class ModifAdherentServlet extends HttpServlet {
 		modifierAdherentCtrl.modifierAdherent(adherent);
 
 		session.setAttribute("modif_adh_adherent", null);
-		response.sendRedirect(request.getContextPath() + VUE_LISTE);
+		response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_LISTER);
 
 	}
 }

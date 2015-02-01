@@ -24,17 +24,15 @@ import fr.gemao.entity.util.Civilite;
 import fr.gemao.form.adherent.AdherentForm;
 import fr.gemao.sql.CommuneDAO;
 import fr.gemao.sql.DAOFactory;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class AjoutAdherent
  */
-@WebServlet("/adherent/AjoutAdherent")
+@WebServlet(Pattern.ADHERENT_AJOUT)
 public class AjoutAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private String VUE = "/WEB-INF/pages/adherent/ajoutAdherent.jsp";
-	private String URL_RESPONSABLE = "/GEMAO/adherent/AjoutResponsable";
-	private String URL_VALIDATION = "/GEMAO/adherent/ValidationAjoutAdherent";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -54,7 +52,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 		RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
 		session.setAttribute("listDiscipline", recupDisciplineCtrl.recupererAllDiscipline());
 		
-		this.getServletContext().getRequestDispatcher(VUE)
+		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_AJOUT_ADHERENT)
 				.forward(request, response);
 	}
 
@@ -161,16 +159,16 @@ public class AjoutAdherentServlet extends HttpServlet {
 			
 
 			if (dateNaiss.after(dateMineur.getTime())) {
-				response.sendRedirect(URL_RESPONSABLE);
+				response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_AJOUT_RESPONSABLE);
 			} else {
-				response.sendRedirect(URL_VALIDATION);
+				response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_AJOUT_VALIDATION);
 			}
 
 		} else {
 			System.out.println(adherentForm.getErreurs());
 			System.out.println("Erreur !");
 
-			this.getServletContext().getRequestDispatcher(VUE)
+			this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_AJOUT_ADHERENT)
 					.forward(request, response);
 		}
 	}

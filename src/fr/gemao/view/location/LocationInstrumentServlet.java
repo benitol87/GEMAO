@@ -17,16 +17,16 @@ import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.form.location.LocationForm;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class locationInstrumentServlet
  */
-@WebServlet("/location/locationInstrument")
+@WebServlet(Pattern.LOCATION_LOCATION)
 public class LocationInstrumentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private String VUE = "/WEB-INF/pages/location/locationInstrument.jsp";
-	
+		
 	private final String PARAM_ID_CATEGORIE			= "idCategorie";
 	private final String PARAM_NOM_CATEGORIE		= "nomCategorie";
 	private final String PARAM_LISTE_CATEGORIE		= "listeCategorie";
@@ -48,7 +48,7 @@ public class LocationInstrumentServlet extends HttpServlet {
 		
 		request.setAttribute(PARAM_LISTE_CATEGORIE, listeCategorie);
 		
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( JSPFile.LOCATION_LOCATION ).forward( request, response );
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class LocationInstrumentServlet extends HttpServlet {
 			// Insérer la location dans la base
 		}
 		
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( JSPFile.LOCATION_LOCATION ).forward( request, response );
 	}
 
 }

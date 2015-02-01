@@ -11,18 +11,15 @@ import javax.servlet.http.HttpSession;
 
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.adherent.Responsable;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class AjoutResponsableServlet
  */
-@WebServlet("/adherent/AjoutResponsable")
+@WebServlet(Pattern.ADHERENT_AJOUT_RESPONSABLE)
 public class AjoutResponsableServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private String VUE = "/WEB-INF/pages/adherent/ajoutResponsable.jsp";
-	private String URL_QF = "/GEMAO/adherent/CalculerQF";
-	private String VUE_ERREUR = "/WEB-INF/pages/erreurs/404.jsp";
-	private String URL_VALIDATION = "/GEMAO/adherent/ValidationAjoutAdherent";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -31,7 +28,7 @@ public class AjoutResponsableServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		this.getServletContext().getRequestDispatcher(VUE)
+		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_AJOUT_RESPONSABLE)
 				.forward(request, response);
 	}
 
@@ -54,9 +51,9 @@ public class AjoutResponsableServlet extends HttpServlet {
 		Commune commune = (Commune) session.getAttribute("ajout_adh_commune"); 
 
 		if(commune.isAvantage()){
-			response.sendRedirect(URL_QF);
+			response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_CALCUL_QF);
 		}else{
-			response.sendRedirect(URL_VALIDATION);
+			response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_VALIDATION_AJOUT);
 		}
 	}
 

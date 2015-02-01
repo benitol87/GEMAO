@@ -25,13 +25,12 @@ import fr.gemao.entity.materiel.Fournisseur;
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.form.materiel.MaterielForm;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
-@WebServlet("/materiel/ModifierMateriel")
+@WebServlet(Pattern.MATERIEL_MODIFIER)
 public class ModifierMaterielServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private String VUE_MODIFICATION = "/WEB-INF/pages/materiel/modifierMateriel.jsp";
-	public static final String VUE_LISTE = "/materiel/ListerMateriel";
 
 	/**
 	 * Chargement de la page de modification. Le parametre idMateriel doit etre
@@ -76,11 +75,11 @@ public class ModifierMaterielServlet extends HttpServlet {
 			listMarque.remove(mat.getMarque());
 			session.setAttribute("listeMarque", listMarque);
 
-			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
+			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
 					.forward(request, response);
 		} else {
 			request.setAttribute("page", "modifier");
-			this.getServletContext().getRequestDispatcher(VUE_LISTE)
+			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_LISTER)
 					.forward(request, response);
 		}
 	}
@@ -140,21 +139,21 @@ public class ModifierMaterielServlet extends HttpServlet {
 				session.removeAttribute("listeFourn");
 				session.removeAttribute("listeDes");
 			} else {
-				form.setErreur("Modification", "Probleme de session");
+				form.setErreur("Modification", "Problème de session");
 			}
 		}
 		if (form.getErreurs().isEmpty()) {
 			form.getErreurs().put("Modification",
-					"Le materiel à bien été modifié");
+					"Le matériel a bien été modifié");
 			request.setAttribute("form", form);
-			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
+			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
 					.forward(request, response);
 			// response.sendRedirect(request.getContextPath() + VUE_LISTE);
 		} else {
 			form.getErreurs().put("Modification",
 					"Erreur lors de la modification du formulaire");
 			request.setAttribute("form", form);
-			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION)
+			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
 					.forward(request, response);
 		}
 	}
