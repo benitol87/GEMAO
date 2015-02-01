@@ -38,5 +38,10 @@ public class Pattern {
 			PERSONNEL_AJOUT2 = "/personnel/AjoutPersonnel2",
 			PERSONNEL_CONSULTER = "/personnel/ConsulterPersonnel",
 			PERSONNEL_LISTER = "/personnel/ListePersonnel",
-			PERSONNEL_MODIFIER = "/personnel/ModifPersonnel";
+			PERSONNEL_MODIFIER = "/personnel/ModifPersonnel",
+	
+		// Profil
+			PROFIL_AJOUT = "/profil/AjouterProfil",
+			PROFIL_LISTER = "/profil/ListerProfils",
+			PROFIL_MODIFIER = "/profil/ModifProfil";
 }

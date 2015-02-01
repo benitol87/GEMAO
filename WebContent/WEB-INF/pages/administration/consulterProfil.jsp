@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Consultation d'un membre du personnel"
 	scope="request" />
@@ -24,7 +25,7 @@
 	</c:forEach>	
 </table>
 <p class='align-center no-border'>
-	<a href="ListerProfils"><input type="button" value="Retour" /></a>
-	<a href="ModifierProfil?id=<c:out value="${requestScope.id}"/>"><input type="button" value="Modifier" /></a>
+	<a href="<c:url value="<%= Pattern.PROFIL_LISTER %>" />"><input type="button" value="Retour" /></a>
+	<a href="<c:url value="<%= Pattern.PROFIL_MODIFIER %>" />?id=<c:out value="${requestScope.id}"/>"><input type="button" value="Modifier" /></a>
 </p>
 <c:import url="/inc/footer.inc.jsp" />

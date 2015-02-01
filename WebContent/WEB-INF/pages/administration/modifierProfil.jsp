@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Modifier un profil" scope="request" />
 
@@ -10,7 +11,7 @@
 
 <h1>Modification d'un profil</h1>
 
-<form method="post" action="<c:url value="/profil/ModifierProfil" />">
+<form method="post" action="<c:url value="<%= Pattern.PROFIL_MODIFIER %>" />">
 	<fieldset>
 		<legend>Informations</legend>
 		
@@ -33,7 +34,7 @@
 	</fieldset>
 	
 	<fieldset class='align-center no-border'>
-		<a href="ListerProfils"><input type="button" value="Retour" /></a>
+		<a href="<c:url value="<%= Pattern.PROFIL_LISTER %>" />"><input type="button" value="Retour" /></a>
 		<input type="submit" value="Valider"/>
 	</fieldset>
 </form>

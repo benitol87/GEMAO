@@ -1,25 +1,19 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Location d'un instrument" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
-<script type="text/javascript" src=""></script>
+
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-
-<script src="<c:url value="/js/jquery.min.js"/>"></script>
-<script
-	src="<c:url value="/js/jquery-ui.min.js"/>"></script>
-<script src="<c:url value="/js/datepicker.js"/>"></script>
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/css/datepicker.css"/>" />
 
 	<h1>Location d'instrument</h1>
 
 	<c:choose >
 		<c:when test="${empty resultat}">
-			<form id="location" method="post" action="<c:url value="/location/locationInstrument"/>">
+			<form id="location" method="post" action="#">
 				<fieldset>
 					<legend>Instrument</legend>
 					<c:choose>

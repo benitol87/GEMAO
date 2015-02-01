@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Consultation d'un membre du personnel"
 	scope="request" />
@@ -153,8 +154,8 @@
 	</tr>
 </table>
 <p class='align-center no-border'>
-	<a href="ListePersonnel"><input type="button" value="Retour" /></a>
-	<a href="ModifPersonnel?id=<c:out value="${personnel['idPersonne']}" />">
+	<a href="<c:url value="<%= Pattern.PERSONNEL_LISTER %>" />"><input type="button" value="Retour" /></a>
+	<a href="<c:url value="<%= Pattern.PERSONNEL_MODIFIER %>" />?id=<c:out value="${personnel['idPersonne']}" />">
 		<input type="button" value="Modifier" />
 	</a>
 </p>

@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="GEMAO - Liste des profils" scope="request" />
 
@@ -17,8 +18,8 @@
 		<tr>
 			<td><c:out value="${profil.nomProfil}" /></td>
 			<td>
-				<a class="icon icon-search" href="?ConsulterProfil?id=<c:out value="${profil.idProfil}" />" title='Afficher les détails'></a>
-				<a class="icon icon-pen" href="ModifierProfil?id=<c:out value="${profil.idProfil}" />" title='Modifier les informations'></a>
+				<a class="icon icon-search" href="<%= Pattern.PROFIL_LISTER %>?id=<c:out value="${profil.idProfil}" />" title='Afficher les détails'></a>
+				<a class="icon icon-pen" href="<%= Pattern.PROFIL_MODIFIER %>?id=<c:out value="${profil.idProfil}" />" title='Modifier les informations'></a>
 			</td>
 		</tr>
 	</c:forEach>
