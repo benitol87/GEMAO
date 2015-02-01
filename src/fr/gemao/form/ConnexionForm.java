@@ -9,8 +9,8 @@ import fr.gemao.entity.Personnel;
 
 public class ConnexionForm {
 
-	private static final String CHAMP_LOGIN = "login";
-	private static final String CHAMP_PASS = "motdepasse";
+	public static final String CHAMP_LOGIN = "login";
+	public static final String CHAMP_PASS = "motdepasse";
 
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();

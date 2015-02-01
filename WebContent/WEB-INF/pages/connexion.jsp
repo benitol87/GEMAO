@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="fr.gemao.view.Pattern"%>
+<%@ page import="fr.gemao.form.ConnexionForm"%>
 
 <c:set var="titre" value="Connexion" scope="request" />
 
@@ -13,15 +14,15 @@
                 <legend>Merci de vous authentifier</legend>
 
                 <div>
-	                <label class="required" for="nom">Identifiant</label>
-	                <input type="text" id="login" name="login" value="<c:out value="${personnel.login}"/>" size="20" maxlength="60" />
+	                <label class="required" for="<%= ConnexionForm.CHAMP_LOGIN %>">Identifiant</label>
+	                <input type="text" id="<%= ConnexionForm.CHAMP_LOGIN %>" name="<%= ConnexionForm.CHAMP_LOGIN %>" value="<c:out value="${personnel.login}"/>" size="20" maxlength="60" />
 	            </div>
                 
 				<div class='align-center text-danger'>${form.erreurs['login']}</div>
                 
 				<div>
-	                <label class="required" for="motdepasse">Mot de passe</label>
-	                <input type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
+	                <label class="required" for="<%= ConnexionForm.CHAMP_PASS %>">Mot de passe</label>
+	                <input type="password" id="<%= ConnexionForm.CHAMP_PASS %>" name="<%= ConnexionForm.CHAMP_PASS %>" value="" size="20" maxlength="20" />
 	            </div>
                 
 				<div class='align-center text-danger'>${form.erreurs['motdepasse']}</div>

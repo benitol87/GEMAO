@@ -21,7 +21,7 @@ public class ChangerMotDePasseServlet extends HttpServlet {
        
     public static String ATTR_FORM = "form", ATTR_RESULTAT = "resultat",
     		ATTR_LIEN_BOUTON="lienBouton", ATTR_NOM_BOUTON = "nomBouton",
-    		VALEUR_LIEN_BOUTON="/";
+    		VALEUR_LIEN_BOUTON=Pattern.ACCUEIL;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
