@@ -33,8 +33,10 @@ import fr.gemao.sql.materiel.DesignationDAO;
 import fr.gemao.sql.materiel.EtatDAO;
 import fr.gemao.sql.materiel.FournisseurDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
-@WebServlet("/materiel/AjouterMateriel")
+@WebServlet(Pattern.MATERIEL_AJOUT)
 public class AjoutMaterielServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -42,7 +44,6 @@ public class AjoutMaterielServlet extends HttpServlet {
 	private static String ERREUR_AJOUT_DESIGNATION = "erreurDes";
 	private static String ERREUR_AJOUT_FOURNISSEUR = "erreurFour";
 	private static String ERREUR_AJOUT_MARQUE = "erreurMarque";
-	private static String VUE = "/WEB-INF/pages/materiel/ajoutMateriel.jsp";
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -66,7 +67,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 		listFourn = new FournisseurDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute("LISTE_FOURNISSEUR", listFourn);
 
-		this.getServletContext().getRequestDispatcher(VUE)
+		this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_AJOUT)
 				.forward(request, response);
 	}
 
@@ -228,7 +229,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 		}
 
 		request.setAttribute("form", form);
-		this.getServletContext().getRequestDispatcher(VUE)
+		this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_AJOUT)
 				.forward(request, response);
 	}
 

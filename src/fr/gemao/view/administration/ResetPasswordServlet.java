@@ -14,18 +14,19 @@ import fr.gemao.entity.Personnel;
 import fr.gemao.form.util.Form;
 import fr.gemao.util.Password;
 import fr.gemao.view.ConnexionServlet;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class ResetPasswordServlet
  */
-@WebServlet("/administration/ReinitMotDePasse")
+@WebServlet(Pattern.ADMINISTRATION_RESET_PASSWORD)
 public class ResetPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	public static String ATTR_LISTE_PERSONNEL = "listePersonnel",
 			ATTR_PERSONNE = "personne",
 			ATTR_ERREUR = "erreur",
-			VUE = "/WEB-INF/pages/administration/resetPassword.jsp",
 			CHAMP_ID_PERSONNEL = "idPersonne",
 			CHAMP_CACHE = "id",
 			CHAMP_MOT_DE_PASSE = "password";
@@ -37,7 +38,7 @@ public class ResetPasswordServlet extends HttpServlet {
 		// 1er passage : on envoie juste la liste du personnel et on affiche la vue
 		RecupererPersonnelCtrl ctrl = new RecupererPersonnelCtrl();
 		request.setAttribute(ATTR_LISTE_PERSONNEL, ctrl.recupererTousPersonnels());
-		request.getRequestDispatcher(VUE).forward(request, response);
+		request.getRequestDispatcher(JSPFile.ADMINISTRATION_RESET_PASSWORD).forward(request, response);
 	}
 
 	/**
@@ -78,7 +79,7 @@ public class ResetPasswordServlet extends HttpServlet {
 		}
 		
 		request.setAttribute(ATTR_PERSONNE, personne);
-		request.getRequestDispatcher(VUE).forward(request, response);
+		request.getRequestDispatcher(JSPFile.ADMINISTRATION_RESET_PASSWORD).forward(request, response);
 	}
 
 }

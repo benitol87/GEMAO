@@ -19,23 +19,18 @@ import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.Responsable;
-import fr.gemao.sql.AdresseDAO;
-import fr.gemao.sql.CommuneDAO;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
-import fr.gemao.sql.ResponsableDAO;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class ValidationAjoutAdherentServlet
  */
-@WebServlet("/adherent/ValidationAjoutAdherent")
+@WebServlet(Pattern.ADHERENT_VALIDATION_AJOUT)
 public class ValidationAjoutAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String VUE = "/WEB-INF/pages/adherent/validAjoutAdherent.jsp";
-	private String VUE_CONFIRMATION = "/WEB-INF/pages/adherent/confirmationAjoutAdherent.jsp";
-	private String VUE_ECHEC = "/WEB-INF/pages/adherent/echecAjoutAdherent.jsp";
-	private String VUE_ERREUR = "/WEB-INF/pages/erreurs/404.jsp";
-
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -70,7 +65,7 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		request.setAttribute("adresse", adresse);
 		request.setAttribute("responsable", responsable);
 
-		this.getServletContext().getRequestDispatcher(VUE)
+		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_VALIDATION_AJOUT)
 				.forward(request, response);
 	} 
 
@@ -122,18 +117,18 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		if (personneDAO.exist(adherent) == null) {
 			AjouterAdherentCtrl ajouterAdherentCtrl = new AjouterAdherentCtrl();
 			if(ajouterAdherentCtrl.ajoutAdherent(adherent))
-				this.getServletContext().getRequestDispatcher(VUE_CONFIRMATION)
+				this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_VALIDATION_AJOUT)
 						.forward(request, response);
 			else{
 				System.out.println("Echec de l'ajout");
 				request.setAttribute("dejaInscrit", false);
-				this.getServletContext().getRequestDispatcher(VUE_ECHEC)
+				this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_ECHEC_AJOUT)
 						.forward(request, response);
 			}
 		} else {
 			System.out.println("La personne existe déja");
 			request.setAttribute("dejaInscrit", true);
-			this.getServletContext().getRequestDispatcher(VUE_ECHEC)
+			this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_ECHEC_AJOUT)
 					.forward(request, response);
 		}
 

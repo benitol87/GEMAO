@@ -17,22 +17,20 @@ import fr.gemao.form.ConnexionForm;
 /**
  * Servlet implementation class Connexion
  */
-@WebServlet(name="Connexion", urlPatterns={"/Connexion"})
+@WebServlet(Pattern.CONNEXION)
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public static final String ATT_USER = "personnel";
 	public static final String ATT_FORM = "form";
 	public static final String ATT_SESSION_USER = "sessionObjectPersonnel";
-	public static final String VUE_CONNEXION = "/WEB-INF/pages/connexion.jsp";
-	public static final String VUE_ACCUEIL = "/index.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Affichage de la page de connexion */
-        this.getServletContext().getRequestDispatcher( VUE_CONNEXION ).forward( request, response );
+        this.getServletContext().getRequestDispatcher( JSPFile.CONNEXION ).forward( request, response );
 	}
 
 	/**
@@ -67,11 +65,11 @@ public class ConnexionServlet extends HttpServlet {
 		if (form.getErreurs().isEmpty()) {
 			session.setAttribute(ATT_SESSION_USER, personnel);
 			// L'utilisateur voit la redirection
-			response.sendRedirect(request.getContextPath() + VUE_ACCUEIL);
+			response.sendRedirect(request.getContextPath() + Pattern.ACCUEIL);
 		} else {
 			request.setAttribute(ATT_FORM, form);
 			request.setAttribute(ATT_USER, personnel);
-			this.getServletContext().getRequestDispatcher(VUE_CONNEXION)
+			this.getServletContext().getRequestDispatcher(JSPFile.CONNEXION)
 					.forward(request, response);
 		}
 

@@ -9,21 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.ctrl.adherent.CalculerQuotientCtrl;
-import fr.gemao.entity.Parametre;
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class CalculerQFServlet
  */
-@WebServlet("/adherent/CalculerQF")
+@WebServlet(Pattern.ADHERENT_CALCUL_QF)
 public class CalculerQFServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private String VUE = "/WEB-INF/pages/adherent/calculQF.jsp";
-	private String VUE_ERREUR = "/WEB-INF/pages/erreurs/404.jsp";
-	private String URL_VALIDATION = "/GEMAO/adherent/ValidationAjoutAdherent";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -32,7 +28,7 @@ public class CalculerQFServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		this.getServletContext().getRequestDispatcher(VUE)
+		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_CALCUL_QF)
 				.forward(request, response);
 	}
 
@@ -54,7 +50,7 @@ public class CalculerQFServlet extends HttpServlet {
 		adherent.setQf(quotient);
 		session.setAttribute("ajout_adh_adherent", adherent);
 
-		response.sendRedirect(URL_VALIDATION);
+		response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_VALIDATION_AJOUT);
 
 		// float cotisationFormation = 0;
 		// float cotisationInstrument = 0;

@@ -1,4 +1,4 @@
-package fr.gemao.view;
+package fr.gemao.view.adherent;
 
 import java.io.IOException;
 
@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.entity.Parametre;
 import fr.gemao.form.ParametreForm;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class ParametreServlet
  */
-@WebServlet("/adherent/Parametres")
+@WebServlet(Pattern.ADHERENT_PARAMETRE)
 public class ParametreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	public static final String VUE_PARAMETRE = "/WEB-INF/pages/adherent/parametre.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -39,8 +39,8 @@ public class ParametreServlet extends HttpServlet {
 			request.setAttribute("tarifInstrument", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifInstrument()));
 			request.setAttribute("tarifFormation", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifFormation()));
 		}
-		this.getServletContext().getRequestDispatcher(VUE_PARAMETRE)
-		.forward(request, response);
+		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_PARAMETRE)
+			.forward(request, response);
 		
 	}
 
@@ -73,7 +73,7 @@ public class ParametreServlet extends HttpServlet {
 		request.setAttribute("qf_min", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_min()));
 		request.setAttribute("tarifInstrument", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifInstrument()));
 		request.setAttribute("tarifFormation", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifFormation()));
-		this.getServletContext().getRequestDispatcher(VUE_PARAMETRE)
+		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_PARAMETRE)
 				.forward(request, response);
 	}
 

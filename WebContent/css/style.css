@@ -14,6 +14,14 @@
 	text-align: right;
 }
 
+.btn{
+	color: #fff;
+	background-color: #337ab7;
+	border-color: #2e6da4;
+	padding: 5px 10px;
+	font-weight: bold;
+}
+
 .euro::after{
 	content: ' €';
 }
@@ -47,7 +55,7 @@
 
 #disconnect{
 	border-radius: 10px;
-	background-color: #34495e;
+	/*background-color: #34495e;*/
 	padding: 5px;
 	margin-top: -5px;
 }
@@ -118,6 +126,14 @@ input, select, textarea{
 
 input[readonly]{
 	background-color: #CCC;
+}
+
+input[type=button], input[type=submit]{
+	color: #fff;
+	background-color: #337ab7;
+	border-color: #2e6da4;
+	padding: 5px 10px;
+	font-weight: bold;
 }
 
 input[type=checkbox]{

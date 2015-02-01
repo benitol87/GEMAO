@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
 import fr.gemao.entity.Personnel;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class ListePersonnelServlet
  */
-@WebServlet("/personnel/ListePersonnel")
+@WebServlet(Pattern.PERSONNEL_LISTER)
 public class ListePersonnelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public static final String VUE_LISTEPERSONNELS = "/WEB-INF/pages/personnel/listePersonnel.jsp";
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -28,17 +28,7 @@ public class ListePersonnelServlet extends HttpServlet {
 		RecupererPersonnelCtrl recupererPersonnelCtrl = new RecupererPersonnelCtrl();
 		List<Personnel> personnels = recupererPersonnelCtrl.recupererTousPersonnels();
 		request.setAttribute("listePersonnels", personnels);
-		request.setAttribute("lien", "/personnel/ConsulterPersonnel");
-		this.getServletContext().getRequestDispatcher( VUE_LISTEPERSONNELS ).forward( request, response );
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RecupererPersonnelCtrl recupererPersonnelCtrl = new RecupererPersonnelCtrl();
-		List<Personnel> personnels = recupererPersonnelCtrl.recupererTousPersonnels();
-		request.setAttribute("listePersonnels", personnels);
-		this.getServletContext().getRequestDispatcher( VUE_LISTEPERSONNELS ).forward( request, response );
+		request.setAttribute("lien", JSPFile.PERSONNEL_CONSULTER);
+		this.getServletContext().getRequestDispatcher( JSPFile.PERSONNEL_LISTER ).forward( request, response );
 	}
 }

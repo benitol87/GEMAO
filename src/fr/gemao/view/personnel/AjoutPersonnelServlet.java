@@ -3,8 +3,6 @@ package fr.gemao.view.personnel;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,21 +17,18 @@ import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
-import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
-import fr.gemao.entity.Responsabilite;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.form.personnel.PersonnelForm;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class AjoutPersonnelServlet
  */
-@WebServlet("/personnel/AjoutPersonnel")
+@WebServlet(Pattern.PERSONNEL_AJOUT)
 public class AjoutPersonnelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private String VUE = "/WEB-INF/pages/personnel/ajoutPersonnel.jsp";
-	private String VUE_PAGE2 = "/WEB-INF/pages/personnel/ajoutPersonnel2.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -41,7 +36,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher(VUE)
+		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT)
 				.forward(request, response);
 	}
 
@@ -127,7 +122,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		session.setAttribute("personnel", personnel);
 
 		/* Transmission à la page JSP en charge de l'affichage des données */
-		this.getServletContext().getRequestDispatcher(VUE_PAGE2)
+		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT2)
 				.forward(request, response);
 	}
 

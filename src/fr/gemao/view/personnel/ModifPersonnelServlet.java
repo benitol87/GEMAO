@@ -25,17 +25,16 @@ import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.Responsabilite;
 import fr.gemao.form.personnel.PersonnelForm;
+import fr.gemao.view.JSPFile;
+import fr.gemao.view.Pattern;
 
 /**
  * Servlet implémentant la classe ModifPersonnelServlet
  */
-@WebServlet("/personnel/ModifPersonnel")
+@WebServlet(Pattern.PERSONNEL_MODIFIER)
 public class ModifPersonnelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private static final String VUE_MODIFICATION = "/WEB-INF/pages/personnel/modifPersonnel.jsp";
-	public static final String VUE_LISTE = "/personnel/ListePersonnel";
-
 	/**
 	 * Chargement de la page de modification d'un personnel.
 	 * Un paramètre doit être envoyé au doGet pour récupérer la personne concernée par les modifications.
@@ -47,7 +46,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 		
 		/* Si le paramètre id est null */
 		if(request.getParameter("id") == null){
-			this.getServletContext().getRequestDispatcher(VUE_LISTE).forward(request, response);
+			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_LISTER).forward(request, response);
 			
 		/* Sinon */
 		} else {
@@ -97,7 +96,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 			session.setAttribute("contrat", contrat);
 			session.setAttribute("dateDebutContrat", dateDebutContrat);
 			session.setAttribute("dateFinContrat", dateFinContrat);
-			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION).forward(request, response);
+			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_MODIFIER).forward(request, response);
 		}
 	}
 
@@ -105,8 +104,6 @@ public class ModifPersonnelServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		
 		PersonnelForm form = new PersonnelForm();
 		
 		form.testerPersonnel(request);
@@ -150,9 +147,9 @@ public class ModifPersonnelServlet extends HttpServlet {
 		if (form.getErreurs().isEmpty()) {
 			
 			/* On redirige vers la liste des personnels */
-			response.sendRedirect(request.getContextPath() + VUE_LISTE);
+			response.sendRedirect(request.getContextPath() + JSPFile.PERSONNEL_LISTER);
 		} else {
-			this.getServletContext().getRequestDispatcher(VUE_MODIFICATION).forward(request, response);
+			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_MODIFIER).forward(request, response);
 		}
 	}
 }
