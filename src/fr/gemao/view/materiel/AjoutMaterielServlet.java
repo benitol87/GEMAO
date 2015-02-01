@@ -44,6 +44,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 	private static String ERREUR_AJOUT_DESIGNATION = "erreurDes";
 	private static String ERREUR_AJOUT_FOURNISSEUR = "erreurFour";
 	private static String ERREUR_AJOUT_MARQUE = "erreurMarque";
+	private static String ERREUR_AJOUT_ETAT = "erreurEtat";
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -127,6 +128,16 @@ public class AjoutMaterielServlet extends HttpServlet {
 						"Le Fournisseur existe déjà");
 			}
 		}
+		
+		if (Form.getValeurChamp(request, "nomEtat") != null) {
+			try {
+				FournisseurCtrl.ajoutFournisseur(Form.getValeurChamp(request,
+						"nomEtat"));
+			} catch (DAOException e) {
+				form.setErreur(ERREUR_AJOUT_ETAT,
+						"L'etat existe déjà");
+			}
+		}
 
 		if (Form.getValeurChamp(request, "nomMarque") != null) {
 			try {
@@ -161,7 +172,8 @@ public class AjoutMaterielServlet extends HttpServlet {
 		if (request.getParameter("nomMarque").equals("")
 				&& request.getParameter("nomFour").equals("")
 				&& request.getParameter("nomCat").equals("")
-				&& request.getParameter("nomDes").equals("")) {
+				&& request.getParameter("nomDes").equals("")
+				&& request.getParameter("nomEtat").equals("")) {
 
 			String fournisseur = request.getParameter("fournisseur");
 			String etat = request.getParameter("etat");
