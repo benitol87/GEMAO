@@ -29,7 +29,7 @@ import fr.gemao.view.Pattern;
 /**
  * Servlet implementation class ModifAdherentServlet
  */
-@WebServlet()
+@WebServlet(Pattern.ADHERENT_MODIFIER)
 public class ModifAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

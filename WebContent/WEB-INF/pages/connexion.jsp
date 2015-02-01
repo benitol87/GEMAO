@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Connexion" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 <body>
 	<article id='pageConnexion' class='align-center'>
-		<form method="post" action="Connexion">
+		<form method="post" action="<c:url value="<%= Pattern.CONNEXION %>" />">
             <fieldset>
                 <legend>Merci de vous authentifier</legend>
 
@@ -35,7 +36,7 @@
                 <c:if test="${!empty sessionScope.sessionObjectPersonnel}">
 	                <div class='align-center'>
 	                    <p>Vous êtes connecté(e) avec le login : ${sessionScope.sessionObjectPersonnel.login}</p>
-	                    <a href="/GEMAO/"><input type='button' value='Accueil'/></a>
+	                    <a href="<c:url value="<%= Pattern.ACCUEIL %>" />"><input type='button' value='Accueil'/></a>
                     </div>
                 </c:if>
             </fieldset>

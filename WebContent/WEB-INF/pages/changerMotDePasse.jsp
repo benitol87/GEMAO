@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Changement de mot de passe" scope="request" />
 
@@ -10,7 +11,7 @@
 
 <h1>Changer son mot de passe</h1>
 
-<form method="post" action="<c:url value="/ChangerMotDePasse" />">
+<form method="post" action="<c:url value="<%= Pattern.CHANGER_MOT_DE_PASSE %>" />">
 	<fieldset>
 		<legend>Informations</legend>
 		

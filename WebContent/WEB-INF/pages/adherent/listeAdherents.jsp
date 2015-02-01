@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Liste des adhérents" scope="request" />
 
@@ -21,8 +22,8 @@
 			<td><c:out value="${adh['nom']}" /></td>
 			<td><c:out value="${adh['prenom']}" /></td>
 			<td>
-				<a class="icon icon-search" href="ConsulteAdherent?id=<c:out value="${adh['idPersonne']}" />" title='Afficher les détails'></a>
-				<a class="icon icon-pen" href="ModifierAdherent?id=<c:out value="${adh['idPersonne']}" />" title='Modifier les informations'></a>
+				<a class="icon icon-search" href="<c:url value="<%= Pattern.ADHERENT_CONSULTER %>"/>?id=<c:out value="${adh['idPersonne']}" />" title='Afficher les détails'></a>
+				<a class="icon icon-pen" href="<c:url value="<%= Pattern.ADHERENT_MODIFIER %>"/>?id=<c:out value="${adh['idPersonne']}" />" title='Modifier les informations'></a>
 			</td>
 		</tr>
 	</c:forEach>

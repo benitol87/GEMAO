@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Paramètres" scope="request" />
 
@@ -8,7 +9,7 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <h1>Paramètres</h1>
-<form action="<c:url value="/adherent/Parametres" />" id="formParametre" method="post">
+<form action="<c:url value="<%= Pattern.ADHERENT_PARAMETRE %>" />" id="formParametre" method="post">
 	<fieldset>
 		<legend>Allocations familiales</legend>
 		<div>

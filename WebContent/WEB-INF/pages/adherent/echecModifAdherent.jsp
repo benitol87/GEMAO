@@ -8,9 +8,8 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<script src="<c:url value="/js/jquery.min.js"/>"></script>
 <script src="<c:url value="/js/modifierAdherent.js"/>"></script>
 <h1>Confirmation</h1>
-<p>L'adhérent ... n'a pas été modifié</p>
+<p>L'adhérent ... n'a pas été modifié.</p>
 
 <c:import url="/inc/footer.inc.jsp" />

@@ -8,12 +8,8 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<script src="<c:url value="/js/jquery.min.js"/>"></script>
-<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
-<script src="<c:url value="/js/datepicker.js"/>"></script>
 <script src="<c:url value="/js/AjouterAdherent.js"/>"></script>
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/css/datepicker.css"/>" />
+
 <h1>Ajout d'un adhérent</h1>
 <form action="#" method="post">
 	<fieldset>

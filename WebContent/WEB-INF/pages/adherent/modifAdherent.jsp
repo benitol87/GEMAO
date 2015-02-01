@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Modification d'un adhérent" scope="request" />
 
@@ -8,8 +9,8 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<script src="<c:url value="/js/jquery.min.js"/>"></script>
 <script src="<c:url value="/js/modifierAdherent.js"/>"></script>
+
 <h1>Modification d'un adhérent</h1>
 <form action="#" method="post">
 	<fieldset>
@@ -140,7 +141,7 @@
 			</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
-		<a href="ListeAdherents">
+		<a href="<c:url value="<%= Pattern.ADHERENT_LISTER %>"/>">
 			<input type="button" value="Retour" />
 		</a>
 		<input type="submit" value="Valider" />

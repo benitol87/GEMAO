@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Consultation d'un adhérent" scope="request" />
 
@@ -129,10 +130,10 @@
 
 
 <p class='align-center'>
-	<a href="ListeAdherents">
+	<a href="<c:url value="<%= Pattern.ADHERENT_LISTER %>"/>">
 		<input type="button" value="Retour" />
 	</a>
-	<a href="ModifierAdherent<c:out value='?id=${adherent.idPersonne }'/>">
+	<a href="<c:url value="<%= Pattern.ADHERENT_MODIFIER %>"/><c:out value='?id=${adherent.idPersonne }'/>">
 		<input type="button" value="Modifier" />
 	</a>
 </p>

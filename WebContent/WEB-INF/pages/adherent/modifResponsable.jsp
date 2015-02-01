@@ -33,8 +33,9 @@
 	</fieldset>
 	<fieldset class='align-center no-border'>
 		<div>
-			<input type="button" value="Annuler" /> <input type="button"
-				value="Suivant" /> <input type="button" value="Valider" />
+			<input type="button" value="Annuler" />
+			<input type="button" value="Suivant" />
+			<input type="button" value="Valider" />
 		</div>
 	</fieldset>
 </form>
