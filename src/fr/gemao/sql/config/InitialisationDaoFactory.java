@@ -5,6 +5,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import org.apache.coyote.http11.NpnHandler;
+
 import com.jolbox.bonecp.BoneCP;
 
 import fr.gemao.entity.administration.Module;
@@ -14,6 +16,8 @@ import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.administration.ModuleDAO;
 import fr.gemao.sql.administration.ProfilDAO;
 import fr.gemao.sql.administration.TypeDroitDAO;
+import fr.gemao.sql.exception.DAOConfigurationException;
+import fr.gemao.sql.exception.DAOException;
 
 @WebListener
 public class InitialisationDaoFactory implements ServletContextListener {
@@ -23,22 +27,32 @@ public class InitialisationDaoFactory implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		/* Récupération du ServletContext lors du chargement de l'application */
-		ServletContext servletContext = event.getServletContext();
-		/* Instanciation de notre DAOFactory */
-		this.daoFactory = DAOFactory.getInstance();
-		/* Enregistrement dans un attribut ayant pour portée toute l'application */
-		servletContext.setAttribute(ATT_DAO_FACTORY, this.daoFactory);
+		try{
+			/* Récupération du ServletContext lors du chargement de l'application */
+			ServletContext servletContext = event.getServletContext();
+			/* Instanciation de notre DAOFactory */
+			this.daoFactory = DAOFactory.getInstance();
+			/* Enregistrement dans un attribut ayant pour portée toute l'application */
+			servletContext.setAttribute(ATT_DAO_FACTORY, this.daoFactory);
+		} catch(DAOConfigurationException dCe){
+			System.out.println("Erreur de configuration : " + dCe.getMessage());
+		}
 		
+		try {
+			/* Chargement des profils */
+			//TODO à mettre dans un controleur ?
+			TypeDroitDAO typeDroitDAO = this.daoFactory.geTypeDroitDAO();
+			typeDroitDAO.load();
+			ModuleDAO moduleDAO = this.daoFactory.getModuleDAO();
+			moduleDAO.load();
+			ProfilDAO profilDAO = this.daoFactory.getProfilDAO();
+			profilDAO.load();
+		} catch (DAOException e) {
+			System.out.println("Erreur dao lors du chargement des profils : " + e.getMessage());
+		}catch(NullPointerException nPe){
+			System.out.println("Erreur, le dao n'est pas chargé, impossible de lire les profils : " + nPe.getMessage());
+		}
 		
-		/* Chargement des profils */
-		//TODO à mettre dans un controleur ?
-		TypeDroitDAO typeDroitDAO = this.daoFactory.geTypeDroitDAO();
-		typeDroitDAO.load();
-		ModuleDAO moduleDAO = this.daoFactory.getModuleDAO();
-		moduleDAO.load();
-		ProfilDAO profilDAO = this.daoFactory.getProfilDAO();
-		profilDAO.load();
 	}
 
 	@Override
