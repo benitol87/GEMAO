@@ -7,7 +7,13 @@ import javax.servlet.annotation.WebListener;
 
 import com.jolbox.bonecp.BoneCP;
 
+import fr.gemao.entity.administration.Module;
+import fr.gemao.entity.administration.Profil;
+import fr.gemao.entity.administration.TypeDroit;
 import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.administration.ModuleDAO;
+import fr.gemao.sql.administration.ProfilDAO;
+import fr.gemao.sql.administration.TypeDroitDAO;
 
 @WebListener
 public class InitialisationDaoFactory implements ServletContextListener {
@@ -23,6 +29,16 @@ public class InitialisationDaoFactory implements ServletContextListener {
 		this.daoFactory = DAOFactory.getInstance();
 		/* Enregistrement dans un attribut ayant pour portée toute l'application */
 		servletContext.setAttribute(ATT_DAO_FACTORY, this.daoFactory);
+		
+		
+		/* Chargement des profils */
+		//TODO à mettre dans un controleur ?
+		TypeDroitDAO typeDroitDAO = this.daoFactory.geTypeDroitDAO();
+		typeDroitDAO.load();
+		ModuleDAO moduleDAO = this.daoFactory.getModuleDAO();
+		moduleDAO.load();
+		ProfilDAO profilDAO = this.daoFactory.getProfilDAO();
+		profilDAO.load();
 	}
 
 	@Override

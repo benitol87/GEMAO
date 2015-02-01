@@ -9,6 +9,10 @@ import java.util.Properties;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
+import fr.gemao.sql.administration.DroitDAO;
+import fr.gemao.sql.administration.ModuleDAO;
+import fr.gemao.sql.administration.ProfilDAO;
+import fr.gemao.sql.administration.TypeDroitDAO;
 import fr.gemao.sql.exception.DAOConfigurationException;
 import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
@@ -211,5 +215,21 @@ public class DAOFactory {
 
 	public ReparateurDAO getReparateurDAO() {
 		return new ReparateurDAO(this);
+	}
+	
+	public TypeDroitDAO geTypeDroitDAO(){
+		return new TypeDroitDAO(this);
+	}
+	
+	public ModuleDAO getModuleDAO(){
+		return new ModuleDAO(this);
+	}
+
+	public DroitDAO getDroitDAO() {
+		return new DroitDAO(this);
+	}
+	
+	public ProfilDAO getProfilDAO(){
+		return new ProfilDAO(this);
 	}
 }

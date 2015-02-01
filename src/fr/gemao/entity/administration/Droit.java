@@ -7,6 +7,7 @@ public class Droit implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	//private static Map<Integer, Collection<Droit>>allDroits = new HashMap<Integer, Collection<Droit>>();
 	private TypeDroit type;
 	private Module module;
 	
