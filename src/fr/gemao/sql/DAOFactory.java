@@ -111,7 +111,6 @@ public class DAOFactory {
 			 */
 			pool = new BoneCP(config);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DAOConfigurationException(
 					"Erreur de configuration du pool de connexions.", e);
 		}
