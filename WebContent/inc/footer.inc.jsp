@@ -13,6 +13,6 @@
 <script src="/GEMAO/js/classie.js"></script>
 <script src="/GEMAO/js/mlpushmenu.js"></script>
 <script>
-			new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+	new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
 </script>
 </html>

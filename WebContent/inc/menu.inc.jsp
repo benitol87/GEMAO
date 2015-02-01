@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <div class="container">
 	<!-- Push Wrapper -->
@@ -11,15 +12,15 @@
 			<div class="mp-level">
 				<h2>GEMAO</h2>
 				<ul>
-					<li><a href="<c:url value="/"/>">Accueil</a></li>
+					<li><a href="<c:url value="<%= Pattern.ACCUEIL %>"/>">Accueil</a></li>
 					<li class="icon icon-arrow-left"><a href="#">Adhérent</a>
 						<div class="mp-level">
 							<h2>Adhérent</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
-								<li><a href="<c:url value="/adherent/AjoutAdherent"/>">Créer</a></li>
-								<li><a href="<c:url value="/adherent/ListeAdherents"/>">Lister</a></li>
-								<li><a href="<c:url value="/adherent/Parametres"/>">Paramètres</a></li>
+								<li><a href="<c:url value="<%= Pattern.ADHERENT_AJOUT %>"/>">Créer</a></li>
+								<li><a href="<c:url value="<%= Pattern.ADHERENT_LISTER %>"/>">Lister</a></li>
+								<li><a href="<c:url value="<%= Pattern.ADHERENT_PARAMETRE %>"/>">Paramètres</a></li>
 							</ul>
 						</div></li>
 					<li class="icon icon-arrow-left"><a href="#">Personnel</a>
@@ -27,8 +28,8 @@
 							<h2>Personnel</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
-								<li><a href="<c:url value="/personnel/AjoutPersonnel"/>">Créer</a></li>
-								<li><a href="<c:url value="/personnel/ListePersonnel"/>">Lister</a></li>
+								<li><a href="<c:url value="<%= Pattern.PERSONNEL_AJOUT %>"/>">Créer</a></li>
+								<li><a href="<c:url value="<%= Pattern.PERSONNEL_LISTER %>"/>">Lister</a></li>
 							</ul>
 						</div></li>
 					<li class="icon icon-arrow-left"><a href="#">Matériel</a>
@@ -36,8 +37,8 @@
 							<h2>Matériel</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
-								<li><a href="<c:url value="/materiel/AjouterMateriel"/>">Créer</a></li>
-								<li><a href="<c:url value="/materiel/ListerMateriel"/>">Lister</a></li>
+								<li><a href="<c:url value="<%= Pattern.MATERIEL_AJOUT %>"/>">Créer</a></li>
+								<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTER %>"/>">Lister</a></li>
 							</ul>
 						</div></li>
 					<li class="icon icon-arrow-left"><a href="#">Location</a>
@@ -45,8 +46,8 @@
 							<h2>Location</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
-								<li><a href="<c:url value="/location/locationInstrument"/>">Prêt</a></li>
-								<li><a href="<c:url value="/location/retourInstrument"/>">Retour</a></li>
+								<li><a href="<c:url value="<%= Pattern.LOCATION_LOCATION %>"/>">Prêt</a></li>
+								<li><a href="<c:url value="<%= Pattern.LOCATION_RETOUR %>"/>">Retour</a></li>
 							</ul>
 						</div>
 					</li>
@@ -55,7 +56,7 @@
 							<h2>Administration</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
-								<li><a href="<c:url value="/administration/ReinitMotDePasse"/>">Réinit. mot de passe</a></li>
+								<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_RESET_PASSWORD %>"/>">Réinit. mot de passe</a></li>
 							</ul>
 						</div>
 					</li>
