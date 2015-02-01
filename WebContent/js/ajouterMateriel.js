@@ -34,13 +34,15 @@ function ajoutFournisseur(){
 	}
 }
 
+
+
 function ajoutCategorie(){
 	var answer = prompt ("Ajouter une catégorie");
 	answer = answer.trim();
 	if(answer && answer!=""){
 		var input=document.getElementById("nomCat");
 		input.value=answer;
-		//document.getElementById("ajouterMateriel").submit();
+		document.getElementById("ajouterMateriel").submit();
 	} else {
 		alert("Abandon de l'ajout");
 	}
