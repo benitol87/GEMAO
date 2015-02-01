@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Personnel" scope="request" />
 
@@ -85,7 +86,7 @@
 			</div>
 		</fieldset>
 		<fieldset class='align-center no-border'>
-			<a href="ListePersonnel">
+			<a href="<c:url value="<%= Pattern.PERSONNEL_LISTER %>" />">
 				<input type="button" value="Retour" />
 			</a>
 			<input type="submit" value="Modifier"/>

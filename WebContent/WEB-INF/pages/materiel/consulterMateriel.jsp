@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.gemao.view.Pattern"%>
 
 <c:set var="titre" value="Materiel" scope="request" />
 
@@ -120,7 +121,7 @@
 </c:if>	
 
 <p class='align-center'>
-	<a href="ListerMateriel"><input type="button" value="Retour" />
+	<a href="<c:url value="<%= Pattern.MATERIEL_LISTER %>" />"><input type="button" value="Retour" />
 	</a>
 </p>
 	
