@@ -92,7 +92,7 @@
 			
 		</div>
 	</fieldset>
-<c:if test="${responsable!=null}">
+<c:if test="${adherent.responsable!=null}">
 	<fieldset>
 		<legend>Responsable</legend>
 		<div>

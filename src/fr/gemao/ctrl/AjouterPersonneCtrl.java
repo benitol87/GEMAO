@@ -73,10 +73,14 @@ public class AjouterPersonneCtrl {
 		masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
 				+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
 		pattern = Pattern.compile(masque);
-		controler = pattern.matcher(personne.getEmail());
-		if (!controler.matches()) {
-			System.out.println("Le format de l'email est invalide...");
-			return false;
+		if (personne.getEmail()=="")
+			personne.setEmail(null);
+		if (personne.getEmail() != null){
+			controler = pattern.matcher(personne.getEmail());
+			if (!controler.matches()) {
+				System.out.println("Le format de l'email est invalide...");
+				return false;
+			}
 		}
 
 		/**
@@ -89,10 +93,15 @@ public class AjouterPersonneCtrl {
 			System.out.println("Le format du téléphone fixe est invalide...");
 			return false;
 		}
-		controler = pattern.matcher(personne.getTelPort());
-		if (!controler.matches()) {
-			System.out.println("Le format du téléphone portable est invalide...");
-			return false;
+		
+		if(personne.getTelPort()=="")
+			personne.setTelPort(null);
+		if(personne.getTelPort()!= null){
+			controler = pattern.matcher(personne.getTelPort());
+			if (!controler.matches()) {
+				System.out.println("Le format du téléphone portable est invalide...");
+				return false;
+			}
 		}
 
 		return true;
