@@ -1,9 +1,11 @@
 package fr.gemao.ctrl.administration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.administration.Droit;
+import fr.gemao.entity.administration.Module;
 import fr.gemao.entity.administration.Profil;
 import fr.gemao.form.personnel.PersonnelForm;
 import fr.gemao.sql.DAOFactory;
@@ -53,14 +55,24 @@ public class ProfilsCtrl {
 	}
 	
 	/**
-	 * Retourne vrai si le personnel à le droit
+	 * Retourne vrai si le profil à le droit
 	 * @param personnel
 	 * @param droit
 	 * @return true si droit
 	 */
-	public boolean aDroit(Personnel personnel, Droit droit){
-		Profil profil = personnel.getProfil();
+	public boolean aDroit(Profil profil, Droit droit){
 		List<Droit> droits = profil.getListDroits();
 		return droits.contains(droit);
+	}
+	
+	public List<Module> getListModuleADroit(Profil profil){
+		List<Droit> droits = profil.getListDroits();
+		List<Module> modules = new ArrayList<>();
+		for(Droit d: droits){
+			if(!modules.contains(d.getModule())){
+				modules.add(d.getModule());
+			}
+		}
+		return modules;
 	}
 }
