@@ -147,7 +147,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 			if (dateNaiss.after(dateMineur.getTime())) {
 				response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_AJOUT_RESPONSABLE);
 			} else {
-				response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_AJOUT_VALIDATION);
+				response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_VALIDATION_AJOUT);
 			}
 
 		} else {

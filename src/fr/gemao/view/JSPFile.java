@@ -22,6 +22,7 @@ public class JSPFile {
 			ADHERENT_MODIFIER_RESPONSABLE = "/WEB-INF/pages/adherent/modifResponsable.jsp",
 			ADHERENT_PARAMETRE = "/WEB-INF/pages/adherent/parametre.jsp",
 			ADHERENT_VALIDATION_AJOUT = "/WEB-INF/pages/adherent/validAjoutAdherent.jsp",
+			ADHERENT_VALIDATION_MODIF = "/WEB-INF/pages/adherent/validModifAdherent.jsp",
 					
 		// Module administration
 			ADMINISTRATION_AJOUT_PROFIL = "/WEB-INF/pages/administration/ajouterProfil.jsp",
