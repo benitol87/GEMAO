@@ -24,12 +24,6 @@ public class AjouterAdresseCtrl {
 				return false;
 			}
 			
-			//Vérification du numéro de rue
-			if(adresse.getNumRue() <= 0){
-				System.out.println("Le numéro de rue doit être strictement positif...");
-				return false;
-			}
-			
 			return true;
 	}
 	
