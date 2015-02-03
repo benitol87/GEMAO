@@ -20,6 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="<c:url value="/css/icons.css"/>" />
 		<link rel="stylesheet" type="text/css" href="<c:url value="/css/component.css"/>" />
 		<link rel="stylesheet" type="text/css" href="<c:url value="/css/datepicker.css"/>" />
+		<link rel="stylesheet" type="text/css" href="<c:url value="/css/jquery-ui.css"/>" />
 		
 		<%-- Scripts --%>
 		<script src="<c:url value="/js/modernizr.custom.js"/>" ></script>
