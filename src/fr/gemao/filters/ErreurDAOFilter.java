@@ -12,6 +12,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.config.InitialisationDaoFactory;
@@ -31,10 +32,14 @@ public class ErreurDAOFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-		if(this.erreur){
+        HttpSession session = ((HttpServletRequest) request).getSession();
+		if(this.erreur && session.getAttribute(AllowAccessFilter.ATTR_ALLOW_ACCESS)==null){
 			request.getServletContext().getRequestDispatcher(VUE_ERREUR).forward(request, response);
 		}else{
-			chain.doFilter(request, response);
+			if(session.getAttribute(AllowAccessFilter.ATTR_ALLOW_ACCESS)!=null)
+        		session.setAttribute(AllowAccessFilter.ATTR_ALLOW_ACCESS, null);
+            /* On continue le filtrage */
+            chain.doFilter( request, response );
 		}
 	}
 

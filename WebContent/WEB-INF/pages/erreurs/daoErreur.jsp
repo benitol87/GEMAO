@@ -5,7 +5,6 @@
 
 <c:import url="/inc/head.inc.jsp" />
 <c:import url="/inc/header.inc.jsp" />
-<c:import url="/inc/menu.inc.jsp" />
 
 <p>Il semble y avoir une erreur de la connexion avec la base de données.</p>
 	
