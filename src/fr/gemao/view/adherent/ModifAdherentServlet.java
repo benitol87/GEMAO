@@ -164,10 +164,6 @@ public class ModifAdherentServlet extends HttpServlet {
 				modifierResponsableCtrl.modifierResponsable(responsable);
 			}
 	
-	//		ModifierAdherentCtrl modifierAdherentCtrl = new ModifierAdherentCtrl();
-	//		System.out.println(adherent);
-	//		modifierAdherentCtrl.modifierAdherent(adherent);
-	
 			session.setAttribute("modif_adh_adherent", adherent);
 			response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_VALIDATION_MODIF);
 		} else {

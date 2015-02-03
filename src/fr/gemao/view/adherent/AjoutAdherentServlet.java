@@ -120,13 +120,15 @@ public class AjoutAdherentServlet extends HttpServlet {
 				commune = c;
 			}
 
+			System.out.println(commune);
+			
 			/**
 			 * Réupération des données de l'adresse
 			 */
 			Integer numAdresse = adherentForm.getNumRue();
 			String rueAdresse = adherentForm.getNomRue();
 			String complAdresse = adherentForm.getInfoCompl();
-
+			
 			/**
 			 * Création de l'adresse
 			 */

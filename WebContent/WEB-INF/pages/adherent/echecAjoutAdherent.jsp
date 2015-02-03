@@ -12,10 +12,10 @@
 <h1>Echec</h1>
 <c:choose>
 	<c:when test="${dejaInscrit==true}">
-		<p>L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> existe déjà.</p>
+		<p class="offset">L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> existe déjà.</p>
 	</c:when>
 	<c:otherwise>
-		<p>L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> n'a pas été ajouté.</p>
+		<p class="offset">L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> n'a pas été ajouté.</p>
 	</c:otherwise>
 </c:choose>
 

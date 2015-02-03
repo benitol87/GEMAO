@@ -22,41 +22,74 @@ import fr.gemao.view.Pattern;
 @WebServlet(Pattern.ADHERENT_VALIDATION_MODIF)
 public class ValidationModifAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Adherent adherent = (Adherent) session
 				.getAttribute("modif_adh_adherent");
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String dateNaissance = formatter.format(adherent.getDateNaissance());
 		String dateInscription = formatter.format(adherent.getDateEntree());
-		
+
 		request.setAttribute("dateNaissance", dateNaissance);
 		request.setAttribute("dateInscription", dateInscription);
 		request.setAttribute("adherent", adherent);
-		
-		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_VALIDATION_MODIF)
-		.forward(request, response);
+
+		this.getServletContext()
+				.getRequestDispatcher(JSPFile.ADHERENT_VALIDATION_MODIF)
+				.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Adherent adherent = (Adherent) session
 				.getAttribute("modif_adh_adherent");
+
+		request.setAttribute("adherent", adherent);
 		
-		ModifierResponsableCtrl modifierResponsableCtrl = new ModifierResponsableCtrl();
-		modifierResponsableCtrl.modifierResponsable(adherent.getResponsable());
+		System.out.println(adherent);
 		
 		ModifierAdherentCtrl modifierAdherentCtrl = new ModifierAdherentCtrl();
-		modifierAdherentCtrl.modifierAdherent(adherent);
-		
+		if (modifierAdherentCtrl.modifierAdherent(adherent)) {
+			if (adherent.getResponsable() == null) {
+				this.getServletContext()
+						.getRequestDispatcher(
+								JSPFile.ADHERENT_CONFIRMATION_MODIFICATION)
+						.forward(request, response);
+			} else {
+				ModifierResponsableCtrl modifierResponsableCtrl = new ModifierResponsableCtrl();
+				if (modifierResponsableCtrl.modifierResponsable(adherent
+						.getResponsable())) {
+					this.getServletContext()
+							.getRequestDispatcher(
+									JSPFile.ADHERENT_CONFIRMATION_MODIFICATION)
+							.forward(request, response);
+				} else {
+					this.getServletContext()
+							.getRequestDispatcher(
+									JSPFile.ADHERENT_ECHEC_MODIFICATION)
+							.forward(request, response);
+				}
+			}
+		} else {
+			this.getServletContext()
+					.getRequestDispatcher(JSPFile.ADHERENT_ECHEC_MODIFICATION)
+					.forward(request, response);
+		}
+
+		session.setAttribute("modif_adh_adherent", null);
+
 	}
 
 }

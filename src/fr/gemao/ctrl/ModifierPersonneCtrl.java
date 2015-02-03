@@ -29,7 +29,7 @@ public class ModifierPersonneCtrl {
 			PersonneDAO personneDAO = co.getPersonneDAO();
 			
 			//Vérification de l'existance de la personne dans la BD
-			if(personneDAO.exist(personne) != null){
+			if(personneDAO.get(personne.getIdPersonne()) != null){
 				pers = personneDAO.update(personne);
 				if(pers == null){
 					System.out.println("Une erreur est survenue lors de la modification...");
