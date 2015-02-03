@@ -171,7 +171,7 @@ public class AdresseDAO extends IDAO<Adresse> {
 		Integer idCommune = result.getInt("idCommune");
 		return new Adresse(result.getInt("idAdresse"),
 				idCommune==null?null:factory.getCommuneDAO().get(idCommune),
-				result.getInt("numRue"),
+				result.getString("numRue"),
 				result.getString("nomRue"), result.getString("infoCompl"));
 	}
 
