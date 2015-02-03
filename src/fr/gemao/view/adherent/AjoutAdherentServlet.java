@@ -98,7 +98,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 					dateNaiss, telFixe, telPortable, email, Civilite.MONSIEUR,
 					null, null, Boolean.parseBoolean(droitImage), dateInscri,
 					null, null, 0.0f, list);
-			if (civilite=="F") {
+			if (civilite.equals("F")) {
 				adherent.setCivilite(Civilite.MADAME);
 			}
 			List<Discipline> listDiscipline = adherentForm.getDisciplines();

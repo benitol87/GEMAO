@@ -16,26 +16,33 @@
 	<fieldset>
 		<legend>Informations personnelles</legend>
 		<div>
-			<span class='text-label'>Civilité : </span>
-			<c:out value="${adherent['civilite']}" />
+			<span class='text-label'>Civilité : </span> <input type="radio"
+				name="civilite" value="F"
+				<c:if test="${adherent.civilite['nameCourt'] == 'Mme'}"> checked="checked"</c:if> /><label
+				for="civilite">Mme</label> <input type="radio" name="civilite"
+				value="M"
+				<c:if test="${adherent.civilite['nameCourt'] == 'M.'}"> checked="checked" </c:if> /><label
+				for="civilite">M.</label>
 		</div>
 		<div>
-			<label for="nom" class="required">Nom : </label><input type="text" name="nom"
-				required="required" value="<c:out value="${adherent['nom']}" />" />
+			<label for="nom" class="required">Nom : </label><input type="text"
+				name="nom" required="required"
+				value="<c:out value="${adherent['nom']}" />" />
 		</div>
 		<div>
-			<label for="prenom" class="required">Prénom : </label><input type="text" name="prenom"
-				required="required" value="<c:out value="${adherent['prenom']}" />" />
+			<label for="prenom" class="required">Prénom : </label><input
+				type="text" name="prenom" required="required"
+				value="<c:out value="${adherent['prenom']}" />" />
 		</div>
 		<div>
-			<label for="dateNaiss" class="required">Date de naissance : </label><input type="text"
-				name="dateNaiss" required="required" class="datepicker"
+			<label for="dateNaiss" class="required">Date de naissance : </label><input
+				type="text" name="dateNaiss" required="required" class="datepicker"
 				value="<c:out value="${dateNaissance}" />" />
 		</div>
 		<div>
-			<label for="telFixe" class="required">Téléphone fixe : </label> <input type="text"
-				name="telFixe" pattern="[0][1-9][0-9]{8}" required="required"
-				maxlength="10" autocomplete="on"
+			<label for="telFixe" class="required">Téléphone fixe : </label> <input
+				type="text" name="telFixe" pattern="[0][1-9][0-9]{8}"
+				required="required" maxlength="10" autocomplete="on"
 				value="<c:out value="${adherent['telFixe']}"/>" />
 		</div>
 		<div>
@@ -56,8 +63,8 @@
 				value="<c:out value="${adherent.adresse.numRue}"/>" />
 		</div>
 		<div>
-			<label for="rue" class="required">Rue : </label> <input type="text" name="rue"
-				required="required" autocomplete="off"
+			<label for="rue" class="required">Rue : </label> <input type="text"
+				name="rue" required="required" autocomplete="off"
 				value="<c:out value="${adherent.adresse.nomRue}"/>" />
 		</div>
 		<div>
@@ -66,13 +73,13 @@
 				value="<c:out value="${adherent.adresse.infoCompl}"/>" />
 		</div>
 		<div>
-			<label for="commune" class="required">Commune : </label> <input type="text"
-				name="commune" required="required" autocomplete="off"
+			<label for="commune" class="required">Commune : </label> <input
+				type="text" name="commune" required="required" autocomplete="off"
 				value="<c:out value="${adherent.adresse.commune.nomCommune}"/>" />
 		</div>
 		<div>
-			<label for="codePostal" class="required">Code postal : </label> <input type="text"
-				name="codePostal" required="required" maxlength="5"
+			<label for="codePostal" class="required">Code postal : </label> <input
+				type="text" name="codePostal" required="required" maxlength="5"
 				autocomplete="off"
 				value="<c:out value="${adherent.adresse.commune.codePostal}"/>" />
 		</div>
@@ -108,18 +115,18 @@
 		<fieldset>
 			<legend>Responsable</legend>
 			<div>
-				<label for="nomResp" class="required">Nom : </label> <input type="text"
-					name="nomResp"
+				<label for="nomResp" class="required">Nom : </label> <input
+					type="text" name="nomResp"
 					value="<c:out value="${adherent.responsable['nom']}" />" />
 			</div>
 			<div>
-				<label for="prenomResp" class="required">Prénom : </label> <input type="text"
-					name="prenomResp"
+				<label for="prenomResp" class="required">Prénom : </label> <input
+					type="text" name="prenomResp"
 					value="<c:out value="${adherent.responsable['prenom']}" />" />
 			</div>
 			<div>
-				<label for="telResp" class="required">Téléphone : </label> <input type="text"
-					name="telResp" maxlength="10"
+				<label for="telResp" class="required">Téléphone : </label> <input
+					type="text" name="telResp" maxlength="10"
 					value="<c:out value="${adherent.responsable['telephone']}" />" />
 			</div>
 			<div>
