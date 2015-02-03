@@ -25,8 +25,7 @@ public class DroitDAO extends IDAO<Droit> {
 
 	@Override
 	public Droit create(Droit obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Impossible de créer un objets Droit");
 	}
 
 	@Override
@@ -51,6 +50,63 @@ public class DroitDAO extends IDAO<Droit> {
 	public List<Droit> getAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Droit addDroitParPorfil(Integer idProfil, Droit droit){
+		if (droit == null) {
+			throw new NullPointerException(
+					"Le droit ne doit pas etre null");
+		}
+		
+		if (idProfil == null) {
+			throw new NullPointerException(
+					"L'idProfil ne doit pas etre null");
+		}
+
+		Integer id = 0;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "INSERT INTO droit(idProfil, idModule, idTypeDroit)"
+				+ "VALUES (?, ?, ?);";
+		
+		Integer idModule = null;
+		if(droit.getModule() != null){
+			idModule = droit.getModule().getIdModule();
+		}
+		Integer idType = null;
+		if(droit.getType() != null){
+			idType = droit.getType().getIdType();
+		}
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, idProfil,
+					idModule, idType);
+			int status = requete.executeUpdate();
+
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la création d'un droit, aucune ligne ajoutée dans la table.");
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return droit;
+	}
+	
+	public List<Droit> addAllDroitParProfil(Integer idProfil, List<Droit> droits){
+		List<Droit> resultats = new ArrayList<>();
+		Droit res;
+		for(Droit d : droits){
+			res = this.addDroitParPorfil(idProfil, d);
+			resultats.add(res);
+		}
+		return resultats; 
 	}
 	
 	public List<Droit> getAllParProfil(Integer idProfil){

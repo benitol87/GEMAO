@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.administration.Profil;
-import fr.gemao.entity.administration.TypeDroit;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
 import fr.gemao.sql.exception.DAOException;
@@ -23,8 +22,41 @@ public class ProfilDAO extends IDAO<Profil> {
 
 	@Override
 	public Profil create(Profil obj) {
-		// TODO Auto-generated method stub
-		return null;
+		if (obj == null) {
+			throw new NullPointerException(
+					"Le profil ne doit pas etre null");
+		}
+
+		Integer id = 0;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "INSERT INTO profil(nomProfil)"
+				+ "VALUES (?);";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, true, obj.getNomProfil());
+			int status = requete.executeUpdate();
+
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la création d'un profil, aucune ligne ajoutée dans la table.");
+			}
+
+			result = requete.getGeneratedKeys();
+			if (result != null && result.first()) {
+				id = result.getInt(1);
+				obj.setIdProfil(id);;
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return obj;
 	}
 
 	@Override
