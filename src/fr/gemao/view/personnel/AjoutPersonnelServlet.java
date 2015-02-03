@@ -103,11 +103,11 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		AjouterPersonnelCtrl apc = new AjouterPersonnelCtrl();
 		
 		personnel.setCommuneNaiss(commune);
-		personnel.setEmail(mail);
+	//	personnel.setEmail(mail);
 		personnel.setNom(nom);
 		personnel.setPrenom(prenom);
 		personnel.setTelFixe(telFixe);
-		personnel.setTelPort(telPortable);	
+		//personnel.setTelPort(telPortable);	
 		personnel.setPassword(Config.MOTDEPASSE);
 		personnel.setLogin(apc.genererLogin(nom));
 		
