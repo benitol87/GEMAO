@@ -40,15 +40,7 @@
 		<div>
 			<span class='text-label'>E-mail : </span>
 			<c:out value="${adherent['email']}" />
-		</div>
-		<div>
-			<span class='text-label'>Commune de naissance : </span>
-			<c:out value="${communeNaiss['nomCommune']}" />
-		</div>
-		<div>
-			<span class='text-label'>Code postal : </span>
-			<c:out value="${communeNaiss['codePostal']}" />
-		</div>			
+		</div>		
 	</fieldset>
 	<fieldset>
 		<legend>Adresse</legend>

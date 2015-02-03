@@ -98,8 +98,8 @@ public class ModifAdherentServlet extends HttpServlet {
 				.getParameter("codePostal"));
 		Commune commune = new Commune(null, codePostal, nomCommune, false);
 
-		AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
-		ajouterCommuneCtrl.ajoutCommune(commune);
+//		AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
+//		ajouterCommuneCtrl.ajoutCommune(commune);
 		
 		AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
 		Adresse adresse = new Adresse();
@@ -137,9 +137,9 @@ public class ModifAdherentServlet extends HttpServlet {
 			modifierResponsableCtrl.modifierResponsable(responsable);
 		}
 
-		ModifierAdherentCtrl modifierAdherentCtrl = new ModifierAdherentCtrl();
-		System.out.println(adherent);
-		modifierAdherentCtrl.modifierAdherent(adherent);
+//		ModifierAdherentCtrl modifierAdherentCtrl = new ModifierAdherentCtrl();
+//		System.out.println(adherent);
+//		modifierAdherentCtrl.modifierAdherent(adherent);
 
 		session.setAttribute("modif_adh_adherent", null);
 		response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_LISTER);
