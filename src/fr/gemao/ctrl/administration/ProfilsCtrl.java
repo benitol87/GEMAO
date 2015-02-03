@@ -2,8 +2,10 @@ package fr.gemao.ctrl.administration;
 
 import java.util.List;
 
+import fr.gemao.entity.Personnel;
 import fr.gemao.entity.administration.Droit;
 import fr.gemao.entity.administration.Profil;
+import fr.gemao.form.personnel.PersonnelForm;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.administration.DroitDAO;
 import fr.gemao.sql.administration.ModuleDAO;
@@ -18,6 +20,11 @@ public class ProfilsCtrl {
 		this.daoFactory = DAOFactory.getInstance();
 	}
 	
+	/**
+	 * Charge toutes les informations nécessaires pour les profils.
+	 * Charge les types de droit, les modules, et les profils.
+	 * Attention ne doit être chargé qu'une fois.
+	 */
 	public void loadProfil(){
 		TypeDroitDAO typeDroitDAO = this.daoFactory.geTypeDroitDAO();
 		typeDroitDAO.load();
@@ -44,5 +51,18 @@ public class ProfilsCtrl {
 		
 		return profil;
 	}
+	
+	/**
+	 * Retourne vrai si le personnel à le droit
+	 * @param personnel
+	 * @param droit
+	 * @return true si droit
+	 */
+	public boolean aDroit(Personnel personnel, Droit droit){
+		Profil profil = personnel.getProfil();
+		List<Droit> droits = profil.getListDroits();
+		return droits.contains(droit);
+	}
 
+	
 }
