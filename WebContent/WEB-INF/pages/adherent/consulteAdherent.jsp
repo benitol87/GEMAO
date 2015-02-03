@@ -30,14 +30,6 @@
 		<td><c:out value="${dateNaissance}" /></td>
 	</tr>
 	<tr>
-		<td>Commune de naissance : </td>
-		<td><c:out value="${adherent.communeNaiss['nomCommune']}" /></td>
-	</tr>
-	<tr>
-		<td>Code postal : </td>
-		<td><c:out value="${adherent.communeNaiss['codePostal']}" /></td>
-	</tr>
-	<tr>
 		<td>Téléphone fixe : </td>
 		<td><c:out value="${adherent['telFixe']}" /></td>
 	</tr>
