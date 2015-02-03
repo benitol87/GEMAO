@@ -1,33 +1,52 @@
-function envoyerForm(){
+function envoyerForm() {
+	// Appelé lors du changement dans la liste déroulante
 	var elem = document.getElementById("id");
-	if(elem)
+	if (elem)
 		elem.value = '';
 	document.getElementById("form").submit();
 }
 
-function recupMdp(){
-	var answer = prompt ("Saisissez votre mot de passe");
-	answer = answer.trim();
-	if(answer && answer!=""){
-		var input=document.getElementById("password");
-		input.value=answer;
-		return true;
-	} else {
-		return false;
+function recupMdp() {
+	var answer = document.getElementById("password").value;
+
+	if (answer && answer != "") {
+		dialog.dialog("close");
+		document.getElementById("form").submit();
 	}
 }
 
-function dispatchEvents(){
+dialog = $("#dialog-form").dialog({
+	autoOpen : false,
+	height : 300,
+	width : 350,
+	modal : true,
+	buttons : {
+		"Valider" : recupMdp,
+		Annuler : function() {
+			dialog.dialog("close");
+		}
+	},
+	close : function() {
+		// allFields.removeClass( "ui-state-error" );
+	}
+});
+dialog.parent().appendTo($("#form"));
+
+function dispatchEvents() {
+	// liste déroulante
 	var elem = document.getElementById("idPersonne");
-	if(elem)
-		ajouteEvent(elem,"change",envoyerForm,false);
-	elem = document.getElementById("Valider");
+	if (elem)
+		ajouteEvent(elem, "change", envoyerForm, false);
 
-	if(elem){
-		ajouteEvent(elem,"click",recupMdp,false);
+	// bouton de validation
+	elem = document.getElementById("Valider");
+	if (elem) {
+		ajouteEvent(elem, "click", function() {
+			dialog.dialog("open");
+		}, false);
 	}
 }
 
-window.onload=function(){
+window.onload = function() {
 	dispatchEvents();
 };

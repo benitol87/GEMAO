@@ -28,7 +28,7 @@
 					</div>
 				</fieldset>
 			</c:when>
-			
+
 			<%-- 2eme écran : la liste déroulante + les infos de la personne choisie--%>
 			<c:when test="${ (!empty requestScope.idPersonne && !empty requestScope.personne) || (!empty requestScope.erreur)}">
 				<fieldset>
@@ -66,19 +66,27 @@
 				
 				<div class='align-center text-danger'><c:out value="${requestScope.erreur }"></c:out></div>
 				
-				<fieldset class='align-center no-border'>
-					<input type="submit" value="Valider" id='Valider'/>
-				</fieldset>
+				<div id="dialog-form" title="Confirmer la réinitialisation">
+					<label for="password">Votre mot de passe</label>		
+					<input type='password' name='password' id='password' />
+				</div>
 				
-				<input type='text' name='password' id='password' class='hidden'/>
+				<fieldset class='align-center no-border'>
+					<input type="button" value="Valider" id='Valider'/>
+				</fieldset>
+		
+				
 			</c:when>
 			
 			
-			<%-- Dernier écran : Message de confirmation --%>
+			<%-- Dernier écran : Message de résultat --%>
 			<c:otherwise>
 				<div class='offset'>Modification effectuée, le nouveau mot de passe est <span class='text-danger'><c:out value="${requestScope.personne.password}"/></span>.</div>
 			</c:otherwise>
 		</c:choose>
+		
+		
+		
 	</form>
 	
 	
