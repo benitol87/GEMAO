@@ -38,49 +38,55 @@ public class ModifierMaterielServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 
-		String param = request.getParameter("idMateriel");
+		try {
+			HttpSession session = request.getSession();
 
-		if (param != null) {
-			int idParametre = Integer.parseInt(param);
-			MaterielCtrl matctrl = new MaterielCtrl();
-			Materiel mat = matctrl.recupererMateriel(idParametre);
-			EtatCtrl etatctrl = new EtatCtrl();
-			CategorieCtrl catctrl = new CategorieCtrl();
-			FournisseurCtrl fournctrl = new FournisseurCtrl();
-			DesignationCtrl desctrl = new DesignationCtrl();
-			MarqueCtrl marquectrl = new MarqueCtrl();
+			String param = request.getParameter("idMateriel");
 
-			session.setAttribute("sessionObjectMateriel", mat);
+			if (param != null) {
+				int idParametre = Integer.parseInt(param);
+				MaterielCtrl matctrl = new MaterielCtrl();
+				Materiel mat = matctrl.recupererMateriel(idParametre);
+				EtatCtrl etatctrl = new EtatCtrl();
+				CategorieCtrl catctrl = new CategorieCtrl();
+				FournisseurCtrl fournctrl = new FournisseurCtrl();
+				DesignationCtrl desctrl = new DesignationCtrl();
+				MarqueCtrl marquectrl = new MarqueCtrl();
 
-			List<Etat> listEtats = etatctrl.getListeEtat();
-			listEtats.remove(mat.getEtat());
-			session.setAttribute("listeEtats", listEtats);
+				session.setAttribute("sessionObjectMateriel", mat);
 
-			List<Categorie> listCat = catctrl.recupererToutesCategories();
-			listCat.remove(mat.getCategorie());
-			session.setAttribute("listeCat", listCat);
+				List<Etat> listEtats = etatctrl.getListeEtat();
+				listEtats.remove(mat.getEtat());
+				session.setAttribute("listeEtats", listEtats);
+/*
+				List<Categorie> listCat = catctrl.recupererToutesCategories();
+				listCat.remove(mat.getCategorie());
+				session.setAttribute("listeCat", listCat);
 
-			List<Fournisseur> listFourn = fournctrl.getListeFournisseur();
-			listFourn.remove(mat.getFournisseur());
-			session.setAttribute("listeFourn", listFourn);
+				List<Fournisseur> listFourn = fournctrl.getListeFournisseur();
+				listFourn.remove(mat.getFournisseur());
+				session.setAttribute("listeFourn", listFourn);
 
-			List<Designation> listDes = desctrl.recupererToutesDesignations();
-			listDes.remove(mat.getDesignation());
-			session.setAttribute("listeDes", listDes);
+				List<Designation> listDes = desctrl
+						.recupererToutesDesignations();
+				listDes.remove(mat.getDesignation());
+				session.setAttribute("listeDes", listDes);
 
-			
-			List<Marque> listMarque = marquectrl.recupererToutesMarques();
-			listMarque.remove(mat.getMarque());
-			session.setAttribute("listeMarque", listMarque);
-
-			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
-					.forward(request, response);
-		} else {
-			request.setAttribute("page", "modifier");
-			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_LISTER)
-					.forward(request, response);
+				List<Marque> listMarque = marquectrl.recupererToutesMarques();
+				listMarque.remove(mat.getMarque());
+				session.setAttribute("listeMarque", listMarque);
+*/
+				this.getServletContext()
+						.getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
+						.forward(request, response);
+			} else {
+				this.getServletContext()
+						.getRequestDispatcher(JSPFile.MATERIEL_LISTER)
+						.forward(request, response);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -115,7 +121,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				mat.setValeurReap(form.getValRea());
-				
+
 				Fournisseur four = fournctrl.recupererFournisseur(form
 						.getFournisseur());
 				System.out.println(four);
@@ -146,14 +152,16 @@ public class ModifierMaterielServlet extends HttpServlet {
 			form.getErreurs().put("Modification",
 					"Le matériel a bien été modifié");
 			request.setAttribute("form", form);
-			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
+			this.getServletContext()
+					.getRequestDispatcher(JSPFile.MATERIEL_LISTER)
 					.forward(request, response);
 			// response.sendRedirect(request.getContextPath() + VUE_LISTE);
 		} else {
 			form.getErreurs().put("Modification",
 					"Erreur lors de la modification du formulaire");
 			request.setAttribute("form", form);
-			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
+			this.getServletContext()
+					.getRequestDispatcher(JSPFile.MATERIEL_LISTER)
 					.forward(request, response);
 		}
 	}

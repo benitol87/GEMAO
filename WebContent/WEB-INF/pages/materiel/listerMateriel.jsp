@@ -10,7 +10,7 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <h1>Liste des matériels</h1>
-
+<p>${form.erreurs['Modification']}</p>
 <table>
 	<tr>
 		<th>Désignation</th>
