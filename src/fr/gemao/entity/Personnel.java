@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.util.Civilite;
 
 /**
@@ -24,6 +25,7 @@ public class Personnel extends Personne implements Serializable{
 	private String login;
 	private String password;
 	private int pointsAncien;
+	private Profil profil;
 
 	public Personnel() {
 	}
@@ -59,13 +61,15 @@ public class Personnel extends Personne implements Serializable{
 	 *            : le password de la personne
 	 * @param pointsAncien
 	 *            : le nombre de points d'ancienneté
+	 * @param profil
+	 * 			  : le profil du personnel	
 	 */
 	public Personnel(Long idPersonne,  Adresse adresse,
 			Commune communeNaiss, String nom, String prenom,
 			Date dateNaissance, String telFixe, String telPort, String email,
 			Civilite civilite, List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, Contrat contrat, String login,
-			String password, int pointsAncien) {
+			String password, int pointsAncien, Profil profil) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email, civilite);
 
@@ -75,6 +79,7 @@ public class Personnel extends Personne implements Serializable{
 		this.login = login;
 		this.password = password;
 		this.pointsAncien = pointsAncien;
+		this.profil = profil;
 	}
 
 	/**
@@ -89,7 +94,7 @@ public class Personnel extends Personne implements Serializable{
 	public Personnel(Personne personne,
 			List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, Contrat contrat, String login,
-			String password, Integer pointsAncien) {
+			String password, Integer pointsAncien, Profil profil) {
 		super(personne);
 
 		this.listeResponsabilite = listeResponsabilite;
@@ -98,6 +103,7 @@ public class Personnel extends Personne implements Serializable{
 		this.login = login;
 		this.password = password;
 		this.pointsAncien = pointsAncien;
+		this.profil = profil;
 	}
 
 	/**
@@ -211,18 +217,18 @@ public class Personnel extends Personne implements Serializable{
 		this.listeDiplomes = listeDiplomes;
 	}
 
-	
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the profil
 	 */
-	@Override
-	public String toString() {
-		return "Personnel [" + super.toString()
-				+ ", listeResponsabilite=" + listeResponsabilite
-				+ ", listeDiplomes=" + listeDiplomes + ", contrat=" + contrat
-				+ ", login=" + login + ", password=" + password
-				+ ", pointsAncien=" + pointsAncien + "]";
+	public Profil getProfil() {
+		return profil;
+	}
+
+	/**
+	 * @param profil the profil to set
+	 */
+	public void setProfil(Profil profil) {
+		this.profil = profil;
 	}
 
 	/* (non-Javadoc)
@@ -243,6 +249,7 @@ public class Personnel extends Personne implements Serializable{
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
 		result = prime * result + pointsAncien;
+		result = prime * result + ((profil == null) ? 0 : profil.hashCode());
 		return result;
 	}
 
@@ -285,7 +292,25 @@ public class Personnel extends Personne implements Serializable{
 			return false;
 		if (pointsAncien != other.pointsAncien)
 			return false;
+		if (profil == null) {
+			if (other.profil != null)
+				return false;
+		} else if (!profil.equals(other.profil))
+			return false;
 		return true;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Personnel [listeResponsabilite=" + listeResponsabilite
+				+ ", listeDiplomes=" + listeDiplomes + ", contrat=" + contrat
+				+ ", login=" + login + ", password=" + password
+				+ ", pointsAncien=" + pointsAncien + ", profil=" + profil + "]";
+	}
+
+	
 
 }
