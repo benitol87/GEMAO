@@ -97,4 +97,20 @@ public class ProfilsCtrl {
 		}
 		return modules;
 	}
+	
+	public List<String> getListeModuleDroit(Profil profil){
+		List<Droit> droits = profil.getListDroits();
+		List<String> modules = new ArrayList<>();
+		for(Droit d: droits){
+			if(!modules.contains(d.getModule())){
+				modules.add(d.getModule().getNomModule());
+			}
+		}
+		return modules;
+	}
+	
+	public List<String> getListeModuleDroit(String nomProfil){
+		Profil profil = Profil.getProfil(nomProfil);
+		return this.getListeModuleDroit(profil);
+	}
 }
