@@ -130,7 +130,7 @@ public class ModifAdherentServlet extends HttpServlet {
 			
 			AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
 			Adresse adresse = new Adresse();
-			Integer numRue = Integer.parseInt(request.getParameter("num"));
+			String numRue = request.getParameter("num");
 			adresse.setNumRue(numRue);
 			String nomRue = request.getParameter("rue");
 			adresse.setNomRue(nomRue);
