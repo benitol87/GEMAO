@@ -366,7 +366,12 @@ public class AdherentForm {
 		telFixe = getValeurChamp(request, CHAMP_TELFIXE);
 		telPort = getValeurChamp(request, CHAMP_TELPORT);
 		email = getValeurChamp(request, CHAMP_EMAIL);
-		numRue = Integer.parseInt(getValeurChamp(request, CHAMP_NUM));
+		if(getValeurChamp(request, CHAMP_NUM) != null){
+			numRue = Integer.parseInt(getValeurChamp(request, CHAMP_NUM));
+		}
+		else{
+			numRue = null;
+		}
 		nomRue = getValeurChamp(request, CHAMP_RUE);
 		infoCompl = getValeurChamp(request, CHAMP_COMPL);
 		codePostal = Integer.parseInt(getValeurChamp(request, CHAMP_CODEPOSTAL));
