@@ -94,7 +94,7 @@ public class Personnel extends Personne implements Serializable{
 	public Personnel(Personne personne,
 			List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, Contrat contrat, String login,
-			String password, Integer pointsAncien) {
+			String password, Integer pointsAncien, Profil profil) {
 		super(personne);
 
 		this.listeResponsabilite = listeResponsabilite;
@@ -103,6 +103,7 @@ public class Personnel extends Personne implements Serializable{
 		this.login = login;
 		this.password = password;
 		this.pointsAncien = pointsAncien;
+		this.profil = profil;
 	}
 
 	/**

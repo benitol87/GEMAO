@@ -11,6 +11,7 @@ import fr.gemao.entity.Contrat;
 import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.Responsabilite;
+import fr.gemao.entity.administration.Profil;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -45,8 +46,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO personnel(idPersonne, idContrat, login, pwd, pointAnciennete)"
-				+ "VALUES (?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO personnel(idPersonne, idContrat, login, pwd, pointAnciennete, idProfil)"
+				+ "VALUES (?, ?, ?, ?, ?, ?);";
 		
 		//PersonneDAO personneDAO = factory.getPersonneDAO();
 		
@@ -58,6 +59,11 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		
 		ContratDAO contratDAO = factory.getContratDAO();
 		Contrat contrat = contratDAO.create(obj.getContrat());
+		
+		Integer idProfil = null;
+		if(obj.getProfil() != null){
+			idProfil = obj.getProfil().getIdProfil();
+		}
 		try {
 			//obj = (Personnel) personneDAO.create(obj);
 			connexion = factory.getConnection();
@@ -66,7 +72,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 					contrat.getIdContrat(),
 					obj.getLogin(),
 					Password.encrypt(obj.getPassword()),
-					obj.getPointsAncien());
+					obj.getPointsAncien(),
+					idProfil);
 			
 			int status = requete.executeUpdate();
 			
@@ -108,7 +115,13 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		
-		String sql = "UPDATE personnel SET idContrat = ?, login = ?, pwd = ?, pointAnciennete = ? "
+		Integer idProfil = null;
+		if(obj.getProfil() != null){
+			idProfil = obj.getProfil().getIdProfil();
+		}
+		
+		String sql = "UPDATE personnel SET idContrat = ?, login = ?, pwd = ?, pointAnciennete = ?,"
+				+ "idProfil = ? "
 				+ "WHERE idPersonne = ?;";
 
 		try {
@@ -118,6 +131,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 					obj.getLogin(),
 					Password.encrypt(obj.getPassword()),
 					obj.getPointsAncien(),
+					idProfil,
 					obj.getIdPersonne());
 			requete.executeUpdate();
 
@@ -209,7 +223,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 				idContrat==null?null:contratDAO.get(idContrat),
 				result.getString("login"),
 				result.getString("pwd"),
-				NumberUtil.getResultInteger(result, "pointAnciennete"));
+				NumberUtil.getResultInteger(result, "pointAnciennete"),
+				Profil.getProfil(NumberUtil.getResultInteger(result, "idProfil")));
 		
 		return personnel;
 	}
@@ -249,7 +264,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		ResultSet result = null;
 		int nb = 0;
 		
-		String sql = "SELECT * FROM personnel pl inner join personne p on pl.idPersonne = p.idPersonne WHERE nom = ?;";
+		String sql = "SELECT idPersonnel FROM personnel pl inner join personne p on pl.idPersonne = p.idPersonne WHERE nom = ?;";
 		
 		try {
 			
