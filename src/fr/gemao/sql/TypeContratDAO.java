@@ -30,8 +30,8 @@ public class TypeContratDAO extends IDAO<TypeContrat> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO typeCOntrat(libelle)"
-				+ "VALUES (?, ?);";
+		String sql = "INSERT INTO typeContrat(libelle)"
+				+ "VALUES (?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
