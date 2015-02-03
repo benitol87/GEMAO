@@ -30,14 +30,6 @@
 		<td><c:out value="${dateNaissance}" /></td>
 	</tr>
 	<tr>
-		<td>Commune de naissance : </td>
-		<td><c:out value="${adherent.communeNaiss['nomCommune']}" /></td>
-	</tr>
-	<tr>
-		<td>Code postal : </td>
-		<td><c:out value="${adherent.communeNaiss['codePostal']}" /></td>
-	</tr>
-	<tr>
 		<td>Téléphone fixe : </td>
 		<td><c:out value="${adherent['telFixe']}" /></td>
 	</tr>
@@ -135,6 +127,9 @@
 	</a>
 	<a href="<c:url value="<%= Pattern.ADHERENT_MODIFIER %>"/><c:out value='?id=${adherent.idPersonne }'/>">
 		<input type="button" value="Modifier" />
+	</a>
+	<a href="<c:url value="<%= Pattern.ADHERENT_DESINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">
+		<input type="button" value="Désinscrire" />
 	</a>
 </p>
 
