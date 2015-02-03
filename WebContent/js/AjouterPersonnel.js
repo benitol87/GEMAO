@@ -80,8 +80,13 @@ function afficherDuree(){
 	var duree= document.getElementById("duree");
 	var liste= document.getElementById("type");
 	var option= liste.options.selectedIndex;
-	if(option.value!= "cdi"){
-		duree.style.visibility="visible";
+	alert(option.value);
+	if(option.value!= 0){
+		duree.style.display="inline";
+		
+	}
+	else{
+		duree.style.display="none";
 	}
 	
 }
