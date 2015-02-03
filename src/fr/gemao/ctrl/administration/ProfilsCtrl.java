@@ -7,6 +7,7 @@ import fr.gemao.entity.Personnel;
 import fr.gemao.entity.administration.Droit;
 import fr.gemao.entity.administration.Module;
 import fr.gemao.entity.administration.Profil;
+import fr.gemao.entity.administration.TypeDroit;
 import fr.gemao.form.personnel.PersonnelForm;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.administration.DroitDAO;
@@ -65,6 +66,27 @@ public class ProfilsCtrl {
 		return droits.contains(droit);
 	}
 	
+	public boolean aDroit(Profil profil, Module module, TypeDroit type){
+		Droit droit = new Droit(type, module);
+		return this.aDroit(profil, droit);
+	}
+	
+	public boolean aDroit(Profil profil, String nomModule, String nomType){
+		Module module = Module.getModule(nomModule);
+		TypeDroit type = TypeDroit.getTypeDroit(nomType);
+		return this.aDroit(profil, module, type);
+	}
+	
+	public boolean aDroit(String nomProfil, String nomModule, String nomType){
+		Profil profil = Profil.getProfil(nomProfil);
+		return this.aDroit(profil, nomModule, nomType);
+	}
+	
+	/**
+	 * Donne la liste des modules du profil
+	 * @param profil
+	 * @return
+	 */
 	public List<Module> getListModuleADroit(Profil profil){
 		List<Droit> droits = profil.getListDroits();
 		List<Module> modules = new ArrayList<>();
