@@ -16,6 +16,7 @@ public class Pattern {
 			ADHERENT_CONSULTER = "/adherent/ConsulteAdherent",
 			ADHERENT_LISTER = "/adherent/ListeAdherents",
 			ADHERENT_MODIFIER = "/adherent/ModifierAdherent",
+			ADHERENT_DESINSCRIRE = "/adherent/DesinscrireAdherent",
 			ADHERENT_PARAMETRE = "/adherent/Parametres",
 			ADHERENT_VALIDATION_AJOUT = "/adherent/ValidationAjoutAdherent",
 			ADHERENT_VALIDATION_MODIF = "/adherent/ValidationModifAdherent",
