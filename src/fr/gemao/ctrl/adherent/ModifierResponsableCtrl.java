@@ -16,8 +16,9 @@ public class ModifierResponsableCtrl {
 	 * Méthode permettant de modifier un responsable dans la BD.
 	 * La modification a lieu seulement si les informations du responsable sont valides et si le responsable existe déjà dans la base.
 	 * @param responsable
+	 * @return 
 	 */
-	public void modifierResponsable(Responsable responsable){
+	public boolean modifierResponsable(Responsable responsable){
 		AjouterResponsableCtrl ajoutResp = new AjouterResponsableCtrl();
 		
 		//Vérification de la validité des informations du responsable
@@ -35,6 +36,7 @@ public class ModifierResponsableCtrl {
 				}
 				else{
 					System.out.println("Le responsable a bien été modifié.");
+					return true;
 				}
 			}
 			else{
@@ -45,5 +47,6 @@ public class ModifierResponsableCtrl {
 		else{
 			System.out.println("Les informations du responsable ne sont pas valides...");
 		}	
+		return false;
 	}
 }

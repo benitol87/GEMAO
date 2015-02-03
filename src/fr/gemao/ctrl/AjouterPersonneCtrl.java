@@ -32,10 +32,10 @@ public class AjouterPersonneCtrl {
 		/**
 		 * Vérification de l'idCommuneNaiss
 		 */
-		if (personne.getCommuneNaiss() == null || personne.getCommuneNaiss().getIdCommune() <= 0) {
-			System.out.println("L'idAdresse n'est pas valide...");
-			return false;
-		}
+//		if (personne.getCommuneNaiss() == null || personne.getCommuneNaiss().getIdCommune() <= 0) {
+//			System.out.println("L'idAdresse n'est pas valide...");
+//			return false;
+//		}
 
 		/**
 		 * Vérification du nom

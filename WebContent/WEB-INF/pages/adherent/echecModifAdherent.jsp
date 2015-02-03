@@ -10,6 +10,6 @@
 
 <script src="<c:url value="/js/modifierAdherent.js"/>"></script>
 <h1>Confirmation</h1>
-<p>L'adhérent ... n'a pas été modifié.</p>
+<p class="offset">L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> n'a pas été modifié.</p>
 
 <c:import url="/inc/footer.inc.jsp" />

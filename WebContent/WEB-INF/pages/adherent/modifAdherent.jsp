@@ -134,8 +134,9 @@
 	<fieldset>
 		<legend>Informations complémentaires</legend>
 		<div>
-			<span class='text-label'>Date d'inscription : </span>
-			<c:out value="${dateInscription}" />
+			<label for="dateInscri">Date d'inscription : </label><input type="text"
+				name="dateInscri" required="required" class="datepicker"
+				value="<c:out value="${dateInscription}" />" />
 		</div>
 		<div>
 			<label>Droit à l'image :</label> <span> <input type="radio"
@@ -152,7 +153,7 @@
 	<fieldset class='align-center no-border'>
 		<a href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>"> <input
 			type="button" value="Retour" />
-		</a> <input type="submit" value="Valider" />
+		</a> <input type="submit" value="Suivant" />
 	</fieldset>
 </form>
 <c:import url="/inc/footer.inc.jsp" />

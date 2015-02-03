@@ -12,13 +12,13 @@ public class Pattern {
 		// Module adhérent
 			ADHERENT_AJOUT = "/adherent/AjoutAdherent",
 			ADHERENT_AJOUT_RESPONSABLE = "/adherent/AjoutResponsable",
-			ADHERENT_AJOUT_VALIDATION = "/adherent/ValidationAjoutAdherent",
 			ADHERENT_CALCUL_QF = "/adherent/CalculerQF",
 			ADHERENT_CONSULTER = "/adherent/ConsulteAdherent",
 			ADHERENT_LISTER = "/adherent/ListeAdherents",
 			ADHERENT_MODIFIER = "/adherent/ModifierAdherent",
 			ADHERENT_PARAMETRE = "/adherent/Parametres",
 			ADHERENT_VALIDATION_AJOUT = "/adherent/ValidationAjoutAdherent",
+			ADHERENT_VALIDATION_MODIF = "/adherent/ValidationModifAdherent",
 			
 		// Module administration
 			ADMINISTRATION_RESET_PASSWORD = "/administration/ReinitMotDePasse",

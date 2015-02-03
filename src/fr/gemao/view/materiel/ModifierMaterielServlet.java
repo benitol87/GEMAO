@@ -31,6 +31,7 @@ import fr.gemao.view.Pattern;
 @WebServlet(Pattern.MATERIEL_MODIFIER)
 public class ModifierMaterielServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static String VUE_LISTE = "/materiel/ListerMateriel";
 
 	/**
 	 * Chargement de la page de modification. Le parametre idMateriel doit etre
@@ -124,7 +125,6 @@ public class ModifierMaterielServlet extends HttpServlet {
 
 				Fournisseur four = fournctrl.recupererFournisseur(form
 						.getFournisseur());
-				System.out.println(four);
 				mat.setFournisseur(four);
 				mat.setDesignation(desctrl.recupererDesignationCtrl(form
 						.getDesignation()));
@@ -152,17 +152,15 @@ public class ModifierMaterielServlet extends HttpServlet {
 			form.getErreurs().put("Modification",
 					"Le matériel a bien été modifié");
 			request.setAttribute("form", form);
-			this.getServletContext()
-					.getRequestDispatcher(JSPFile.MATERIEL_LISTER)
-					.forward(request, response);
-			// response.sendRedirect(request.getContextPath() + VUE_LISTE);
+			//this.getServletContext()
+				//	.getRequestDispatcher(JSPFile.MATERIEL_LISTER)
+					//.forward(request, response);
+			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?code=0");
 		} else {
 			form.getErreurs().put("Modification",
 					"Erreur lors de la modification du formulaire");
 			request.setAttribute("form", form);
-			this.getServletContext()
-					.getRequestDispatcher(JSPFile.MATERIEL_LISTER)
-					.forward(request, response);
+			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?code=1");
 		}
 	}
 }
