@@ -125,7 +125,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 			/**
 			 * Réupération des données de l'adresse
 			 */
-			Integer numAdresse = adherentForm.getNumRue();
+			String numAdresse = adherentForm.getNumRue();
 			String rueAdresse = adherentForm.getNomRue();
 			String complAdresse = adherentForm.getInfoCompl();
 			

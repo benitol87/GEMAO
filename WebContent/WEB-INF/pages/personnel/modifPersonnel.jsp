@@ -21,12 +21,12 @@
 				<c:out value="${sessionScope.personnel['prenom']}" />
 			</div>
 			<div>
-				<label for="email">E-mail</label>
-				<input type="email" name="email" value="${sessionScope.personnel['email']}"/>
-			</div>
-			<div>
 				<label for="civilite">Civilité</label>
 				<c:out value="${sessionScope.personnel['civilite']}" />
+			</div>
+			<div>
+				<label for="email">E-mail</label>
+				<input type="email" name="email" value="${sessionScope.personnel['email']}"/>
 			</div>
 			<div>
 				<label for="telFixe">Téléphone fixe</label>

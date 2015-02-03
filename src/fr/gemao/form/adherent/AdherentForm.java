@@ -64,7 +64,7 @@ public class AdherentForm {
 	private String email;
 	
 	//Adresse
-	private Integer numRue;
+	private String numRue;
 	private String nomRue;
 	private String infoCompl;
 	
@@ -121,7 +121,7 @@ public class AdherentForm {
 		return this.email;
 	}
 	
-	public Integer getNumRue(){
+	public String getNumRue(){
 		return this.numRue;
 	}
 	
@@ -367,7 +367,7 @@ public class AdherentForm {
 		telPort = getValeurChamp(request, CHAMP_TELPORT);
 		email = getValeurChamp(request, CHAMP_EMAIL);
 		if(getValeurChamp(request, CHAMP_NUM) != null){
-			numRue = Integer.parseInt(getValeurChamp(request, CHAMP_NUM));
+			numRue = getValeurChamp(request, CHAMP_NUM);
 		}
 		else{
 			numRue = null;
