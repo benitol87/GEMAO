@@ -23,20 +23,22 @@ import fr.gemao.sql.exception.DAOException;
 @WebListener
 public class InitialisationDaoFactory implements ServletContextListener {
 	public static final String ATT_DAO_FACTORY = "daofactory";
+	public static final String ATT_MSG_ERROR = "errordao";
 
 	private DAOFactory daoFactory;
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
+		/* Récupération du ServletContext lors du chargement de l'application */
+		ServletContext servletContext = event.getServletContext();
 		try{
-			/* Récupération du ServletContext lors du chargement de l'application */
-			ServletContext servletContext = event.getServletContext();
 			/* Instanciation de notre DAOFactory */
 			this.daoFactory = DAOFactory.getInstance();
 			/* Enregistrement dans un attribut ayant pour portée toute l'application */
 			servletContext.setAttribute(ATT_DAO_FACTORY, this.daoFactory);
 		} catch(DAOConfigurationException dCe){
 			System.out.println("Erreur de configuration : " + dCe.getMessage());
+			servletContext.setAttribute(InitialisationDaoFactory.ATT_MSG_ERROR, "Erreur de configuration : " + dCe.getMessage());
 		}
 		
 		if(this.daoFactory != null){

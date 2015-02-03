@@ -7,6 +7,7 @@
 <c:import url="/inc/header.inc.jsp" />
 
 <p>Il semble y avoir une erreur de la connexion avec la base de données.</p>
+<p>${ requestScope.error}</p>
 	
 
 <c:import url="/inc/footer.inc.jsp" />

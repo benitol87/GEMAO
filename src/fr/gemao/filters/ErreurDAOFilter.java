@@ -34,6 +34,8 @@ public class ErreurDAOFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = ((HttpServletRequest) request).getSession();
 		if(this.erreur && session.getAttribute(AllowAccessFilter.ATTR_ALLOW_ACCESS)==null){
+			String error = (String) request.getServletContext().getAttribute(InitialisationDaoFactory.ATT_MSG_ERROR);
+			request.setAttribute("error", error);
 			request.getServletContext().getRequestDispatcher(VUE_ERREUR).forward(request, response);
 		}else{
 			if(session.getAttribute(AllowAccessFilter.ATTR_ALLOW_ACCESS)!=null)
