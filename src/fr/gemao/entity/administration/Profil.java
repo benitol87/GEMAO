@@ -54,6 +54,16 @@ public class Profil implements Serializable{
 		return Profil.allProfils.get(idProfil);
 	}
 	
+	public static Profil getProfil(String nom){
+		Collection<Profil> list = Profil.allProfils.values();
+		for(Profil p : list){
+			if(p.getNomProfil().equals(nom)){
+				return p;
+			}
+		}
+		return null;
+	}
+	
 	public Profil() {
 
 	}

@@ -63,6 +63,4 @@ public class ProfilsCtrl {
 		List<Droit> droits = profil.getListDroits();
 		return droits.contains(droit);
 	}
-
-	
 }

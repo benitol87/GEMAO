@@ -35,6 +35,16 @@ public class Module implements Serializable{
 		return Module.allModules.get(idModule);
 	}
 	
+	public static Module getModule(String nom){
+		Collection<Module> list = Module.allModules.values();
+		for(Module m : list){
+			if(m.getNomModule().equals(nom)){
+				return m;
+			}
+		}
+		return null;
+	}
+	
 	private Module() {
 		
 	}
