@@ -1,8 +1,10 @@
 package fr.gemao.view.materiel;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -54,6 +56,11 @@ public class ModifierMaterielServlet extends HttpServlet {
 				FournisseurCtrl fournctrl = new FournisseurCtrl();
 				DesignationCtrl desctrl = new DesignationCtrl();
 				MarqueCtrl marquectrl = new MarqueCtrl();
+				
+				
+				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+				String dateAchat = df.format(new Date(mat.getDateAchat().getTime()));
+				request.setAttribute("dateAchat", dateAchat);
 
 				session.setAttribute("sessionObjectMateriel", mat);
 
@@ -139,6 +146,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 				mat.setEtat(etatctrl.recupererEtat(form.getEtat()));
 
 				matctrl.modifierMateriel(mat);
+				session.removeAttribute("sessionObjectMateriel");
 				session.removeAttribute("materiel");
 				session.removeAttribute("listeEtats");
 				session.removeAttribute("listeCat");
@@ -149,18 +157,15 @@ public class ModifierMaterielServlet extends HttpServlet {
 			}
 		}
 		if (form.getErreurs().isEmpty()) {
-			form.getErreurs().put("Modification",
-					"Le matériel a bien été modifié");
-			request.setAttribute("form", form);
-			//this.getServletContext()
-				//	.getRequestDispatcher(JSPFile.MATERIEL_LISTER)
-					//.forward(request, response);
-			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?code=0");
+			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?modifOk=0");
 		} else {
 			form.getErreurs().put("Modification",
 					"Erreur lors de la modification du formulaire");
+			
 			request.setAttribute("form", form);
-			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?code=1");
+			this.getServletContext()
+				.getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
+				.forward(request, response);
 		}
 	}
 }
