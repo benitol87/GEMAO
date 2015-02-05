@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.adherent.RecupererMotifSortieCtrl;
+import fr.gemao.ctrl.materiel.CategorieCtrl;
 import fr.gemao.entity.adherent.MotifSortie;
 import fr.gemao.form.util.Form;
+import fr.gemao.sql.exception.DAOException;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -24,6 +26,7 @@ public class DesinscrireAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String CHAMP_IDADHERENT = "id";
 	private static final String ATTR_LISTE_MOTIF = "listMotifSortie";
+	private static final String ATTR_CACHE_LIBELLEMOTIF = "libelleMotif";
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -50,5 +53,17 @@ public class DesinscrireAdherentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		// Ajout d'une catégorie, le fait qu'elle ne soit pas vide
+		// a déjà été testé
+		if (Form.getValeurChamp(request, ATTR_CACHE_LIBELLEMOTIF) != null) {
+			/* A FINIR !!!!!!!!!!!!!
+			try {
+				MotifSortieCtrl.ajoutMotif(Form.getValeurChamp(request,
+						"libelleMotif"));
+			} catch (DAOException e) {
+				form.setErreur(ERREUR_AJOUT_CATEGORIE,
+						"La catégorie existe déjà");
+			}*/
+		}
 	}
 }

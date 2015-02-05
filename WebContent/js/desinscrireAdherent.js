@@ -26,10 +26,10 @@ function confirmDesinscription()
 window.onload = function()
 {
 	var boutonAjouter = document.getElementById("ajoutMotif");
-	var boutonValider = document.getElementById("valider");
+	var form = document.getElementById("desinscrire");
 	var champ_date = document.getElementById("dateSortie");
 	champ_date.value = getDateActuelle();
 	
-	ajouteEvent(boutonValider, 'submit', confirmDesinscription, false);
+	form.setAttribute("onsubmit", "return confirmDesinscription()");
 	ajouteEvent(boutonAjouter, 'click', ajoutMotif, false);
 }
