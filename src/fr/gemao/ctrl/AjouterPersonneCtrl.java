@@ -73,7 +73,7 @@ public class AjouterPersonneCtrl {
 		masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
 				+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
 		pattern = Pattern.compile(masque);
-		if (personne.getEmail()=="")
+		if (personne.getEmail().equals(""))
 			personne.setEmail(null);
 		if (personne.getEmail() != null){
 			controler = pattern.matcher(personne.getEmail());
@@ -94,7 +94,7 @@ public class AjouterPersonneCtrl {
 			return false;
 		}
 		
-		if(personne.getTelPort()=="")
+		if(personne.getTelPort().equals(""))
 			personne.setTelPort(null);
 		if(personne.getTelPort()!= null){
 			controler = pattern.matcher(personne.getTelPort());
