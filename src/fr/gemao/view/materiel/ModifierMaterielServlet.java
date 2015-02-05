@@ -67,7 +67,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 				List<Etat> listEtats = etatctrl.getListeEtat();
 				listEtats.remove(mat.getEtat());
 				session.setAttribute("listeEtats", listEtats);
-/*
+
 				List<Categorie> listCat = catctrl.recupererToutesCategories();
 				listCat.remove(mat.getCategorie());
 				session.setAttribute("listeCat", listCat);
@@ -84,7 +84,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 				List<Marque> listMarque = marquectrl.recupererToutesMarques();
 				listMarque.remove(mat.getMarque());
 				session.setAttribute("listeMarque", listMarque);
-*/
+
 				this.getServletContext()
 						.getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
 						.forward(request, response);
