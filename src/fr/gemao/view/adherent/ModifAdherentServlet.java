@@ -148,7 +148,6 @@ public class ModifAdherentServlet extends HttpServlet {
 	
 			adherent.setAdresse(adresse);
 			
-			
 			List<Discipline> listDiscipline = adherentForm.lireDisciplines(request);
 			adherent.setDisciplines(listDiscipline);
 	
