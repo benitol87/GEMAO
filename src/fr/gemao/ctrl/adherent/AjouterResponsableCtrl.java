@@ -54,7 +54,7 @@ public class AjouterResponsableCtrl {
 		masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
 				+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
 		pattern = Pattern.compile(masque);
-		if(responsable.getEmail().equals(""))
+		if(responsable.getEmail()=="")
 			responsable.setEmail(null);
 		if(responsable.getEmail()!=null){
 			controler = pattern.matcher(responsable.getEmail());
