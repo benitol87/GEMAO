@@ -392,7 +392,7 @@ public class PersonnelForm {
 	 * @param request
 	 */
 	public Personnel testerPersonnel(HttpServletRequest request) {
-		int numRue;
+		String numRue;
 		String nomRue;
 		String infoCompl;
 		String ville;
@@ -406,7 +406,7 @@ public class PersonnelForm {
 		password = getValeurChamp(request, CHAMP_PASSWORD);
 		pointsAncien = Integer.parseInt(getValeurChamp(request,
 				CHAMP_POINTSANCIEN));
-		numRue = Integer.parseInt(getValeurChamp(request, CHAMP_NUMRUE));
+		numRue = getValeurChamp(request, CHAMP_NUMRUE);
 		nomRue = getValeurChamp(request, CHAMP_NOMRUE);
 		infoCompl = getValeurChamp(request, CHAMP_INFOCOMPL);
 		ville = getValeurChamp(request, CHAMP_VILLE);

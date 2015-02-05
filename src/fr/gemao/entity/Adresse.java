@@ -10,7 +10,7 @@ public class Adresse implements Serializable{
 	
 	private Integer idAdresse;
 	private Commune commune;
-	private Integer numRue;
+	private String numRue;
 	private String nomRue;
 	private String infoCompl;
 	
@@ -28,7 +28,7 @@ public class Adresse implements Serializable{
 	 * @param nomRue : le nom de la rue
 	 * @param infoCompl : informations complémentaires
 	 */
-	public Adresse(Integer idAdresse, Commune commune, Integer numRue, String nomRue, String infoCompl) {
+	public Adresse(Integer idAdresse, Commune commune, String numRue, String nomRue, String infoCompl) {
 		super();
 		this.idAdresse = idAdresse;
 		this.commune = commune;
@@ -53,11 +53,11 @@ public class Adresse implements Serializable{
 		this.commune = commune;
 	}
 
-	public Integer getNumRue() {
+	public String getNumRue() {
 		return numRue;
 	}
 
-	public void setNumRue(Integer numRue) {
+	public void setNumRue(String numRue) {
 		this.numRue = numRue;
 	}
 

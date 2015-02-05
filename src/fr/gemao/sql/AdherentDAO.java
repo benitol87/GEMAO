@@ -26,7 +26,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 	@Override
 	public Adherent create(Adherent obj) {
 		if (obj == null) {
-			throw new NullPointerException("La personne ne doit pas être null");
+			throw new NullPointerException("L'adhérent ne doit pas être null");
 		}
 		Connection connexion = null;
 		PreparedStatement requete = null;

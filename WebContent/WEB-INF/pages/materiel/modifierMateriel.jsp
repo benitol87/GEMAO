@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="fr.gemao.view.Pattern"%>
 
+<%@ page buffer="32kb" %>
+<%@ page isErrorPage="true" %>
+
 <c:set var="titre" value="Materiel" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
@@ -81,8 +84,6 @@
 				value="${sessionScope.sessionObjectMateriel.getTypeMat()}" />
 		</div>
 
-
-
 		<!--% Etat à empêcher de s'améliorer -->
 		<div>
 			<label for="etat">Etat : </label> <select name="etat" id="etat">
@@ -96,8 +97,6 @@
 		</div>
 
 		<p>${form.erreurs['etat'] }</p>
-
-
 		<div>
 			<label for="marque">Marque : </label> <select name="marque"
 				id="marque">
@@ -108,8 +107,6 @@
 				</c:forEach>
 			</select>
 		</div>
-
-
 		<div>
 			<label for="quantite">Quantité : </label> <input name="quantite"
 				type="number" min="1"
@@ -122,8 +119,6 @@
 				type="number"
 				value="${sessionScope.sessionObjectMateriel.getValeurAchat()}" />
 		</div>
-
-
 
 		<div>
 			<label for="numSerieResult">Numéro de série : </label> <input
@@ -139,36 +134,35 @@
 						test="${sessionScope.sessionObjectMateriel.isDeplacable()==true}">
 						<label for="deplacableOui">Oui</label>
 						<input type="radio" name="deplacable" id="deplacable" value="oui"
-							checked="checked">
+							checked="checked" />
 						<label for="deplacableNon">Non</label>
-						<input type="radio" name="deplacable" id="deplacable" value="non">
+						<input type="radio" name="deplacable" id="deplacable" value="non" />
 					</c:when>
 					<c:otherwise>
 						<label for="deplacableOui">Oui</label>
-						<input type="radio" name="deplacable" id="deplacable" value="oui">
+						<input type="radio" name="deplacable" id="deplacable" value="oui" />
 						<label for="deplacableNon">Non</label>
-						<input type="radio" name="deplacable" id="deplacable" value="non"
-							checked="checked">
+						<input type="radio" name="deplacable" id="deplacable" value="non" checked="checked" />
 					</c:otherwise>
 				</c:choose>
 			</span>
 		</div>
 		<div>
-			<label for="louable">Ouvert à la location : </label> <span> <c:choose>
+			<label for="louable">Ouvert à la location : </label> 
+			<span> 
+				<c:choose>
 					<c:when
 						test="${sessionScope.sessionObjectMateriel.isLouable()==true}">
 						<label for="louableeOui">Oui</label>
-						<input type="radio" name="louable" id="louable" value="oui"
-							checked="checked">
+						<input type="radio" name="louable" id="louable" value="oui" checked="checked" />
 						<label for="louableNon">Non</label>
-						<input type="radio" name="louable" id="louable" value="non">
+						<input type="radio" name="louable" id="louable" value="non" />
 					</c:when>
 					<c:otherwise>
 						<label for="louableOui">Oui</label>
-						<input type="radio" name="louable" id="louable" value="oui">
+						<input type="radio" name="louable" id="louable" value="oui" />
 						<label for="louableNon">Non</label>
-						<input type="radio" name="louable" id="louable" value="non"
-							checked="checked">
+						<input type="radio" name="louable" id="louable" value="non" checked="checked" />
 					</c:otherwise>
 				</c:choose>
 			</span>
@@ -184,7 +178,7 @@
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
-		<p>${form.erreurs['Modification']}</p>
+		
 		<input type="button" name="precedent" value="Précédent"
 			onClick="javascript:window.history.go(-1)" /> <input type="submit"
 			name="valider" value="Valider" />

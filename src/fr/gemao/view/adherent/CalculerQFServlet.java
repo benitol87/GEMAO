@@ -51,33 +51,6 @@ public class CalculerQFServlet extends HttpServlet {
 		session.setAttribute("ajout_adh_adherent", adherent);
 
 		response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_VALIDATION_AJOUT);
-
-		// float cotisationFormation = 0;
-		// float cotisationInstrument = 0;
-		//
-		// ParametreCtrl parametreCtrl = new ParametreCtrl();
-		// Parametre parametre = parametreCtrl.getLast();
-		// cotisationFormation = parametre.getTarifFormation();
-		//
-		// if (quotient <= parametre.getQf_min() - 0.01) {
-		// cotisationFormation = cotisationFormation / 2;
-		// cotisationInstrument = cotisationInstrument / 2;
-		// } else if (quotient >= parametre.getQf_min()
-		// && quotient <= parametre.getQf_max() - 0.01) {
-		// cotisationFormation = cotisationFormation * 2 / 3;
-		// cotisationInstrument = cotisationInstrument * 2 / 3;
-		// } else if (quotient > parametre.getQf_max()) {
-		// cotisationFormation = cotisationFormation;
-		// cotisationInstrument = cotisationInstrument;
-		// } else {
-		// cotisationFormation = 0;
-		// cotisationInstrument = 0;
-		// }
-		//
-		// request.setAttribute("cotisationFormation", cotisationFormation);
-		// request.setAttribute("cotisationInstrument", cotisationInstrument);
-		// this.getServletContext().getRequestDispatcher(VUE)
-		// .forward(request, response);
 	}
 
 }

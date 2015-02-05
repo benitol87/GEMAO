@@ -14,113 +14,101 @@
 <form action="#" method="post">
 	<fieldset>
 		<legend>Informations personnelles</legend>
-		
+
 		<div>
-			<label>Civilité</label>
-			<span>
-				<input type="radio" name="civilite" value="F" checked="checked" /> <label for="civilite">Mme</label>
-				<input type="radio" name="civilite" value="M" /><label for="civilite">M.</label>
+			<label>Civilité</label> <span> <input type="radio"
+				name="civilite" value="F" checked="checked" /> <label
+				for="civilite">Mme</label> <input type="radio" name="civilite"
+				value="M" /><label for="civilite">M.</label>
 			</span>
 		</div>
-		
+
 		<div>
-			<label for="nom" class='required'>Nom </label>
-			<input type="text" name="nom" required="required"
-						 />
+			<label for="nom" class='required'>Nom </label> <input type="text"
+				name="nom" required="required" />
 		</div>
-		
+
 		<div>
-			<label for="prenom" class='required'>Prénom </label>
-			<input type="text" name="prenom" required="required"
-						 />
+			<label for="prenom" class='required'>Prénom </label> <input
+				type="text" name="prenom" required="required" />
 		</div>
-		
+
 		<div>
-			<label for="dateNaiss" class='required'>Date de naissance </label>
-			<input type="text" name="dateNaiss" class="datepicker"
-						required="required"  />
+			<label for="dateNaiss" class='required'>Date de naissance </label> <input
+				type="text" name="dateNaiss" class="datepicker" required="required" />
 		</div>
-		
+
 		<div>
-			<label for="telFixe" class='required'>Téléphone fixe </label>
-			<input type="text" name="telFixe" pattern="[0][1-9][0-9]{8}"
-						required="required"  maxlength="10" autocomplete="on" />
+			<label for="telFixe" class='required'>Téléphone fixe </label> <input
+				type="text" name="telFixe" pattern="[0][1-9][0-9]{8}"
+				required="required" maxlength="10" autocomplete="on" />
 		</div>
-		
+
 		<div>
-			<label for="telPort">Téléphone portable </label>
-			<input type="text" name="telPort" pattern="[0][1-9][0-9]{8}"
-						 maxlength="10" autocomplete="on" />
+			<label for="telPort">Téléphone portable </label> <input type="text"
+				name="telPort" pattern="[0][1-9][0-9]{8}" maxlength="10"
+				autocomplete="on" />
 		</div>
-		
+
 		<div>
-			<label for="email">E-mail </label>
-			<input type="text" name="email"
-						autocomplete="on" />
+			<label for="email">E-mail </label> <input type="text" name="email"
+				autocomplete="on" />
 		</div>
 	</fieldset>
 	<fieldset>
 		<legend>Adresse</legend>
 		<div>
-			<label for="num">N° </label>
-			<input type="text" name="num"
-					pattern="\d*"  />
+			<label for="num">N° </label> <input type="text" name="num" />
 		</div>
-		
-		<div>	
-			<label for="rue" class='required'>Rue </label>
-			<input type="text" name="rue" required="required"
-					 />
+
+		<div>
+			<label for="rue" class='required'>Rue </label> <input type="text"
+				name="rue" required="required" />
 		</div>
-		
-		<div>	
-			<label for="compl">Complément d'adresse </label>
-			<input type="text" name="compl"  />
+
+		<div>
+			<label for="compl">Complément d'adresse </label> <input type="text"
+				name="compl" />
 		</div>
-		
-		<div>	
-			<label for="commune" class='required'>Commune </label>
-			<input type="text" name="commune" required="required"
-					 />
+
+		<div>
+			<label for="commune" class='required'>Commune </label> <input
+				type="text" name="commune" required="required" />
 		</div>
-		
-		<div>	
-			<label for="codePostal" class='required'>Code postal </label>
-			<input type="text" name="codePostal" required="required" maxlength="5"
-					 />
+
+		<div>
+			<label for="codePostal" class='required'>Code postal </label> <input
+				type="text" name="codePostal" required="required" maxlength="5" />
 		</div>
 	</fieldset>
 	<fieldset>
 		<legend>Disciplines</legend>
 		<div id='disciplines'>
 			<div>
-				<label>Cours</label>
-				<select size="1" name="disciplines1">
+				<label>Cours</label> <select size="1" name="disciplines1">
 					<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
 						<option value="${ discipline.getIdDiscipline() }">${ discipline.getNom() }</option>
-					</c:forEach>		
+					</c:forEach>
 				</select>
 			</div>
 		</div>
 		<div class='align-center'>
-			<input type="button" value="-" id="retireDiscipline" title="Retirer"/>
-			<input type="button" value="+" id="ajoutDiscipline" title="Ajouter"/>
-		</div>	
+			<input type="button" value="-" id="retireDiscipline" title="Retirer" />
+			<input type="button" value="+" id="ajoutDiscipline" title="Ajouter" />
+		</div>
 	</fieldset>
 	<fieldset>
 		<legend>Informations complémentaires</legend>
 		<div>
 			<label for="dateInscri" class='required'>Date d'inscription </label>
 			<input type="text" name="dateInscri" class="datepicker"
-					required="required"  />
+				required="required" />
 		</div>
 		<div>
-			<label  class='required'>Droit à l'image </label>
-			<span>
-				<input type="radio" name="droitImage" value="true" checked="checked" />
-				<label for="droitImage">Oui</label>
-				<input type="radio" name="droitImage" value="false" />
-				<label for="droitImage">Non</label>
+			<label class='required'>Droit à l'image </label> <span> <input
+				type="radio" name="droitImage" value="true" checked="checked" /> <label
+				for="droitImage">Oui</label> <input type="radio" name="droitImage"
+				value="false" /> <label for="droitImage">Non</label>
 			</span>
 		</div>
 	</fieldset>

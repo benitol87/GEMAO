@@ -18,15 +18,6 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   <filter>
-    <filter-name>ErreurDAOFilter</filter-name>
-    <filter-class>fr.gemao.filters.ErreurDAOFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>ErreurDAOFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <!--  
-  <filter>
     <filter-name>AllowAccessCSS</filter-name>
     <filter-class>fr.gemao.filters.AllowAccessFilter</filter-class>
   </filter>
@@ -35,13 +26,13 @@
     <url-pattern>/css/*</url-pattern>
   </filter-mapping>
   <filter>
-    <filter-name>CheckConnected</filter-name>
-    <filter-class>fr.gemao.filters.CheckConnectedFilter</filter-class>
+    <filter-name>ErreurDAOFilter</filter-name>
+    <filter-class>fr.gemao.filters.ErreurDAOFilter</filter-class>
   </filter>
   <filter-mapping>
-    <filter-name>CheckConnected</filter-name>
+    <filter-name>ErreurDAOFilter</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>-->
+  </filter-mapping>
   <error-page>
     <error-code>404</error-code>
     <location>/WEB-INF/pages/erreurs/404.jsp</location>

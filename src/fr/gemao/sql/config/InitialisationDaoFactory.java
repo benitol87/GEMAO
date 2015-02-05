@@ -9,6 +9,7 @@ import org.apache.coyote.http11.NpnHandler;
 
 import com.jolbox.bonecp.BoneCP;
 
+import fr.gemao.ctrl.administration.ProfilsCtrl;
 import fr.gemao.entity.administration.Module;
 import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.administration.TypeDroit;
@@ -22,37 +23,35 @@ import fr.gemao.sql.exception.DAOException;
 @WebListener
 public class InitialisationDaoFactory implements ServletContextListener {
 	public static final String ATT_DAO_FACTORY = "daofactory";
+	public static final String ATT_MSG_ERROR = "errordao";
 
 	private DAOFactory daoFactory;
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
+		/* Récupération du ServletContext lors du chargement de l'application */
+		ServletContext servletContext = event.getServletContext();
 		try{
-			/* Récupération du ServletContext lors du chargement de l'application */
-			ServletContext servletContext = event.getServletContext();
 			/* Instanciation de notre DAOFactory */
 			this.daoFactory = DAOFactory.getInstance();
 			/* Enregistrement dans un attribut ayant pour portée toute l'application */
 			servletContext.setAttribute(ATT_DAO_FACTORY, this.daoFactory);
 		} catch(DAOConfigurationException dCe){
 			System.out.println("Erreur de configuration : " + dCe.getMessage());
+			servletContext.setAttribute(InitialisationDaoFactory.ATT_MSG_ERROR, "Erreur de configuration : " + dCe.getMessage());
 		}
 		
-		try {
-			/* Chargement des profils */
-			//TODO à mettre dans un controleur ?
-			TypeDroitDAO typeDroitDAO = this.daoFactory.geTypeDroitDAO();
-			typeDroitDAO.load();
-			ModuleDAO moduleDAO = this.daoFactory.getModuleDAO();
-			moduleDAO.load();
-			ProfilDAO profilDAO = this.daoFactory.getProfilDAO();
-			profilDAO.load();
-		} catch (DAOException e) {
-			System.out.println("Erreur dao lors du chargement des profils : " + e.getMessage());
-		}catch(NullPointerException nPe){
-			System.out.println("Erreur, le dao n'est pas chargé, impossible de lire les profils : " + nPe.getMessage());
+		if(this.daoFactory != null){
+			try {
+				/* Chargement des profils */
+				ProfilsCtrl profilsCtrl = new ProfilsCtrl();
+				profilsCtrl.loadProfil();
+			} catch (DAOException e) {
+				System.out.println("Erreur dao lors du chargement des profils : " + e.getMessage());
+			}catch(NullPointerException nPe){
+				System.out.println("Erreur, le dao n'est pas chargé, impossible de lire les profils : " + nPe.getMessage());
+			}
 		}
-		
 	}
 
 	@Override

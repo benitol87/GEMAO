@@ -54,12 +54,15 @@ public class AjouterResponsableCtrl {
 		masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
 				+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
 		pattern = Pattern.compile(masque);
-		controler = pattern.matcher(responsable.getEmail());
-		if (!controler.matches()) {
-			System.out.println("Le format de l'email est invalide...");
-			return false;
+		if(responsable.getEmail()=="")
+			responsable.setEmail(null);
+		if(responsable.getEmail()!=null){
+			controler = pattern.matcher(responsable.getEmail());
+			if (!controler.matches()) {
+				System.out.println("Le format de l'email est invalide...");
+				return false;
+			}
 		}
-		
 		return true;
 	}
 	

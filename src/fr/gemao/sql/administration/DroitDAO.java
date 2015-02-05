@@ -95,7 +95,6 @@ public class DroitDAO extends IDAO<Droit> {
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
-
 		return droit;
 	}
 	

@@ -1,7 +1,9 @@
 package fr.gemao.view.adherent;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -85,64 +87,92 @@ public class ModifAdherentServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Adherent adherent = (Adherent) session
 				.getAttribute("modif_adh_adherent");
-
-		String telFixe = request.getParameter("telFixe");
-		adherent.setTelFixe(telFixe);
-		String telPort = request.getParameter("telPort");
-		adherent.setTelPort(telPort);
-		String email = request.getParameter("email");
-		adherent.setEmail(email);
-
-		String nomCommune = request.getParameter("commune");
-		Integer codePostal = Integer.parseInt(request
-				.getParameter("codePostal"));
-		Commune commune = new Commune(null, codePostal, nomCommune, false);
-
-//		AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
-//		ajouterCommuneCtrl.ajoutCommune(commune);
-		
-		AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
-		Adresse adresse = new Adresse();
-		Integer numRue = Integer.parseInt(request.getParameter("num"));
-		adresse.setNumRue(numRue);
-		String nomRue = request.getParameter("rue");
-		adresse.setNomRue(nomRue);
-		String infoCompl = request.getParameter("compl");
-		adresse.setInfoCompl(infoCompl);
-		adresse.setCommune(commune);
-		ajouterAdresseCtrl.ajoutAdresse(adresse);
-
-		adherent.setAdresse(adresse);
 		
 		AdherentForm adherentForm = new AdherentForm();
-		List<Discipline> listDiscipline = adherentForm.lireDisciplines(request);
-		adherent.setDisciplines(listDiscipline);
+		
+		adherentForm.testerAdherent(request);
+		
+		if (adherentForm.getErreurs().isEmpty()) {
+		
+			String nom = adherentForm.getNom();
+			adherent.setNom(nom);
+			String prenom = adherentForm.getPrenom();
+			adherent.setPrenom(prenom);
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");		
+			Date dateNaiss = null;
+			Date dateEntree = null;		
+			try {
+				dateNaiss = formatter.parse(adherentForm.getDateNaissance());
+				dateEntree = formatter.parse(adherentForm.getDateEntree());
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			adherent.setDateNaissance(dateNaiss);
+			adherent.setDateEntree(dateEntree);
+			
+	
+			String telFixe = request.getParameter("telFixe");
+			adherent.setTelFixe(telFixe);
+			String telPort = request.getParameter("telPort");
+			adherent.setTelPort(telPort);
+			String email = request.getParameter("email");
+			adherent.setEmail(email);
+	
+			String nomCommune = request.getParameter("commune");
+			Integer codePostal = Integer.parseInt(request
+					.getParameter("codePostal"));
+			Commune commune = new Commune(null, codePostal, nomCommune, false);
+	
+			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
+			ajouterCommuneCtrl.ajoutCommune(commune);
+			
+			AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
+			Adresse adresse = new Adresse();
+			String numRue = request.getParameter("num");
+			adresse.setNumRue(numRue);
+			String nomRue = request.getParameter("rue");
+			adresse.setNomRue(nomRue);
+			String infoCompl = request.getParameter("compl");
+			adresse.setInfoCompl(infoCompl);
+			adresse.setCommune(commune);
+			ajouterAdresseCtrl.ajoutAdresse(adresse);
+	
+			adherent.setAdresse(adresse);
+			
+			
+			List<Discipline> listDiscipline = adherentForm.lireDisciplines(request);
+			adherent.setDisciplines(listDiscipline);
+	
+			String droitImage = request.getParameter("droitImage");
+			adherent.setDroitImage(Boolean.parseBoolean(droitImage));
+	
+			if (adherent.getResponsable() != null) {
+				Responsable responsable = adherent.getResponsable();
+				System.out.println(responsable);
+				String nomResp = request.getParameter("nomResp");
+				responsable.setNom(nomResp);
+				String prenomResp = request.getParameter("prenomResp");
+				responsable.setPrenom(prenomResp);
+				String telResp = request.getParameter("telResp");
+				responsable.setTelephone(telResp);
+				String emailResp = request.getParameter("emailResp");
+				responsable.setEmail(emailResp);
+	
+				ModifierResponsableCtrl modifierResponsableCtrl = new ModifierResponsableCtrl();
+				modifierResponsableCtrl.modifierResponsable(responsable);
+			}
+	
+			session.setAttribute("modif_adh_adherent", adherent);
+			response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_VALIDATION_MODIF);
+		} else {
+			System.out.println(adherentForm.getErreurs());
+			System.out.println("Erreur !");
 
-		String droitImage = request.getParameter("droitImage");
-		adherent.setDroitImage(Boolean.parseBoolean(droitImage));
-
-		if (adherent.getResponsable() != null) {
-			Responsable responsable = adherent.getResponsable();
-			System.out.println(responsable);
-			String nomResp = request.getParameter("nomResp");
-			responsable.setNom(nomResp);
-			String prenomResp = request.getParameter("prenomResp");
-			responsable.setPrenom(prenomResp);
-			String telResp = request.getParameter("telResp");
-			responsable.setTelephone(telResp);
-			String emailResp = request.getParameter("emailResp");
-			responsable.setEmail(emailResp);
-
-			ModifierResponsableCtrl modifierResponsableCtrl = new ModifierResponsableCtrl();
-			modifierResponsableCtrl.modifierResponsable(responsable);
+			this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_LISTER)
+					.forward(request, response);
 		}
-
-//		ModifierAdherentCtrl modifierAdherentCtrl = new ModifierAdherentCtrl();
-//		System.out.println(adherent);
-//		modifierAdherentCtrl.modifierAdherent(adherent);
-
-		session.setAttribute("modif_adh_adherent", null);
-		response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_LISTER);
 
 	}
 }

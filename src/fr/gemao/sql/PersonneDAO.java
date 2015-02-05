@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.persistence.PersistenceContextType;
 
+import fr.gemao.entity.Commune;
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.sql.exception.DAOException;
@@ -233,9 +234,14 @@ public class PersonneDAO extends IDAO<Personne> {
 	protected Personne map(ResultSet result) throws SQLException {
 		AdresseDAO adresseDAO = factory.getAdresseDAO();
 		CommuneDAO communeDAO = factory.getCommuneDAO();
+		Integer idCommuneNaiss = NumberUtil.getResultInteger(result, "idCommuneNaiss");
+		Commune commune = null;
+		if(idCommuneNaiss != null){
+			commune = communeDAO.get(idCommuneNaiss);
+		}
 		return new Personne(Long.valueOf(result.getInt("idPersonne")),
 				adresseDAO.get(NumberUtil.getResultInteger(result, "idAdresse")),
-				communeDAO.get(NumberUtil.getResultInteger(result, "idCommuneNaiss")),
+				commune,
 				result.getString("nom"), result.getString("prenom"),
 				result.getDate("dateNaissance"), result.getString("tel_fixe"),
 				result.getString("tel_port"), result.getString("email"),

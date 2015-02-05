@@ -20,8 +20,10 @@ public class JSPFile {
 			ADHERENT_LISTER = "/WEB-INF/pages/adherent/listeAdherents.jsp",
 			ADHERENT_MODIFIER_ADHERENT = "/WEB-INF/pages/adherent/modifAdherent.jsp",
 			ADHERENT_MODIFIER_RESPONSABLE = "/WEB-INF/pages/adherent/modifResponsable.jsp",
+			ADHERENT_DESINSCRIRE_ADHERENT = "/WEB-INF/pages/adherent/desinscrireAdherent.jsp",
 			ADHERENT_PARAMETRE = "/WEB-INF/pages/adherent/parametre.jsp",
 			ADHERENT_VALIDATION_AJOUT = "/WEB-INF/pages/adherent/validAjoutAdherent.jsp",
+			ADHERENT_VALIDATION_MODIF = "/WEB-INF/pages/adherent/validModifAdherent.jsp",
 					
 		// Module administration
 			ADMINISTRATION_AJOUT_PROFIL = "/WEB-INF/pages/administration/ajouterProfil.jsp",

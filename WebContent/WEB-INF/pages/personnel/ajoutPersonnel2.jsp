@@ -35,7 +35,7 @@
 				<label for="datedeb" class="required">Date de début : </label>
 				<input type="text" name="datedeb" class="datepicker" required/>
 			</div>
-			<div hidden="true" id="duree" >
+			<div style="display: none" id="duree" >
 				<label for="duree">Durée : </label>
 				<input type="number" name="duree" min="1" value="1" /> mois
 			</div>

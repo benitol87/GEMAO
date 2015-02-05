@@ -65,6 +65,8 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String civilite = request.getParameter("civilite");
 		String infoComplementaire = request.getParameter("infoComplem");
+		String diplome = request.getParameter("diplome1");
+		String fonction = request.getParameter("fonction1");
 
 		/**
 		 * Création du personnel
@@ -81,7 +83,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		/**
 		 * Création de l'adresse
 		 */
-		Adresse adrss = new Adresse(null, commune, Integer.parseInt(numrue), nomrue,
+		Adresse adrss = new Adresse(null, commune, numrue, nomrue,
 				infoComplementaire);
 		AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
 		ajouterAdresseCtrl.ajoutAdresse(adrss);

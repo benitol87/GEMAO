@@ -24,7 +24,15 @@ public class ListeMaterielServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		
+		String param = request.getParameter("code");
+		if(param != null){
+			int code = Integer.parseInt(param);
+			if(code == 0){
+				request.setAttribute("message", "Le materiel a bien ete ajoute");
+			}else{
+				request.setAttribute("message", "Une erreur est survenue lors de la modification");
+			}
+		}
 		MaterielCtrl materielCtrl = new MaterielCtrl();
 		List<Materiel> materiels = materielCtrl.recupererTousMateriels();
 		

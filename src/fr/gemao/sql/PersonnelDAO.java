@@ -264,7 +264,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		ResultSet result = null;
 		int nb = 0;
 		
-		String sql = "SELECT idPersonnel FROM personnel pl inner join personne p on pl.idPersonne = p.idPersonne WHERE nom = ?;";
+		String sql = "SELECT pl.idPersonne FROM personnel pl inner join personne p on pl.idPersonne = p.idPersonne WHERE nom = ?;";
 		
 		try {
 			

@@ -98,7 +98,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 					dateNaiss, telFixe, telPortable, email, Civilite.MONSIEUR,
 					null, null, Boolean.parseBoolean(droitImage), dateInscri,
 					null, null, 0.0f, list);
-			if (civilite=="F") {
+			if (civilite.equals("F")) {
 				adherent.setCivilite(Civilite.MADAME);
 			}
 			List<Discipline> listDiscipline = adherentForm.getDisciplines();
@@ -120,13 +120,15 @@ public class AjoutAdherentServlet extends HttpServlet {
 				commune = c;
 			}
 
+			System.out.println(commune);
+			
 			/**
 			 * Réupération des données de l'adresse
 			 */
-			Integer numAdresse = adherentForm.getNumRue();
+			String numAdresse = adherentForm.getNumRue();
 			String rueAdresse = adherentForm.getNomRue();
 			String complAdresse = adherentForm.getInfoCompl();
-
+			
 			/**
 			 * Création de l'adresse
 			 */
@@ -147,7 +149,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 			if (dateNaiss.after(dateMineur.getTime())) {
 				response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_AJOUT_RESPONSABLE);
 			} else {
-				response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_AJOUT_VALIDATION);
+				response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_VALIDATION_AJOUT);
 			}
 
 		} else {

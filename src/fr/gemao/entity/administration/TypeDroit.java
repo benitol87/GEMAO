@@ -33,6 +33,16 @@ public class TypeDroit implements Serializable{
 	public static TypeDroit getTypeDroit(Integer idType){
 		return TypeDroit.allDroits.get(idType);
 	}
+	
+	public static TypeDroit getTypeDroit(String nom){
+		Collection<TypeDroit> list = TypeDroit.allDroits.values();
+		for(TypeDroit t : list){
+			if(t.getNomType().equals(nom)){
+				return t;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * @return the idType

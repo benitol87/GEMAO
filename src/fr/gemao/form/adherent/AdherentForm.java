@@ -11,7 +11,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.entity.Discipline;
 
@@ -64,7 +63,7 @@ public class AdherentForm {
 	private String email;
 	
 	//Adresse
-	private Integer numRue;
+	private String numRue;
 	private String nomRue;
 	private String infoCompl;
 	
@@ -121,7 +120,7 @@ public class AdherentForm {
 		return this.email;
 	}
 	
-	public Integer getNumRue(){
+	public String getNumRue(){
 		return this.numRue;
 	}
 	
@@ -366,7 +365,12 @@ public class AdherentForm {
 		telFixe = getValeurChamp(request, CHAMP_TELFIXE);
 		telPort = getValeurChamp(request, CHAMP_TELPORT);
 		email = getValeurChamp(request, CHAMP_EMAIL);
-		numRue = Integer.parseInt(getValeurChamp(request, CHAMP_NUM));
+		if(getValeurChamp(request, CHAMP_NUM) != null){
+			numRue = getValeurChamp(request, CHAMP_NUM);
+		}
+		else{
+			numRue = null;
+		}
 		nomRue = getValeurChamp(request, CHAMP_RUE);
 		infoCompl = getValeurChamp(request, CHAMP_COMPL);
 		codePostal = Integer.parseInt(getValeurChamp(request, CHAMP_CODEPOSTAL));

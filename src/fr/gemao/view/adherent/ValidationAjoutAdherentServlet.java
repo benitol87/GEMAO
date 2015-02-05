@@ -42,8 +42,6 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		Adherent adherent = (Adherent) session
 				.getAttribute("ajout_adh_adherent");
 		Commune commune = (Commune) session.getAttribute("ajout_adh_commune");
-		Commune communeNaiss = (Commune) session
-				.getAttribute("ajout_adh_communeNaiss");
 		Adresse adresse = (Adresse) session.getAttribute("ajout_adh_adresse");
 		Responsable responsable = (Responsable) session
 				.getAttribute("ajout_adh_responsable");
@@ -61,7 +59,6 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		request.setAttribute("dateInscription", dateInscription);
 		request.setAttribute("adherent", adherent);
 		request.setAttribute("commune", commune);
-		request.setAttribute("communeNaiss", communeNaiss);
 		request.setAttribute("adresse", adresse);
 		request.setAttribute("responsable", responsable);
 
@@ -80,18 +77,12 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		Adherent adherent = (Adherent) session
 				.getAttribute("ajout_adh_adherent");
 		Commune commune = (Commune) session.getAttribute("ajout_adh_commune");
-		Commune communeNaiss = (Commune) session
-				.getAttribute("ajout_adh_communeNaiss");
 		Adresse adresse = (Adresse) session.getAttribute("ajout_adh_adresse");
 		Responsable responsable = (Responsable) session
 				.getAttribute("ajout_adh_responsable");
 
 		
 		AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
-		
-		ajouterCommuneCtrl.ajoutCommune(communeNaiss);
-		adherent.setCommuneNaiss(communeNaiss);
-
 
 		ajouterCommuneCtrl.ajoutCommune(commune);
 		adresse.setCommune(commune);
@@ -101,6 +92,8 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		ajouterAdresseCtrl.ajoutAdresse(adresse);
 		
 		adherent.setAdresse(adresse);
+		
+		System.out.println(adherent.getAdresse());
 
 		if (responsable != null) {
 			AjouterResponsableCtrl ajouterResponsableCtrl = new AjouterResponsableCtrl();
@@ -117,16 +110,14 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		if (personneDAO.exist(adherent) == null) {
 			AjouterAdherentCtrl ajouterAdherentCtrl = new AjouterAdherentCtrl();
 			if(ajouterAdherentCtrl.ajoutAdherent(adherent))
-				this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_VALIDATION_AJOUT)
+				this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_CONFIRMATION_AJOUT)
 						.forward(request, response);
 			else{
-				System.out.println("Echec de l'ajout");
 				request.setAttribute("dejaInscrit", false);
 				this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_ECHEC_AJOUT)
 						.forward(request, response);
 			}
 		} else {
-			System.out.println("La personne existe déja");
 			request.setAttribute("dejaInscrit", true);
 			this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_ECHEC_AJOUT)
 					.forward(request, response);
@@ -134,7 +125,6 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 
 		session.setAttribute("ajout_adh_adherent", null);
 		session.setAttribute("ajout_adh_commune", null);
-		session.setAttribute("ajout_adh_communeNaiss", null);
 		session.setAttribute("ajout_adh_adresse", null);
 		session.setAttribute("ajout_adh_responsable", null);
 	}
