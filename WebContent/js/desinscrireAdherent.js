@@ -2,7 +2,6 @@ var cpt = 1;
 
 function ajoutMotif()
 {
-	alert('ok');
 	var rep = prompt("Ajouter un motif de sortie");
 	rep = rep.trim();
 	if(rep && rep != "")
@@ -24,10 +23,12 @@ function confirmDesinscription()
 	return res;
 }
 
-window.unload = function()
+window.onload = function()
 {
 	var boutonAjouter = document.getElementById("ajoutMotif");
 	var boutonValider = document.getElementById("valider");
+	var champ_date = document.getElementById("dateSortie");
+	champ_date.value = getDateActuelle();
 	
 	ajouteEvent(boutonValider, 'submit', confirmDesinscription, false);
 	ajouteEvent(boutonAjouter, 'click', ajoutMotif, false);

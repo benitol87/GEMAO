@@ -17,7 +17,7 @@
 	<fieldset>
 		<div>
 			<label for="dateSortie" class="required">Date de sortie : </label>
-			<input type="text" name="dateSortie" class="datepicker" required="required" />
+			<input type="text" name="dateSortie" id="dateSortie" class="datepicker" required="required" />
 		</div>
 		<div id="motifsSortie">	
 			<label for="motifSortie" class="required">Motif de sortie : </label>
