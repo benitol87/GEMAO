@@ -26,18 +26,17 @@
 			<option value="2,00">2:00</option>
 		</select> <label for="cours">Cours</label> <select name="cours" id="cours"
 			class="select ui-widget-content ui-corner-all">
-			<option>Français</option>
-			<option>Maths</option>
+			<option value="Français">Français</option>
+			<option value="Maths">Maths</option>
 		</select> <label for="professeur">Professeur</label> <select name="professeur"
 			id="professeur" class="select ui-widget-content ui-corner-all">
-			<option>Mr CHAUPIN</option>
-			<option>Mme INETTE</option>
+			<option value="Mr CHAUPIN">Mr CHAUPIN</option>
+			<option value="Mme INETTE">Mme INETTE</option>
 		</select> <label for="salle">Salle</label> <select name="salle" id="salle"
 			class="select ui-widget-content ui-corner-all">
-			<option>R46</option>
-			<option>R52</option>
+			<option value="R46">R46</option>
+			<option value="R52">R52</option>
 		</select>
-
 		<!--<input type="submit">-->
 	</form>
 </div>
