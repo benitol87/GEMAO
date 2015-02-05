@@ -49,5 +49,8 @@ public class JSPFile {
 			PERSONNEL_AJOUT3 = "/WEB-INF/pages/personnel/ajoutPersonnel3.jsp",
 			PERSONNEL_CONSULTER = "/WEB-INF/pages/personnel/consulterPersonnel.jsp",
 			PERSONNEL_LISTER = "/WEB-INF/pages/personnel/listePersonnel.jsp",
-			PERSONNEL_MODIFIER = "/WEB-INF/pages/personnel/modifPersonnel.jsp";
+			PERSONNEL_MODIFIER = "/WEB-INF/pages/personnel/modifPersonnel.jsp",
+			
+		// Module Cours
+			COURS_AJOUTEDT = "/WEB-INF/pages/cours/ajoutEDT.jsp";
 }

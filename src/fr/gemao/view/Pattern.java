@@ -43,5 +43,8 @@ public class Pattern {
 		// Profil
 			PROFIL_AJOUT = "/profil/AjouterProfil",
 			PROFIL_LISTER = "/profil/ListerProfils",
-			PROFIL_MODIFIER = "/profil/ModifProfil";
+			PROFIL_MODIFIER = "/profil/ModifProfil",
+	
+		// Module Cours
+			COURS_AJOUTEDT = "/cours/AjouterEmploiDuTemps";
 }
