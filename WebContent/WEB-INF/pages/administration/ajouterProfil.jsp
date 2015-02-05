@@ -23,13 +23,20 @@
 		<ul>
 			<c:forEach items="${listeModules}" var="module">
 				<li>
-					<h2>Module <c:out value="${module.nomModule }"></c:out></h2>
-					<input type="radio" checked="checked" name="module<c:out value="${droit.type.idType}"/>"/>
-					<label><c:out value="${droit.type.nomType}"/>Aucun</label>
-					<input type="radio" name="module<c:out value="${droit.type.idType}"/>"/>
-					<label><c:out value="${droit.type.nomType}"/>Lecture</label>
-					<input type="radio" name="module<c:out value="${droit.type.idType}"/>"/>
-					<label><c:out value="${droit.type.nomType}"/>Lecture+écriture</label>
+					<div>Module <c:out value="${module.nomModule }"/></div>
+					<span>
+						<input type="radio" checked="checked" 
+							name="module<c:out value="${module.idModule }"/>"/>
+						<label>Aucun</label>
+					</span>
+					<c:forEach items="${listeTypes}" var="type">
+						<span>
+							<input type="radio" 
+								name="module<c:out value="${module.idModule }"/>"
+								value=<c:out value="${type.idType}"/>/>
+							<label><c:out value="${type.nomType}"/></label>
+						</span>
+					</c:forEach>
 				</li>
 			</c:forEach>
 		</ul>

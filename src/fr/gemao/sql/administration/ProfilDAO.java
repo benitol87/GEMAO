@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.administration.Profil;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
@@ -79,8 +80,32 @@ public class ProfilDAO extends IDAO<Profil> {
 
 	@Override
 	public List<Profil> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Profil> liste = new ArrayList<>();
+
+		Profil profil = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM profil p "
+				+ "order by nomProfil;";
+		try {
+
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false);
+			result = requete.executeQuery();
+
+			while (result.next()) {
+				profil = this.map(result);
+				liste.add(profil);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return liste;
 	}
 	
 	public void load(){

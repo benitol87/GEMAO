@@ -3,12 +3,10 @@ package fr.gemao.ctrl.administration;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.Personnel;
 import fr.gemao.entity.administration.Droit;
 import fr.gemao.entity.administration.Module;
 import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.administration.TypeDroit;
-import fr.gemao.form.personnel.PersonnelForm;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.administration.DroitDAO;
 import fr.gemao.sql.administration.ModuleDAO;
@@ -53,6 +51,15 @@ public class ProfilsCtrl {
 		droitDAO.addAllDroitParProfil(profil.getIdProfil(), listDroit);
 		
 		return profil;
+	}
+	
+	/**
+	 * Méthode retournant tous les profils existants dans la base
+	 * @return
+	 */
+	public List<Profil> getAllProfils(){
+		ProfilDAO profilDAO = this.daoFactory.getProfilDAO();
+		return profilDAO.getAll();
 	}
 	
 	/**

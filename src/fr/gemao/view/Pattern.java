@@ -25,6 +25,7 @@ public class Pattern {
 		// Module administration
 			ADMINISTRATION_RESET_PASSWORD = "/administration/ReinitMotDePasse",
 			ADMINISTRATION_AJOUT_PROFIL = "/administration/AjouterProfil",
+			ADMINISTRATION_CONSULTER_PROFIL = "/administration/ConsulterProfil",
 			ADMINISTRATION_LISTER_PROFIL = "/administration/ListerProfils",
 			ADMINISTRATION_MODIFIER_PROFIL = "/administration/ModifProfil",
 			

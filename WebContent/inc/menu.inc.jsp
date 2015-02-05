@@ -22,7 +22,8 @@
 								<li><a href="<c:url value="<%= Pattern.ADHERENT_LISTER %>"/>">Lister</a></li>
 								<li><a href="<c:url value="<%= Pattern.ADHERENT_PARAMETRE %>"/>">Paramètres</a></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li class="icon icon-arrow-left"><a href="#">Personnel</a>
 						<div class="mp-level">
 							<h2>Personnel</h2>
@@ -57,7 +58,16 @@
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
 								<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_RESET_PASSWORD %>"/>">Réinit. mot de passe</a></li>
-								<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_AJOUT_PROFIL %>"/>">Créer profil</a></li>
+								<li class="icon icon-arrow-left"><a href="#">Profils</a>
+									<div class="mp-level">
+										<h2>Profils</h2>
+										<a class="mp-back" href="#">Retour</a>
+										<ul>
+											<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_AJOUT_PROFIL %>"/>">Créer</a></li>
+											<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_LISTER_PROFIL %>"/>">Lister</a></li>
+										</ul>
+									</div>
+								</li>
 							</ul>
 						</div>
 					</li>
