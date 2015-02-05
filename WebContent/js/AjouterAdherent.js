@@ -17,6 +17,8 @@ function ajoutDiscipline(){
 }
 
 $(function() {
+	champ_date_inscription = document.getElementById("dateInscri");
+	champ_date_inscription.value = getDateActuelle();
 	bouton1=document.getElementById("ajoutDiscipline");
 	bouton2=document.getElementById("retireDiscipline");
 	ajouteEvent(bouton1, 'click', ajoutDiscipline, false);

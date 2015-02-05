@@ -101,7 +101,7 @@
 		<legend>Informations complémentaires</legend>
 		<div>
 			<label for="dateInscri" class='required'>Date d'inscription </label>
-			<input type="text" name="dateInscri" class="datepicker"
+			<input type="text" name="dateInscri" id="dateInscri" class="datepicker"
 				required="required" />
 		</div>
 		<div>
