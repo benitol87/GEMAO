@@ -25,7 +25,7 @@
 	</c:forEach>	
 </table>
 <p class='align-center no-border'>
-	<a href="<c:url value="<%= Pattern.PROFIL_LISTER %>" />"><input type="button" value="Retour" /></a>
-	<a href="<c:url value="<%= Pattern.PROFIL_MODIFIER %>" />?id=<c:out value="${requestScope.id}"/>"><input type="button" value="Modifier" /></a>
+	<a href="<c:url value="<%= Pattern.ADMINISTRATION_LISTER_PROFIL %>" />"><input type="button" value="Retour" /></a>
+	<a href="<c:url value="<%= Pattern.ADMINISTRATION_MODIFIER_PROFIL %>" />?id=<c:out value="${requestScope.id}"/>"><input type="button" value="Modifier" /></a>
 </p>
 <c:import url="/inc/footer.inc.jsp" />

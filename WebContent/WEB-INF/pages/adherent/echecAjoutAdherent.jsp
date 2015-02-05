@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:set var="titre" value="Modification d'un adhérent" scope="request" />
-
+<%@ page import="fr.gemao.view.Pattern"%>
 <c:import url="/inc/head.inc.jsp" />
 
 <c:import url="/inc/header.inc.jsp" />
@@ -18,5 +18,7 @@
 		<p class="offset">L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> n'a pas été ajouté.</p>
 	</c:otherwise>
 </c:choose>
-
+<a class="offset" href="<c:url value="<%=Pattern.ADHERENT_AJOUT%>"/>"> <input
+	type="button" value="Retour" />
+</a>
 <c:import url="/inc/footer.inc.jsp" />

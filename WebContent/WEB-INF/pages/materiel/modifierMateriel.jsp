@@ -12,6 +12,7 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <h1>Modification d'un matériel</h1>
+<p>${form.getErreurs().get("Modification")}</p>
 <form name="modifierMaterielInstrument" action="#" method="post">
 	<fieldset>
 		<legend>Informations générales</legend>
@@ -26,17 +27,20 @@
 				</c:forEach>
 			</select> <input type="button" name="ajoutCategorie" id="ajoutCategorie"
 				value="+" />
+				<p>${form.getErreurs().get("categorie")}</p>
 		</div>
 
 		<div>
 			<label for="valeurAch">Valeur d'achat : </label> <input type="number"
 				id="valeurAch" name="valeurAch"
 				value="${sessionScope.sessionObjectMateriel.getValeurAchat()}" />
+				<p>${form.getErreurs().get("valeurAch")}</p>
 		</div>
 		<div>
 			<label for="dateAch">Date d'achat : </label> <input type="text"
 				id="dateAch" name="dateAch"
-				value="${sessionScope.sessionObjectMateriel.getDateAchat()}" />
+				value="${dateAchat}" />
+				<p>${form.getErreurs().get("dateAch")}</p>
 		</div>
 
 
@@ -45,8 +49,9 @@
 				type="text" name="valRea"
 				value="${sessionScope.sessionObjectMateriel.getValeurReap()}" /> <span
 				class="euro"></span>
+				<p>${form.getErreurs().get("valRea")}</p>
 		</div>
-		<p>${form.erreurs['valRea'] }</p>
+		
 
 		<div>
 			<label for="fournisseurResult">Fournisseur : </label> <select
@@ -59,6 +64,7 @@
 				</c:forEach>
 			</select> <input type="button" name="ajoutFournisseur" id="ajoutFournisseur"
 				value="+" />
+				<p>${form.getErreurs().get("fournisseur")}</p>
 		</div>
 
 	</fieldset>
@@ -76,12 +82,14 @@
 				</c:forEach>
 			</select> <input type="button" name="ajoutDesignation" id="ajoutDesignation"
 				value="+" />
+				<p>${form.getErreurs().get("designation")}</p>
 		</div>
 
 		<div>
 			<label for="type">Type : </label> <input type="text" id="type"
 				name="type"
 				value="${sessionScope.sessionObjectMateriel.getTypeMat()}" />
+				<p>${form.getErreurs().get("type")}</p>
 		</div>
 
 		<!--% Etat à empêcher de s'améliorer -->
@@ -94,9 +102,9 @@
 					<option value="${etat.getIdEtat()}">${etat.getLibelleEtat()}</option>
 				</c:forEach>
 			</select> <input type="button" name="ajoutEtat" id="ajoutEtat" value="+" />
+			<p>${form.getErreurs().get("etat")}</p>
 		</div>
 
-		<p>${form.erreurs['etat'] }</p>
 		<div>
 			<label for="marque">Marque : </label> <select name="marque"
 				id="marque">
@@ -106,24 +114,28 @@
 					<option value="${marque.getIdMarque()}">${marque.getNomMarque()}</option>
 				</c:forEach>
 			</select>
+			<p>${form.getErreurs().get("marque")}</p>
 		</div>
 		<div>
 			<label for="quantite">Quantité : </label> <input name="quantite"
 				type="number" min="1"
 				value="${sessionScope.sessionObjectMateriel.getQuantite()}" />
+				<p>${form.erreurs['quantite'] }</p>
 		</div>
-		<p>${form.erreurs['quantite'] }</p>
+		
 
 		<div>
 			<label for="prixU">Prix unitaire : </label> <input name="prixU"
 				type="number"
 				value="${sessionScope.sessionObjectMateriel.getValeurAchat()}" />
+				<p>${form.getErreurs().get("prixU")}</p>
 		</div>
 
 		<div>
 			<label for="numSerieResult">Numéro de série : </label> <input
 				name="numSerie" type="text"
 				value="${sessionScope.sessionObjectMateriel.getNumSerie()}" />
+				<p>${form.getErreurs().get("numSerie")}</p>
 		</div>
 
 

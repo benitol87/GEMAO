@@ -24,6 +24,7 @@ import fr.gemao.entity.Commune;
 import fr.gemao.entity.Discipline;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.Responsable;
+import fr.gemao.entity.util.Civilite;
 import fr.gemao.form.adherent.AdherentForm;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
@@ -112,6 +113,12 @@ public class ModifAdherentServlet extends HttpServlet {
 			adherent.setDateNaissance(dateNaiss);
 			adherent.setDateEntree(dateEntree);
 			
+			String civilite = request.getParameter("civilite");
+			if (civilite.equals("F")) {
+				adherent.setCivilite(Civilite.MADAME);
+			} else {
+				adherent.setCivilite(Civilite.MONSIEUR);
+			}
 	
 			String telFixe = request.getParameter("telFixe");
 			adherent.setTelFixe(telFixe);
@@ -140,7 +147,6 @@ public class ModifAdherentServlet extends HttpServlet {
 			ajouterAdresseCtrl.ajoutAdresse(adresse);
 	
 			adherent.setAdresse(adresse);
-			
 			
 			List<Discipline> listDiscipline = adherentForm.lireDisciplines(request);
 			adherent.setDisciplines(listDiscipline);

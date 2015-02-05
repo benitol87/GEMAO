@@ -26,7 +26,7 @@ public class Profil implements Serializable{
 	
 	public static void load(List<Profil> profils){
 		if(!Profil.allProfils.isEmpty()){
-			throw new UnsupportedOperationException("Les profils semble être déjà chargés");
+			throw new UnsupportedOperationException("Les profils semblent être déjà chargés");
 		}
 		for(Profil p : profils){
 			Profil.allProfils.put(p.idProfil, p);

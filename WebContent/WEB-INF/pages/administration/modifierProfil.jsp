@@ -11,7 +11,7 @@
 
 <h1>Modification d'un profil</h1>
 
-<form method="post" action="<c:url value="<%= Pattern.PROFIL_MODIFIER %>" />">
+<form method="post" action="<c:url value="<%= Pattern.ADMINISTRATION_MODIFIER_PROFIL %>" />">
 	<fieldset>
 		<legend>Informations</legend>
 		
@@ -34,7 +34,7 @@
 	</fieldset>
 	
 	<fieldset class='align-center no-border'>
-		<a href="<c:url value="<%= Pattern.PROFIL_LISTER %>" />"><input type="button" value="Retour" /></a>
+		<a href="<c:url value="<%= Pattern.ADMINISTRATION_LISTER_PROFIL %>" />"><input type="button" value="Retour" /></a>
 		<input type="submit" value="Valider"/>
 	</fieldset>
 </form>

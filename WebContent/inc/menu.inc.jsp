@@ -57,6 +57,7 @@
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
 								<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_RESET_PASSWORD %>"/>">Réinit. mot de passe</a></li>
+								<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_AJOUT_PROFIL %>"/>">Créer profil</a></li>
 							</ul>
 						</div>
 					</li>

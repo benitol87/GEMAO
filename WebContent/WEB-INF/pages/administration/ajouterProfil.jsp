@@ -11,7 +11,7 @@
 
 <h1>Ajout d'un profil</h1>
 
-<form method="post" action="<c:url value="<%= Pattern.PROFIL_AJOUT %>" />">
+<form method="post" action="<c:url value="<%= Pattern.ADMINISTRATION_AJOUT_PROFIL %>" />">
 	<fieldset>
 		<legend>Informations</legend>
 		
@@ -23,8 +23,13 @@
 		<ul>
 			<c:forEach items="${listeModules}" var="module">
 				<li>
-					<input type="checkbox" name="module<c:out value="${module.idModule}"/>"/>
-					<label for="module<c:out value="${module.idModule}"/>"><c:out value="${module.nomModule}"/></label>
+					<h2>Module <c:out value="${module.nomModule }"></c:out></h2>
+					<input type="radio" checked="checked" name="module<c:out value="${droit.type.idType}"/>"/>
+					<label><c:out value="${droit.type.nomType}"/>Aucun</label>
+					<input type="radio" name="module<c:out value="${droit.type.idType}"/>"/>
+					<label><c:out value="${droit.type.nomType}"/>Lecture</label>
+					<input type="radio" name="module<c:out value="${droit.type.idType}"/>"/>
+					<label><c:out value="${droit.type.nomType}"/>Lecture+écriture</label>
 				</li>
 			</c:forEach>
 		</ul>
@@ -32,7 +37,7 @@
 	</fieldset>
 	
 	<fieldset class='align-center no-border'>
-		<a href="<c:url value="<%= Pattern.PROFIL_LISTER %>" />"><input type="button" value="Retour" /></a>
+		<a href="<c:url value="<%= Pattern.ADMINISTRATION_LISTER_PROFIL %>" />"><input type="button" value="Retour" /></a>
 		<input type="submit" value="Valider"/>
 	</fieldset>
 </form>

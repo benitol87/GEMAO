@@ -18,8 +18,8 @@
 		<tr>
 			<td><c:out value="${profil.nomProfil}" /></td>
 			<td>
-				<a class="icon icon-search" href="<%= Pattern.PROFIL_LISTER %>?id=<c:out value="${profil.idProfil}" />" title='Afficher les détails'></a>
-				<a class="icon icon-pen" href="<%= Pattern.PROFIL_MODIFIER %>?id=<c:out value="${profil.idProfil}" />" title='Modifier les informations'></a>
+				<a class="icon icon-search" href="<%= Pattern.ADMINISTRATION_LISTER_PROFIL %>?id=<c:out value="${profil.idProfil}" />" title='Afficher les détails'></a>
+				<a class="icon icon-pen" href="<%= Pattern.ADMINISTRATION_MODIFIER_PROFIL %>?id=<c:out value="${profil.idProfil}" />" title='Modifier les informations'></a>
 			</td>
 		</tr>
 	</c:forEach>

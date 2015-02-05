@@ -23,6 +23,9 @@ public class Pattern {
 			
 		// Module administration
 			ADMINISTRATION_RESET_PASSWORD = "/administration/ReinitMotDePasse",
+			ADMINISTRATION_AJOUT_PROFIL = "/administration/AjouterProfil",
+			ADMINISTRATION_LISTER_PROFIL = "/administration/ListerProfils",
+			ADMINISTRATION_MODIFIER_PROFIL = "/administration/ModifProfil",
 			
 		// Module location
 			LOCATION_LOCATION = "/location/locationInstrument",
@@ -41,10 +44,6 @@ public class Pattern {
 			PERSONNEL_LISTER = "/personnel/ListePersonnel",
 			PERSONNEL_MODIFIER = "/personnel/ModifPersonnel",
 	
-		// Profil
-			PROFIL_AJOUT = "/profil/AjouterProfil",
-			PROFIL_LISTER = "/profil/ListerProfils",
-			PROFIL_MODIFIER = "/profil/ModifProfil",
 	
 		// Module Cours
 			COURS_AJOUTEDT = "/cours/AjouterEmploiDuTemps";

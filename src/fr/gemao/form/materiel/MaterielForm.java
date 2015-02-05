@@ -77,23 +77,24 @@ public class MaterielForm {
 	public void testerMateriel(HttpServletRequest request) {
 
 		/* Récupération des champs du formulaire */
-		idCategorie = Integer
-				.parseInt(getValeurChamp(request, CHAMP_CATEGORIE));
-		idDesignation = Integer.parseInt(getValeurChamp(request,
-				CHAMP_DESIGNATION));
-		valAch = Float.parseFloat(getValeurChamp(request, CHAMP_VALACH));
+
 		dateAch = getValeurChamp(request, CHAMP_DATEACH);
 		observation = getValeurChamp(request, CHAMP_INST_OBSERVATION);
 		String fourniss = getValeurChamp(request, CHAMP_FOURNISSEUR);
+		type = getValeurChamp(request, CHAMP_TYPE);
+		String deplac = getValeurChamp(request, CHAMP_INST_DEPLACABLE);
+		String loua = getValeurChamp(request, CHAMP_INST_LOUABLE);
+		numserie = getValeurChamp(request, CHAMP_INST_NUMSERIE);
 
 		/* Validation du champ categorie. */
-		/*try {
-			validationCategorie(idCategorie);
+		try {
+			idCategorie = Integer.parseInt(getValeurChamp(request,
+					CHAMP_CATEGORIE));
 		} catch (Exception e) {
 			setErreur(CHAMP_CATEGORIE, e.getMessage());
-		}*/
+		}
 
-		/* Validation du champ categorie. */
+		/* Validation du champ fournisseur. */
 		try {
 			validationFournisseur(fourniss);
 		} catch (Exception e) {
@@ -102,6 +103,8 @@ public class MaterielForm {
 
 		/* Validation de la designation. */
 		try {
+			idDesignation = Integer.parseInt(getValeurChamp(request,
+					CHAMP_DESIGNATION));
 			validationDesignation(idDesignation);
 		} catch (Exception e) {
 			setErreur(CHAMP_DESIGNATION, e.getMessage());
@@ -109,6 +112,7 @@ public class MaterielForm {
 
 		/* Validation de la valeur d'achat. */
 		try {
+			valAch = Float.parseFloat(getValeurChamp(request, CHAMP_VALACH));
 			validationValeurAchat(valAch);
 		} catch (Exception e) {
 			setErreur(CHAMP_VALACH, e.getMessage());
@@ -121,21 +125,13 @@ public class MaterielForm {
 			setErreur(CHAMP_DATEACH, e.getMessage());
 		}
 
-		type = getValeurChamp(request, CHAMP_TYPE);
-		idEtat = Integer.parseInt(getValeurChamp(request, CHAMP_INST_ETAT));
-		idMarque = Integer.parseInt(getValeurChamp(request, CHAMP_MARQUE));
-		String deplac = getValeurChamp(request, CHAMP_INST_DEPLACABLE);
-		String loua = getValeurChamp(request, CHAMP_INST_LOUABLE);
-		numserie = getValeurChamp(request, CHAMP_INST_NUMSERIE);
-		valRea = Float.parseFloat(getValeurChamp(request, CHAMP_INST_VALREA));
-
 		/* Validation du champ deplacable. */
 		try {
 			validationDeplacable(deplac);
 		} catch (Exception e) {
 			setErreur(CHAMP_TYPE, e.getMessage());
 		}
-		
+
 		/* Validation du champ louable. */
 		try {
 			validationLouable(loua);
@@ -152,6 +148,7 @@ public class MaterielForm {
 
 		/* Validation du champ etat */
 		try {
+			idEtat = Integer.parseInt(getValeurChamp(request, CHAMP_INST_ETAT));
 			validationEtat(idEtat);
 		} catch (Exception e) {
 			setErreur(CHAMP_INST_ETAT, e.getMessage());
@@ -159,6 +156,7 @@ public class MaterielForm {
 
 		/* Validation du champ marque */
 		try {
+			idMarque = Integer.parseInt(getValeurChamp(request, CHAMP_MARQUE));
 			validationMarque(idMarque);
 		} catch (Exception e) {
 			setErreur(CHAMP_MARQUE, e.getMessage());
@@ -170,8 +168,10 @@ public class MaterielForm {
 		} catch (Exception e) {
 			setErreur(CHAMP_INST_NUMSERIE, e.getMessage());
 		}
-		/* Validation du champ numserie */
+		/* Validation du champ valeur de reaprovisionnement */
 		try {
+			valRea = Float
+					.parseFloat(getValeurChamp(request, CHAMP_INST_VALREA));
 			validationValeurReapprovisionnement(valRea);
 		} catch (Exception e) {
 			setErreur(CHAMP_INST_VALREA, e.getMessage());
@@ -355,7 +355,7 @@ public class MaterielForm {
 	public boolean getDeplacable() {
 		return deplacable;
 	}
-	
+
 	/**
 	 * Retourne la louabilité(?) d'un instrument.
 	 * 
@@ -387,7 +387,7 @@ public class MaterielForm {
 			}
 		}
 	}
-	
+
 	/**
 	 * Valide la deplacabilité(?) saisie.
 	 */

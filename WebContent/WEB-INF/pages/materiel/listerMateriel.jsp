@@ -10,7 +10,7 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <h1>Liste des matériels</h1>
-<p>${message}</p>
+<p style="text-align: center;">${message}</p>
 <table>
 	<tr>
 		<th>Désignation</th>
