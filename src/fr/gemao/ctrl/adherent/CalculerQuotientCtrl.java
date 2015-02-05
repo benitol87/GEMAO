@@ -23,7 +23,7 @@ public class CalculerQuotientCtrl {
 	 *            Le nombre d'enfants du foyer (doit �tre sup�rieur � 0)
 	 * @return Le quotient calcul�
 	 */
-	public float calculerQuotient(HttpServletRequest request) {
+	public Float calculerQuotient(HttpServletRequest request) {
 		float alloc, quotient = 0;
 		
 		DAOFactory co = DAOFactory.getInstance();
@@ -32,6 +32,9 @@ public class CalculerQuotientCtrl {
 		int nbPers = Integer.parseInt(request.getParameter("nbPers"));
 		int nbEnfants = Integer.parseInt(request.getParameter("nbEnf"));
 		float revenus = Float.parseFloat((request.getParameter("revenues")).replace(',', '.'));
+		
+		if(nbPers<nbEnfants)
+			return null;
 		
 		switch (nbEnfants) {
 		case 0:

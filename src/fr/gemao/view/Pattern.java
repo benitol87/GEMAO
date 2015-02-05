@@ -13,6 +13,7 @@ public class Pattern {
 			ADHERENT_AJOUT = "/adherent/AjoutAdherent",
 			ADHERENT_AJOUT_RESPONSABLE = "/adherent/AjoutResponsable",
 			ADHERENT_CALCUL_QF = "/adherent/CalculerQF",
+			ADHERENT_SIMPLE_CALCUL_QF = "/adherent/SimpleCalculerQF",
 			ADHERENT_CONSULTER = "/adherent/ConsulteAdherent",
 			ADHERENT_LISTER = "/adherent/ListeAdherents",
 			ADHERENT_MODIFIER = "/adherent/ModifierAdherent",
