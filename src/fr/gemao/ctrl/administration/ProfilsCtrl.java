@@ -43,9 +43,9 @@ public class ProfilsCtrl {
 	 */
 	public Profil creerProfil(String nom, List<Droit> listDroit){
 		Profil profil = new Profil(null, nom, listDroit);
-		Profil.put(profil);
 		ProfilDAO profilDAO = this.daoFactory.getProfilDAO();
 		profil = profilDAO.create(profil);
+		Profil.put(profil);
 		
 		DroitDAO droitDAO = this.daoFactory.getDroitDAO();
 		droitDAO.addAllDroitParProfil(profil.getIdProfil(), listDroit);
