@@ -77,16 +77,12 @@ function ajoutEventRetireFonction(){
 }
 
 function afficherDuree(){
-	var duree= document.getElementById("duree");
-	var liste= document.getElementById("type");
-	var option= liste.options.selectedIndex;
-	alert(option.value);
-	if(option.value!= 0){
-		duree.style.display="inline";
-		
+	var selectType = document.getElementById('type').value;
+	if(selectType != "cdi"){
+		document.getElementById('duree').removeAttribute('hidden');
 	}
 	else{
-		duree.style.display="none";
+		document.getElementById('duree').setAttribute('hidden', 'hidden');
 	}
 	
 }
