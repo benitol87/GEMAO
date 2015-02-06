@@ -119,6 +119,30 @@ public class MotifSortieDAO extends IDAO<MotifSortie> {
 
 		return liste;
 	}
+	
+	public MotifSortie exist(MotifSortie motifSortie) {
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * from motifsortie where libelle = ?;";
+		MotifSortie verif = null;
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, motifSortie.getLibelle());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				verif = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return verif;
+	}
 
 	@Override
 	protected MotifSortie map(ResultSet result) throws SQLException {

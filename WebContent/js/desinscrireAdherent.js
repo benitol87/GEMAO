@@ -31,5 +31,8 @@ window.onload = function()
 	champ_date.value = getDateActuelle();
 	
 	form.setAttribute("onsubmit", "return confirmDesinscription()");
-	ajouteEvent(boutonAjouter, 'click', ajoutMotif, false);
+	if(boutonAjouter)
+	{
+		ajouteEvent(boutonAjouter, 'click', ajoutMotif, false);
+	}
 }
