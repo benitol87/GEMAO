@@ -3,6 +3,7 @@ package fr.gemao.view.personnel;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +19,11 @@ import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Personnel;
+import fr.gemao.entity.Responsabilite;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.form.personnel.PersonnelForm;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.ResponsabiliteDAO;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -36,6 +40,13 @@ public class AjoutPersonnelServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		
+		ResponsabiliteDAO responsabiliteDAO = DAOFactory.getInstance().getResponsabiliteDAO();
+		List<Responsabilite> responsabilites = responsabiliteDAO.getAll();
+		session.setAttribute("listResponsabilites", responsabilites);
+		
 		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT)
 				.forward(request, response);
 	}

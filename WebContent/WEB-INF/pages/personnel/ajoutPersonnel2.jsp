@@ -28,10 +28,10 @@
 		<div>
 			<label for="type">Type de contrat : </label> <select name="type"
 				id="type" onClick="afficherDuree()">
-				<option value="cdi">CDI</option>
-				<option value="cdd">CDD</option>
-				<option value="ctt">CTT</option>
-				<option value="benevole">Bénévole</option>
+				<option value="1">CDI</option>
+				<option value="2">CDD</option>
+				<option value="4">CTT</option>
+				<option value="3">Bénévole</option>
 			</select>
 		</div>
 		<div>

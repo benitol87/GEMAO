@@ -101,9 +101,9 @@
 			<div id="divFonction1">
 				<label for="fonction1" class='required'>Fonction </label>
 				<select name="fonction1" required>
-					<option>Professeur</option>
-					<option>Secrétaire</option>
-					<option>Trésorier</option>
+					<c:forEach var="responsabilite" items="${sessionScope.listResponsabilites }">
+						<option value="${ responsabilite.getIdResponsabilite() }">${ responsabilite.getLibelle() }</option>
+					</c:forEach>
 				</select>
 				<input type="button" value="+" id="ajoutFonction"/>
 				<input type="button" value="-" id="retireFonction"/>

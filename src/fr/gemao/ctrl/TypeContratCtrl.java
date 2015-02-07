@@ -12,4 +12,11 @@ public class TypeContratCtrl {
 		
 		return typeContratDAO.exist(typeContrat);
 	}
+	
+	public TypeContrat recupererTypeContrat(Integer idType){
+		DAOFactory co = DAOFactory.getInstance();
+		TypeContratDAO typeContratDAO = co.getTypeContratDAO();
+		
+		return typeContratDAO.get(idType);
+	}
 }

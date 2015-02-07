@@ -78,7 +78,7 @@ function ajoutEventRetireFonction(){
 
 function afficherDuree(){
 	var selectType = document.getElementById('type').value;
-	if(selectType != "cdi"){
+	if(selectType != "1"){
 		document.getElementById('duree').removeAttribute('hidden');
 	}
 	else{
