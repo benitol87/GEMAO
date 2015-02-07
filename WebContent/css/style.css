@@ -99,6 +99,7 @@ fieldset, table{
 	text-align: left;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom : 10px;
 }
 
 fieldset table{
@@ -167,6 +168,10 @@ table>caption{
 
 tr {
 	margin: 15px;
+}
+
+th, td {
+	padding : 3px;
 }
 
 @media (max-width:768px)

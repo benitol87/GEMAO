@@ -33,21 +33,27 @@
 		<td>Téléphone fixe : </td>
 		<td><c:out value="${adherent['telFixe']}" /></td>
 	</tr>
-	<tr>
-		<td>Téléphone portable : </td>
-		<td><c:out value="${adherent['telPort']}" /></td>
-	</tr>
-	<tr>
-		<td>E-mail : </td>
-		<td><c:out value="${adherent['email']}" /></td>
-	</tr>
+	<c:if test="${adherent['telPort'] != null}">
+		<tr>
+			<td>Téléphone portable : </td>
+			<td><c:out value="${adherent['telPort']}" /></td>
+		</tr>
+	</c:if>
+	<c:if test="${adherent['email'] != null}">
+		<tr>
+			<td>E-mail : </td>
+			<td><c:out value="${adherent['email']}" /></td>
+		</tr>
+	</c:if>
 </table>
 <table  class='table-col-2'>
 	<caption>Adresse</caption>
-	<tr>
-		<td>N° : </td>
-		<td><c:out value="${adherent.adresse['numRue']}" /></td>
-	</tr>
+	<c:if test="${adherent.adresse['numRue'] != null}">
+		<tr>
+			<td>N° : </td>
+			<td><c:out value="${adherent.adresse['numRue']}" /></td>
+		</tr>
+	</c:if>
 	<tr>
 		<td>Rue : </td>
 		<td><c:out value="${adherent.adresse['nomRue']}" /></td>
@@ -113,10 +119,12 @@
 		<td>Téléphone : </td>
 		<td><c:out value="${adherent.responsable['telephone']}" /></td>
 	</tr>
-	<tr>
-		<td>E-mail : </td>
-		<td><c:out value="${adherent.responsable['email']}" /></td>
-	</tr>
+	<c:if test="${adherent.responsable['email'] != null}">
+		<tr>
+			<td>E-mail : </td>
+			<td><c:out value="${adherent.responsable['email']}" /></td>
+		</tr>
+	</c:if>
 </table>
 </c:if>
 
