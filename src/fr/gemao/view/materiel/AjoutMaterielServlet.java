@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.materiel.CategorieCtrl;
 import fr.gemao.ctrl.materiel.DesignationCtrl;
+import fr.gemao.ctrl.materiel.EtatCtrl;
 import fr.gemao.ctrl.materiel.FournisseurCtrl;
 import fr.gemao.ctrl.materiel.MarqueCtrl;
 import fr.gemao.ctrl.materiel.MaterielCtrl;
@@ -131,7 +132,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 		
 		if (Form.getValeurChamp(request, "nomEtat") != null) {
 			try {
-				FournisseurCtrl.ajoutFournisseur(Form.getValeurChamp(request,
+				EtatCtrl.ajoutEtat(Form.getValeurChamp(request,
 						"nomEtat"));
 			} catch (DAOException e) {
 				form.setErreur(ERREUR_AJOUT_ETAT,

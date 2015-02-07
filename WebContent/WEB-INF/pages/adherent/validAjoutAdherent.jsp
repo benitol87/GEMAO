@@ -33,21 +33,27 @@
 			<span class='text-label'>Téléphone fixe : </span>
 			<c:out value="${adherent['telFixe']}" />
 		</div>
-		<div>
-			<span class='text-label'>Téléphone portable : </span>
-			<c:out value="${adherent['telPort']}" />
-		</div>
-		<div>
-			<span class='text-label'>E-mail : </span>
-			<c:out value="${adherent['email']}" />
-		</div>		
+		<c:if test="${adherent['telPort'] != null}">
+			<div>
+				<span class='text-label'>Téléphone portable : </span>
+				<c:out value="${adherent['telPort']}" />
+			</div>
+		</c:if>
+		<c:if test="${adherent['email'] != null}">
+			<div>
+				<span class='text-label'>E-mail : </span>
+				<c:out value="${adherent['email']}" />
+			</div>	
+		</c:if>	
 	</fieldset>
 	<fieldset>
 		<legend>Adresse</legend>
-		<div>
-			<span class='text-label'>Numéro : </span>
-			<c:out value="${adresse['numRue']}" />
-		</div>
+		<c:if test="${adresse['numRue'] != null}">
+			<div>
+				<span class='text-label'>Numéro : </span>
+				<c:out value="${adresse['numRue']}" />
+			</div>
+		</c:if>	
 		<div>
 			<span class='text-label'>Rue : </span>
 			<c:out value="${adresse['nomRue']}" />
@@ -107,10 +113,12 @@
 			<span class='text-label'>Téléphone : </span>
 			<c:out value="${responsable['telephone']}" />
 		</div>
-		<div>
-			<span class='text-label'>E-mail : </span>
-			<c:out value="${responsable['email']}" />
-		</div>
+		<c:if test="${responsable['email'] != null}">
+			<div>
+				<span class='text-label'>E-mail : </span>
+				<c:out value="${responsable['email']}" />
+			</div>
+		</c:if>	
 	</fieldset>
 </c:if>
 <fieldset class='align-center no-border'>

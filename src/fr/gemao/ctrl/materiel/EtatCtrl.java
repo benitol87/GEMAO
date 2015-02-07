@@ -11,19 +11,17 @@ public class EtatCtrl {
 	/**
 	 * Permet d'ajouter un etat dans la base
 	 * 
-	 * @param idEtat
-	 * 		id de l'etat a ajouter
 	 * @param libelle
 	 * 		libelle de l'etat a ajouter
 	 */
-	public void ajoutEtat(int idEtat, String libelle){
+	public static void ajoutEtat(String libelle){
 		if(libelle == null){
 			throw new NullPointerException("Le Libelle ne doit pas etre null");
 		}
 		if(libelle == ""){
 			throw new NullPointerException("Le Libelle ne doit pas etre vide");
 		}
-		Etat etat = new Etat(idEtat,libelle);
+		Etat etat = new Etat(0,libelle);
 		new EtatDAO(DAOFactory.getInstance()).create(etat);
 	}
 	/**
