@@ -13,12 +13,15 @@ import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.adherent.AjouterMotifSortieCtrl;
 import fr.gemao.ctrl.adherent.RecupererMotifSortieCtrl;
+import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.MotifSortie;
 import fr.gemao.form.adherent.DesinscrireAdherentForm;
 import fr.gemao.form.util.Form;
+import fr.gemao.sql.AdherentDAO;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.MotifSortieDAO;
 import fr.gemao.sql.exception.DAOException;
+import fr.gemao.sql.materiel.EtatDAO;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -58,7 +61,18 @@ public class DesinscrireAdherentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
 		DesinscrireAdherentForm form = new DesinscrireAdherentForm();
+		
+		//Récupération des données
+		MotifSortie infosMotif = new MotifSortie();
+		String libelle = Form.getValeurChamp(request, ATTR_LISTE_MOTIF);
+		if(libelle != null)
+		{
+			infosMotif.setLibelle(libelle);
+		}
+		
+		session.setAttribute("INFOS", infosMotif);
 		
 		// Ajout d'un motif, le fait qu'elle ne soit pas vide
 		// a déjà été testé
@@ -77,6 +91,18 @@ public class DesinscrireAdherentServlet extends HttpServlet {
 		List<MotifSortie> listMotif = new ArrayList<MotifSortie>();
 		listMotif = new MotifSortieDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute(ATTR_LISTE_MOTIF, listMotif);
+		
+		if(request.getParameter(ATTR_CACHE_LIBELLEMOTIF).equals(""))
+		{
+			libelle = request.getParameter(ATTR_LISTE_MOTIF);
+			
+			AdherentDAO adherentDAO = new AdherentDAO(DAOFactory.getInstance());
+			Adherent adherent = new Adherent();
+			adherent = adherentDAO.get((session.getAttribute(CHAMP_IDADHERENT)));
+			
+			MotifSortieDAO motifSortieDAO = new MotifSortieDAO(DAOFactory.getInstance());
+			adherent.setMotif(motifSortieDAO.get(Long.parseLong(libelle)));
+		}
 		
 		request.setAttribute("form", form);
 		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_DESINSCRIRE_ADHERENT)

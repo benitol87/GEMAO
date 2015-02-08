@@ -16,11 +16,19 @@
 <h1>Liste des adhérents</h1>
 
 <form class="offset">
-	<label for="naissance">Date de naissance</label><input type="checkbox" name="naissance" id="naissance" onchange="affNaissance()" />
-	<label for="email">Email</label><input type="checkbox" name="email" id="email" onchange="affEmail()" />
-	<label for="commune">Communne</label><input	type="checkbox" name="commune" id="commune" onchange="affCommune()" />
-	<label for="entree">Date d'entrée</label><input type="checkbox"	name="entree" id="entree" onchange="affEntree()" />
-	<label for="droitImage">Droit à l'image</label><input type="checkbox" name="droitImage" id="droitImage" onchange="affDroitImage()" />
+	<p>
+		<span id="gras">Afficher : </span>
+		<label for="naissance">Date de naissance</label>
+		<input type="checkbox" name="naissance" id="naissance" onchange="affNaissance()" />
+		<label for="email">Email</label>
+		<input type="checkbox" name="email" id="email" onchange="affEmail()" />
+		<label for="commune">Commune</label>
+		<input	type="checkbox" name="commune" id="commune" onchange="affCommune()" />
+		<label for="entree">Date d'entrée</label>
+		<input type="checkbox"	name="entree" id="entree" onchange="affEntree()" />
+		<label for="droitImage">Droit à l'image</label>
+		<input type="checkbox" name="droitImage" id="droitImage" onchange="affDroitImage()" />
+	</p>
 </form>
 
 

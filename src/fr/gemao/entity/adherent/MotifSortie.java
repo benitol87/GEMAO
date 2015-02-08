@@ -10,6 +10,14 @@ public class MotifSortie implements Serializable{
 	
 	private Integer idMotif;
 	private String libelle;
+	
+	/**
+	 * Constructeur par défaut
+	 */
+	public MotifSortie(){
+		this.idMotif = null;
+	}
+	
 	/**
 	 * @param idMotif
 	 * @param libelle
