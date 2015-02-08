@@ -11,7 +11,7 @@
 <script src="<c:url value="/js/AjouterAdherent.js"/>"></script>
 
 <h1>Ajout d'un adhérent</h1>
-<form action="#" method="post">
+<form id="ajoutAdherent" action="#" method="post">
 	<fieldset>
 		<legend>Informations personnelles</legend>
 
@@ -51,7 +51,7 @@
 		</div>
 
 		<div>
-			<label for="email">E-mail </label> <input type="text" name="email"
+			<label for="email">E-mail </label> <input type="email" name="email"
 				autocomplete="on" />
 		</div>
 	</fieldset>
@@ -78,11 +78,14 @@
 
 		<div>
 			<label for="codePostal" class='required'>Code postal </label> <input
-				type="text" name="codePostal" required="required" maxlength="5" />
+				type="text" name="codePostal" required="required" maxlength="5" pattern="\d*" />
 		</div>
 	</fieldset>
 	<fieldset>
 		<legend>Disciplines</legend>
+		<input type="button" name="ajoutNewDiscipline" id="ajoutNewDiscipline"
+			value="Créer..." /> <input type="text" name="nomDiscipline"
+			id="nomDiscipline" class="hidden" />
 		<div id='disciplines'>
 			<div>
 				<label>Cours</label> <select size="1" name="disciplines1">
@@ -101,8 +104,8 @@
 		<legend>Informations complémentaires</legend>
 		<div>
 			<label for="dateInscri" class='required'>Date d'inscription </label>
-			<input type="text" name="dateInscri" id="dateInscri" class="datepicker"
-				required="required" />
+			<input type="text" name="dateInscri" id="dateInscri"
+				class="datepicker" required="required" />
 		</div>
 		<div>
 			<label class='required'>Droit à l'image </label> <span> <input

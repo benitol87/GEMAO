@@ -16,11 +16,25 @@ function ajoutDiscipline(){
 	/*<!--document.getElementById(compteur).lastElementChild.firstElementChild.name="clas"+compteur;	-->*/
 }
 
+function ajoutNewDiscipline(){
+	var answer = prompt ("Ajouter une discipline");
+	answer = answer.trim();
+	if(answer && answer!=""){
+		var input=document.getElementById("nomDiscipline");
+		input.value=answer;
+		document.getElementById("ajoutAdherent").submit();
+	} else {
+		alert("Abandon de l'ajout");
+	}
+}
+
 $(function() {
 	champ_date_inscription = document.getElementById("dateInscri");
 	champ_date_inscription.value = getDateActuelle();
 	bouton1=document.getElementById("ajoutDiscipline");
 	bouton2=document.getElementById("retireDiscipline");
+	bouton3=document.getElementById("ajoutNewDiscipline");
 	ajouteEvent(bouton1, 'click', ajoutDiscipline, false);
 	ajouteEvent(bouton2, 'click', retireDiscipline, false);
+	ajouteEvent(bouton3, 'click', ajoutNewDiscipline, false);
 });

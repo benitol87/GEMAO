@@ -12,13 +12,17 @@
 <script src="<c:url value="/js/modifierAdherent.js"/>"></script>
 
 <h1>Modification d'un adhérent</h1>
-<form action="#" method="post">
+<form id="modifAdherent" action="#" method="post">
 	<fieldset>
 		<legend>Informations personnelles</legend>
 		<div>
-			<span class='text-label'>Civilité : </span> 
-				<c:if test="${adherent.civilite['nameCourt'] == 'Mme'}"> Madame</c:if>
-				<c:if test="${adherent.civilite['nameCourt'] == 'M.'}"> Monsieur </c:if>
+			<span class='text-label'>Civilité : </span> <input type="radio"
+				name="civilite" value="F"
+				<c:if test="${adherent.civilite['nameCourt'] == 'Mme'}"> checked="checked"</c:if> /><label
+				for="civilite">Mme</label> <input type="radio" name="civilite"
+				value="M"
+				<c:if test="${adherent.civilite['nameCourt'] == 'M.'}"> checked="checked" </c:if> /><label
+				for="civilite">M.</label>
 		</div>
 		<div>
 			<label for="nom" class="required">Nom : </label><input type="text"
@@ -47,7 +51,7 @@
 				autocomplete="on" value="<c:out value="${adherent['telPort']}"/>" />
 		</div>
 		<div>
-			<label for="email">E-mail : </label> <input type="text" name="email"
+			<label for="email">E-mail : </label> <input type="email" name="email"
 				autocomplete="on" value="<c:out value="${adherent['email']}"/>" />
 		</div>
 	</fieldset>
@@ -82,6 +86,9 @@
 	</fieldset>
 	<fieldset>
 		<legend>Disciplines</legend>
+		<input type="button" name="ajoutNewDiscipline" id="ajoutNewDiscipline"
+			value="Créer..." /> <input type="text" name="nomDiscipline"
+			id="nomDiscipline" class="hidden" />
 		<div id="disciplines">
 			<c:set var="i" value="1"></c:set>
 			<c:forEach var="disciplines" items="${adherent.getDisciplines() }">

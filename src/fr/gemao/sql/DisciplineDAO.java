@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import fr.gemao.entity.Discipline;
+import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -30,11 +31,11 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO discipline(idDiscpline,nom) " + "VALUES (?);";
+		String sql = "INSERT INTO discipline(nom) " + "VALUES (?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getIdDiscipline(), obj.getNom());
+					sql, false, obj.getNom());
 
 			int status = requete.executeUpdate();
 
@@ -42,6 +43,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 				throw new DAOException(
 						"Échec de la création de la discipline, aucune ligne ajoutée dans la table.");
 			}
+			
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -49,7 +51,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
-		return this.get(obj.getIdDiscipline());
+		return this.get(obj.getNom());
 	}
 
 	@Override
@@ -242,6 +244,30 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		for (Discipline d : listDiscipline) {
 			addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
 		}
+	}
+	
+	public Discipline exist(Discipline discipline) {
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * from discipline where nom = ?";
+		Discipline verif = null;
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false,  discipline.getNom());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				verif = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return verif;
 	}
 
 	@Override

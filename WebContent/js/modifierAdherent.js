@@ -26,11 +26,25 @@ function ajoutDiscipline(){
 	}
 }
 
+function ajoutNewDiscipline(){
+	var answer = prompt ("Ajouter une discipline");
+	answer = answer.trim();
+	if(answer && answer!=""){
+		var input=document.getElementById("nomDiscipline");
+		input.value=answer;
+		document.getElementById("modifAdherent").submit();
+	} else {
+		alert("Abandon de l'ajout");
+	}
+}
+
 $(function() {
 	bouton1=document.getElementById("ajoutDiscipline");
 	bouton2=document.getElementById("retireDiscipline");
+	bouton3=document.getElementById("ajoutNewDiscipline");
 	ajouteEvent(bouton1, 'click', ajoutDiscipline, false);
 	ajouteEvent(bouton2, 'click', retireDiscipline, false);
+	ajouteEvent(bouton3, 'click', ajoutNewDiscipline, false);
 	document.getElementById("select1").style.display="none";
 	
 	document.getElementById("disciplines1").setAttribute("disabled", "disabled");
