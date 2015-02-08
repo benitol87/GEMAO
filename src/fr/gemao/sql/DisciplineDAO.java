@@ -31,6 +31,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
+		Integer id = null;
 		String sql = "INSERT INTO discipline(nom) " + "VALUES (?);";
 		try {
 			connexion = factory.getConnection();
@@ -44,6 +45,11 @@ public class DisciplineDAO extends IDAO<Discipline> {
 						"Échec de la création de la discipline, aucune ligne ajoutée dans la table.");
 			}
 			
+			result = requete.getGeneratedKeys();
+			if (result != null && result.first()) {
+				id = result.getInt(1);
+				obj.setIdDiscipline(id);
+			}
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -51,7 +57,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
-		return this.get(obj.getNom());
+		return obj;
 	}
 
 	@Override
