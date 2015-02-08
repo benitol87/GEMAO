@@ -9,21 +9,17 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-<h1>Consultation d'un profil</h1>
-<table>
-	<caption>Informations du profil : <c:out value="${profil.nomProfil}" ></c:out></caption>
-	<tr>
-		<th>
-			<span>Modules accessibles</span>
-		</th>
-	</tr>
-
+<h1>Consultation d'un profil : <c:out value="${profil.nomProfil}" ></c:out></h1>
+<div class='offset'>
 	<c:forEach items="${requestScope.listeModules}" var="module">
-		<tr>
-			<td><c:out value="${module.nomModule}" /></td>
-		</tr>
-	</c:forEach>	
-</table>
+		<div><c:out value="${module.nomModule}" /></div>
+		<ul>
+			<c:forEach items="${requestScope.listeTypeDroit}" var="typeDroit">
+				<li><c:out value="${typeDroit.nomType}"></c:out> : </li>
+			</c:forEach>
+		</ul>
+	</c:forEach>
+</div>
 <p class='align-center no-border'>
 	<a href="<c:url value="<%= Pattern.ADMINISTRATION_LISTER_PROFIL %>" />"><input type="button" value="Retour" /></a>
 	<a href="<c:url value="<%= Pattern.ADMINISTRATION_MODIFIER_PROFIL %>" />?id=<c:out value="${requestScope.id}"/>"><input type="button" value="Modifier" /></a>
