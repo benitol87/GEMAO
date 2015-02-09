@@ -233,3 +233,9 @@ a.text-warning:hover {
 a.text-danger:hover {
   color: #843534;
 }
+
+#gras
+{
+	font-weight : bold;
+	margin-right : 20px;
+}

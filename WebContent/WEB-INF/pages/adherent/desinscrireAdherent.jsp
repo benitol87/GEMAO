@@ -16,11 +16,11 @@
 <form action="#" method="post" id="desinscrire">
 	<fieldset>
 		<div>
-			<label for="dateSortie" class="required">Date de sortie : </label>
+			<label for="dateSortie" class="required">Date de sortie </label>
 			<input type="text" name="dateSortie" id="dateSortie" class="datepicker" required="required" />
 		</div>
 		<div id="motifsSortie">	
-			<label for="motifSortie" class="required">Motif de sortie : </label>
+			<label for="motifSortie" class="required">Motif de sortie </label>
 			<select name="motifSortie" required="required">
 				<c:forEach var="motif" items="${requestScope.listMotifSortie}">
 					<option value="${motif.getIdMotif()}">${motif.getLibelle()}</option>

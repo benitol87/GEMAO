@@ -93,7 +93,7 @@ public class AjouterProfilServlet extends HttpServlet {
 		}
 		
 		// Renvoi vers une page de résultat
-		request.setAttribute(ATTR_RESULTAT, "Le profil <em>"+profil.getNomProfil()+"</em> a bien été ajouté.");
+		request.setAttribute(ATTR_RESULTAT, "Le profil \""+profil.getNomProfil()+"\" a bien été ajouté.");
 		request.setAttribute(ATTR_LIEN_BOUTON_PAGE_RESULTAT, Pattern.ADMINISTRATION_LISTER_PROFIL);
 		request.setAttribute(ATTR_NOM_BOUTON_PAGE_RESULTAT, "Retour à la liste");
 		request.getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);

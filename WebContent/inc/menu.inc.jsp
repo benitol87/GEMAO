@@ -52,6 +52,15 @@
 							</ul>
 						</div>
 					</li>
+					<li class="icon icon-arrow-left"><a href="#">Cours</a>
+						<div class="mp-level">
+							<h2>Cours</h2>
+							<a class="mp-back" href="#">Retour</a>
+							<ul>
+								<li><a href="<c:url value="<%= Pattern.COURS_AJOUTEDT %>"/>">Ajout</a></li>
+							</ul>
+						</div>
+					</li>
 					<li class="icon icon-arrow-left"><a href="#">Administration</a>
 						<div class="mp-level">
 							<h2>Administration</h2>

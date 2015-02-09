@@ -30,7 +30,7 @@ window.onload = function()
 	var champ_date = document.getElementById("dateSortie");
 	champ_date.value = getDateActuelle();
 	
-	form.setAttribute("onsubmit", "return confirmDesinscription()");
+	//form.setAttribute("onsubmit", "return confirmDesinscription()");
 	if(boutonAjouter)
 	{
 		ajouteEvent(boutonAjouter, 'click', ajoutMotif, false);
