@@ -43,8 +43,9 @@ public class DesinscrireAdherentServlet extends HttpServlet {
 		if(id == null){
 			req.getRequestDispatcher(Pattern.ACCUEIL).forward(req, resp);
 		}else{
+			Long idAdh = Long.parseLong(id);
 			HttpSession session = req.getSession();
-			session.setAttribute(CHAMP_IDADHERENT, id);
+			session.setAttribute(CHAMP_IDADHERENT, idAdh);
 			
 			RecupererMotifSortieCtrl ctrl = new RecupererMotifSortieCtrl();
 			List<MotifSortie> list = ctrl.recupererAllMotifSortie();
@@ -98,7 +99,7 @@ public class DesinscrireAdherentServlet extends HttpServlet {
 			
 			AdherentDAO adherentDAO = new AdherentDAO(DAOFactory.getInstance());
 			Adherent adherent = new Adherent();
-			adherent = adherentDAO.get((session.getAttribute(CHAMP_IDADHERENT)));
+			adherent = adherentDAO.get((long) (session.getAttribute(CHAMP_IDADHERENT)));
 			
 			MotifSortieDAO motifSortieDAO = new MotifSortieDAO(DAOFactory.getInstance());
 			adherent.setMotif(motifSortieDAO.get(Long.parseLong(libelle)));
