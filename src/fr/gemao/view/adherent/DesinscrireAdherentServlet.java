@@ -1,7 +1,10 @@
 package fr.gemao.view.adherent;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.adherent.AjouterMotifSortieCtrl;
+import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
+import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererMotifSortieCtrl;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.MotifSortie;
@@ -32,25 +37,36 @@ import fr.gemao.view.Pattern;
 public class DesinscrireAdherentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String CHAMP_IDADHERENT = "id";
+	private static final String CHAMP_DATE_SORTIE = "dateSortie";
+	private static final String CHAMP_MOTIF_SORTIE = "motifSortie";
+	
 	private static final String ATTR_LISTE_MOTIF = "listMotifSortie";
 	private static final String ATTR_CACHE_LIBELLEMOTIF = "libelleMotif";
+	
+	private static final String ERREUR_DATE = "erreurDate";
 	private static final String ERREUR_AJOUT_MOTIFSORTIE = "erreurMotif";
+	private static final String ERREUR_MODIFICATION = "erreurModif";
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		// Récupération de l'identifiant de l'adhérent
 		String id = Form.getValeurChamp(req, CHAMP_IDADHERENT);
 		if(id == null){
+			// Accès illégal à cette page
 			req.getRequestDispatcher(Pattern.ACCUEIL).forward(req, resp);
 		}else{
-			Long idAdh = Long.parseLong(id);
+			// On place l'identifiant dans une variable de session
+			Integer idAdh = Integer.parseInt(id);
 			HttpSession session = req.getSession();
 			session.setAttribute(CHAMP_IDADHERENT, idAdh);
 			
+			// On envoie la liste des motifs de sortie à la page
 			RecupererMotifSortieCtrl ctrl = new RecupererMotifSortieCtrl();
 			List<MotifSortie> list = ctrl.recupererAllMotifSortie();
-			
 			req.setAttribute(ATTR_LISTE_MOTIF, list);
+			
+			// On envoie vers la page jsp
 			req.getRequestDispatcher(JSPFile.ADHERENT_DESINSCRIRE_ADHERENT).forward(req, resp);
 		}
 	}
@@ -72,9 +88,7 @@ public class DesinscrireAdherentServlet extends HttpServlet {
 		{
 			infosMotif.setLibelle(libelle);
 		}
-		
-		session.setAttribute("INFOS", infosMotif);
-		
+				
 		// Ajout d'un motif, le fait qu'elle ne soit pas vide
 		// a déjà été testé
 		if (Form.getValeurChamp(request, ATTR_CACHE_LIBELLEMOTIF) != null) {
@@ -83,28 +97,57 @@ public class DesinscrireAdherentServlet extends HttpServlet {
 						ATTR_CACHE_LIBELLEMOTIF));
 				AjouterMotifSortieCtrl ajouterMotifCtrl = new AjouterMotifSortieCtrl();
 				ajouterMotifCtrl.ajoutMotif(motif);
+				request.setAttribute("resultat", "Le motif a bien été ajouté.");
 			} catch (DAOException e) {
 				form.setErreur(ERREUR_AJOUT_MOTIFSORTIE,
-						"Le motif de sortie existe déjà");
+						e.getMessage());
 			}
 		}
 		
-		List<MotifSortie> listMotif = new ArrayList<MotifSortie>();
-		listMotif = new MotifSortieDAO(DAOFactory.getInstance()).getAll();
+		// On envoie la liste des motifs de sortie (si erreur ou ajout d'un motif)
+		RecupererMotifSortieCtrl ctrl = new RecupererMotifSortieCtrl();
+		List<MotifSortie> listMotif = ctrl.recupererAllMotifSortie();
 		request.setAttribute(ATTR_LISTE_MOTIF, listMotif);
 		
-		if(request.getParameter(ATTR_CACHE_LIBELLEMOTIF).equals(""))
+		// Si ce n'est pas un ajout d'un type de motif de sortie
+		if(Form.getValeurChamp(request, ATTR_CACHE_LIBELLEMOTIF)==null)
 		{
-			libelle = request.getParameter(ATTR_LISTE_MOTIF);
+			// On récupère les données du formulaire
+			String dateSortie = Form.getValeurChamp(request, CHAMP_DATE_SORTIE);
+			String idMotif = Form.getValeurChamp(request, CHAMP_MOTIF_SORTIE);
 			
-			AdherentDAO adherentDAO = new AdherentDAO(DAOFactory.getInstance());
-			Adherent adherent = new Adherent();
-			adherent = adherentDAO.get((long) (session.getAttribute(CHAMP_IDADHERENT)));
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			Date date;
+			try {
+				date = formatter.parse(dateSortie);
+				
+				// On récupère l'adhérent concerné grâce à son identifiant
+				// contenu dans une variable de session et on lui affecte
+				// les données du formulaire
+				Adherent adherent = new Adherent();
+				RecupererAdherentCtrl recupAdherentCtrl = new RecupererAdherentCtrl();
+				RecupererMotifSortieCtrl motifSortieCtrl = new RecupererMotifSortieCtrl();
+				
+				adherent = recupAdherentCtrl.recupererAdherent((int) (session.getAttribute(CHAMP_IDADHERENT)));
+				adherent.setMotif(motifSortieCtrl.recupererMotifSortie(Integer.parseInt(idMotif)));
+				adherent.setDateSortie(date);
+				
+				// Mise à jour des données de l'adhérent
+				ModifierAdherentCtrl modifAdherentCtrl = new ModifierAdherentCtrl();
+				if(! modifAdherentCtrl.modifierAdherent(adherent)){
+					// Si un problème survient
+					form.setErreur(ERREUR_MODIFICATION, "Une erreur est survenue lors de la désinscription d'un adhérent.");
+				} else {
+					request.setAttribute("resultat", "La désincription a été effectuée.");
+				}
+				
+			} catch (ParseException e) {
+				form.setErreur(ERREUR_DATE, "Le format de la date est invalide.");
+			}
 			
-			MotifSortieDAO motifSortieDAO = new MotifSortieDAO(DAOFactory.getInstance());
-			adherent.setMotif(motifSortieDAO.get(Long.parseLong(libelle)));
 		}
 		
+		// Envoi d'éventuelles erreurs
 		request.setAttribute("form", form);
 		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_DESINSCRIRE_ADHERENT)
 				.forward(request, response);

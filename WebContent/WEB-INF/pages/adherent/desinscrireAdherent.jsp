@@ -23,11 +23,17 @@
 			<label for="motifSortie" class="required">Motif de sortie </label>
 			<select name="motifSortie" required="required">
 				<c:forEach var="motif" items="${requestScope.listMotifSortie}">
-					<option value="${motif.getIdMotif()}">${motif.getLibelle()}</option>
+					<option value="<c:out value="${motif.idMotif}"/>"><c:out value="${motif.libelle}"/></option>
 				</c:forEach>
 			</select>
 			<input type="button" value="+" id="ajoutMotif" title="Ajouter" />
 			<input type="text" name="libelleMotif" id="libelleMotif" class="hidden"/>
+		</div>
+		<div class='align-center'>
+			<div class='text-danger'><c:out value="${form.erreurs['erreurMotif'] }"/></div>
+			<div class='text-danger'><c:out value="${form.erreurs['erreurDate'] }"/></div>
+			<div class='text-danger'><c:out value="${form.erreurs['erreurModif'] }"/></div>
+			<div class='text-success'><c:out value="${resultat }"/></div>
 		</div>
 	</fieldset>
 	

@@ -31,7 +31,7 @@ public class MotifSortieDAO extends IDAO<MotifSortie> {
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, true, obj.getIdMotif());
+					sql, true, obj.getLibelle());
 
 			int status = requete.executeUpdate();
 

@@ -8,7 +8,7 @@ function ajoutMotif()
 	{
 		var input = document.getElementById("libelleMotif");
 		input.value = rep;
-		document.getElementsById("desinscrire").submit();
+		document.getElementById("desinscrire").submit();
 	} 
 	else 
 	{
