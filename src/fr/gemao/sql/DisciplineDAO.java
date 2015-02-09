@@ -126,6 +126,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		return liste;
 	}
 	
+	@Deprecated
 	public Discipline get(String nom) {
 		Discipline discipline = null;
 		Connection connexion = null;

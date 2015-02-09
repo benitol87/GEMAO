@@ -17,7 +17,8 @@ public class RecupererDisciplineCtrl {
 	public Discipline recupererDiscipline(String nom){
 		DAOFactory factory = DAOFactory.getInstance();
 		DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
-		return disciplineDAO.get(nom);
+		Discipline discipline = new Discipline(null, nom);
+		return disciplineDAO.exist(discipline);
 	}
 
 	public List<Discipline> recupererAllDiscipline(){
