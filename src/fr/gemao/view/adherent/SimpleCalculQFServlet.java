@@ -1,6 +1,7 @@
 package fr.gemao.view.adherent;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,6 +53,10 @@ public class SimpleCalculQFServlet extends HttpServlet {
 				QF = "Q2";
 			else
 				QF = "Q3";
+			
+			DecimalFormat df = new DecimalFormat("########.00");
+			String str = df.format(simpleQuotient);
+			simpleQuotient = Float.parseFloat(str.replace(',', '.')); 
 
 			request.setAttribute("QF", QF);
 			request.setAttribute("simpleQuotient", simpleQuotient);

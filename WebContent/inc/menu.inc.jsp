@@ -20,6 +20,7 @@
 							<ul>
 								<li><a href="<c:url value="<%= Pattern.ADHERENT_AJOUT %>"/>">Créer</a></li>
 								<li><a href="<c:url value="<%= Pattern.ADHERENT_LISTER %>"/>">Lister</a></li>
+								<li><a href="<c:url value="<%= Pattern.ADHERENT_SIMPLE_CALCUL_QF %>"/>">Calculer Quotient Familial</a></li>
 								<li><a href="<c:url value="<%= Pattern.ADHERENT_PARAMETRE %>"/>">Paramètres</a></li>
 							</ul>
 						</div>

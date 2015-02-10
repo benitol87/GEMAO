@@ -8,41 +8,21 @@ $(function () {
 });
 
 function affEmail(){
-	if($('.listEmail').css('display') == 'none'){
-		$(".listEmail").css('display','table-cell');
-	} else {
-		$(".listEmail").css('display','none');
-	}
+	$(".listEmail").toggle();
 }
 
 function affCommune(){
-	if($('.listCom').css('display') == 'none'){
-		$(".listCom").css('display','table-cell');
-	} else {
-		$(".listCom").css('display','none');
-	}
+	$(".listCom").toggle();
 }
 
 function affNaissance(){
-	if($('.listNaiss').css('display') == 'none'){
-		$(".listNaiss").css('display','table-cell');
-	} else {
-		$(".listNaiss").css('display','none');
-	}
+	$(".listNaiss").toggle();
 }
 
 function affEntree(){
-	if($('.listEntree').css('display') == 'none'){
-		$(".listEntree").css('display','table-cell');
-	} else {
-		$(".listEntree").css('display','none');
-	}
+	$(".listEntree").toggle();
 }
 
 function affDroitImage(){
-	if($('.listDroitIm').css('display') == 'none'){
-		$(".listDroitIm").css('display','table-cell');
-	} else {
-		$(".listDroitIm").css('display','none');
-	}
+	$(".listDroitIm").toggle();
 }

@@ -87,6 +87,37 @@ public class AjoutAdherentServlet extends HttpServlet {
 			RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
 			session.setAttribute("listDiscipline",
 					recupDisciplineCtrl.recupererAllDiscipline());
+			
+			request.setAttribute("nom", Form.getValeurChamp(request, "nom"));
+			request.setAttribute("prenom", Form.getValeurChamp(request, "prenom"));
+			request.setAttribute("email", Form.getValeurChamp(request, "email"));
+			request.setAttribute("telFixe", Form.getValeurChamp(request, "telFixe"));
+			request.setAttribute("telPort", Form.getValeurChamp(request, "telPort"));
+			request.setAttribute("dateNaiss", Form.getValeurChamp(request, "dateNaiss"));
+			request.setAttribute("dateInscri", Form.getValeurChamp(request, "dateInscri"));
+			request.setAttribute("num", Form.getValeurChamp(request, "num"));
+			request.setAttribute("rue", Form.getValeurChamp(request, "rue"));
+			request.setAttribute("compl", Form.getValeurChamp(request, "compl"));
+			request.setAttribute("commune", Form.getValeurChamp(request, "commune"));
+			request.setAttribute("codePostal", Form.getValeurChamp(request, "codePostal"));
+			request.setAttribute("droitImage", Form.getValeurChamp(request, "droitImage"));
+			request.setAttribute("civilite", Form.getValeurChamp(request, "civilite"));
+			
+			System.out.println(request.getAttribute("nom"));
+			System.out.println(request.getAttribute("prenom"));
+			System.out.println(request.getAttribute("email"));
+			System.out.println(request.getAttribute("telFixe"));
+			System.out.println(request.getAttribute("telPort"));
+			System.out.println(request.getAttribute("dateNaiss"));
+			System.out.println(request.getAttribute("dateInscri"));
+			System.out.println(request.getAttribute("num"));
+			System.out.println(request.getAttribute("rue"));
+			System.out.println(request.getAttribute("compl"));
+			System.out.println(request.getAttribute("commune"));
+			System.out.println(request.getAttribute("codePostal"));
+			System.out.println(request.getAttribute("droitImage"));
+			System.out.println(request.getAttribute("civilite"));
+			
 			this.getServletContext()
 					.getRequestDispatcher(JSPFile.ADHERENT_AJOUT_ADHERENT)
 					.forward(request, response);
