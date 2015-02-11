@@ -13,6 +13,7 @@ $(function() {
 		$("#" + idCliquer).append(
 				cours.text() + "<br>" + professeur.text() + "<br>"
 						+ salle.text());
+		$("#"+idCliquer).css('background-color', 'red');
 		dialog.dialog("close");
 	}
 
@@ -54,7 +55,7 @@ $(function() {
 				if (duree == "1:30") {
 					if ($("#" + idCliquer).next().html() == ""
 							&& $("#" + idCliquer).next().next().html() == ""
-							&& $("#" + idCliquer).next().get(0).tagName != 'TH') {
+							&& $("#" + idCliquer).next().next().get(0).tagName != 'TH') {
 						$("#" + idCliquer).attr("colspan", "3");
 						$("#" + idCliquer).next().next().remove();
 						$("#" + idCliquer).next().remove();
@@ -66,7 +67,7 @@ $(function() {
 					if ($("#" + idCliquer).next().html() == ""
 							&& $("#" + idCliquer).next().next().html() == ""
 							&& $("#" + idCliquer).next().next().next().html() == ""
-							&& $("#" + idCliquer).next().get(0).tagName != 'TH') {
+							&& $("#" + idCliquer).next().next().next().get(0).tagName != 'TH') {
 						$("#" + idCliquer).attr("colspan", "4");
 						$("#" + idCliquer).next().next().next().remove();
 						$("#" + idCliquer).next().next().remove();

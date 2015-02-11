@@ -2,8 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="fr.gemao.view.Pattern"%>
 
-<c:set var="titre"
-	value="Ajout d'un membre du personnel - Informations personnelles"
+<c:set var="titre" value="Cours - Ajouter un emploi du temps"
 	scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
