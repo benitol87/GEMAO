@@ -36,6 +36,13 @@
 			<option value="R46">R46</option>
 			<option value="R52">R52</option>
 		</select>
+		<label for="couleur">Couleur</label> <select name="couleur" id="couleur"
+			class="select ui-widget-content ui-corner-all">
+			<option value="rgb(255, 0, 0)">Rouge</option>
+			<option value="rgb(0, 128, 0)">Vert</option>
+			<option value="rgb(128, 128, 128)">Gris</option>
+			<option value="rgb(0, 0, 0)">Noir</option>
+		</select>
 		<!--<input type="submit">-->
 	</form>
 </div>
