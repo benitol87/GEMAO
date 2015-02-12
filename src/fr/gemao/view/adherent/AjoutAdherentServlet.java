@@ -83,7 +83,6 @@ public class AjoutAdherentServlet extends HttpServlet {
 						request, "nomDiscipline"));
 			} catch (DAOException e) {
 				e.printStackTrace();
-				System.out.println("La discipline existe déjà");
 			}
 
 			RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
@@ -107,7 +106,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 			infos.put("droitImage", Form.getValeurChamp(request, "droitImage"));
 			infos.put("civilite", Form.getValeurChamp(request, "civilite"));
 			
-			request.setAttribute("infos", infos);
+			session.setAttribute("infos", infos);
 			
 			this.getServletContext()
 					.getRequestDispatcher(JSPFile.ADHERENT_AJOUT_ADHERENT)
