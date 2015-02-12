@@ -12,7 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
-import fr.gemao.entity.Discipline;
+import fr.gemao.entity.cours.Discipline;
 
 /**
  * Classe pour la validation du formulaire d'ajout d'un adhérent

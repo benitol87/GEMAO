@@ -7,8 +7,10 @@ import java.util.List;
 
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
-import fr.gemao.entity.Discipline;
 import fr.gemao.entity.Personne;
+import fr.gemao.entity.cours.Classe;
+import fr.gemao.entity.cours.Cours;
+import fr.gemao.entity.cours.Discipline;
 import fr.gemao.entity.util.Civilite;
 
 public class Adherent extends Personne implements Serializable{
@@ -25,9 +27,14 @@ public class Adherent extends Personne implements Serializable{
 	private Float qf;
 	private float cotisation;
 	private List<Discipline> disciplines;
+	private List<Classe> classes;
+	private List<Cours> listeCours;
 
 	public Adherent() {
+		super();
 		disciplines = new ArrayList<>();
+		classes = new ArrayList<>();
+		listeCours = new ArrayList<Cours>();
 	}
 
 	/**
@@ -50,13 +57,14 @@ public class Adherent extends Personne implements Serializable{
 	 * @param qf
 	 * @param cotisation
 	 * @param disciplines
+	 * @param classes
 	 */
 	public Adherent(Long idPersonne, Adresse adresse, Commune communeNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, Civilite civilite, MotifSortie motif,
 			Responsable responsable, boolean droitImage, Date dateEntree,
 			Date dateSortie, Float qf, float cotisation,
-			List<Discipline> disciplines) {
+			List<Discipline> disciplines, List<Classe> classes, List<Cours> cours) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email, civilite);
 		this.motif = motif;
@@ -70,6 +78,8 @@ public class Adherent extends Personne implements Serializable{
 			disciplines = new ArrayList<>();
 		}
 		this.disciplines = disciplines;
+		this.classes = classes;
+		this.listeCours = cours;
 	}
 
 	/**
@@ -82,10 +92,11 @@ public class Adherent extends Personne implements Serializable{
 	 * @param dateEntree
 	 * @param dateSortie
 	 * @param qf
+	 * @param classes
 	 */
 	public Adherent(Personne personne, MotifSortie motif, Responsable responsable,
 			boolean droitImage, Date dateEntree, Date dateSortie, Float qf,
-			float cotisation, List<Discipline> disciplines) {
+			float cotisation, List<Discipline> disciplines, List<Classe> classes, List<Cours> cours) {
 		super(personne);
 		this.motif = motif;
 		this.responsable = responsable;
@@ -98,6 +109,8 @@ public class Adherent extends Personne implements Serializable{
 			disciplines = new ArrayList<>();
 		}
 		this.disciplines = disciplines;
+		this.classes = classes;
+		this.listeCours = cours;
 	}
 
 	/**
@@ -230,6 +243,36 @@ public class Adherent extends Personne implements Serializable{
 		return disciplines.remove(discipline);
 	}
 	
+	/**
+	 * Ajout d'une classe suivie par l'adhérent
+	 * @param classe
+	 * @return
+	 */
+	public boolean addClasse(Classe classe){
+		return classes.add(classe);
+	}
+	
+	/**
+	 * Supprime une classe 
+	 * @param classe
+	 * @return
+	 */
+	public boolean removeClasse(Classe classe){
+		return disciplines.remove(classe);
+	}
+	
+	public List<Classe> getClasses() {
+		return classes;
+	}
+
+	public void setClasses(List<Classe> classes) {
+		this.classes = classes;
+	}
+
+	public void setQf(Float qf) {
+		this.qf = qf;
+	}
+
 	public boolean addAllDisciplines(List<Discipline> list){
 		boolean rs = true;
 		for (Discipline discipline : list) {
@@ -241,7 +284,21 @@ public class Adherent extends Personne implements Serializable{
 		return rs;
 	}
 
+	public boolean ajouterCours(Cours cours){
+		return listeCours.add(cours);
+	}
 	
+	public boolean removeCours(Cours cours){
+		return listeCours.remove(cours);
+	}
+
+	public List<Cours> getCours() {
+		return listeCours;
+	}
+
+	public void setCours(List<Cours> cours) {
+		this.listeCours = cours;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

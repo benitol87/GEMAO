@@ -10,8 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import fr.gemao.entity.Discipline;
 import fr.gemao.entity.adherent.Responsable;
+import fr.gemao.entity.cours.Discipline;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;

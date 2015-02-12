@@ -2,7 +2,7 @@ package fr.gemao.ctrl.adherent;
 
 import java.util.List;
 
-import fr.gemao.entity.Discipline;
+import fr.gemao.entity.cours.Discipline;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.DisciplineDAO;
 
