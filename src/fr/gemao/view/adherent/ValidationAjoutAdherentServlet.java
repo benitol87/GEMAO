@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
+import fr.gemao.ctrl.AjouterPersonneCtrl;
 import fr.gemao.ctrl.adherent.AjouterAdherentCtrl;
 import fr.gemao.ctrl.adherent.AjouterResponsableCtrl;
 import fr.gemao.ctrl.adherent.CalculerCotisationCtrl;
@@ -101,13 +102,11 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 			adherent.setResponsable(responsable);
 		}
 
-		//TODO à modifier : il ne devrait pas y avoir de DAO dans les servlet !
-		DAOFactory factory = DAOFactory.getInstance();
-		PersonneDAO personneDAO = factory.getPersonneDAO();
+		AjouterPersonneCtrl ajouterPersonneCtrl = new AjouterPersonneCtrl();
 
 		request.setAttribute("adherent", adherent);
 		
-		if (personneDAO.exist(adherent) == null) {
+		if (ajouterPersonneCtrl.exist(adherent) == null) {
 			AjouterAdherentCtrl ajouterAdherentCtrl = new AjouterAdherentCtrl();
 			if(ajouterAdherentCtrl.ajoutAdherent(adherent))
 				this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_CONFIRMATION_AJOUT)

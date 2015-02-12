@@ -24,7 +24,7 @@ public class LocationDAO extends IDAO<Location>{
 	
 	@Override
 	public Location create(Location obj) {
-		if (obj == null) {
+		/*if (obj == null) {
 			throw new NullPointerException("L'objet location ne doit pas être null");
 		}
 		Connection connexion = null;
@@ -61,7 +61,8 @@ public class LocationDAO extends IDAO<Location>{
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
 
-		return this.get(obj.getIdDiscipline());
+		return this.get(obj.getIdDiscipline());*/
+		return null;
 	}
 
 	@Override

@@ -11,7 +11,6 @@ import fr.gemao.sql.exception.DAOConfigurationException;
 public class TestConnection {
 
 	public static void main(String[] args) throws DAOConfigurationException, SQLException {
-		// TODO Auto-generated method stub
 		final Connection co = DAOFactory.getInstance().getConnection();
 		
 		Statement stmt;
@@ -29,7 +28,6 @@ public class TestConnection {
 				System.out.println("ID= " + rs.getString("idEtat") + " lib= "
 						+ rs.getString("libelle"));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

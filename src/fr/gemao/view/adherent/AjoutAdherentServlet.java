@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +20,6 @@ import fr.gemao.ctrl.AjouterPersonneCtrl;
 import fr.gemao.ctrl.adherent.AjouterAdherentCtrl;
 import fr.gemao.ctrl.adherent.AjouterDisciplineCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
-import fr.gemao.ctrl.materiel.CategorieCtrl;
 import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
@@ -145,7 +143,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 						dateNaiss, telFixe, telPortable, email,
 						Civilite.MONSIEUR, null, null,
 						Boolean.parseBoolean(droitImage), dateInscri, null,
-						null, 0.0f, list);
+						null, 0.0f, list, null, null);
 				if (civilite.equals("F")) {
 					adherent.setCivilite(Civilite.MADAME);
 				}

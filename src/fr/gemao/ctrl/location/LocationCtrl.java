@@ -8,7 +8,7 @@ import fr.gemao.entity.materiel.Etat;
 import fr.gemao.entity.materiel.Location;
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.LocationDAO;
+import fr.gemao.sql.location.LocationDAO;
 
 /**
  * 

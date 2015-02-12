@@ -1,6 +1,5 @@
 package gemao.mysql;
 
-import java.sql.Connection;
 import java.util.Date;
 import java.util.List;
 

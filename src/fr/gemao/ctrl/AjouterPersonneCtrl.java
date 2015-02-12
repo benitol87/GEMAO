@@ -144,4 +144,9 @@ public class AjouterPersonneCtrl {
 		}
 	}
 
+	public Personne exist(Personne personne) {
+		DAOFactory co = DAOFactory.getInstance();
+		PersonneDAO personneDAO = co.getPersonneDAO();
+		return personneDAO.exist(personne);
+	}
 }

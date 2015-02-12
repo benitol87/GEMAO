@@ -22,7 +22,7 @@ public class AllowAccessFilter implements Filter {
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
+		return;
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class AllowAccessFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+		return;
 	}
 
 }
