@@ -72,7 +72,7 @@ public class AjouterProfilServlet extends HttpServlet {
 		String valeur;
 		for(Module m : listeModules){
 			// On récupère la valeur correspondant au module m
-			valeur = Form.getValeurChamp(request, CHAMP_DROIT_MODULE);
+			valeur = Form.getValeurChamp(request, CHAMP_DROIT_MODULE + m.getIdModule() );
 			
 			// Si un droit a été positionné pour ce module, on l'ajoute à la liste
 			if(valeur!=null){
@@ -80,7 +80,7 @@ public class AjouterProfilServlet extends HttpServlet {
 			}
 			
 		}
-		
+
 		// Création du profil
 		ProfilsCtrl ctrl = new ProfilsCtrl();
 		Profil profil = ctrl.creerProfil(nom, listeDroits);

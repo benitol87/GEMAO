@@ -24,6 +24,10 @@ public class Form {
 		}
 	}
 	
+	public static String[] getValeursChamp(HttpServletRequest request, String nomChamp){
+		return request.getParameterValues(nomChamp);
+	}
+	
 	/*
 	 * Ajoute un message correspondant au champ spécifié à la map des erreurs.
 	 */

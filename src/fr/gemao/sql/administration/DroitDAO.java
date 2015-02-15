@@ -25,7 +25,7 @@ public class DroitDAO extends IDAO<Droit> {
 
 	@Override
 	public Droit create(Droit obj) {
-		throw new UnsupportedOperationException("Impossible de créer un objets Droit");
+		throw new UnsupportedOperationException("Impossible de créer un objet Droit");
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class DroitDAO extends IDAO<Droit> {
 		return null;
 	}
 	
-	public Droit addDroitParPorfil(Integer idProfil, Droit droit){
+	public Droit addDroitParProfil(Integer idProfil, Droit droit){
 		if (droit == null) {
 			throw new NullPointerException(
 					"Le droit ne doit pas etre null");
@@ -102,7 +102,7 @@ public class DroitDAO extends IDAO<Droit> {
 		List<Droit> resultats = new ArrayList<>();
 		Droit res;
 		for(Droit d : droits){
-			res = this.addDroitParPorfil(idProfil, d);
+			res = this.addDroitParProfil(idProfil, d);
 			resultats.add(res);
 		}
 		return resultats; 

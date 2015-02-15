@@ -25,7 +25,7 @@
 				<li>
 					<div>Module <c:out value="${module.nomModule }"/></div>
 					<span>
-						<input type="radio" checked="checked" 
+						<input type="radio" checked="checked" value=""
 							name="module<c:out value="${module.idModule }"/>"/>
 						<label>Aucun</label>
 					</span>
@@ -33,7 +33,7 @@
 						<span>
 							<input type="radio" 
 								name="module<c:out value="${module.idModule }"/>"
-								value=<c:out value="${type.idType}"/>/>
+								value="<c:out value="${type.idType}"/>"/>
 							<label><c:out value="${type.nomType}"/></label>
 						</span>
 					</c:forEach>
