@@ -13,6 +13,7 @@ import fr.gemao.sql.administration.DroitDAO;
 import fr.gemao.sql.administration.ModuleDAO;
 import fr.gemao.sql.administration.ProfilDAO;
 import fr.gemao.sql.administration.TypeDroitDAO;
+import fr.gemao.sql.cours.DisciplineDAO;
 import fr.gemao.sql.exception.DAOConfigurationException;
 import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;

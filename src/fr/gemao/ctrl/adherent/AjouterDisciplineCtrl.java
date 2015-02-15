@@ -2,7 +2,7 @@ package fr.gemao.ctrl.adherent;
 
 import fr.gemao.entity.cours.Discipline;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.DisciplineDAO;
+import fr.gemao.sql.cours.DisciplineDAO;
 
 public class AjouterDisciplineCtrl {
 
