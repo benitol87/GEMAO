@@ -12,12 +12,10 @@
 <h1>Consultation d'un profil : <c:out value="${profil.nomProfil}" ></c:out></h1>
 <div class='offset'>
 	<c:forEach items="${requestScope.listeModules}" var="module">
-		<div><c:out value="${module.nomModule}" /></div>
-		<ul>
-			<c:forEach items="${requestScope.listeTypeDroit}" var="typeDroit">
-				<li><c:out value="${typeDroit.nomType}"></c:out> : </li>
-			</c:forEach>
-		</ul>
+		<div>
+			<span>Module <c:out value="${module.nomModule}" /></span> : 
+			<c:out value="${profil.recupererTypeDroit(module.nomModule)}"/>
+		</div>
 	</c:forEach>
 </div>
 <p class='align-center no-border'>

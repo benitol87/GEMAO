@@ -162,6 +162,22 @@ public class Profil implements Serializable{
 				+ ", listDroits=" + listDroits + "]";
 	}
 	
-	
+	/**
+	 * Méthode permettant de savoir quel droit est associé à un module
+	 * dans ce profil
+	 * @param nomModule : nom du module dont on veut récupérer le droit
+	 * @return le nom du type de droit associé au module demandé
+	 */
+	public String recupererTypeDroit(String nomModule){
+		String res = "Aucun";
+		
+		for(Droit d : listDroits){
+			if(d.getModule().getNomModule().equals(nomModule)){
+				res = d.getType().getNomType();
+			}
+		}
+		
+		return res;
+	}
 	
 }
