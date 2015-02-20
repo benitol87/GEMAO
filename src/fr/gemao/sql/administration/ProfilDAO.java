@@ -11,8 +11,10 @@ import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.administration.Profil;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
+import fr.gemao.sql.cours.DisciplineDAO;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
+import fr.gemao.sql.util.DateUtil;
 import fr.gemao.sql.util.NumberUtil;
 
 public class ProfilDAO extends IDAO<Profil> {
@@ -68,14 +70,59 @@ public class ProfilDAO extends IDAO<Profil> {
 
 	@Override
 	public Profil update(Profil obj) {
-		// TODO Auto-generated method stub
-		return null;
+		if (obj == null) {
+			throw new NullPointerException("Le profil ne doit pas être null");
+		}
+
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "UPDATE profil SET nomProfil = ? "
+				+ "WHERE idProfil = ?;";
+
+
+		try {
+
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, obj.getNomProfil(), obj.getNomProfil());
+			requete.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return obj;
 	}
 
 	@Override
 	public Profil get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Profil profil = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM profil p "
+				+ "WHERE idProfil=?;";
+		try {
+
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, id);
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				profil = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return profil;
 	}
 
 	@Override

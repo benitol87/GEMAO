@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.gemao.ctrl.administration.ProfilsCtrl;
 import fr.gemao.entity.administration.Module;
 import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.administration.TypeDroit;
@@ -38,7 +39,8 @@ public class ConsulterProfilServlet extends HttpServlet {
 		
 		// Récupération des données du profil dont l'identifiant est passé en paramètre
 		int id = Integer.parseInt(Form.getValeurChamp(request, PARAM_IDENTIFIANT));
-		Profil p = Profil.getProfil(id);
+		
+		Profil p = new ProfilsCtrl().getProfil(id);
 				
 		// Passage des données à la page jsp
 		request.setAttribute(ATTR_PROFIL, p);

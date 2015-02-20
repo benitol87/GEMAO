@@ -17,16 +17,33 @@
 		
 		<div>
 			<label for="nom" class='required'>Nom </label>
-			<input type="text" name="nom" required autocomplete="off" value="<c:out value="${profil.nomProfil}"/>"/>
+			<input type="text" name="nom" required autocomplete="off" value="<c:out  value="${profil.nomProfil }"/>"/>
 		</div>
 		
 		<ul>
-			<c:forEach items="${requestScope.listeModules}" var="module">
+			<c:forEach items="${listeModules}" var="module">
+			
+				<c:set var="typeDroit" value="${profil.recupererTypeDroit(module.nomModule)}" scope="request" />
+				
 				<li>
-					<input type="checkbox" name="module<c:out value="${module.idModule}"/>" 
-						<c:if test="${!empty requestScope.profil.listeModules[module.nomModule] }"> checked </c:if>
-					/>
-					<label for="module<c:out value="${module.idModule}"/>"><c:out value="${module.nomModule}"/></label>
+					<div>Module <c:out value="${module.nomModule }"/></div>
+					<span>
+						<input type="radio" value=""
+							name="module<c:out value="${module.idModule }"/>"
+							<c:if test='${typeDroit == "Aucun" }'>checked</c:if>	
+						/>
+						<label>Aucun</label>
+					</span>
+					<c:forEach items="${listeTypeDroit}" var="type">
+						<span>
+							<input type="radio" 
+								name="module<c:out value="${module.idModule }"/>"
+								value="<c:out value="${type.idType}"/>"
+								<c:if test='${typeDroit == type.nomType }'>checked</c:if>
+							/>
+							<label><c:out value="${type.nomType}"/></label>
+						</span>
+					</c:forEach>
 				</li>
 			</c:forEach>
 		</ul>

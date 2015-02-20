@@ -56,6 +56,24 @@ public class ProfilsCtrl {
 		return profil;
 	}
 	
+	public void updateProfil(Profil profil){
+		ProfilDAO profildao = DAOFactory.getInstance().getProfilDAO();
+		DroitDAO droitdao = DAOFactory.getInstance().getDroitDAO();
+		
+		// Mise à jour du nom
+		profildao.update(profil);
+		//Mise à jour des droits
+		//Suppression des droits existants
+		droitdao.deleteDroitsProfil(profil.getIdProfil());
+		// Création des nouveaux droits
+		droitdao.addAllDroitParProfil(profil.getIdProfil(), profil.getListDroits());
+	}
+
+	public Profil getProfil(int id) {
+		ProfilDAO profilDAO = this.daoFactory.getProfilDAO();
+		return profilDAO.get(id);
+	}
+	
 	/**
 	 * Méthode retournant tous les profils existants dans la base
 	 * @return
@@ -123,4 +141,5 @@ public class ProfilsCtrl {
 		Profil profil = Profil.getProfil(nomProfil);
 		return this.getListeModuleDroit(profil);
 	}
+
 }

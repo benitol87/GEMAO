@@ -52,6 +52,37 @@ public class DroitDAO extends IDAO<Droit> {
 		return null;
 	}
 	
+	/**
+	 * Méthode effaçant de la base de données tous les droits associés
+	 * au profil dont on passe l'identifiant en paramètre
+	 */
+	public void deleteDroitsProfil(Integer idProfil){
+		if (idProfil == null) {
+			throw new NullPointerException(
+					"L'idProfil ne doit pas etre null");
+		}
+		
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "DELETE FROM droit "
+				+ "WHERE idProfil = ?;";
+		
+		
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, idProfil);
+			int status = requete.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		
+	}
+	
 	public Droit addDroitParProfil(Integer idProfil, Droit droit){
 		if (droit == null) {
 			throw new NullPointerException(
@@ -63,7 +94,6 @@ public class DroitDAO extends IDAO<Droit> {
 					"L'idProfil ne doit pas etre null");
 		}
 
-		Integer id = 0;
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
