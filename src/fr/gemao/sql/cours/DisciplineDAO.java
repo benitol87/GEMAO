@@ -12,6 +12,7 @@ import java.util.Set;
 
 import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.entity.cours.Discipline;
+import fr.gemao.entity.cours.Salle;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
 import fr.gemao.sql.exception.DAOException;
@@ -34,11 +35,21 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		Integer id = null;
-		String sql = "INSERT INTO discipline(nom) " + "VALUES (?);";
+		String sql = "INSERT INTO discipline(idMatiere, idNiveau) " + "VALUES (?, ?);";
+		
+		Integer idNiveau = null;
+		if(obj.getNiveau() != null){
+			idNiveau = obj.getNiveau().getIdNiveau();
+		}
+		
+		Integer idMatiere = null;
+		if(obj.getMatiere() != null){
+			idMatiere = obj.getMatiere().getIdMatiere();
+		}
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getNom());
+					sql, true, idMatiere, idNiveau);
 
 			int status = requete.executeUpdate();
 
@@ -153,6 +164,11 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		return discipline;
 	}
 
+	/**
+	 * Retourne toutes les discipline association à l'adhérent.
+	 * @param idAdherent
+	 * @return
+	 */
 	public List<Discipline> getDisciplineParAdherent(long idAdherent) {
 		List<Discipline> list = new ArrayList<>();
 		Discipline discipline = null;
@@ -204,6 +220,11 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		}
 	}
 
+	/**
+	 * Supprime l'association Discipline / adhérent
+	 * @param idDiscipline
+	 * @param adherent
+	 */
 	public void deleteDisciplineParAdherent(int idDiscipline, long adherent) {
 		Statement stat = null;
 		Connection connect = null;
@@ -220,14 +241,23 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		}
 	}
 	
+	/**
+	 * Supprime toutes les association discipline / Adherent
+	 * @param listDisciplines
+	 * @param idAdherent
+	 */
 	public void deleteAllDisciplinesParAdherent(List<Discipline> listDisciplines, long idAdherent){
 		for (Discipline d : listDisciplines) {
 			deleteDisciplineParAdherent(d.getIdDiscipline(), idAdherent);
 		}
 	}
 
-	public void updateAllDisciplineParAdherent(List<Discipline> listDiscipline,
-			long idAdherent) {
+	/**
+	 * Mets à jour les association Adhérent / discipline
+	 * @param listDiscipline
+	 * @param idAdherent
+	 */
+	public void updateAllDisciplineParAdherent(List<Discipline> listDiscipline, long idAdherent) {
 		List<Discipline> dejaInscrit = this
 				.getDisciplineParAdherent(idAdherent);
 		// Permet de supprimer les doublons.
@@ -255,16 +285,33 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		}
 	}
 	
+	/**
+	 * Return la discipline si elle existe dans la base, sinon null
+	 * La comparaison s'effectue sur l'idMatiere et l'idNiveau
+	 * @param discipline
+	 * 		la discipline à tester
+	 * @return la discipline si elle existe.
+	 */
 	public Discipline exist(Discipline discipline) {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * from discipline where nom = ?";
+		String sql = "SELECT * from discipline where idNiveau = ? and idMatiere = ?";
 		Discipline verif = null;
+		
+		Integer idNiveau = null;
+		if(discipline.getNiveau() != null){
+			idNiveau = discipline.getNiveau().getIdNiveau();
+		}
+		
+		Integer idMatiere = null;
+		if(discipline.getMatiere() != null){
+			idMatiere = discipline.getMatiere().getIdMatiere();
+		}
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false,  discipline.getNom());
+					sql, false, idNiveau, idMatiere);
 			result = requete.executeQuery();
 
 			if (result.first()) {
@@ -281,8 +328,12 @@ public class DisciplineDAO extends IDAO<Discipline> {
 
 	@Override
 	protected Discipline map(ResultSet result) throws SQLException {
-		return new Discipline(NumberUtil.getResultInteger(result,
-				"idDiscipline"), result.getString("nom"));
+		NiveauDAO niveauDAO = this.factory.getNiveauDAO();
+		MatiereDAO matiereDAO = this.factory.getMatiereDAO();
+		return new Discipline(NumberUtil.getResultInteger(result,"idDiscipline"),
+				matiereDAO.get(NumberUtil.getResultLong(result, "idMatiere")),
+				niveauDAO.get(NumberUtil.getResultLong(result, "idNiveau")),
+				new ArrayList<Salle>()); //TODO recupéré la liste des salles.
 	}
 
 }
