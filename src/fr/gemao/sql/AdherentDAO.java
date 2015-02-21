@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.entity.cours.Classe;
+import fr.gemao.entity.cours.Cours;
 import fr.gemao.sql.cours.DisciplineDAO;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
@@ -202,7 +204,8 @@ public class AdherentDAO extends IDAO<Adherent> {
 				NumberUtil.getResultFloat(result, "qf"),
 				NumberUtil.getResultFloat(result, "cotisation"),
 				disciplineDAO.getDisciplineParAdherent(result
-						.getLong("idPersonne")));
+						.getLong("idPersonne")), new ArrayList<Classe>(),
+						new ArrayList<Cours>());
 		return adherent;
 	}
 

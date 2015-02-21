@@ -14,6 +14,9 @@ import fr.gemao.sql.administration.ModuleDAO;
 import fr.gemao.sql.administration.ProfilDAO;
 import fr.gemao.sql.administration.TypeDroitDAO;
 import fr.gemao.sql.cours.DisciplineDAO;
+import fr.gemao.sql.cours.MatiereDAO;
+import fr.gemao.sql.cours.NiveauDAO;
+import fr.gemao.sql.cours.SalleDAO;
 import fr.gemao.sql.exception.DAOConfigurationException;
 import fr.gemao.sql.materiel.CategorieDAO;
 import fr.gemao.sql.materiel.DesignationDAO;
@@ -231,5 +234,17 @@ public class DAOFactory {
 	
 	public ProfilDAO getProfilDAO(){
 		return new ProfilDAO(this);
+	}
+
+	public NiveauDAO getNiveauDAO() {
+		return new NiveauDAO(this);
+	}
+	
+	public MatiereDAO getMatiereDAO(){
+		return new MatiereDAO(this);
+	}
+	
+	public SalleDAO getSalleDAO(){
+		return new SalleDAO(this);
 	}
 }
