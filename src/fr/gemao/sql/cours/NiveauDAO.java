@@ -120,7 +120,6 @@ public class NiveauDAO extends IDAO<Niveau> {
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
 		}
-//
 		return liste;
 	}
 
