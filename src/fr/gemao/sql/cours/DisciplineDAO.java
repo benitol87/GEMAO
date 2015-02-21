@@ -10,9 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.entity.cours.Discipline;
-import fr.gemao.entity.cours.Salle;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
 import fr.gemao.sql.exception.DAOException;
@@ -35,15 +33,16 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		Integer id = null;
-		String sql = "INSERT INTO discipline(idMatiere, idNiveau) " + "VALUES (?, ?);";
-		
+		String sql = "INSERT INTO discipline(idMatiere, idNiveau) "
+				+ "VALUES (?, ?);";
+
 		Integer idNiveau = null;
-		if(obj.getNiveau() != null){
+		if (obj.getNiveau() != null) {
 			idNiveau = obj.getNiveau().getIdNiveau();
 		}
-		
+
 		Integer idMatiere = null;
-		if(obj.getMatiere() != null){
+		if (obj.getMatiere() != null) {
 			idMatiere = obj.getMatiere().getIdMatiere();
 		}
 		try {
@@ -57,7 +56,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 				throw new DAOException(
 						"Échec de la création de la discipline, aucune ligne ajoutée dans la table.");
 			}
-			
+
 			result = requete.getGeneratedKeys();
 			if (result != null && result.first()) {
 				id = result.getInt(1);
@@ -138,7 +137,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 
 		return liste;
 	}
-	
+
 	@Deprecated
 	public Discipline get(String nom) {
 		Discipline discipline = null;
@@ -166,6 +165,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 
 	/**
 	 * Retourne toutes les discipline association à l'adhérent.
+	 * 
 	 * @param idAdherent
 	 * @return
 	 */
@@ -222,6 +222,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 
 	/**
 	 * Supprime l'association Discipline / adhérent
+	 * 
 	 * @param idDiscipline
 	 * @param adherent
 	 */
@@ -232,21 +233,23 @@ public class DisciplineDAO extends IDAO<Discipline> {
 			connect = factory.getConnection();
 			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
-			stat.execute("DELETE FROM suit WHERE idAdherent = "
-					+ adherent + " and idDiscipline = " + idDiscipline + ";");
+			stat.execute("DELETE FROM suit WHERE idAdherent = " + adherent
+					+ " and idDiscipline = " + idDiscipline + ";");
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(stat, connect);
 		}
 	}
-	
+
 	/**
 	 * Supprime toutes les association discipline / Adherent
+	 * 
 	 * @param listDisciplines
 	 * @param idAdherent
 	 */
-	public void deleteAllDisciplinesParAdherent(List<Discipline> listDisciplines, long idAdherent){
+	public void deleteAllDisciplinesParAdherent(
+			List<Discipline> listDisciplines, long idAdherent) {
 		for (Discipline d : listDisciplines) {
 			deleteDisciplineParAdherent(d.getIdDiscipline(), idAdherent);
 		}
@@ -254,10 +257,12 @@ public class DisciplineDAO extends IDAO<Discipline> {
 
 	/**
 	 * Mets à jour les association Adhérent / discipline
+	 * 
 	 * @param listDiscipline
 	 * @param idAdherent
 	 */
-	public void updateAllDisciplineParAdherent(List<Discipline> listDiscipline, long idAdherent) {
+	public void updateAllDisciplineParAdherent(List<Discipline> listDiscipline,
+			long idAdherent) {
 		List<Discipline> dejaInscrit = this
 				.getDisciplineParAdherent(idAdherent);
 		// Permet de supprimer les doublons.
@@ -284,12 +289,13 @@ public class DisciplineDAO extends IDAO<Discipline> {
 			addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
 		}
 	}
-	
+
 	/**
-	 * Return la discipline si elle existe dans la base, sinon null
-	 * La comparaison s'effectue sur l'idMatiere et l'idNiveau
+	 * Return la discipline si elle existe dans la base, sinon null La
+	 * comparaison s'effectue sur l'idMatiere et l'idNiveau
+	 * 
 	 * @param discipline
-	 * 		la discipline à tester
+	 *            la discipline à tester
 	 * @return la discipline si elle existe.
 	 */
 	public Discipline exist(Discipline discipline) {
@@ -298,14 +304,14 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		ResultSet result = null;
 		String sql = "SELECT * from discipline where idNiveau = ? and idMatiere = ?";
 		Discipline verif = null;
-		
+
 		Integer idNiveau = null;
-		if(discipline.getNiveau() != null){
+		if (discipline.getNiveau() != null) {
 			idNiveau = discipline.getNiveau().getIdNiveau();
 		}
-		
+
 		Integer idMatiere = null;
-		if(discipline.getMatiere() != null){
+		if (discipline.getMatiere() != null) {
 			idMatiere = discipline.getMatiere().getIdMatiere();
 		}
 		try {
@@ -330,10 +336,11 @@ public class DisciplineDAO extends IDAO<Discipline> {
 	protected Discipline map(ResultSet result) throws SQLException {
 		NiveauDAO niveauDAO = this.factory.getNiveauDAO();
 		MatiereDAO matiereDAO = this.factory.getMatiereDAO();
-		return new Discipline(NumberUtil.getResultInteger(result,"idDiscipline"),
-				matiereDAO.get(NumberUtil.getResultLong(result, "idMatiere")),
-				niveauDAO.get(NumberUtil.getResultLong(result, "idNiveau")),
-				new ArrayList<Salle>()); //TODO recupéré la liste des salles.
+		SalleDAO salleDAO = this.factory.getSalleDAO();
+		Integer idDiscipline = NumberUtil.getResultInteger(result,"idDiscipline");
+		return new Discipline(idDiscipline, matiereDAO.get(NumberUtil.getResultLong(
+				result, "idMatiere")), niveauDAO.get(NumberUtil.getResultLong(
+				result, "idNiveau")), salleDAO.getAllSalleParDiscipline(idDiscipline));
 	}
 
 }
