@@ -21,7 +21,7 @@ public class ChangerMotDePasseServlet extends HttpServlet {
        
     public static String ATTR_FORM = "form", ATTR_RESULTAT = "resultat",
     		ATTR_LIEN_BOUTON="lienBouton", ATTR_NOM_BOUTON = "nomBouton",
-    		VALEUR_LIEN_BOUTON=Pattern.ACCUEIL;
+    		VALEUR_LIEN_BOUTON=Pattern.ACCUEIL, ATTR_TITRE_H1 = "titreH1";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -59,6 +59,7 @@ public class ChangerMotDePasseServlet extends HttpServlet {
 			request.setAttribute(ATTR_LIEN_BOUTON, VALEUR_LIEN_BOUTON);
 			request.setAttribute(ATTR_NOM_BOUTON, "Retour");
 			request.setAttribute(ATTR_RESULTAT, "Le changement de mot de passe a bien été effectué.");
+			request.setAttribute(ATTR_TITRE_H1, "Résultat du changement de mot de passe");
 			request.getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);
 		} else {
 			// Retour au formulaire

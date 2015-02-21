@@ -27,7 +27,8 @@ public class Pattern {
 			ADMINISTRATION_AJOUT_PROFIL = "/administration/AjouterProfil",
 			ADMINISTRATION_CONSULTER_PROFIL = "/administration/ConsulterProfil",
 			ADMINISTRATION_LISTER_PROFIL = "/administration/ListerProfils",
-			ADMINISTRATION_MODIFIER_PROFIL = "/administration/ModifProfil",
+			ADMINISTRATION_MODIFIER_PROFIL = "/administration/ModifierProfil",
+			ADMINISTRATION_SUPPRIMER_PROFIL = "/administration/SupprimerProfil",
 			
 		// Module location
 			LOCATION_LOCATION = "/location/locationInstrument",

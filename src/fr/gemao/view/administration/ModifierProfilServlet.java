@@ -32,11 +32,12 @@ public class ModifierProfilServlet extends HttpServlet {
 	public static final String ATTR_LISTE_MODULE = "listeModules";
 	public static final String ATTR_LISTE_TYPE_DROIT = "listeTypeDroit";
 	public static final String ATTR_SESSION_ID_PROFIL = "idProfil";
+	public static final String ATTR_ERREUR = "erreur";
 	public static final String CHAMP_DROIT_MODULE = "module";
 	public static final String CHAMP_NOM_PROFIL = "nom";
 	
 	public static String ATTR_RESULTAT = "resultat",
-    		ATTR_LIEN_BOUTON="lienBouton", ATTR_NOM_BOUTON = "nomBouton";
+    		ATTR_LIEN_BOUTON="lienBouton", ATTR_NOM_BOUTON = "nomBouton", ATTR_TITRE_H1 = "Résultat de la suppression";
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -66,7 +67,7 @@ public class ModifierProfilServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Récupéération de la session
+		// Récupération de la session
 		HttpSession session = request.getSession();
 		
 		Profil profil = new Profil();
@@ -92,12 +93,21 @@ public class ModifierProfilServlet extends HttpServlet {
 		
 		//Faire la mise à jour
 		ProfilsCtrl profilCtrl = new ProfilsCtrl();
-		profilCtrl.updateProfil(profil);
-		
-		request.setAttribute(ATTR_LIEN_BOUTON, Pattern.ADMINISTRATION_CONSULTER_PROFIL+"?id="+profil.getIdProfil());
-		request.setAttribute(ATTR_NOM_BOUTON, "Retour");
-		request.setAttribute(ATTR_RESULTAT, "La modification a bien été effectuée.");
-		request.getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);
+		if(profilCtrl.updateProfil(profil)){
+			// Modification OK
+			request.setAttribute(ATTR_LIEN_BOUTON, Pattern.ADMINISTRATION_CONSULTER_PROFIL+"?id="+profil.getIdProfil());
+			request.setAttribute(ATTR_NOM_BOUTON, "Retour");
+			request.setAttribute(ATTR_TITRE_H1, "Résultat de la modification");
+			request.setAttribute(ATTR_RESULTAT, "La modification a bien été effectuée.");
+			request.getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);
+		} else {
+			// Erreur modification
+			request.setAttribute(ATTR_ERREUR, "Ce nom de profil est déjà utilisé.");
+			request.setAttribute(ATTR_PROFIL, profil);
+			request.setAttribute(ATTR_LISTE_MODULE, Module.getAllModules());
+			request.setAttribute(ATTR_LISTE_TYPE_DROIT, TypeDroit.getAllTypeDroit());
+			request.getRequestDispatcher(JSPFile.ADMINISTRATION_MODIFIER_PROFIL).forward(request, response);
+		}
 	}
 
 }

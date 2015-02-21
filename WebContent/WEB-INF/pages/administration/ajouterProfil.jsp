@@ -19,7 +19,11 @@
 			<label for="nom" class='required'>Nom </label>
 			<input type="text" name="nom" required autocomplete="off"/>
 		</div>
+		<div class='text-danger align-center'><c:out value="${erreur }"/></div>
+	</fieldset>
 		
+	<fieldset>
+		<legend>Droits</legend>
 		<ul>
 			<c:forEach items="${listeModules}" var="module">
 				<li>

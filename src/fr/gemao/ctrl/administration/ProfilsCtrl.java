@@ -12,6 +12,7 @@ import fr.gemao.sql.administration.DroitDAO;
 import fr.gemao.sql.administration.ModuleDAO;
 import fr.gemao.sql.administration.ProfilDAO;
 import fr.gemao.sql.administration.TypeDroitDAO;
+import fr.gemao.sql.exception.DAOException;
 
 public class ProfilsCtrl {
 
@@ -42,31 +43,60 @@ public class ProfilsCtrl {
 	 * @return un profil
 	 */
 	public Profil creerProfil(String nom, List<Droit> listDroit){
-		Profil profil = new Profil(null, nom, listDroit);
-		ProfilDAO profilDAO = this.daoFactory.getProfilDAO();
-		
-		// Création du profil
-		profil = profilDAO.create(profil);
-		Profil.put(profil);
-		
-		// Création des droits associés au profil
-		DroitDAO droitDAO = this.daoFactory.getDroitDAO();
-		droitDAO.addAllDroitParProfil(profil.getIdProfil(), listDroit);
-		
-		return profil;
+		try{
+			Profil profil = new Profil(null, nom, listDroit);
+			ProfilDAO profilDAO = this.daoFactory.getProfilDAO();
+			
+			// Création du profil
+			profil = profilDAO.create(profil);
+			Profil.put(profil);
+			
+			// Création des droits associés au profil
+			DroitDAO droitDAO = this.daoFactory.getDroitDAO();
+			droitDAO.addAllDroitParProfil(profil.getIdProfil(), listDroit);
+			
+			return profil;
+		}catch(DAOException daoException){
+			return null;
+		}
 	}
 	
-	public void updateProfil(Profil profil){
-		ProfilDAO profildao = DAOFactory.getInstance().getProfilDAO();
-		DroitDAO droitdao = DAOFactory.getInstance().getDroitDAO();
-		
-		// Mise à jour du nom
-		profildao.update(profil);
-		//Mise à jour des droits
-		//Suppression des droits existants
-		droitdao.deleteDroitsProfil(profil.getIdProfil());
-		// Création des nouveaux droits
-		droitdao.addAllDroitParProfil(profil.getIdProfil(), profil.getListDroits());
+	public boolean deleteProfil(int idProfil){
+		try{
+			Profil profil = new Profil();
+			ProfilDAO profildao = DAOFactory.getInstance().getProfilDAO();
+			DroitDAO droitdao = DAOFactory.getInstance().getDroitDAO();
+					
+			// Suppression des droits liés au profil
+			droitdao.deleteDroitsProfil(idProfil);
+			
+			// Suppression du profil
+			profil.setIdProfil(idProfil);
+			profildao.delete(profil);
+			
+			return true;
+		}catch(DAOException daoException){
+			return false;
+		}
+	}
+	
+	public boolean updateProfil(Profil profil){
+		try{
+			ProfilDAO profildao = DAOFactory.getInstance().getProfilDAO();
+			DroitDAO droitdao = DAOFactory.getInstance().getDroitDAO();
+			
+			// Mise à jour du nom
+			profildao.update(profil);
+			//Mise à jour des droits
+			//Suppression des droits existants
+			droitdao.deleteDroitsProfil(profil.getIdProfil());
+			// Création des nouveaux droits
+			droitdao.addAllDroitParProfil(profil.getIdProfil(), profil.getListDroits());
+			
+			return true;
+		}catch(DAOException daoException){
+			return false;
+		}
 	}
 
 	public Profil getProfil(int id) {

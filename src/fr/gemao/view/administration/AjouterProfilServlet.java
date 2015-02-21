@@ -33,6 +33,7 @@ public class AjouterProfilServlet extends HttpServlet {
 	private static final String ATTR_RESULTAT = "resultat";
 	private static final String ATTR_NOM_BOUTON_PAGE_RESULTAT = "nomBouton";
 	private static final String ATTR_LIEN_BOUTON_PAGE_RESULTAT = "lienBouton";
+	private static final String ATTR_TITRE_H1 = "titreH1";
 	private static final String CHAMP_NOM = "nom";
 	private static final String CHAMP_DROIT_MODULE = "module";
 
@@ -87,6 +88,8 @@ public class AjouterProfilServlet extends HttpServlet {
 		
 		if(profil == null){
 			// Retour au formulaire
+			request.setAttribute(ATTR_LISTE_MODULE, Module.getAllModules());
+			request.setAttribute(ATTR_LISTE_TYPE_DROIT, TypeDroit.getAllTypeDroit());
 			request.setAttribute(ATTR_ERREUR, "Ce nom du profil existe déjà.");
 			request.getRequestDispatcher(JSPFile.ADMINISTRATION_AJOUT_PROFIL).forward(request, response);
 			return;
@@ -96,6 +99,7 @@ public class AjouterProfilServlet extends HttpServlet {
 		request.setAttribute(ATTR_RESULTAT, "Le profil \""+profil.getNomProfil()+"\" a bien été ajouté.");
 		request.setAttribute(ATTR_LIEN_BOUTON_PAGE_RESULTAT, Pattern.ADMINISTRATION_LISTER_PROFIL);
 		request.setAttribute(ATTR_NOM_BOUTON_PAGE_RESULTAT, "Retour à la liste");
+		request.setAttribute(ATTR_TITRE_H1, "Résultat de la création d'un profil");
 		request.getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);
 	}
 

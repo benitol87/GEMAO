@@ -20,6 +20,11 @@
 			<input type="text" name="nom" required autocomplete="off" value="<c:out  value="${profil.nomProfil }"/>"/>
 		</div>
 		
+		<div class="text-danger align-center"><c:out  value="${erreur }"/></div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Droits</legend>
 		<ul>
 			<c:forEach items="${listeModules}" var="module">
 			

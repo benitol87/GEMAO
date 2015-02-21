@@ -10,7 +10,7 @@
 
 <h1><c:out value="${requestScope.titreH1 }"/></h1>
 
-<p class='offset text-success'><c:out value="${requestScope.resultat }"></c:out> </p>
+<p class='offset text-danger'><c:out value="${requestScope.resultat }"></c:out> </p>
 
 <div class="align-center">
 	<a href='<c:url value="${requestScope.lienBouton }"/>'><input type='button' value='<c:out value="${requestScope.nomBouton }"/>'/></a>

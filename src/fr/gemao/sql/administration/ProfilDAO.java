@@ -64,8 +64,29 @@ public class ProfilDAO extends IDAO<Profil> {
 
 	@Override
 	public void delete(Profil obj) {
-		// TODO Auto-generated method stub
+		if (obj == null) {
+			throw new NullPointerException("Le profil ne doit pas être null");
+		}
+		
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "DELETE FROM profil "
+				+ "WHERE idProfil = ?;";
 
+
+		try {
+
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, obj.getIdProfil());
+			requete.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
 	}
 
 	@Override
@@ -85,7 +106,7 @@ public class ProfilDAO extends IDAO<Profil> {
 
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getNomProfil(), obj.getNomProfil());
+					sql, false, obj.getNomProfil(), obj.getIdProfil());
 			requete.executeUpdate();
 
 		} catch (SQLException e) {

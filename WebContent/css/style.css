@@ -20,6 +20,7 @@
 	border-color: #2e6da4;
 	padding: 5px 10px;
 	font-weight: bold;
+	border-radius: 10px;
 }
 
 .euro::after{
@@ -54,7 +55,6 @@
 }
 
 #disconnect{
-	border-radius: 10px;
 	/*background-color: #34495e;*/
 	padding: 5px;
 	margin-top: -5px;

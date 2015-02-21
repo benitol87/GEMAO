@@ -20,9 +20,10 @@
 			<td>
 				<a class="icon icon-search" href="<c:url value="<%= Pattern.ADMINISTRATION_CONSULTER_PROFIL %>"/>?id=<c:out value="${profil.idProfil}"/>" title='Afficher les détails'></a>
 				<a class="icon icon-pen" href="<c:url value="<%= Pattern.ADMINISTRATION_MODIFIER_PROFIL %>"/>?id=<c:out value="${profil.idProfil}" />" title='Modifier les informations'></a>
-				<a class="icon icon-trash" href="<c:url value="/"/>?id=<c:out value="${profil.idProfil}" />" title='Supprimer le profil'></a>
+				<a class="icon icon-trash" href="<c:url value="<%= Pattern.ADMINISTRATION_SUPPRIMER_PROFIL %>"/>?id=<c:out value="${profil.idProfil}" />" title='Supprimer le profil'></a>
 			</td>
 		</tr>
 	</c:forEach>
 </table>
+<div class='align-center'><a href="<c:url value='<%= Pattern.ADMINISTRATION_AJOUT_PROFIL %>'/>" class="btn" title="Créer un nouveau profil">Nouveau</a></div>
 <c:import url="/inc/footer.inc.jsp" />
