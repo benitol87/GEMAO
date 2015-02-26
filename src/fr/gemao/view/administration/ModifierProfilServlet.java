@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.administration.ProfilsCtrl;
+import fr.gemao.entity.Personnel;
 import fr.gemao.entity.administration.Droit;
 import fr.gemao.entity.administration.Module;
 import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.administration.TypeDroit;
 import fr.gemao.form.util.Form;
+import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -95,6 +97,12 @@ public class ModifierProfilServlet extends HttpServlet {
 		ProfilsCtrl profilCtrl = new ProfilsCtrl();
 		if(profilCtrl.updateProfil(profil)){
 			// Modification OK
+			// Si le profil modifié est celui de la personne connectée
+			Personnel personneConnectee = (Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER);
+			if(personneConnectee.getProfil().getIdProfil().equals(profil.getIdProfil())){
+				personneConnectee.setProfil(profil);
+			}
+			
 			request.setAttribute(ATTR_LIEN_BOUTON, Pattern.ADMINISTRATION_CONSULTER_PROFIL+"?id="+profil.getIdProfil());
 			request.setAttribute(ATTR_NOM_BOUTON, "Retour");
 			request.setAttribute(ATTR_TITRE_H1, "Résultat de la modification");

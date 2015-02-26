@@ -135,10 +135,10 @@ public class ProfilsCtrl {
 		return this.aDroit(profil, module, type);
 	}
 	
-	public boolean aDroit(String nomProfil, String nomModule, String nomType){
+	/*public boolean aDroit(String nomProfil, String nomModule, String nomType){
 		Profil profil = Profil.getProfil(nomProfil);
 		return this.aDroit(profil, nomModule, nomType);
-	}
+	}*/
 	
 	/**
 	 * Donne la liste des modules du profil
@@ -167,9 +167,9 @@ public class ProfilsCtrl {
 		return modules;
 	}
 	
-	public List<String> getListeModuleDroit(String nomProfil){
+	/*public List<String> getListeModuleDroit(String nomProfil){
 		Profil profil = Profil.getProfil(nomProfil);
 		return this.getListeModuleDroit(profil);
-	}
+	}*/
 
 }

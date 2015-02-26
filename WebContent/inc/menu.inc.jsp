@@ -13,67 +13,96 @@
 				<h2>GEMAO</h2>
 				<ul>
 					<li><a href="<c:url value="<%= Pattern.ACCUEIL %>"/>">Accueil</a></li>
-					<li class="icon icon-arrow-left"><a href="#">Adhérent</a>
-						<div class="mp-level">
-							<h2>Adhérent</h2>
-							<a class="mp-back" href="#">Retour</a>
-							<ul>
-								<li><a href="<c:url value="<%= Pattern.ADHERENT_AJOUT %>"/>">Créer</a></li>
-								<li><a href="<c:url value="<%= Pattern.ADHERENT_LISTER %>"/>">Lister</a></li>
-								<li><a href="<c:url value="<%= Pattern.ADHERENT_SIMPLE_CALCUL_QF %>"/>">Calculer Quotient Familial</a></li>
-								<li><a href="<c:url value="<%= Pattern.ADHERENT_PARAMETRE %>"/>">Paramètres</a></li>
-							</ul>
-						</div>
-					</li>
+					<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Adhérent') != 'Aucun' }">
+						<li class="icon icon-arrow-left"><a href="#">Adhérent</a>
+							<div class="mp-level">
+								<h2>Adhérent</h2>
+								<a class="mp-back" href="#">Retour</a>
+								<ul>
+									<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Adhérent') == 'Lecture/écriture' }">
+									<li><a href="<c:url value="<%= Pattern.ADHERENT_AJOUT %>"/>">Créer</a></li>
+									</c:if>
+									<li><a href="<c:url value="<%= Pattern.ADHERENT_LISTER %>"/>">Lister</a></li>
+									<li><a href="<c:url value="<%= Pattern.ADHERENT_SIMPLE_CALCUL_QF %>"/>">Calculer Quotient Familial</a></li>
+									<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Adhérent') == 'Lecture/écriture' }">
+									<li><a href="<c:url value="<%= Pattern.ADHERENT_PARAMETRE %>"/>">Paramètres</a></li>
+									</c:if>
+								</ul>
+							</div>
+						</li>
+					</c:if>
+					<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Personnel') != 'Aucun' }">
 					<li class="icon icon-arrow-left"><a href="#">Personnel</a>
 						<div class="mp-level">
 							<h2>Personnel</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
+								<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Personnel') == 'Lecture/écriture' }">
 								<li><a href="<c:url value="<%= Pattern.PERSONNEL_AJOUT %>"/>">Créer</a></li>
+								</c:if>
 								<li><a href="<c:url value="<%= Pattern.PERSONNEL_LISTER %>"/>">Lister</a></li>
 							</ul>
 						</div></li>
+					</c:if>
+					<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Matériel') != 'Aucun' }">
 					<li class="icon icon-arrow-left"><a href="#">Matériel</a>
 						<div class="mp-level">
 							<h2>Matériel</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
+								<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Matériel') == 'Lecture/écriture' }">
 								<li><a href="<c:url value="<%= Pattern.MATERIEL_AJOUT %>"/>">Créer</a></li>
+								</c:if>
 								<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTER %>"/>">Lister</a></li>
 							</ul>
 						</div></li>
+					</c:if>
+					<%--
+					<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Location') != 'Aucun' }">
 					<li class="icon icon-arrow-left"><a href="#">Location</a>
 						<div class="mp-level">
 							<h2>Location</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
+								<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Location') == 'Lecture/écriture' }">
 								<li><a href="<c:url value="<%= Pattern.LOCATION_LOCATION %>"/>">Prêt</a></li>
+								</c:if>
 								<li><a href="<c:url value="<%= Pattern.LOCATION_RETOUR %>"/>">Retour</a></li>
 							</ul>
 						</div>
 					</li>
+					</c:if>
+					 --%>
+					<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Cours') != 'Aucun' }">
 					<li class="icon icon-arrow-left"><a href="#">Cours</a>
 						<div class="mp-level">
 							<h2>Cours</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
+								<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Cours') == 'Lecture/écriture' }">
 								<li><a href="<c:url value="<%= Pattern.COURS_AJOUTEDT %>"/>">Ajout</a></li>
+								</c:if>
 							</ul>
 						</div>
 					</li>
+					</c:if>
+					<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Administration') != 'Aucun' }">
 					<li class="icon icon-arrow-left"><a href="#">Administration</a>
 						<div class="mp-level">
 							<h2>Administration</h2>
 							<a class="mp-back" href="#">Retour</a>
 							<ul>
+								<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Administration') == 'Lecture/écriture' }">
 								<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_RESET_PASSWORD %>"/>">Réinit. mot de passe</a></li>
+								</c:if>
 								<li class="icon icon-arrow-left"><a href="#">Profils</a>
 									<div class="mp-level">
 										<h2>Profils</h2>
 										<a class="mp-back" href="#">Retour</a>
 										<ul>
+											<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Administration') == 'Lecture/écriture' }">
 											<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_AJOUT_PROFIL %>"/>">Créer</a></li>
+											</c:if>
 											<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_LISTER_PROFIL %>"/>">Lister</a></li>
 										</ul>
 									</div>
@@ -81,6 +110,7 @@
 							</ul>
 						</div>
 					</li>
+					</c:if>
 				</ul>
 			</div>
 		</nav>

@@ -12,6 +12,7 @@ import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.Responsabilite;
 import fr.gemao.entity.administration.Profil;
+import fr.gemao.sql.administration.ProfilDAO;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -214,8 +215,10 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		ResponsabiliteDAO responsabiliteDAO = factory.getResponsabiliteDAO();
 		DiplomeDAO diplomeDAO = factory.getDiplomeDAO();
 		ContratDAO contratDAO = factory.getContratDAO();
+		ProfilDAO profilDAO = factory.getProfilDAO();
 		
-		Integer idContrat = NumberUtil.getResultInteger(result, "idContrat");
+		Integer idContrat = NumberUtil.getResultInteger(result, "idContrat"),
+				idProfil = NumberUtil.getResultInteger(result, "idProfil");
 		
 		Personnel personnel = new Personnel(personneDAO.map(result),
 				responsabiliteDAO.getResponsabilitesParPersonne(result.getLong("idPersonne")),
@@ -224,7 +227,9 @@ public class PersonnelDAO extends IDAO<Personnel>{
 				result.getString("login"),
 				result.getString("pwd"),
 				NumberUtil.getResultInteger(result, "pointAnciennete"),
-				Profil.getProfil(NumberUtil.getResultInteger(result, "idProfil")));
+				idProfil==null?null:profilDAO.get(idProfil)
+				//Profil.getProfil(NumberUtil.getResultInteger(result, "idProfil"))
+		);
 		
 		return personnel;
 	}

@@ -11,6 +11,13 @@
 
 <h1>Modification d'un profil</h1>
 
+<c:choose>
+	<c:when test="${profil.nomProfil == 'Admin'  }">
+		<p class="offset text-danger">Ce profil n'est pas modifiable.</p>
+	</c:when>
+	<c:otherwise>
+	
+	
 <form method="post" action="<c:url value="<%= Pattern.ADMINISTRATION_MODIFIER_PROFIL %>" />">
 	<fieldset>
 		<legend>Informations</legend>
@@ -60,5 +67,12 @@
 		<input type="submit" value="Valider"/>
 	</fieldset>
 </form>
+	
+	
+	
+	
+	</c:otherwise>
+</c:choose>
+
 	
 <c:import url="/inc/footer.inc.jsp" />

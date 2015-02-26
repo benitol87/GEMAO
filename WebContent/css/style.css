@@ -202,33 +202,33 @@ th, td {
 	}
 }
 
-/* Couleurs de texte - Bootstrap */
+/* Couleurs de texte */
 .text-primary {
-  color: #337ab7;
+  color: #ffffff;
 }
 a.text-primary:hover {
-  color: #286090;
+  color: #c0c0c0;
 }
 .text-success {
-  color: #3c763d;
+  color: #56a958;
 }
 a.text-success:hover {
-  color: #2b542c;
+  color: #438345;
 }
 .text-info {
-  color: #31708f;
+  color: #ffff00;
 }
 a.text-info:hover {
-  color: #245269;
+  color: #ffff80;
 }
 .text-warning {
-  color: #8a6d3b;
+  color: #bd9c64;
 }
 a.text-warning:hover {
-  color: #66512c;
+  color: #937640;
 }
 .text-danger {
-  color: #c77270;
+  color: #d18b89;
 }
 a.text-danger:hover {
   color: #843534;

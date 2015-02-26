@@ -19,7 +19,9 @@
 	</c:forEach>
 </div>
 <p class='align-center no-border'>
-	<a href="<c:url value="<%= Pattern.ADMINISTRATION_LISTER_PROFIL %>" />"><input type="button" value="Retour" /></a>
-	<a href="<c:url value="<%= Pattern.ADMINISTRATION_MODIFIER_PROFIL %>" />?id=<c:out value="${requestScope.profil.idProfil}"/>"><input type="button" value="Modifier" /></a>
+	<a href="<c:url value="<%= Pattern.ADMINISTRATION_LISTER_PROFIL %>" />"><input type="button" value="Retour à la liste" /></a>
+	<c:if test="${profil.nomProfil != 'Admin' }">
+		<a href="<c:url value="<%= Pattern.ADMINISTRATION_MODIFIER_PROFIL %>" />?id=<c:out value="${requestScope.profil.idProfil}"/>"><input type="button" value="Modifier" /></a>
+	</c:if>
 </p>
 <c:import url="/inc/footer.inc.jsp" />

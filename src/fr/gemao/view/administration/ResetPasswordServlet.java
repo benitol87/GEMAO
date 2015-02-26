@@ -1,12 +1,14 @@
 package fr.gemao.view.administration;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.ChangerMotDePasseCtrl;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
@@ -37,7 +39,23 @@ public class ResetPasswordServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1er passage : on envoie juste la liste du personnel et on affiche la vue
 		RecupererPersonnelCtrl ctrl = new RecupererPersonnelCtrl();
-		request.setAttribute(ATTR_LISTE_PERSONNEL, ctrl.recupererTousPersonnels());
+		
+		
+		// Récupérer la liste des membres du personnel et enlever celui connecté
+		List<Personnel> listePersonnel = ctrl.recupererTousPersonnels();
+		HttpSession session = request.getSession();
+		Personnel personneConnectee = (Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER);
+		
+		for (Personnel personnel : listePersonnel ){
+			if(personnel.getLogin().equals(personneConnectee.getLogin())){
+				personneConnectee = personnel;
+				break;				
+			}
+		}
+		listePersonnel.remove(personneConnectee);
+		
+		
+		request.setAttribute(ATTR_LISTE_PERSONNEL, listePersonnel);
 		request.getRequestDispatcher(JSPFile.ADMINISTRATION_RESET_PASSWORD).forward(request, response);
 	}
 
@@ -48,12 +66,25 @@ public class ResetPasswordServlet extends HttpServlet {
 		RecupererPersonnelCtrl recupPersonneCtrl = new RecupererPersonnelCtrl();
 		ChangerMotDePasseCtrl changerMdpCtrl = new ChangerMotDePasseCtrl();
 		
+		// Récupérer la liste des membres du personnel et enlever celui connecté
+		List<Personnel> listePersonnel = recupPersonneCtrl.recupererTousPersonnels();
+		HttpSession session = request.getSession();
+		Personnel personneConnectee = (Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER);
+		for (Personnel personnel : listePersonnel ){
+			if(personnel.getLogin().equals(personneConnectee.getLogin())){
+				personneConnectee = personnel;
+				break;				
+			}
+		}
+		listePersonnel.remove(personneConnectee);
+		
+		// Récupérer l'identifiant de la personne choisie
 		long id = Long.parseLong(Form.getValeurChamp(request, CHAMP_ID_PERSONNEL));
 		Personnel personne = recupPersonneCtrl.recupererPersonnel(id);
 		
 		if(Form.getValeurChamp(request, CHAMP_CACHE)==null){
 			// Envoi déclenché par la liste déroulante
-			request.setAttribute(ATTR_LISTE_PERSONNEL, recupPersonneCtrl.recupererTousPersonnels());
+			request.setAttribute(ATTR_LISTE_PERSONNEL, listePersonnel);
 			request.setAttribute(CHAMP_ID_PERSONNEL, Form.getValeurChamp(request, CHAMP_ID_PERSONNEL));
 		} else {
 			// Clic sur le bouton 'Valider'
@@ -65,14 +96,14 @@ public class ResetPasswordServlet extends HttpServlet {
 			if(!changerMdpCtrl.controlerMotDePasse(login, password)){
 				//Mot de passe incorrect
 				request.setAttribute(ATTR_ERREUR, "Le mot de passe saisi est incorrect.");
-				request.setAttribute(ATTR_LISTE_PERSONNEL, recupPersonneCtrl.recupererTousPersonnels());
+				request.setAttribute(ATTR_LISTE_PERSONNEL, listePersonnel);
 				request.setAttribute(CHAMP_ID_PERSONNEL, Form.getValeurChamp(request, CHAMP_ID_PERSONNEL));
 			} else {
 				// Modification du mot de passe
 				personne.setPassword(Password.generatePassword());
 				if(!changerMdpCtrl.changerMotDePasse(personne)){
 					request.setAttribute(ATTR_ERREUR, "Un problème est survenu lors du changement de mot de passe.");
-					request.setAttribute(ATTR_LISTE_PERSONNEL, recupPersonneCtrl.recupererTousPersonnels());
+					request.setAttribute(ATTR_LISTE_PERSONNEL, listePersonnel);
 					request.setAttribute(CHAMP_ID_PERSONNEL, Form.getValeurChamp(request, CHAMP_ID_PERSONNEL));
 				}
 			}
