@@ -94,6 +94,30 @@ public class NiveauDAO extends IDAO<Niveau> {
 		}
 		return niveau;
 	}
+	
+	public Niveau get(String nom) {
+		Niveau niveau = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM niveau WHERE nomNiveau = ?;";
+		try {
+
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, nom.trim());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				niveau = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		return niveau;
+	}
 
 	@Override
 	public List<Niveau> getAll() {

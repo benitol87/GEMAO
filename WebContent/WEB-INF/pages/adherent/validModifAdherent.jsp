@@ -70,7 +70,7 @@
 	<fieldset>
 		<legend>Disciplines</legend>
 			<c:forEach var="discipline" items="${sessionScope.modif_adh_adherent.getDisciplines()}">
-			<div class='align-center'>${ discipline.getNom() }</div>
+			<div class='align-center'>${ discipline.getMatiere().getNomMatiere()} - ${discipline.getNiveau().getNomNiveau() }</div>
 			</c:forEach>		
 	</fieldset>
 	<fieldset>

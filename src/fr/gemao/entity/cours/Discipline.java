@@ -66,4 +66,16 @@ public class Discipline implements Serializable {
 	public boolean removeSalle(Salle salle){
 		return salles.remove(salle);
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Discipline [idDiscipline=" + idDiscipline + ", matiere="
+				+ matiere.getNomMatiere() + ", niveau=" + niveau.getNomNiveau() + ", salles=" + salles + "]";
+	}
+	
+	
 }
+

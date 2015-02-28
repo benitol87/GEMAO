@@ -94,6 +94,29 @@ public class MatiereDAO extends IDAO<Matiere> {
 		}
 		return matiere;
 	}
+	
+	public Matiere get(String nom) {
+		Matiere matiere = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM matiere WHERE nomMatiere = ?;";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, nom);
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				matiere = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		return matiere;
+	}
 
 	@Override
 	public List<Matiere> getAll() {

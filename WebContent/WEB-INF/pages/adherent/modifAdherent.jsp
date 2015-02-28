@@ -95,7 +95,7 @@
 				<div>
 					<label>Cours : </label> <input
 						name='<c:out value="disciplinesAnciennes${ i }"></c:out>'
-						value="${disciplines.getNom()}" readonly> <input
+						value="${ disciplines.getMatiere().getNomMatiere()} - ${disciplines.getNiveau().getNomNiveau() }" readonly> <input
 						type="button" value="Supprimer" class="supprimerDiscipline">
 				</div>
 				<c:set var="i" value="${ i + 1}"></c:set>
@@ -104,7 +104,7 @@
 				<label>Cours : </label> <select size="1" name="disciplines1"
 					id="disciplines1">
 					<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
-						<option value="${ discipline.getIdDiscipline() }">${ discipline.getNom() }</option>
+						<option value="${ discipline.getIdDiscipline() }">${ discipline.getMatiere().getNomMatiere()} - ${discipline.getNiveau().getNomNiveau() }</option>
 					</c:forEach>
 				</select>
 			</div>
