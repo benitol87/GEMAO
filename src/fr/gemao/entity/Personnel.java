@@ -26,6 +26,7 @@ public class Personnel extends Personne implements Serializable{
 	private String password;
 	private int pointsAncien;
 	private Profil profil;
+	private boolean premiereConnexion;
 
 	public Personnel() {
 	}
@@ -63,13 +64,16 @@ public class Personnel extends Personne implements Serializable{
 	 *            : le nombre de points d'ancienneté
 	 * @param profil
 	 * 			  : le profil du personnel	
+	 * @param premiereConnexion
+	 * 			  : un booléen valant vrai s'il s'agit de la première
+	 * 				connexion de ce membre du personnel
 	 */
 	public Personnel(Long idPersonne,  Adresse adresse,
 			Commune communeNaiss, String nom, String prenom,
 			Date dateNaissance, String telFixe, String telPort, String email,
 			Civilite civilite, List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, Contrat contrat, String login,
-			String password, int pointsAncien, Profil profil) {
+			String password, int pointsAncien, Profil profil, boolean premiereConnexion) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email, civilite);
 
@@ -80,6 +84,7 @@ public class Personnel extends Personne implements Serializable{
 		this.password = password;
 		this.pointsAncien = pointsAncien;
 		this.profil = profil;
+		this.premiereConnexion = premiereConnexion;
 	}
 
 	/**
@@ -94,7 +99,7 @@ public class Personnel extends Personne implements Serializable{
 	public Personnel(Personne personne,
 			List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, Contrat contrat, String login,
-			String password, Integer pointsAncien, Profil profil) {
+			String password, Integer pointsAncien, Profil profil, boolean premiereConnexion) {
 		super(personne);
 
 		this.listeResponsabilite = listeResponsabilite;
@@ -104,6 +109,7 @@ public class Personnel extends Personne implements Serializable{
 		this.password = password;
 		this.pointsAncien = pointsAncien;
 		this.profil = profil;
+		this.premiereConnexion = premiereConnexion;
 	}
 
 	/**
@@ -229,6 +235,16 @@ public class Personnel extends Personne implements Serializable{
 	 */
 	public void setProfil(Profil profil) {
 		this.profil = profil;
+	}
+	
+	
+
+	public boolean isPremiereConnexion() {
+		return premiereConnexion;
+	}
+
+	public void setPremiereConnexion(boolean premiereConnexion) {
+		this.premiereConnexion = premiereConnexion;
 	}
 
 	/* (non-Javadoc)
