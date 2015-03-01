@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet Filter implementation class AllowAccessFilter
+ * Filtre rendant vide une variable de session afin d'autoriser l'accès à une page sans avoir besoin d'être
+ * connecté. Si cette variable n'est pas vidée, le filtre {@link CheckConnectedFilter} restreint l'accès si
+ * l'utilisateur ne s'est pas authentifié.
  */
 public class AllowAccessFilter implements Filter {
 

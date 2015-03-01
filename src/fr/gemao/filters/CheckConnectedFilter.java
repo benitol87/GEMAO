@@ -12,6 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.view.ConnexionServlet;
+import fr.gemao.view.Pattern;
+
+/**
+ * Filtre qui vérifie si l'utilisateur est connecté ou si
+ * l'accès a été autorisé par le filtre {@link AllowAccessFilter}
+ * Si l'accès est refusé, on renvoie vers la page de connexion
+ */
 public class CheckConnectedFilter implements Filter {
 
 	@Override
@@ -31,13 +39,12 @@ public class CheckConnectedFilter implements Filter {
          * Si l'objet utilisateur n'existe pas dans la session en cours, alors
          * l'utilisateur n'est pas connecté.
          */
-        if ( session.getAttribute( "sessionObjectPersonnel" ) == null && session.getAttribute(AllowAccessFilter.ATTR_ALLOW_ACCESS)==null ) {
+        if ( session.getAttribute( ConnexionServlet.ATT_SESSION_USER ) == null && session.getAttribute(AllowAccessFilter.ATTR_ALLOW_ACCESS)==null ) {
             /* Redirection vers la page de connexion */
             //response.sendRedirect( request.getContextPath() + "/Connexion" );
-            request.getRequestDispatcher( "/Connexion" ).forward( request, response );
+            request.getRequestDispatcher( Pattern.CONNEXION ).forward( request, response );
         } else {
-        	if(session.getAttribute(AllowAccessFilter.ATTR_ALLOW_ACCESS)!=null)
-        		session.setAttribute(AllowAccessFilter.ATTR_ALLOW_ACCESS, null);
+        	
             /* On continue le filtrage */
             chain.doFilter( request, response );
         }
