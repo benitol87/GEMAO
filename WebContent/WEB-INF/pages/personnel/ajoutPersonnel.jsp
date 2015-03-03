@@ -39,6 +39,16 @@
 			<label for="date" class='required'>Date de naissance </label>
 			<input type="text" name="date" class="datepicker" required autocomplete="off"/>
 		</div>
+		
+		<div>
+			<label for="comnaiss" class='required'>Commune de naissance </label>
+			<input type="text" name="comnaiss" required autocomplete="off"/>
+		</div>
+					
+		<div>
+			<label for="codep" class='required'>Code postal de la commune </label>
+			<input type="text" maxlength="5" name="codep" required autocomplete="off" />
+		</div>
 					
 		<div>
 			<label for="fixe" class='required'>Téléphone fixe </label>
@@ -107,6 +117,17 @@
 				</select>
 				<input type="button" value="+" id="ajoutFonction"/>
 				<input type="button" value="-" id="retireFonction"/>
+			</div>
+		</div>
+		
+		<div id="disciplines">
+			<div id="discipline1">
+				<label for="discipline1">Discipline </label>
+				<select name="discipline1">
+				
+				</select>
+				<input type="button" value="+" id="ajoutDiscipline"/>
+				<input type="button" value="-" id="retireDiscipline"/>
 			</div>
 		</div>
 	</fieldset>

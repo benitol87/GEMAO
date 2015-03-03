@@ -49,11 +49,38 @@ function ajoutFonction(){
 	ajoutEventRetireFonction();
 }
 
+function retireDiscipline(){
+	if(compteurF>1){
+		document.getElementById("divDiscipline" + (compteurF-1)).appendChild(document.getElementById("ajoutDiscipline").cloneNode(true));
+		document.getElementById("divDiscipline" + (compteurF-1)).appendChild(document.getElementById("retireDiscipline").cloneNode(true));
+		document.getElementById("disciplines").removeChild(document.getElementById("disciplines").lastChild);
+		ajoutEventAjoutFonction();
+		ajoutEventRetireFonction();
+		compteurF--;
+	}
+}
+
+function ajoutDiscipline(){
+//	$("#divFonction"+compteurF + "input").remove();
+	compteurF++;
+	var tr = document.getElementById("disciplines").lastElementChild.cloneNode(true);
+	tr.id="divDiscipline"+compteurF;
+	document.getElementById("disciplines").appendChild(tr);
+	document.getElementById("divDiscipline"+compteurF).firstChild.nextSibling.nextSibling.nextSibling.name="discipline"+compteurF;
+	
+	//Supprime les boutons de l'avant dernier champ
+	$("#divDiscipline"+(compteurF-1) + " input[type=button]").remove();
+	ajoutEventAjoutFonction();
+	ajoutEventRetireFonction();
+}
+
 $(function() {
 	ajoutEventAjoutDiplome();
 	ajoutEventRetireDiplome();
 	ajoutEventAjoutFonction();
 	ajoutEventRetireFonction();
+	ajoutEventAjoutDiscipline();
+	ajoutEventRetireDiscipline();
 });
 
 function ajoutEventAjoutDiplome(){
@@ -74,6 +101,16 @@ function ajoutEventAjoutFonction(){
 function ajoutEventRetireFonction(){
 	bouton2=document.getElementById("retireFonction");
 	ajouteEvent(bouton2, 'click', retireFonction, false);
+}
+
+function ajoutEventAjoutDiscipline(){
+	bouton1=document.getElementById("ajoutDiscipline");
+	ajouteEvent(bouton1, 'click', ajoutDiscipline, false);
+}
+
+function ajoutEventRetireDiscipline(){
+	bouton2=document.getElementById("retireDiscipline");
+	ajouteEvent(bouton2, 'click', retireDiscipline, false);
 }
 
 function afficherDuree(){
