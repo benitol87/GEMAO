@@ -18,44 +18,13 @@
     <filter-name>Set Character Encoding</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <filter>
-    <filter-name>Deconnection</filter-name>
-    <filter-class>fr.gemao.filters.DeconnectionFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>Deconnection</filter-name>
-    <url-pattern>/Deconnexion</url-pattern>
-  </filter-mapping>
+  
   <filter>
     <filter-name>ErreurDAOFilter</filter-name>
     <filter-class>fr.gemao.filters.ErreurDAOFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>ErreurDAOFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <filter>
-    <filter-name>AllowAccessCSS</filter-name>
-    <filter-class>fr.gemao.filters.AllowAccessFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>AllowAccessCSS</filter-name>
-    <url-pattern>/css/*</url-pattern>
-  </filter-mapping>
-  <filter>
-    <filter-name>CheckConnected</filter-name>
-    <filter-class>fr.gemao.filters.CheckConnectedFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>CheckConnected</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <filter>
-    <filter-name>FirstConnection</filter-name>
-    <filter-class>fr.gemao.filters.FirstConnectionFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>FirstConnection</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   
