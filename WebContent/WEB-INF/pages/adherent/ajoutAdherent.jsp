@@ -87,7 +87,7 @@
 			<div>
 				<label>Cours</label> <select size="1" name="disciplines1">
 					<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
-						<option value="${ discipline.getIdDiscipline() }">${ discipline.getNom() }</option>
+						<option value="${ discipline.getIdDiscipline() }">${ discipline.getMatiere().getNomMatiere()} - ${discipline.getNiveau().getNomNiveau() }</option>
 					</c:forEach>
 				</select>
 			</div>

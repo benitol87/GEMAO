@@ -348,11 +348,11 @@ public class AdherentForm {
 			i++;
 			
 			if (str != null && !str.equals("")) {
-				disc = recupererDisciplineCtrl.recupererDiscipline(str);
+				String[] parts = str.split("-");
+				disc = recupererDisciplineCtrl.recupererDiscipline(parts[0],parts[1]);
 				listDisciplines.add(disc);
 			}
 		} while(str != null);
-		System.out.println(listDisciplines);
 		return listDisciplines;
 	}
 	

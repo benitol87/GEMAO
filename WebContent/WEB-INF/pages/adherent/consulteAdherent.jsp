@@ -79,7 +79,7 @@
 	<tbody id="disciplines">
 		<c:forEach var="discipline" items="${adherent.getDisciplines()}">
 			<tr>
-				<td class='align-center'>${ discipline.getNom() }</td>
+				<td class='align-center'>${ discipline.getMatiere().getNomMatiere()} - ${discipline.getNiveau().getNomNiveau() }</td>
 			</tr>
 		</c:forEach>	
 	</tbody>

@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.ChangerMotDePasseCtrl;
+import fr.gemao.ctrl.personnel.ModifierPersonnelCtrl;
 import fr.gemao.entity.Personnel;
 import fr.gemao.form.ChangerMotDePasseForm;
 
@@ -36,7 +38,9 @@ public class ChangerMotDePasseServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Le formulaire vient d'être envoyé
+		HttpSession session = request.getSession();
 		ChangerMotDePasseForm form = new ChangerMotDePasseForm(request);
+		Personnel personneConnectee = (Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER);
 		
 		if(form.getErreurs().isEmpty()){
 			ChangerMotDePasseCtrl ctrl = new ChangerMotDePasseCtrl();
@@ -47,6 +51,10 @@ public class ChangerMotDePasseServlet extends HttpServlet {
 				// Modification du mot de passe
 				if(!ctrl.changerMotDePasse(login, form.getNouveauMotDePasse())){
 					form.setErreur(ChangerMotDePasseForm.ERREUR_NOUVEAUX_MDP, "Un problème est intervenu lors de la modification du mot de passe.");
+				} else {
+					personneConnectee.setPremiereConnexion(false);
+					personneConnectee.setPassword(form.getNouveauMotDePasse());
+					new ModifierPersonnelCtrl().modifierPersonnel(personneConnectee);
 				}
 			} else {
 				form.setErreur(ChangerMotDePasseForm.ERREUR_ANCIEN_MDP, "Le mot de passe saisi est incorrect");

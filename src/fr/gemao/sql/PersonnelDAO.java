@@ -121,7 +121,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 			idProfil = obj.getProfil().getIdProfil();
 		}
 		
-		String sql = "UPDATE personnel SET idContrat = ?, login = ?, pwd = ?, pointAnciennete = ?,"
+		String sql = "UPDATE personnel SET idContrat = ?, login = ?, pwd = ?, pointAnciennete = ?, premiereConnexion = ?,"
 				+ "idProfil = ? "
 				+ "WHERE idPersonne = ?;";
 
@@ -132,6 +132,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 					obj.getLogin(),
 					Password.encrypt(obj.getPassword()),
 					obj.getPointsAncien(),
+					obj.isPremiereConnexion(),
 					idProfil,
 					obj.getIdPersonne());
 			requete.executeUpdate();
@@ -227,8 +228,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 				result.getString("login"),
 				result.getString("pwd"),
 				NumberUtil.getResultInteger(result, "pointAnciennete"),
-				idProfil==null?null:profilDAO.get(idProfil)
-				//Profil.getProfil(NumberUtil.getResultInteger(result, "idProfil"))
+				idProfil==null?null:profilDAO.get(idProfil),
+				result.getBoolean("premiereConnexion")
 		);
 		
 		return personnel;
