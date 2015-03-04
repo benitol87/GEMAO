@@ -25,7 +25,6 @@
     <filter-name>ErreurDAOFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-<<<<<<< HEAD
   <filter>
     <filter-name>AllowAccessResources</filter-name>
     <filter-class>fr.gemao.filters.AllowAccessFilter</filter-class>
