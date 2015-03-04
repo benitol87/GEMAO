@@ -183,15 +183,18 @@ public class ModifAdherentServlet extends HttpServlet {
 				List<Discipline> listDiscipline = adherentForm
 						.lireDisciplines(request);
 				adherent.setDisciplines(listDiscipline);
-				System.out.println(adherent.getDisciplines());
 				
 
 				String droitImage = request.getParameter("droitImage");
 				adherent.setDroitImage(Boolean.parseBoolean(droitImage));
+				
+				
+				float cotisation = Float.parseFloat(request.getParameter("cotisation"));
+				adherent.setCotisation(cotisation);
+
 
 				if (adherent.getResponsable() != null) {
 					Responsable responsable = adherent.getResponsable();
-					System.out.println(responsable);
 					String nomResp = request.getParameter("nomResp");
 					responsable.setNom(nomResp);
 					String prenomResp = request.getParameter("prenomResp");

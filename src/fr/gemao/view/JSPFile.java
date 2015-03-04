@@ -8,6 +8,7 @@ public class JSPFile {
 			CONNEXION = "/WEB-INF/pages/connexion.jsp",
 			RESULTAT = "/WEB-INF/pages/resultat.jsp",
 			ERREUR = "/WEB-INF/pages/erreur.jsp",
+			ERREUR_DROIT = "/WEB-INF/pages/erreurDroit.jsp",
 			
 		// Module adhérent
 			ADHERENT_AJOUT_ADHERENT = "/WEB-INF/pages/adherent/ajoutAdherent.jsp",
@@ -25,6 +26,7 @@ public class JSPFile {
 			ADHERENT_PARAMETRE = "/WEB-INF/pages/adherent/parametre.jsp",
 			ADHERENT_VALIDATION_AJOUT = "/WEB-INF/pages/adherent/validAjoutAdherent.jsp",
 			ADHERENT_VALIDATION_MODIF = "/WEB-INF/pages/adherent/validModifAdherent.jsp",
+			ADHERENT_SAISIE_COTISATION = "/WEB-INF/pages/adherent/saisieCotisation.jsp",
 					
 		// Module administration
 			ADMINISTRATION_AJOUT_PROFIL = "/WEB-INF/pages/administration/ajouterProfil.jsp",

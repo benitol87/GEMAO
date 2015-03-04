@@ -261,20 +261,37 @@ public class DisciplineDAO extends IDAO<Discipline> {
 	 * @param listDiscipline
 	 * @param idAdherent
 	 */
+	// public void updateAllDisciplineParAdherent(List<Discipline>
+	// listDiscipline,
+	// long idAdherent) {
+	// List<Discipline> dejaInscrit = this
+	// .getDisciplineParAdherent(idAdherent);
+	// // Permet de supprimer les doublons.
+	// Set<Discipline> set = new HashSet<>(listDiscipline);
+	// listDiscipline = new ArrayList<>(set);
+	// for (Discipline d : listDiscipline) {
+	// if (!dejaInscrit.contains(d)) {
+	// this.addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
+	// }
+	// dejaInscrit.remove(d);
+	// }
+	// deleteAllDisciplinesParAdherent(dejaInscrit, idAdherent);
+	// }
+
 	public void updateAllDisciplineParAdherent(List<Discipline> listDiscipline,
 			long idAdherent) {
 		List<Discipline> dejaInscrit = this
 				.getDisciplineParAdherent(idAdherent);
+		deleteAllDisciplinesParAdherent(dejaInscrit, idAdherent);
 		// Permet de supprimer les doublons.
 		Set<Discipline> set = new HashSet<>(listDiscipline);
 		listDiscipline = new ArrayList<>(set);
 		for (Discipline d : listDiscipline) {
-			if (!dejaInscrit.contains(d)) {
+			dejaInscrit = this.getDisciplineParAdherent(idAdherent);
+			if (!dejaInscrit.contains(d))
 				this.addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
-			}
-			dejaInscrit.remove(d);
 		}
-		deleteAllDisciplinesParAdherent(dejaInscrit, idAdherent);
+
 	}
 
 	/**
@@ -286,7 +303,9 @@ public class DisciplineDAO extends IDAO<Discipline> {
 	public void addAllDisciplineParAdherent(List<Discipline> listDiscipline,
 			long idAdherent) {
 		for (Discipline d : listDiscipline) {
-			addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
+			List<Discipline> dejaInscrit = this.getDisciplineParAdherent(idAdherent);
+			if (!dejaInscrit.contains(d))
+				addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
 		}
 	}
 
@@ -337,10 +356,12 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		NiveauDAO niveauDAO = this.factory.getNiveauDAO();
 		MatiereDAO matiereDAO = this.factory.getMatiereDAO();
 		SalleDAO salleDAO = this.factory.getSalleDAO();
-		Integer idDiscipline = NumberUtil.getResultInteger(result,"idDiscipline");
-		return new Discipline(idDiscipline, matiereDAO.get(NumberUtil.getResultLong(
-				result, "idMatiere")), niveauDAO.get(NumberUtil.getResultLong(
-				result, "idNiveau")), salleDAO.getAllSalleParDiscipline(idDiscipline));
+		Integer idDiscipline = NumberUtil.getResultInteger(result,
+				"idDiscipline");
+		return new Discipline(idDiscipline, matiereDAO.get(NumberUtil
+				.getResultLong(result, "idMatiere")), niveauDAO.get(NumberUtil
+				.getResultLong(result, "idNiveau")),
+				salleDAO.getAllSalleParDiscipline(idDiscipline));
 	}
 
 }

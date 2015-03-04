@@ -46,11 +46,6 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		Adresse adresse = (Adresse) session.getAttribute("ajout_adh_adresse");
 		Responsable responsable = (Responsable) session
 				.getAttribute("ajout_adh_responsable");
-
-		CalculerCotisationCtrl calculerCotisationCtrl = new CalculerCotisationCtrl();
-		System.out.println(adherent);
-		adherent.setCotisation(calculerCotisationCtrl
-				.calculerCotisations(adherent.getQf()));
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String dateNaissance = formatter.format(adherent.getDateNaissance());
@@ -94,7 +89,6 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		
 		adherent.setAdresse(adresse);
 		
-		System.out.println(adherent.getAdresse());
 
 		if (responsable != null) {
 			AjouterResponsableCtrl ajouterResponsableCtrl = new AjouterResponsableCtrl();
