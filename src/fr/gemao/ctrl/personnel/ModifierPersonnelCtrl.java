@@ -4,6 +4,7 @@ import fr.gemao.entity.Personne;
 import fr.gemao.entity.Personnel;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
+import fr.gemao.sql.PersonnelDAO;
 
 /**
  * La classe ModifierPersonnelCtrl permet de contrôler la modification d'un personnel.
@@ -33,10 +34,12 @@ public class ModifierPersonnelCtrl {
 			
 			DAOFactory co = DAOFactory.getInstance();
 			PersonneDAO personneDAO = co.getPersonneDAO();
+			PersonnelDAO personnelDAO = co.getPersonnelDAO();
 			
 			//Vérification de l'existance de la personne dans la BD
 			if (personneDAO.get(personnel.getIdPersonne()) != null) {
-				pers = personneDAO.update(personnel);
+				personneDAO.update(personnel);
+				pers = personnelDAO.update(personnel);
 				
 				if (pers == null) {
 					System.out.println("Une erreur est survenue lors de la modification...");
