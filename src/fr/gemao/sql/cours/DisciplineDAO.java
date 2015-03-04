@@ -303,7 +303,9 @@ public class DisciplineDAO extends IDAO<Discipline> {
 	public void addAllDisciplineParAdherent(List<Discipline> listDiscipline,
 			long idAdherent) {
 		for (Discipline d : listDiscipline) {
-			addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
+			List<Discipline> dejaInscrit = this.getDisciplineParAdherent(idAdherent);
+			if (!dejaInscrit.contains(d))
+				addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
 		}
 	}
 
