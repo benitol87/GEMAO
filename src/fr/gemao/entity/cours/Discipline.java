@@ -9,6 +9,7 @@ import java.util.List;
  *
  */
 public class Discipline implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -74,6 +75,26 @@ public class Discipline implements Serializable {
 	public String toString() {
 		return "Discipline [idDiscipline=" + idDiscipline + ", matiere="
 				+ matiere.getNomMatiere() + ", niveau=" + niveau.getNomNiveau() + ", salles=" + salles + "]";
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Discipline other = (Discipline) obj;
+		if (idDiscipline == null) {
+			if (other.idDiscipline != null)
+				return false;
+		} else if (!idDiscipline.equals(other.idDiscipline))
+			return false;
+		return true;
 	}
 	
 	
