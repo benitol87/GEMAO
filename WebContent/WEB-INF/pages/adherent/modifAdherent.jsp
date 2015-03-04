@@ -95,8 +95,9 @@
 				<div>
 					<label>Cours : </label> <input
 						name='<c:out value="disciplinesAnciennes${ i }"></c:out>'
-						value="${ disciplines.getMatiere().getNomMatiere()} - ${disciplines.getNiveau().getNomNiveau() }" readonly> <input
-						type="button" value="Supprimer" class="supprimerDiscipline">
+						value="${ disciplines.getMatiere().getNomMatiere()} - ${disciplines.getNiveau().getNomNiveau() }"
+						readonly> <input type="button" value="Supprimer"
+						class="supprimerDiscipline">
 				</div>
 				<c:set var="i" value="${ i + 1}"></c:set>
 			</c:forEach>
@@ -104,7 +105,8 @@
 				<label>Cours : </label> <select size="1" name="disciplines1"
 					id="disciplines1">
 					<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
-						<option value="${ discipline.getIdDiscipline() }">${ discipline.getMatiere().getNomMatiere()} - ${discipline.getNiveau().getNomNiveau() }</option>
+						<option value="${ discipline.getIdDiscipline() }">${ discipline.getMatiere().getNomMatiere()}
+							- ${discipline.getNiveau().getNomNiveau() }</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -142,12 +144,17 @@
 	<fieldset>
 		<legend>Informations complémentaires</legend>
 		<div>
-			<label for="dateInscri">Date d'inscription : </label><input
+			<label for="dateInscri" class="required">Date d'inscription : </label><input
 				type="text" name="dateInscri" required="required" class="datepicker"
 				value="<c:out value="${dateInscription}" />" />
 		</div>
 		<div>
-			<label>Droit à l'image :</label> <span> <input type="radio"
+			<label for="cotisation" class="required">Montant de la cotisation : </label><input
+				type="text" name="cotisation" required="required"
+				value="<c:out value="${adherent.getCotisation()}" />" />
+		</div>
+		<div>
+			<label class="required">Droit à l'image :</label> <span> <input type="radio"
 				name="droitImage" value="true"
 				<c:if test="${adherent['droitImage'] == true}"> checked="checked" 
 						</c:if> />
