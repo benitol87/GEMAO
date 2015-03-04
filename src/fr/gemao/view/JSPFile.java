@@ -8,6 +8,7 @@ public class JSPFile {
 			CONNEXION = "/WEB-INF/pages/connexion.jsp",
 			RESULTAT = "/WEB-INF/pages/resultat.jsp",
 			ERREUR = "/WEB-INF/pages/erreur.jsp",
+			ERREUR_DROIT = "/WEB-INF/pages/erreurDroit.jsp",
 			
 		// Module adhérent
 			ADHERENT_AJOUT_ADHERENT = "/WEB-INF/pages/adherent/ajoutAdherent.jsp",

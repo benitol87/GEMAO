@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>GEMAO</display-name>
-  
   <filter>
     <filter-name>Set Character Encoding</filter-name>
     <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
@@ -18,7 +17,6 @@
     <filter-name>Set Character Encoding</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
   <filter>
     <filter-name>ErreurDAOFilter</filter-name>
     <filter-class>fr.gemao.filters.ErreurDAOFilter</filter-class>
@@ -27,7 +25,30 @@
     <filter-name>ErreurDAOFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
+  <filter>
+    <filter-name>AllowAccessResources</filter-name>
+    <filter-class>fr.gemao.filters.AllowAccessFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AllowAccessResources</filter-name>
+    <url-pattern>/ressources/*</url-pattern>
+  </filter-mapping>
+   <filter>
+    <filter-name>AllowAccessFonts</filter-name>
+    <filter-class>fr.gemao.filters.AllowAccessFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AllowAccessFonts</filter-name>
+    <url-pattern>/fonts/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>AllowAccessJS</filter-name>
+    <filter-class>fr.gemao.filters.AllowAccessFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AllowAccessJS</filter-name>
+    <url-pattern>/js/*</url-pattern>
+  </filter-mapping>
   <filter>
     <filter-name>AllowAccessCSS</filter-name>
     <filter-class>fr.gemao.filters.AllowAccessFilter</filter-class>
@@ -36,8 +57,14 @@
     <filter-name>AllowAccessCSS</filter-name>
     <url-pattern>/css/*</url-pattern>
   </filter-mapping>
-  
-  <!-- Empêcher l'accès à TOUTES les ressources si l'utilisateur n'est pas connecté -->
+  <filter>
+    <filter-name>CheckRights</filter-name>
+    <filter-class>fr.gemao.filters.CheckRightsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CheckRights</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <filter>
     <filter-name>CheckConnected</filter-name>
     <filter-class>fr.gemao.filters.CheckConnectedFilter</filter-class>
@@ -46,7 +73,6 @@
     <filter-name>CheckConnected</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
   <error-page>
     <error-code>404</error-code>
     <location>/WEB-INF/pages/erreurs/404.jsp</location>
