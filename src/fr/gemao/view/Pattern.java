@@ -21,6 +21,7 @@ public class Pattern {
 			ADHERENT_PARAMETRE = "/adherent/Parametres",
 			ADHERENT_VALIDATION_AJOUT = "/adherent/ValidationAjoutAdherent",
 			ADHERENT_VALIDATION_MODIF = "/adherent/ValidationModifAdherent",
+			ADHERENT_SAISIE_COTISATION = "/adherent/SaisieCotisation",
 			
 		// Module administration
 			ADMINISTRATION_RESET_PASSWORD = "/administration/ReinitMotDePasse",

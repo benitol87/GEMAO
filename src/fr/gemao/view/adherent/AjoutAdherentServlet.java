@@ -167,7 +167,6 @@ public class AjoutAdherentServlet extends HttpServlet {
 					commune = c;
 				}
 
-				System.out.println(commune);
 
 				/**
 				 * Réupération des données de l'adresse
@@ -197,7 +196,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 							+ Pattern.ADHERENT_AJOUT_RESPONSABLE);
 				} else {
 					response.sendRedirect(request.getContextPath()
-							+ Pattern.ADHERENT_VALIDATION_AJOUT);
+							+ Pattern.ADHERENT_SAISIE_COTISATION);
 				}
 
 			} else {
