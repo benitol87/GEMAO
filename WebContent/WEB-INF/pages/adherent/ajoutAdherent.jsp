@@ -95,9 +95,9 @@
 		<div class='align-center'>
 			<input type="button" value="-" id="retireDiscipline" title="Retirer" />
 			<input type="button" value="+" id="ajoutDiscipline" title="Ajouter" />
-			<input type="button" name="ajoutNewDiscipline" id="ajoutNewDiscipline"
-			value="Créer..." /> <input type="text" name="nomDiscipline"
-			id="nomDiscipline" class="hidden" />
+<!-- 			<input type="button" name="ajoutNewDiscipline" id="ajoutNewDiscipline" -->
+<!-- 			value="Créer..." /> <input type="text" name="nomDiscipline" -->
+<!-- 			id="nomDiscipline" class="hidden" /> -->
 		</div>
 	</fieldset>
 	<fieldset>
