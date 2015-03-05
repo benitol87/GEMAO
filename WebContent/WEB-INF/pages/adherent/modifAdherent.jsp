@@ -86,10 +86,10 @@
 	</fieldset>
 	<fieldset>
 		<legend>Disciplines</legend>
-		<input type="button" name="ajoutNewDiscipline" id="ajoutNewDiscipline"
-			value="Créer..." /> 
-			<input type="text" name="nomDiscipline"
-			id="nomDiscipline" class="hidden" />
+<!-- 		<input type="button" name="ajoutNewDiscipline" id="ajoutNewDiscipline" -->
+<!-- 			value="Créer..." />  -->
+<!-- 			<input type="text" name="nomDiscipline" -->
+<!-- 			id="nomDiscipline" class="hidden" /> -->
 		<div id="disciplines">
 			<c:set var="i" value="1"></c:set>
 			<c:forEach var="disciplines" items="${adherent.getDisciplines() }">
