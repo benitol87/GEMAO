@@ -3,6 +3,7 @@ package fr.gemao.view.adherent;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -182,7 +183,11 @@ public class ModifAdherentServlet extends HttpServlet {
 
 				List<Discipline> listDiscipline = adherentForm
 						.lireDisciplines(request);
-				adherent.setDisciplines(listDiscipline);
+				List<Discipline> newListDiscipline = new ArrayList<Discipline>();
+				for(Discipline disc : listDiscipline)
+					if(!newListDiscipline.contains(disc))
+						newListDiscipline.add(disc);
+				adherent.setDisciplines(newListDiscipline);
 				
 
 				String droitImage = request.getParameter("droitImage");
