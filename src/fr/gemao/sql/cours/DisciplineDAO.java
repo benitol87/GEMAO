@@ -283,14 +283,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		List<Discipline> dejaInscrit = this
 				.getDisciplineParAdherent(idAdherent);
 		deleteAllDisciplinesParAdherent(dejaInscrit, idAdherent);
-		// Permet de supprimer les doublons.
-		Set<Discipline> set = new HashSet<>(listDiscipline);
-		listDiscipline = new ArrayList<>(set);
-		for (Discipline d : listDiscipline) {
-			dejaInscrit = this.getDisciplineParAdherent(idAdherent);
-			if (!dejaInscrit.contains(d))
-				this.addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
-		}
+		addAllDisciplineParAdherent(listDiscipline, idAdherent);
 
 	}
 
