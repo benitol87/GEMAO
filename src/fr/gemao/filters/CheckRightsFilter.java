@@ -74,14 +74,14 @@ public class CheckRightsFilter implements Filter {
 			
 			if(partiesModule.length == 2){
 				// Si le droit d'écriture doit être renseigné
-				if(!personneConnectee.getProfil().recupererTypeDroit(nomModule).equals("Lecture/écriture")){
+				if(personneConnectee!=null && !personneConnectee.getProfil().recupererTypeDroit(nomModule).equals("Lecture/écriture")){
 					// Refus de l'accès
 					request.getRequestDispatcher(JSPFile.ERREUR_DROIT).forward(request, res);
 					return;
 				}
 			} else {
 				// Seul le droit de lecture est nécessaire
-				if(personneConnectee.getProfil().recupererTypeDroit(nomModule).equals("Aucun")){
+				if(personneConnectee!=null && personneConnectee.getProfil().recupererTypeDroit(nomModule).equals("Aucun")){
 					// Refus de l'accès
 					request.getRequestDispatcher(JSPFile.ERREUR_DROIT).forward(request, res);
 					return;

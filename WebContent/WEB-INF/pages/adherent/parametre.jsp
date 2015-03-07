@@ -52,19 +52,6 @@
 			pattern="[0-9]*[0-9.,][0-9]*"  value="<c:out value="${qf_max}"/>"><span class='euro'></span><span>${form.erreurs['qfMax']}</span>
 		</div>
 	</fieldset>
-	<fieldset>
-		<legend>Tarification</legend>
-		<div>
-			<label for="tarifInstrument">Tarif Instrument </label> <input type="text"
-			id="tarifInstrument" name="tarifInstrument" required="required"
-			pattern="[0-9]*[0-9.,][0-9]*"   value="<c:out value="${tarifInstrument}"/>"><span class='euro'></span><span>${form.erreurs['tarifInstrument']}</span>
-		</div>
-		<div>
-			<label for="tarifFormation">Tarif Formation </label> <input
-			type="text" id="tarifFormation" name="tarifFormation" required="required"
-			pattern="[0-9]*[0-9.,][0-9]*"  value="<c:out value="${tarifFormation}"/>"><span class='euro'></span><span>${form.erreurs['tarifFormation']}</span>
-		</div>
-	</fieldset>
 	<fieldset class='align-center no-border'>
 		<div>
 			<input type="submit" value="Modifier">

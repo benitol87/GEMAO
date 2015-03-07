@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.adherent.AjouterDisciplineCtrl;
-import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
 import fr.gemao.ctrl.adherent.ModifierResponsableCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
@@ -139,7 +138,6 @@ public class ModifAdherentServlet extends HttpServlet {
 							.parse(adherentForm.getDateNaissance());
 					dateEntree = formatter.parse(adherentForm.getDateEntree());
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				adherent.setDateNaissance(dateNaiss);

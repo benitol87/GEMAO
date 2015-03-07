@@ -10,6 +10,7 @@ import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
 import fr.gemao.sql.administration.DroitDAO;
+import fr.gemao.sql.administration.ModificationDAO;
 import fr.gemao.sql.administration.ModuleDAO;
 import fr.gemao.sql.administration.ProfilDAO;
 import fr.gemao.sql.administration.TypeDroitDAO;
@@ -158,6 +159,10 @@ public class DAOFactory {
 
 	public MarqueDAO getMarqueDAO() {
 		return new MarqueDAO(this);
+	}
+	
+	public ModificationDAO getModificationDAO() {
+		return new ModificationDAO(this);
 	}
 	
 	public DesignationDAO getDesignationDAO(){

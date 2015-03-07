@@ -17,7 +17,7 @@ public class CalculerCotisationCtrl {
 	 * @param qf
 	 * @return montant des cotisations
 	 */
-	public float calculerCotisations(Float qf){
+	/*public float calculerCotisations(Float qf){
 		
 		ParametreCtrl parametreCtrl = new ParametreCtrl();
 		Parametre parametre = parametreCtrl.getLast();
@@ -32,6 +32,6 @@ public class CalculerCotisationCtrl {
 		}
 
 		return cotisation;
-	}
+	}*/
 
 }

@@ -26,6 +26,14 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   <filter>
+    <filter-name>Deconnection</filter-name>
+    <filter-class>fr.gemao.filters.DeconnectionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>Deconnection</filter-name>
+    <url-pattern>/Deconnexion</url-pattern>
+  </filter-mapping>
+  <filter>
     <filter-name>AllowAccessResources</filter-name>
     <filter-class>fr.gemao.filters.AllowAccessFilter</filter-class>
   </filter>
@@ -33,7 +41,7 @@
     <filter-name>AllowAccessResources</filter-name>
     <url-pattern>/ressources/*</url-pattern>
   </filter-mapping>
-   <filter>
+  <filter>
     <filter-name>AllowAccessFonts</filter-name>
     <filter-class>fr.gemao.filters.AllowAccessFilter</filter-class>
   </filter>

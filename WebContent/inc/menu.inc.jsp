@@ -107,6 +107,7 @@
 										</ul>
 									</div>
 								</li>
+								<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_LISTER_MODIFICATION %>"/>">Historique des modifications</a></li>
 							</ul>
 						</div>
 					</li>

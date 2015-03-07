@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,12 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.ctrl.materiel.CategorieCtrl;
 import fr.gemao.ctrl.materiel.DesignationCtrl;
 import fr.gemao.ctrl.materiel.EtatCtrl;
 import fr.gemao.ctrl.materiel.FournisseurCtrl;
 import fr.gemao.ctrl.materiel.MarqueCtrl;
 import fr.gemao.ctrl.materiel.MaterielCtrl;
+import fr.gemao.entity.Personnel;
+import fr.gemao.entity.administration.Modification;
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.entity.materiel.Etat;
@@ -34,6 +38,7 @@ import fr.gemao.sql.materiel.DesignationDAO;
 import fr.gemao.sql.materiel.EtatDAO;
 import fr.gemao.sql.materiel.FournisseurDAO;
 import fr.gemao.sql.materiel.MarqueDAO;
+import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -238,6 +243,14 @@ public class AjoutMaterielServlet extends HttpServlet {
 					materiel.getValeurReap(), materiel.isDeplacable(),
 					materiel.getObservation(), Integer.parseInt(quantite),
 					materiel.isLouable());
+			
+			// Archivage
+			new ModificationCtrl().ajouterModification(new Modification(
+					0,
+					(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
+					new Date(),
+					"Ajout matériel : "+materiel.getDesignation().getLibelleDesignation()
+			));
 			session.removeAttribute("INFOS");
 		}
 

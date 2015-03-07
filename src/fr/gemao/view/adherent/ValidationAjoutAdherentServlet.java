@@ -2,6 +2,7 @@ package fr.gemao.view.adherent;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,13 +16,14 @@ import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.AjouterPersonneCtrl;
 import fr.gemao.ctrl.adherent.AjouterAdherentCtrl;
 import fr.gemao.ctrl.adherent.AjouterResponsableCtrl;
-import fr.gemao.ctrl.adherent.CalculerCotisationCtrl;
+import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
+import fr.gemao.entity.Personnel;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.Responsable;
-import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.PersonneDAO;
+import fr.gemao.entity.administration.Modification;
+import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -102,9 +104,20 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 		
 		if (ajouterPersonneCtrl.exist(adherent) == null) {
 			AjouterAdherentCtrl ajouterAdherentCtrl = new AjouterAdherentCtrl();
-			if(ajouterAdherentCtrl.ajoutAdherent(adherent))
+			if(ajouterAdherentCtrl.ajoutAdherent(adherent)){
+				// Succès de l'ajout
+				// Archivage de la modification
+				new ModificationCtrl().ajouterModification(new Modification(
+						0,
+						(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
+						new Date(),
+						"Ajout adhérent : "+adherent.getNom()+" "+adherent.getPrenom()
+				));
+				
+				// Redirection
 				this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_CONFIRMATION_AJOUT)
 						.forward(request, response);
+			}
 			else{
 				request.setAttribute("dejaInscrit", false);
 				this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_ECHEC_AJOUT)

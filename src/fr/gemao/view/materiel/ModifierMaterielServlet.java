@@ -14,12 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.ctrl.materiel.CategorieCtrl;
 import fr.gemao.ctrl.materiel.DesignationCtrl;
 import fr.gemao.ctrl.materiel.EtatCtrl;
 import fr.gemao.ctrl.materiel.FournisseurCtrl;
 import fr.gemao.ctrl.materiel.MarqueCtrl;
 import fr.gemao.ctrl.materiel.MaterielCtrl;
+import fr.gemao.entity.Personnel;
+import fr.gemao.entity.administration.Modification;
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;
 import fr.gemao.entity.materiel.Etat;
@@ -27,13 +30,13 @@ import fr.gemao.entity.materiel.Fournisseur;
 import fr.gemao.entity.materiel.Marque;
 import fr.gemao.entity.materiel.Materiel;
 import fr.gemao.form.materiel.MaterielForm;
+import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
 @WebServlet(Pattern.MATERIEL_MODIFIER)
 public class ModifierMaterielServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static String VUE_LISTE = "/materiel/ListerMateriel";
 
 	/**
 	 * Chargement de la page de modification. Le parametre idMateriel doit etre
@@ -107,9 +110,9 @@ public class ModifierMaterielServlet extends HttpServlet {
 		/* Récupération de la session depuis la requête */
 		HttpSession session = request.getSession();
 		System.out.print(form.getErreurs());
+		Materiel mat = null;
+		MaterielCtrl matctrl = new MaterielCtrl();
 		if (form.getErreurs().isEmpty()) {
-			MaterielCtrl matctrl = new MaterielCtrl();
-			Materiel mat = null;
 			if (session.getAttribute("sessionObjectMateriel").getClass() == Materiel.class) {
 				mat = (Materiel) session.getAttribute("sessionObjectMateriel");
 
@@ -157,7 +160,14 @@ public class ModifierMaterielServlet extends HttpServlet {
 			}
 		}
 		if (form.getErreurs().isEmpty()) {
-			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?modifOk=0");
+			// Archivage
+			new ModificationCtrl().ajouterModification(new Modification(
+					0,
+					(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
+					new Date(),
+					"Modification matériel : "+mat.getDesignation().getLibelleDesignation()
+			));
+			response.sendRedirect(request.getContextPath() + Pattern.MATERIEL_LISTER + "?modifOk=0");
 		} else {
 			form.getErreurs().put("Modification",
 					"Erreur lors de la modification du formulaire");
