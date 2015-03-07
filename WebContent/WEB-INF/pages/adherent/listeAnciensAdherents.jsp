@@ -13,7 +13,7 @@
 <!-- VOIR COMMENT METTRE JSTL LIBRARY EN LOCAL -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<h1>Liste des adhérents</h1>
+<h1>Liste des anciens adhérents</h1>
 
 <form class="offset">
 	<p>
@@ -32,7 +32,8 @@
 </form>
 
 
-<table>
+<table class='tablesorter-blue'>
+<thead>
 	<tr>
 		<th>Nom</th>
 		<th>Prénom</th>
@@ -44,6 +45,8 @@
 		<th class="listDroitIm">Droit à l'image</th>
 		<th>Actions</th>
 	</tr>
+</thead>
+<tbody>
 	<c:forEach items="${listeAdherents}" var="adh">
 		<tr>
 			<td><c:out value="${adh.getNom()}" /></td>
@@ -69,6 +72,7 @@
 				title='Modifier les informations'></a></td>
 		</tr>
 	</c:forEach>
+</tbody>
 </table>
 
 <c:import url="/inc/footer.inc.jsp" />

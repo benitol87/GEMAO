@@ -11,13 +11,16 @@
 
 <h1>Liste des matériels</h1>
 <p style="text-align: center;">${message}</p>
-<table>
+<table class='tablesorter-blue'>
+<thead>
 	<tr>
 		<th>Désignation</th>
 		<th>Catégorie</th>
 		<th>Quantité</th>
 		<th>Actions</th>
 	</tr>
+</thead>
+<tbody>
 	<c:forEach items="${listeMateriels}" var="mat">
 		<tr>
 			<td><c:out value="${mat.designation.libelleDesignation}" /></td>
@@ -29,6 +32,7 @@
 			</td>
 		</tr>
 	</c:forEach>
+</tbody>
 </table>
 
 <c:import url="/inc/footer.inc.jsp" />
