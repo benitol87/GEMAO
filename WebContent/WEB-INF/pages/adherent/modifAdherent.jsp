@@ -16,13 +16,13 @@
 	<fieldset>
 		<legend>Informations personnelles</legend>
 		<div>
-			<span class='text-label'>Civilité : </span> <input type="radio"
+			<span class='text-label'>Civilité : </span> <span><input type="radio"
 				name="civilite" value="F"
 				<c:if test="${adherent.civilite['nameCourt'] == 'Mme'}"> checked="checked"</c:if> /><label
 				for="civilite">Mme</label> <input type="radio" name="civilite"
 				value="M"
 				<c:if test="${adherent.civilite['nameCourt'] == 'M.'}"> checked="checked" </c:if> /><label
-				for="civilite">M.</label>
+				for="civilite">M.</label> </span>
 		</div>
 		<div>
 			<label for="nom" class="required">Nom : </label><input type="text"

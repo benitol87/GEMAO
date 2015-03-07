@@ -42,4 +42,20 @@ public class RecupererAdherentCtrl {
 		
 		return listeAdherents;
 	}
+	
+	/**
+	 * Méthode permettant de récupérer l'ensemble des anciens adhérents
+	 * @return la liste des anciens adhérents de la BD
+	 */
+	public List<Adherent> recupererAnciensAdherents(){
+		List<Adherent> listeAdherents = new ArrayList<Adherent>();
+		DAOFactory co = DAOFactory.getInstance();
+		AdherentDAO adherentDAO = co.getAdherentDAO();
+		
+		listeAdherents = adherentDAO.getAllAnciens();
+		
+		return listeAdherents;
+	}
+	
+	
 }

@@ -20,6 +20,7 @@ public class JSPFile {
 			ADHERENT_ECHEC_AJOUT = "/WEB-INF/pages/adherent/echecAjoutAdherent.jsp",
 			ADHERENT_ECHEC_MODIFICATION = "/WEB-INF/pages/adherent/echecModifAdherent.jsp",
 			ADHERENT_LISTER = "/WEB-INF/pages/adherent/listeAdherents.jsp",
+			ADHERENT_LISTER_ANCIEN = "/WEB-INF/pages/adherent/listeAnciensAdherents.jsp",
 			ADHERENT_MODIFIER_ADHERENT = "/WEB-INF/pages/adherent/modifAdherent.jsp",
 			ADHERENT_MODIFIER_RESPONSABLE = "/WEB-INF/pages/adherent/modifResponsable.jsp",
 			ADHERENT_DESINSCRIRE_ADHERENT = "/WEB-INF/pages/adherent/desinscrireAdherent.jsp",
