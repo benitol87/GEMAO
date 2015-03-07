@@ -33,8 +33,8 @@ $(function() {
 	champ_date_inscription.value = getDateActuelle();
 	bouton1=document.getElementById("ajoutDiscipline");
 	bouton2=document.getElementById("retireDiscipline");
-	bouton3=document.getElementById("ajoutNewDiscipline");
+//	bouton3=document.getElementById("ajoutNewDiscipline");
 	ajouteEvent(bouton1, 'click', ajoutDiscipline, false);
 	ajouteEvent(bouton2, 'click', retireDiscipline, false);
-	ajouteEvent(bouton3, 'click', ajoutNewDiscipline, false);
+//	ajouteEvent(bouton3, 'click', ajoutNewDiscipline, false);
 });
