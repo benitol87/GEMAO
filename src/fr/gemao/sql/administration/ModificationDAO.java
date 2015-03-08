@@ -12,6 +12,7 @@ import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
+import fr.gemao.sql.util.DateUtil;
 
 public class ModificationDAO extends IDAO<Modification> {
 
@@ -34,7 +35,7 @@ public class ModificationDAO extends IDAO<Modification> {
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getPersonne().getIdPersonne(), obj.getDateModif(), obj.getLibelle());
+					sql, false, obj.getPersonne().getIdPersonne(), DateUtil.toSqlDate(obj.getDateModif()), obj.getLibelle());
 
 			int status = requete.executeUpdate();
 
@@ -121,7 +122,7 @@ public class ModificationDAO extends IDAO<Modification> {
 		return new Modification(
 				result.getInt("idModif"),
 				factory.getPersonnelDAO().get(idPersonne),
-				result.getDate("dateModif"),
+				result.getTimestamp("dateModif"),
 				result.getString("libelle"));
 	}
 

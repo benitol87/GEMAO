@@ -1,12 +1,18 @@
 package fr.gemao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Config {
-	public static final String MOTDEPASSE = "Ana.Crouse!18";
+	public static final String
+		MOT_DE_PASSE = "db-passwd",
+		DOSSIER_RACINE = "root-folder",
+		DEFAULT_PASSWORD_SIZE = "default-password-size";
+			
+	public static Map<String, String> params;
 	
-	/**
-	 * Taille des mots de passe générés aléatoirement
-	 * A prendre dans un fichier de configuration?
-	 * Modifiable?
-	 */
-	public static int DEFAULT_GENERATED_PASSWORD_SIZE = 12;
+	static{
+		params = new HashMap<String, String>();
+	}
+	
 }

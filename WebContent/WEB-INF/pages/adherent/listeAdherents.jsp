@@ -74,5 +74,8 @@
 	</c:forEach>
 </tbody>
 </table>
-
+<div class='align-center'>
+	<a href="<c:url value="<%= Pattern.ADHERENT_LISTER_ANCIEN %>"/>" class="btn">Anciens adhérents</a>
+	<a href="<c:url value="<%= Pattern.ADHERENT_EXPORTER %>"/>" class="btn">Exporter les données</a>
+</div>
 <c:import url="/inc/footer.inc.jsp" />
