@@ -67,5 +67,6 @@ public class JSPFile {
 			
 		// Module Cours
 			REP_COURS = "cours/",
-			COURS_AJOUTEDT = ROOT+REP_COURS+"ajoutEDT.jsp";
+			COURS_AJOUTEDT = ROOT+REP_COURS+"ajoutEDT.jsp",
+			COURS_LISTE_DISCIPLINES = ROOT+REP_COURS+"listeDisciplines.jsp";
 }
