@@ -28,6 +28,8 @@
 		<input type="checkbox"	name="entree" id="entree" onchange="affEntree()" />
 		<label for="droitImage">Droit à l'image</label>
 		<input type="checkbox" name="droitImage" id="droitImage" onchange="affDroitImage()" />
+		<label for="motifSortie">Motif de sortie</label>
+		<input type="checkbox" name="motifSortie" id="motifSortie" onchange="affMotifSortie()" />
 	</p>
 </form>
 
@@ -43,6 +45,7 @@
 		<th class="listCom">Code Postal</th>
 		<th class="listEntree">Date d'entrée</th>
 		<th class="listDroitIm">Droit à l'image</th>
+		<th class="listMotif">Motif de sortie</th>
 		<th>Actions</th>
 	</tr>
 </thead>
@@ -64,6 +67,8 @@
 				<c:when test="${adh.isDroitImage()}"><td class="listDroitIm">Oui</td></c:when>
 				<c:otherwise><td class="listDroitIm">Non</td></c:otherwise>
 			</c:choose>
+			<td class="listMotif"><c:out
+					value="${adh.getMotif().getLibelle()}" /></td>
 
 			<td><a class="icon icon-search"
 				href="<c:url value="<%= Pattern.ADHERENT_CONSULTER %>"/>?id=<c:out value="${adh['idPersonne']}" />"
