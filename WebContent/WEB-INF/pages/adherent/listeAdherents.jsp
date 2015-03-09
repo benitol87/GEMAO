@@ -73,7 +73,6 @@
 						<td class="listDroitIm">Non</td>
 					</c:otherwise>
 				</c:choose>
-				</c:choose>
 				<c:choose>
 					<c:when test="${adh.getQf()==null}">
 						<td class="listQF">/</td>
