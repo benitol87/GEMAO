@@ -10,18 +10,20 @@
 
 <h1>Saisie de la cotisation</h1>
 
-<c:if test="${ QF == null }">
-	<p class="offset">L'adhérent ne bénéficie pas du quotient familial</p>
-</c:if>
-<c:if test="${ QF == 'Quotient 3' }">
-	<p class="offset">L'adhérent bénéficie du Quotient 3</p>
-</c:if>
-<c:if test="${ QF == 'Quotient 2' }">
-	<p class="offset">L'adhérent bénéficie du Quotient 2</p>
-</c:if>
-<c:if test="${ QF == 'Quotient 1' }">
-	<p class="offset">L'adhérent bénéficie du Quotient 1</p>
-</c:if>
+<c:choose>
+	<c:when test="${adherent.getQf()==null}">
+		<p class="offset">L'adhérent ne bénéficie pas du quotient familial</p>
+	</c:when>
+	<c:when test="${params.getQf_min() > adherent.getQf()}">
+		<p class="offset">L'adhérent bénéficie du Quotient 3</p>
+	</c:when>
+	<c:when test="${params.getQf_max() > adherent.getQf()}">
+		<p class="offset">L'adhérent bénéficie du Quotient 2</p>
+	</c:when>
+	<c:otherwise>
+		<p class="offset">L'adhérent bénéficie du Quotient 1</p>
+	</c:otherwise>
+</c:choose>
 
 <form action="#" method="post">
 	<fieldset>
