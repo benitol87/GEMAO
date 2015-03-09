@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.entity.Parametre;
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.ParametreDAO;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -34,18 +36,9 @@ public class SaisieCotisationServlet extends HttpServlet implements Servlet {
 				.getAttribute("ajout_adh_adherent");
 		
 		ParametreCtrl parametreCtrl = new ParametreCtrl();
-		Parametre parametre = parametreCtrl.getLast();
-		String QF = null;
-		if(adherent.getQf()!=null){
-			if (parametre.getQf_min() > adherent.getQf())
-				QF = "Quotient 3";
-			else if (parametre.getQf_max() > adherent.getQf())
-				QF = "Quotient 2";
-			else
-				QF = "Quotient 1";
-		}
-		
-		request.setAttribute("QF", QF);
+		Parametre param = parametreCtrl.getLast();
+		request.setAttribute("params", param);		
+		request.setAttribute("adherent", adherent);
 		
 		this.getServletContext()
 				.getRequestDispatcher(JSPFile.ADHERENT_SAISIE_COTISATION)
