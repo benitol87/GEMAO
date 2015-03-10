@@ -1,9 +1,9 @@
 package fr.gemao.ctrl.adherent;
 
 import fr.gemao.entity.adherent.Adherent;
-import fr.gemao.sql.AdherentDAO;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
+import fr.gemao.sql.adherent.AdherentDAO;
 
 public class DesinscrireAdherentCtrl {
 

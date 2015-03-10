@@ -9,6 +9,9 @@ import java.util.Properties;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
+import fr.gemao.sql.adherent.AdherentDAO;
+import fr.gemao.sql.adherent.MotifSortieDAO;
+import fr.gemao.sql.adherent.ResponsableDAO;
 import fr.gemao.sql.administration.DroitDAO;
 import fr.gemao.sql.administration.ModificationDAO;
 import fr.gemao.sql.administration.ModuleDAO;

@@ -1,4 +1,4 @@
-package fr.gemao.sql;
+package fr.gemao.sql.adherent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +10,9 @@ import java.util.List;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.cours.Classe;
 import fr.gemao.entity.cours.Cours;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.IDAO;
+import fr.gemao.sql.PersonneDAO;
 import fr.gemao.sql.cours.DisciplineDAO;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;

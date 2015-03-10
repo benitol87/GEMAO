@@ -2,7 +2,7 @@ package fr.gemao.ctrl.adherent;
 
 import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.ResponsableDAO;
+import fr.gemao.sql.adherent.ResponsableDAO;
 
 public class ModifierResponsableCtrl {
 	

@@ -2,8 +2,9 @@ package fr.gemao.ctrl.adherent;
 
 import java.util.ArrayList;
 import java.util.List;
-import fr.gemao.sql.AdherentDAO;
+
 import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.adherent.AdherentDAO;
 import fr.gemao.entity.adherent.Adherent;
 
 public class RecupererAdherentCtrl {
