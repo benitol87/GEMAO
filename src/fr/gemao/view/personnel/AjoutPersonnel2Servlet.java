@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.TypeContratCtrl;
+import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.ctrl.personnel.CalculerDateFinContratCtrl;
 import fr.gemao.entity.Contrat;
 import fr.gemao.entity.Personnel;
-import fr.gemao.entity.TypeContrat;
+import fr.gemao.entity.administration.Modification;
+import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -72,10 +74,18 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
         AjouterPersonnelCtrl ajouterPersonnelCtrl = new AjouterPersonnelCtrl();
         ajouterPersonnelCtrl.ajouterPersonnel(perso);
         
+        // Archivage
+		new ModificationCtrl().ajouterModification(new Modification(
+				0,
+				(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
+				new Date(),
+				"Ajout personnel : "+perso.getNom()+" "+perso.getPrenom()
+		));
+        
         /* Transmission à la page JSP en charge de l'affichage des données */
-     		this.getServletContext()
-     				.getRequestDispatcher(JSPFile.PERSONNEL_AJOUT3)
-     				.forward(request, response);
+ 		this.getServletContext()
+ 				.getRequestDispatcher(JSPFile.PERSONNEL_AJOUT3)
+ 				.forward(request, response);
 	}
 
 }

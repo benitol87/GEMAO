@@ -2,6 +2,7 @@ package fr.gemao.view.personnel;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.RecupererAdresseCtrl;
 import fr.gemao.ctrl.RecupererCommuneCtrl;
 import fr.gemao.ctrl.RecupererContratCtrl;
+import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.ctrl.personnel.ModifierPersonnelCtrl;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
 import fr.gemao.entity.Adresse;
@@ -24,7 +26,9 @@ import fr.gemao.entity.Contrat;
 import fr.gemao.entity.Diplome;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.Responsabilite;
+import fr.gemao.entity.administration.Modification;
 import fr.gemao.form.personnel.PersonnelForm;
+import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -136,8 +140,16 @@ public class ModifPersonnelServlet extends HttpServlet {
 				ajouterAdr.ajoutAdresse(form.getAdresse());
 				
 				modifPers.modifierPersonnel(pers);
-				
 				session.removeAttribute("personnel");
+				
+				// Archivage
+				new ModificationCtrl().ajouterModification(new Modification(
+						0,
+						(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
+						new Date(),
+						"Modification personnel : "+pers.getNom()+" "+pers.getPrenom()
+				));
+				
 			} else {
 				form.setErreur("Modification", "Problème de session");
 			}
@@ -147,7 +159,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 		if (form.getErreurs().isEmpty()) {
 			
 			/* On redirige vers la liste des personnels */
-			response.sendRedirect(request.getContextPath() + JSPFile.PERSONNEL_LISTER);
+			response.sendRedirect(request.getContextPath() + Pattern.PERSONNEL_LISTER);
 		} else {
 			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_MODIFIER).forward(request, response);
 		}

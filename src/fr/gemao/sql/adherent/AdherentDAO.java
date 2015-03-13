@@ -1,4 +1,4 @@
-package fr.gemao.sql;
+package fr.gemao.sql.adherent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +10,9 @@ import java.util.List;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.cours.Classe;
 import fr.gemao.entity.cours.Cours;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.IDAO;
+import fr.gemao.sql.PersonneDAO;
 import fr.gemao.sql.cours.DisciplineDAO;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
@@ -164,6 +167,34 @@ public class AdherentDAO extends IDAO<Adherent> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "SELECT * FROM adherent a inner join personne p on a.idPersonne=p.idPersonne Where dateSortie is NULL order by nom, prenom;";
+		try {
+
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false);
+			result = requete.executeQuery();
+
+			while (result.next()) {
+				adherent = this.map(result);
+				liste.add(adherent);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return liste;
+	}
+	
+	public List<Adherent> getAllAnciens() {
+		List<Adherent> liste = new ArrayList<>();
+
+		Adherent adherent = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM adherent a inner join personne p on a.idPersonne=p.idPersonne Where dateSortie is not NULL order by nom, prenom;";
 		try {
 
 			connexion = factory.getConnection();

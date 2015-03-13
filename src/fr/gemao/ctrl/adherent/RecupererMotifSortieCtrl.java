@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.gemao.entity.adherent.MotifSortie;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.MotifSortieDAO;
+import fr.gemao.sql.adherent.MotifSortieDAO;
 
 public class RecupererMotifSortieCtrl {
 		

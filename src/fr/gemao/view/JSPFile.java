@@ -2,58 +2,71 @@ package fr.gemao.view;
 
 public class JSPFile {
 	public static final String
+			ROOT = "/WEB-INF/pages/",
 		// Divers
-			CHANGER_MOT_DE_PASSE = "/WEB-INF/pages/changerMotDePasse.jsp",
-			CONFIGURATION = "/WEB-INF/pages/configuration.jsp",
-			CONNEXION = "/WEB-INF/pages/connexion.jsp",
-			RESULTAT = "/WEB-INF/pages/resultat.jsp",
-			ERREUR = "/WEB-INF/pages/erreur.jsp",
+			CHANGER_MOT_DE_PASSE = ROOT+"changerMotDePasse.jsp",
+			CONFIGURATION = ROOT+"configuration.jsp",
+			CONNEXION = ROOT+"connexion.jsp",
+			RESULTAT = ROOT+"resultat.jsp",
 			
 		// Module adhérent
-			ADHERENT_AJOUT_ADHERENT = "/WEB-INF/pages/adherent/ajoutAdherent.jsp",
-			ADHERENT_AJOUT_RESPONSABLE = "/WEB-INF/pages/adherent/ajoutResponsable.jsp",
-			ADHERENT_CALCUL_QF = "/WEB-INF/pages/adherent/calculQF.jsp",
-			ADHERENT_CONFIRMATION_AJOUT = "/WEB-INF/pages/adherent/confirmationAjoutAdherent.jsp",
-			ADHERENT_CONFIRMATION_MODIFICATION = "/WEB-INF/pages/adherent/confirmationModifAdherent.jsp",
-			ADHERENT_CONSULTER = "/WEB-INF/pages/adherent/consulteAdherent.jsp",
-			ADHERENT_ECHEC_AJOUT = "/WEB-INF/pages/adherent/echecAjoutAdherent.jsp",
-			ADHERENT_ECHEC_MODIFICATION = "/WEB-INF/pages/adherent/echecModifAdherent.jsp",
-			ADHERENT_LISTER = "/WEB-INF/pages/adherent/listeAdherents.jsp",
-			ADHERENT_MODIFIER_ADHERENT = "/WEB-INF/pages/adherent/modifAdherent.jsp",
-			ADHERENT_MODIFIER_RESPONSABLE = "/WEB-INF/pages/adherent/modifResponsable.jsp",
-			ADHERENT_DESINSCRIRE_ADHERENT = "/WEB-INF/pages/adherent/desinscrireAdherent.jsp",
-			ADHERENT_PARAMETRE = "/WEB-INF/pages/adherent/parametre.jsp",
-			ADHERENT_VALIDATION_AJOUT = "/WEB-INF/pages/adherent/validAjoutAdherent.jsp",
-			ADHERENT_VALIDATION_MODIF = "/WEB-INF/pages/adherent/validModifAdherent.jsp",
+			REP_ADHERENT = "adherent/",
+			ADHERENT_AJOUT_ADHERENT = ROOT+REP_ADHERENT+"ajoutAdherent.jsp",
+			ADHERENT_AJOUT_RESPONSABLE = ROOT+REP_ADHERENT+"ajoutResponsable.jsp",
+			ADHERENT_CALCUL_QF = ROOT+REP_ADHERENT+"calculQF.jsp",
+			ADHERENT_CONFIRMATION_AJOUT = ROOT+REP_ADHERENT+"confirmationAjoutAdherent.jsp",
+			ADHERENT_CONFIRMATION_MODIFICATION = ROOT+REP_ADHERENT+"confirmationModifAdherent.jsp",
+			ADHERENT_CONSULTER = ROOT+REP_ADHERENT+"consulteAdherent.jsp",
+			ADHERENT_ECHEC_AJOUT = ROOT+REP_ADHERENT+"echecAjoutAdherent.jsp",
+			ADHERENT_ECHEC_MODIFICATION = ROOT+REP_ADHERENT+"echecModifAdherent.jsp",
+			ADHERENT_LISTER = ROOT+REP_ADHERENT+"listeAdherents.jsp",
+			ADHERENT_LISTER_ANCIEN = ROOT+REP_ADHERENT+"listeAnciensAdherents.jsp",
+			ADHERENT_MODIFIER_ADHERENT = ROOT+REP_ADHERENT+"modifAdherent.jsp",
+			ADHERENT_MODIFIER_RESPONSABLE = ROOT+REP_ADHERENT+"modifResponsable.jsp",
+			ADHERENT_DESINSCRIRE_ADHERENT = ROOT+REP_ADHERENT+"desinscrireAdherent.jsp",
+			ADHERENT_PARAMETRE = ROOT+REP_ADHERENT+"parametre.jsp",
+			ADHERENT_VALIDATION_AJOUT = ROOT+REP_ADHERENT+"validAjoutAdherent.jsp",
+			ADHERENT_VALIDATION_MODIF = ROOT+REP_ADHERENT+"validModifAdherent.jsp",
+			ADHERENT_SAISIE_COTISATION = ROOT+REP_ADHERENT+"saisieCotisation.jsp",
 					
 		// Module administration
-			ADMINISTRATION_AJOUT_PROFIL = "/WEB-INF/pages/administration/ajouterProfil.jsp",
-			ADMINISTRATION_CONSULTER_PROFIL = "/WEB-INF/pages/administration/consulterProfil.jsp",
-			ADMINISTRATION_LISTER_PROFILS = "/WEB-INF/pages/administration/listerProfils.jsp",
-			ADMINISTRATION_MODIFIER_PROFIL = "/WEB-INF/pages/administration/modifierProfil.jsp",
-			ADMINISTRATION_RESET_PASSWORD = "/WEB-INF/pages/administration/resetPassword.jsp",
+			REP_ADMINISTRATION = "administration/",
+			ADMINISTRATION_AJOUT_PROFIL = ROOT+REP_ADMINISTRATION+"ajouterProfil.jsp",
+			ADMINISTRATION_CONSULTER_PROFIL = ROOT+REP_ADMINISTRATION+"consulterProfil.jsp",
+			ADMINISTRATION_LISTER_MODIFICATIONS = ROOT+REP_ADMINISTRATION+"listerModifs.jsp",
+			ADMINISTRATION_LISTER_PROFILS = ROOT+REP_ADMINISTRATION+"listerProfils.jsp",
+			ADMINISTRATION_MODIFIER_PROFIL = ROOT+REP_ADMINISTRATION+"modifierProfil.jsp",
+			ADMINISTRATION_RESET_PASSWORD = ROOT+REP_ADMINISTRATION+"resetPassword.jsp",
 			
 		// Erreurs
-			ERREUR_404 = "/WEB-INF/pages/erreurs/404.jsp",
+			REP_ERREUR = "erreurs/",
+			ERREUR = ROOT+REP_ERREUR+"erreur.jsp",
+			ERREUR_404 = ROOT+REP_ERREUR+"404.jsp",
+			ERREUR_DROIT = ROOT+REP_ERREUR+"erreurDroit.jsp",
 			
 		// Module location
-			LOCATION_LOCATION = "/WEB-INF/pages/location/locationInstrument.jsp",
-			LOCATION_RETOUR = "/WEB-INF/pages/location/retourInstrument.jsp",
+			REP_LOCATION = "location/",
+			LOCATION_LOCATION = ROOT+REP_LOCATION+"locationInstrument.jsp",
+			LOCATION_RETOUR = ROOT+REP_LOCATION+"retourInstrument.jsp",
 			
 		// Module matériel
-			MATERIEL_AJOUT = "/WEB-INF/pages/materiel/ajoutMateriel.jsp",
-			MATERIEL_CONSULTER = "/WEB-INF/pages/materiel/consulterMateriel.jsp",
-			MATERIEL_LISTER = "/WEB-INF/pages/materiel/listerMateriel.jsp",
-			MATERIEL_MODIFIER = "/WEB-INF/pages/materiel/modifierMateriel.jsp",
+			REP_MATERIEL = "materiel/",
+			MATERIEL_AJOUT = ROOT+REP_MATERIEL+"ajoutMateriel.jsp",
+			MATERIEL_CONSULTER = ROOT+REP_MATERIEL+"consulterMateriel.jsp",
+			MATERIEL_LISTER = ROOT+REP_MATERIEL+"listerMateriel.jsp",
+			MATERIEL_MODIFIER = ROOT+REP_MATERIEL+"modifierMateriel.jsp",
 			
 		// Module personnel
-			PERSONNEL_AJOUT = "/WEB-INF/pages/personnel/ajoutPersonnel.jsp",
-			PERSONNEL_AJOUT2 = "/WEB-INF/pages/personnel/ajoutPersonnel2.jsp",
-			PERSONNEL_AJOUT3 = "/WEB-INF/pages/personnel/ajoutPersonnel3.jsp",
-			PERSONNEL_CONSULTER = "/WEB-INF/pages/personnel/consulterPersonnel.jsp",
-			PERSONNEL_LISTER = "/WEB-INF/pages/personnel/listePersonnel.jsp",
-			PERSONNEL_MODIFIER = "/WEB-INF/pages/personnel/modifPersonnel.jsp",
+			REP_PERSONNEL = "personnel/",
+			PERSONNEL_AJOUT = ROOT+REP_PERSONNEL+"ajoutPersonnel.jsp",
+			PERSONNEL_AJOUT2 = ROOT+REP_PERSONNEL+"ajoutPersonnel2.jsp",
+			PERSONNEL_AJOUT3 = ROOT+REP_PERSONNEL+"ajoutPersonnel3.jsp",
+			PERSONNEL_CONSULTER = ROOT+REP_PERSONNEL+"consulterPersonnel.jsp",
+			PERSONNEL_LISTER = ROOT+REP_PERSONNEL+"listePersonnel.jsp",
+			PERSONNEL_MODIFIER = ROOT+REP_PERSONNEL+"modifPersonnel.jsp",
 			
 		// Module Cours
-			COURS_AJOUTEDT = "/WEB-INF/pages/cours/ajoutEDT.jsp";
+			REP_COURS = "cours/",
+			COURS_AJOUTEDT = ROOT+REP_COURS+"ajoutEDT.jsp",
+			COURS_LISTE_DISCIPLINES = ROOT+REP_COURS+"listeDisciplines.jsp";
 }
