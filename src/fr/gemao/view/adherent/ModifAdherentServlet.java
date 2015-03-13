@@ -95,13 +95,13 @@ public class ModifAdherentServlet extends HttpServlet {
 				.getAttribute("modif_adh_adherent");
 
 		if (Form.getValeurChamp(request, "nomDiscipline") != null) {
-			try {
+			/*try {
 				AjouterDisciplineCtrl.ajouterDiscipline(Form.getValeurChamp(
 						request, "nomDiscipline"));
 			} catch (DAOException e) {
 				e.printStackTrace();
 				System.out.println("La discipline existe déjà");
-			}
+			}*/
 
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			String dateNaissance = formatter

@@ -76,12 +76,12 @@ public class AjoutAdherentServlet extends HttpServlet {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
 		if (Form.getValeurChamp(request, "nomDiscipline") != null) {
-			try {
+			/*try {
 				AjouterDisciplineCtrl.ajouterDiscipline(Form.getValeurChamp(
 						request, "nomDiscipline"));
 			} catch (DAOException e) {
 				e.printStackTrace();
-			}
+			}*/
 
 			RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
 			session.setAttribute("listDiscipline",
