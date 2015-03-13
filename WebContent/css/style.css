@@ -27,6 +27,18 @@
 	content: ' €';
 }
 
+.icon{
+	color:black;
+}
+
+.icon:hover{
+	color:#444;
+}
+
+header .icon, header .icon:hover{
+	color:#fff;
+}
+
 .no-border{
 	border: none;
 }
@@ -166,12 +178,16 @@ table>caption{
 	margin-left: 30px;
 }
 
-tr {
-	margin: 15px;
+th{
+	cursor: pointer;
 }
 
 th, td {
 	padding : 3px;
+}
+
+tr {
+	margin: 15px;
 }
 
 @media (max-width:768px)
@@ -205,30 +221,35 @@ th, td {
 /* Couleurs de texte */
 .text-primary {
   color: #ffffff;
+  font-size:1.2em;
 }
 a.text-primary:hover {
   color: #c0c0c0;
 }
 .text-success {
-  color: #56a958;
+  color: #36e43a;
+  font-size:1.2em;
 }
 a.text-success:hover {
   color: #438345;
 }
 .text-info {
   color: #ffff00;
+  font-size:1.2em;
 }
 a.text-info:hover {
   color: #ffff80;
 }
 .text-warning {
   color: #bd9c64;
+  font-size:1.2em;
 }
 a.text-warning:hover {
   color: #937640;
 }
 .text-danger {
-  color: #d18b89;
+  color: #fd4c47;
+  font-size:1.2em;
 }
 a.text-danger:hover {
   color: #843534;

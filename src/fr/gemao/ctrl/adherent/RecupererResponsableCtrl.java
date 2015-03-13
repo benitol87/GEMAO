@@ -5,7 +5,7 @@ import java.util.List;
 
 import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.ResponsableDAO;
+import fr.gemao.sql.adherent.ResponsableDAO;
 
 public class RecupererResponsableCtrl {
 	

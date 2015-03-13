@@ -20,7 +20,7 @@ public class ParametreDAO extends IDAO<Parametre> {
 	@Override
 	public Parametre create(Parametre obj) {
 		String sql = "INSERT INTO parametre (alloc2, alloc3, alloc4, "
-				+ "alloc5, qf_max, qf_min, dateModif, tarifInstrument, tarifFormation) VALUES (?,?,?,?,?,?,?,?,?);";
+				+ "alloc5, qf_max, qf_min, dateModif) VALUES (?,?,?,?,?,?,?);";
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
@@ -29,7 +29,7 @@ public class ParametreDAO extends IDAO<Parametre> {
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, true, obj.getAlloc2(), obj.getAlloc3(),
 					obj.getAlloc4(), obj.getAlloc5(), obj.getQf_max(),
-					obj.getQf_min(), DateUtil.toSqlDate(obj.getDateModif()), obj.getTarifInstrument(), obj.getTarifFormation());
+					obj.getQf_min(), DateUtil.toSqlDate(obj.getDateModif()));
 			int status = requete.executeUpdate();
 
 			if (status == 0) {
@@ -53,26 +53,22 @@ public class ParametreDAO extends IDAO<Parametre> {
 
 	@Override
 	public void delete(Parametre obj) {
-		// TODO Auto-generated method stub
-
+		throw new DAOException("Not implemented method");
 	}
 
 	@Override
 	public Parametre update(Parametre obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new DAOException("Not implemented method");
 	}
 
 	@Override
 	public Parametre get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new DAOException("Not implemented method");
 	}
 
 	@Override
 	public List<Parametre> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new DAOException("Not implemented method");
 	}
 
 	/**
@@ -109,7 +105,7 @@ public class ParametreDAO extends IDAO<Parametre> {
 				result.getFloat("alloc2"), result.getFloat("alloc3"),
 				result.getFloat("alloc4"), result.getFloat("alloc5"),
 				result.getFloat("qf_min"), result.getFloat("qf_max"),
-				result.getTimestamp("dateModif"), result.getFloat("tarifInstrument"), result.getFloat("tarifFormation"));
+				result.getTimestamp("dateModif"));
 	}
 
 }

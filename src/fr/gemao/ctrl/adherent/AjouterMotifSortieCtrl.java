@@ -2,7 +2,7 @@ package fr.gemao.ctrl.adherent;
 
 import fr.gemao.entity.adherent.MotifSortie;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.MotifSortieDAO;
+import fr.gemao.sql.adherent.MotifSortieDAO;
 
 public class AjouterMotifSortieCtrl {
 	

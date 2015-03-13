@@ -2,8 +2,9 @@ package fr.gemao.ctrl.adherent;
 
 import java.util.ArrayList;
 import java.util.List;
-import fr.gemao.sql.AdherentDAO;
+
 import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.adherent.AdherentDAO;
 import fr.gemao.entity.adherent.Adherent;
 
 public class RecupererAdherentCtrl {
@@ -42,4 +43,20 @@ public class RecupererAdherentCtrl {
 		
 		return listeAdherents;
 	}
+	
+	/**
+	 * Méthode permettant de récupérer l'ensemble des anciens adhérents
+	 * @return la liste des anciens adhérents de la BD
+	 */
+	public List<Adherent> recupererAnciensAdherents(){
+		List<Adherent> listeAdherents = new ArrayList<Adherent>();
+		DAOFactory co = DAOFactory.getInstance();
+		AdherentDAO adherentDAO = co.getAdherentDAO();
+		
+		listeAdherents = adherentDAO.getAllAnciens();
+		
+		return listeAdherents;
+	}
+	
+	
 }

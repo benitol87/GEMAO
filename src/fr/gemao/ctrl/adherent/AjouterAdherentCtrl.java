@@ -4,8 +4,8 @@ import java.util.Date;
 
 import fr.gemao.ctrl.AjouterPersonneCtrl;
 import fr.gemao.entity.adherent.Adherent;
-import fr.gemao.sql.AdherentDAO;
 import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.adherent.AdherentDAO;
 
 /**
  * La classe AjouterAdherentCtrl permet de contrôler l'ajout d'un adhérent
