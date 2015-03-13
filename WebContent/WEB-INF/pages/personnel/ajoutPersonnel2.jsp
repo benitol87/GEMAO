@@ -38,10 +38,6 @@
 			<label for="datedeb" class="required">Date de début : </label> <input
 				type="text" name="datedeb" class="datepicker" required />
 		</div>
-		<div>
-			<label for="datedebEns" class="required">Date de début d'enseignement : </label> <input
-				type="text" name="datedebEns" class="datepicker" required />
-		</div>
 		<div id="duree" hidden=hidden>
 			<label for="duree">Durée : </label> <input type="number" name="duree"
 				min="1" value="1" /> mois

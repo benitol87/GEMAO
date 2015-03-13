@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.gemao.listeners.InitialisationDaoFactory;
 import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.config.InitialisationDaoFactory;
 
 
 public class ErreurDAOFilter implements Filter {

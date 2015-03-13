@@ -45,6 +45,7 @@ public class AjoutResponsableServlet extends HttpServlet {
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
 		Responsable responsable = new Responsable(null, nom, prenom, tel, email);
+		System.out.println("Ajout resp " + responsable);
 
 		session.setAttribute("ajout_adh_responsable", responsable);
 		Commune commune = (Commune) session.getAttribute("ajout_adh_commune"); 

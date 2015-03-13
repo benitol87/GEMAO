@@ -48,11 +48,11 @@ public class SimpleCalculQFServlet extends HttpServlet {
 			Parametre parametre = parametreCtrl.getLast();
 			String QF = "";
 			if (parametre.getQf_min() > simpleQuotient)
-				QF = "Quotient 3";
+				QF = "Q1";
 			else if (parametre.getQf_max() > simpleQuotient)
-				QF = "Quotient 2";
+				QF = "Q2";
 			else
-				QF = "Quotient 1";
+				QF = "Q3";
 			
 			DecimalFormat df = new DecimalFormat("########.00");
 			String str = df.format(simpleQuotient);

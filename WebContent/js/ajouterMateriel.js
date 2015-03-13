@@ -60,17 +60,7 @@ function ajoutEtat(){
 	}
 }
 
-function ajoutEtat(){
-	var answer = prompt ("Ajouter un etat");
-	answer = answer.trim();
-	if(answer && answer!=""){
-		var input=document.getElementById("nomEtat");
-		input.value=answer;
-		document.getElementById("ajouterMateriel").submit();
-	} else {
-		alert("Abandon de l'ajout");
-	}
-}
+
 
 function dispatchEvents(){
 	var des = document.getElementById("ajoutDes");

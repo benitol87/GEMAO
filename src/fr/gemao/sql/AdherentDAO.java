@@ -183,34 +183,6 @@ public class AdherentDAO extends IDAO<Adherent> {
 
 		return liste;
 	}
-	
-	public List<Adherent> getAllAnciens() {
-		List<Adherent> liste = new ArrayList<>();
-
-		Adherent adherent = null;
-		Connection connexion = null;
-		PreparedStatement requete = null;
-		ResultSet result = null;
-		String sql = "SELECT * FROM adherent a inner join personne p on a.idPersonne=p.idPersonne Where dateSortie is not NULL order by nom, prenom;";
-		try {
-
-			connexion = factory.getConnection();
-			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false);
-			result = requete.executeQuery();
-
-			while (result.next()) {
-				adherent = this.map(result);
-				liste.add(adherent);
-			}
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} finally {
-			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
-		}
-
-		return liste;
-	}
 
 	@Override
 	public Adherent map(ResultSet result) throws SQLException {

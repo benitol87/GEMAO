@@ -13,7 +13,7 @@ public class AjouterDisciplineCtrl {
 	 * 
 	 * @param responsable
 	 */
-	public static void ajouterDiscipline(String discipline) {
+	/*public static void ajouterDiscipline(String discipline) {
 
 		Discipline disc = new Discipline(null, discipline);
 
@@ -34,5 +34,5 @@ public class AjouterDisciplineCtrl {
 					"La discipline existe déjà dans la base...");
 		}
 
-	}
+	}*/
 }

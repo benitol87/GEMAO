@@ -16,8 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.AjouterPersonneCtrl;
+import fr.gemao.ctrl.adherent.AjouterAdherentCtrl;
 import fr.gemao.ctrl.adherent.AjouterDisciplineCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
+import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.adherent.Adherent;
@@ -73,12 +76,12 @@ public class AjoutAdherentServlet extends HttpServlet {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
 		if (Form.getValeurChamp(request, "nomDiscipline") != null) {
-			try {
+			/*try {
 				AjouterDisciplineCtrl.ajouterDiscipline(Form.getValeurChamp(
 						request, "nomDiscipline"));
 			} catch (DAOException e) {
 				e.printStackTrace();
-			}
+			}*/
 
 			RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
 			session.setAttribute("listDiscipline",
@@ -164,6 +167,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 					commune = c;
 				}
 
+				System.out.println(commune);
 
 				/**
 				 * Réupération des données de l'adresse
@@ -187,12 +191,13 @@ public class AjoutAdherentServlet extends HttpServlet {
 						dateMineur.get(Calendar.MONTH),
 						dateMineur.get(Calendar.DAY_OF_MONTH));
 				
+				AjouterPersonneCtrl ajouterPersonneCtrl = new AjouterPersonneCtrl();
 				if (dateNaiss.after(dateMineur.getTime())) {
 					response.sendRedirect(request.getContextPath()
 							+ Pattern.ADHERENT_AJOUT_RESPONSABLE);
 				} else {
 					response.sendRedirect(request.getContextPath()
-							+ Pattern.ADHERENT_SAISIE_COTISATION);
+							+ Pattern.ADHERENT_VALIDATION_AJOUT);
 				}
 
 			} else {

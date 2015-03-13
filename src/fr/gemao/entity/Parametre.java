@@ -17,12 +17,14 @@ public class Parametre implements Serializable{
 	private float qf_min;
 	private float qf_max;
 	private Date dateModif;
+	private float tarifInstrument;
+	private float tarifFormation;
 	
 	public Parametre() {
 	}
 	
 	public Parametre(long idParam, float alloc2, float alloc3, float alloc4,
-			float alloc5, float qf_min, float qf_max, Date dateModif) {
+			float alloc5, float qf_min, float qf_max, Date dateModif, float tarifInstrument, float tarifFormation) {
 		this.idParam = idParam;
 		this.alloc2 = alloc2;
 		this.alloc3 = alloc3;
@@ -31,6 +33,8 @@ public class Parametre implements Serializable{
 		this.qf_min = qf_min;
 		this.qf_max = qf_max;
 		this.dateModif = dateModif;
+		this.tarifInstrument = tarifInstrument;
+		this.tarifFormation = tarifFormation;
 	}
 	
 	public Parametre(Parametre param){
@@ -42,6 +46,25 @@ public class Parametre implements Serializable{
 		this.qf_min = param.getQf_min();
 		this.qf_max = param.getQf_max();
 		this.dateModif = param.getDateModif();
+		this.tarifInstrument = param.getTarifInstrument();
+		this.tarifFormation = param.getTarifFormation();
+	}
+
+
+	public float getTarifInstrument() {
+		return tarifInstrument;
+	}
+
+	public float getTarifFormation() {
+		return tarifFormation;
+	}
+
+	public void setTarifInstrument(float tarifInstrument) {
+		this.tarifInstrument = tarifInstrument;
+	}
+
+	public void setTarifFormation(float tarifFormation) {
+		this.tarifFormation = tarifFormation;
 	}
 
 	public long getIdParam() {
@@ -128,7 +151,8 @@ public class Parametre implements Serializable{
 		return "Parametre [idParam=" + idParam + ", alloc2=" + alloc2
 				+ ", alloc3=" + alloc3 + ", alloc4=" + alloc4 + ", alloc5="
 				+ alloc5 + ", qf_min=" + qf_min + ", qf_max=" + qf_max
-				+ ", dateModif=" + dateModif + "]";
+				+ ", dateModif=" + dateModif + ", tarifInstrument="
+				+ tarifInstrument + ", tarifFormation=" + tarifFormation + "]";
 	}
 
 	@Override
@@ -142,6 +166,8 @@ public class Parametre implements Serializable{
 		result = prime * result + (int) (idParam ^ (idParam >>> 32));
 		result = prime * result + Float.floatToIntBits(qf_max);
 		result = prime * result + Float.floatToIntBits(qf_min);
+		result = prime * result + Float.floatToIntBits(tarifFormation);
+		result = prime * result + Float.floatToIntBits(tarifInstrument);
 		return result;
 	}
 
@@ -165,6 +191,12 @@ public class Parametre implements Serializable{
 		if (Float.floatToIntBits(qf_max) != Float.floatToIntBits(other.qf_max))
 			return false;
 		if (Float.floatToIntBits(qf_min) != Float.floatToIntBits(other.qf_min))
+			return false;
+		if (Float.floatToIntBits(tarifFormation) != Float
+				.floatToIntBits(other.tarifFormation))
+			return false;
+		if (Float.floatToIntBits(tarifInstrument) != Float
+				.floatToIntBits(other.tarifInstrument))
 			return false;
 		return true;
 	}

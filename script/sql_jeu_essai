@@ -1,0 +1,122 @@
+use gemao;
+
+/**************
+ * Jeux d'essai *
+ **************/
+INSERT INTO commune (idCommune, nom, codePostal, avantage) VALUES
+	(1, 'Limoges', 87000, 0),
+	(2, 'La Chapelle Saint Ursin', 18570, 1);
+
+INSERT INTO adresse (idAdresse, idCommune, numRue, nomRue, infoCompl) VALUES
+	(1, 1, 14, 'rue du puy imbert', NULL ),
+	(2, 2, 35, 'rue de l\'impasse', 'apartement 3');
+
+INSERT INTO personne (idPersonne, idAdresse, idCommuneNaiss, prenom, nom, dateNaissance, tel_fixe, tel_port, email) VALUES
+	(1, 1, 1, 'Noël', 'Flantier', '1980-01-30', '0123456789', '0123456789', 'noel.flantier@gmail.com'),
+	(2, 2, 1, 'Hubert', 'Bonisseur', '1998-02-12', '0987654321', '0987654321', 'hubert.bonisseur@gmail.com'),
+	(3, 1, 1, 'Jean', 'Dupont', '1990-03-20', '0123456788', '0123456788', 'jean.dupont@gmail.com'),
+	(4, 2, 1, 'Maxime', 'Dupond', '1998-04-05', '0887654321', '0887654321', 'maxime.dupond@gmail.com');
+
+INSERT INTO motifsortie (idMotif, libelle) VALUES
+	(1, 'Fin de scolarité');
+
+INSERT INTO responsable (idResponsable, nom, prenom, tel, email) VALUES
+	(1, 'Chirac', 'Jacques', '0555667788', 'jacques.chirac@gmail.com');
+
+INSERT INTO adherent (idPersonne, idMotifSortie, idResponsable, droitImage, dateEntree, dateSortie, qf, cotisation) VALUES
+	(2, 1, NULL, 1, '2014-09-01', NULL,  127.54, 150.00),
+	(4, NULL, 1, 1, '2013-09-01', '2014-06-30', 200.12, 200.00);
+
+INSERT INTO responsabilite (idResponsabilite, libelle) VALUES
+	(1, 'Professeur'),
+	(2, 'Secrétaire'),
+	(3, 'Comptable');
+
+INSERT INTO typecontrat (idTypeContrat, libelle) VALUES
+	(1, 'CDI'),
+	(2, 'CDD'),
+	(3, 'Bénévole');
+
+INSERT INTO motiffincontrat (idMotif, libelle) VALUES
+	(1, 'Echéance'),
+	(2, 'Démission'),
+	(3, 'Licenciement'),
+	(4, 'Rupture conventionnelle');
+
+INSERT INTO contrat (idContrat, idTypeContrat, idMotifFin, dateDebut, dateFin, dateRupture) VALUES
+	(1, 1, NULL, '2010-09-01', NULL, NULL),
+	(2, 3, NULL, '2005-09-01', NULL, NULL);
+
+INSERT INTO personnel ( idPersonne, idContrat, login, pwd,  pointAnciennete, dateDebutEnseignement) VALUES
+	(1, 1, 'nono', 'lapin', 1, '2010-09-01'),
+	(3, 2, 'jean', 'lapin', 2, '2005-09-01');
+
+INSERT INTO personnelXresponsabilite (idResponsabilite, idPersonne) VALUES
+	(1, 1),
+	(3, 2),
+	(3, 3);
+
+INSERT INTO etat (idEtat, libelle) VALUES
+	(1, 'Neuf'),
+	(2, 'En bon état'),
+	(3, 'Abimé'),
+	(4, 'Non utilisable'),
+	(5, 'En réparation');
+
+INSERT INTO categorie (idCategorie, libelle) VALUES
+	(1, 'Pianos'),
+	(2, 'Percussions'),
+	(3, 'Pupitres'),
+	(4, 'Sonorisation'),
+	(5, 'Matériel cours et administratif'),
+	(6, 'Instruments à cordes'),
+	(7, 'Instruments à vent'),
+	(8, 'Accessoires'),
+	(9, 'Partition'),
+	(10, 'Eclairage'),
+	(11, 'Divers');
+
+INSERT INTO marque (idMarque, nom) VALUES
+	(1, 'Yamaha'),
+	(2, 'Alambra');
+
+INSERT INTO designation (idDesignation, libelle) VALUES
+	(1, 'Piano'),
+	(2, 'Tabouret marron de piano'),
+	(3, 'Guitare'),
+	(4, 'Marimba'),
+	(5, 'Pupitre noir'),
+	(6, 'Pupitre pliable métal'),
+	(7, 'Pied de micro'),
+	(8, 'Tableau avec portées'),
+	(9, 'Pied de cymbale'),
+	(10, 'Maracas'),
+	(11, 'Crécelle');
+	
+INSERT INTO fournisseur (idFournisseur, nom) VALUES
+	(1, 'Fournisseur 1'),
+	(2, 'Fournisseur 2'),
+	(3, 'Fournisseur 3');
+
+INSERT INTO materiel (idMateriel, idEtat, idCategorie, idMarque, idDesignation, idFournisseur, typeMateriel, numSerie, dateAchat, valeurAchat, valeurReapprov, deplaceConcert, observation) VALUES
+	(1, 1, 1, 1, 1, 1, 'ETERNA ER-10', 3907658, '2013-09-01', NULL, 4200, 1, NULL),
+	(2, 2, 1, 1, 2, 1, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+
+
+INSERT INTO reparateur (idReparateur, nom) VALUES
+	(1, 'Réparateur 1'),
+	(2, 'Réparateur 2'),
+	(3, 'Réparateur 3');
+	
+INSERT INTO reparation(idReparation, idReparateur, dateCertificat) VALUES
+	(1, 1, '2014-09-25'),
+	(2, 2, '2014-06-25');
+
+INSERT INTO location (idPersonne, idMateriel, idEtatDebut, idEtatFin, idReparation, dateEmprunt, dateEcheance, dateRetour, montant) VALUES
+	(2, 1, 2, 3, 1, '2014-09-01', '2015-09-01', '2014-09-27', 100.00),
+	(2, 1, 2, 3, NULL, '2014-10-01', '2015-09-01', NULL, 150.00),
+	(4, 1, 1, 2, 2, '2013-09-01', '2014-09-01', '2014-06-26', 120.00);
+
+
+INSERT INTO typemodif( idTypeModif, libelle ) VALUES
+	( 1, 'modif_personne' ) ;
