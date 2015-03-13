@@ -2,8 +2,8 @@ package fr.gemao.ctrl.adherent;
 
 import fr.gemao.ctrl.ModifierPersonneCtrl;
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.sql.AdherentDAO;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.adherent.AdherentDAO;
 
 /**
  * La classe ModifierAdherentCtrl permet de contrôler la modification d'un adhérent

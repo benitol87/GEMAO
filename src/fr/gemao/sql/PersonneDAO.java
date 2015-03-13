@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.PersistenceContextType;
+
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.util.Civilite;
@@ -229,7 +231,7 @@ public class PersonneDAO extends IDAO<Personne> {
 	}
 
 	@Override
-	public Personne map(ResultSet result) throws SQLException {
+	protected Personne map(ResultSet result) throws SQLException {
 		AdresseDAO adresseDAO = factory.getAdresseDAO();
 		CommuneDAO communeDAO = factory.getCommuneDAO();
 		Integer idCommuneNaiss = NumberUtil.getResultInteger(result, "idCommuneNaiss");

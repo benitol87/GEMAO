@@ -3,6 +3,7 @@ package fr.gemao.view.adherent;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,15 +18,15 @@ import fr.gemao.ctrl.adherent.AjouterMotifSortieCtrl;
 import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererMotifSortieCtrl;
-import fr.gemao.ctrl.administration.ModificationCtrl;
-import fr.gemao.entity.Personnel;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.MotifSortie;
-import fr.gemao.entity.administration.Modification;
 import fr.gemao.form.adherent.DesinscrireAdherentForm;
 import fr.gemao.form.util.Form;
+import fr.gemao.sql.AdherentDAO;
+import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.MotifSortieDAO;
 import fr.gemao.sql.exception.DAOException;
-import fr.gemao.view.ConnexionServlet;
+import fr.gemao.sql.materiel.EtatDAO;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -137,16 +138,6 @@ public class DesinscrireAdherentServlet extends HttpServlet {
 					// Si un problème survient
 					form.setErreur(ERREUR_MODIFICATION, "Une erreur est survenue lors de la désinscription d'un adhérent.");
 				} else {
-					// Succès de la désincription
-					// Archivage
-					new ModificationCtrl().ajouterModification(new Modification(
-							0,
-							(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
-							new Date(),
-							"Désincription adhérent : "+adherent.getNom()+" "+adherent.getPrenom()
-					));
-					
-					// Redirection
 					request.setAttribute("resultat", "La désincription a été effectuée.");
 				}
 				

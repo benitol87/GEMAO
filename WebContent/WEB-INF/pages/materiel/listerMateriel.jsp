@@ -11,16 +11,13 @@
 
 <h1>Liste des matériels</h1>
 <p style="text-align: center;">${message}</p>
-<table class='tablesorter-blue'>
-<thead>
+<table>
 	<tr>
 		<th>Désignation</th>
 		<th>Catégorie</th>
 		<th>Quantité</th>
 		<th>Actions</th>
 	</tr>
-</thead>
-<tbody>
 	<c:forEach items="${listeMateriels}" var="mat">
 		<tr>
 			<td><c:out value="${mat.designation.libelleDesignation}" /></td>
@@ -32,9 +29,6 @@
 			</td>
 		</tr>
 	</c:forEach>
-</tbody>
 </table>
-<div class='align-center'>
-	<a href="<c:url value="<%= Pattern.MATERIEL_EXPORTER %>"/>" class="btn">Exporter les données</a>
-</div>
+
 <c:import url="/inc/footer.inc.jsp" />

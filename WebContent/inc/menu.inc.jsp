@@ -72,6 +72,7 @@
 						</div>
 					</li>
 					</c:if>
+					 --%>
 					<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Cours') != 'Aucun' }">
 					<li class="icon icon-arrow-left"><a href="#">Cours</a>
 						<div class="mp-level">
@@ -85,7 +86,6 @@
 						</div>
 					</li>
 					</c:if>
-					 --%>
 					<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Administration') != 'Aucun' }">
 					<li class="icon icon-arrow-left"><a href="#">Administration</a>
 						<div class="mp-level">
@@ -107,7 +107,6 @@
 										</ul>
 									</div>
 								</li>
-								<li><a href="<c:url value="<%= Pattern.ADMINISTRATION_LISTER_MODIFICATION %>"/>">Historique des modifications</a></li>
 							</ul>
 						</div>
 					</li>

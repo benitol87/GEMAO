@@ -47,11 +47,13 @@ public class CalculerQFServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			Adherent adherent = (Adherent) session
 					.getAttribute("ajout_adh_adherent");
+			System.out.println(adherent);
+			System.out.println(quotient);
 			adherent.setQf(quotient);
 			session.setAttribute("ajout_adh_adherent", adherent);
 
 			response.sendRedirect(request.getContextPath()
-					+ Pattern.ADHERENT_SAISIE_COTISATION);
+					+ Pattern.ADHERENT_VALIDATION_AJOUT);
 		} else {
 			request.setAttribute("erreurPers", true);
 			this.getServletContext()

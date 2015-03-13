@@ -121,7 +121,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		personnel.setPrenom(prenom);
 		personnel.setTelFixe(telFixe);
 		personnel.setTelPort(telPortable);	
-		personnel.setPassword(Config.params.get(Config.MOT_DE_PASSE));
+		personnel.setPassword(Config.MOTDEPASSE);
 		personnel.setLogin(apc.genererLogin(nom));
 		
 		System.out.println(personnel);

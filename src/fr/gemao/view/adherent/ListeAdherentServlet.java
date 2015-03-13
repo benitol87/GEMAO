@@ -9,12 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
-import fr.gemao.entity.Parametre;
 import fr.gemao.entity.adherent.Adherent;
-import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.ParametreDAO;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -34,9 +30,6 @@ public class ListeAdherentServlet extends HttpServlet {
 		RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
 		List<Adherent> adherents = recupererAdherentCtrl
 				.recupererTousAdherents();
-		ParametreCtrl parametreCtrl = new ParametreCtrl();
-		Parametre param = parametreCtrl.getLast();
-		request.setAttribute("params", param);		
 		request.setAttribute("listeAdherents", adherents);
 		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_LISTER)
 				.forward(request, response);

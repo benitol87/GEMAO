@@ -4,8 +4,8 @@ import java.util.List;
 
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.sql.AdherentDAO;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.adherent.AdherentDAO;
 
 public class TestAdherentDAO {
 

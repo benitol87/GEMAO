@@ -1,12 +1,22 @@
-package fr.gemao.listeners;
+package fr.gemao.sql.config;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+
+import org.apache.coyote.http11.NpnHandler;
+
 import com.jolbox.bonecp.BoneCP;
+
 import fr.gemao.ctrl.administration.ProfilsCtrl;
+import fr.gemao.entity.administration.Module;
+import fr.gemao.entity.administration.Profil;
+import fr.gemao.entity.administration.TypeDroit;
 import fr.gemao.sql.DAOFactory;
+import fr.gemao.sql.administration.ModuleDAO;
+import fr.gemao.sql.administration.ProfilDAO;
+import fr.gemao.sql.administration.TypeDroitDAO;
 import fr.gemao.sql.exception.DAOConfigurationException;
 import fr.gemao.sql.exception.DAOException;
 

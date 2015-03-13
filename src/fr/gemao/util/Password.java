@@ -81,7 +81,7 @@ public class Password {
 	 * @return
 	 */
 	public static String generatePassword(){
-		return generatePassword(Integer.parseInt(Config.params.get(Config.DEFAULT_PASSWORD_SIZE)));
+		return generatePassword(Config.DEFAULT_GENERATED_PASSWORD_SIZE);
 	}
 	
 	public static String generatePassword(int SIZE){

@@ -130,7 +130,8 @@ public class Commune implements Serializable {
 
 	@Override
 	public String toString() {
-		return codePostal +  " " + nomCommune;
+		return "Commune [idCommune=" + idCommune + ", codePostal=" + codePostal
+				+ ", nomCommune=" + nomCommune + ", avantage=" + avantage + "]";
 	}
 	
 	

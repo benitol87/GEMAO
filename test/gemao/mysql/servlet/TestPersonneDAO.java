@@ -14,9 +14,9 @@ import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.util.Civilite;
-import fr.gemao.listeners.InitialisationDaoFactory;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
+import fr.gemao.sql.config.InitialisationDaoFactory;
 
 @WebServlet(name = "PersonneDAO", urlPatterns = "/testPersonneDAO")
 public class TestPersonneDAO extends HttpServlet {

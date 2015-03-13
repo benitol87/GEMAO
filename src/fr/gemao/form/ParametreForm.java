@@ -14,6 +14,8 @@ public class ParametreForm {
 	private static final String CHAMP_ALLOC5 = "alloc5";
 	private static final String CHAMP_QFMIN = "qfMin";
 	private static final String CHAMP_QFMAX = "qfMax";
+	private static final String CHAMP_TARIFINSTRUMENT = "tarifInstrument";
+	private static final String CHAMP_TARIFFORMATION = "tarifFormation";
 
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
@@ -68,6 +70,8 @@ public class ParametreForm {
 		alloc5 = Float.parseFloat(getValeurChamp(request, CHAMP_ALLOC5));
 		qfMin = Float.parseFloat(getValeurChamp(request, CHAMP_QFMIN));
 		qfMax = Float.parseFloat(getValeurChamp(request, CHAMP_QFMAX));
+		tarifInstrument = Float.parseFloat(getValeurChamp(request, CHAMP_TARIFINSTRUMENT));
+		tarifFormation = Float.parseFloat(getValeurChamp(request, CHAMP_TARIFFORMATION));
 
 		
 		Parametre parametre = new Parametre();
@@ -77,6 +81,8 @@ public class ParametreForm {
 		parametre.setAlloc5(alloc5);
 		parametre.setQf_max(qfMax);
 		parametre.setQf_min(qfMin);
+		parametre.setTarifInstrument(tarifInstrument);
+		parametre.setTarifFormation(tarifFormation);
 
 		return parametre;
 	}
