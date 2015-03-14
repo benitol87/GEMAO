@@ -21,11 +21,14 @@
 		<link rel="stylesheet" type="text/css" href="<c:url value="/css/component.css"/>" />
 		<link rel="stylesheet" type="text/css" href="<c:url value="/css/datepicker.css"/>" />
 		<link rel="stylesheet" type="text/css" href="<c:url value="/css/jquery-ui.css"/>" />
+		<link rel="stylesheet" type="text/css" href="<c:url value="/css/theme.blue.css"/>" />
 		
 		<%-- Scripts --%>
 		<script src="<c:url value="/js/modernizr.custom.js"/>" ></script>
-		<script src="<c:url value="/js/script.js"/>" ></script>
 		<script src="<c:url value="/js/jquery.min.js"/>"></script>
 		<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 		<script src="<c:url value="/js/datepicker.js"/>"></script>
+		<script src="<c:url value="/js/jquery.tablesorter.min.js"/>"></script>
+		<script src="<c:url value="/js/jquery.tablesorter.widgets.min.js"/>"></script>
+		<script src="<c:url value="/js/script.js"/>" ></script>
 	</head>

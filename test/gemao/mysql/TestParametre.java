@@ -11,7 +11,7 @@ public class TestParametre {
 	public static void main(String[] args) {
 		ParametreDAO paDao = DAOFactory.getInstance().getParametreDAO();
 		
-		Parametre param = new Parametre(0, 52, 54, 55, 55, 55, 555, Calendar.getInstance().getTime(), 0, 0);
+		Parametre param = new Parametre(0, 52, 54, 55, 55, 55, 555, Calendar.getInstance().getTime());
 		
 		paDao.create(param);
 		

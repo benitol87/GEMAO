@@ -1,16 +1,22 @@
 package fr.gemao.view.adherent;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.ParametreCtrl;
+import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.entity.Parametre;
+import fr.gemao.entity.Personnel;
+import fr.gemao.entity.administration.Modification;
 import fr.gemao.form.ParametreForm;
+import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -36,8 +42,6 @@ public class ParametreServlet extends HttpServlet {
 			request.setAttribute("alloc5", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc5()));
 			request.setAttribute("qf_max", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_max()));
 			request.setAttribute("qf_min", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_min()));
-			request.setAttribute("tarifInstrument", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifInstrument()));
-			request.setAttribute("tarifFormation", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifFormation()));
 		}
 		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_PARAMETRE)
 			.forward(request, response);
@@ -52,11 +56,19 @@ public class ParametreServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		ParametreForm form = new ParametreForm();
 		ParametreCtrl parametreCtrl = new ParametreCtrl();
+		HttpSession session = request.getSession();
 		
 		Parametre parametre = form.ajoutParametre(request);
 		if (form.getErreurs().isEmpty()) {
 			try {
 				parametreCtrl.controlerParametre(parametre);
+				// Archivage
+				new ModificationCtrl().ajouterModification(new Modification(
+						0,
+						(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
+						new Date(),
+						"Modification paramètres adhérent"
+				));
 			} catch (Exception e) {
 				form.setErreur("Parametre", e.getMessage());
 				System.out.println(form.getErreurs());
@@ -71,8 +83,6 @@ public class ParametreServlet extends HttpServlet {
 		request.setAttribute("alloc5", parametreCtrl.conversionDeSqlVersAffichage(parametre.getAlloc5()));
 		request.setAttribute("qf_max", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_max()));
 		request.setAttribute("qf_min", parametreCtrl.conversionDeSqlVersAffichage(parametre.getQf_min()));
-		request.setAttribute("tarifInstrument", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifInstrument()));
-		request.setAttribute("tarifFormation", parametreCtrl.conversionDeSqlVersAffichage(parametre.getTarifFormation()));
 		this.getServletContext().getRequestDispatcher(JSPFile.ADHERENT_PARAMETRE)
 				.forward(request, response);
 	}

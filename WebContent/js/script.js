@@ -17,3 +17,7 @@ function getDateActuelle()
 	
 	return dateActuelle;
 }
+
+$(function(){
+	$(".tablesorter-blue").tablesorter();
+});

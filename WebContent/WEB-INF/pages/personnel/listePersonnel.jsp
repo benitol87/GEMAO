@@ -9,12 +9,15 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 <h1>Liste du personnel</h1>
-<table>
+<table class='tablesorter-blue'>
+<thead>
 	<tr>
 		<th>Nom</th>
 		<th>Prénom</th>
 		<th>Actions</th>
 	</tr>
+</thead>
+<tbody>
 	<c:forEach items="${listePersonnels}" var="pers">
 		<tr>
 			<td><c:out value="${pers['nom']}" /></td>
@@ -25,5 +28,9 @@
 			</td>
 		</tr>
 	</c:forEach>
+</tbody>
 </table>
+<div class='align-center'>
+	<a href="<c:url value="<%= Pattern.PERSONNEL_EXPORTER %>"/>" class="btn">Exporter les données</a>
+</div>
 <c:import url="/inc/footer.inc.jsp" />

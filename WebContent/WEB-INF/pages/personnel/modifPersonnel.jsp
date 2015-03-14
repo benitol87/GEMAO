@@ -13,16 +13,21 @@
 		<fieldset>
 			<legend>Informations personnelles</legend>
 			<div>
+				<span class='text-label'>Civilité : </span> <input type="radio"
+				name="civilite" value="F"
+				<c:if test="${personnel.civilite['nameCourt'] == 'Mme'}"> checked="checked"</c:if> /><label
+				for="civilite">Mme</label> <input type="radio" name="civilite"
+				value="M"
+				<c:if test="${personnel.civilite['nameCourt'] == 'M.'}"> checked="checked" </c:if> /><label
+				for="civilite">M.</label>
+			</div>
+			<div>
 				<label for="nom">Nom</label>
-				<c:out value="${sessionScope.personnel['nom']}" />
+				<input type="text" name="nom" value="${sessionScope.personnel['nom']}"/>
 			</div>
 			<div>
 				<label for="prenom">Prénom</label>
-				<c:out value="${sessionScope.personnel['prenom']}" />
-			</div>
-			<div>
-				<label for="civilite">Civilité</label>
-				<c:out value="${sessionScope.personnel['civilite']}" />
+				<input type="text" name="prenom" value="${sessionScope.personnel['prenom']}"/>
 			</div>
 			<div>
 				<label for="email">E-mail</label>

@@ -175,7 +175,7 @@ public class SalleDAO extends IDAO<Salle> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * from salle s inner join salleXDiscipline sd on s.idSalle=sd.idSalle WHERE idDiscipline = ?;";
+		String sql = "SELECT * from salle s inner join salleXdiscipline sd on s.idSalle=sd.idSalle WHERE idDiscipline = ?;";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
