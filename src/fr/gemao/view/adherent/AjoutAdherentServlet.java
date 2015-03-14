@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.gemao.ctrl.adherent.AjouterDisciplineCtrl;
+import fr.gemao.ctrl.CommuneCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
@@ -27,7 +27,6 @@ import fr.gemao.form.adherent.AdherentForm;
 import fr.gemao.form.util.Form;
 import fr.gemao.sql.CommuneDAO;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.exception.DAOException;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -42,6 +41,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -56,6 +56,8 @@ public class AjoutAdherentServlet extends HttpServlet {
 		session.setAttribute("listDiscipline",
 				recupDisciplineCtrl.recupererAllDiscipline());
 
+		request.setAttribute("communeList", CommuneCtrl.getListNomCommune());
+
 		this.getServletContext()
 				.getRequestDispatcher(JSPFile.ADHERENT_AJOUT_ADHERENT)
 				.forward(request, response);
@@ -65,6 +67,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 

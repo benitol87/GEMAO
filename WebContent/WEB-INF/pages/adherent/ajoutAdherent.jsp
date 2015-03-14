@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -9,6 +10,15 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <script src="<c:url value="/js/AjouterAdherent.js"/>"></script>
+
+<script type="text/javascript">
+	$(function() {
+		var availableTags = ${requestScope.communeList};
+		$("#commune").autocomplete({
+			source : availableTags
+		});
+	});
+</script>
 
 <h1>Ajout d'un adhérent</h1>
 <form id="ajoutAdherent" action="#" method="post">
@@ -25,7 +35,7 @@
 
 		<div>
 			<label for="nom" class='required'>Nom </label> <input type="text"
-				name="nom" required="required"  />
+				name="nom" required="required" />
 		</div>
 
 		<div>
@@ -52,13 +62,13 @@
 
 		<div>
 			<label for="email">E-mail </label> <input type="email" name="email"
-				autocomplete="on"/>
+				autocomplete="on" />
 		</div>
 	</fieldset>
 	<fieldset>
 		<legend>Adresse</legend>
 		<div>
-			<label for="num">N° </label> <input type="text" name="num"/>
+			<label for="num">N° </label> <input type="text" name="num" />
 		</div>
 
 		<div>
@@ -73,12 +83,13 @@
 
 		<div>
 			<label for="commune" class='required'>Commune </label> <input
-				type="text" name="commune" required="required" />
+				type="text" name="commune" required="required" id="commune" />
 		</div>
 
 		<div>
 			<label for="codePostal" class='required'>Code postal </label> <input
-				type="text" name="codePostal" required="required" maxlength="5" pattern="\d*" />
+				type="text" name="codePostal" required="required" maxlength="5"
+				pattern="\d*" />
 		</div>
 	</fieldset>
 	<fieldset>
@@ -87,7 +98,8 @@
 			<div>
 				<label>Cours</label> <select size="1" name="disciplines1">
 					<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
-						<option value="${ discipline.getIdDiscipline() }">${ discipline.getMatiere().getNomMatiere()} - ${discipline.getNiveau().getNomNiveau() }</option>
+						<option value="${ discipline.getIdDiscipline() }">${ discipline.getMatiere().getNomMatiere()}
+							- ${discipline.getNiveau().getNomNiveau() }</option>
 					</c:forEach>
 				</select>
 			</div>
