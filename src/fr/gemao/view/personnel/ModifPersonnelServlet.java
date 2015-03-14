@@ -147,7 +147,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 		if (form.getErreurs().isEmpty()) {
 			
 			/* On redirige vers la liste des personnels */
-			response.sendRedirect(request.getContextPath() + JSPFile.PERSONNEL_LISTER);
+			response.sendRedirect(request.getContextPath() + Pattern.PERSONNEL_LISTER);
 		} else {
 			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_MODIFIER).forward(request, response);
 		}

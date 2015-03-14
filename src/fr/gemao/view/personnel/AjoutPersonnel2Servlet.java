@@ -18,6 +18,7 @@ import fr.gemao.ctrl.personnel.CalculerDateFinContratCtrl;
 import fr.gemao.entity.Contrat;
 import fr.gemao.entity.Personnel;
 import fr.gemao.entity.TypeContrat;
+import fr.gemao.util.Password;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -41,6 +42,8 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 HttpSession session = request.getSession();
 		Personnel perso = (Personnel) session.getAttribute("personnel");
+		
+		perso.setPassword(Password.generatePassword(10));
 		
 		/**
 		 * Récupération des données saisies, envoyées en tant que paramètres de
