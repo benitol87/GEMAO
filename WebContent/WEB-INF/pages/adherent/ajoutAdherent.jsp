@@ -13,9 +13,20 @@
 
 <script type="text/javascript">
 	$(function() {
-		var availableTags = ${requestScope.communeList};
+		var availableTags = ${requestScope.listNomCommune};
 		$("#commune").autocomplete({
 			source : availableTags
+		});
+		
+		var dicoCommune = ${requestScope.dicoCommune};
+		$("#commune").on("change", function(){
+			for(c in dicoCommune){
+				if(c == this.value){
+					$("#codePostal").val(dicoCommune[c]);
+					console.log(dicoCommune[c])
+				}
+				console.log(c);
+			}
 		});
 	});
 </script>
@@ -88,7 +99,7 @@
 
 		<div>
 			<label for="codePostal" class='required'>Code postal </label> <input
-				type="text" name="codePostal" required="required" maxlength="5"
+				type="text" name="codePostal" id="codePostal" required="required" maxlength="5"
 				pattern="\d*" />
 		</div>
 	</fieldset>

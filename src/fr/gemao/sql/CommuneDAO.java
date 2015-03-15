@@ -143,6 +143,30 @@ public class CommuneDAO extends IDAO<Commune> {
 		return liste;
 	}
 
+	public Commune get(String nom) {
+		Commune commune = null;
+
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM commune WHERE nom = ?;";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, nom);
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				commune = this.map(result);
+			}
+		} catch (SQLException e1) {
+			throw new DAOException(e1);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		return commune;
+	}
+
 	public Commune existNomCodePostal(Commune commune) {
 		Connection connexion = null;
 		PreparedStatement requete = null;

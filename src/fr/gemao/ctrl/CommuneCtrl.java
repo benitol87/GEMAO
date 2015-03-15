@@ -13,7 +13,7 @@ public class CommuneCtrl {
 
 	}
 
-	public static ArrayList<String> getListNomCommune() {
+	public ArrayList<String> getListNomCommune() {
 		DAOFactory factory = DAOFactory.getInstance();
 		CommuneDAO commuenDAO = factory.getCommuneDAO();
 
@@ -22,10 +22,17 @@ public class CommuneCtrl {
 
 		for (Commune c : listCommune) {
 			// Pour être directement ajouté dans les jsp
-			nomCommune.add("'" + c.getNomCommune() + "'");
+			nomCommune.add(c.getNomCommune());
 		}
 
 		return nomCommune;
+	}
+
+	public List<Commune> getListCommunes() {
+		DAOFactory factory = DAOFactory.getInstance();
+		CommuneDAO commuenDAO = factory.getCommuneDAO();
+
+		return commuenDAO.getAll();
 	}
 
 }
