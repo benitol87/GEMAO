@@ -4,7 +4,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+
 import com.jolbox.bonecp.BoneCP;
+
 import fr.gemao.ctrl.administration.ProfilsCtrl;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.exception.DAOConfigurationException;
@@ -28,6 +30,7 @@ public class InitialisationDaoFactory implements ServletContextListener {
 			servletContext.setAttribute(ATT_DAO_FACTORY, this.daoFactory);
 		} catch(DAOConfigurationException dCe){
 			System.out.println("Erreur de configuration : " + dCe.getMessage());
+			dCe.printStackTrace();
 			servletContext.setAttribute(InitialisationDaoFactory.ATT_MSG_ERROR, "Erreur de configuration : " + dCe.getMessage());
 		}
 		
