@@ -9,27 +9,10 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
+<c:import url="/js/autocompleteCommune.jsp"/>
+
 <script src="<c:url value="/js/AjouterAdherent.js"/>"></script>
 
-<script type="text/javascript">
-	$(function() {
-		var availableTags = ${requestScope.listNomCommune};
-		$("#commune").autocomplete({
-			source : availableTags
-		});
-		
-		var dicoCommune = ${requestScope.dicoCommune};
-		$("#commune").on("change", function(){
-			for(c in dicoCommune){
-				if(c == this.value){
-					$("#codePostal").val(dicoCommune[c]);
-					console.log(dicoCommune[c])
-				}
-				console.log(c);
-			}
-		});
-	});
-</script>
 
 <h1>Ajout d'un adhérent</h1>
 <form id="ajoutAdherent" action="#" method="post">
