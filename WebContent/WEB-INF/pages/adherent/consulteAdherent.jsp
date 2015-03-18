@@ -112,6 +112,14 @@
 			</c:choose>
 		</td>
 	</tr>
+	<tr>
+		<td>A Payé :</td>
+		<td>
+			<c:choose>
+				<c:when test="${adherent.isAPaye() }">Oui</c:when>
+				<c:otherwise>Non</c:otherwise>
+			</c:choose>
+	</tr>
 </table>
 <c:if test="${adherent.responsable!=null}">
 <table class='table-col-2'>
