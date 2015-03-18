@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.taglibs.standard.lang.jstl.test.beans.Factory;
+
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.adherent.AjouterDisciplineCtrl;
@@ -28,6 +30,7 @@ import fr.gemao.entity.cours.Discipline;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.form.adherent.AdherentForm;
 import fr.gemao.form.util.Form;
+import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
@@ -151,16 +154,22 @@ public class ModifAdherentServlet extends HttpServlet {
 			adresse.setCommune(commune);
 			ajouterAdresseCtrl.ajoutAdresse(adresse);
 			
-			if (adherent.getQf() != null && !adherent.getAdresse().equals(adresse))
-				adherent.setQf(null);
+			DAOFactory factory = DAOFactory.getInstance();
+			commune = factory.getCommuneDAO().existNomCodePostal(commune);
+			
+			if (adherent.getQf() != null)
+				if (!commune.isAvantage())
+						adherent.setQf(null);
 
+			String cotisation = request.getParameter("cotisation");
+			adherent.setCotisation(Float.parseFloat(cotisation));
+			
 			adherent.setAdresse(adresse);
 
 			List<Discipline> listDiscipline = adherentForm
 					.lireDisciplines(request);
 			adherent.setDisciplines(listDiscipline);
-			System.out.println(adherent.getDisciplines());
-
+			
 			String droitImage = request.getParameter("droitImage");
 			adherent.setDroitImage(Boolean.parseBoolean(droitImage));
 			
