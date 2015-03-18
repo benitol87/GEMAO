@@ -7,6 +7,7 @@ $(function () {
 	$(".listQF").css('display','none');
 	$(".listCA").css('display','none');
 	$(".listMotif").css('display','none');
+	$(".listAPaye").css('display', 'none');
 	$(':checkbox:checked').removeAttr('checked');
 });
 
@@ -40,4 +41,8 @@ function affCA(){
 
 function affMotifSortie(){
 	$(".listMotif").toggle();
+}
+
+function affAPaye(){
+	$(".listAPaye").toggle();
 }

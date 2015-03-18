@@ -31,6 +31,8 @@
 		<input type="checkbox" name="QF" id="QF" onchange="affQF()" />
 		<label for="CA">Membre CA</label>
 		<input type="checkbox" name="CA" id="CA" onchange="affCA()" />
+		<label for="aPaye">A Payé</label>
+		<input type="checkbox" name="aPaye" id="aPaye" onchange="affAPaye()"/>
 	</p>
 </form>
 
@@ -48,6 +50,7 @@
 			<th class="listDroitIm">Droit à l'image</th>
 			<th class="listQF">Quotient Familial</th>
 			<th class="listCA">Membre CA</th>
+			<th class="listAPaye">A Payé</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -95,6 +98,13 @@
 						<td class="listCA">Non</td>
 					</c:otherwise>
 				</c:choose>
+				
+				<td class="listAPaye">
+				<c:choose>
+					<c:when test="${adh.isAPaye()}">Oui</c:when>
+					<c:otherwise>Non</c:otherwise>
+				</c:choose>
+				</td>
 
 				<td><a class="icon icon-search"
 					href="<c:url value="<%= Pattern.ADHERENT_CONSULTER %>"/>?id=<c:out value="${adh['idPersonne']}" />"
