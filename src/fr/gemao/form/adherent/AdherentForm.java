@@ -43,6 +43,9 @@ public class AdherentForm {
 	
 	//Droit à l'image
 	private static final String CHAMP_DROITIMAGE = "droitImage";
+
+	//Membre CA
+	private static final String CHAMP_MEMBRECA = "membreCA";
 	
 	//Discipline (à modifier !)
 	private static final String CHAMP_DISCIPLINES = "disciplines";
@@ -73,6 +76,9 @@ public class AdherentForm {
 	
 	//Droit à l'image
 	private String droitImage;
+	
+	//Membre CA
+	private String membreCA;
 	
 	//Discipline
 	private List<Discipline> disciplines = new ArrayList<>();
@@ -143,7 +149,12 @@ public class AdherentForm {
 	public String getDroitImage(){
 		return this.droitImage;
 	}
-	
+
+	public String getMembreCA() {
+		return membreCA;
+	}
+
+
 	//A modifier !
 	public List<Discipline> getDisciplines(){
 		return this.disciplines;
@@ -376,6 +387,7 @@ public class AdherentForm {
 		codePostal = Integer.parseInt(getValeurChamp(request, CHAMP_CODEPOSTAL));
 		nomCommune = getValeurChamp(request, CHAMP_COMMUNE);
 		droitImage = getValeurChamp(request, CHAMP_DROITIMAGE);
+		membreCA = getValeurChamp(request, CHAMP_MEMBRECA);
 		disciplines = lireDisciplines(request);
 		
 		/*str = null;

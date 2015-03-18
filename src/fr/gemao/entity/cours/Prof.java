@@ -33,10 +33,13 @@ public class Prof extends Personnel implements Serializable {
 			String telPort, String email, Civilite civilite,
 			List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, Contrat contrat, String login,
-			String password, int pointsAncien, Profil profil, boolean premiereConnexion, Date dateDebutEnseignement) {
+			String password, int pointsAncien, Profil profil,
+			boolean premiereConnexion, Date dateDebutEnseignement,
+			boolean membreCA) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom, dateNaissance, telFixe,
 				telPort, email, civilite, listeResponsabilite, listeDiplome, contrat,
-				login, password, pointsAncien, profil, premiereConnexion);
+ login, password, pointsAncien, profil,
+				premiereConnexion, membreCA);
 		this.dateDebutEnseignement = dateDebutEnseignement;
 	}
 

@@ -73,9 +73,10 @@ public class Personnel extends Personne implements Serializable{
 			Date dateNaissance, String telFixe, String telPort, String email,
 			Civilite civilite, List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, Contrat contrat, String login,
-			String password, int pointsAncien, Profil profil, boolean premiereConnexion) {
-		super(idPersonne, adresse, communeNaiss, nom, prenom,
-				dateNaissance, telFixe, telPort, email, civilite);
+			String password, int pointsAncien, Profil profil,
+			boolean premiereConnexion, boolean membreCA) {
+		super(idPersonne, adresse, communeNaiss, nom, prenom, dateNaissance,
+				telFixe, telPort, email, civilite, membreCA);
 
 		this.listeResponsabilite = listeResponsabilite;
 		this.listeDiplomes = listeDiplome;

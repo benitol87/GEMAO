@@ -38,7 +38,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "INSERT INTO adherent(idPersonne, idMotifSortie, idResponsable, droitImage,"
-				+ "	dateEntree, dateSortie, qf, cotisation)"
+				+ "	dateEntree, dateSortie, qf, cotisation, aPaye)"
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		// PersonneDAO personneDAO = factory.getPersonneDAO();
