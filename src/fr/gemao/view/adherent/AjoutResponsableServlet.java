@@ -52,7 +52,7 @@ public class AjoutResponsableServlet extends HttpServlet {
 		if(commune.isAvantage()){
 			response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_CALCUL_QF);
 		}else{
-			response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_VALIDATION_AJOUT);
+			response.sendRedirect(request.getContextPath() + Pattern.ADHERENT_SAISIE_COTISATION);
 		}
 	}
 

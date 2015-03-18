@@ -125,8 +125,7 @@ public class PersonneDAO extends IDAO<Personne> {
 							.getNom(), obj.getPrenom(), new Date(obj
 							.getDateNaissance().getTime()), obj.getTelFixe(),
 					obj.getTelPort(), obj.getEmail(), obj.getCivilite()
-.getSexe(), obj
-							.isMembreCA(), obj.getIdPersonne());
+							.getSexe(), obj.isMembreCA(), obj.getIdPersonne());
 			int status = requete.executeUpdate();
 
 			if (status == 0) {
@@ -247,6 +246,7 @@ public class PersonneDAO extends IDAO<Personne> {
 				result.getString("tel_port"), result.getString("email"),
 				(result.getString("sexe").equals("M") ? Civilite.MONSIEUR
 						: Civilite.MADAME), result.getBoolean("membreCA"));
+
 
 	}
 

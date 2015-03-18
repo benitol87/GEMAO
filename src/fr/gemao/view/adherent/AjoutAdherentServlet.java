@@ -115,6 +115,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 			List<Discipline> listDiscipline = adherentForm.getDisciplines();
 			adherent.setDisciplines(listDiscipline);
 
+
 			/**
 			 * Réupération des données de la commune
 			 */

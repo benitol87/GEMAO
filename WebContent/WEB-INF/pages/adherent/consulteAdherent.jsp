@@ -103,6 +103,15 @@
 			</c:choose>
 		</td>
 	</tr>
+	<tr>
+		<td>Membre CA :</td>
+		<td>
+			<c:choose>
+				<c:when test="${adherent['membreCA']==true}">Oui</c:when>
+				<c:otherwise>Non</c:otherwise>
+			</c:choose>
+		</td>
+	</tr>
 </table>
 <c:if test="${adherent.responsable!=null}">
 <table class='table-col-2'>

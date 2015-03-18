@@ -19,7 +19,7 @@
 			<input type="number" name="nbEnf" required="required" min="0" value="0" autocomplete="off" />
 		</div>
 		<div>
-			<label for="revenues" class='required'>Revenus annuels </label>
+			<label for="revenues" class='required'>Revenus annuels (bruts)</label>
 			<input class='align-right' type="text" pattern="[0-9]*[0-9,.][0-9]*" name="revenues" required="required" autocomplete="off" />
 			<span class='euro'></span>
 		</div>

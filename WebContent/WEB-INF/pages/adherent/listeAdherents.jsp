@@ -87,7 +87,14 @@
 						<td class="listQF">Q1</td>
 					</c:otherwise>
 				</c:choose>
-				<td class="listCA">NA</td>
+				<c:choose>
+					<c:when test="${adh.isMembreCA()}">
+						<td class="listCA">Oui</td>
+					</c:when>
+					<c:otherwise>
+						<td class="listCA">Non</td>
+					</c:otherwise>
+				</c:choose>
 
 				<td><a class="icon icon-search"
 					href="<c:url value="<%= Pattern.ADHERENT_CONSULTER %>"/>?id=<c:out value="${adh['idPersonne']}" />"
