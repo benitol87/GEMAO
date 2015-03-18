@@ -28,6 +28,7 @@ public class JSPFile {
 			ADHERENT_VALIDATION_AJOUT = ROOT+REP_ADHERENT+"validAjoutAdherent.jsp",
 			ADHERENT_VALIDATION_MODIF = ROOT+REP_ADHERENT+"validModifAdherent.jsp",
 			ADHERENT_SAISIE_COTISATION = ROOT+REP_ADHERENT+"saisieCotisation.jsp",
+			ADHERENT_A_PAYE = ROOT + REP_ADHERENT + "aPaye.jsp",
 					
 		// Module administration
 			REP_ADMINISTRATION = "administration/",

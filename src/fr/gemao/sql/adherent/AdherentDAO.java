@@ -39,7 +39,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 		ResultSet result = null;
 		String sql = "INSERT INTO adherent(idPersonne, idMotifSortie, idResponsable, droitImage,"
 				+ "	dateEntree, dateSortie, qf, cotisation)"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		// PersonneDAO personneDAO = factory.getPersonneDAO();
 		Integer idMotif = null;
@@ -58,7 +58,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 					(obj.isDroitImage() ? 1 : 0),
 					DateUtil.toSqlDate(obj.getDateEntree()),
 					DateUtil.toSqlDate(obj.getDateSortie()), obj.getQf(),
-					obj.getCotisation());
+					obj.getCotisation(), obj.isAPaye());
 
 			int status = requete.executeUpdate();
 
@@ -97,7 +97,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "UPDATE adherent SET idMotifSortie = ?, idResponsable = ?, droitImage = ?, "
-				+ "dateEntree = ?, dateSortie = ?, qf = ?, cotisation = ? "
+				+ "dateEntree = ?, dateSortie = ?, qf = ?, cotisation = ? , aPaye = ? "
 				+ "WHERE idPersonne = ?;";
 
 		Integer idMotif = null;
@@ -115,7 +115,8 @@ public class AdherentDAO extends IDAO<Adherent> {
 					sql, false, idMotif, idResponsable, (obj.isDroitImage() ? 1
 							: 0), DateUtil.toSqlDate(obj.getDateEntree()),
 					DateUtil.toSqlDate(obj.getDateSortie()), obj.getQf(), obj
-							.getCotisation(), obj.getIdPersonne());
+							.getCotisation(), obj.isAPaye(), obj
+							.getIdPersonne());
 			requete.executeUpdate();
 			
 			if (obj.getDisciplines() != null) {
@@ -236,7 +237,7 @@ public class AdherentDAO extends IDAO<Adherent> {
 				NumberUtil.getResultFloat(result, "cotisation"),
 				disciplineDAO.getDisciplineParAdherent(result
 						.getLong("idPersonne")), new ArrayList<Classe>(),
-						new ArrayList<Cours>());
+				new ArrayList<Cours>(), result.getBoolean("aPaye"));
 		return adherent;
 	}
 

@@ -144,7 +144,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 						dateNaiss, telFixe, telPortable, email,
 						Civilite.MONSIEUR, null, null,
 						Boolean.parseBoolean(droitImage), dateInscri, null,
-						null, 0.0f, list, null, null);
+						null, 0.0f, list, null, null, false);
 				if (civilite.equals("F")) {
 					adherent.setCivilite(Civilite.MADAME);
 				}

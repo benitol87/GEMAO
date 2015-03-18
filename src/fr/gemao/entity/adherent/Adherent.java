@@ -29,6 +29,7 @@ public class Adherent extends Personne implements Serializable{
 	private List<Discipline> disciplines;
 	private List<Classe> classes;
 	private List<Cours> listeCours;
+	private boolean aPaye;
 
 	public Adherent() {
 		super();
@@ -64,7 +65,8 @@ public class Adherent extends Personne implements Serializable{
 			String telPort, String email, Civilite civilite, MotifSortie motif,
 			Responsable responsable, boolean droitImage, Date dateEntree,
 			Date dateSortie, Float qf, float cotisation,
-			List<Discipline> disciplines, List<Classe> classes, List<Cours> cours) {
+			List<Discipline> disciplines, List<Classe> classes,
+			List<Cours> cours, boolean aPaye) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email, civilite);
 		this.motif = motif;
@@ -80,6 +82,7 @@ public class Adherent extends Personne implements Serializable{
 		this.disciplines = disciplines;
 		this.classes = classes;
 		this.listeCours = cours;
+		this.aPaye = aPaye;
 	}
 
 	/**
@@ -94,9 +97,11 @@ public class Adherent extends Personne implements Serializable{
 	 * @param qf
 	 * @param classes
 	 */
-	public Adherent(Personne personne, MotifSortie motif, Responsable responsable,
-			boolean droitImage, Date dateEntree, Date dateSortie, Float qf,
-			float cotisation, List<Discipline> disciplines, List<Classe> classes, List<Cours> cours) {
+	public Adherent(Personne personne, MotifSortie motif,
+			Responsable responsable, boolean droitImage, Date dateEntree,
+			Date dateSortie, Float qf, float cotisation,
+			List<Discipline> disciplines, List<Classe> classes,
+			List<Cours> cours, boolean aPaye) {
 		super(personne);
 		this.motif = motif;
 		this.responsable = responsable;
@@ -111,6 +116,7 @@ public class Adherent extends Personne implements Serializable{
 		this.disciplines = disciplines;
 		this.classes = classes;
 		this.listeCours = cours;
+		this.aPaye = aPaye;
 	}
 
 	/**
@@ -126,6 +132,14 @@ public class Adherent extends Personne implements Serializable{
 	 */
 	public void setMotif(MotifSortie motif) {
 		this.motif = motif;
+	}
+
+	public boolean isAPaye() {
+		return aPaye;
+	}
+
+	public void setAPaye(boolean aPaye) {
+		this.aPaye = aPaye;
 	}
 
 	/**

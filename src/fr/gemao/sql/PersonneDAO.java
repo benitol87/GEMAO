@@ -120,7 +120,8 @@ public class PersonneDAO extends IDAO<Personne> {
 				idCommuneNaiss = obj.getCommuneNaiss().getIdCommune();
 			}
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, true, idAdresse, idCommuneNaiss, obj
+					sql, true, idAdresse, idCommuneNaiss,
+					obj
 							.getNom(), obj.getPrenom(), new Date(obj
 							.getDateNaissance().getTime()), obj.getTelFixe(),
 					obj.getTelPort(), obj.getEmail(), obj.getCivilite()

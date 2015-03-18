@@ -139,6 +139,11 @@
 	<a href="<c:url value="<%= Pattern.ADHERENT_DESINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">
 		<input type="button" value="Désinscrire" />
 	</a>
+	<c:if test="${!adherent.isAPaye() }">
+	<a href="<c:url value="<%= Pattern.ADHERENT_APAYE %>"/><c:out value='?id=${adherent.idPersonne}'/>">
+		<input type="button" value="A Payé"/>
+	</a> 
+	</c:if>
 </p>
 
 <c:import url="/inc/footer.inc.jsp" />
