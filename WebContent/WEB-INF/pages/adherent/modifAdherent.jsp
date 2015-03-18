@@ -161,6 +161,17 @@
 				<label for="droitImage">Non</label>
 			</span>
 		</div>
+		<div>
+			<label class="required">Membre CA :</label> <span> <input type="radio"
+				name="membreCA" value="true"
+				<c:if test="${adherent['membreCA'] == true}"> checked="checked" 
+						</c:if> />
+				<label for="membreCA">Oui</label> <input type="radio"
+				name="membreCA" value="false"
+				<c:if test="${adherent['membreCA'] == false}"> checked="checked" </c:if> />
+				<label for="membreCA">Non</label>
+			</span>
+		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
 		<a href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>"> <input

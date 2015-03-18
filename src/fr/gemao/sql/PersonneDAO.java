@@ -34,8 +34,8 @@ public class PersonneDAO extends IDAO<Personne> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "INSERT INTO personne(idAdresse, idCommuneNaiss, nom, prenom,"
-				+ "	dateNaissance, tel_fixe, tel_port, email, sexe)"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "	dateNaissance, tel_fixe, tel_port, email, sexe, membreCA)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		Integer idAdresse = null;
 		Integer idCommuneNaiss = null;
 		try {
@@ -52,7 +52,7 @@ public class PersonneDAO extends IDAO<Personne> {
 							.getNom(), obj.getPrenom(), DateUtil.toSqlDate(obj
 							.getDateNaissance()), obj.getTelFixe(), obj
 							.getTelPort(), obj.getEmail(), obj.getCivilite()
-							.getSexe());
+							.getSexe(), obj.isMembreCA());
 
 			int status = requete.executeUpdate();
 			if (status == 0) {
@@ -107,7 +107,7 @@ public class PersonneDAO extends IDAO<Personne> {
 		ResultSet result = null;
 		String sql = "UPDATE personne SET idAdresse = ?, idCommuneNaiss = ?, nom = ?, "
 				+ "prenom = ?, dateNaissance = ?, tel_fixe = ?, tel_port = ?, "
-				+ "email = ?, sexe = ?" + "WHERE idPersonne = ?;";
+				+ "email = ?, sexe = ?, membreCA =  ? " + "WHERE idPersonne = ?;";
 		Integer idAdresse = null;
 		Integer idCommuneNaiss = null;
 		try {
@@ -124,7 +124,7 @@ public class PersonneDAO extends IDAO<Personne> {
 							.getNom(), obj.getPrenom(), new Date(obj
 							.getDateNaissance().getTime()), obj.getTelFixe(),
 					obj.getTelPort(), obj.getEmail(), obj.getCivilite()
-							.getSexe(), obj.getIdPersonne());
+							.getSexe(), obj.isMembreCA(), obj.getIdPersonne());
 			int status = requete.executeUpdate();
 
 			if (status == 0) {
@@ -244,7 +244,7 @@ public class PersonneDAO extends IDAO<Personne> {
 				result.getDate("dateNaissance"), result.getString("tel_fixe"),
 				result.getString("tel_port"), result.getString("email"),
 				(result.getString("sexe").equals("M") ? Civilite.MONSIEUR
-						: Civilite.MADAME));
+						: Civilite.MADAME),result.getBoolean("membreCA"));
 
 	}
 

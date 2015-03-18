@@ -91,6 +91,13 @@
 						</c:choose>
 			
 		</div>
+		<div>
+			<span class='text-label'>Membre CA : </span><c:choose>
+							<c:when test="${adherent['membreCA']==true}">Oui</c:when>
+							<c:otherwise>Non</c:otherwise>
+						</c:choose>
+			
+		</div>
 	</fieldset>
 <c:if test="${adherent.responsable!=null}">
 	<fieldset>
