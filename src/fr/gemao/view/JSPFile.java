@@ -30,6 +30,7 @@ public class JSPFile {
 			ADHERENT_SAISIE_COTISATION = ROOT+REP_ADHERENT+"saisieCotisation.jsp",
 			ADHERENT_A_PAYE = ROOT + REP_ADHERENT + "aPaye.jsp",
 			ADHERENT_REINSCRIRE = ROOT + REP_ADHERENT + "reinscrire.jsp",
+			ADHERENT_LISTE_DISCIPLINES = ROOT+REP_ADHERENT+"listeDisciplines.jsp",
 					
 		// Module administration
 			REP_ADMINISTRATION = "administration/",
@@ -69,6 +70,6 @@ public class JSPFile {
 			
 		// Module Cours
 			REP_COURS = "cours/",
-			COURS_AJOUTEDT = ROOT+REP_COURS+"ajoutEDT.jsp",
-			COURS_LISTE_DISCIPLINES = ROOT+REP_COURS+"listeDisciplines.jsp";
+			COURS_AJOUTEDT = ROOT+REP_COURS+"ajoutEDT.jsp";
+			
 }

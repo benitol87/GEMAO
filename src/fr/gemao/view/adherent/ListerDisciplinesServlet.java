@@ -1,4 +1,4 @@
-package fr.gemao.view.cours;
+package fr.gemao.view.adherent;
 
 import java.io.IOException;
 
@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
+import fr.gemao.entity.cours.Discipline;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
 /**
  * Servlet implementation class ListerDisciplinesServlet
  */
-@WebServlet(Pattern.COURS_LISTE_DISCIPLINES)
+@WebServlet(Pattern.ADHERENT_LISTE_DISCIPLINES)
 public class ListerDisciplinesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,7 +33,7 @@ public class ListerDisciplinesServlet extends HttpServlet {
 				recupDisciplineCtrl.recupererAllDiscipline());
 
 		this.getServletContext()
-				.getRequestDispatcher(JSPFile.COURS_LISTE_DISCIPLINES)
+				.getRequestDispatcher(JSPFile.ADHERENT_LISTE_DISCIPLINES)
 				.forward(request, response);
 	}
 

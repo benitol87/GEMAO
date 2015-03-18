@@ -3,7 +3,8 @@ $(function(){
 });
 
 function modifDiscipline(e){
-	var div = e.target.parentNode;
-	$(div.getElementsByTagName('input')).attr("readonly",false);
-
+	var form = e.target.parentNode;
+	$(form).children().attr("readonly",false);
+	$(e.target).toggle();
+	$(form).children(".btModif").toggle();
 }
