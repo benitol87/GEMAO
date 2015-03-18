@@ -13,8 +13,6 @@ import javax.servlet.http.HttpSession;
 import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.entity.Parametre;
 import fr.gemao.entity.adherent.Adherent;
-import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.ParametreDAO;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -29,6 +27,7 @@ public class SaisieCotisationServlet extends HttpServlet implements Servlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -49,6 +48,7 @@ public class SaisieCotisationServlet extends HttpServlet implements Servlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -58,8 +58,15 @@ public class SaisieCotisationServlet extends HttpServlet implements Servlet {
 		adherent.setCotisation(Float.parseFloat(request.getParameter("cotisation")));
 		session.setAttribute("ajout_adh_adherent", adherent);
 		
-		response.sendRedirect(request.getContextPath()
+
+		if (session.getAttribute("reinscription") == null) {
+			response.sendRedirect(request.getContextPath()
 				+ Pattern.ADHERENT_VALIDATION_AJOUT);
+		} else { // Si on réinscrit
+			session.setAttribute("reinscription", null);
+			response.sendRedirect(request.getContextPath()
+					+ Pattern.ADHERENT_VALIDATION_REINS);
+		}
 	}
 
 }
