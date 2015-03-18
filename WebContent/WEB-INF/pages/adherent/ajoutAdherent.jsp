@@ -134,6 +134,13 @@
 				value="false" /> <label for="droitImage">Non</label>
 			</span>
 		</div>
+		<div>
+			<label class='required'>Membre CA </label> <span> <input
+				type="radio" name="membreCa" value="true"  /> <label
+				for="membreCA">Oui</label> <input type="radio" name="membreCA"
+				value="false" checked="checked"/> <label for="membreCA">Non</label>
+			</span>
+		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
 		<p>* Champs obligatoires</p>

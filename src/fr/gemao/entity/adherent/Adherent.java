@@ -61,12 +61,12 @@ public class Adherent extends Personne implements Serializable{
 	 */
 	public Adherent(Long idPersonne, Adresse adresse, Commune communeNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
-			String telPort, String email, Civilite civilite, MotifSortie motif,
+			String telPort, String email, Civilite civilite, boolean membreCA, MotifSortie motif,
 			Responsable responsable, boolean droitImage, Date dateEntree,
 			Date dateSortie, Float qf, float cotisation,
 			List<Discipline> disciplines, List<Classe> classes, List<Cours> cours) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom,
-				dateNaissance, telFixe, telPort, email, civilite);
+				dateNaissance, telFixe, telPort, email, civilite, membreCA);
 		this.motif = motif;
 		this.responsable = responsable;
 		this.droitImage = droitImage;

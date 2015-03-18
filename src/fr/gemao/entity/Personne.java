@@ -21,6 +21,7 @@ public class Personne implements Serializable{
 	private String telPort;
 	private String email;
 	private Civilite civilite;
+	private boolean membreCA; 
 	
 	public Personne() {
 	}
@@ -41,7 +42,7 @@ public class Personne implements Serializable{
 	 */
 	public Personne(Long idPersonne, Adresse idAdresse, Commune idCommuneNaiss,
 			String nom, String prenom, Date dateNaissance, String telFixe,
-			String telPort, String email, Civilite civilite) {
+			String telPort, String email, Civilite civilite, boolean membreCA) {
 		this.idPersonne = idPersonne;
 		this.adresse = idAdresse;
 		this.communeNaiss = idCommuneNaiss;
@@ -52,6 +53,7 @@ public class Personne implements Serializable{
 		this.telPort = telPort;
 		this.email = email;
 		this.civilite = civilite;
+		this.membreCA = membreCA;
 	}
 
 	/**
@@ -63,7 +65,7 @@ public class Personne implements Serializable{
 		this(personne.getIdPersonne(), personne.getAdresse(), personne
 				.getCommuneNaiss(), personne.getNom(), personne.getPrenom(),
 				personne.getDateNaissance(), personne.getTelFixe(), personne
-						.getTelPort(), personne.getEmail(), personne.getCivilite());
+						.getTelPort(), personne.getEmail(), personne.getCivilite(), personne.isMembreCA());
 	}
 
 	/**
@@ -328,6 +330,20 @@ public class Personne implements Serializable{
 
 	public void setCivilite(Civilite civilite) {
 		this.civilite = civilite;
+	}
+
+	/**
+	 * @return the membreCA
+	 */
+	public boolean isMembreCA() {
+		return membreCA;
+	}
+
+	/**
+	 * @param membreCA the membreCA to set
+	 */
+	public void setMembreCA(boolean membreCA) {
+		this.membreCA = membreCA;
 	}
 
 }
