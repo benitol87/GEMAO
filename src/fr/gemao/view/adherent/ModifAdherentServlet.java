@@ -15,11 +15,13 @@ import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
+import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.ctrl.adherent.ModifierResponsableCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
+import fr.gemao.entity.Parametre;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.entity.cours.Discipline;
@@ -54,12 +56,18 @@ public class ModifAdherentServlet extends HttpServlet {
 			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
 			List<Adherent> adherents = recupererAdherentCtrl
 					.recupererTousAdherents();
+			ParametreCtrl parametreCtrl = new ParametreCtrl();
+			Parametre param = parametreCtrl.getLast();
+			request.setAttribute("params", param);
 			request.setAttribute("listeAdherents", adherents);
 			this.getServletContext()
 					.getRequestDispatcher(Pattern.ADHERENT_LISTER)
 					.forward(request, response);
 		} else {
 			int id = Integer.parseInt(request.getParameter("id"));
+			if (request.getParameter("errDate")!=null){
+				request.setAttribute("errDate", true);
+			}
 			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
 			Adherent adherent = recupererAdherentCtrl.recupererAdherent(id);
 
@@ -67,6 +75,7 @@ public class ModifAdherentServlet extends HttpServlet {
 			String dateNaissance = formatter
 					.format(adherent.getDateNaissance());
 			String dateInscription = formatter.format(adherent.getDateEntree());
+			
 
 			session.setAttribute("modif_adh_adherent", adherent);
 			request.setAttribute("adherent", adherent);
@@ -191,9 +200,7 @@ public class ModifAdherentServlet extends HttpServlet {
 			System.out.println(adherentForm.getErreurs());
 			System.out.println("Erreur !");
 
-			this.getServletContext()
-					.getRequestDispatcher(JSPFile.ADHERENT_LISTER)
-					.forward(request, response);
+			response.sendRedirect("/GEMAO"+Pattern.ADHERENT_MODIFIER+"?errDate=1&id="+adherent.getIdPersonne());
 		}
 	}
 }

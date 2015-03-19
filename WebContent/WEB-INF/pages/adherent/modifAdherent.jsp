@@ -12,6 +12,9 @@
 <script src="<c:url value="/js/modifierAdherent.js"/>"></script>
 
 <h1>Modification d'un adhérent</h1>
+<c:if test="${errDate}">
+	<p class="offset">Date de naissance < Date d'inscription <= Date du jour</p>
+</c:if>
 <form id="modifAdherent" action="#" method="post">
 	<fieldset>
 		<legend>Informations personnelles</legend>

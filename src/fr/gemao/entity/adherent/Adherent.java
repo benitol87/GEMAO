@@ -2,6 +2,7 @@ package fr.gemao.entity.adherent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -398,6 +399,17 @@ public class Adherent extends Personne implements Serializable{
 		return true;
 	}
 
-	
+	public boolean isMineur(){
+		
+		Calendar dateMineur = Calendar.getInstance();
+		dateMineur.set(dateMineur.get(Calendar.YEAR) - 18,
+				dateMineur.get(Calendar.MONTH),
+				dateMineur.get(Calendar.DAY_OF_MONTH));
+
+		if (this.getDateNaissance().after(dateMineur.getTime())) {
+			return true;
+		}
+		return false;
+	}
 
 }

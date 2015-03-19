@@ -110,7 +110,13 @@
 					href="<c:url value="<%= Pattern.ADHERENT_CONSULTER %>"/>?id=<c:out value="${adh['idPersonne']}" />"
 					title='Afficher les détails'></a> <a class="icon icon-pen"
 					href="<c:url value="<%= Pattern.ADHERENT_MODIFIER %>"/>?id=<c:out value="${adh['idPersonne']}" />"
-					title='Modifier les informations'></a></td>
+					title='Modifier les informations'></a>
+					<c:if test="${adh.isMineur() && adh.getAdresse().getCommune().isAvantage() }">
+						<a class="icon"
+							href="<c:url value="<%= Pattern.ADHERENT_MODIFER_QF %>"/>?id=<c:out value="${adh['idPersonne']}" />"
+							title='Modifier le Quotient Familial'>QF</a>
+					</c:if>
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>

@@ -31,6 +31,7 @@ public class JSPFile {
 			ADHERENT_A_PAYE = ROOT + REP_ADHERENT + "aPaye.jsp",
 			ADHERENT_REINSCRIRE = ROOT + REP_ADHERENT + "reinscrire.jsp",
 			ADHERENT_LISTE_DISCIPLINES = ROOT+REP_ADHERENT+"listeDisciplines.jsp",
+			ADHERENT_CONFIRMATION_MODIFICATION_QF = ROOT+REP_ADHERENT+"confirmationModifQF.jsp",
 					
 		// Module administration
 			REP_ADMINISTRATION = "administration/",
