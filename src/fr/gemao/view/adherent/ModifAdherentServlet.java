@@ -13,25 +13,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.taglibs.standard.lang.jstl.test.beans.Factory;
-
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
-import fr.gemao.ctrl.adherent.AjouterDisciplineCtrl;
-import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
+import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.ctrl.adherent.ModifierResponsableCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
+import fr.gemao.entity.Parametre;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.entity.cours.Discipline;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.form.adherent.AdherentForm;
-import fr.gemao.form.util.Form;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.exception.DAOException;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -60,12 +56,18 @@ public class ModifAdherentServlet extends HttpServlet {
 			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
 			List<Adherent> adherents = recupererAdherentCtrl
 					.recupererTousAdherents();
+			ParametreCtrl parametreCtrl = new ParametreCtrl();
+			Parametre param = parametreCtrl.getLast();
+			request.setAttribute("params", param);
 			request.setAttribute("listeAdherents", adherents);
 			this.getServletContext()
 					.getRequestDispatcher(Pattern.ADHERENT_LISTER)
 					.forward(request, response);
 		} else {
 			int id = Integer.parseInt(request.getParameter("id"));
+			if (request.getParameter("errDate")!=null){
+				request.setAttribute("errDate", true);
+			}
 			RecupererAdherentCtrl recupererAdherentCtrl = new RecupererAdherentCtrl();
 			Adherent adherent = recupererAdherentCtrl.recupererAdherent(id);
 
@@ -73,14 +75,14 @@ public class ModifAdherentServlet extends HttpServlet {
 			String dateNaissance = formatter
 					.format(adherent.getDateNaissance());
 			String dateInscription = formatter.format(adherent.getDateEntree());
+			
 
 			session.setAttribute("modif_adh_adherent", adherent);
 			request.setAttribute("adherent", adherent);
 			request.setAttribute("dateNaissance", dateNaissance);
 			request.setAttribute("dateInscription", dateInscription);
-			RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
 			session.setAttribute("listDiscipline",
-					recupDisciplineCtrl.recupererAllDiscipline());
+					RecupererDisciplineCtrl.recupererAllDiscipline());
 			this.getServletContext()
 					.getRequestDispatcher(JSPFile.ADHERENT_MODIFIER_ADHERENT)
 					.forward(request, response);
@@ -178,7 +180,6 @@ public class ModifAdherentServlet extends HttpServlet {
 
 			if (adherent.getResponsable() != null) {
 				Responsable responsable = adherent.getResponsable();
-				System.out.println(responsable);
 				String nomResp = request.getParameter("nomResp");
 				responsable.setNom(nomResp);
 				String prenomResp = request.getParameter("prenomResp");
@@ -199,9 +200,7 @@ public class ModifAdherentServlet extends HttpServlet {
 			System.out.println(adherentForm.getErreurs());
 			System.out.println("Erreur !");
 
-			this.getServletContext()
-					.getRequestDispatcher(JSPFile.ADHERENT_LISTER)
-					.forward(request, response);
+			response.sendRedirect("/GEMAO"+Pattern.ADHERENT_MODIFIER+"?errDate=1&id="+adherent.getIdPersonne());
 		}
 	}
 }

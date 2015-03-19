@@ -338,7 +338,6 @@ public class AdherentForm {
 	public List<Discipline> lireDisciplines(HttpServletRequest request){
 		String str = null;
 		Discipline disc;
-		RecupererDisciplineCtrl recupererDisciplineCtrl = new RecupererDisciplineCtrl();
 		List<Discipline> listDisciplines = new ArrayList<>();
 		int i = 1;
 		
@@ -347,7 +346,7 @@ public class AdherentForm {
 			i++;
 			
 			if (str != null && !str.equals("")) {
-				disc = recupererDisciplineCtrl.recupererDiscipline(Integer.parseInt(str));
+				disc = RecupererDisciplineCtrl.recupererDiscipline(Integer.parseInt(str));
 				listDisciplines.add(disc);
 			}
 			
@@ -360,7 +359,7 @@ public class AdherentForm {
 			
 			if (str != null && !str.equals("")) {
 				String[] parts = str.split("-");
-				disc = recupererDisciplineCtrl.recupererDiscipline(parts[0],parts[1]);
+				disc = RecupererDisciplineCtrl.recupererDiscipline(parts[0],parts[1]);
 				listDisciplines.add(disc);
 			}
 		} while(str != null);

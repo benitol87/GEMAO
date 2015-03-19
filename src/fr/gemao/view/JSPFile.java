@@ -33,6 +33,7 @@ public class JSPFile {
 			ADHERENT_VALIDATION_REINS = ROOT + REP_ADHERENT
 					+ "validationReinscription.jsp",
 			ADHERENT_LISTE_DISCIPLINES = ROOT+REP_ADHERENT+"listeDisciplines.jsp",
+			ADHERENT_CONFIRMATION_MODIFICATION_QF = ROOT+REP_ADHERENT+"confirmationModifQF.jsp",
 					
 		// Module administration
 			REP_ADMINISTRATION = "administration/",

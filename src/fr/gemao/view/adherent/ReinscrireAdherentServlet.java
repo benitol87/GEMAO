@@ -68,9 +68,8 @@ public class ReinscrireAdherentServlet extends HttpServlet {
 			request.setAttribute("adherent", adherent);
 			request.setAttribute("dateNaissance", dateNaissance);
 			request.setAttribute("dateInscription", dateInscription);
-			RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
 			session.setAttribute("listDiscipline",
-					recupDisciplineCtrl.recupererAllDiscipline());
+					RecupererDisciplineCtrl.recupererAllDiscipline());
 			this.getServletContext()
 					.getRequestDispatcher(JSPFile.ADHERENT_REINSCRIRE)
 					.forward(request, response);

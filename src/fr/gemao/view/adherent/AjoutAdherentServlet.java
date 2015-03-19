@@ -50,13 +50,16 @@ public class AjoutAdherentServlet extends HttpServlet {
 		session.setAttribute("ajout_adh_adresse", null);
 		session.setAttribute("ajout_adh_responsable", null);
 
-		RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
 		session.setAttribute("listDiscipline",
-				recupDisciplineCtrl.recupererAllDiscipline());
+				RecupererDisciplineCtrl.recupererAllDiscipline());
 
 		request = AutocompletionCommune
 				.initRequestForAutoCompletionCommune(request);
 
+		if (request.getParameter("errDate")!=null){
+			request.setAttribute("errDate", true);
+		}
+		
 		this.getServletContext()
 				.getRequestDispatcher(JSPFile.ADHERENT_AJOUT_ADHERENT)
 				.forward(request, response);
@@ -161,14 +164,13 @@ public class AjoutAdherentServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath()
 						+ Pattern.ADHERENT_SAISIE_COTISATION);
 			}
+			
 
 		} else {
 			System.out.println(adherentForm.getErreurs());
 			System.out.println("Erreur !");
 
-			this.getServletContext()
-					.getRequestDispatcher(JSPFile.ADHERENT_AJOUT_ADHERENT)
-					.forward(request, response);
+			response.sendRedirect("/GEMAO"+Pattern.ADHERENT_AJOUT+"?errDate=1");
 
 		}
 
