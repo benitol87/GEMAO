@@ -80,8 +80,26 @@ public class DisciplineDAO extends IDAO<Discipline> {
 
 	@Override
 	public Discipline update(Discipline obj) {
-		// TODO Auto-generated method stub
-		return null;
+		if (obj == null) {
+			throw new NullPointerException("La discipline ne doit pas être null");
+		}
+
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "UPDATE discipline SET idMatiere = ?, idNiveau = ? where idDiscipline = ?";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, obj.getMatiere().getIdMatiere(), obj.getNiveau().getIdNiveau(), obj.getIdDiscipline());
+			requete.executeUpdate();
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return obj;
 	}
 
 	@Override
@@ -261,23 +279,6 @@ public class DisciplineDAO extends IDAO<Discipline> {
 	 * @param listDiscipline
 	 * @param idAdherent
 	 */
-	// public void updateAllDisciplineParAdherent(List<Discipline>
-	// listDiscipline,
-	// long idAdherent) {
-	// List<Discipline> dejaInscrit = this
-	// .getDisciplineParAdherent(idAdherent);
-	// // Permet de supprimer les doublons.
-	// Set<Discipline> set = new HashSet<>(listDiscipline);
-	// listDiscipline = new ArrayList<>(set);
-	// for (Discipline d : listDiscipline) {
-	// if (!dejaInscrit.contains(d)) {
-	// this.addDiscplineParAdherent(d.getIdDiscipline(), idAdherent);
-	// }
-	// dejaInscrit.remove(d);
-	// }
-	// deleteAllDisciplinesParAdherent(dejaInscrit, idAdherent);
-	// }
-
 	public void updateAllDisciplineParAdherent(List<Discipline> listDiscipline,
 			long idAdherent) {
 		List<Discipline> dejaInscrit = this

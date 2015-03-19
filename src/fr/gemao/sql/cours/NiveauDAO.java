@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.gemao.entity.cours.Matiere;
 import fr.gemao.entity.cours.Niveau;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
@@ -147,6 +148,30 @@ public class NiveauDAO extends IDAO<Niveau> {
 		return liste;
 	}
 
+	public Niveau exist(Niveau niveau) {
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * from niveau where nomNiveau = ?";
+		Niveau verif = null;
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, niveau.getNomNiveau());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				verif = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return verif;
+	}
+	
 	@Override
 	protected Niveau map(ResultSet result) throws SQLException {
 		return new Niveau(NumberUtil.getResultInteger(result, "idNiveau"), 

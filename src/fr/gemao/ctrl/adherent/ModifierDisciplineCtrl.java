@@ -8,11 +8,10 @@ import fr.gemao.sql.cours.DisciplineDAO;
 import fr.gemao.sql.cours.MatiereDAO;
 import fr.gemao.sql.cours.NiveauDAO;
 
-public class AjouterDisciplineCtrl {
-
-	public static boolean ajouterDiscipline(Discipline discipline) {
-
-
+public class ModifierDisciplineCtrl {
+	
+	public static boolean modifierDiscipline(Discipline discipline){
+		
 		DAOFactory co = DAOFactory.getInstance();
 		DisciplineDAO disciplineDAO = co.getDisciplineDAO();
 		NiveauDAO niveauDAO = co.getNiveauDAO();
@@ -30,10 +29,11 @@ public class AjouterDisciplineCtrl {
 		
 		Discipline disc = disciplineDAO.exist(discipline);
 		if(disc==null){
-			discipline = disciplineDAO.create(discipline);
+			discipline = disciplineDAO.update(discipline);
 			return true;
 		} else {
 			return false;
 		}
 	}
+
 }

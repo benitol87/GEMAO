@@ -14,16 +14,18 @@
 <h1>Liste des disciplines</h1>
 
 <c:forEach var="discipline" items="${sessionScope.listDiscipline }">
-	<form action="#?id=${discipline.getIdDiscipline()}" method="post" class="offset">
-		<input type="text" value="${discipline.getMatiere().getNomMatiere()}" readonly>
-		<input type="text" value="${discipline.getNiveau().getNomNiveau()}" readonly>
+	<form action="#" method="post" class="offset">
+		<input type="text" name="matiere" value="${discipline.getMatiere().getNomMatiere()}" readonly>
+		<input type="text" name="niveau" value="${discipline.getNiveau().getNomNiveau()}" readonly>
+		<input type="text" name="id" value="${discipline.getIdDiscipline()}" style="display: none">
 		<a class="icon icon-pen" title='Modifier la discipline'></a>
 		<input type="submit" class="btModif" value="Modifier" style="display: none">
 	</form>
 </c:forEach>
-<form action="#?id=0" method="post" class="offset">
-	<input type="text" value="" >
-	<input type="text" value="" >
+<form action="#" method="post" class="offset">
+	<input type="text" name="matiere" value="" >
+	<input type="text" name="niveau" value="" >
+	<input type="text" name="id" value="0" style="display: none">
 	<input type="submit" value="Ajouter">
 </form>
 

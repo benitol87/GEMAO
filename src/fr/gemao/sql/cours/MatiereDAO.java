@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.entity.cours.Matiere;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
@@ -145,6 +146,30 @@ public class MatiereDAO extends IDAO<Matiere> {
 		}
 
 		return liste;
+	}
+	
+	public Matiere exist(Matiere matiere) {
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * from matiere where nomMatiere = ?";
+		Matiere verif = null;
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, matiere.getNomMatiere());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				verif = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return verif;
 	}
 
 	@Override

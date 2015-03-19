@@ -99,11 +99,11 @@ public class ResponsableDAO extends IDAO<Responsable> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 		String sql = "UPDATE responsable SET nom = ?, prenom = ?, tel = ?, "
-				+ "email = ?;";
+				+ "email = ? where idResponsable = ?;";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, obj.getNom(), obj.getPrenom(), obj.getTelephone(), obj.getEmail());
+					sql, false, obj.getNom(), obj.getPrenom(), obj.getTelephone(), obj.getEmail(), obj.getIdResponsable());
 			requete.executeUpdate();
 		} catch (SQLException e) {
 			throw new DAOException(e);

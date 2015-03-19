@@ -26,6 +26,7 @@
 									<li><a href="<c:url value="<%= Pattern.ADHERENT_SIMPLE_CALCUL_QF %>"/>">Calculer Quotient Familial</a></li>
 									<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Adhérent') == 'Lecture/écriture' }">
 									<li><a href="<c:url value="<%= Pattern.ADHERENT_PARAMETRE %>"/>">Paramètres</a></li>
+									<li><a href="<c:url value="<%= Pattern.ADHERENT_LISTE_DISCIPLINES %>"/>">Disciplines</a></li>
 									</c:if>
 								</ul>
 							</div>
