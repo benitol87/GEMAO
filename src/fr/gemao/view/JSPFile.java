@@ -30,6 +30,8 @@ public class JSPFile {
 			ADHERENT_SAISIE_COTISATION = ROOT+REP_ADHERENT+"saisieCotisation.jsp",
 			ADHERENT_A_PAYE = ROOT + REP_ADHERENT + "aPaye.jsp",
 			ADHERENT_REINSCRIRE = ROOT + REP_ADHERENT + "reinscrire.jsp",
+			ADHERENT_VALIDATION_REINS = ROOT + REP_ADHERENT
+					+ "validationReinscription.jsp",
 			ADHERENT_LISTE_DISCIPLINES = ROOT+REP_ADHERENT+"listeDisciplines.jsp",
 					
 		// Module administration

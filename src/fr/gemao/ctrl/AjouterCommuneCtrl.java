@@ -70,6 +70,7 @@ public class AjouterCommuneCtrl {
 			}
 			else{
 				commune.setIdCommune(com.getIdCommune());
+				commune.setAvantage(com.isAvantage());
 			}
 		}
 		else{

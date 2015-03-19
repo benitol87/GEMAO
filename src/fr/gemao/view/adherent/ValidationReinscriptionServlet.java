@@ -56,9 +56,10 @@ public class ValidationReinscriptionServlet extends HttpServlet {
 		request.setAttribute("commune", commune);
 		request.setAttribute("adresse", adresse);
 		request.setAttribute("responsable", responsable);
+		System.out.println(adherent);
 
 		this.getServletContext()
-				.getRequestDispatcher(JSPFile.ADHERENT_VALIDATION_AJOUT)
+				.getRequestDispatcher(JSPFile.ADHERENT_VALIDATION_REINS)
 				.forward(request, response);
 	}
 
@@ -73,7 +74,7 @@ public class ValidationReinscriptionServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Adherent adherent = (Adherent) session
 				.getAttribute("ajout_adh_adherent");
-		Commune commune = adherent.getCommuneNaiss();
+		Commune commune = adherent.getAdresse().getCommune();
 		Adresse adresse = adherent.getAdresse();
 		Responsable responsable = adherent.getResponsable();
 
