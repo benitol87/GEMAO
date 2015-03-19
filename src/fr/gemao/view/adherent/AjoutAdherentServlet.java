@@ -50,9 +50,8 @@ public class AjoutAdherentServlet extends HttpServlet {
 		session.setAttribute("ajout_adh_adresse", null);
 		session.setAttribute("ajout_adh_responsable", null);
 
-		RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
 		session.setAttribute("listDiscipline",
-				recupDisciplineCtrl.recupererAllDiscipline());
+				RecupererDisciplineCtrl.recupererAllDiscipline());
 
 		request = AutocompletionCommune
 				.initRequestForAutoCompletionCommune(request);

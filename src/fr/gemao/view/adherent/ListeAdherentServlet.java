@@ -13,8 +13,6 @@ import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.entity.Parametre;
 import fr.gemao.entity.adherent.Adherent;
-import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.ParametreDAO;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 

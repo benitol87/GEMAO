@@ -6,10 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import fr.gemao.entity.cours.Discipline;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;

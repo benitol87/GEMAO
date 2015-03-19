@@ -13,12 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.taglibs.standard.lang.jstl.test.beans.Factory;
-
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
-import fr.gemao.ctrl.adherent.AjouterDisciplineCtrl;
-import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
 import fr.gemao.ctrl.adherent.ModifierResponsableCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
@@ -29,9 +25,7 @@ import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.entity.cours.Discipline;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.form.adherent.AdherentForm;
-import fr.gemao.form.util.Form;
 import fr.gemao.sql.DAOFactory;
-import fr.gemao.sql.exception.DAOException;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -78,9 +72,8 @@ public class ModifAdherentServlet extends HttpServlet {
 			request.setAttribute("adherent", adherent);
 			request.setAttribute("dateNaissance", dateNaissance);
 			request.setAttribute("dateInscription", dateInscription);
-			RecupererDisciplineCtrl recupDisciplineCtrl = new RecupererDisciplineCtrl();
 			session.setAttribute("listDiscipline",
-					recupDisciplineCtrl.recupererAllDiscipline());
+					RecupererDisciplineCtrl.recupererAllDiscipline());
 			this.getServletContext()
 					.getRequestDispatcher(JSPFile.ADHERENT_MODIFIER_ADHERENT)
 					.forward(request, response);
@@ -178,7 +171,6 @@ public class ModifAdherentServlet extends HttpServlet {
 
 			if (adherent.getResponsable() != null) {
 				Responsable responsable = adherent.getResponsable();
-				System.out.println(responsable);
 				String nomResp = request.getParameter("nomResp");
 				responsable.setNom(nomResp);
 				String prenomResp = request.getParameter("prenomResp");

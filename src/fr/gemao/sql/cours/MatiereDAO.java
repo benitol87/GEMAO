@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.entity.cours.Matiere;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
