@@ -42,7 +42,7 @@ import fr.gemao.view.Pattern;
 @WebServlet(Pattern.MATERIEL_MODIFIER)
 public class ModifierMaterielServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static String VUE_LISTE = "/materiel/ListerMateriel";
+	private static String VUE_LISTE = Pattern.MATERIEL_LISTER;
 	
 	private static String ERREUR_AJOUT_CATEGORIE = "erreurCat";
 	private static String ERREUR_AJOUT_DESIGNATION = "erreurDes";
@@ -54,6 +54,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 	 * Chargement de la page de modification. Le parametre idMateriel doit etre
 	 * envoyé pour le doGet (l'id correspond a celui du materiel a modifier.
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -91,7 +92,6 @@ public class ModifierMaterielServlet extends HttpServlet {
 				FournisseurCtrl fournctrl = new FournisseurCtrl();
 				DesignationCtrl desctrl = new DesignationCtrl();
 				MarqueCtrl marquectrl = new MarqueCtrl();
-				
 				
 				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 				String dateAchat = df.format(new Date(mat.getDateAchat().getTime()));
@@ -133,6 +133,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 		}
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
