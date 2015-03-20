@@ -160,7 +160,7 @@ public class ModifAdherentServlet extends HttpServlet {
 			commune = factory.getCommuneDAO().existNomCodePostal(commune);
 			
 			if (adherent.getQf() != null)
-				if (!commune.isAvantage())
+				if (!commune.isAvantage() || !adherent.isMineur())
 						adherent.setQf(null);
 
 			String cotisation = request.getParameter("cotisation");
