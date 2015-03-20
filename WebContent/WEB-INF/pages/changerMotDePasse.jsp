@@ -28,7 +28,7 @@
 		</div>
 		
 		<div>
-			<label for="nouveau2" class='required'>Resaisir le nouveau mot de passe </label>
+			<label for="nouveau2" class='required'>Re-saisir le nouveau mot de passe </label>
 			<input type="password" name="nouveau2" required pattern="[a-zA-Z0-9,?;.:/!&é'(-è)_çà]{6,}" title="Le mot de passe doit contenir au moins 6 caractères (lettres ou chiffres). Les caractères spéciaux autorisés sont les suivants : , ? ; . : / ! & é ' ( ) - è _ ç à"/>
 		</div>		
 		
