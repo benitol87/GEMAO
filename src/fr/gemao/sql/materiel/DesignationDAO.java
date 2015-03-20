@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,13 +31,11 @@ public class DesignationDAO extends IDAO<Designation> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 
-		String sql = "INSERT INTO designation(libelle)"
-				+ "VALUES (?);";
+		String sql = "INSERT INTO designation(libelle)" + "VALUES (?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false,
-					obj.getLibelleDesignation());
+					sql, false, obj.getLibelleDesignation());
 
 			int status = requete.executeUpdate();
 			if (status == 0) {
@@ -54,30 +53,38 @@ public class DesignationDAO extends IDAO<Designation> {
 
 	@Override
 	public void delete(Designation obj) {
-		/*
-		 * if (obj == null) { throw new NullPointerException(
-		 * "La designation ne doit pas etre null"); }
-		 * 
-		 * if (obj.getIdDesignation() == 0) { throw new
-		 * IllegalArgumentException(
-		 * "La designation ne peut pas avoir un id = 0"); }
-		 * 
-		 * Statement stat = null; try { stat =
-		 * connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-		 * ResultSet.CONCUR_UPDATABLE);
-		 * stat.execute("DELETE FROM designation WHERE idDesignation = " +
-		 * obj.getIdDesignation() + ";"); } catch (SQLException e) {
-		 * e.printStackTrace(); } finally { if (stat != null) { try {
-		 * stat.close(); } catch (SQLException e) { e.printStackTrace(); } } }
-		 */
-		throw new UnsupportedOperationException(
-				"Vous n'avez pas le droit de supprimer une Designation.");
+
+		if (obj == null) {
+			throw new NullPointerException(
+					"La designation ne doit pas etre null");
+		}
+
+		if (obj.getIdDesignation() == 0) {
+			throw new IllegalArgumentException(
+					"La designation ne peut pas avoir un id = 0");
+		}
+
+		Statement stat = null;
+		Connection connect = null;
+		try {
+			connect = factory.getConnection();
+			stat = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			stat.execute("DELETE FROM designation WHERE idDesignation = "
+					+ obj.getIdDesignation() + ";");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(stat, connect);
+		}
+
 	}
 
 	@Override
 	public Designation update(Designation obj) {
 		if (obj == null) {
-			throw new NullPointerException("La Designation ne doit pas etre nul");
+			throw new NullPointerException(
+					"La Designation ne doit pas etre nul");
 		}
 
 		Connection connexion = null;
@@ -88,8 +95,7 @@ public class DesignationDAO extends IDAO<Designation> {
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false,
-					obj.getLibelleDesignation(),
+					sql, false, obj.getLibelleDesignation(),
 					obj.getIdDesignation());
 			requete.executeUpdate();
 		} catch (SQLException e) {
@@ -125,7 +131,7 @@ public class DesignationDAO extends IDAO<Designation> {
 
 		return designation;
 	}
-	
+
 	public Designation get(String libDes) {
 		Designation designation = null;
 		Connection connexion = null;
@@ -149,6 +155,7 @@ public class DesignationDAO extends IDAO<Designation> {
 
 		return designation;
 	}
+
 	@Override
 	public List<Designation> getAll() {
 		List<Designation> liste = new ArrayList<>();
@@ -176,8 +183,8 @@ public class DesignationDAO extends IDAO<Designation> {
 
 		return liste;
 	}
-	
-	public Designation exist(Designation desigantion){
+
+	public Designation exist(Designation desigantion) {
 		return this.get(desigantion.getLibelleDesignation());
 	}
 
