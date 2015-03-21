@@ -9,6 +9,8 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
+<c:import url="/js/autocompleteCommune.jsp"/>
+
 <script src="<c:url value="/js/AjouterPersonnel.js"/>"></script>
 
 	<!-- 1er partie du formulaire -->
@@ -42,11 +44,11 @@
 		
 		<div>
 			<label for="comnaiss" class='required'>Commune de naissance </label>
-			<input type="text" name="comnaiss" required autocomplete="off"/>
+			<input type="text" name="comnaiss" required id="commune"/>
 		</div>
 					
 		<div>
-			<label for="codep" class='required'>Code postal de la commune </label>
+			<label for="codep" class='required'>Code postal </label>
 			<input type="text" maxlength="5" name="codep" required autocomplete="off" />
 		</div>
 					
