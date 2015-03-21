@@ -152,6 +152,7 @@
 			<label for="cotisation" class="required">Montant de la cotisation : </label><input
 				type="text" name="cotisation" required="required"
 				value="<c:out value="${adherent.getCotisation()}" />" />
+				<span class="euro"></span>
 		</div>
 		<div>
 			<label class="required">Droit à l'image :</label> <span> <input type="radio"

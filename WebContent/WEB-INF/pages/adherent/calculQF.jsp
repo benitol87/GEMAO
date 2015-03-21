@@ -19,7 +19,7 @@
 			<input type="number" name="nbEnf" required="required" min="0" value="0" autocomplete="off" />
 		</div>
 		<div>
-			<label for="revenues" class='required'>Revenus annuels (bruts)</label>
+			<label for="revenues" class='required'>Revenus annuels (bruts) </label>
 			<input class='align-right' type="text" pattern="[0-9]*[0-9,.][0-9]*" name="revenues" required="required" autocomplete="off" />
 			<span class='euro'></span>
 		</div>
@@ -33,6 +33,6 @@
 	<p class="offset">Le nombre d'enfants ne peut être inférieur au nombre de personnes</p>
 </c:if>
 <c:if test="${ ! empty simpleQuotient }">
-	<p class="offset">Montant du quotient familial : <c:out value="${simpleQuotient}" />,  <c:out value="${QF}" /></p>
+	<p class="offset">Montant du quotient familial : <c:out value="${simpleQuotient}" /><span class="euro"></span>,  <c:out value="${QF}" /></p>
 </c:if>
 <c:import url="/inc/footer.inc.jsp" />

@@ -9,17 +9,18 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<h1>Adhérent a payé</h1>
+<h1>Paiement adhérent</h1>
 
 <c:if test="${!confirmation}">
 	<form method="post" action="#">
 		<fieldset>
 			<div>
-				<label for="cotisation">Le montant total à payer</label>
+				<label for="cotisation">Montant total à payer </label>
 				<input type="text" id="cotisation" name="cotisation" value="${cotisation}" disabled="disabled"/>
+				<span class="euro"></span>
 			</div>
 			<div class="offset">
-				Confirmez que la cotisation est payée.
+				Veuillez confirmer que la cotisation est payée.
 			</div>
 		</fieldset>
 		

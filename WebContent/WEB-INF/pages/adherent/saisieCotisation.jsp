@@ -30,6 +30,7 @@
 		<div>
 			<label for="cotisation" class='required'>Montant de la cotisation </label>
 			<input type="number" name="cotisation" required="required" min="0" value="0" autocomplete="off" />
+			<span class="euro"></span>
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
