@@ -38,6 +38,7 @@ public class JSPFile {
 		// Module administration
 			REP_ADMINISTRATION = "administration/",
 			ADMINISTRATION_AJOUT_PROFIL = ROOT+REP_ADMINISTRATION+"ajouterProfil.jsp",
+			ADMINISTRATION_CHANGER_PROFIL = ROOT+REP_ADMINISTRATION+"affecterProfil.jsp",
 			ADMINISTRATION_CONSULTER_PROFIL = ROOT+REP_ADMINISTRATION+"consulterProfil.jsp",
 			ADMINISTRATION_LISTER_MODIFICATIONS = ROOT+REP_ADMINISTRATION+"listerModifs.jsp",
 			ADMINISTRATION_LISTER_PROFILS = ROOT+REP_ADMINISTRATION+"listerProfils.jsp",
@@ -74,5 +75,6 @@ public class JSPFile {
 		// Module Cours
 			REP_COURS = "cours/",
 			COURS_AJOUTEDT = ROOT+REP_COURS+"ajoutEDT.jsp";
+	
 			
 }

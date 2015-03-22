@@ -11,7 +11,8 @@
 <script src="<c:url value="/js/listerDisciplines.js"/>"></script>
 
 
-<h1>Liste des disciplines (Matière - Niveau)</h1>
+<h1>Liste des disciplines</h1>
+<h2 class="offset">Matière - Niveau</h2>
 
 <c:forEach var="discipline" items="${sessionScope.listDiscipline }">
 	<form action="#" method="post" class="offset">

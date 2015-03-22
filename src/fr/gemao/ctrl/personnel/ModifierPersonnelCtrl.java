@@ -42,17 +42,17 @@ public class ModifierPersonnelCtrl {
 				pers = personnelDAO.update(personnel);
 				
 				if (pers == null) {
-					System.out.println("Une erreur est survenue lors de la modification...");
+					//System.out.println("Une erreur est survenue lors de la modification...");
 					return -1; 
 				} else {
-					System.out.println("Le personnel a bien été modifiée.");
+					//System.out.println("Le personnel a bien été modifiée.");
 					return pers.getIdPersonne();
 				}
 			} else {
 				throw new IllegalArgumentException("Le personnel n'existe pas dans la base...");
 			}
 		} else {
-			System.out.println("Les informations du personnel ne sont pas valides...");
+			//System.out.println("Les informations du personnel ne sont pas valides...");
 			return -1;
 		}
 	}
