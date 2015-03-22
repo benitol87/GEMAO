@@ -20,12 +20,12 @@
 		<legend>Informations personnelles</legend>
 		<div>
 			<span class='text-label'>Civilité : </span> <span><input type="radio"
-				name="civilite" value="F"
+				name="civilite" id="civiliteF" value="F"
 				<c:if test="${adherent.civilite['nameCourt'] == 'Mme'}"> checked="checked"</c:if> /><label
-				for="civilite">Mme</label> <input type="radio" name="civilite"
-				value="M"
+				for="civiliteF">Mme</label> <input type="radio" name="civilite"
+				id="civiliteM" value="M"
 				<c:if test="${adherent.civilite['nameCourt'] == 'M.'}"> checked="checked" </c:if> /><label
-				for="civilite">M.</label> </span>
+				for="civiliteM">M.</label> </span>
 		</div>
 		<div>
 			<label for="nom" class="required">Nom : </label><input type="text"

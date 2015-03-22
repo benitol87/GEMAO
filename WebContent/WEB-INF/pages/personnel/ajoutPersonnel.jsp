@@ -49,7 +49,7 @@
 					
 		<div>
 			<label for="codep" class='required'>Code postal </label>
-			<input type="text" maxlength="5" name="codep" required autocomplete="off" />
+			<input type="text" maxlength="5" name="codep" required autocomplete="on" />
 		</div>
 					
 		<div>
@@ -94,17 +94,22 @@
 		
 		<div>
 			<label for="ville" class='required'>Commune </label>
-			<input type="text" name="ville" required autocomplete="off" />
+			<input type="text" name="ville" required autocomplete="on" />
 		</div>
 		
 		<div>
 			<label for="code" class='required'>Code postal </label>
-			<input type="text" maxlength="5" name="code" required autocomplete="off" />
+			<input type="text" maxlength="5" name="code" required autocomplete="on" />
 		</div>
 	</fieldset>
 	
 	<fieldset>
 		<legend>Informations professionnelles</legend>
+		<div id="CA">
+			<label for="CA">Membre du CA :</label>
+			<input type="checkbox" name="CA" value="CA"/>
+		</div>
+
 		<div id="diplomes">
 			<div id="divDiplome1">
 				<label for="diplome1">Diplôme </label>
@@ -131,7 +136,10 @@
 			<div id="discipline1">
 				<label for="discipline1">Discipline </label>
 				<select name="discipline1">
-				
+				<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
+					<option value="${ discipline.getIdDiscipline() }">${ discipline.getMatiere().getNomMatiere()}
+							- ${discipline.getNiveau().getNomNiveau() }</option>
+				</c:forEach>
 				</select>
 				<input type="button" value="+" id="ajoutDiscipline"/>
 				<input type="button" value="-" id="retireDiscipline"/>

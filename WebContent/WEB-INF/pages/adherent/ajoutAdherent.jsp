@@ -11,6 +11,10 @@
 
 <c:import url="/js/autocompleteCommune.jsp"/>
 
+<script type="text/javascript">
+autocompletionCommuneCodePostal("#commune", "#codePostal");
+</script>
+
 <script src="<c:url value="/js/AjouterAdherent.js"/>"></script>
 
 
@@ -25,9 +29,9 @@
 
 		<div>
 			<label>Civilité</label> <span> <input type="radio"
-				name="civilite" value="F" checked="checked" /> <label
-				for="civilite">Mme</label> <input type="radio" name="civilite"
-				value="M" /><label for="civilite">M.</label>
+				name="civilite" value="F" id="civiliteF" checked="checked" /> <label
+				for="civiliteF">Mme</label> <input type="radio" name="civilite" id="civiliteM"
+				value="M" /><label for="civiliteM">M.</label>
 			</span>
 		</div>
 
