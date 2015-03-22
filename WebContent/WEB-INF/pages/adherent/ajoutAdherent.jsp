@@ -11,6 +11,10 @@
 
 <c:import url="/js/autocompleteCommune.jsp"/>
 
+<script type="text/javascript">
+autocompletionCommuneCodePostal("#commune", "#codePostal");
+</script>
+
 <script src="<c:url value="/js/AjouterAdherent.js"/>"></script>
 
 
