@@ -10,9 +10,11 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <c:import url="/js/autocompleteCommune.jsp"/>
+<c:import url="/js/autocompleteAdresse.jsp"/>
 
 <script type="text/javascript">
 autocompletionCommuneCodePostal("#commune", "#codePostal");
+autocompletionAdresse("#rue", "#compl");
 </script>
 
 <script src="<c:url value="/js/AjouterAdherent.js"/>"></script>
@@ -75,12 +77,12 @@ autocompletionCommuneCodePostal("#commune", "#codePostal");
 
 		<div>
 			<label for="rue" class='required'>Rue </label> <input type="text"
-				name="rue" required="required" />
+				name="rue" id="rue" required="required" />
 		</div>
 
 		<div>
 			<label for="compl">Complément d'adresse </label> <input type="text"
-				name="compl" />
+				name="compl" id="compl"/>
 		</div>
 
 		<div>

@@ -26,6 +26,7 @@ import fr.gemao.sql.CommuneDAO;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
+import fr.gemao.view.util.AutocompletionAdresse;
 import fr.gemao.view.util.AutocompletionCommune;
 
 /**
@@ -55,6 +56,8 @@ public class AjoutAdherentServlet extends HttpServlet {
 
 		request = AutocompletionCommune
 				.initRequestForAutoCompletionCommune(request);
+		request = AutocompletionAdresse
+				.initRequestForAutoCompletionAdresse(request);
 
 		if (request.getParameter("errDate")!=null){
 			request.setAttribute("errDate", true);
