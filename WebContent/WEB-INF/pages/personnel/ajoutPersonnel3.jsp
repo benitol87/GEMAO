@@ -24,12 +24,14 @@
 	</tr>
 	<tr>
 		<td>Login</td>
-		<td><c:out value="${personnel['login']}" /></td>
+		<td class="text-danger"><c:out value="${personnel['login']}" /></td>
 	</tr>
 	<tr>
 		<td>Mot de passe</td>
-		<td><c:out value="${personnel['password']}" /></td>
+		<td class="text-danger"><c:out value="${personnel['password']}" /></td>
 	</tr>
 </table>
+
+<p class="offset text-danger">Notez bien le mot de passe et le login</p>
 
 <c:import url="/inc/footer.inc.jsp" />

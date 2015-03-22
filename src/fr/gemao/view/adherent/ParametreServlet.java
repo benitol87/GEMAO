@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.entity.Parametre;
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.administration.Modification;
 import fr.gemao.form.ParametreForm;
 import fr.gemao.view.ConnexionServlet;

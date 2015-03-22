@@ -8,16 +8,16 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 
 import fr.gemao.view.Pattern;
 
 /**
- * Servlet Filter implementation class DeconnectionFilter
+ * Filtre qui redirige directement vers la servlet de déconnexion
+ * lorsque celle-ci est appelée.
+ * Le filtre est nécessaire pour que n'importe qui puisse se déconnecter
+ * à n'importe quel instant.
  */
 public class DeconnectionFilter implements Filter {
-
-
 	/**
 	 * @see Filter#destroy()
 	 */

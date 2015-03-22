@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 

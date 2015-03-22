@@ -1,7 +1,7 @@
 package fr.gemao.ctrl.personnel;
 
 import fr.gemao.ctrl.AjouterPersonneCtrl;
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonnelDAO;
 

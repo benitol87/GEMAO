@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 
 public class ConnexionForm {
 

@@ -22,10 +22,10 @@ import fr.gemao.ctrl.personnel.ModifierPersonnelCtrl;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
-import fr.gemao.entity.Contrat;
-import fr.gemao.entity.Diplome;
-import fr.gemao.entity.Personnel;
-import fr.gemao.entity.Responsabilite;
+import fr.gemao.entity.personnel.Contrat;
+import fr.gemao.entity.personnel.Diplome;
+import fr.gemao.entity.personnel.Personnel;
+import fr.gemao.entity.personnel.Responsabilite;
 import fr.gemao.entity.administration.Modification;
 import fr.gemao.form.personnel.PersonnelForm;
 import fr.gemao.view.ConnexionServlet;
@@ -134,6 +134,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 				pers.setAdresse(form.getAdresse());
 				pers.setListeDiplomes(form.getListeDiplomes());
 				pers.setListeResponsabilite(form.getListeResponsabilite());
+				pers.setNumeroSS(form.getNumeroSS());
 				
 				/* Positionnement des attributs relatifs à la commune */
 				ajouterCommune.ajoutCommune(form.getAdresse().getCommune());

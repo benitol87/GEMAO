@@ -18,7 +18,7 @@ import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererMotifSortieCtrl;
 import fr.gemao.ctrl.administration.ModificationCtrl;
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.MotifSortie;
 import fr.gemao.entity.administration.Modification;

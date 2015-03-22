@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.Diplome;
+import fr.gemao.entity.personnel.Diplome;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -59,26 +59,22 @@ public class DiplomeDAO extends IDAO<Diplome> {
 
 	@Override
 	public void delete(Diplome obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public Diplome update(Diplome obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public Diplome get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public List<Diplome> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 	
 	/**

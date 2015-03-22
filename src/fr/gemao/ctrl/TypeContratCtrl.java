@@ -1,6 +1,6 @@
 package fr.gemao.ctrl;
 
-import fr.gemao.entity.TypeContrat;
+import fr.gemao.entity.personnel.TypeContrat;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.TypeContratDAO;
 

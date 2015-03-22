@@ -16,10 +16,10 @@ import fr.gemao.ctrl.RecupererContratCtrl;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
-import fr.gemao.entity.Contrat;
-import fr.gemao.entity.Diplome;
-import fr.gemao.entity.Personnel;
-import fr.gemao.entity.Responsabilite;
+import fr.gemao.entity.personnel.Contrat;
+import fr.gemao.entity.personnel.Diplome;
+import fr.gemao.entity.personnel.Personnel;
+import fr.gemao.entity.personnel.Responsabilite;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 

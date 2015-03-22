@@ -117,7 +117,6 @@ public class ModifAdherentServlet extends HttpServlet {
 				dateNaiss = formatter.parse(adherentForm.getDateNaissance());
 				dateEntree = formatter.parse(adherentForm.getDateEntree());
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			adherent.setDateNaissance(dateNaiss);

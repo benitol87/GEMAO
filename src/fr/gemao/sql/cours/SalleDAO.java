@@ -60,14 +60,12 @@ public class SalleDAO extends IDAO<Salle> {
 
 	@Override
 	public void delete(Salle obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Pas encore implémenté.");
 	}
 
 	@Override
 	public Salle update(Salle obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Pas encore implémenté.");
 	}
 
 	@Override

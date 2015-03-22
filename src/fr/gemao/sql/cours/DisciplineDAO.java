@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import fr.gemao.entity.cours.Discipline;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.IDAO;
@@ -71,8 +72,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 
 	@Override
 	public void delete(Discipline obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override

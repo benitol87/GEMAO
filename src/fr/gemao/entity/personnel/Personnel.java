@@ -1,9 +1,12 @@
-package fr.gemao.entity;
+package fr.gemao.entity.personnel;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import fr.gemao.entity.Adresse;
+import fr.gemao.entity.Commune;
+import fr.gemao.entity.Personne;
 import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.util.Civilite;
 
@@ -27,6 +30,7 @@ public class Personnel extends Personne implements Serializable{
 	private int pointsAncien;
 	private Profil profil;
 	private boolean premiereConnexion;
+	private String numeroSS;
 
 	public Personnel() {
 	}
@@ -74,7 +78,7 @@ public class Personnel extends Personne implements Serializable{
 			Civilite civilite, List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, Contrat contrat, String login,
 			String password, int pointsAncien, Profil profil,
-			boolean premiereConnexion, boolean membreCA) {
+			boolean premiereConnexion, boolean membreCA, String numeroSS) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom, dateNaissance,
 				telFixe, telPort, email, civilite, membreCA);
 
@@ -86,6 +90,7 @@ public class Personnel extends Personne implements Serializable{
 		this.pointsAncien = pointsAncien;
 		this.profil = profil;
 		this.premiereConnexion = premiereConnexion;
+		this.numeroSS = numeroSS;
 	}
 
 	/**
@@ -100,7 +105,7 @@ public class Personnel extends Personne implements Serializable{
 	public Personnel(Personne personne,
 			List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, Contrat contrat, String login,
-			String password, Integer pointsAncien, Profil profil, boolean premiereConnexion) {
+			String password, Integer pointsAncien, Profil profil, boolean premiereConnexion, String numeroSS) {
 		super(personne);
 
 		this.listeResponsabilite = listeResponsabilite;
@@ -111,6 +116,7 @@ public class Personnel extends Personne implements Serializable{
 		this.pointsAncien = pointsAncien;
 		this.profil = profil;
 		this.premiereConnexion = premiereConnexion;
+		this.numeroSS = numeroSS;
 	}
 
 	/**
@@ -239,6 +245,14 @@ public class Personnel extends Personne implements Serializable{
 	}
 	
 	
+
+	public String getNumeroSS() {
+		return numeroSS;
+	}
+
+	public void setNumeroSS(String numeroSS) {
+		this.numeroSS = numeroSS;
+	}
 
 	public boolean isPremiereConnexion() {
 		return premiereConnexion;

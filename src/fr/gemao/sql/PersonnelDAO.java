@@ -7,11 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.Contrat;
-import fr.gemao.entity.Diplome;
-import fr.gemao.entity.Personnel;
-import fr.gemao.entity.Responsabilite;
-import fr.gemao.entity.administration.Profil;
+import fr.gemao.entity.personnel.Contrat;
+import fr.gemao.entity.personnel.Diplome;
+import fr.gemao.entity.personnel.Personnel;
+import fr.gemao.entity.personnel.Responsabilite;
 import fr.gemao.sql.administration.ProfilDAO;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
@@ -47,8 +46,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO personnel(idPersonne, idContrat, login, pwd, pointAnciennete, idProfil)"
-				+ "VALUES (?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO personnel(idPersonne, idContrat, login, pwd, pointAnciennete, idProfil, numeroSS)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
 		//PersonneDAO personneDAO = factory.getPersonneDAO();
 		
@@ -74,7 +73,9 @@ public class PersonnelDAO extends IDAO<Personnel>{
 					obj.getLogin(),
 					Password.encrypt(obj.getPassword()),
 					obj.getPointsAncien(),
-					idProfil);
+					idProfil,
+					obj.getNumeroSS()
+				);
 			
 			int status = requete.executeUpdate();
 			
@@ -122,7 +123,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		}
 		
 		String sql = "UPDATE personnel SET idContrat = ?, login = ?, pwd = ?, pointAnciennete = ?, premiereConnexion = ?,"
-				+ "idProfil = ? "
+				+ "idProfil = ?, numeroSS = ? "
 				+ "WHERE idPersonne = ?;";
 
 		try {
@@ -134,6 +135,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 					obj.getPointsAncien(),
 					obj.isPremiereConnexion(),
 					idProfil,
+					obj.getNumeroSS(),
 					obj.getIdPersonne());
 			requete.executeUpdate();
 
@@ -229,7 +231,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 				result.getString("pwd"),
 				NumberUtil.getResultInteger(result, "pointAnciennete"),
 				idProfil==null?null:profilDAO.get(idProfil),
-				result.getBoolean("premiereConnexion")
+				result.getBoolean("premiereConnexion"),
+				result.getString("numeroSS")
 		);
 		
 		return personnel;

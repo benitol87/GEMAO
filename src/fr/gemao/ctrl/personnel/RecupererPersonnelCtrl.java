@@ -3,7 +3,7 @@ package fr.gemao.ctrl.personnel;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonnelDAO;
 

@@ -60,14 +60,12 @@ public class NiveauDAO extends IDAO<Niveau> {
 
 	@Override
 	public void delete(Niveau obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public Niveau update(Niveau obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override

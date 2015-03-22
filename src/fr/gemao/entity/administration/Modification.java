@@ -3,7 +3,7 @@ package fr.gemao.entity.administration;
 import java.io.Serializable;
 import java.util.Date;
 
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 
 /**
  * Classe représentant une modification apportée à la base

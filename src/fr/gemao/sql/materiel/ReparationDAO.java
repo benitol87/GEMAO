@@ -18,7 +18,6 @@ public class ReparationDAO extends IDAO<Reparation> {
 
 	public ReparationDAO(DAOFactory conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

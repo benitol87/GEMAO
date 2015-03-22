@@ -2,7 +2,6 @@ package fr.gemao.entity.materiel;
 
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Reparateur.
  */

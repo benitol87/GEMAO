@@ -16,7 +16,7 @@ import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
 import fr.gemao.ctrl.adherent.ModifierResponsableCtrl;
 import fr.gemao.ctrl.administration.ModificationCtrl;
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.administration.Modification;
 import fr.gemao.view.ConnexionServlet;

@@ -83,8 +83,7 @@ public class EtatDAO extends IDAO<Etat> {
 
 	@Override
 	public Etat update(Etat obj) {
-		// TODO Comportement par d�faut, a modifier
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override

@@ -18,7 +18,6 @@ public class MarqueDAO extends IDAO<Marque> {
 
 	public MarqueDAO(DAOFactory conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Marque create(Marque obj) {
@@ -96,8 +95,7 @@ public class MarqueDAO extends IDAO<Marque> {
 
 	@Override
 	public Marque update(Marque obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
@@ -201,8 +199,7 @@ public class MarqueDAO extends IDAO<Marque> {
 
 	@Override
 	protected Marque map(ResultSet result) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 }

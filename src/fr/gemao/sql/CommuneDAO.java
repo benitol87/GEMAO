@@ -58,8 +58,7 @@ public class CommuneDAO extends IDAO<Commune> {
 
 	@Override
 	public void delete(Commune obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override

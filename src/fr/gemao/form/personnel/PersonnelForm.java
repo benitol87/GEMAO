@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
-import fr.gemao.entity.Diplome;
-import fr.gemao.entity.Personnel;
-import fr.gemao.entity.Responsabilite;
+import fr.gemao.entity.personnel.Diplome;
+import fr.gemao.entity.personnel.Personnel;
+import fr.gemao.entity.personnel.Responsabilite;
 
 /**
  * Classe de validation du formulaire Personnel
@@ -37,6 +37,7 @@ public class PersonnelForm {
 	private static final String CHAMP_TELFIXE = "telFixe";
 	private static final String CHAMP_TELPORT = "telPort";
 	private static final String CHAMP_EMAIL = "email";
+	private static final String CHAMP_NUMERO_SS = "numeroSS";
 
 	// Informations relatives à la personne
 	private String nom;
@@ -47,6 +48,7 @@ public class PersonnelForm {
 	private String telFixe;
 	private String telPort;
 	private String email;
+	private String numeroSS;
 
 	// Adresse
 	private Adresse adresse;
@@ -158,6 +160,14 @@ public class PersonnelForm {
 
 	public Adresse getAdresse() {
 		return adresse;
+	}
+
+	public String getNumeroSS() {
+		return numeroSS;
+	}
+
+	public void setNumeroSS(String numeroSS) {
+		this.numeroSS = numeroSS;
 	}
 
 	public void setNom(String nom) {
@@ -281,20 +291,6 @@ public class PersonnelForm {
 	}
 
 	/**
-	 * Méthode permettant de valider la liste des responsabilités
-	 * 
-	 * @param listeResponsabilites
-	 * @throws Exception
-	 */
-	private void validationListeResponsabilites(
-			List<Responsabilite> listeResponsabilites) throws Exception {
-		if (listeResponsabilites == null) {
-			throw new Exception(
-					"Merci de saisir une liste de responsabilités valide.");
-		}
-	}
-
-	/**
 	 * Méthode permettant de valider l'ID du contrat
 	 * 
 	 * @param idContrat
@@ -414,6 +410,7 @@ public class PersonnelForm {
 		telFixe = getValeurChamp(request, CHAMP_TELFIXE);
 		telPort = getValeurChamp(request, CHAMP_TELPORT);
 		email = getValeurChamp(request, CHAMP_EMAIL);
+		numeroSS = getValeurChamp(request, CHAMP_NUMERO_SS);
 
 		adresse = new Adresse();
 		commune = new Commune();

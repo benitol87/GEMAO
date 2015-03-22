@@ -18,7 +18,6 @@ public class ResponsableDAO extends IDAO<Responsable> {
 
 	public ResponsableDAO(DAOFactory factory) {
 		super(factory);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

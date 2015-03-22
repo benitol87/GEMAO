@@ -16,37 +16,32 @@ public class ClasseDAO extends IDAO<Classe> {
 
 	@Override
 	public Classe create(Classe obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public void delete(Classe obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public Classe update(Classe obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public Classe get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public List<Classe> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	protected Classe map(ResultSet result) throws SQLException {
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 }

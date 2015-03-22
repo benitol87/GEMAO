@@ -67,6 +67,11 @@
 			<input type="email" name="email" autocomplete="on"/>
 	
 		</div>
+		
+		<div>
+			<label for="email">Numéro de sécurité sociale </label>
+			<input type="text" name="numeroSS" autocomplete="on" maxlength="15"/>
+		</div>
 	</fieldset>
 	
 	<fieldset>

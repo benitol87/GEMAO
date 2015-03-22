@@ -18,7 +18,6 @@ public class FournisseurDAO extends IDAO<Fournisseur> {
 
 	public FournisseurDAO(DAOFactory factory) {
 		super(factory);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -88,8 +87,7 @@ public class FournisseurDAO extends IDAO<Fournisseur> {
 
 	@Override
 	public Fournisseur update(Fournisseur obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override

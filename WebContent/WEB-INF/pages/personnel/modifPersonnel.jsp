@@ -13,13 +13,13 @@
 		<fieldset>
 			<legend>Informations personnelles</legend>
 			<div>
-				<span class='text-label'>Civilité : </span> <input type="radio"
-				name="civilite" value="F"
-				<c:if test="${personnel.civilite['nameCourt'] == 'Mme'}"> checked="checked"</c:if> /><label
-				for="civilite">Mme</label> <input type="radio" name="civilite"
-				value="M"
-				<c:if test="${personnel.civilite['nameCourt'] == 'M.'}"> checked="checked" </c:if> /><label
-				for="civilite">M.</label>
+				<label>Civilité</label>
+				<span>
+					<input type="radio" name="civilite" value="Madame"   <c:if test="${personnel.civilite['nameCourt'] == 'Mme'}"> checked="checked"</c:if>>
+					<label for="civilite">Mme</label>
+					<input type="radio" name="civilite" value="Monsieur" <c:if test="${personnel.civilite['nameCourt'] == 'M.'}"> checked="checked" </c:if>>
+					<label for="civilite">M.</label>
+				</span>
 			</div>
 			<div>
 				<label for="nom">Nom</label>
@@ -32,6 +32,10 @@
 			<div>
 				<label for="email">E-mail</label>
 				<input type="email" name="email" value="${sessionScope.personnel['email']}"/>
+			</div>
+			<div>
+				<label for="email">Numéro de sécurité sociale </label>
+				<input type="text" name="numeroSS" value="${sessionScope.personnel['numeroSS']}" maxlength="15"/>
 			</div>
 			<div>
 				<label for="telFixe">Téléphone fixe</label>

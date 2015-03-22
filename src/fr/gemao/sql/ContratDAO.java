@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import fr.gemao.entity.Contrat;
-import fr.gemao.entity.MotifFinContrat;
-import fr.gemao.entity.TypeContrat;
+import fr.gemao.entity.personnel.Contrat;
+import fr.gemao.entity.personnel.MotifFinContrat;
+import fr.gemao.entity.personnel.TypeContrat;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -17,7 +17,6 @@ public class ContratDAO extends IDAO<Contrat> {
 
 	public ContratDAO(DAOFactory factory) {
 		super(factory);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -75,14 +74,12 @@ public class ContratDAO extends IDAO<Contrat> {
 
 	@Override
 	public void delete(Contrat obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public Contrat update(Contrat obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
@@ -112,8 +109,7 @@ public class ContratDAO extends IDAO<Contrat> {
 
 	@Override
 	public List<Contrat> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override

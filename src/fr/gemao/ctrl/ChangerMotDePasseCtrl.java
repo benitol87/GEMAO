@@ -1,6 +1,6 @@
 package fr.gemao.ctrl;
 
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonnelDAO;
 import fr.gemao.util.Password;

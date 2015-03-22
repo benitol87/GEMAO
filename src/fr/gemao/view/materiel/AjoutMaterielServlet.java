@@ -21,7 +21,7 @@ import fr.gemao.ctrl.materiel.EtatCtrl;
 import fr.gemao.ctrl.materiel.FournisseurCtrl;
 import fr.gemao.ctrl.materiel.MarqueCtrl;
 import fr.gemao.ctrl.materiel.MaterielCtrl;
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.administration.Modification;
 import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.entity.materiel.Designation;

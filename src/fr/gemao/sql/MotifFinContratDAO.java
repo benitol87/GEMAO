@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.MotifFinContrat;
+import fr.gemao.entity.personnel.MotifFinContrat;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -58,14 +58,12 @@ public class MotifFinContratDAO extends IDAO<MotifFinContrat> {
 
 	@Override
 	public void delete(MotifFinContrat obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public MotifFinContrat update(MotifFinContrat obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override

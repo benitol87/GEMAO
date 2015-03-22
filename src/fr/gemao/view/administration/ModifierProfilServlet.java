@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.administration.ProfilsCtrl;
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.administration.Droit;
 import fr.gemao.entity.administration.Module;
 import fr.gemao.entity.administration.Profil;

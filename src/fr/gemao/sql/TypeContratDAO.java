@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.TypeContrat;
-import fr.gemao.entity.adherent.Responsable;
+import fr.gemao.entity.personnel.TypeContrat;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -60,14 +59,12 @@ public class TypeContratDAO extends IDAO<TypeContrat> {
 
 	@Override
 	public void delete(TypeContrat obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Impossible de supprimer un type de contrat.");
 	}
 
 	@Override
 	public TypeContrat update(TypeContrat obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Impossible de modifier un type de contrat.");
 	}
 
 	@Override

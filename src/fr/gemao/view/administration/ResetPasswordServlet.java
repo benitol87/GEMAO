@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.ChangerMotDePasseCtrl;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.form.util.Form;
 import fr.gemao.util.Password;
 import fr.gemao.view.ConnexionServlet;

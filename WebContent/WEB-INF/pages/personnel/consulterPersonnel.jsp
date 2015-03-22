@@ -60,6 +60,14 @@
 			<c:out value="${personnel['email']}" />
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<span>Numéro de sécurité sociale</span>
+		</td>
+		<td>
+			<c:out value="${personnel['numeroSS']}" />
+		</td>
+	</tr>
 </table>
 <table class='table-col-2'>
 	<caption>Adresse</caption>
@@ -150,6 +158,25 @@
 			<c:forEach items="${listeResponsabilite}" var="resp">
 				<c:out value="${resp['libelle']}" />
 			</c:forEach>
+		</td>
+	</tr>
+</table>
+<table class='table-col-2'>
+	<caption>Informations liées à l'application</caption>
+	<tr>
+		<td>
+			<span>Login : </span>
+		</td>
+		<td>
+			<c:out value="${personnel.login}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<span>Profil : </span>
+		</td>
+		<td>
+			<c:out value="${personnel.profil.nomProfil}" />
 		</td>
 	</tr>
 </table>

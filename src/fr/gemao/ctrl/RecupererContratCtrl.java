@@ -3,7 +3,7 @@ package fr.gemao.ctrl;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.gemao.entity.Contrat;
+import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.sql.ContratDAO;
 import fr.gemao.sql.DAOFactory;
 

@@ -1,4 +1,4 @@
-package fr.gemao.entity;
+package fr.gemao.entity.personnel;
 
 import java.io.Serializable;
 

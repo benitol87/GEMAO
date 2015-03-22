@@ -34,8 +34,7 @@ public class ModuleDAO extends IDAO<Module> {
 	 */
 	@Override
 	public Module create(Module obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Impossible de créer un module.");
 	}
 
 	/* (non-Javadoc)
@@ -43,8 +42,7 @@ public class ModuleDAO extends IDAO<Module> {
 	 */
 	@Override
 	public void delete(Module obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Impossible de supprimer un module.");
 	}
 
 	/* (non-Javadoc)
@@ -52,8 +50,7 @@ public class ModuleDAO extends IDAO<Module> {
 	 */
 	@Override
 	public Module update(Module obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Impossible de modifier un module.");
 	}
 
 	/* (non-Javadoc)
@@ -61,8 +58,7 @@ public class ModuleDAO extends IDAO<Module> {
 	 */
 	@Override
 	public Module get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	/* (non-Javadoc)
@@ -70,8 +66,7 @@ public class ModuleDAO extends IDAO<Module> {
 	 */
 	@Override
 	public List<Module> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 	
 	public void load(){
@@ -101,8 +96,7 @@ public class ModuleDAO extends IDAO<Module> {
 	 */
 	@Override
 	protected Module map(ResultSet result) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 }

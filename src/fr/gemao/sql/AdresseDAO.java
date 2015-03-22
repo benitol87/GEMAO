@@ -17,7 +17,6 @@ public class AdresseDAO extends IDAO<Adresse> {
 
 	public AdresseDAO(DAOFactory factory) {
 		super(factory);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -83,8 +82,7 @@ public class AdresseDAO extends IDAO<Adresse> {
 
 	@Override
 	public Adresse update(Adresse obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override

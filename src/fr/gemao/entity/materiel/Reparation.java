@@ -3,7 +3,6 @@ package fr.gemao.entity.materiel;
 import java.io.Serializable;
 import java.sql.Date;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Reparation.
  */

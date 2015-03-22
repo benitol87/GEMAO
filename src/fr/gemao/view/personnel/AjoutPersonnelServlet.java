@@ -18,10 +18,11 @@ import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
-import fr.gemao.entity.Personnel;
-import fr.gemao.entity.Responsabilite;
+import fr.gemao.entity.personnel.Personnel;
+import fr.gemao.entity.personnel.Responsabilite;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.form.personnel.PersonnelForm;
+import fr.gemao.form.util.Form;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.ResponsabiliteDAO;
 import fr.gemao.view.JSPFile;
@@ -78,6 +79,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		String infoComplementaire = request.getParameter("infoComplem");
 		String diplome = request.getParameter("diplome1");
 		String fonction = request.getParameter("fonction1");
+		String numeroSS = Form.getValeurChamp(request, "numeroSS");
 
 		/**
 		 * Création du personnel
@@ -123,6 +125,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		personnel.setTelPort(telPortable);	
 		personnel.setPassword(Config.params.get(Config.MOT_DE_PASSE));
 		personnel.setLogin(apc.genererLogin(nom));
+		personnel.setNumeroSS(numeroSS);
 		
 		System.out.println(personnel);
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");

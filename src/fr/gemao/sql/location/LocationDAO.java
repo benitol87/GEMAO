@@ -24,6 +24,7 @@ public class LocationDAO extends IDAO<Location>{
 	
 	@Override
 	public Location create(Location obj) {
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 		/*if (obj == null) {
 			throw new NullPointerException("L'objet location ne doit pas être null");
 		}
@@ -62,36 +63,30 @@ public class LocationDAO extends IDAO<Location>{
 		}
 
 		return this.get(obj.getIdDiscipline());*/
-		return null;
 	}
 
 	@Override
 	public void delete(Location obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public Location update(Location obj) {
-		// TODO
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public Location get(long id) {
-		// TODO
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public List<Location> getAll() {
-		// TODO
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 	
 	public List<Location> getLocationParAdherent(long idAdherent){
-		// TODO
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override

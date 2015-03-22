@@ -23,30 +23,27 @@ public class TypeDroitDAO extends IDAO<TypeDroit> {
 
 	@Override
 	public TypeDroit create(TypeDroit obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Impossible de créer un type de droit.");
 	}
 
 	@Override
 	public void delete(TypeDroit obj) {
-		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Impossible de supprimer un type de droit.");
 	}
 
 	@Override
 	public TypeDroit update(TypeDroit obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Impossible de modifier un type de droit.");
 	}
 
 	@Override
 	public TypeDroit get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée et non nécessaire");
 	}
 
 	@Override
 	public List<TypeDroit> getAll() {
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée et non nécessaire");
 	}
 	
 	public void load(){

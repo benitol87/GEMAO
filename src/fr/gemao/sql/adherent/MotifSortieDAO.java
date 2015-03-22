@@ -59,14 +59,12 @@ public class MotifSortieDAO extends IDAO<MotifSortie> {
 
 	@Override
 	public void delete(MotifSortie obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public MotifSortie update(MotifSortie obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override

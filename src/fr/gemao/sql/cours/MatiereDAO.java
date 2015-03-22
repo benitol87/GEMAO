@@ -60,14 +60,12 @@ public class MatiereDAO extends IDAO<Matiere> {
 
 	@Override
 	public void delete(Matiere obj) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override
 	public Matiere update(Matiere obj) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
 	@Override

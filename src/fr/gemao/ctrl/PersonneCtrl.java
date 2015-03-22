@@ -1,6 +1,6 @@
 package fr.gemao.ctrl;
 
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 
 public class PersonneCtrl {
 

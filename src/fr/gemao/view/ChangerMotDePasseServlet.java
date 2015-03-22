@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.ChangerMotDePasseCtrl;
 import fr.gemao.ctrl.personnel.ModifierPersonnelCtrl;
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.form.ChangerMotDePasseForm;
 
 /**

@@ -8,21 +8,21 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.Pattern;
 
 /**
- * Servlet Filter implementation class FirstConnectionFilter
+ * Filtre qui regarde si la personne connectée doit changer son mot
+ * de passe (première connexion ou bien suite à une réinitialisation)
+ * et qui renvoie vers la page de changement de mot de passe si c'est
+ * le cas.
  */
 public class FirstConnectionFilter implements Filter {
-
-
 	/**
 	 * @see Filter#destroy()
 	 */

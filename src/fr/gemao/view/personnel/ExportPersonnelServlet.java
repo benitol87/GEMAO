@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.gemao.Config;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
-import fr.gemao.entity.Personnel;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.fileparser.CSVFileParser;
 import fr.gemao.fileparser.Parser;
 import fr.gemao.view.JSPFile;
@@ -52,6 +52,7 @@ public class ExportPersonnelServlet extends HttpServlet {
 		map.put("Email", new ArrayList<String>());
 		// TODO
 		//map.put("Membre CA", new ArrayList<String>());
+		//map.put("Numéro sécurité sociale", new ArrayList<String>());
 		
 		// Informations liées au membre du personnel
 		map.put("Contrat", new ArrayList<String>());
