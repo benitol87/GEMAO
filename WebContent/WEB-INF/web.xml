@@ -65,6 +65,14 @@
     <filter-name>AllowAccessCSS</filter-name>
     <url-pattern>/css/*</url-pattern>
   </filter-mapping>
+  <filter><!--  A Tester -->
+    <filter-name>AllowAccessFile</filter-name>
+    <filter-class>fr.gemao.filters.AllowAccessFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AllowAccessFile</filter-name>
+    <url-pattern>/file/*</url-pattern>
+  </filter-mapping>
   <filter>
     <filter-name>CheckRights</filter-name>
     <filter-class>fr.gemao.filters.CheckRightsFilter</filter-class>

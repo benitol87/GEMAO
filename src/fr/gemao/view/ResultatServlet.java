@@ -16,9 +16,11 @@ public class ResultatServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	public static final String
-		ATTR_TITRE_H1 = "titreH1",
-		ATTR_RESULTAT = "resultat",
-		ATTR_LIEN_BOUTON = "lienBouton",
-		ATTR_NOM_BOUTON = "nomBouton";
-
+			ATTR_TITRE_H1 = "titreH1",
+			ATTR_RESULTAT = "resultat",
+			ATTR_LIEN_BOUTON = "lienBouton",
+			ATTR_NOM_BOUTON = "nomBouton",
+			ATTR_LIEN_BONTON_2 = "lienBouton2",
+			ATTR_NON_BOUTON_2 = "nomBouton2",
+			ATTR_DOWNLOAD_BOUTON_2 = "downloadBouton2";
 }

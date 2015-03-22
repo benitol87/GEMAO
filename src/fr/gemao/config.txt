@@ -7,7 +7,7 @@ default-password-size	= 	12
 
 # Dossier dans lequel sont enregistrés les 
 # données exportées en .csv
-root-folder			=	C:\gemao
+root-folder			=	file
 
 # Mot de passe de la base de données
 db-passwd				=	Ana.Crouse!18

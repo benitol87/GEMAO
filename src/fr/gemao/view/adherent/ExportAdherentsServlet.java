@@ -32,6 +32,7 @@ public class ExportAdherentsServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String,Object> map = new LinkedHashMap<String, Object>();
@@ -133,12 +134,42 @@ public class ExportAdherentsServlet extends HttpServlet {
 			listeDonnees.add(a.isAPaye()?"Oui":"Non");
 		}
 		
-		Parser parser = new CSVFileParser(Config.params.get(Config.DOSSIER_RACINE)+"\\exports\\adherents.csv");
+		/*
+		 * Parser parser = new
+		 * CSVFileParser(Config.params.get(Config.DOSSIER_RACINE
+		 * )+"\\exports\\adherents.csv");
+		 * 
+		 * request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON,
+		 * Pattern.ADHERENT_LISTER);
+		 * request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON,
+		 * "Retour à la liste");
+		 * request.setAttribute(ResultatServlet.ATTR_TITRE_H1,
+		 * "Export de données");
+		 */
+
+		String path = request.getSession().getServletContext().getRealPath("/")
+				+ "/" + Config.params.get(Config.DOSSIER_RACINE)
+				+ "/exports/adherents.csv";
+		String pathURL = request.getScheme() + "://" + request.getServerName()
+				+ ":" + request.getServerPort() + request.getContextPath()
+				+ "/" + Config.params.get(Config.DOSSIER_RACINE)
+				+ "/exports/adherents.csv";
+		System.out.println(path);
+		System.out.println(pathURL);
+		Parser parser = new CSVFileParser(path);
 
 		request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON, Pattern.ADHERENT_LISTER);
 		request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON, "Retour à la liste");
 		request.setAttribute(ResultatServlet.ATTR_TITRE_H1, "Export de données");
 		
+		request.setAttribute(ResultatServlet.ATTR_NON_BOUTON_2,
+				"Télécharger le fichier");
+		request.setAttribute(ResultatServlet.ATTR_LIEN_BONTON_2, pathURL);
+		/*
+		 * request.setAttribute(ResultatServlet.ATTR_DOWNLOAD_BOUTON_2,
+		 * "adherent_export.csv");
+		 */
+
 		if(parser.write(map)){
 			// Succès
 			request.setAttribute(ResultatServlet.ATTR_RESULTAT, "L'export est terminé, vous pouvez récupérer le fichier csv.");			
