@@ -2,7 +2,6 @@ package fr.gemao.filters;
 
 import java.io.IOException;
 
-import javax.naming.spi.InitialContextFactory;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;

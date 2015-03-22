@@ -50,11 +50,12 @@ public class ExportAnciensAdherentsServlet extends HttpServlet {
 		map.put("Téléphone fixe", new ArrayList<String>());
 		map.put("Téléphone portable", new ArrayList<String>());
 		map.put("Email", new ArrayList<String>());
-		//map.put("Membre CA", new ArrayList<String>());
+		map.put("Membre CA", new ArrayList<String>());
 		
 		// Informations liées à l'adhérent
 		map.put("Responsable", new ArrayList<String>());
 		map.put("Email responsable", new ArrayList<String>());
+		// TODO
 		//map.put("Famille", new ArrayList<String>());
 		map.put("Droit image", new ArrayList<String>());
 		map.put("Date entrée", new ArrayList<String>());
@@ -62,6 +63,7 @@ public class ExportAnciensAdherentsServlet extends HttpServlet {
 		map.put("Motif sortie", new ArrayList<String>());
 		map.put("Cotisation", new ArrayList<String>());
 		map.put("Quotient familial", new ArrayList<String>());
+		map.put("Paiement effectué", new ArrayList<String>());
 
 		
 		RecupererAdherentCtrl ctrl = new RecupererAdherentCtrl();
@@ -105,8 +107,8 @@ public class ExportAnciensAdherentsServlet extends HttpServlet {
 			listeDonnees = (List<String>) map.get("Email");
 			listeDonnees.add(a.getEmail());
 			
-//			listeDonnees = (List<String>) map.get("Membre CA");
-//			listeDonnees.add(a.isMembreCA?"Oui":"Non");
+			listeDonnees = (List<String>) map.get("Membre CA");
+			listeDonnees.add(a.isMembreCA()?"Oui":"Non");
 			
 			listeDonnees = (List<String>) map.get("Responsable");
 			listeDonnees.add(a.getResponsable()==null?" ":a.getResponsable().getPrenom()+" "+a.getNom());
@@ -114,6 +116,7 @@ public class ExportAnciensAdherentsServlet extends HttpServlet {
 			listeDonnees = (List<String>) map.get("Email responsable");
 			listeDonnees.add(a.getResponsable()==null?" ":a.getResponsable().getEmail());
 			
+			// TODO
 //			listeDonnees = (List<String>) map.get("Famille");
 //			listeDonnees.add(a.getFamille()==null?"-":a.getFamille().getNomFamille());
 			
@@ -134,6 +137,9 @@ public class ExportAnciensAdherentsServlet extends HttpServlet {
 			
 			listeDonnees = (List<String>) map.get("Quotient familial");
 			listeDonnees.add(a.getQf()+"");
+			
+			listeDonnees = (List<String>) map.get("Paiement effectué");
+			listeDonnees.add(a.isAPaye()?"Oui":"Non");
 		}
 		
 		Parser parser = new CSVFileParser(Config.params.get(Config.DOSSIER_RACINE)+"\\exports\\anciensAdherents.csv");
