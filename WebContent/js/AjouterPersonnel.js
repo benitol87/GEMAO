@@ -19,6 +19,7 @@ function ajoutDiplome(){
 	tr.id="divDiplome"+compteur;
 	document.getElementById("diplomes").appendChild(tr);
 	document.getElementById("divDiplome"+compteur).firstChild.nextSibling.nextSibling.nextSibling.name="diplome"+compteur;
+	document.getElementById("divDiplome"+compteur).firstChild.nextSibling.nextSibling.nextSibling.id="diplome"+compteur;
 	
 	$("#divDiplome"+(compteur-1) + " input[type=button]").remove();
 	ajoutEventAjoutDiplome();
@@ -72,7 +73,8 @@ function ajoutDiscipline(){
 	var tr = document.getElementById("disciplines").lastElementChild.cloneNode(true);
 	tr.id="divDiscipline"+compteurD;
 	document.getElementById("disciplines").appendChild(tr);
-	document.getElementById("divDiscipline"+compteurD).firstChild.nextSibling.nextSibling.nextSibling.name="divDiscipline"+compteurD;
+	document.getElementById("divDiscipline"+compteurD).firstChild.nextSibling.nextSibling.nextSibling.name="discipline"+compteurD;
+	document.getElementById("divDiscipline"+compteurD).firstChild.nextSibling.nextSibling.nextSibling.id="discipline"+compteurD;
 	
 	//Supprime les boutons de l'avant dernier champ
 	$("#divDiscipline"+(compteurD-1) + " input[type=button]").remove();

@@ -234,6 +234,63 @@ public class DisciplineDAO extends IDAO<Discipline> {
 			DAOUtilitaires.fermeturesSilencieuses(requete, connexion);
 		}
 	}
+	
+	public List<Discipline> getDisciplineParPersonnel(long idPersonnel) {
+		List<Discipline> list = new ArrayList<>();
+		Discipline discipline = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		//Changer la requete
+		String sql = "SELECT * from discipline d inner join suit s on d.idDiscipline=s.idDiscipline WHERE idAdherent = ?;";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, idPersonnel);
+			result = requete.executeQuery();
+
+			while (result.next()) {
+				discipline = this.map(result);
+				list.add(discipline);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+		return list;
+	}
+
+	
+	public void addDiscplineParPersonnel(int idDiscipline, long idPersonnel) {
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		//changer la requete
+		String sql = "INSERT INTO suit(idAdherent, idDiscipline) values ( ?, ?);";
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, idPersonnel, idDiscipline);
+			int status = requete.executeUpdate();
+			if (status == 0) {
+				throw new DAOException(
+						"Échec de la création de suit, aucune ligne ajoutée dans la table.");
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(requete, connexion);
+		}
+	}
+	
+	public void addAllDisciplineParPersonnel(List<Discipline> listDiscipline,
+			long idPersonnel) {
+		for (Discipline d : listDiscipline) {
+			List<Discipline> dejaInscrit = this.getDisciplineParPersonnel(idPersonnel);
+			if (!dejaInscrit.contains(d))
+				addDiscplineParPersonnel(d.getIdDiscipline(), idPersonnel);
+		}
+	}
 
 	/**
 	 * Supprime l'association Discipline / adhérent

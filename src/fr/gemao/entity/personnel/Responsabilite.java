@@ -13,7 +13,7 @@ public class Responsabilite implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int idResponsabilite;
+	private Integer idResponsabilite;
 	private String libelle;
 	
 	public Responsabilite() {
@@ -24,7 +24,7 @@ public class Responsabilite implements Serializable{
 	 * @param idResponsabilite : l'ID de la responsabilité
 	 * @param libelle : le libelle de la responsabilité
 	 */
-	public Responsabilite(int idResponsabilite, String libelle) {
+	public Responsabilite(Integer idResponsabilite, String libelle) {
 		this.idResponsabilite = idResponsabilite;
 		this.libelle = libelle;
 	}
@@ -49,7 +49,7 @@ public class Responsabilite implements Serializable{
 	 * Permet de positionner l'ID de la responsabilité
 	 * @param idResponsabilite : le nouvel ID
 	 */
-	public void setIdResponsabilite(int idResponsabilite) {
+	public void setIdResponsabilite(Integer idResponsabilite) {
 		this.idResponsabilite = idResponsabilite;
 	}
 

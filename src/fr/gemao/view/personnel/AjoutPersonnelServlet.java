@@ -3,6 +3,7 @@ package fr.gemao.view.personnel;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
+import fr.gemao.entity.personnel.Diplome;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.personnel.Responsabilite;
 import fr.gemao.entity.util.Civilite;
@@ -87,15 +89,9 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		String codePostal = request.getParameter("code");
 		String ville = request.getParameter("ville");
 		String civilite = request.getParameter("civilite");
-		String infoComplementaire = request.getParameter("infoComplem");
-		String diplome = request.getParameter("diplome1");
-		String fonction = request.getParameter("fonction1");
+		String infoComplementaire = request.getParameter("infoComplem");	
+		
 		String numeroSS = Form.getValeurChamp(request, "numeroSS");
-
-		/**
-		 * Création du personnel
-		 * TODO manque diplome et fonction
-		 */
 
 		/**
 		 * Création de la commune
@@ -125,6 +121,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		PersonnelForm personnelForm = new PersonnelForm();
 		personnel.setListeResponsabilite(personnelForm.lireResponsabilites(request));
 		personnel.setListeDiplomes(personnelForm.lireDiplomes(request));
+		personnel.setListeDiscipline(personnelForm.lireDisciplines(request));
 		
 		AjouterPersonnelCtrl apc = new AjouterPersonnelCtrl();
 		

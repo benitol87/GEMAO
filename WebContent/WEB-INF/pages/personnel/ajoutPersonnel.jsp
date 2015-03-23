@@ -120,7 +120,7 @@ autocompletionAdresse("#rue", "#compl");
 		<div id="diplomes">
 			<div id="divDiplome1">
 				<label for="diplome1">Diplôme </label>
-				<input type="text" name="diplome1" />
+				<input type="text" name="diplome1" id="diplome1"/>
 				<input type="button" value="+" id="ajoutDiplome"/>
 				<input type="button" value="-" id="retireDiplome"/>
 			</div>
@@ -142,7 +142,7 @@ autocompletionAdresse("#rue", "#compl");
 		<div id="disciplines">
 			<div id="divDiscipline1">
 				<label for="discipline1">Discipline </label>
-				<select name="discipline1">
+				<select name="discipline1" id="discipline1">
 				<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
 					<option value="${ discipline.getIdDiscipline() }">${ discipline.getMatiere().getNomMatiere()}
 							- ${discipline.getNiveau().getNomNiveau() }</option>

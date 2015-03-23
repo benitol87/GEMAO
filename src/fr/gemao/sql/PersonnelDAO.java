@@ -7,11 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.gemao.entity.cours.Discipline;
 import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.entity.personnel.Diplome;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.personnel.Responsabilite;
 import fr.gemao.sql.administration.ProfilDAO;
+import fr.gemao.sql.cours.DisciplineDAO;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
@@ -57,6 +59,9 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		DiplomeDAO diplomeDAO = factory.getDiplomeDAO();
 		List<Diplome> listeDiplome;
 		
+		DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
+		List<Discipline> listeDiscipline;
+		
 		ContratDAO contratDAO = factory.getContratDAO();
 		Contrat contrat = contratDAO.create(obj.getContrat());
 		
@@ -87,6 +92,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 			obj.setListeResponsabilite(listResponsabilite);
 			listeDiplome = diplomeDAO.addAllDiplomesParPersonnel(obj.getIdPersonne(), obj.getListeDiplomes());
 			obj.setListeDiplomes(listeDiplome);
+			disciplineDAO.addAllDisciplineParPersonnel(obj.getListeDiscipline(), obj.getIdPersonne());
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {
@@ -217,6 +223,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		PersonneDAO personneDAO = factory.getPersonneDAO();
 		ResponsabiliteDAO responsabiliteDAO = factory.getResponsabiliteDAO();
 		DiplomeDAO diplomeDAO = factory.getDiplomeDAO();
+		DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
 		ContratDAO contratDAO = factory.getContratDAO();
 		ProfilDAO profilDAO = factory.getProfilDAO();
 		
@@ -226,7 +233,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		Personnel personnel = new Personnel(personneDAO.map(result),
 				responsabiliteDAO.getResponsabilitesParPersonne(result.getLong("idPersonne")),
 				diplomeDAO.getDiplomesParPersonnel(result.getLong("idPersonne")),
-				idContrat==null?null:contratDAO.get(idContrat),
+				disciplineDAO.getDisciplineParPersonnel(result.getLong("idPersonne")), idContrat==null?null:contratDAO.get(idContrat),
 				result.getString("login"),
 				result.getString("pwd"),
 				NumberUtil.getResultInteger(result, "pointAnciennete"),
