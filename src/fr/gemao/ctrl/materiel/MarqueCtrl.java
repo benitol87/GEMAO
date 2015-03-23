@@ -13,7 +13,7 @@ public class MarqueCtrl {
 	 * @param nomMarque
 	 *            le nom de la marque a rajouter dans la base.
 	 */
-	public static void ajouterMarque(String nomMarque) {
+	public static boolean ajouterMarque(String nomMarque) {
 		if (nomMarque == null) {
 			throw new NullPointerException(
 					"Le nom de la marque ne peut etre vide.");
@@ -26,6 +26,7 @@ public class MarqueCtrl {
 
 		Marque marque = new Marque(0, nomMarque);
 		new MarqueDAO(DAOFactory.getInstance()).create(marque);
+		return true;
 	}
 
 	/**
@@ -34,7 +35,7 @@ public class MarqueCtrl {
 	 * @param nomMarque
 	 *            le nom de la marque a supprimer.
 	 */
-	public static void supprimerMarque(String nomMarque) {
+	public static boolean supprimerMarque(String nomMarque) {
 		if (nomMarque == null) {
 			throw new NullPointerException(
 					"Le nom de la marque ne peut etre vide.");
@@ -49,6 +50,7 @@ public class MarqueCtrl {
 		Marque marque = marquedao.get(nomMarque);
 
 		marquedao.delete(marque);
+		return true;
 	}
 
 	/**
@@ -57,7 +59,7 @@ public class MarqueCtrl {
 	 * @param marque
 	 *            la Marque a modifier avec son nouveau nom
 	 */
-	public void updateMarque(Marque marque) {
+	public boolean updateMarque(Marque marque) {
 		if (marque.getIdMarque() <= 0) {
 			throw new IllegalArgumentException("Id invalide");
 		}
@@ -72,6 +74,7 @@ public class MarqueCtrl {
 		MarqueDAO marqueDAO = new MarqueDAO(DAOFactory.getInstance());
 
 		marqueDAO.update(marque);
+		return true;
 
 	}
 

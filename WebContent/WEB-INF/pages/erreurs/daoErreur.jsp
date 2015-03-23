@@ -6,8 +6,8 @@
 <c:import url="/inc/head.inc.jsp" />
 <c:import url="/inc/header.inc.jsp" />
 
-<p>Il semble y avoir une erreur de la connexion avec la base de données.</p>
-<p>${ requestScope.error}</p>
+<p class="offset text-danger">Il semble y avoir une erreur de la connexion avec la base de données.</p>
+<p class="offset text-danger">${ requestScope.error}</p>
 	
 
 <c:import url="/inc/footer.inc.jsp" />

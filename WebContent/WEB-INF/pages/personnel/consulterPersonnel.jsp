@@ -181,9 +181,8 @@
 	</tr>
 </table>
 <p class='align-center no-border'>
-	<a href="<c:url value="<%= Pattern.PERSONNEL_LISTER %>" />"><input type="button" value="Retour" /></a>
-	<a href="<c:url value="<%= Pattern.PERSONNEL_MODIFIER %>" />?id=<c:out value="${personnel['idPersonne']}" />">
-		<input type="button" value="Modifier" />
-	</a>
+	<a class="btn" href="<c:url value="<%= Pattern.PERSONNEL_LISTER %>" />">Retour</a>
+	<a class="btn" href="<c:url value="<%= Pattern.PERSONNEL_MODIFIER %>" />?id=<c:out value="${personnel['idPersonne']}" />">Modifier les informations</a>
+	<a class='btn' href="<c:url value="<%= Pattern.ADMINISTRATION_CHANGER_PROFIL %>" />?id=<c:out value="${personnel['idPersonne']}" />" >Modifier le profil dans l'application</a>
 </p>
 <c:import url="/inc/footer.inc.jsp" />

@@ -18,6 +18,7 @@
 	color: #fff;
 	background-color: #337ab7;
 	border-color: #2e6da4;
+	border-style:outset;
 	padding: 5px 10px;
 	font-weight: bold;
 	border-radius: 10px;
@@ -45,6 +46,7 @@ header .icon, header .icon:hover{
 
 .offset{
 	margin-left: 18%;
+	margin-right: 18%;
 }
 
 .required::after{
@@ -78,6 +80,10 @@ header .icon, header .icon:hover{
 
 #logo img{
 	border-radius: 10px;
+}
+
+div#logo{
+	margin-bottom : 30px;
 }
 
 #pageConnexion{
@@ -269,4 +275,12 @@ a.text-danger:hover {
 .choix input
 {
 	margin : 1px;
+}
+
+.oblig
+{
+	font-style : italic;
+	font-size : 0.8em;
+	text-align : right;
+	margin-top : 0;
 }

@@ -11,17 +11,19 @@
 
 <c:import url="/js/autocompleteCommune.jsp"/>
 <c:import url="/js/autocompleteAdresse.jsp"/>
+<c:import url="/js/autocompleteFamille.jsp"/>
 
 <script type="text/javascript">
 autocompletionCommuneCodePostal("#commune", "#codePostal");
 autocompletionAdresse("#rue", "#compl");
+autocompletionFamille("#famille");
 </script>
 
 <script src="<c:url value="/js/modifierAdherent.js"/>"></script>
 
 <h1>Modification d'un adhérent</h1>
 <c:if test="${errDate}">
-	<p class="offset text-danger">Date de naissance &lt; Date d'inscription &lt;= Date du jour</p>
+	<p class="offset text-danger">La date d'inscription doit être antérieure à aujourd'hui et postérieure à la date de naissance.</p>
 </c:if>
 <form id="modifAdherent" action="#" method="post">
 	<fieldset>
@@ -47,7 +49,7 @@ autocompletionAdresse("#rue", "#compl");
 		</div>
 		<div>
 			<label for="famille" class='required'>Famille </label> <input
-				type="text" name="famille" value="" required="required" />
+				type="text" name="famille" id="famille" value="${adherent.getFamille().getNomFamille()}" required="required" />
 		</div>
 		<div>
 			<label for="dateNaiss" class="required">Date de naissance </label><input
@@ -191,9 +193,7 @@ autocompletionAdresse("#rue", "#compl");
 	</fieldset>
 	<fieldset class='align-center no-border'>
 		<p>* Champs obligatoires</p>
-		<a href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>"> <input
-			type="button" value="Retour" />
-		</a> <input type="submit" value="Suivant" />
+		<a class="btn" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>">Retour</a>
 	</fieldset>
 </form>
 <c:import url="/inc/footer.inc.jsp" />

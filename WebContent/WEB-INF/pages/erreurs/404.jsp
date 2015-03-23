@@ -9,7 +9,7 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <p class="offset">La page à laquelle vous tentez d'accéder n'existe pas.</p>
-<a class="offset" href="<c:url value="<%= Pattern.ACCUEIL %>"/>" ><input type='button' value='Accueil'/></a>
+<a class="offset btn" href="<c:url value="<%= Pattern.ACCUEIL %>"/>" >Accueil</a>
 	
 
 <c:import url="/inc/footer.inc.jsp" />

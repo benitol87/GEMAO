@@ -25,15 +25,15 @@
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
-		<p>* Champs obligatoires</p>
+		<p class="oblig">* Champs obligatoires</p>
 		<input type="button" value="Annuler" /> 
 		<input type="submit" value="Valider" />
 	</fieldset>
 </form>
 <c:if test="${ erreurPers == true }">
-	<p class="offset text-danger">Le nombre d'enfants ne peut être inférieur au nombre de personnes</p>
+	<p class="align-center text-danger">Le nombre d'enfants ne peut être supérieur au nombre de personnes.</p>
 </c:if>
 <c:if test="${ ! empty simpleQuotient }">
-	<p class="offset">Montant du quotient familial : <c:out value="${simpleQuotient}" /><span class="euro"></span>,  <c:out value="${QF}" /></p>
+	<p class="align-center">Montant du quotient familial : <c:out value="${simpleQuotient}" /><span class="euro"></span>,  <c:out value="${QF}" /></p>
 </c:if>
 <c:import url="/inc/footer.inc.jsp" />
