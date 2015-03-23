@@ -31,6 +31,7 @@ public class Personnel extends Personne implements Serializable{
 	private Profil profil;
 	private boolean premiereConnexion;
 	private String numeroSS;
+	private Date dateEntree; //Peut-être à enlever
 
 	public Personnel() {
 	}
@@ -78,7 +79,7 @@ public class Personnel extends Personne implements Serializable{
 			Civilite civilite, List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, Contrat contrat, String login,
 			String password, int pointsAncien, Profil profil,
-			boolean premiereConnexion, boolean membreCA, String numeroSS) {
+			boolean premiereConnexion, boolean membreCA, String numeroSS, Date dateEntree) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom, dateNaissance,
 				telFixe, telPort, email, civilite, membreCA);
 
@@ -91,6 +92,7 @@ public class Personnel extends Personne implements Serializable{
 		this.profil = profil;
 		this.premiereConnexion = premiereConnexion;
 		this.numeroSS = numeroSS;
+		this.dateEntree = dateEntree;
 	}
 
 	/**
@@ -244,7 +246,13 @@ public class Personnel extends Personne implements Serializable{
 		this.profil = profil;
 	}
 	
+	public Date getDateEntree() {
+		return dateEntree;
+	}
 	
+	public void setDateEntree(Date dateEntree) {
+		this.dateEntree = dateEntree;
+	}
 
 	public String getNumeroSS() {
 		return numeroSS;

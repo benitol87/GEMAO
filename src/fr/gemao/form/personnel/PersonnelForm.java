@@ -23,6 +23,8 @@ import fr.gemao.entity.personnel.Responsabilite;
 public class PersonnelForm {
 
 	// Informations relatives à la personne
+	private static final String CHAMP_NOM = "nom";
+	private static final String CHAMP_PRENOM = "prenom";
 	private static final String CHAMP_LISTERESPONSABILITE = "fonction";
 	private static final String CHAMP_LISTEDIPLOME = "diplome";
 	private static final String CHAMP_IDCONTRAT = "idContrat";
@@ -396,12 +398,14 @@ public class PersonnelForm {
 
 		listeResponsabilite = lireResponsabilites(request);
 		listeDiplomes = lireDiplomes(request);
+		
+		nom = getValeurChamp(request, CHAMP_NOM);
+		prenom = getValeurChamp(request, CHAMP_PRENOM);
 
 		idContrat = Integer.parseInt(getValeurChamp(request, CHAMP_IDCONTRAT));
 		login = getValeurChamp(request, CHAMP_LOGIN);
 		password = getValeurChamp(request, CHAMP_PASSWORD);
-		pointsAncien = Integer.parseInt(getValeurChamp(request,
-				CHAMP_POINTSANCIEN));
+		pointsAncien = Integer.parseInt(getValeurChamp(request, CHAMP_POINTSANCIEN));
 		numRue = getValeurChamp(request, CHAMP_NUMRUE);
 		nomRue = getValeurChamp(request, CHAMP_NOMRUE);
 		infoCompl = getValeurChamp(request, CHAMP_INFOCOMPL);
