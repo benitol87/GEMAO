@@ -255,7 +255,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 			));
 			session.removeAttribute("INFOS");
 			
-			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?modifOk=0");
+			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?ajoutOk=0");
 			
 		} else {
 			request.setAttribute("form", form);
