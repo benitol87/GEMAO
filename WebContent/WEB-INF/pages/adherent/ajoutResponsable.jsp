@@ -31,6 +31,7 @@
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
+		<p>* Champs obligatoires</p>
 		<input type="submit" value="Suivant" />
 	</fieldset>
 </form>

@@ -31,6 +31,7 @@ public class Adherent extends Personne implements Serializable{
 	private List<Classe> classes;
 	private List<Cours> listeCours;
 	private boolean aPaye;
+	private Famille famille;
 
 	public Adherent() {
 		super();
@@ -67,7 +68,7 @@ public class Adherent extends Personne implements Serializable{
 			Responsable responsable, boolean droitImage, Date dateEntree,
 			Date dateSortie, Float qf, float cotisation,
 			List<Discipline> disciplines, List<Classe> classes,
-			List<Cours> cours, boolean aPaye) {
+			List<Cours> cours, boolean aPaye, Famille famille) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom,
 				dateNaissance, telFixe, telPort, email, civilite, membreCA);
 		this.motif = motif;
@@ -84,6 +85,7 @@ public class Adherent extends Personne implements Serializable{
 		this.classes = classes;
 		this.listeCours = cours;
 		this.aPaye = aPaye;
+		this.famille = famille;
 	}
 
 	/**
@@ -102,7 +104,7 @@ public class Adherent extends Personne implements Serializable{
 			Responsable responsable, boolean droitImage, Date dateEntree,
 			Date dateSortie, Float qf, float cotisation,
 			List<Discipline> disciplines, List<Classe> classes,
-			List<Cours> cours, boolean aPaye) {
+			List<Cours> cours, boolean aPaye, Famille famille) {
 		super(personne);
 		this.motif = motif;
 		this.responsable = responsable;
@@ -118,6 +120,7 @@ public class Adherent extends Personne implements Serializable{
 		this.classes = classes;
 		this.listeCours = cours;
 		this.aPaye = aPaye;
+		this.famille = famille;
 	}
 
 	/**
@@ -315,6 +318,21 @@ public class Adherent extends Personne implements Serializable{
 		this.listeCours = cours;
 	}
 
+	/**
+	 * @return the famille
+	 */
+	public Famille getFamille() {
+		return famille;
+	}
+
+	/**
+	 * @param famille
+	 *            the famille to set
+	 */
+	public void setFamille(Famille famille) {
+		this.famille = famille;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -327,6 +345,7 @@ public class Adherent extends Personne implements Serializable{
 				+ ", disciplines=" + disciplines + "]";
 	}
 
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -334,6 +353,7 @@ public class Adherent extends Personne implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
+		result = prime * result + ((classes == null) ? 0 : classes.hashCode());
 		result = prime * result + Float.floatToIntBits(cotisation);
 		result = prime * result
 				+ ((dateEntree == null) ? 0 : dateEntree.hashCode());
@@ -342,6 +362,9 @@ public class Adherent extends Personne implements Serializable{
 		result = prime * result
 				+ ((disciplines == null) ? 0 : disciplines.hashCode());
 		result = prime * result + (droitImage ? 1231 : 1237);
+		result = prime * result + ((famille == null) ? 0 : famille.hashCode());
+		result = prime * result
+				+ ((listeCours == null) ? 0 : listeCours.hashCode());
 		result = prime * result + ((motif == null) ? 0 : motif.hashCode());
 		result = prime * result + ((qf == null) ? 0 : qf.hashCode());
 		result = prime * result
@@ -361,6 +384,11 @@ public class Adherent extends Personne implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Adherent other = (Adherent) obj;
+		if (classes == null) {
+			if (other.classes != null)
+				return false;
+		} else if (!classes.equals(other.classes))
+			return false;
 		if (Float.floatToIntBits(cotisation) != Float
 				.floatToIntBits(other.cotisation))
 			return false;
@@ -380,6 +408,16 @@ public class Adherent extends Personne implements Serializable{
 		} else if (!disciplines.equals(other.disciplines))
 			return false;
 		if (droitImage != other.droitImage)
+			return false;
+		if (famille == null) {
+			if (other.famille != null)
+				return false;
+		} else if (!famille.equals(other.famille))
+			return false;
+		if (listeCours == null) {
+			if (other.listeCours != null)
+				return false;
+		} else if (!listeCours.equals(other.listeCours))
 			return false;
 		if (motif == null) {
 			if (other.motif != null)

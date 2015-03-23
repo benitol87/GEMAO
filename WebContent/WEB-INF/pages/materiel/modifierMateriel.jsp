@@ -26,7 +26,7 @@
 					<option value="${cat.getIdCategorie()}">${cat.getLibelleCat()}</option>
 				</c:forEach>
 			</select> <input type="button" name="ajoutCategorie" id="ajoutCategorie"
-				value="+" />
+				value="Créer..." />
 				<p>${form.getErreurs().get("categorie")}</p>
 		</div>
 
@@ -64,7 +64,7 @@
 					<option value="${fou.getIdFournisseur()}">${fou.getNomFournisseur()}</option>
 				</c:forEach>
 			</select> <input type="button" name="ajoutFournisseur" id="ajoutFournisseur"
-				value="+" />
+				value="Créer..." />
 				<p>${form.getErreurs().get("fournisseur")}</p>
 		</div>
 
@@ -82,7 +82,7 @@
 					<option value="${des.getIdDesignation()}">${des.getLibelleDesignation()}</option>
 				</c:forEach>
 			</select> <input type="button" name="ajoutDesignation" id="ajoutDesignation"
-				value="+" />
+				value="Créer..." />
 				<p>${form.getErreurs().get("designation")}</p>
 		</div>
 
@@ -102,7 +102,7 @@
 				<c:forEach items="${listeEtats}" var="etat">
 					<option value="${etat.getIdEtat()}">${etat.getLibelleEtat()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutEtat" id="ajoutEtat" value="+" />
+			</select> <input type="button" name="ajoutEtat" id="ajoutEtat" value="Créer..." />
 			<p>${form.getErreurs().get("etat")}</p>
 		</div>
 
@@ -114,7 +114,7 @@
 				<c:forEach items="${listeMarque}" var="marque">
 					<option value="${marque.getIdMarque()}">${marque.getNomMarque()}</option>
 				</c:forEach>
-			</select>
+			</select> <input type="button" name="ajoutMarque" id="ajoutMarque" value="Créer..." />
 			<p>${form.getErreurs().get("marque")}</p>
 		</div>
 		<div>
