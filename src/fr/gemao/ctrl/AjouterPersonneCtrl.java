@@ -10,7 +10,7 @@ import fr.gemao.sql.PersonneDAO;
 
 public class AjouterPersonneCtrl {
 
-	String masqueNom = "^[A-Za-z âäàéèëêîïìôöòûüùÿ\\-]+$",
+	static String masqueNom = "^[A-Za-z âäàéèëêîïìôöòûüùÿ\\-]+$",
 			masqueTel = "^[0][0-9]{9}$",
 			masqueMail = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
 					+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
@@ -21,7 +21,7 @@ public class AjouterPersonneCtrl {
 	public AjouterPersonneCtrl() {
 	}
 
-	public boolean verifierInformations(Personne personne) {
+	public static boolean verifierInformations(Personne personne) {
 
 		Pattern pattern;
 		Matcher controler;
@@ -117,7 +117,7 @@ public class AjouterPersonneCtrl {
 	 */
 	public long ajoutPersonne(Personne personne) {
 		//Vérification de la validité des informations
-		if (this.verifierInformations(personne)) {
+		if (verifierInformations(personne)) {
 			Personne pers;
 
 			DAOFactory co = DAOFactory.getInstance();

@@ -11,6 +11,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import fr.gemao.ctrl.AjouterPersonneCtrl;
+import fr.gemao.ctrl.adherent.AjouterAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.entity.cours.Discipline;
 
