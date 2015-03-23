@@ -46,6 +46,10 @@
 			<input type="checkbox" name="QF" id="QF" onchange="affQF()" />
 		</span>
 		<span class="choix">
+			<label for="Cotisation">Cotisation</label>
+			<input type="checkbox" name="Cotisation" id="Cotisation" onchange="affCotisation()" />
+		</span>
+		<span class="choix">
 			<label for="CA">Membre CA</label>
 			<input type="checkbox" name="CA" id="CA" onchange="affCA()" />
 		</span>
@@ -70,6 +74,7 @@
 			<th class="listEntree">Date d'entrée</th>
 			<th class="listDroitIm">Droit à l'image</th>
 			<th class="listQF">Quotient Familial</th>
+			<th class="listCotisation">Cotisation</th>
 			<th class="listCA">Membre CA</th>
 			<th class="listAPaye">A Payé</th>
 			<th>Actions</th>
@@ -112,6 +117,7 @@
 						<td class="listQF">Q1</td>
 					</c:otherwise>
 				</c:choose>
+				<td class="listCotisation">${adh.getCotisation()}</td>
 				<c:choose>
 					<c:when test="${adh.isMembreCA()}">
 						<td class="listCA">Oui</td>
