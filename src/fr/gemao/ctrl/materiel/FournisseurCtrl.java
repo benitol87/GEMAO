@@ -14,7 +14,7 @@ public class FournisseurCtrl {
 	 * @param nomFournisseur
 	 *            le nom du fournisseur a ajouter.
 	 */
-	public static void ajoutFournisseur(String nomFournisseur) {
+	public static boolean ajoutFournisseur(String nomFournisseur) {
 		if (nomFournisseur == null) {
 			throw new NullPointerException(
 					"Le nom du fournisseur ne doit pas etre null");
@@ -25,6 +25,7 @@ public class FournisseurCtrl {
 		}
 		Fournisseur fournisseur = new Fournisseur(0, nomFournisseur);
 		new FournisseurDAO(DAOFactory.getInstance()).create(fournisseur);
+		return true;
 	}
 
 	/**
@@ -33,7 +34,7 @@ public class FournisseurCtrl {
 	 * @param nomFournisseur
 	 *            le nom du fournisseur a supprimer.
 	 */
-	public void supprimerEtat(String nomFournisseur) {
+	public boolean supprimerEtat(String nomFournisseur) {
 		if (nomFournisseur == null) {
 			throw new NullPointerException(
 					"Le nom du fournisseur ne doit pas etre null");
@@ -50,9 +51,10 @@ public class FournisseurCtrl {
 		for (Fournisseur fournisseur : fournisseurs) {
 			if (fournisseur.getNomFournisseur().equals(nomFournisseur)) {
 				fournisseurDAO.delete(fournisseur);
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	/**
@@ -61,7 +63,7 @@ public class FournisseurCtrl {
 	 * @param fournisseur
 	 *            le fournisseur avec son nouveau nom.
 	 */
-	public void modifierEtat(Fournisseur fournisseur) {
+	public boolean modifierEtat(Fournisseur fournisseur) {
 		if (fournisseur.getIdFournisseur() <= 0) {
 			throw new IllegalArgumentException("id invalide");
 		}
@@ -78,6 +80,7 @@ public class FournisseurCtrl {
 				DAOFactory.getInstance());
 
 		fournisseurDAO.update(fournisseur);
+		return true;
 	}
 
 	/**
