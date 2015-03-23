@@ -14,7 +14,7 @@
 <script src="<c:url value="/js/modifierMateriel.js"/>" ></script>
 
 <h1>Modification d'un matériel</h1>
-<p>${form.getErreurs().get("Modification")}</p>
+<p>${form.getErreurs()}</p>
 
 <form id="modifierMateriel" action="#" method="post">
 	<input type="text" name="nomMarque" id="nomMarque" class="hidden"/>

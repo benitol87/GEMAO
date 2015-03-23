@@ -196,7 +196,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 			}
 			
 			request.setAttribute("form", form);
-			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_AJOUT)
+			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
 				.forward(request, response);
 		}
 
