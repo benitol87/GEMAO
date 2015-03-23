@@ -188,8 +188,6 @@ public class ModifierMaterielServlet extends HttpServlet {
 				}
 			}
 
-			//request.setAttribute("form", form);
-			request.removeAttribute("form");
 			this.getServletContext()
 					.getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
 					.forward(request, response);
