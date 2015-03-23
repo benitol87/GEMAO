@@ -27,7 +27,7 @@
 		</div>
 		<div>
 			<span class='text-label'><label for="famille">Famille : </label></span>
-			<c:out value="" />
+			<c:out value="${adherent.getFamille().getNomFamille()}" />
 		</div>
 		<div>
 			<span class='text-label'>Date de naissance : </span>
