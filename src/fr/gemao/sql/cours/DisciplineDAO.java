@@ -241,7 +241,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * from discipline d inner join personnelxdiscipline s on d.idDiscipline=s.idDiscipline WHERE idPersonne = ?;";
+		String sql = "SELECT * from discipline d inner join personnelXdiscipline s on d.idDiscipline=s.idDiscipline WHERE idPersonne = ?;";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
@@ -264,7 +264,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 	public void addDiscplineParPersonnel(int idDiscipline, long idPersonnel) {
 		Connection connexion = null;
 		PreparedStatement requete = null;
-		String sql = "INSERT INTO personnelxdiscipline(idPersonne, idDiscipline) values ( ?, ?);";
+		String sql = "INSERT INTO personnelXdiscipline(idPersonne, idDiscipline) values ( ?, ?);";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
@@ -272,7 +272,7 @@ public class DisciplineDAO extends IDAO<Discipline> {
 			int status = requete.executeUpdate();
 			if (status == 0) {
 				throw new DAOException(
-						"Échec de la création de personnelxdiscipline, aucune ligne ajoutée dans la table.");
+						"Échec de la création de personnelXdiscipline, aucune ligne ajoutée dans la table.");
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
