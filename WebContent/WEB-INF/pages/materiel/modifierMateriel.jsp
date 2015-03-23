@@ -11,8 +11,19 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
+<script src="<c:url value="/js/modifierMateriel.js"/>" ></script>
+
 <h1>Modification d'un matériel</h1>
 <p>${form.getErreurs().get("Modification")}</p>
+
+<form id="modifierMateriel" action="#" method="post">
+	<input type="text" name="nomMarque" id="nomMarque" class="hidden"/>
+	<input type="text" name="nomEtat" id="nomEtat" class="hidden"/>
+	<input type="text" name="nomDes" id="nomDes" class="hidden"/>
+	<input type="text" name="nomFour" id="nomFour" class="hidden"/>
+	<input type="text" name="nomCat" id="nomCat" class="hidden"/>
+</form>
+
 <form name="modifierMaterielInstrument" action="#" method="post">
 	<fieldset>
 		<legend>Informations générales</legend>

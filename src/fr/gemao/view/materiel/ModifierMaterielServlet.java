@@ -43,7 +43,7 @@ import fr.gemao.view.Pattern;
 public class ModifierMaterielServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String VUE_LISTE = Pattern.MATERIEL_LISTER;
-	
+
 	private static String ERREUR_AJOUT_CATEGORIE = "erreurCat";
 	private static String ERREUR_AJOUT_DESIGNATION = "erreurDes";
 	private static String ERREUR_AJOUT_FOURNISSEUR = "erreurFour";
@@ -77,7 +77,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 		List<Fournisseur> listFourni = new ArrayList<Fournisseur>();
 		listFourni = new FournisseurDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute("LISTE_FOURNISSEUR", listFourni);
-		
+
 		try {
 			HttpSession session = request.getSession();
 
@@ -92,13 +92,14 @@ public class ModifierMaterielServlet extends HttpServlet {
 				FournisseurCtrl fournctrl = new FournisseurCtrl();
 				DesignationCtrl desctrl = new DesignationCtrl();
 				MarqueCtrl marquectrl = new MarqueCtrl();
-				
+
 				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 				String dateAchat;
-				if(mat.getDateAchat()==null){
+				if (mat.getDateAchat() == null) {
 					dateAchat = new String("Non renseignée");
-				}else{
-					dateAchat = df.format(new Date(mat.getDateAchat().getTime()));
+				} else {
+					dateAchat = df
+							.format(new Date(mat.getDateAchat().getTime()));
 				}
 				request.setAttribute("dateAchat", dateAchat);
 
@@ -149,78 +150,125 @@ public class ModifierMaterielServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		System.out.print(form.getErreurs());
 		
+		if(!request.getParameter("nomMarque").equals("")
+				|| !request.getParameter("nomFour").equals("")
+				|| !request.getParameter("nomCat").equals("")
+				|| !request.getParameter("nomDes").equals("")
+				|| !request.getParameter("nomEtat").equals("")){
+			if (Form.getValeurChamp(request, "nomCat") != null) {
+				try {
+					CategorieCtrl.ajoutCategorie(Form.getValeurChamp(request,
+							"nomCat"));
+				} catch (DAOException e) {
+					form.setErreur(ERREUR_AJOUT_CATEGORIE,
+							"La catégorie existe déjà");
+				}
+			}
+
+			if (Form.getValeurChamp(request, "nomDes") != null) {
+				try {
+					DesignationCtrl.ajoutDesignation(Form.getValeurChamp(request,
+							"nomDes"));
+				} catch (DAOException e) {
+					form.setErreur(ERREUR_AJOUT_DESIGNATION,
+							"La designation existe déjà");
+				}
+			}
+
+			if (Form.getValeurChamp(request, "nomFour") != null) {
+				try {
+					FournisseurCtrl.ajoutFournisseur(Form.getValeurChamp(request,
+							"nomFour"));
+				} catch (DAOException e) {
+					form.setErreur(ERREUR_AJOUT_FOURNISSEUR,
+							"Le Fournisseur existe déjà");
+				}
+			}
+			
+			if (Form.getValeurChamp(request, "nomEtat") != null) {
+				try {
+					EtatCtrl.ajoutEtat(Form.getValeurChamp(request,
+							"nomEtat"));
+				} catch (DAOException e) {
+					form.setErreur(ERREUR_AJOUT_ETAT,
+							"L'etat existe déjà");
+				}
+			}
+			
+			request.setAttribute("form", form);
+			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_AJOUT)
+				.forward(request, response);
+		}
+
 		// Ajout d'une catégorie, le fait qu'elle ne soit pas vide
-				// a déjà été testé
-				if (Form.getValeurChamp(request, "nomCat") != null) {
-					try {
-						CategorieCtrl.ajoutCategorie(Form.getValeurChamp(request,
-								"nomCat"));
-					} catch (DAOException e) {
-						form.setErreur(ERREUR_AJOUT_CATEGORIE,
-								"La catégorie existe déjà");
-					}
-				}
+		// a déjà été testé
+		if (Form.getValeurChamp(request, "nomCat") != null) {
+			try {
+				CategorieCtrl.ajoutCategorie(Form.getValeurChamp(request,
+						"nomCat"));
+			} catch (DAOException e) {
+				form.setErreur(ERREUR_AJOUT_CATEGORIE,
+						"La catégorie existe déjà");
+			}
+		}
 
-				if (Form.getValeurChamp(request, "nomDes") != null) {
-					try {
-						DesignationCtrl.ajoutDesignation(Form.getValeurChamp(request,
-								"nomDes"));
-					} catch (DAOException e) {
-						form.setErreur(ERREUR_AJOUT_DESIGNATION,
-								"La designation existe déjà");
-					}
-				}
+		if (Form.getValeurChamp(request, "nomDes") != null) {
+			try {
+				DesignationCtrl.ajoutDesignation(Form.getValeurChamp(request,
+						"nomDes"));
+			} catch (DAOException e) {
+				form.setErreur(ERREUR_AJOUT_DESIGNATION,
+						"La designation existe déjà");
+			}
+		}
 
-				if (Form.getValeurChamp(request, "nomFour") != null) {
-					try {
-						FournisseurCtrl.ajoutFournisseur(Form.getValeurChamp(request,
-								"nomFour"));
-					} catch (DAOException e) {
-						form.setErreur(ERREUR_AJOUT_FOURNISSEUR,
-								"Le Fournisseur existe déjà");
-					}
-				}
-				
-				if (Form.getValeurChamp(request, "nomEtat") != null) {
-					try {
-						EtatCtrl.ajoutEtat(Form.getValeurChamp(request,
-								"nomEtat"));
-					} catch (DAOException e) {
-						form.setErreur(ERREUR_AJOUT_ETAT,
-								"L'etat existe déjà");
-					}
-				}
+		if (Form.getValeurChamp(request, "nomFour") != null) {
+			try {
+				FournisseurCtrl.ajoutFournisseur(Form.getValeurChamp(request,
+						"nomFour"));
+			} catch (DAOException e) {
+				form.setErreur(ERREUR_AJOUT_FOURNISSEUR,
+						"Le Fournisseur existe déjà");
+			}
+		}
 
-				if (Form.getValeurChamp(request, "nomMarque") != null) {
-					try {
-						MarqueCtrl.ajouterMarque(Form.getValeurChamp(request,
-								"nomMarque"));
-					} catch (DAOException e) {
-						form.setErreur(ERREUR_AJOUT_MARQUE,
-								"La marque existe déjà");
-					}
-				}
+		if (Form.getValeurChamp(request, "nomEtat") != null) {
+			try {
+				EtatCtrl.ajoutEtat(Form.getValeurChamp(request, "nomEtat"));
+			} catch (DAOException e) {
+				form.setErreur(ERREUR_AJOUT_ETAT, "L'etat existe déjà");
+			}
+		}
 
-				List<Categorie> listCat = new ArrayList<Categorie>();
-				listCat = new CategorieDAO(DAOFactory.getInstance()).getAll();
-				request.setAttribute("LISTE_CATEGORIE", listCat);
+		if (Form.getValeurChamp(request, "nomMarque") != null) {
+			try {
+				MarqueCtrl.ajouterMarque(Form.getValeurChamp(request,
+						"nomMarque"));
+			} catch (DAOException e) {
+				form.setErreur(ERREUR_AJOUT_MARQUE, "La marque existe déjà");
+			}
+		}
 
-				List<Etat> listEtat = new ArrayList<Etat>();
-				listEtat = new EtatDAO(DAOFactory.getInstance()).getAll();
-				request.setAttribute("LISTE_ETAT", listEtat);
+		List<Categorie> listCat = new ArrayList<Categorie>();
+		listCat = new CategorieDAO(DAOFactory.getInstance()).getAll();
+		request.setAttribute("LISTE_CATEGORIE", listCat);
 
-				List<Designation> listDes = new ArrayList<Designation>();
-				listDes = new DesignationDAO(DAOFactory.getInstance()).getAll();
-				request.setAttribute("LISTE_DESIGNATION", listDes);
+		List<Etat> listEtat = new ArrayList<Etat>();
+		listEtat = new EtatDAO(DAOFactory.getInstance()).getAll();
+		request.setAttribute("LISTE_ETAT", listEtat);
 
-				List<Marque> listMarque = new ArrayList<Marque>();
-				listMarque = new MarqueDAO(DAOFactory.getInstance()).getAll();
-				request.setAttribute("LISTE_MARQUE", listMarque);
+		List<Designation> listDes = new ArrayList<Designation>();
+		listDes = new DesignationDAO(DAOFactory.getInstance()).getAll();
+		request.setAttribute("LISTE_DESIGNATION", listDes);
 
-				List<Fournisseur> listFourn = new ArrayList<Fournisseur>();
-				listFourn = new FournisseurDAO(DAOFactory.getInstance()).getAll();
-				request.setAttribute("LISTE_FOURNISSEUR", listFourn);
-				
+		List<Marque> listMarque = new ArrayList<Marque>();
+		listMarque = new MarqueDAO(DAOFactory.getInstance()).getAll();
+		request.setAttribute("LISTE_MARQUE", listMarque);
+
+		List<Fournisseur> listFourn = new ArrayList<Fournisseur>();
+		listFourn = new FournisseurDAO(DAOFactory.getInstance()).getAll();
+		request.setAttribute("LISTE_FOURNISSEUR", listFourn);
+
 		if (form.getErreurs().isEmpty()) {
 			MaterielCtrl matctrl = new MaterielCtrl();
 			Materiel mat = null;
@@ -271,15 +319,16 @@ public class ModifierMaterielServlet extends HttpServlet {
 			}
 		}
 		if (form.getErreurs().isEmpty()) {
-			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?modifOk=0");
+			response.sendRedirect(request.getContextPath() + VUE_LISTE
+					+ "?modifOk=0");
 		} else {
 			form.getErreurs().put("Modification",
 					"Erreur lors de la modification");
-			
+
 			request.setAttribute("form", form);
 			this.getServletContext()
-				.getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
-				.forward(request, response);
+					.getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
+					.forward(request, response);
 		}
 	}
 }
