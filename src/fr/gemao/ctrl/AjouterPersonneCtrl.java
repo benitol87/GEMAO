@@ -10,6 +10,11 @@ import fr.gemao.sql.PersonneDAO;
 
 public class AjouterPersonneCtrl {
 
+	String masqueNom = "^[A-Za-z âäàéèëêîïìôöòûüùÿ\\-]+$",
+			masqueTel = "^[0][0-9]{9}$",
+			masqueMail = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
+					+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
+	
 	/**
 	 * Constructeur
 	 */
@@ -17,7 +22,7 @@ public class AjouterPersonneCtrl {
 	}
 
 	public boolean verifierInformations(Personne personne) {
-		String masque;
+
 		Pattern pattern;
 		Matcher controler;
 
@@ -40,8 +45,8 @@ public class AjouterPersonneCtrl {
 		/**
 		 * Vérification du nom
 		 */
-		masque = "^[A-Za-z\\-]+$";
-		pattern = Pattern.compile(masque);
+		
+		pattern = Pattern.compile(masqueNom);
 		controler = pattern.matcher(personne.getNom());
 		if (!controler.matches()) {
 			System.out.println("Le format du nom est invalide...");
@@ -70,9 +75,7 @@ public class AjouterPersonneCtrl {
 		/**
 		 * Vérification de l'email (Vérifier si le masque est correct)
 		 */
-		masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
-				+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
-		pattern = Pattern.compile(masque);
+		pattern = Pattern.compile(masqueMail);
 		if (personne.getEmail()=="")
 			personne.setEmail(null);
 		if (personne.getEmail() != null){
@@ -86,8 +89,7 @@ public class AjouterPersonneCtrl {
 		/**
 		 * Vérification des téléphone fixe et portable
 		 */
-		masque = "^[0][0-9]{9}$";
-		pattern = Pattern.compile(masque);
+		pattern = Pattern.compile(masqueTel);
 		controler = pattern.matcher(personne.getTelFixe());
 		if (!controler.matches()) {
 			System.out.println("Le format du téléphone fixe est invalide...");
