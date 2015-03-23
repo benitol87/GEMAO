@@ -59,3 +59,26 @@ function ajoutEtat(){
 		alert("Abandon de l'ajout");
 	}
 }
+
+
+function dispatchEvents(){
+	var des = document.getElementById("ajoutDes");
+	var marque = document.getElementById("ajoutMarque");
+	var four = document.getElementById("ajoutFour");
+	var cat = document.getElementById("ajoutCat");
+	var etat = document.getElementById("ajoutEtat");
+	if(des)
+		ajouteEvent(des,"click",ajoutDesignation,false);
+	if(marque)
+		ajouteEvent(marque,"click",ajoutMarque,false);
+	if(four)
+		ajouteEvent(four,"click",ajoutFournisseur,false);
+	if(cat)
+		ajouteEvent(cat,"click",ajoutCategorie,false);
+	if(etat)
+		ajouteEvent(etat,"click",ajoutEtat,false);
+}
+
+window.onload=function(){
+	dispatchEvents();
+};
