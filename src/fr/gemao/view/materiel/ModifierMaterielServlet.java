@@ -274,7 +274,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?modifOk=0");
 		} else {
 			form.getErreurs().put("Modification",
-					"Erreur lors de la modification du formulaire");
+					"Erreur lors de la modification");
 			
 			request.setAttribute("form", form);
 			this.getServletContext()

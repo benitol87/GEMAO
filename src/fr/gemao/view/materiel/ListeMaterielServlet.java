@@ -28,6 +28,13 @@ public class ListeMaterielServlet extends HttpServlet {
 		if(param != null){
 			int code = Integer.parseInt(param);
 			if(code == 0){
+				request.setAttribute("message", "Le materiel a bien ete modifié");
+			}
+		}
+		String param2 = request.getParameter("ajoutOk");
+		if(param2 != null){
+			int code = Integer.parseInt(param2);
+			if(code == 0){
 				request.setAttribute("message", "Le materiel a bien ete ajoute");
 			}
 		}
