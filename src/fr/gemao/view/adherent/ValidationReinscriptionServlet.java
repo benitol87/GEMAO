@@ -109,7 +109,7 @@ public class ValidationReinscriptionServlet extends HttpServlet {
 			new ModificationCtrl().ajouterModification(new Modification(0,
 					(Personnel) session
 							.getAttribute(ConnexionServlet.ATT_SESSION_USER),
-					new Date(), "Ajout adhérent : " + adherent.getNom() + " "
+					new Date(), "Réinscription adhérent : " + adherent.getNom() + " "
 							+ adherent.getPrenom()));
 
 			// Redirection
