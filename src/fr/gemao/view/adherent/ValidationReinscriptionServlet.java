@@ -18,10 +18,10 @@ import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
 import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
-import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.adherent.Adherent;
 import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.entity.administration.Modification;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
@@ -95,6 +95,8 @@ public class ValidationReinscriptionServlet extends HttpServlet {
 		}
 
 		adherent.setAPaye(false);
+		adherent.setMotif(null);
+		adherent.setDateSortie(null);
 
 		ModifierAdherentCtrl modifierAdherentCtrl = new ModifierAdherentCtrl();
 

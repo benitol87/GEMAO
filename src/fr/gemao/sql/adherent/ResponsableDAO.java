@@ -164,6 +164,13 @@ public class ResponsableDAO extends IDAO<Responsable> {
 		return liste;
 	}
 
+	/**
+	 * Test si le responsable existe. Le test s'effectue sur le nom et le prénom
+	 * 
+	 * @param responsable
+	 *            Le responsable à tester
+	 * @return le responsable s'il existe ou null
+	 */
 	public Responsable exist(Responsable responsable) {
 		Connection connexion = null;
 		PreparedStatement requete = null;
