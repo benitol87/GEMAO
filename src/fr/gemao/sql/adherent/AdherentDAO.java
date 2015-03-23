@@ -222,10 +222,12 @@ public class AdherentDAO extends IDAO<Adherent> {
 		DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
 		ResponsableDAO responsableDAO = factory.getResponsableDAO();
 		MotifSortieDAO motifSortieDAO = factory.getMotifSortieDAO();
+		FamilleDAO familleDAO = factory.getFamilleDAO();
 
 		Long idResponsable = NumberUtil.getResultLong(result, "idResponsable");
 		Integer idMotifSortie = NumberUtil.getResultInteger(result,
 				"idMotifSortie");
+		Integer idFamille = NumberUtil.getResultInteger(result, "idFamille");
 
 		Adherent adherent = new Adherent(personneDAO.map(result),
 				idMotifSortie == null ? null : motifSortieDAO
@@ -237,7 +239,8 @@ public class AdherentDAO extends IDAO<Adherent> {
 				NumberUtil.getResultFloat(result, "cotisation"),
 				disciplineDAO.getDisciplineParAdherent(result
 						.getLong("idPersonne")), new ArrayList<Classe>(),
-				new ArrayList<Cours>(), result.getBoolean("aPaye"));
+				new ArrayList<Cours>(), result.getBoolean("aPaye"),
+				idFamille == null ? null : familleDAO.get(idFamille));
 		return adherent;
 	}
 
