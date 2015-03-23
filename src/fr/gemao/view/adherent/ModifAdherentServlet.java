@@ -30,6 +30,8 @@ import fr.gemao.form.adherent.AdherentForm;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
+import fr.gemao.view.util.AutocompletionAdresse;
+import fr.gemao.view.util.AutocompletionCommune;
 
 /**
  * Servlet implementation class ModifAdherentServlet
@@ -45,6 +47,7 @@ public class ModifAdherentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -76,6 +79,10 @@ public class ModifAdherentServlet extends HttpServlet {
 					.format(adherent.getDateNaissance());
 			String dateInscription = formatter.format(adherent.getDateEntree());
 			
+			request = AutocompletionCommune
+					.initRequestForAutoCompletionCommune(request);
+			request = AutocompletionAdresse
+					.initRequestForAutoCompletionAdresse(request);
 
 			session.setAttribute("modif_adh_adherent", adherent);
 			request.setAttribute("adherent", adherent);
@@ -93,6 +100,7 @@ public class ModifAdherentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
