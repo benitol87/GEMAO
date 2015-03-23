@@ -80,6 +80,10 @@ header .icon, header .icon:hover{
 	border-radius: 10px;
 }
 
+div#logo{
+	margin-bottom : 30px;
+}
+
 #pageConnexion{
 	height: 400px;
 	padding-top: 100px;
