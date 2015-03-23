@@ -73,9 +73,9 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
         contrat.setTypeContrat(typeContratCtrl.recupererTypeContrat(typeContrat));
         
         perso.setContrat(contrat);
-        
+        /*
         AjouterPersonnelCtrl ajouterPersonnelCtrl = new AjouterPersonnelCtrl();
-        ajouterPersonnelCtrl.ajouterPersonnel(perso);
+        ajouterPersonnelCtrl.ajouterPersonnel(perso);*/
         
         // Archivage
 		new ModificationCtrl().ajouterModification(new Modification(

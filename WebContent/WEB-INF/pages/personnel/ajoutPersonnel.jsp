@@ -76,7 +76,7 @@ autocompletionAdresse("#rue", "#compl");
 		</div>
 		
 		<div>
-			<label for="email">Numéro de sécurité sociale </label>
+			<label for="numeroSS">Numéro de sécurité sociale </label>
 			<input type="text" name="numeroSS" autocomplete="on" maxlength="15"/>
 		</div>
 	</fieldset>

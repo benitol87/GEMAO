@@ -192,7 +192,7 @@ autocompletionFamille("#famille");
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
-		<p>* Champs obligatoires</p>
+		<p class="oblig">* Champs obligatoires</p>
 		<a class="btn" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>">Retour</a>
 	</fieldset>
 </form>
