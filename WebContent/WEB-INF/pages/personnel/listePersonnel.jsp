@@ -65,8 +65,8 @@
 						value="${pers.getAdresse().getCommune().getNomCommune()}" /></td>
 			<td class="listCom"><c:out
 						value="${pers.getAdresse().getCommune().getCodePostal()}" /></td>
-			<!-- Mettre date début enseignement -->
-			<td>
+			
+			<td class="listEntree">
 			<c:choose>
 				<c:when test="${pers.isMembreCA()}">
 					<td class="listCA">Oui</td>
