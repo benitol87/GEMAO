@@ -53,7 +53,7 @@ autocompletionAdresse("#rue", "#compl");
 		
 		<div>
 			<label for="famille" class='required'>Famille </label> <input
-				type="text" name="famille" value="" required="required" />
+				type="text" name="famille" value="${ajout_adh_adherent.getFamille().getNomFamille()}" required="required" />
 		</div>
 
 		<div>
