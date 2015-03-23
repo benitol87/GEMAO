@@ -13,15 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.administration.ProfilsCtrl;
-import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.administration.Droit;
 import fr.gemao.entity.administration.Module;
 import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.administration.TypeDroit;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.form.util.Form;
 import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
+import fr.gemao.view.ResultatServlet;
 
 /**
  * Servlet implementation class ModifierProfilServlet
@@ -43,6 +44,7 @@ public class ModifierProfilServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Récupération des données du profil dont l'identifiant est passé en paramètre
 		String paramId = Form.getValeurChamp(request, PARAM_IDENTIFIANT);
@@ -103,10 +105,10 @@ public class ModifierProfilServlet extends HttpServlet {
 				personneConnectee.setProfil(profil);
 			}
 			
-			request.setAttribute(ATTR_LIEN_BOUTON, Pattern.ADMINISTRATION_CONSULTER_PROFIL+"?id="+profil.getIdProfil());
-			request.setAttribute(ATTR_NOM_BOUTON, "Retour");
-			request.setAttribute(ATTR_TITRE_H1, "Résultat de la modification");
-			request.setAttribute(ATTR_RESULTAT, "La modification a bien été effectuée.");
+			request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON, Pattern.ADMINISTRATION_CONSULTER_PROFIL+"?id="+profil.getIdProfil());
+			request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON, "Retour");
+			request.setAttribute(ResultatServlet.ATTR_TITRE_H1, "Résultat de la modification");
+			request.setAttribute(ResultatServlet.ATTR_RESULTAT, "La modification a bien été effectuée.");
 			request.getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);
 		} else {
 			// Erreur modification
