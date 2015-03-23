@@ -32,6 +32,7 @@ public class ExportMaterielServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String,Object> map = new LinkedHashMap<String, Object>();
@@ -128,10 +129,20 @@ public class ExportMaterielServlet extends HttpServlet {
 			else
 				listeDonnees.add(" ");
 			
-			
 		}
 		
-		Parser parser = new CSVFileParser(Config.params.get(Config.DOSSIER_RACINE)+"\\exports\\materiel.csv");
+		String path = request.getSession().getServletContext().getRealPath("/")
+				+ "/" + Config.params.get(Config.DOSSIER_RACINE)
+				+ "/exports/materiels.csv";
+		String pathURL = request.getScheme() + "://" + request.getServerName()
+				+ ":" + request.getServerPort() + request.getContextPath()
+				+ "/" + Config.params.get(Config.DOSSIER_RACINE)
+				+ "/exports/materiels.csv";
+		Parser parser = new CSVFileParser(path);
+
+		request.setAttribute(ResultatServlet.ATTR_NON_BOUTON_2,
+				"Télécharger le fichier");
+		request.setAttribute(ResultatServlet.ATTR_LIEN_BONTON_2, pathURL);
 
 		request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON, Pattern.MATERIEL_LISTER);
 		request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON, "Retour à la liste");
