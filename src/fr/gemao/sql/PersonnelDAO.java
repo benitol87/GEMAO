@@ -130,7 +130,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		}
 		
 		String sql = "UPDATE personnel SET idContrat = ?, login = ?, pwd = ?, pointAnciennete = ?, premiereConnexion = ?,"
-				+ "idProfil = ?, numeroSS = ? "
+				+ "idProfil = ?, numeroSS = ?, dateDebutEnseignement=? "
 				+ "WHERE idPersonne = ?;";
 
 		try {
@@ -143,6 +143,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 					obj.isPremiereConnexion(),
 					idProfil,
 					obj.getNumeroSS(),
+ obj.getDateEntree(),
 					obj.getIdPersonne());
 			requete.executeUpdate();
 
@@ -240,8 +241,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 				NumberUtil.getResultInteger(result, "pointAnciennete"),
 				idProfil==null?null:profilDAO.get(idProfil),
 				result.getBoolean("premiereConnexion"),
-				result.getString("numeroSS"),
-				result.getDate("datedebEns")
+				result.getString("numeroSS"), result
+						.getDate("dateDebutEnseignement")
 		);
 		
 		return personnel;
