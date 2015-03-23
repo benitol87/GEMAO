@@ -156,9 +156,11 @@
 	<a href="<c:url value="<%= Pattern.ADHERENT_DESINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">
 		<input type="button" value="Désinscrire" />
 	</a>
+	<c:if test="${adherent.getMotif() != null }">
 	<a href="<c:url value="<%= Pattern.ADHERENT_REINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">
 		<input type="button" value="Réinscrire" />
 	</a>
+	</c:if>
 	<c:if test="${!adherent.isAPaye() && adherent.getMotif() == null }">
 	<a href="<c:url value="<%= Pattern.ADHERENT_APAYE %>"/><c:out value='?id=${adherent.idPersonne}'/>">
 		<input type="button" value="A Payé"/>

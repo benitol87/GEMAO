@@ -34,7 +34,6 @@
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
-		<input type="button" value="Annuler" /> 
 		<input type="submit" value="Valider" />
 	</fieldset>
 </form>

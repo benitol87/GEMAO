@@ -27,7 +27,7 @@ public class AjouterAdherentCtrl {
 	 * @param adherent
 	 * @return true si les informations sont valides, false sinon
 	 */
-	public boolean verifierInformations(Adherent adherent){
+	public static boolean verifierInformations(Adherent adherent){
 		Date date = new Date();
 		
 		//Vérification de l'idMotif
@@ -83,7 +83,7 @@ public class AjouterAdherentCtrl {
 			AdherentDAO adherentDAO = co.getAdherentDAO();
 
 			//Vérification de la validité des informations
-			if(this.verifierInformations(adherent)){
+			if(verifierInformations(adherent)){
 				adh = adherentDAO.create(adherent);
 				if (adh == null){
 					System.out.println("Une erreur est survenue lors de l'insertion...");

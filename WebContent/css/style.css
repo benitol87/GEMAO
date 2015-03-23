@@ -261,12 +261,12 @@ a.text-danger:hover {
 	margin-right : 20px;
 }
 
-#choix
+.choix
 {
 	margin-right : 16px;
 }
 
-#choix input
+.choix input
 {
 	margin : 1px;
 }
