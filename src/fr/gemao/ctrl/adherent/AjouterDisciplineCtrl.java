@@ -13,10 +13,10 @@ public class AjouterDisciplineCtrl {
 	public static boolean ajouterDiscipline(Discipline discipline) {
 
 
-		DAOFactory co = DAOFactory.getInstance();
-		DisciplineDAO disciplineDAO = co.getDisciplineDAO();
-		NiveauDAO niveauDAO = co.getNiveauDAO();
-		MatiereDAO matiereDAO = co.getMatiereDAO();
+		DAOFactory factory = DAOFactory.getInstance();
+		DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
+		NiveauDAO niveauDAO = factory.getNiveauDAO();
+		MatiereDAO matiereDAO = factory.getMatiereDAO();
 		
 		Matiere matiere = matiereDAO.exist(discipline.getMatiere());
 		if(matiere == null)
