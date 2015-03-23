@@ -24,7 +24,7 @@ autocompletionAdresse("#rue", "#compl");
 <h1>Ajout d'un adhérent</h1>
 
 <c:if test="${errDate}">
-	<p class="offset">Date de naissance < Date d'inscription <= Date du jour</p>
+	<p class="offset text-danger">Date de naissance < Date d'inscription <= Date du jour</p>
 </c:if>
 <form id="ajoutAdherent" action="#" method="post">
 	<fieldset>
