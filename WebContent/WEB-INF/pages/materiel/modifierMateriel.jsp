@@ -37,9 +37,9 @@
 				<p>${form.getErreurs().get("valeurAch")}</p>
 		</div>
 		<div>
-			<label for="dateAch">Date d'acquisation : </label> <input type="text"
+			<label for="dateAch">Date d'acquisition : </label> <input type="text"
 				id="dateAch" name="dateAch"
-				value="${dateAchat}" />
+				value="${dateAchat}" class="datepicker" />
 				<p>${form.getErreurs().get("dateAch")}</p>
 		</div>
 

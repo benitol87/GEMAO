@@ -9,6 +9,14 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
+<c:import url="/js/autocompleteCommune.jsp"/>
+<c:import url="/js/autocompleteAdresse.jsp"/>
+
+<script type="text/javascript">
+autocompletionCommuneCodePostal("#commune", "#codePostal");
+autocompletionAdresse("#rue", "#compl");
+</script>
+
 <script src="<c:url value="/js/modifierAdherent.js"/>"></script>
 
 <h1>Modification d'un adhérent</h1>
@@ -67,22 +75,22 @@
 		</div>
 		<div>
 			<label for="rue" class="required">Rue : </label> <input type="text"
-				name="rue" required="required" autocomplete="off"
+				name="rue" id="rue" required="required" autocomplete="off"
 				value="<c:out value="${adherent.adresse.nomRue}"/>" />
 		</div>
 		<div>
 			<label for="compl">Complément d'adresse : </label> <input type="text"
-				name="compl" autocomplete="off"
+				name="compl" id="compl" autocomplete="off"
 				value="<c:out value="${adherent.adresse.infoCompl}"/>" />
 		</div>
 		<div>
 			<label for="commune" class="required">Commune : </label> <input
-				type="text" name="commune" required="required" autocomplete="off"
+				type="text" name="commune" id="commune" required="required" autocomplete="off"
 				value="<c:out value="${adherent.adresse.commune.nomCommune}"/>" />
 		</div>
 		<div>
 			<label for="codePostal" class="required">Code postal : </label> <input
-				type="text" name="codePostal" required="required" maxlength="5"
+				type="text" name="codePostal" id="codePostal" required="required" maxlength="5"
 				autocomplete="off"
 				value="<c:out value="${adherent.adresse.commune.codePostal}"/>" />
 		</div>
