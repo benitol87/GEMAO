@@ -26,6 +26,10 @@
 			<c:out value="${adherent['prenom']}" />
 		</div>
 		<div>
+			<span class='text-label'><label for="famille">Famille : </label></span>
+			<c:out value="" />
+		</div>
+		<div>
 			<span class='text-label'>Date de naissance : </span>
 			<c:out value="${adherent['dateNaissance']}" />
 		</div>

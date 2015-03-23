@@ -50,6 +50,11 @@ autocompletionAdresse("#rue", "#compl");
 			<label for="prenom" class='required'>Prénom </label> <input
 				type="text" name="prenom" value="${ajout_adh_adherent.getPrenom()}" required="required" />
 		</div>
+		
+		<div>
+			<label for="famille" class='required'>Famille </label> <input
+				type="text" name="famille" value="" required="required" />
+		</div>
 
 		<div>
 			<label for="dateNaiss" class='required'>Date de naissance </label> <input
