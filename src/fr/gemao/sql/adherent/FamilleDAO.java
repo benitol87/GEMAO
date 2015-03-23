@@ -125,6 +125,12 @@ public class FamilleDAO extends IDAO<Famille> {
 		return liste;
 	}
 
+	/**
+	 * Test si une famille existe déjà. Test sur nomFamille;
+	 * 
+	 * @param famille
+	 * @return null si n'existe pas.
+	 */
 	public Famille exits(Famille famille) {
 		Connection connexion = null;
 		PreparedStatement requete = null;
