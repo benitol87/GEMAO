@@ -36,7 +36,7 @@
 				<c:forEach items="${listeCat}" var="cat">
 					<option value="${cat.getIdCategorie()}">${cat.getLibelleCat()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutCategorie" id="ajoutCategorie"
+			</select> <input type="button" onClick="ajoutCategorie();" name="ajoutCategorie" id="ajoutCategorie"
 				value="Créer..." />
 				<p>${form.getErreurs().get("categorie")}</p>
 		</div>
@@ -74,7 +74,7 @@
 				<c:forEach items="${listeFourn}" var="fou">
 					<option value="${fou.getIdFournisseur()}">${fou.getNomFournisseur()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutFournisseur" id="ajoutFournisseur"
+			</select> <input type="button" onClick="ajoutFournisseur();" name="ajoutFournisseur" id="ajoutFournisseur"
 				value="Créer..." />
 				<p>${form.getErreurs().get("fournisseur")}</p>
 		</div>
@@ -92,7 +92,7 @@
 				<c:forEach items="${listeDes}" var="des">
 					<option value="${des.getIdDesignation()}">${des.getLibelleDesignation()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutDesignation" id="ajoutDesignation"
+			</select> <input type="button" onClick="ajoutDesignation();" name="ajoutDesignation" id="ajoutDesignation"
 				value="Créer..." />
 				<p>${form.getErreurs().get("designation")}</p>
 		</div>
@@ -113,7 +113,7 @@
 				<c:forEach items="${listeEtats}" var="etat">
 					<option value="${etat.getIdEtat()}">${etat.getLibelleEtat()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutEtat" id="ajoutEtat" value="Créer..." />
+			</select> <input type="button" onClick="ajoutEtat();" name="ajoutEtat" id="ajoutEtat" value="Créer..." />
 			<p>${form.getErreurs().get("etat")}</p>
 		</div>
 
@@ -125,7 +125,7 @@
 				<c:forEach items="${listeMarque}" var="marque">
 					<option value="${marque.getIdMarque()}">${marque.getNomMarque()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutMarque" id="ajoutMarque" value="Créer..." />
+			</select> <input type="button" onClick="ajoutMarque();" name="ajoutMarque" id="ajoutMarque" value="Créer..." />
 			<p>${form.getErreurs().get("marque")}</p>
 		</div>
 		<div>
