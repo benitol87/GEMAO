@@ -8,8 +8,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import fr.gemao.ctrl.RecupererResponsabiliteCtrl;
+import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
+import fr.gemao.entity.cours.Discipline;
 import fr.gemao.entity.personnel.Diplome;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.personnel.Responsabilite;
@@ -23,10 +26,14 @@ import fr.gemao.entity.personnel.Responsabilite;
 public class PersonnelForm {
 
 	// Informations relatives à la personne
-	private static final String CHAMP_NOM = "nom";
-	private static final String CHAMP_PRENOM = "prenom";
 	private static final String CHAMP_LISTERESPONSABILITE = "fonction";
 	private static final String CHAMP_LISTEDIPLOME = "diplome";
+	private static final String CHAMP_DISCIPLINES = "discipline";
+	
+	private static final String CHAMP_NOM = "nom";
+	private static final String CHAMP_PRENOM = "prenom";
+	
+	
 	private static final String CHAMP_IDCONTRAT = "idContrat";
 	private static final String CHAMP_LOGIN = "login";
 	private static final String CHAMP_PASSWORD = "password";
@@ -40,6 +47,8 @@ public class PersonnelForm {
 	private static final String CHAMP_TELPORT = "telPort";
 	private static final String CHAMP_EMAIL = "email";
 	private static final String CHAMP_NUMERO_SS = "numeroSS";
+	
+	
 
 	// Informations relatives à la personne
 	private String nom;
@@ -68,10 +77,12 @@ public class PersonnelForm {
 	private String classe;
 
 	// Inscription
-	private Date dateEntree;
+	private String dateEntree;
 
 	private List<Responsabilite> listeResponsabilite;
 	private List<Diplome> listeDiplomes;
+	private List<Discipline> listeDisciplines;
+	
 	private Integer idContrat;
 	private String login;
 	private String password;
@@ -86,6 +97,10 @@ public class PersonnelForm {
 
 	public List<Diplome> getListeDiplomes() {
 		return listeDiplomes;
+	}
+	
+	public List<Discipline> getListeDisciplines(){
+		return listeDisciplines;
 	}
 
 	public Integer getIdContrat() {
@@ -156,7 +171,7 @@ public class PersonnelForm {
 		return classe;
 	}
 
-	public Date getDateEntree() {
+	public String getDateEntree() {
 		return dateEntree;
 	}
 
@@ -224,7 +239,7 @@ public class PersonnelForm {
 		this.classe = classe;
 	}
 
-	public void setDateEntree(Date dateEntree) {
+	public void setDateEntree(String dateEntree) {
 		this.dateEntree = dateEntree;
 	}
 
@@ -234,6 +249,10 @@ public class PersonnelForm {
 
 	public void setListeDiplomes(List<Diplome> listeDiplomes) {
 		this.listeDiplomes = listeDiplomes;
+	}
+	
+	public void setListeDisciplines(List<Discipline> listeDisciplines){
+		this.listeDisciplines = listeDisciplines;
 	}
 
 	public void setIdContrat(Integer idContrat) {
@@ -354,15 +373,48 @@ public class PersonnelForm {
 			str = getValeurChamp(request, CHAMP_LISTERESPONSABILITE + i);
 
 			if (str != null && !str.equals("")) {
-				res = new Responsabilite();
-				res.setLibelle(str);
+				res = RecupererResponsabiliteCtrl.recupererResponsabilite(Integer.parseInt(str));
 				list.add(res);
 			}
 			i++;
-			System.out.println(str);
 
 		} while (str != null);
-		return list;
+		return list;	
+	}
+	
+	/**
+	 * Methode qui récupère la liste des displine
+	 * @param request
+	 */
+	public List<Discipline> lireDisciplines(HttpServletRequest request){
+		String str = null;
+		Discipline disc;
+		List<Discipline> listDisciplines = new ArrayList<>();
+		int i = 1;
+		
+		do {
+			str = getValeurChamp(request, CHAMP_DISCIPLINES+i);
+			i++;
+			
+			if (str != null && !str.equals("")) {
+				disc = RecupererDisciplineCtrl.recupererDiscipline(Integer.parseInt(str));
+				listDisciplines.add(disc);
+			}
+			
+		} while(str != null);
+		
+		i = 1;
+		do {
+			str = getValeurChamp(request, CHAMP_DISCIPLINES+"Anciennes"+i);
+			i++;
+			
+			if (str != null && !str.equals("")) {
+				String[] parts = str.split("-");
+				disc = RecupererDisciplineCtrl.recupererDiscipline(parts[0],parts[1]);
+				listDisciplines.add(disc);
+			}
+		} while(str != null);
+		return listDisciplines;
 	}
 
 	public List<Diplome> lireDiplomes(HttpServletRequest request) {
@@ -379,7 +431,6 @@ public class PersonnelForm {
 				list.add(dip);
 			}
 			i++;
-			System.out.println(str);
 		} while (str != null);
 		return list;
 	}
@@ -398,14 +449,14 @@ public class PersonnelForm {
 
 		listeResponsabilite = lireResponsabilites(request);
 		listeDiplomes = lireDiplomes(request);
-		
-		nom = getValeurChamp(request, CHAMP_NOM);
-		prenom = getValeurChamp(request, CHAMP_PRENOM);
 
 		idContrat = Integer.parseInt(getValeurChamp(request, CHAMP_IDCONTRAT));
+		nom = getValeurChamp(request, CHAMP_NOM);
+		prenom = getValeurChamp(request, CHAMP_PRENOM);
 		login = getValeurChamp(request, CHAMP_LOGIN);
 		password = getValeurChamp(request, CHAMP_PASSWORD);
-		pointsAncien = Integer.parseInt(getValeurChamp(request, CHAMP_POINTSANCIEN));
+		pointsAncien = Integer.parseInt(getValeurChamp(request,
+				CHAMP_POINTSANCIEN));
 		numRue = getValeurChamp(request, CHAMP_NUMRUE);
 		nomRue = getValeurChamp(request, CHAMP_NOMRUE);
 		infoCompl = getValeurChamp(request, CHAMP_INFOCOMPL);

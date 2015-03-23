@@ -13,11 +13,15 @@ import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
+
+import fr.gemao.ctrl.adherent.AjouterFamilleCtrl;
 import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
 import fr.gemao.ctrl.adherent.ModifierResponsableCtrl;
 import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.adherent.Adherent;
+
+import fr.gemao.entity.adherent.Famille;
 import fr.gemao.entity.administration.Modification;
 import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
@@ -65,15 +69,14 @@ public class ValidationModifAdherentServlet extends HttpServlet {
 
 		request.setAttribute("adherent", adherent);
 		
+		Famille famille = AjouterFamilleCtrl.AjouterFamile(adherent.getFamille());
+		adherent.setFamille(famille);
+		AjouterCommuneCtrl.ajoutCommune(adherent.getAdresse().getCommune());
+		AjouterAdresseCtrl.ajoutAdresse(adherent.getAdresse());
 		
-		AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
-		AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
 		
-		ajouterCommuneCtrl.ajoutCommune(adherent.getAdresse().getCommune());
-		ajouterAdresseCtrl.ajoutAdresse(adherent.getAdresse());;
-		
-		ModifierAdherentCtrl modifierAdherentCtrl = new ModifierAdherentCtrl();
-		if (modifierAdherentCtrl.modifierAdherent(adherent)) {
+		if (ModifierAdherentCtrl.modifierAdherent(adherent)) {
+
 			if (adherent.getResponsable() == null) {
 				// Pas de responsable => modif ok
 				// Archivage
@@ -90,9 +93,8 @@ public class ValidationModifAdherentServlet extends HttpServlet {
 								JSPFile.ADHERENT_CONFIRMATION_MODIFICATION)
 						.forward(request, response);
 			} else {
-				// Vérification que la modification du responsable s'est bien faite
-				ModifierResponsableCtrl modifierResponsableCtrl = new ModifierResponsableCtrl();
-				if (modifierResponsableCtrl.modifierResponsable(adherent
+
+				if (ModifierResponsableCtrl.modifierResponsable(adherent
 						.getResponsable())) {
 					// modif ok
 					// Archivage

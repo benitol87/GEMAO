@@ -24,7 +24,7 @@ autocompletionAdresse("#rue", "#compl");
 <h1>Ajout d'un adhérent</h1>
 
 <c:if test="${errDate}">
-	<p class="offset text-danger">Date de naissance < Date d'inscription <= Date du jour</p>
+	<p class="offset text-danger">Date de naissance &lt; Date d'inscription &lt;= Date du jour</p>
 </c:if>
 <form id="ajoutAdherent" action="#" method="post">
 	<fieldset>
@@ -33,7 +33,7 @@ autocompletionAdresse("#rue", "#compl");
 		<div>
 			<label>Civilité</label> <span> <input type="radio"
 				name="civilite" value="F" id="civiliteF"
-				<c:if test="${ajout_adh_adherent.civilite['nameCourt'] == 'Mme'}"> checked="checked" </c:if> />
+				checked="checked" />
 				<label for="civiliteF">Mme</label> <input type="radio"
 				name="civilite" id="civiliteM" value="M"
 				<c:if test="${ajout_adh_adherent.civilite['nameCourt'] == 'M.'}"> checked="checked" </c:if> /><label
@@ -53,7 +53,7 @@ autocompletionAdresse("#rue", "#compl");
 		
 		<div>
 			<label for="famille" class='required'>Famille </label> <input
-				type="text" name="famille" value="" required="required" />
+				type="text" name="famille" value="${ajout_adh_adherent.getFamille().getNomFamille()}" required="required" />
 		</div>
 
 		<div>
@@ -136,8 +136,7 @@ autocompletionAdresse("#rue", "#compl");
 		<div>
 			<label class='required'>Droit à l'image </label> <span> <input
 				type="radio" name="droitImage" value="true"
-				<c:if test="${ajout_adh_adherent.isDroitImage() == true}"> checked="checked" 
-						</c:if> />
+				checked="checked" />
 				<label for="droitImage">Oui</label> <input type="radio"
 				name="droitImage" value="false"
 				<c:if test="${ajout_adh_adherent.isDroitImage() == false}"> checked="checked" 
@@ -147,8 +146,7 @@ autocompletionAdresse("#rue", "#compl");
 		</div>
 		<div>
 			<label class='required'>Membre CA </label> <span> <input
-				type="radio" name="membreCA" value="true"  <c:if test="${ajout_adh_adherent.isMembreCA() == true}"> checked="checked" 
-						</c:if> /> <label
+				type="radio" name="membreCA" value="true" checked="checked" /> <label
 				for="membreCA">Oui</label> <input type="radio" name="membreCA"
 				value="false" <c:if test="${ajout_adh_adherent.isMembreCA() == false}"> checked="checked" 
 						</c:if> /> <label for="membreCA">Non</label>
