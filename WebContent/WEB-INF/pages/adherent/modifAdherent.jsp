@@ -190,15 +190,8 @@ autocompletionAdresse("#rue", "#compl");
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
-<<<<<<< HEAD
-		<a class="btn" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>">Retour</a>
-		<input type="submit" value="Suivant" />
-=======
 		<p>* Champs obligatoires</p>
-		<a href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>"> <input
-			type="button" value="Retour" />
-		</a> <input type="submit" value="Suivant" />
->>>>>>> branch 'master' of https://github.com/benitol87/GEMAO.git
+		<a class="btn" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>">Retour</a>
 	</fieldset>
 </form>
 <c:import url="/inc/footer.inc.jsp" />
