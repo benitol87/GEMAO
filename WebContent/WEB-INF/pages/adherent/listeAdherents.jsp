@@ -17,35 +17,35 @@
 <form class="offset">
 	<p>
 		<span id="gras">Afficher : </span>
-		<span id="choix">
+		<span class="choix">
 			<label for="naissance">Date de naissance</label>
 			<input type="checkbox" name="naissance" id="naissance" onchange="affNaissance()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="email">Email</label>
 			<input type="checkbox" name="email" id="email" onchange="affEmail()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="commune">Commune</label>
 			<input	type="checkbox" name="commune" id="commune" onchange="affCommune()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="entree">Date d'entrée</label>
 			<input type="checkbox"	name="entree" id="entree" onchange="affEntree()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="droitImage">Droit à l'image</label>
 			<input type="checkbox" name="droitImage" id="droitImage" onchange="affDroitImage()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="QF">Quotient Familial</label>
 			<input type="checkbox" name="QF" id="QF" onchange="affQF()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="CA">Membre CA</label>
 			<input type="checkbox" name="CA" id="CA" onchange="affCA()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="aPaye">A Payé</label>
 			<input type="checkbox" name="aPaye" id="aPaye" onchange="affAPaye()"/>
 		</span>

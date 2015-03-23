@@ -134,18 +134,6 @@ public class ExportAdherentsServlet extends HttpServlet {
 			listeDonnees.add(a.isAPaye()?"Oui":"Non");
 		}
 		
-		/*
-		 * Parser parser = new
-		 * CSVFileParser(Config.params.get(Config.DOSSIER_RACINE
-		 * )+"\\exports\\adherents.csv");
-		 * 
-		 * request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON,
-		 * Pattern.ADHERENT_LISTER);
-		 * request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON,
-		 * "Retour à la liste");
-		 * request.setAttribute(ResultatServlet.ATTR_TITRE_H1,
-		 * "Export de données");
-		 */
 
 		String path = request.getSession().getServletContext().getRealPath("/")
 				+ "/" + Config.params.get(Config.DOSSIER_RACINE)
@@ -154,8 +142,6 @@ public class ExportAdherentsServlet extends HttpServlet {
 				+ ":" + request.getServerPort() + request.getContextPath()
 				+ "/" + Config.params.get(Config.DOSSIER_RACINE)
 				+ "/exports/adherents.csv";
-		System.out.println(path);
-		System.out.println(pathURL);
 		Parser parser = new CSVFileParser(path);
 
 		request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON, Pattern.ADHERENT_LISTER);
