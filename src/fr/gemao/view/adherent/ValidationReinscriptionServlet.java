@@ -79,13 +79,13 @@ public class ValidationReinscriptionServlet extends HttpServlet {
 		Adresse adresse = adherent.getAdresse();
 		Responsable responsable = adherent.getResponsable();
 
-		AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
+		new AjouterCommuneCtrl();
 
-		ajouterCommuneCtrl.ajoutCommune(commune);
+		AjouterCommuneCtrl.ajoutCommune(commune);
 		adresse.setCommune(commune);
 
-		AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
-		ajouterAdresseCtrl.ajoutAdresse(adresse);
+		new AjouterAdresseCtrl();
+		AjouterAdresseCtrl.ajoutAdresse(adresse);
 
 		adherent.setAdresse(adresse);
 
@@ -99,11 +99,11 @@ public class ValidationReinscriptionServlet extends HttpServlet {
 		adherent.setMotif(null);
 		adherent.setDateSortie(null);
 
-		ModifierAdherentCtrl modifierAdherentCtrl = new ModifierAdherentCtrl();
+		new ModifierAdherentCtrl();
 
 		request.setAttribute("adherent", adherent);
 
-		if (modifierAdherentCtrl.modifierAdherent(adherent)) {
+		if (ModifierAdherentCtrl.modifierAdherent(adherent)) {
 			// Succès de l'ajout
 			// Archivage de la modification
 			new ModificationCtrl().ajouterModification(new Modification(0,

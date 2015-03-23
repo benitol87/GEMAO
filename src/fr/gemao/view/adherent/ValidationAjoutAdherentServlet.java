@@ -15,12 +15,14 @@ import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.AjouterPersonneCtrl;
 import fr.gemao.ctrl.adherent.AjouterAdherentCtrl;
+import fr.gemao.ctrl.adherent.AjouterFamilleCtrl;
 import fr.gemao.ctrl.adherent.AjouterResponsableCtrl;
 import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.entity.adherent.Famille;
 import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.entity.administration.Modification;
 import fr.gemao.view.ConnexionServlet;
@@ -80,16 +82,20 @@ public class ValidationAjoutAdherentServlet extends HttpServlet {
 				.getAttribute("ajout_adh_responsable");
 
 		
-		AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
+		new AjouterCommuneCtrl();
 
-		ajouterCommuneCtrl.ajoutCommune(commune);
+		AjouterCommuneCtrl.ajoutCommune(commune);
 		adresse.setCommune(commune);
 
 
-		AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
-		ajouterAdresseCtrl.ajoutAdresse(adresse);
+		new AjouterAdresseCtrl();
+		AjouterAdresseCtrl.ajoutAdresse(adresse);
 		
 		adherent.setAdresse(adresse);
+		
+		Famille famille = AjouterFamilleCtrl.AjouterFamile(adherent.getFamille());
+		adherent.setFamille(famille);
+		
 		
 
 		if (responsable != null) {

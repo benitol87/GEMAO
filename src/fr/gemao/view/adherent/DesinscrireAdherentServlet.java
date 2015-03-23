@@ -131,9 +131,7 @@ public class DesinscrireAdherentServlet extends HttpServlet {
 				adherent.setMotif(motifSortieCtrl.recupererMotifSortie(Integer.parseInt(idMotif)));
 				adherent.setDateSortie(date);
 				
-				// Mise à jour des données de l'adhérent
-				ModifierAdherentCtrl modifAdherentCtrl = new ModifierAdherentCtrl();
-				if(! modifAdherentCtrl.modifierAdherent(adherent)){
+				if(! ModifierAdherentCtrl.modifierAdherent(adherent)){
 					// Si un problème survient
 					form.setErreur(ERREUR_MODIFICATION, "Une erreur est survenue lors de la désinscription d'un adhérent.");
 				} else {

@@ -23,6 +23,7 @@ import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Parametre;
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.entity.adherent.Famille;
 import fr.gemao.entity.adherent.Responsable;
 import fr.gemao.entity.cours.Discipline;
 import fr.gemao.entity.util.Civilite;
@@ -117,6 +118,8 @@ public class ModifAdherentServlet extends HttpServlet {
 			adherent.setNom(nom);
 			String prenom = adherentForm.getPrenom();
 			adherent.setPrenom(prenom);
+			String famille = adherentForm.getFamille();
+			adherent.setFamille(new Famille(null, famille));
 
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			Date dateNaiss = null;
@@ -149,10 +152,10 @@ public class ModifAdherentServlet extends HttpServlet {
 					.getParameter("codePostal"));
 			Commune commune = new Commune(null, codePostal, nomCommune, false);
 
-			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
-			ajouterCommuneCtrl.ajoutCommune(commune);
+			new AjouterCommuneCtrl();
+			AjouterCommuneCtrl.ajoutCommune(commune);
 
-			AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
+			new AjouterAdresseCtrl();
 			Adresse adresse = new Adresse();
 			String numRue = request.getParameter("num");
 			adresse.setNumRue(numRue);
@@ -161,7 +164,7 @@ public class ModifAdherentServlet extends HttpServlet {
 			String infoCompl = request.getParameter("compl");
 			adresse.setInfoCompl(infoCompl);
 			adresse.setCommune(commune);
-			ajouterAdresseCtrl.ajoutAdresse(adresse);
+			AjouterAdresseCtrl.ajoutAdresse(adresse);
 			
 			DAOFactory factory = DAOFactory.getInstance();
 			commune = factory.getCommuneDAO().existNomCodePostal(commune);
@@ -196,8 +199,8 @@ public class ModifAdherentServlet extends HttpServlet {
 				String emailResp = request.getParameter("emailResp");
 				responsable.setEmail(emailResp);
 
-				ModifierResponsableCtrl modifierResponsableCtrl = new ModifierResponsableCtrl();
-				modifierResponsableCtrl.modifierResponsable(responsable);
+				new ModifierResponsableCtrl();
+				ModifierResponsableCtrl.modifierResponsable(responsable);
 			}
 
 			session.setAttribute("modif_adh_adherent", adherent);

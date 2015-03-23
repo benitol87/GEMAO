@@ -69,8 +69,7 @@ public class ModifierQFServlet extends HttpServlet {
 			Adherent adherent = (Adherent) session.getAttribute("modif_QF_adherent");
 			adherent.setQf(quotient);			
 			
-			ModifierAdherentCtrl modifierAdherentCtrl = new ModifierAdherentCtrl();
-			if(modifierAdherentCtrl.modifierAdherent(adherent))
+			if(ModifierAdherentCtrl.modifierAdherent(adherent))
 				request.setAttribute("modifOK", true);
 			else
 				request.setAttribute("modifOK", false);

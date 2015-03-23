@@ -67,8 +67,7 @@ public class APayeServlet extends HttpServlet {
 
 		adherent.setAPaye(true);
 
-		ModifierAdherentCtrl modifiAdhCtrl = new ModifierAdherentCtrl();
-		modifiAdhCtrl.modifierAdherent(adherent);
+		ModifierAdherentCtrl.modifierAdherent(adherent);
 
 		req.setAttribute(CHAMP_ADHERENT, adherent);
 		req.setAttribute(CHAMP_CONFIRAMTION, true);

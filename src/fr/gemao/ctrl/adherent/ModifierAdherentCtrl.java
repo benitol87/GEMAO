@@ -25,11 +25,9 @@ public class ModifierAdherentCtrl {
 	 * La méthode vérifie avant si les informations sont valides.
 	 * @param adherent : l'adhérent à modifier
 	 */
-	public boolean modifierAdherent(Adherent adherent) {
-		AjouterAdherentCtrl ajoutAdherent = new AjouterAdherentCtrl();
-		
+	public static boolean modifierAdherent(Adherent adherent) {
 		//Vérification de la validité des informations
-		if (ajoutAdherent.verifierInformations(adherent)) {
+		if (AjouterAdherentCtrl.verifierInformations(adherent)) {
 			ModifierPersonneCtrl modifPers = new ModifierPersonneCtrl();
 			
 			//Vérification de la modification de la personne
