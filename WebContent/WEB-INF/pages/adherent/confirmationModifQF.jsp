@@ -12,7 +12,7 @@
 <h1>Confirmation</h1>
 
 <c:if test="${modifOK == true}">
-	<p class="offset">L'adhérent <c:out value="${adherent['prenom']}" /> <c:out value="${adherent['nom']}" />
+	<p class="offset text-success">L'adhérent <c:out value="${adherent['prenom']}" /> <c:out value="${adherent['nom']}" />
 		a maintenant le
 		<c:choose>
 			<c:when test="${params.getQf_min() > adherent.getQf()}">
@@ -28,7 +28,7 @@
 		.</p>
 </c:if>
 <c:if test="${modifOK == false}">
-	<p class="offset">Erreur lors de la modification.</p>
+	<p class="offset text-danger">Erreur lors de la modification.</p>
 </c:if>
 <a class="offset" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>"> <input
 	type="button" value="Retour" />

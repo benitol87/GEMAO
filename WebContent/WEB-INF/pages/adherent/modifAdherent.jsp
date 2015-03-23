@@ -21,7 +21,7 @@ autocompletionAdresse("#rue", "#compl");
 
 <h1>Modification d'un adhérent</h1>
 <c:if test="${errDate}">
-	<p class="offset">Date de naissance < Date d'inscription <= Date du jour</p>
+	<p class="offset text-danger">Date de naissance < Date d'inscription <= Date du jour</p>
 </c:if>
 <form id="modifAdherent" action="#" method="post">
 	<fieldset>
@@ -44,6 +44,10 @@ autocompletionAdresse("#rue", "#compl");
 			<label for="prenom" class="required">Prénom </label><input
 				type="text" name="prenom" required="required"
 				value="<c:out value="${adherent['prenom']}" />" />
+		</div>
+		<div>
+			<label for="famille" class='required'>Famille </label> <input
+				type="text" name="famille" value="" required="required" />
 		</div>
 		<div>
 			<label for="dateNaiss" class="required">Date de naissance </label><input

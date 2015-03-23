@@ -31,7 +31,7 @@
 	</fieldset>
 </form>
 <c:if test="${ erreurPers == true }">
-	<p class="offset">Le nombre d'enfants ne peut être inférieur au nombre de personnes</p>
+	<p class="offset text-danger">Le nombre d'enfants ne peut être inférieur au nombre de personnes</p>
 </c:if>
 <c:if test="${ ! empty simpleQuotient }">
 	<p class="offset">Montant du quotient familial : <c:out value="${simpleQuotient}" /><span class="euro"></span>,  <c:out value="${QF}" /></p>

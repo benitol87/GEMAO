@@ -18,6 +18,10 @@
 	<p>
 		<span id="gras">Afficher : </span>
 		<span class="choix">
+			<label for="famille">Famille</label>
+			<input type="checkbox" name="famille" id="famille" onchange="affFamille()"/>
+		</span>
+		<span class="choix">
 			<label for="naissance">Date de naissance</label>
 			<input type="checkbox" name="naissance" id="naissance" onchange="affNaissance()" />
 		</span>
@@ -58,6 +62,7 @@
 		<tr>
 			<th>Nom</th>
 			<th>Prénom</th>
+			<th class="listFamille">Famille</th>
 			<th class="listNaiss">Date de naissance</th>
 			<th class="listEmail">Email</th>
 			<th class="listCom">Commune</th>
@@ -75,6 +80,7 @@
 			<tr>
 				<td><c:out value="${adh.getNom()}" /></td>
 				<td><c:out value="${adh.getPrenom()}" /></td>
+				<td class="listFamille">Coucou</td>
 				<td class="listNaiss"><fmt:formatDate
 						value="${adh.getDateNaissance()}" pattern="dd/MM/yyyy" /></td>
 				<td class="listEmail"><c:out value="${adh.getEmail()}" /></td>

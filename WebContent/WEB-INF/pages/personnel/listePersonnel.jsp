@@ -9,6 +9,7 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 <script src="<c:url value="/js/ListerPersonnel.js"/>"></script>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <h1>Liste du personnel</h1>
 
@@ -47,7 +48,7 @@
 		<th class="listEmail">Email</th>
 		<th class="listCom">Commune</th>
 		<th class="listCom">Code Postal</th>
-		<th class="listEntree">Date d'entrée</th>			<th class="listQF">Quotient Familial</th>
+		<th class="listEntree">Date d'entrée</th>
 		<th class="listCA">Membre CA</th>
 		<th>Actions</th>
 	</tr>
@@ -64,7 +65,8 @@
 						value="${pers.getAdresse().getCommune().getNomCommune()}" /></td>
 			<td class="listCom"><c:out
 						value="${pers.getAdresse().getCommune().getCodePostal()}" /></td>
-			<!-- Mettre date début enseignement -->
+			
+			<td class="listEntree">
 			<c:choose>
 				<c:when test="${pers.isMembreCA()}">
 					<td class="listCA">Oui</td>

@@ -45,6 +45,8 @@ import fr.gemao.view.Pattern;
 @WebServlet(Pattern.MATERIEL_AJOUT)
 public class AjoutMaterielServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static String VUE_LISTE = Pattern.MATERIEL_LISTER;
 
 	private static String ERREUR_AJOUT_CATEGORIE = "erreurCat";
 	private static String ERREUR_AJOUT_DESIGNATION = "erreurDes";
@@ -252,11 +254,16 @@ public class AjoutMaterielServlet extends HttpServlet {
 					"Ajout matériel : "+materiel.getDesignation().getLibelleDesignation()
 			));
 			session.removeAttribute("INFOS");
+			
+			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?ajoutOk=0");
+			
+		} else {
+			request.setAttribute("form", form);
+			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_AJOUT)
+				.forward(request, response);
 		}
 
-		request.setAttribute("form", form);
-		this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_AJOUT)
-				.forward(request, response);
+		
 	}
 
 }

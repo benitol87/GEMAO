@@ -26,6 +26,10 @@
 		<td><c:out value="${adherent['prenom']}" /></td>
 	</tr>
 	<tr>
+		<td>Famille : </td>
+		<td><c:out value="" /></td>
+	</tr>
+	<tr>
 		<td>Date de naissance : </td>
 		<td><c:out value="${dateNaissance}" /></td>
 	</tr>
