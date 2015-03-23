@@ -32,6 +32,7 @@ public class ExportPersonnelServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String,Object> map = new LinkedHashMap<String, Object>();
@@ -164,7 +165,18 @@ public class ExportPersonnelServlet extends HttpServlet {
 				listeDonnees.add(" ");*/
 		}
 		
-		Parser parser = new CSVFileParser(Config.params.get(Config.DOSSIER_RACINE)+"\\exports\\personnel.csv");
+		String path = request.getSession().getServletContext().getRealPath("/")
+				+ "/" + Config.params.get(Config.DOSSIER_RACINE)
+				+ "/exports/personnels.csv";
+		String pathURL = request.getScheme() + "://" + request.getServerName()
+				+ ":" + request.getServerPort() + request.getContextPath()
+				+ "/" + Config.params.get(Config.DOSSIER_RACINE)
+				+ "/exports/personnels.csv";
+		Parser parser = new CSVFileParser(path);
+
+		request.setAttribute(ResultatServlet.ATTR_NON_BOUTON_2,
+				"Télécharger le fichier");
+		request.setAttribute(ResultatServlet.ATTR_LIEN_BONTON_2, pathURL);
 
 		request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON, Pattern.PERSONNEL_LISTER);
 		request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON, "Retour à la liste");
