@@ -11,7 +11,7 @@
 
 <script src="<c:url value="/js/modifierAdherent.js"/>"></script>
 <h1>Confirmation</h1>
-<p class="offset">
+<p class="offset text-success">
 	L'adhérent
 	<c:out value="${adherent['nom']}" />
 	<c:out value="${adherent['prenom']}" />

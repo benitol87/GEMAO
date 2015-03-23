@@ -10,7 +10,7 @@
 
 <script src="<c:url value="/js/modifierAdherent.js"/>"></script>
 <h1>Confirmation</h1>
-<p class="offset">L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> n'a pas été modifié.</p>
+<p class="offset text-danger">L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> n'a pas été modifié.</p>
 <a class="offset" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>"> <input
 	type="button" value="Retour" />
 </a>

@@ -125,6 +125,7 @@
 	</fieldset>
 </c:if>
 <fieldset class='align-center no-border'>
+	<a href="/GEMAO"><input type="button" value="Annuler" /></a>
 	<input type="submit" value="Valider" />
 </fieldset>
 </form>

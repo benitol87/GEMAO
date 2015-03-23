@@ -12,10 +12,10 @@
 <h1>Echec</h1>
 <c:choose>
 	<c:when test="${dejaInscrit==true}">
-		<p class="offset">L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> existe déjà.</p>
+		<p class="offset text-danger">L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> existe déjà.</p>
 	</c:when>
 	<c:otherwise>
-		<p class="offset">L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> n'a pas été ajouté.</p>
+		<p class="offset text-danger">L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> n'a pas été ajouté.</p>
 	</c:otherwise>
 </c:choose>
 <a class="offset" href="<c:url value="<%=Pattern.ADHERENT_AJOUT%>"/>"> <input
