@@ -6,12 +6,12 @@ import java.util.List;
 
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
+import fr.gemao.entity.Personne;
+import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.entity.personnel.Diplome;
-import fr.gemao.entity.Personne;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.personnel.Responsabilite;
-import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.util.Civilite;
 
 public class Prof extends Personnel implements Serializable {
@@ -39,7 +39,7 @@ public class Prof extends Personnel implements Serializable {
 		super(idPersonne, adresse, communeNaiss, nom, prenom, dateNaissance, telFixe,
 				telPort, email, civilite, listeResponsabilite, listeDiplome, contrat,
  login, password, pointsAncien, profil,
-				premiereConnexion, membreCA, numeroSS);
+				premiereConnexion, membreCA, numeroSS, dateDebutEnseignement);
 		this.dateDebutEnseignement = dateDebutEnseignement;
 	}
 
