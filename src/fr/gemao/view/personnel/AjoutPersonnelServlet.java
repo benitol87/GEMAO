@@ -3,6 +3,7 @@ package fr.gemao.view.personnel;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,9 +16,11 @@ import javax.servlet.http.HttpSession;
 import fr.gemao.Config;
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
+import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
+import fr.gemao.entity.personnel.Diplome;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.personnel.Responsabilite;
 import fr.gemao.entity.util.Civilite;
@@ -27,6 +30,8 @@ import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.ResponsabiliteDAO;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
+import fr.gemao.view.util.AutocompletionAdresse;
+import fr.gemao.view.util.AutocompletionCommune;
 
 /**
  * Servlet implementation class AjoutPersonnelServlet
@@ -47,9 +52,17 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		ResponsabiliteDAO responsabiliteDAO = DAOFactory.getInstance().getResponsabiliteDAO();
 		List<Responsabilite> responsabilites = responsabiliteDAO.getAll();
 		session.setAttribute("listResponsabilites", responsabilites);
+		session.setAttribute("listDiscipline", RecupererDisciplineCtrl.recupererAllDiscipline());
+		
+		request = AutocompletionCommune
+				.initRequestForAutoCompletionCommune(request);
+		request = AutocompletionAdresse
+				.initRequestForAutoCompletionAdresse(request);
 		
 		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT)
 				.forward(request, response);
+		
+		
 	}
 
 	/**
@@ -76,15 +89,9 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		String codePostal = request.getParameter("code");
 		String ville = request.getParameter("ville");
 		String civilite = request.getParameter("civilite");
-		String infoComplementaire = request.getParameter("infoComplem");
-		String diplome = request.getParameter("diplome1");
-		String fonction = request.getParameter("fonction1");
+		String infoComplementaire = request.getParameter("infoComplem");	
+		
 		String numeroSS = Form.getValeurChamp(request, "numeroSS");
-
-		/**
-		 * Création du personnel
-		 * TODO manque diplome et fonction
-		 */
 
 		/**
 		 * Création de la commune
@@ -114,6 +121,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		PersonnelForm personnelForm = new PersonnelForm();
 		personnel.setListeResponsabilite(personnelForm.lireResponsabilites(request));
 		personnel.setListeDiplomes(personnelForm.lireDiplomes(request));
+		personnel.setListeDiscipline(personnelForm.lireDisciplines(request));
 		
 		AjouterPersonnelCtrl apc = new AjouterPersonnelCtrl();
 		

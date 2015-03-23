@@ -6,12 +6,12 @@ import java.util.List;
 
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
+import fr.gemao.entity.Personne;
+import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.entity.personnel.Diplome;
-import fr.gemao.entity.Personne;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.personnel.Responsabilite;
-import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.util.Civilite;
 
 public class Prof extends Personnel implements Serializable {
@@ -32,23 +32,23 @@ public class Prof extends Personnel implements Serializable {
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, Civilite civilite,
 			List<Responsabilite> listeResponsabilite,
-			List<Diplome> listeDiplome, Contrat contrat, String login,
+			List<Diplome> listeDiplome,List<Discipline> listeDiscipline, Contrat contrat, String login,
 			String password, int pointsAncien, Profil profil,
 			boolean premiereConnexion, Date dateDebutEnseignement,
 			boolean membreCA, String numeroSS) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom, dateNaissance, telFixe,
-				telPort, email, civilite, listeResponsabilite, listeDiplome, contrat,
+				telPort, email, civilite, listeResponsabilite, listeDiplome,listeDiscipline, contrat,
  login, password, pointsAncien, profil,
-				premiereConnexion, membreCA, numeroSS);
+				premiereConnexion, membreCA, numeroSS, dateDebutEnseignement);
 		this.dateDebutEnseignement = dateDebutEnseignement;
 	}
 
 
 
 	public Prof(Personne personne, List<Responsabilite> listeResponsabilite,
-			List<Diplome> listeDiplome, Contrat contrat, String login,
+			List<Diplome> listeDiplome, List<Discipline> listeDiscipline, Contrat contrat, String login,
 			String password, Integer pointsAncien, Profil profil, boolean premiereConnexion, Date dateDebutEnseignement, String numeroSS) {
-		super(personne, listeResponsabilite, listeDiplome, contrat, login, password,
+		super(personne, listeResponsabilite, listeDiplome,listeDiscipline, contrat, login, password,
 				pointsAncien, profil, premiereConnexion, numeroSS);
 		this.dateDebutEnseignement = dateDebutEnseignement;
 	}

@@ -12,7 +12,7 @@
 <h1>Confirmation</h1>
 
 <c:if test="${modifOK == true}">
-	<p class="offset">L'adhérent <c:out value="${adherent['prenom']}" /> <c:out value="${adherent['nom']}" />
+	<p class="offset text-success">L'adhérent <c:out value="${adherent['prenom']}" /> <c:out value="${adherent['nom']}" />
 		a maintenant le
 		<c:choose>
 			<c:when test="${params.getQf_min() > adherent.getQf()}">

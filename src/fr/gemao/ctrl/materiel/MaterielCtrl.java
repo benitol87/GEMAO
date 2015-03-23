@@ -72,7 +72,7 @@ public class MaterielCtrl {
 		}
 		
 		if (dateAchat == null) {
-			throw new NullPointerException("La date d'achat ne doit pas etre null");
+			//throw new NullPointerException("La date d'achat ne doit pas etre null");
 		}
 		
 		if (valeurAchat < 0.0) {

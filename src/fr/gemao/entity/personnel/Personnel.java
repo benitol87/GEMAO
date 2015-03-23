@@ -8,6 +8,7 @@ import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.Personne;
 import fr.gemao.entity.administration.Profil;
+import fr.gemao.entity.cours.Discipline;
 import fr.gemao.entity.util.Civilite;
 
 /**
@@ -16,14 +17,15 @@ import fr.gemao.entity.util.Civilite;
  * @author Coco
  *
  */
-public class Personnel extends Personne implements Serializable{
+public class Personnel extends Personne implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private List<Responsabilite> listeResponsabilite;
 	private List<Diplome> listeDiplomes;
+	private List<Discipline> listeDisciplines;
 	private Contrat contrat;
 	private String login;
 	private String password;
@@ -31,6 +33,7 @@ public class Personnel extends Personne implements Serializable{
 	private Profil profil;
 	private boolean premiereConnexion;
 	private String numeroSS;
+	private Date dateEntree;
 
 	public Personnel() {
 	}
@@ -67,23 +70,25 @@ public class Personnel extends Personne implements Serializable{
 	 * @param pointsAncien
 	 *            : le nombre de points d'ancienneté
 	 * @param profil
-	 * 			  : le profil du personnel	
+	 *            : le profil du personnel
 	 * @param premiereConnexion
-	 * 			  : un booléen valant vrai s'il s'agit de la première
-	 * 				connexion de ce membre du personnel
+	 *            : un booléen valant vrai s'il s'agit de la première connexion
+	 *            de ce membre du personnel
 	 */
-	public Personnel(Long idPersonne,  Adresse adresse,
-			Commune communeNaiss, String nom, String prenom,
-			Date dateNaissance, String telFixe, String telPort, String email,
-			Civilite civilite, List<Responsabilite> listeResponsabilite,
-			List<Diplome> listeDiplome, Contrat contrat, String login,
-			String password, int pointsAncien, Profil profil,
-			boolean premiereConnexion, boolean membreCA, String numeroSS) {
+	public Personnel(Long idPersonne, Adresse adresse, Commune communeNaiss,
+			String nom, String prenom, Date dateNaissance, String telFixe,
+			String telPort, String email, Civilite civilite,
+			List<Responsabilite> listeResponsabilite,
+			List<Diplome> listeDiplome, List<Discipline> listeDiscipline,
+			Contrat contrat, String login, String password, int pointsAncien,
+			Profil profil, boolean premiereConnexion, boolean membreCA,
+			String numeroSS, Date dateEntree) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom, dateNaissance,
 				telFixe, telPort, email, civilite, membreCA);
 
 		this.listeResponsabilite = listeResponsabilite;
 		this.listeDiplomes = listeDiplome;
+		this.listeDisciplines = listeDiscipline;
 		this.contrat = contrat;
 		this.login = login;
 		this.password = password;
@@ -91,6 +96,7 @@ public class Personnel extends Personne implements Serializable{
 		this.profil = profil;
 		this.premiereConnexion = premiereConnexion;
 		this.numeroSS = numeroSS;
+		this.dateEntree = dateEntree;
 	}
 
 	/**
@@ -104,12 +110,15 @@ public class Personnel extends Personne implements Serializable{
 	 */
 	public Personnel(Personne personne,
 			List<Responsabilite> listeResponsabilite,
-			List<Diplome> listeDiplome, Contrat contrat, String login,
-			String password, Integer pointsAncien, Profil profil, boolean premiereConnexion, String numeroSS) {
+			List<Diplome> listeDiplome, List<Discipline> listeDiscipline,
+			Contrat contrat, String login, String password,
+			Integer pointsAncien, Profil profil, boolean premiereConnexion,
+			String numeroSS) {
 		super(personne);
 
 		this.listeResponsabilite = listeResponsabilite;
 		this.listeDiplomes = listeDiplome;
+		this.listeDisciplines = listeDiscipline;
 		this.contrat = contrat;
 		this.login = login;
 		this.password = password;
@@ -126,6 +135,10 @@ public class Personnel extends Personne implements Serializable{
 	 */
 	public List<Responsabilite> getListeResponsabilite() {
 		return listeResponsabilite;
+	}
+
+	public List<Discipline> getListeDiscipline() {
+		return listeDisciplines;
 	}
 
 	/**
@@ -163,6 +176,14 @@ public class Personnel extends Personne implements Serializable{
 	public int getPointsAncien() {
 		return pointsAncien;
 	}
+	
+	public Date getDateEntree(){
+		return dateEntree;
+	}
+	
+	public void setDateEntree(){
+		this.dateEntree = dateEntree;
+	}
 
 	/**
 	 * Permet de positionner une liste d'ID responsabilités
@@ -172,6 +193,10 @@ public class Personnel extends Personne implements Serializable{
 	 */
 	public void setListeResponsabilite(List<Responsabilite> listeResponsabilite) {
 		this.listeResponsabilite = listeResponsabilite;
+	}
+
+	public void setListeDiscipline(List<Discipline> listeDiscipline) {
+		this.listeDisciplines = listeDiscipline;
 	}
 
 	/**
@@ -213,8 +238,6 @@ public class Personnel extends Personne implements Serializable{
 	public void setPointsAncien(int pointsAncien) {
 		this.pointsAncien = pointsAncien;
 	}
-	
-	
 
 	/**
 	 * @return the listeDiplomes
@@ -224,7 +247,8 @@ public class Personnel extends Personne implements Serializable{
 	}
 
 	/**
-	 * @param listeDiplomes the listeDiplomes to set
+	 * @param listeDiplomes
+	 *            the listeDiplomes to set
 	 */
 	public void setListeDiplomes(List<Diplome> listeDiplomes) {
 		this.listeDiplomes = listeDiplomes;
@@ -238,13 +262,12 @@ public class Personnel extends Personne implements Serializable{
 	}
 
 	/**
-	 * @param profil the profil to set
+	 * @param profil
+	 *            the profil to set
 	 */
 	public void setProfil(Profil profil) {
 		this.profil = profil;
 	}
-	
-	
 
 	public String getNumeroSS() {
 		return numeroSS;
@@ -262,31 +285,33 @@ public class Personnel extends Personne implements Serializable{
 		this.premiereConnexion = premiereConnexion;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((contrat == null) ? 0 : contrat.hashCode());
 		result = prime * result
+				+ ((dateEntree == null) ? 0 : dateEntree.hashCode());
+		result = prime * result
 				+ ((listeDiplomes == null) ? 0 : listeDiplomes.hashCode());
+		result = prime
+				* result
+				+ ((listeDisciplines == null) ? 0 : listeDisciplines.hashCode());
 		result = prime
 				* result
 				+ ((listeResponsabilite == null) ? 0 : listeResponsabilite
 						.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result
+				+ ((numeroSS == null) ? 0 : numeroSS.hashCode());
+		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
 		result = prime * result + pointsAncien;
+		result = prime * result + (premiereConnexion ? 1231 : 1237);
 		result = prime * result + ((profil == null) ? 0 : profil.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -301,10 +326,20 @@ public class Personnel extends Personne implements Serializable{
 				return false;
 		} else if (!contrat.equals(other.contrat))
 			return false;
+		if (dateEntree == null) {
+			if (other.dateEntree != null)
+				return false;
+		} else if (!dateEntree.equals(other.dateEntree))
+			return false;
 		if (listeDiplomes == null) {
 			if (other.listeDiplomes != null)
 				return false;
 		} else if (!listeDiplomes.equals(other.listeDiplomes))
+			return false;
+		if (listeDisciplines == null) {
+			if (other.listeDisciplines != null)
+				return false;
+		} else if (!listeDisciplines.equals(other.listeDisciplines))
 			return false;
 		if (listeResponsabilite == null) {
 			if (other.listeResponsabilite != null)
@@ -316,12 +351,19 @@ public class Personnel extends Personne implements Serializable{
 				return false;
 		} else if (!login.equals(other.login))
 			return false;
+		if (numeroSS == null) {
+			if (other.numeroSS != null)
+				return false;
+		} else if (!numeroSS.equals(other.numeroSS))
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
 		if (pointsAncien != other.pointsAncien)
+			return false;
+		if (premiereConnexion != other.premiereConnexion)
 			return false;
 		if (profil == null) {
 			if (other.profil != null)
@@ -331,17 +373,14 @@ public class Personnel extends Personne implements Serializable{
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "Personnel [listeResponsabilite=" + listeResponsabilite
-				+ ", listeDiplomes=" + listeDiplomes + ", contrat=" + contrat
-				+ ", login=" + login + ", password=" + password
-				+ ", pointsAncien=" + pointsAncien + ", profil=" + profil + "]";
+				+ ", listeDiplomes=" + listeDiplomes + ", listeDisciplines="
+				+ listeDisciplines + ", contrat=" + contrat + ", login="
+				+ login + ", password=" + password + ", pointsAncien="
+				+ pointsAncien + ", profil=" + profil + ", premiereConnexion="
+				+ premiereConnexion + ", numeroSS=" + numeroSS
+				+ ", dateEntree=" + dateEntree + "]";
 	}
-
-	
-
 }

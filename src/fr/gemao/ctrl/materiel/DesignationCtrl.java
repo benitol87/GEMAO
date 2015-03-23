@@ -20,7 +20,7 @@ public class DesignationCtrl {
 	 * @param libelle
 	 *            Libelle de la designation a ajouter.
 	 */
-	public static void ajoutDesignation(String libelle) {
+	public static boolean ajoutDesignation(String libelle) {
 		if (libelle == null) {
 			throw new NullPointerException("Le Libelle ne doit pas etre null");
 		}
@@ -30,6 +30,8 @@ public class DesignationCtrl {
 		Designation designation = new Designation(0, libelle);
 
 		new DesignationDAO(DAOFactory.getInstance()).create(designation);
+		
+		return true;
 	}
 
 	/**
@@ -38,7 +40,7 @@ public class DesignationCtrl {
 	 * @param libelle
 	 *            le libelle de la designation a supprimer.
 	 */
-	public void supprimerDesignation(String libelle) {
+	public boolean supprimerDesignation(String libelle) {
 		if (libelle == null) {
 			throw new NullPointerException(
 					"Le nom du reparateur ne doit pas etre null");
@@ -55,9 +57,10 @@ public class DesignationCtrl {
 		for (Designation designation : designations) {
 			if (designation.getLibelleDesignation().equals(libelle)) {
 				desDAO.delete(designation);
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	/**
@@ -66,7 +69,7 @@ public class DesignationCtrl {
 	 * @param designation
 	 *            La designation avec le nouveau libelle
 	 */
-	public void modifierDesignationCtrl(Designation designation) {
+	public boolean modifierDesignationCtrl(Designation designation) {
 		if (designation.getIdDesignation() <= 0) {
 			throw new IllegalArgumentException("Id incorrect");
 		}
@@ -81,6 +84,8 @@ public class DesignationCtrl {
 		DesignationDAO desDAO = new DesignationDAO(DAOFactory.getInstance());
 
 		desDAO.update(designation);
+		
+		return true;
 
 	}
 

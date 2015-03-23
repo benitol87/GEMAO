@@ -10,6 +10,13 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <c:import url="/js/autocompleteCommune.jsp"/>
+<c:import url="/js/autocompleteAdresse.jsp"/>
+
+<script type="text/javascript">
+autocompletionCommuneCodePostal("#commune", "#codePostal");
+autocompletionCommuneCodePostal("#communenaiss", "#codePostalnaiss");
+autocompletionAdresse("#rue", "#compl");
+</script>
 
 <script src="<c:url value="/js/AjouterPersonnel.js"/>"></script>
 
@@ -44,12 +51,12 @@
 		
 		<div>
 			<label for="comnaiss" class='required'>Commune de naissance </label>
-			<input type="text" name="comnaiss" required id="commune"/>
+			<input type="text" name="comnaiss" required id="communenaiss"/>
 		</div>
 					
 		<div>
 			<label for="codep" class='required'>Code postal </label>
-			<input type="text" maxlength="5" name="codep" required autocomplete="on" />
+			<input type="text" maxlength="5" name="codep" required id="CodePostalnaiss" />
 		</div>
 					
 		<div>
@@ -84,22 +91,22 @@
 		
 		<div>
 			<label for="nomRue" class='required'>Rue </label>
-			<input type="text" name="nomRue" required autocomplete="off"/>
+			<input type="text" name="nomRue" required id="rue"/>
 		</div>
 		
 		<div>
 			<label for="infoComplem">Complément d'adresse</label>
-			<input type="text" name="infoComplem" autocomplete="off" />
+			<input type="text" name="infoComplem" id="compl" />
 		</div>
 		
 		<div>
 			<label for="ville" class='required'>Commune </label>
-			<input type="text" name="ville" required autocomplete="on" />
+			<input type="text" name="ville" required id="commune" />
 		</div>
 		
 		<div>
 			<label for="code" class='required'>Code postal </label>
-			<input type="text" maxlength="5" name="code" required autocomplete="on" />
+			<input type="text" maxlength="5" name="code" required id="codePostal" />
 		</div>
 	</fieldset>
 	
@@ -113,7 +120,7 @@
 		<div id="diplomes">
 			<div id="divDiplome1">
 				<label for="diplome1">Diplôme </label>
-				<input type="text" name="diplome1" />
+				<input type="text" name="diplome1" id="diplome1"/>
 				<input type="button" value="+" id="ajoutDiplome"/>
 				<input type="button" value="-" id="retireDiplome"/>
 			</div>
@@ -122,7 +129,7 @@
 		<div id="fonctions">
 			<div id="divFonction1">
 				<label for="fonction1" class='required'>Fonction </label>
-				<select name="fonction1" required>
+				<select name="fonction1" id="fonction1" required onChange="afficherDiscipline()">
 					<c:forEach var="responsabilite" items="${sessionScope.listResponsabilites }">
 						<option value="${ responsabilite.getIdResponsabilite() }">${ responsabilite.getLibelle() }</option>
 					</c:forEach>
@@ -133,9 +140,9 @@
 		</div>
 		
 		<div id="disciplines">
-			<div id="discipline1">
+			<div id="divDiscipline1">
 				<label for="discipline1">Discipline </label>
-				<select name="discipline1">
+				<select name="discipline1" id="discipline1">
 				<c:forEach var="discipline" items="${sessionScope.listDiscipline }">
 					<option value="${ discipline.getIdDiscipline() }">${ discipline.getMatiere().getNomMatiere()}
 							- ${discipline.getNiveau().getNomNiveau() }</option>

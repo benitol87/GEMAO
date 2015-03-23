@@ -80,7 +80,8 @@ public class AjouterResponsableCtrl {
 			ResponsableDAO responsableDAO = co.getResponsableDAO();
 
 			//Vérification de l'inexistance du responsable dans la base
-			if(responsableDAO.exist(responsable) == null){
+			resp = responsableDAO.exist(responsable);
+			if (resp == null) {
 				resp = responsableDAO.create(responsable);
 				if (resp == null){
 					System.out.println("Une erreur est survenue lors de l'insertion...");
@@ -90,7 +91,9 @@ public class AjouterResponsableCtrl {
 				}
 			}
 			else{
-				throw new IllegalArgumentException("Le responsable existe déjà dans la base...");
+				responsable.setIdResponsable(resp.getIdResponsable());
+				responsable.setEmail(resp.getEmail());
+				responsable.setTelephone(resp.getTelephone());
 			}
 		}
 		else{

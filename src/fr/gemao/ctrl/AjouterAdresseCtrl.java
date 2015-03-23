@@ -17,7 +17,7 @@ public class AjouterAdresseCtrl {
 	 * @param adresse
 	 * @return true si les informations sont valides, false sinon
 	 */
-	public boolean verifierInformations(Adresse adresse){			
+	public static boolean verifierInformations(Adresse adresse){			
 			//Vérification de l'idCommune
 			if(adresse.getCommune() == null){
 				System.out.println("L'objet commune ne doit pas être null...");
@@ -32,9 +32,9 @@ public class AjouterAdresseCtrl {
 	 * Pour être ajoutée, les informations de l'adresse doivent être valides et l'adresse ne doit pas déjà exister dans la base (sinon levée d'une IllegalArgumentException).
 	 * @param adresse
 	 */
-	public void ajoutAdresse(Adresse adresse){
+	public static void ajoutAdresse(Adresse adresse){
 		//Vérification de la validité des informations
-		if(this.verifierInformations(adresse)){
+		if(verifierInformations(adresse)){
 			Adresse adr;
 			
 			DAOFactory co = DAOFactory.getInstance();
@@ -44,19 +44,13 @@ public class AjouterAdresseCtrl {
 			adr = adresseDAO.exist(adresse);
 			if(adr == null){
 				adr = adresseDAO.create(adresse);
-				if (adr == null){
-					System.out.println("Une erreur est survenue lors de l'insertion...");
-				} else {
+				if (adr != null){
 					adresse.setIdAdresse(adr.getIdAdresse());
-					System.out.println("L'adresse a bien été ajoutée.");
 				}
 			}
 			else{
 				adresse.setIdAdresse(adr.getIdAdresse());
 			}
-		}
-		else{
-			System.out.println("Les informations de l'adresse ne sont pas valides...");
 		}
 		
 	}

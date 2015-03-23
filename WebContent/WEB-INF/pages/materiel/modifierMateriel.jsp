@@ -11,13 +11,24 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
+<script src="<c:url value="/js/modifierMateriel.js"/>" ></script>
+
 <h1>Modification d'un matériel</h1>
-<p>${form.getErreurs().get("Modification")}</p>
+<p>${form.getErreurs()}</p>
+
+<form id="modifierMateriel" action="#" method="post">
+	<input type="text" name="nomMarque" id="nomMarque" class="hidden"/>
+	<input type="text" name="nomEtat" id="nomEtat" class="hidden"/>
+	<input type="text" name="nomDes" id="nomDes" class="hidden"/>
+	<input type="text" name="nomFour" id="nomFour" class="hidden"/>
+	<input type="text" name="nomCat" id="nomCat" class="hidden"/>
+</form>
+
 <form name="modifierMaterielInstrument" action="#" method="post">
 	<fieldset>
 		<legend>Informations générales</legend>
 		<div>
-			<label for="categorie">Catégorie : </label> <select name="categorie"
+			<label for="categorie">Catégorie </label> <select name="categorie"
 				id="categorie">
 				<option
 					value="${sessionScope.sessionObjectMateriel.getCategorie().getIdCategorie()}">
@@ -25,27 +36,28 @@
 				<c:forEach items="${listeCat}" var="cat">
 					<option value="${cat.getIdCategorie()}">${cat.getLibelleCat()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutCategorie" id="ajoutCategorie"
-				value="+" />
+			</select> <input type="button" name="ajoutCategorie" id="ajoutCat"
+				value="Créer..." />
 				<p>${form.getErreurs().get("categorie")}</p>
 		</div>
 
 		<div>
-			<label for="valeurAch">Valeur d'achat : </label> <input type="number"
+			<label for="valeurAch">Valeur d'achat </label> <input type="text"
 				id="valeurAch" name="valeurAch"
 				value="${sessionScope.sessionObjectMateriel.getValeurAchat()}" />
+				<span class="euro"></span>
 				<p>${form.getErreurs().get("valeurAch")}</p>
 		</div>
 		<div>
-			<label for="dateAch">Date d'acquisation : </label> <input type="text"
+			<label for="dateAch">Date d'acquisition </label> <input type="text"
 				id="dateAch" name="dateAch"
-				value="${dateAchat}" />
+				value="${dateAchat}" class="datepicker" />
 				<p>${form.getErreurs().get("dateAch")}</p>
 		</div>
 
 
 		<div>
-			<label for="valRea">Valeur de réapprovisionnement : </label> <input
+			<label for="valRea">Valeur de réapprovisionnement </label> <input
 				type="text" name="valRea"
 				value="${sessionScope.sessionObjectMateriel.getValeurReap()}" /> <span
 				class="euro"></span>
@@ -54,7 +66,7 @@
 		
 
 		<div>
-			<label for="fournisseurResult">Fournisseur : </label> <select
+			<label for="fournisseurResult">Fournisseur </label> <select
 				name="fournisseur" id="fournisseur">
 				<option
 					value="${sessionScope.sessionObjectMateriel.getFournisseur().getIdFournisseur()}">
@@ -62,8 +74,8 @@
 				<c:forEach items="${listeFourn}" var="fou">
 					<option value="${fou.getIdFournisseur()}">${fou.getNomFournisseur()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutFournisseur" id="ajoutFournisseur"
-				value="+" />
+			</select> <input type="button" name="ajoutFournisseur" id="ajoutFour"
+				value="Créer..." />
 				<p>${form.getErreurs().get("fournisseur")}</p>
 		</div>
 
@@ -72,7 +84,7 @@
 	<fieldset>
 		<legend>Informations détaillées</legend>
 		<div>
-			<label for="designation">Désignation : </label> <select
+			<label for="designation">Désignation </label> <select
 				name="designation" id="designation">
 				<option
 					value="${sessionScope.sessionObjectMateriel.getDesignation().getIdDesignation()}">
@@ -80,13 +92,13 @@
 				<c:forEach items="${listeDes}" var="des">
 					<option value="${des.getIdDesignation()}">${des.getLibelleDesignation()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutDesignation" id="ajoutDesignation"
-				value="+" />
+			</select> <input type="button" name="ajoutDesignation" id="ajoutDes"
+				value="Créer..." />
 				<p>${form.getErreurs().get("designation")}</p>
 		</div>
 
 		<div>
-			<label for="type">Type : </label> <input type="text" id="type"
+			<label for="type">Type </label> <input type="text" id="type"
 				name="type"
 				value="${sessionScope.sessionObjectMateriel.getTypeMat()}" />
 				<p>${form.getErreurs().get("type")}</p>
@@ -94,30 +106,30 @@
 
 		<!--% Etat à empêcher de s'améliorer -->
 		<div>
-			<label for="etat">Etat : </label> <select name="etat" id="etat">
+			<label for="etat">Etat </label> <select name="etat" id="etat">
 				<option
 					value="${sessionScope.sessionObjectMateriel.getEtat().getIdEtat()}">
 					${sessionScope.sessionObjectMateriel.getEtat().getLibelleEtat()}</option>
 				<c:forEach items="${listeEtats}" var="etat">
 					<option value="${etat.getIdEtat()}">${etat.getLibelleEtat()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutEtat" id="ajoutEtat" value="+" />
+			</select> <input type="button" name="ajoutEtat" id="ajoutEtat" value="Créer..." />
 			<p>${form.getErreurs().get("etat")}</p>
 		</div>
 
 		<div>
-			<label for="marque">Marque : </label> <select name="marque"
+			<label for="marque">Marque </label> <select name="marque"
 				id="marque">
 				<option
 					value="${sessionScope.sessionObjectMateriel.getMarque().getIdMarque()}">${sessionScope.sessionObjectMateriel.getMarque().getNomMarque()}</option>
 				<c:forEach items="${listeMarque}" var="marque">
 					<option value="${marque.getIdMarque()}">${marque.getNomMarque()}</option>
 				</c:forEach>
-			</select>
+			</select> <input type="button" name="ajoutMarque" id="ajoutMarque" value="Créer..." />
 			<p>${form.getErreurs().get("marque")}</p>
 		</div>
 		<div>
-			<label for="quantite">Quantité : </label> <input name="quantite"
+			<label for="quantite">Quantité </label> <input name="quantite"
 				type="number" min="1"
 				value="${sessionScope.sessionObjectMateriel.getQuantite()}" />
 				<p>${form.erreurs['quantite'] }</p>
@@ -125,14 +137,15 @@
 		
 
 		<div>
-			<label for="prixU">Prix unitaire : </label> <input name="prixU"
-				type="number"
+			<label for="prixU">Prix unitaire </label> <input name="prixU"
+				type="text"
 				value="${sessionScope.sessionObjectMateriel.getValeurAchat()}" />
+				<span class="euro"></span>
 				<p>${form.getErreurs().get("prixU")}</p>
 		</div>
 
 		<div>
-			<label for="numSerieResult">Numéro de série : </label> <input
+			<label for="numSerieResult">Numéro de série </label> <input
 				name="numSerie" type="text"
 				value="${sessionScope.sessionObjectMateriel.getNumSerie()}" />
 				<p>${form.getErreurs().get("numSerie")}</p>
@@ -186,7 +199,7 @@
 		<div class='align-center'>
 			<textarea name="observation" id="observation" rows="5"
 				placeholder="Ajoutez ici toute information que vous jugez nécessaire de mentionner."
-				cols="30">${sessionScope.sessionObjectMateriel.getObservation()}</textarea>
+				cols="50">${sessionScope.sessionObjectMateriel.getObservation()}</textarea>
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>

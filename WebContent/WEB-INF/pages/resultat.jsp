@@ -16,7 +16,7 @@
 	<a href='<c:url value="${requestScope.lienBouton }"/>'><input type='button' value='<c:out value="${requestScope.nomBouton }"/>'/></a>
 	<c:if test="${requestScope.lienBouton2 != null}">
 		<a class='btn' href='<c:url value="${requestScope.lienBouton2}"/>'
-			<c:if test="${!requestScope.downloadBouton2.isEmpty()}">download='<c:url value="${requestScope.downloadBouton2}"/>'</c:if>>
+			<c:if test="${requestScope.downloadBouton2}">download='<c:url value="${requestScope.downloadBouton2}"/>'</c:if>>
 			<c:out value="${requestScope.nomBouton2}"/>
 		</a>
 	</c:if>

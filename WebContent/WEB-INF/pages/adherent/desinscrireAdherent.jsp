@@ -33,7 +33,7 @@
 			<div class='text-danger'><c:out value="${form.erreurs['erreurMotif'] }"/></div>
 			<div class='text-danger'><c:out value="${form.erreurs['erreurDate'] }"/></div>
 			<div class='text-danger'><c:out value="${form.erreurs['erreurModif'] }"/></div>
-			<div class='text-success'><c:out value="${resultat }"/></div>
+			<div class='text-success'><c:out value="${resultat}"/></div>
 		</div>
 	</fieldset>
 	

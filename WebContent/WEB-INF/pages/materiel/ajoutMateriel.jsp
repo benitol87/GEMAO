@@ -20,7 +20,7 @@
 				</c:forEach>
 			</select>
 	
-			<input type="button" name="ajoutCat" id="ajoutCat" value="Créer..." />
+			<input type="button" name="ajoutCat" id="ajoutCat" value="+" />
 			<input type="text" name="nomCat" id="nomCat" class="hidden"/>
 		</div>
 		<c:if test="${!empty requestScope.form.erreurs['erreurCat'] }">
@@ -34,7 +34,7 @@
 		</div>
 		
 		<div>
-			<label for="dateAch">Date d'achat</label> 
+			<label for="dateAch">Date d'acquisition</label> 
 			<input type="text" name="dateAch" class="datepicker" value="${sessionScope.INFOS['dateAchat']}"/> 
 		</div>
 		
@@ -51,7 +51,7 @@
 					<option value="${fourn.getIdFournisseur()}">${fourn.getNomFournisseur()}</option>
 				</c:forEach>
 			</select>
-			<input type="button" name="ajoutFour" id="ajoutFour" value="Créer..." />
+			<input type="button" name="ajoutFour" id="ajoutFour" value="+" />
 			<input type="text" name="nomFour" id="nomFour" class="hidden"/>
 		</div>
 	</fieldset>
@@ -66,7 +66,7 @@
 					<option value="${des.getIdDesignation()}">${des.getLibelleDesignation()}</option>
 				</c:forEach>
 			</select>
-			<input type="button" name="ajoutDes" id="ajoutDes" value="Créer..." />
+			<input type="button" name="ajoutDes" id="ajoutDes" value="+" />
 			<input type="text" name="nomDes" id="nomDes" class="hidden"/>
 		</div>
 		
@@ -82,7 +82,7 @@
 					<option value="${etat.getIdEtat()}">${etat.getLibelleEtat()}</option>
 				</c:forEach>
 			</select>
-			<input type="button" name="ajoutEtat" id="ajoutEtat" value="Créer..." />
+			<input type="button" name="ajoutEtat" id="ajoutEtat" value="+" />
 			<input type="text" name="nomEtat" id="nomEtat" class="hidden"/>
 		</div>
 		
@@ -93,7 +93,7 @@
 					<option value="${marque.getIdMarque()}">${marque.getNomMarque()}</option>
 				</c:forEach>
 			</select>
-			<input type="button" name="ajoutMarque" id="ajoutMarque" value="Créer..." />
+			<input type="button" name="ajoutMarque" id="ajoutMarque" value="+" />
 			<input type="text" name="nomMarque" id="nomMarque" class="hidden"/>
 		</div>
 		

@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="titre" value="Ajout d'un adhérent" scope="request" />
 
@@ -31,69 +32,80 @@ autocompletionAdresse("#rue", "#compl");
 
 		<div>
 			<label>Civilité</label> <span> <input type="radio"
-				name="civilite" value="F" id="civiliteF" checked="checked" /> <label
-				for="civiliteF">Mme</label> <input type="radio" name="civilite" id="civiliteM"
-				value="M" /><label for="civiliteM">M.</label>
+				name="civilite" value="F" id="civiliteF"
+				checked="checked" />
+				<label for="civiliteF">Mme</label> <input type="radio"
+				name="civilite" id="civiliteM" value="M"
+				<c:if test="${ajout_adh_adherent.civilite['nameCourt'] == 'M.'}"> checked="checked" </c:if> /><label
+				for="civiliteM">M.</label>
 			</span>
 		</div>
 
 		<div>
 			<label for="nom" class='required'>Nom </label> <input type="text"
-				name="nom" required="required" />
+				name="nom" value="${ajout_adh_adherent.getNom()}" required="required" />
 		</div>
 
 		<div>
 			<label for="prenom" class='required'>Prénom </label> <input
-				type="text" name="prenom" required="required" />
+				type="text" name="prenom" value="${ajout_adh_adherent.getPrenom()}" required="required" />
+		</div>
+		
+		<div>
+			<label for="famille" class='required'>Famille </label> <input
+				type="text" name="famille" value="" required="required" />
 		</div>
 
 		<div>
 			<label for="dateNaiss" class='required'>Date de naissance </label> <input
-				type="text" name="dateNaiss" class="datepicker" required="required" />
+				type="text" name="dateNaiss"
+				value="<fmt:formatDate
+						value="${ajout_adh_adherent.getDateEntree()}" pattern="dd/MM/yyyy" />"
+				class="datepicker" required="required" />
 		</div>
 
 		<div>
 			<label for="telFixe" class='required'>Téléphone fixe </label> <input
-				type="text" name="telFixe" pattern="[0][1-9][0-9]{8}"
+				type="text" name="telFixe" pattern="[0][1-9][0-9]{8}" value="${ajout_adh_adherent.getTelFixe()}"
 				required="required" maxlength="10" autocomplete="on" />
 		</div>
 
 		<div>
 			<label for="telPort">Téléphone portable </label> <input type="text"
-				name="telPort" pattern="[0][1-9][0-9]{8}" maxlength="10"
-				autocomplete="on" />
+				name="telPort" pattern="[0][1-9][0-9]{8}" value="${ajout_adh_adherent.getTelPort()}"
+				maxlength="10" autocomplete="on" />
 		</div>
 
 		<div>
 			<label for="email">E-mail </label> <input type="email" name="email"
-				autocomplete="on" />
+				value="${ajout_adh_adherent.getEmail()}" autocomplete="on" />
 		</div>
 	</fieldset>
 	<fieldset>
 		<legend>Adresse</legend>
 		<div>
-			<label for="num">N° </label> <input type="text" name="num" />
+			<label for="num">N° </label> <input type="text" name="num" value="${ajout_adh_adresse.getNumRue()}"/>
 		</div>
 
 		<div>
 			<label for="rue" class='required'>Rue </label> <input type="text"
-				name="rue" id="rue" required="required" />
+				name="rue" id="rue" required="required" value="${ajout_adh_adresse.getNomRue()}"/>
 		</div>
 
 		<div>
 			<label for="compl">Complément d'adresse </label> <input type="text"
-				name="compl" id="compl"/>
+				name="compl" id="compl" value="${ajout_adh_adresse.getInfoCompl()}"/>
 		</div>
 
 		<div>
 			<label for="commune" class='required'>Commune </label> <input
-				type="text" name="commune" required="required" id="commune" />
+				type="text" name="commune" required="required" id="commune" value="${ajout_adh_commune.getNomCommune()}"/>
 		</div>
 
 		<div>
 			<label for="codePostal" class='required'>Code postal </label> <input
 				type="text" name="codePostal" id="codePostal" required="required" maxlength="5"
-				pattern="\d*" />
+				pattern="\d*" value="${ajout_adh_commune.getCodePostal()}"/>
 		</div>
 	</fieldset>
 	<fieldset>
@@ -118,20 +130,26 @@ autocompletionAdresse("#rue", "#compl");
 		<div>
 			<label for="dateInscri" class='required'>Date d'inscription </label>
 			<input type="text" name="dateInscri" id="dateInscri"
+				value="${ajout_adh_adherent.getDateEntree()}"
 				class="datepicker" required="required" />
 		</div>
 		<div>
 			<label class='required'>Droit à l'image </label> <span> <input
-				type="radio" name="droitImage" value="true" checked="checked" /> <label
-				for="droitImage">Oui</label> <input type="radio" name="droitImage"
-				value="false" /> <label for="droitImage">Non</label>
+				type="radio" name="droitImage" value="true"
+				checked="checked" />
+				<label for="droitImage">Oui</label> <input type="radio"
+				name="droitImage" value="false"
+				<c:if test="${ajout_adh_adherent.isDroitImage() == false}"> checked="checked" 
+						</c:if> />
+				<label for="droitImage">Non</label>
 			</span>
 		</div>
 		<div>
 			<label class='required'>Membre CA </label> <span> <input
-				type="radio" name="membreCA" value="true"  /> <label
+				type="radio" name="membreCA" value="true" checked="checked" /> <label
 				for="membreCA">Oui</label> <input type="radio" name="membreCA"
-				value="false" checked="checked"/> <label for="membreCA">Non</label>
+				value="false" <c:if test="${ajout_adh_adherent.isMembreCA() == false}"> checked="checked" 
+						</c:if> /> <label for="membreCA">Non</label>
 			</span>
 		</div>
 	</fieldset>

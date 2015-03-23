@@ -1,3 +1,4 @@
+<%@page import="fr.gemao.view.Pattern"%>
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -24,6 +25,10 @@
 		<div>
 			<span class='text-label'><label for="prenom">Prénom : </label></span>
 			<c:out value="${adherent['prenom']}" />
+		</div>
+		<div>
+			<span class='text-label'><label for="famille">Famille : </label></span>
+			<c:out value="" />
 		</div>
 		<div>
 			<span class='text-label'>Date de naissance : </span>
@@ -121,6 +126,7 @@
 	</fieldset>
 </c:if>
 <fieldset class='align-center no-border'>
+	<a href="<c:url value="<%=Pattern.ADHERENT_LISTER %>"/>"><input type="button" value="Annuler" /></a>
 	<input type="submit" value="Valider" />
 </fieldset>
 </form>

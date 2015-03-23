@@ -10,6 +10,7 @@ import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
 import fr.gemao.sql.adherent.AdherentDAO;
+import fr.gemao.sql.adherent.FamilleDAO;
 import fr.gemao.sql.adherent.MotifSortieDAO;
 import fr.gemao.sql.adherent.ResponsableDAO;
 import fr.gemao.sql.administration.DroitDAO;
@@ -254,5 +255,9 @@ public class DAOFactory {
 	
 	public SalleDAO getSalleDAO(){
 		return new SalleDAO(this);
+	}
+
+	public FamilleDAO getFamilleDAO() {
+		return new FamilleDAO(this);
 	}
 }

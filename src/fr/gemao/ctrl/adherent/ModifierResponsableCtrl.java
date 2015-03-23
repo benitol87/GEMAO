@@ -18,7 +18,7 @@ public class ModifierResponsableCtrl {
 	 * @param responsable
 	 * @return 
 	 */
-	public boolean modifierResponsable(Responsable responsable){
+	public static boolean modifierResponsable(Responsable responsable){
 		AjouterResponsableCtrl ajoutResp = new AjouterResponsableCtrl();
 		
 		//Vérification de la validité des informations du responsable

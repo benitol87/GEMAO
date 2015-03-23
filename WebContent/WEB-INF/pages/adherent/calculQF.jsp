@@ -25,6 +25,7 @@
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
+		<p>* Champs obligatoires</p>
 		<input type="button" value="Annuler" /> 
 		<input type="submit" value="Valider" />
 	</fieldset>
