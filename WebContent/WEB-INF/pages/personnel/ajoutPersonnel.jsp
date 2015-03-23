@@ -140,7 +140,7 @@ autocompletionAdresse("#rue", "#compl");
 		</div>
 		
 		<div id="disciplines">
-			<div id="discipline1">
+			<div id="divDiscipline1">
 				<label for="discipline1">Discipline </label>
 				<select name="discipline1">
 				<c:forEach var="discipline" items="${sessionScope.listDiscipline }">

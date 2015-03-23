@@ -1,5 +1,6 @@
 var compteur=1;
 var compteurF=1
+var compteurD=1;
 function retireDiplome(){
 	if(compteur>1){
 		document.getElementById("divDiplome" + (compteur-1)).appendChild(document.getElementById("ajoutDiplome").cloneNode(true));
@@ -55,28 +56,28 @@ function ajoutFonction(){
 }
 
 function retireDiscipline(){
-	if(compteurF>1){
-		document.getElementById("divDiscipline" + (compteurF-1)).appendChild(document.getElementById("ajoutDiscipline").cloneNode(true));
-		document.getElementById("divDiscipline" + (compteurF-1)).appendChild(document.getElementById("retireDiscipline").cloneNode(true));
+	if(compteurD>1){
+		document.getElementById("divDiscipline" + (compteurD-1)).appendChild(document.getElementById("ajoutDiscipline").cloneNode(true));
+		document.getElementById("divDiscipline" + (compteurD-1)).appendChild(document.getElementById("retireDiscipline").cloneNode(true));
 		document.getElementById("disciplines").removeChild(document.getElementById("disciplines").lastChild);
-		ajoutEventAjoutFonction();
-		ajoutEventRetireFonction();
-		compteurF--;
+		ajoutEventAjoutDiscipline();
+		ajoutEventRetireDiscipline();
+		compteurD--;
 	}
 }
 
 function ajoutDiscipline(){
 //	$("#divFonction"+compteurF + "input").remove();
-	compteurF++;
+	compteurD++;
 	var tr = document.getElementById("disciplines").lastElementChild.cloneNode(true);
-	tr.id="divDiscipline"+compteurF;
+	tr.id="divDiscipline"+compteurD;
 	document.getElementById("disciplines").appendChild(tr);
-	document.getElementById("divDiscipline"+compteurF).firstChild.nextSibling.nextSibling.nextSibling.name="discipline"+compteurF;
+	document.getElementById("divDiscipline"+compteurD).firstChild.nextSibling.nextSibling.nextSibling.name="divDiscipline"+compteurD;
 	
 	//Supprime les boutons de l'avant dernier champ
-	$("#divDiscipline"+(compteurF-1) + " input[type=button]").remove();
-	ajoutEventAjoutFonction();
-	ajoutEventRetireFonction();
+	$("#divDiscipline"+(compteurD-1) + " input[type=button]").remove();
+	ajoutEventAjoutDiscipline();
+	ajoutEventRetireDiscipline();
 }
 
 $(function() {
