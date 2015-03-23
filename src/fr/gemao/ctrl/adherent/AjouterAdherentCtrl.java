@@ -85,21 +85,10 @@ public class AjouterAdherentCtrl {
 			//Vérification de la validité des informations
 			if(verifierInformations(adherent)){
 				adh = adherentDAO.create(adherent);
-				if (adh == null){
-					System.out.println("Une erreur est survenue lors de l'insertion...");
-				} else {
-					System.out.println("L'adhérent a bien été ajouté.");
+				if (adh != null){
 					return true;
 				}
 			}
-			else{
-				System.out.println("Les informations de l'adhérent ne sont pas valides...");
-			}
-
-		}
-		else{
-			System.out.println("Une erreur est survenue lors de l'insertion...");
-
 		}
 		return false;
 	}

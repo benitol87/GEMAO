@@ -11,8 +11,19 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
+<script src="<c:url value="/js/modifierMateriel.js"/>" ></script>
+
 <h1>Modification d'un matériel</h1>
-<p>${form.getErreurs().get("Modification")}</p>
+<p>${form.getErreurs()}</p>
+
+<form id="modifierMateriel" action="#" method="post">
+	<input type="text" name="nomMarque" id="nomMarque" class="hidden"/>
+	<input type="text" name="nomEtat" id="nomEtat" class="hidden"/>
+	<input type="text" name="nomDes" id="nomDes" class="hidden"/>
+	<input type="text" name="nomFour" id="nomFour" class="hidden"/>
+	<input type="text" name="nomCat" id="nomCat" class="hidden"/>
+</form>
+
 <form name="modifierMaterielInstrument" action="#" method="post">
 	<fieldset>
 		<legend>Informations générales</legend>
@@ -25,7 +36,7 @@
 				<c:forEach items="${listeCat}" var="cat">
 					<option value="${cat.getIdCategorie()}">${cat.getLibelleCat()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutCategorie" id="ajoutCategorie"
+			</select> <input type="button" name="ajoutCategorie" id="ajoutCat"
 				value="Créer..." />
 				<p>${form.getErreurs().get("categorie")}</p>
 		</div>
@@ -63,7 +74,7 @@
 				<c:forEach items="${listeFourn}" var="fou">
 					<option value="${fou.getIdFournisseur()}">${fou.getNomFournisseur()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutFournisseur" id="ajoutFournisseur"
+			</select> <input type="button" name="ajoutFournisseur" id="ajoutFour"
 				value="Créer..." />
 				<p>${form.getErreurs().get("fournisseur")}</p>
 		</div>
@@ -81,7 +92,7 @@
 				<c:forEach items="${listeDes}" var="des">
 					<option value="${des.getIdDesignation()}">${des.getLibelleDesignation()}</option>
 				</c:forEach>
-			</select> <input type="button" name="ajoutDesignation" id="ajoutDesignation"
+			</select> <input type="button" name="ajoutDesignation" id="ajoutDes"
 				value="Créer..." />
 				<p>${form.getErreurs().get("designation")}</p>
 		</div>

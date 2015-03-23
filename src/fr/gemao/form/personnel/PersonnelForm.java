@@ -30,6 +30,10 @@ public class PersonnelForm {
 	private static final String CHAMP_LISTEDIPLOME = "diplome";
 	private static final String CHAMP_DISCIPLINES = "discipline";
 	
+	private static final String CHAMP_NOM = "nom";
+	private static final String CHAMP_PRENOM = "prenom";
+	
+	
 	private static final String CHAMP_IDCONTRAT = "idContrat";
 	private static final String CHAMP_LOGIN = "login";
 	private static final String CHAMP_PASSWORD = "password";
@@ -447,6 +451,8 @@ public class PersonnelForm {
 		listeDiplomes = lireDiplomes(request);
 
 		idContrat = Integer.parseInt(getValeurChamp(request, CHAMP_IDCONTRAT));
+		nom = getValeurChamp(request, CHAMP_NOM);
+		prenom = getValeurChamp(request, CHAMP_PRENOM);
 		login = getValeurChamp(request, CHAMP_LOGIN);
 		password = getValeurChamp(request, CHAMP_PASSWORD);
 		pointsAncien = Integer.parseInt(getValeurChamp(request,
