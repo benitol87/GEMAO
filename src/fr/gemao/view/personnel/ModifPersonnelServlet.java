@@ -128,6 +128,8 @@ public class ModifPersonnelServlet extends HttpServlet {
 				pers = (Personnel) session.getAttribute("personnel");
 				
 				/* Positionnement des attributs du pers à partir des informations du form */
+				pers.setNom(form.getNom());
+				pers.setPrenom(form.getPrenom());
 				pers.setTelFixe(form.getTelFixe());
 				pers.setTelPort(form.getTelPort());
 				pers.setEmail(form.getEmail());
