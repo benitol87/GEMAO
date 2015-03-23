@@ -29,6 +29,7 @@ import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 import fr.gemao.view.util.AutocompletionAdresse;
 import fr.gemao.view.util.AutocompletionCommune;
+import fr.gemao.view.util.AutocompletionFamille;
 
 /**
  * Servlet implementation class AjoutAdherent
@@ -54,6 +55,8 @@ public class AjoutAdherentServlet extends HttpServlet {
 				.initRequestForAutoCompletionCommune(request);
 		request = AutocompletionAdresse
 				.initRequestForAutoCompletionAdresse(request);
+		request = AutocompletionFamille
+				.initRequestForAutocompletionFamille(request);
 
 		if (request.getParameter("errDate")!=null){
 			request.setAttribute("errDate", true);

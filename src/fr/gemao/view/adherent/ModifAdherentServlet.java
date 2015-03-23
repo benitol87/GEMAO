@@ -33,6 +33,7 @@ import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 import fr.gemao.view.util.AutocompletionAdresse;
 import fr.gemao.view.util.AutocompletionCommune;
+import fr.gemao.view.util.AutocompletionFamille;
 
 /**
  * Servlet implementation class ModifAdherentServlet
@@ -84,6 +85,8 @@ public class ModifAdherentServlet extends HttpServlet {
 					.initRequestForAutoCompletionCommune(request);
 			request = AutocompletionAdresse
 					.initRequestForAutoCompletionAdresse(request);
+			request = AutocompletionFamille
+					.initRequestForAutocompletionFamille(request);
 
 			session.setAttribute("modif_adh_adherent", adherent);
 			request.setAttribute("adherent", adherent);
@@ -187,6 +190,9 @@ public class ModifAdherentServlet extends HttpServlet {
 			
 			String membreCA = request.getParameter("membreCA");
 			adherent.setMembreCA(Boolean.parseBoolean(membreCA));
+			
+			if (!adherent.isMineur())
+				adherent.setResponsable(null);
 
 			if (adherent.getResponsable() != null) {
 				Responsable responsable = adherent.getResponsable();

@@ -22,6 +22,7 @@
 	padding: 5px 10px;
 	font-weight: bold;
 	border-radius: 10px;
+	margin : 0 10px;
 }
 
 .euro::after{
@@ -275,4 +276,12 @@ a.text-danger:hover {
 .choix input
 {
 	margin : 1px;
+}
+
+.oblig
+{
+	font-style : italic;
+	font-size : 0.8em;
+	text-align : right;
+	margin-top : 0;
 }
