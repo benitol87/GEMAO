@@ -80,7 +80,7 @@
 			<tr>
 				<td><c:out value="${adh.getNom()}" /></td>
 				<td><c:out value="${adh.getPrenom()}" /></td>
-				<td class="listFamille">Coucou</td>
+				<td class="listFamille"><c:out value="${adh.getFamille().getNomFamille()}" /></td>
 				<td class="listNaiss"><fmt:formatDate
 						value="${adh.getDateNaissance()}" pattern="dd/MM/yyyy" /></td>
 				<td class="listEmail"><c:out value="${adh.getEmail()}" /></td>

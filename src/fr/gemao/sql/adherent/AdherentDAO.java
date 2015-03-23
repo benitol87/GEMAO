@@ -100,11 +100,12 @@ public class AdherentDAO extends IDAO<Adherent> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "UPDATE adherent SET idMotifSortie = ?, idResponsable = ?, droitImage = ?, "
+		String sql = "UPDATE adherent SET idMotifSortie = ?, idResponsable = ?, idFamille = ?, droitImage = ?, "
 				+ "dateEntree = ?, dateSortie = ?, qf = ?, cotisation = ? , aPaye = ? "
 				+ "WHERE idPersonne = ?;";
 
 		Integer idMotif = null;
+		Integer idFamille = null;
 		Long idResponsable = null;
 		try {
 
@@ -114,9 +115,12 @@ public class AdherentDAO extends IDAO<Adherent> {
 			if (obj.getMotif() != null) {
 				idMotif = obj.getMotif().getIdMotif();
 			}
+			if (obj.getFamille() != null) {
+				idFamille = obj.getFamille().getIdFamille();
+			}
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, false, idMotif, idResponsable, (obj.isDroitImage() ? 1
+					sql, false, idMotif, idResponsable, idFamille, (obj.isDroitImage() ? 1
 							: 0), DateUtil.toSqlDate(obj.getDateEntree()),
 					DateUtil.toSqlDate(obj.getDateSortie()), obj.getQf(), obj
 							.getCotisation(), obj.isAPaye(), obj
