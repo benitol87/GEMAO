@@ -146,25 +146,23 @@ public class ModifPersonnelServlet extends HttpServlet {
 				session.removeAttribute("personnel");
 				
 				// Archivage
-				new ModificationCtrl().ajouterModification(new Modification(
-						0,
-						(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
-						new Date(),
-						"Modification personnel : "+pers.getNom()+" "+pers.getPrenom()
-				));
-				
+				new ModificationCtrl().ajouterModification(new Modification(0, (Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER), new Date(), "Modification personnel : "+pers.getNom()+" "+pers.getPrenom()));
 			} else {
 				form.setErreur("Modification", "Problème de session");
 			}
+			
+			/* Si le formulaire ne retourne pas d'erreur */
+			if (form.getErreurs().isEmpty()) {
+				session.setAttribute("modif_personnel", pers);
+				
+				/* On redirige vers la liste des personnels */
+				response.sendRedirect(request.getContextPath() + Pattern.PERSONNEL_LISTER);
+			} else {
+				this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_MODIFIER).forward(request, response);
+			}
 		}
 		
-		/* Si le formulaire ne retourne pas d'erreur */
-		if (form.getErreurs().isEmpty()) {
-			
-			/* On redirige vers la liste des personnels */
-			response.sendRedirect(request.getContextPath() + Pattern.PERSONNEL_LISTER);
-		} else {
-			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_MODIFIER).forward(request, response);
-		}
+		
+		
 	}
 }
