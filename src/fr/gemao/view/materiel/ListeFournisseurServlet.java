@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.gemao.ctrl.materiel.EtatCtrl;
 import fr.gemao.ctrl.materiel.FournisseurCtrl;
-import fr.gemao.entity.materiel.Etat;
 import fr.gemao.entity.materiel.Fournisseur;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
@@ -19,7 +17,7 @@ import fr.gemao.view.Pattern;
 /**
  * Servlet implementation class ListerDisciplinesServlet
  */
-@WebServlet(Pattern.MATERIEL_LISTE_ETAT)
+@WebServlet(Pattern.MATERIEL_LISTE_FOURNISSEUR)
 public class ListeFournisseurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,6 +25,7 @@ public class ListeFournisseurServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -40,6 +39,7 @@ public class ListeFournisseurServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
