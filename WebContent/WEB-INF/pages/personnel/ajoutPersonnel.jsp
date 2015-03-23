@@ -129,7 +129,7 @@ autocompletionAdresse("#rue", "#compl");
 		<div id="fonctions">
 			<div id="divFonction1">
 				<label for="fonction1" class='required'>Fonction </label>
-				<select name="fonction1" required>
+				<select name="fonction1" id="fonction1" required onChange="afficherDiscipline()">
 					<c:forEach var="responsabilite" items="${sessionScope.listResponsabilites }">
 						<option value="${ responsabilite.getIdResponsabilite() }">${ responsabilite.getLibelle() }</option>
 					</c:forEach>
