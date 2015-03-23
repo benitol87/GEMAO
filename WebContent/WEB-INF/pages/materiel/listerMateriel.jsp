@@ -17,39 +17,39 @@
 <form class="offset">
 	<p>
 		<span id="gras">Afficher : </span>
-		<span id="choix">
+		<span class="choix">
 			<label for="qte">Quantité</label>
 			<input type="checkbox" name="qte" id="qte" onchange="affQte()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="dateAchat">Date d'achat</label>
 			<input type="checkbox" name="dateAchat" id="dateAchat" onchange="affDateAchat()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="four">Fournisseur</label>
 			<input	type="checkbox" name="fournisseur" id="fournisseur" onchange="affFournisseur()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="marque">Marque</label>
 			<input type="checkbox"	name="marque" id="marque" onchange="affMarque()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="etat">Etat</label>
 			<input type="checkbox" name="etat" id="etat" onchange="affEtat()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="numSer">Numéro de série</label>
 			<input type="checkbox" name="numSer" id="numSer" onchange="affNumSer()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="deplacable">Deplacable</label>
 			<input type="checkbox" name="deplacable" id="deplacable" onchange="affDeplacable()" />
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="ouvLoc">Ouvert à la location</label>
 			<input type="checkbox" name="ouvLoc" id="ouvLoc" onchange="affOuvLoc()"/>
 		</span>
-		<span id="choix">
+		<span class="choix">
 			<label for="type">Type</label>
 			<input type="checkbox" name="type" id="type" onchange="affType()"/>
 		</span>
