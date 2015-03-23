@@ -8,12 +8,47 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
+<script src="<c:url value="/js/ListerPersonnel.js"/>"></script>
+
 <h1>Liste du personnel</h1>
+
+<form class="offset">
+	<p>
+		<span id="gras">Afficher : </span>
+		<span class="choix">
+			<label for="naissance">Date de naissance</label>
+			<input type="checkbox" name="naissance" id="naissance" onchange="affNaissance()" />
+		</span>
+		<span class="choix">
+			<label for="email">Email</label>
+			<input type="checkbox" name="email" id="email" onchange="affEmail()" />
+		</span>
+		<span class="choix">
+			<label for="commune">Commune</label>
+			<input	type="checkbox" name="commune" id="commune" onchange="affCommune()" />
+		</span>
+		<span class="choix">
+			<label for="entree">Date d'entrée</label>
+			<input type="checkbox"	name="entree" id="entree" onchange="affEntree()" />
+		</span>
+		<span class="choix">
+			<label for="CA">Membre CA</label>
+			<input type="checkbox" name="CA" id="CA" onchange="affCA()" />
+		</span>
+	</p>
+</form>
+
 <table class='tablesorter-blue'>
 <thead>
 	<tr>
 		<th>Nom</th>
 		<th>Prénom</th>
+		<th class="listNaiss">Date de naissance</th>
+		<th class="listEmail">Email</th>
+		<th class="listCom">Commune</th>
+		<th class="listCom">Code Postal</th>
+		<th class="listEntree">Date d'entrée</th>			<th class="listQF">Quotient Familial</th>
+		<th class="listCA">Membre CA</th>
 		<th>Actions</th>
 	</tr>
 </thead>
@@ -22,6 +57,22 @@
 		<tr>
 			<td><c:out value="${pers['nom']}" /></td>
 			<td><c:out value="${pers['prenom']}" /></td>
+			<td class="listNaiss"><fmt:formatDate
+						value="${pers.getDateNaissance()}" pattern="dd/MM/yyyy" /></td>
+			<td class="listEmail"><c:out value="${pers.getEmail()}" /></td>
+			<td class="listCom"><c:out
+						value="${pers.getAdresse().getCommune().getNomCommune()}" /></td>
+			<td class="listCom"><c:out
+						value="${pers.getAdresse().getCommune().getCodePostal()}" /></td>
+			<!-- Mettre date début enseignement -->
+			<c:choose>
+				<c:when test="${pers.isMembreCA()}">
+					<td class="listCA">Oui</td>
+				</c:when>
+				<c:otherwise>
+					<td class="listCA">Non</td>
+				</c:otherwise>
+			</c:choose>	
 			<td>
 				<a class="icon icon-search" href="<c:url value="<%= Pattern.PERSONNEL_CONSULTER %>" />?id=<c:out value="${pers['idPersonne']}" />" title='Afficher les détails'></a>
 				<a class="icon icon-pen" href="<c:url value="<%= Pattern.PERSONNEL_MODIFIER %>" />?id=<c:out value="${pers['idPersonne']}" />" title='Modifier les informations'></a>

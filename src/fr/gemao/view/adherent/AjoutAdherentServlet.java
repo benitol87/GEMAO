@@ -46,11 +46,6 @@ public class AjoutAdherentServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		session.setAttribute("ajout_adh_adherent", null);
-		session.setAttribute("ajout_adh_commune", null);
-		session.setAttribute("ajout_adh_adresse", null);
-		session.setAttribute("ajout_adh_responsable", null);
-
 		session.setAttribute("listDiscipline",
 				RecupererDisciplineCtrl.recupererAllDiscipline());
 
@@ -61,6 +56,11 @@ public class AjoutAdherentServlet extends HttpServlet {
 
 		if (request.getParameter("errDate")!=null){
 			request.setAttribute("errDate", true);
+		} else {
+			session.setAttribute("ajout_adh_adherent", null);
+			session.setAttribute("ajout_adh_commune", null);
+			session.setAttribute("ajout_adh_adresse", null);
+			session.setAttribute("ajout_adh_responsable", null);
 		}
 		
 		this.getServletContext()
@@ -82,83 +82,82 @@ public class AjoutAdherentServlet extends HttpServlet {
 
 		adherentForm.testerAdherent(request);
 
+		/**
+		 * Recuperation des données concernant l'adhérent
+		 */
+		String nom = adherentForm.getNom();
+		String prenom = adherentForm.getPrenom();
+		String dateNaissance = adherentForm.getDateNaissance();
+		String telFixe = adherentForm.getTelFixe();
+		String telPortable = adherentForm.getTelPort();
+		String email = adherentForm.getEmail();
+		String droitImage = adherentForm.getDroitImage();
+		String membreCA = adherentForm.getMembreCA();
+		String dateInscription = adherentForm.getDateEntree();
+		String civilite = request.getParameter("civilite");
+
+		/**
+		 * Création de l'adhérent
+		 */
+		Date dateNaiss = new Date();
+		Date dateInscri = new Date();
+		try {
+			dateNaiss = formatter.parse(dateNaissance);
+			dateInscri = formatter.parse(dateInscription);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		List<Discipline> list = new ArrayList<>();
+		Adherent adherent = new Adherent(null, null, null, nom, prenom,
+				dateNaiss, telFixe, telPortable, email, Civilite.MONSIEUR,
+				Boolean.parseBoolean(membreCA), null, null,
+				Boolean.parseBoolean(droitImage), dateInscri, null, null, 0.0f,
+				list, null, null, false, null);
+		if (civilite.equals("F")) {
+			adherent.setCivilite(Civilite.MADAME);
+		}
+		List<Discipline> listDiscipline = adherentForm.getDisciplines();
+		adherent.setDisciplines(listDiscipline);
+
+		/**
+		 * Réupération des données de la commune
+		 */
+		String com = adherentForm.getNomCommune();
+		Integer codePostal = adherentForm.getCodePostal();
+
+		/**
+		 * Création de la commune
+		 */
+		Commune commune = new Commune(null, codePostal, com, false);
+		CommuneDAO communeDAO = DAOFactory.getInstance().getCommuneDAO();
+		Commune c = communeDAO.existNomCodePostal(commune);
+		if (c != null) {
+			commune = c;
+		}
+
+		/**
+		 * Réupération des données de l'adresse
+		 */
+		String numAdresse = adherentForm.getNumRue();
+		String rueAdresse = adherentForm.getNomRue();
+		String complAdresse = adherentForm.getInfoCompl();
+
+		/**
+		 * Création de l'adresse
+		 */
+		Adresse adresse = new Adresse(null, null, numAdresse, rueAdresse,
+				complAdresse);
+
+		session.setAttribute("ajout_adh_adherent", adherent);
+		session.setAttribute("ajout_adh_commune", commune);
+		session.setAttribute("ajout_adh_adresse", adresse);
+
+		Calendar dateMineur = Calendar.getInstance();
+		dateMineur.set(dateMineur.get(Calendar.YEAR) - 18,
+				dateMineur.get(Calendar.MONTH),
+				dateMineur.get(Calendar.DAY_OF_MONTH));
+
 		if (adherentForm.getErreurs().isEmpty()) {
-
-			/**
-			 * Recuperation des données concernant l'adhérent
-			 */
-			String nom = adherentForm.getNom();
-			String prenom = adherentForm.getPrenom();
-			String dateNaissance = adherentForm.getDateNaissance();
-			String telFixe = adherentForm.getTelFixe();
-			String telPortable = adherentForm.getTelPort();
-			String email = adherentForm.getEmail();
-			String droitImage = adherentForm.getDroitImage();
-			String membreCA = adherentForm.getMembreCA();
-			String dateInscription = adherentForm.getDateEntree();
-			String civilite = request.getParameter("civilite");
-
-			/**
-			 * Création de l'adhérent
-			 */
-			Date dateNaiss = new Date();
-			Date dateInscri = new Date();
-			try {
-				dateNaiss = formatter.parse(dateNaissance);
-				dateInscri = formatter.parse(dateInscription);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			List<Discipline> list = new ArrayList<>();
-			Adherent adherent = new Adherent(null, null, null, nom, prenom,
-					dateNaiss, telFixe, telPortable, email, Civilite.MONSIEUR,
-					Boolean.parseBoolean(membreCA), null, null,
-					Boolean.parseBoolean(droitImage), dateInscri, null, null,
-					0.0f, list, null, null, false);
-			if (civilite.equals("F")) {
-				adherent.setCivilite(Civilite.MADAME);
-			}
-			List<Discipline> listDiscipline = adherentForm.getDisciplines();
-			adherent.setDisciplines(listDiscipline);
-
-
-			/**
-			 * Réupération des données de la commune
-			 */
-			String com = adherentForm.getNomCommune();
-			Integer codePostal = adherentForm.getCodePostal();
-
-			/**
-			 * Création de la commune
-			 */
-			Commune commune = new Commune(null, codePostal, com, false);
-			CommuneDAO communeDAO = DAOFactory.getInstance().getCommuneDAO();
-			Commune c = communeDAO.existNomCodePostal(commune);
-			if (c != null) {
-				commune = c;
-			}
-
-			/**
-			 * Réupération des données de l'adresse
-			 */
-			String numAdresse = adherentForm.getNumRue();
-			String rueAdresse = adherentForm.getNomRue();
-			String complAdresse = adherentForm.getInfoCompl();
-
-			/**
-			 * Création de l'adresse
-			 */
-			Adresse adresse = new Adresse(null, null, numAdresse, rueAdresse,
-					complAdresse);
-
-			session.setAttribute("ajout_adh_adherent", adherent);
-			session.setAttribute("ajout_adh_commune", commune);
-			session.setAttribute("ajout_adh_adresse", adresse);
-
-			Calendar dateMineur = Calendar.getInstance();
-			dateMineur.set(dateMineur.get(Calendar.YEAR) - 18,
-					dateMineur.get(Calendar.MONTH),
-					dateMineur.get(Calendar.DAY_OF_MONTH));
 
 			if (dateNaiss.after(dateMineur.getTime())) {
 				response.sendRedirect(request.getContextPath()
@@ -167,14 +166,8 @@ public class AjoutAdherentServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath()
 						+ Pattern.ADHERENT_SAISIE_COTISATION);
 			}
-			
-
 		} else {
-			System.out.println(adherentForm.getErreurs());
-			System.out.println("Erreur !");
-
 			response.sendRedirect("/GEMAO"+Pattern.ADHERENT_AJOUT+"?errDate=1");
-
 		}
 
 	}

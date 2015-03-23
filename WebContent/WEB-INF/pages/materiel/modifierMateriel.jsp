@@ -17,7 +17,7 @@
 	<fieldset>
 		<legend>Informations générales</legend>
 		<div>
-			<label for="categorie">Catégorie : </label> <select name="categorie"
+			<label for="categorie">Catégorie </label> <select name="categorie"
 				id="categorie">
 				<option
 					value="${sessionScope.sessionObjectMateriel.getCategorie().getIdCategorie()}">
@@ -31,21 +31,22 @@
 		</div>
 
 		<div>
-			<label for="valeurAch">Valeur d'achat : </label> <input type="number"
+			<label for="valeurAch">Valeur d'achat </label> <input type="text"
 				id="valeurAch" name="valeurAch"
 				value="${sessionScope.sessionObjectMateriel.getValeurAchat()}" />
+				<span class="euro"></span>
 				<p>${form.getErreurs().get("valeurAch")}</p>
 		</div>
 		<div>
-			<label for="dateAch">Date d'acquisation : </label> <input type="text"
+			<label for="dateAch">Date d'acquisition </label> <input type="text"
 				id="dateAch" name="dateAch"
-				value="${dateAchat}" />
+				value="${dateAchat}" class="datepicker" />
 				<p>${form.getErreurs().get("dateAch")}</p>
 		</div>
 
 
 		<div>
-			<label for="valRea">Valeur de réapprovisionnement : </label> <input
+			<label for="valRea">Valeur de réapprovisionnement </label> <input
 				type="text" name="valRea"
 				value="${sessionScope.sessionObjectMateriel.getValeurReap()}" /> <span
 				class="euro"></span>
@@ -54,7 +55,7 @@
 		
 
 		<div>
-			<label for="fournisseurResult">Fournisseur : </label> <select
+			<label for="fournisseurResult">Fournisseur </label> <select
 				name="fournisseur" id="fournisseur">
 				<option
 					value="${sessionScope.sessionObjectMateriel.getFournisseur().getIdFournisseur()}">
@@ -72,7 +73,7 @@
 	<fieldset>
 		<legend>Informations détaillées</legend>
 		<div>
-			<label for="designation">Désignation : </label> <select
+			<label for="designation">Désignation </label> <select
 				name="designation" id="designation">
 				<option
 					value="${sessionScope.sessionObjectMateriel.getDesignation().getIdDesignation()}">
@@ -86,7 +87,7 @@
 		</div>
 
 		<div>
-			<label for="type">Type : </label> <input type="text" id="type"
+			<label for="type">Type </label> <input type="text" id="type"
 				name="type"
 				value="${sessionScope.sessionObjectMateriel.getTypeMat()}" />
 				<p>${form.getErreurs().get("type")}</p>
@@ -94,7 +95,7 @@
 
 		<!--% Etat à empêcher de s'améliorer -->
 		<div>
-			<label for="etat">Etat : </label> <select name="etat" id="etat">
+			<label for="etat">Etat </label> <select name="etat" id="etat">
 				<option
 					value="${sessionScope.sessionObjectMateriel.getEtat().getIdEtat()}">
 					${sessionScope.sessionObjectMateriel.getEtat().getLibelleEtat()}</option>
@@ -106,7 +107,7 @@
 		</div>
 
 		<div>
-			<label for="marque">Marque : </label> <select name="marque"
+			<label for="marque">Marque </label> <select name="marque"
 				id="marque">
 				<option
 					value="${sessionScope.sessionObjectMateriel.getMarque().getIdMarque()}">${sessionScope.sessionObjectMateriel.getMarque().getNomMarque()}</option>
@@ -117,7 +118,7 @@
 			<p>${form.getErreurs().get("marque")}</p>
 		</div>
 		<div>
-			<label for="quantite">Quantité : </label> <input name="quantite"
+			<label for="quantite">Quantité </label> <input name="quantite"
 				type="number" min="1"
 				value="${sessionScope.sessionObjectMateriel.getQuantite()}" />
 				<p>${form.erreurs['quantite'] }</p>
@@ -125,14 +126,15 @@
 		
 
 		<div>
-			<label for="prixU">Prix unitaire : </label> <input name="prixU"
-				type="number"
+			<label for="prixU">Prix unitaire </label> <input name="prixU"
+				type="text"
 				value="${sessionScope.sessionObjectMateriel.getValeurAchat()}" />
+				<span class="euro"></span>
 				<p>${form.getErreurs().get("prixU")}</p>
 		</div>
 
 		<div>
-			<label for="numSerieResult">Numéro de série : </label> <input
+			<label for="numSerieResult">Numéro de série </label> <input
 				name="numSerie" type="text"
 				value="${sessionScope.sessionObjectMateriel.getNumSerie()}" />
 				<p>${form.getErreurs().get("numSerie")}</p>
@@ -186,7 +188,7 @@
 		<div class='align-center'>
 			<textarea name="observation" id="observation" rows="5"
 				placeholder="Ajoutez ici toute information que vous jugez nécessaire de mentionner."
-				cols="30">${sessionScope.sessionObjectMateriel.getObservation()}</textarea>
+				cols="50">${sessionScope.sessionObjectMateriel.getObservation()}</textarea>
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>

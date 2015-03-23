@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import fr.gemao.Config;
 import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
+import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
@@ -27,6 +28,8 @@ import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.ResponsabiliteDAO;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
+import fr.gemao.view.util.AutocompletionAdresse;
+import fr.gemao.view.util.AutocompletionCommune;
 
 /**
  * Servlet implementation class AjoutPersonnelServlet
@@ -47,9 +50,17 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		ResponsabiliteDAO responsabiliteDAO = DAOFactory.getInstance().getResponsabiliteDAO();
 		List<Responsabilite> responsabilites = responsabiliteDAO.getAll();
 		session.setAttribute("listResponsabilites", responsabilites);
+		session.setAttribute("listDiscipline", RecupererDisciplineCtrl.recupererAllDiscipline());
+		
+		request = AutocompletionCommune
+				.initRequestForAutoCompletionCommune(request);
+		request = AutocompletionAdresse
+				.initRequestForAutoCompletionAdresse(request);
 		
 		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT)
 				.forward(request, response);
+		
+		
 	}
 
 	/**
