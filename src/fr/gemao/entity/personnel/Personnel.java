@@ -291,6 +291,8 @@ public class Personnel extends Personne implements Serializable {
 		int result = super.hashCode();
 		result = prime * result + ((contrat == null) ? 0 : contrat.hashCode());
 		result = prime * result
+				+ ((dateEntree == null) ? 0 : dateEntree.hashCode());
+		result = prime * result
 				+ ((listeDiplomes == null) ? 0 : listeDiplomes.hashCode());
 		result = prime
 				* result
@@ -323,6 +325,11 @@ public class Personnel extends Personne implements Serializable {
 			if (other.contrat != null)
 				return false;
 		} else if (!contrat.equals(other.contrat))
+			return false;
+		if (dateEntree == null) {
+			if (other.dateEntree != null)
+				return false;
+		} else if (!dateEntree.equals(other.dateEntree))
 			return false;
 		if (listeDiplomes == null) {
 			if (other.listeDiplomes != null)
@@ -373,6 +380,7 @@ public class Personnel extends Personne implements Serializable {
 				+ listeDisciplines + ", contrat=" + contrat + ", login="
 				+ login + ", password=" + password + ", pointsAncien="
 				+ pointsAncien + ", profil=" + profil + ", premiereConnexion="
-				+ premiereConnexion + ", numeroSS=" + numeroSS + "]";
+				+ premiereConnexion + ", numeroSS=" + numeroSS
+				+ ", dateEntree=" + dateEntree + "]";
 	}
 }
