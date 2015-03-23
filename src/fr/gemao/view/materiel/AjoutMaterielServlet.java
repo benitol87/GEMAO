@@ -257,11 +257,13 @@ public class AjoutMaterielServlet extends HttpServlet {
 			
 			response.sendRedirect(request.getContextPath() + VUE_LISTE + "?modifOk=0");
 			
+		} else {
+			request.setAttribute("form", form);
+			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_AJOUT)
+				.forward(request, response);
 		}
 
-		request.setAttribute("form", form);
-		this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_AJOUT)
-				.forward(request, response);
+		
 	}
 
 }
