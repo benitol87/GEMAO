@@ -25,6 +25,7 @@ import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
+import fr.gemao.view.ResultatServlet;
 
 @WebServlet(Pattern.ADHERENT_VALIDATION_REINS)
 public class ValidationReinscriptionServlet extends HttpServlet {
@@ -112,8 +113,17 @@ public class ValidationReinscriptionServlet extends HttpServlet {
 							+ adherent.getPrenom()));
 
 			// Redirection
+			request.setAttribute(ResultatServlet.ATTR_TITRE_H1, "Confirmation");
+			request.setAttribute(ResultatServlet.ATTR_RESULTAT, "L'adhérent "
+					+ adherent.getNom() + " " + adherent.getPrenom()
+					+ " à été reinscrit");
+			request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON,
+					Pattern.ADHERENT_LISTER);
+			request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON,
+					"Retour à la liste");
+
 			this.getServletContext()
-					.getRequestDispatcher(JSPFile.ADHERENT_CONFIRMATION_AJOUT)
+.getRequestDispatcher(JSPFile.RESULTAT)
 					.forward(request, response);
 
 		} else {
