@@ -62,6 +62,11 @@ public class JSPFile {
 			MATERIEL_CONSULTER = ROOT+REP_MATERIEL+"consulterMateriel.jsp",
 			MATERIEL_LISTER = ROOT+REP_MATERIEL+"listerMateriel.jsp",
 			MATERIEL_MODIFIER = ROOT+REP_MATERIEL+"modifierMateriel.jsp",
+			MATERIEL_LISTE_ETAT = ROOT+REP_MATERIEL+"listerEtat.jsp",
+			MATERIEL_LISTE_FOURNISSEUR = ROOT+REP_MATERIEL+"listerFournisseur.jsp",
+			MATERIEL_LISTE_DESIGNATION = ROOT+REP_MATERIEL+"listerDesignation.jsp",
+			MATERIEL_LISTE_MARQUE = ROOT+REP_MATERIEL+"listerMarque.jsp",
+			MATERIEL_LISTE_CATEGORIE = ROOT+REP_MATERIEL+"listerCategorie.jsp",
 			
 		// Module personnel
 			REP_PERSONNEL = "personnel/",

@@ -113,7 +113,7 @@ public class Personnel extends Personne implements Serializable {
 			List<Diplome> listeDiplome, List<Discipline> listeDiscipline,
 			Contrat contrat, String login, String password,
 			Integer pointsAncien, Profil profil, boolean premiereConnexion,
-			String numeroSS) {
+			String numeroSS, Date dateEntree) {
 		super(personne);
 
 		this.listeResponsabilite = listeResponsabilite;
@@ -126,6 +126,7 @@ public class Personnel extends Personne implements Serializable {
 		this.profil = profil;
 		this.premiereConnexion = premiereConnexion;
 		this.numeroSS = numeroSS;
+		this.dateEntree = dateEntree;
 	}
 
 	/**
@@ -181,8 +182,8 @@ public class Personnel extends Personne implements Serializable {
 		return dateEntree;
 	}
 	
-	public void setDateEntree(){
-		this.dateEntree = dateEntree;
+	public void setDateEntree(Date dateEnt){
+		this.dateEntree = dateEnt;
 	}
 
 	/**
