@@ -17,8 +17,6 @@
 	<c:out value="${adherent['prenom']}" />
 	a bien été modifié
 </p>
-<a class="offset" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>"> <input
-	type="button" value="Retour" />
-</a>
+<a class="offset btn" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>">Retour</a>
 
 <c:import url="/inc/footer.inc.jsp" />

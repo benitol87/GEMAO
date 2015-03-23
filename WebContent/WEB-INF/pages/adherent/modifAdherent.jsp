@@ -21,7 +21,7 @@ autocompletionAdresse("#rue", "#compl");
 
 <h1>Modification d'un adhérent</h1>
 <c:if test="${errDate}">
-	<p class="offset text-danger">Date de naissance &lt; Date d'inscription &lt;= Date du jour</p>
+	<p class="offset text-danger">La date d'inscription doit être antérieure à aujourd'hui et postérieure à la date de naissance.</p>
 </c:if>
 <form id="modifAdherent" action="#" method="post">
 	<fieldset>
@@ -190,10 +190,15 @@ autocompletionAdresse("#rue", "#compl");
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
+<<<<<<< HEAD
+		<a class="btn" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>">Retour</a>
+		<input type="submit" value="Suivant" />
+=======
 		<p>* Champs obligatoires</p>
 		<a href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>"> <input
 			type="button" value="Retour" />
 		</a> <input type="submit" value="Suivant" />
+>>>>>>> branch 'master' of https://github.com/benitol87/GEMAO.git
 	</fieldset>
 </form>
 <c:import url="/inc/footer.inc.jsp" />
