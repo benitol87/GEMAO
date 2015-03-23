@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 import fr.gemao.ctrl.ParametreCtrl;
 import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.entity.Parametre;
-import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.administration.Modification;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.form.ParametreForm;
 import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
@@ -31,6 +31,7 @@ public class ParametreServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		ParametreCtrl parametreCtrl = new ParametreCtrl();
@@ -52,6 +53,7 @@ public class ParametreServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		ParametreForm form = new ParametreForm();
@@ -69,6 +71,7 @@ public class ParametreServlet extends HttpServlet {
 						new Date(),
 						"Modification paramètres adhérent"
 				));
+				form.setResultat("Les paramètres sont modifiés");
 			} catch (Exception e) {
 				form.setErreur("Parametre", e.getMessage());
 				System.out.println(form.getErreurs());
