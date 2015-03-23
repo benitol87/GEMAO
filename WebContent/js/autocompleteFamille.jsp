@@ -4,7 +4,7 @@
 
 //Fonction qui permet l'autocompletion du champs codePostal et commune.
 //selecteurFamille : selecteur jquery du champ famille
-function autocompletionCommuneCodePostal(selecteurCommune, selecteurCodePostal){
+function autocompletionFamille(selecteurCommune, selecteurCodePostal){
 	$(function() {
 		var availableTags = ${requestScope.auto_familles};
 		$(selecteurCommune).autocomplete({
