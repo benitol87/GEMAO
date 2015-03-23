@@ -53,6 +53,7 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 		 */
 		Integer typeContrat = Integer.valueOf(request.getParameter("type"));
 		String debcontrat = request.getParameter("datedeb");
+		String debEnsei = request.getParameter("datedebEns");
 	    String duree = request.getParameter("duree");
 	    
 	    /**
@@ -61,10 +62,12 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 	    Contrat contrat = new Contrat();
 	    
 	    CalculerDateFinContratCtrl calculerDateFinContratCtrl = new CalculerDateFinContratCtrl();
-	    SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         try{
         	Date dateDeb = formatter.parse(debcontrat);
+        	Date dateEnsei = formatter.parse(debEnsei);
         	contrat.setDateDebut(dateDeb);
+        	perso.setDateEntree(dateEnsei);
         } catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -73,9 +76,9 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
         contrat.setTypeContrat(typeContratCtrl.recupererTypeContrat(typeContrat));
         
         perso.setContrat(contrat);
-        /*
+        
         AjouterPersonnelCtrl ajouterPersonnelCtrl = new AjouterPersonnelCtrl();
-        ajouterPersonnelCtrl.ajouterPersonnel(perso);*/
+        ajouterPersonnelCtrl.ajouterPersonnel(perso);
         
         // Archivage
 		new ModificationCtrl().ajouterModification(new Modification(
