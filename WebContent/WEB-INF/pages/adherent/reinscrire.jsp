@@ -169,9 +169,8 @@
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
-		<a href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>"> <input
-			type="button" value="Retour" />
-		</a> <input type="submit" value="Suivant" />
+		<a class="btn" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>">Retour</a>
+		<input type="submit" value="Suivant" />
 	</fieldset>
 </form>
 <c:import url="/inc/footer.inc.jsp" />

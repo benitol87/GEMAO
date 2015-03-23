@@ -147,22 +147,12 @@
 
 
 <p class='align-center'>
-	<a href="<c:url value="<%= Pattern.ADHERENT_LISTER %>"/>">
-		<input type="button" value="Retour" />
-	</a>
-	<a href="<c:url value="<%= Pattern.ADHERENT_MODIFIER %>"/><c:out value='?id=${adherent.idPersonne }'/>">
-		<input type="button" value="Modifier" />
-	</a>
-	<a href="<c:url value="<%= Pattern.ADHERENT_DESINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">
-		<input type="button" value="Désinscrire" />
-	</a>
-	<a href="<c:url value="<%= Pattern.ADHERENT_REINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">
-		<input type="button" value="Réinscrire" />
-	</a>
+	<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_LISTER %>"/>">Retour</a>
+	<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_MODIFIER %>"/><c:out value='?id=${adherent.idPersonne }'/>">Modifier</a>
+	<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_DESINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">Désinscrire</a>
+	<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_REINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">Réinscrire</a>
 	<c:if test="${!adherent.isAPaye() && adherent.getMotif() == null }">
-	<a href="<c:url value="<%= Pattern.ADHERENT_APAYE %>"/><c:out value='?id=${adherent.idPersonne}'/>">
-		<input type="button" value="A Payé"/>
-	</a> 
+	<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_APAYE %>"/><c:out value='?id=${adherent.idPersonne}'/>">A Payé</a> 
 	</c:if>
 </p>
 

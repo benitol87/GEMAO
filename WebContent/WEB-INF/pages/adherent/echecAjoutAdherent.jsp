@@ -18,7 +18,5 @@
 		<p class="offset">L'adhérent <c:out value="${adherent['nom']}" /> <c:out value="${adherent['prenom']}" /> n'a pas été ajouté.</p>
 	</c:otherwise>
 </c:choose>
-<a class="offset" href="<c:url value="<%=Pattern.ADHERENT_AJOUT%>"/>"> <input
-	type="button" value="Retour" />
-</a>
+<a class="offset btn" href="<c:url value="<%=Pattern.ADHERENT_AJOUT%>"/>">Retour</a>
 <c:import url="/inc/footer.inc.jsp" />

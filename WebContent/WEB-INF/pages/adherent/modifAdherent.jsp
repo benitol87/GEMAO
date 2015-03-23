@@ -13,7 +13,7 @@
 
 <h1>Modification d'un adhérent</h1>
 <c:if test="${errDate}">
-	<p class="offset">Date de naissance < Date d'inscription <= Date du jour</p>
+	<p class="offset text-danger">La date d'inscription doit être antérieure à aujourd'hui et postérieure à la date de naissance.</p>
 </c:if>
 <form id="modifAdherent" action="#" method="post">
 	<fieldset>
@@ -178,9 +178,8 @@
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
-		<a href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>"> <input
-			type="button" value="Retour" />
-		</a> <input type="submit" value="Suivant" />
+		<a class="btn" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>">Retour</a>
+		<input type="submit" value="Suivant" />
 	</fieldset>
 </form>
 <c:import url="/inc/footer.inc.jsp" />
