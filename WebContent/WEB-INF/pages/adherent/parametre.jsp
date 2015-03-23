@@ -58,7 +58,7 @@
 		</div>
 	</fieldset>
 </form>
-<p class='offset'>${form.erreurs['Parametre']}</p>
+<p class='align-center no-border'>${form.erreurs['Parametre']}</p>
 
 
 <c:import url="/inc/footer.inc.jsp" />
