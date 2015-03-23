@@ -187,6 +187,9 @@ public class ModifAdherentServlet extends HttpServlet {
 			
 			String membreCA = request.getParameter("membreCA");
 			adherent.setMembreCA(Boolean.parseBoolean(membreCA));
+			
+			if (!adherent.isMineur())
+				adherent.setResponsable(null);
 
 			if (adherent.getResponsable() != null) {
 				Responsable responsable = adherent.getResponsable();
