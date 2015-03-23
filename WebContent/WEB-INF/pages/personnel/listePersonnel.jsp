@@ -66,7 +66,8 @@
 			<td class="listCom"><c:out
 						value="${pers.getAdresse().getCommune().getCodePostal()}" /></td>
 			
-			<td class="listEntree">
+			<td class="listEntree"><fmt:formatDate
+						value="${pers.getDateEntree()}" pattern="dd/MM/yyyy" /></td>
 			<c:choose>
 				<c:when test="${pers.isMembreCA()}">
 					<td class="listCA">Oui</td>

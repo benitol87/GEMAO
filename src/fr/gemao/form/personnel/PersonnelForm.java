@@ -66,7 +66,7 @@ public class PersonnelForm {
 	private String classe;
 
 	// Inscription
-	private String dateEntree;
+	private Date dateEntree;
 
 	private List<Responsabilite> listeResponsabilite;
 	private List<Diplome> listeDiplomes;
@@ -154,7 +154,7 @@ public class PersonnelForm {
 		return classe;
 	}
 
-	public String getDateEntree() {
+	public Date getDateEntree() {
 		return dateEntree;
 	}
 
@@ -222,7 +222,7 @@ public class PersonnelForm {
 		this.classe = classe;
 	}
 
-	public void setDateEntree(String dateEntree) {
+	public void setDateEntree(Date dateEntree) {
 		this.dateEntree = dateEntree;
 	}
 
