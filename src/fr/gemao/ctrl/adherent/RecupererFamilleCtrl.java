@@ -8,7 +8,7 @@ import fr.gemao.sql.adherent.FamilleDAO;
 
 public class RecupererFamilleCtrl {
 
-	public static List<Famille> RecupererAllFamille(){
+	public static List<Famille> recupererAllFamille() {
 		List<Famille> list;
 		FamilleDAO familleDAO = DAOFactory.getInstance().getFamilleDAO();
 		list = familleDAO.getAll();
