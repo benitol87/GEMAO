@@ -126,10 +126,10 @@ public class ReinscrireAdherentServlet extends HttpServlet {
 					.getParameter("codePostal"));
 			Commune commune = new Commune(null, codePostal, nomCommune, false);
 
-			AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
-			ajouterCommuneCtrl.ajoutCommune(commune);
+			new AjouterCommuneCtrl();
+			AjouterCommuneCtrl.ajoutCommune(commune);
 
-			AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
+			new AjouterAdresseCtrl();
 			Adresse adresse = new Adresse();
 			String numRue = request.getParameter("num");
 			adresse.setNumRue(numRue);
@@ -138,7 +138,7 @@ public class ReinscrireAdherentServlet extends HttpServlet {
 			String infoCompl = request.getParameter("compl");
 			adresse.setInfoCompl(infoCompl);
 			adresse.setCommune(commune);
-			ajouterAdresseCtrl.ajoutAdresse(adresse);
+			AjouterAdresseCtrl.ajoutAdresse(adresse);
 
 			if (adherent.getQf() != null
 					&& !adherent.getAdresse().equals(adresse))
@@ -169,8 +169,8 @@ public class ReinscrireAdherentServlet extends HttpServlet {
 				String emailResp = request.getParameter("emailResp");
 				responsable.setEmail(emailResp);
 
-				ModifierResponsableCtrl modifierResponsableCtrl = new ModifierResponsableCtrl();
-				modifierResponsableCtrl.modifierResponsable(responsable);
+				new ModifierResponsableCtrl();
+				ModifierResponsableCtrl.modifierResponsable(responsable);
 			}
 
 			session.setAttribute("ajout_adh_adherent", adherent);

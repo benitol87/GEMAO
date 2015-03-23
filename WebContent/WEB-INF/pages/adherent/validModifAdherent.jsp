@@ -1,3 +1,4 @@
+<%@page import="fr.gemao.view.Pattern"%>
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -125,7 +126,7 @@
 	</fieldset>
 </c:if>
 <fieldset class='align-center no-border'>
-	<a href="/GEMAO"><input type="button" value="Annuler" /></a>
+	<a href="<c:url value="<%=Pattern.ADHERENT_LISTER %>"/>"><input type="button" value="Annuler" /></a>
 	<input type="submit" value="Valider" />
 </fieldset>
 </form>

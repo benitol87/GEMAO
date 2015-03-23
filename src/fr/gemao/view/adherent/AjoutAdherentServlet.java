@@ -19,6 +19,7 @@ import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.entity.adherent.Famille;
 import fr.gemao.entity.cours.Discipline;
 import fr.gemao.entity.util.Civilite;
 import fr.gemao.form.adherent.AdherentForm;
@@ -87,6 +88,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 		 */
 		String nom = adherentForm.getNom();
 		String prenom = adherentForm.getPrenom();
+		String famille = adherentForm.getFamille();
 		String dateNaissance = adherentForm.getDateNaissance();
 		String telFixe = adherentForm.getTelFixe();
 		String telPortable = adherentForm.getTelPort();
@@ -112,7 +114,7 @@ public class AjoutAdherentServlet extends HttpServlet {
 				dateNaiss, telFixe, telPortable, email, Civilite.MONSIEUR,
 				Boolean.parseBoolean(membreCA), null, null,
 				Boolean.parseBoolean(droitImage), dateInscri, null, null, 0.0f,
-				list, null, null, false, null);
+				list, null, null, false, new Famille(null, famille));
 		if (civilite.equals("F")) {
 			adherent.setCivilite(Civilite.MADAME);
 		}

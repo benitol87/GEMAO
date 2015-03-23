@@ -21,7 +21,7 @@ public class AjouterCommuneCtrl {
 	 * @param commune
 	 * @return true si les informations sont valides, false sinon
 	 */
-	public boolean verifierInformations(Commune commune){
+	public static boolean verifierInformations(Commune commune){
 		String masque;
 		Pattern pattern;
 		Matcher controler;
@@ -49,9 +49,9 @@ public class AjouterCommuneCtrl {
 	 * Pour être ajoutée, les informations de la commune doivent être valides et la commune ne doit pas déjà exister dans la base (sinon levée d'une IllegalArgumentException).
 	 * @param commune
 	 */
-	public void ajoutCommune(Commune commune){
+	public static void ajoutCommune(Commune commune){
 		//Vérification de la validité des informations
-		if(this.verifierInformations(commune)){
+		if(verifierInformations(commune)){
 			Commune com;
 			
 			DAOFactory co = DAOFactory.getInstance();
@@ -61,11 +61,8 @@ public class AjouterCommuneCtrl {
 			com = communeDAO.existNomCodePostal(commune);
 			if(com == null){
 				com = communeDAO.create(commune);
-				if (com == null){
-					System.out.println("Une erreur est survenue lors de l'insertion...");
-				} else {
+				if (com != null){
 					commune.setIdCommune(com.getIdCommune());
-					System.out.println("La commune a bien été ajoutée.");
 				}
 			}
 			else{
@@ -73,8 +70,5 @@ public class AjouterCommuneCtrl {
 				commune.setAvantage(com.isAvantage());
 			}
 		}
-		else{
-			System.out.println("Les informations de la commune ne sont pas valides...");
-		}	
 	}
 }

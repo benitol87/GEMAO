@@ -11,8 +11,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.gemao.ctrl.AjouterPersonneCtrl;
-import fr.gemao.ctrl.adherent.AjouterAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
 import fr.gemao.entity.cours.Discipline;
 
@@ -29,6 +27,7 @@ public class AdherentForm {
 	//Informations relatives à la personne
 	private static final String CHAMP_NOM = "nom";
 	private static final String CHAMP_PRENOM = "prenom";
+	private static final String CHAMP_FAMILLE = "famille";
 	private static final String CHAMP_DATENAISS = "dateNaiss";
 	private static final String CHAMP_TELFIXE = "telFixe";
 	private static final String CHAMP_TELPORT = "telPort";
@@ -62,6 +61,7 @@ public class AdherentForm {
 	//Informations relatives à la personne
 	private String nom;
 	private String prenom;
+	private String famille;
 	private String dateNaissance;
 	private String telFixe;
 	private String telPort;
@@ -112,6 +112,11 @@ public class AdherentForm {
 		return this.prenom;
 	}
 	
+
+	public String getFamille() {
+		return this.famille;
+	}
+
 	public String getDateNaissance(){
 		return this.dateNaissance;
 	}
@@ -373,6 +378,7 @@ public class AdherentForm {
 		//Récupération des champs du formulaire
 		nom = getValeurChamp(request, CHAMP_NOM);
 		prenom = getValeurChamp(request, CHAMP_PRENOM);
+		famille = getValeurChamp(request, CHAMP_FAMILLE);
 		dateNaissance = getValeurChamp(request, CHAMP_DATENAISS);
 		telFixe = getValeurChamp(request, CHAMP_TELFIXE);
 		telPort = getValeurChamp(request, CHAMP_TELPORT);
