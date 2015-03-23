@@ -117,9 +117,6 @@ public class ModifPersonnelServlet extends HttpServlet {
 		
 		/* Si le formulaire n'a pas renvoyé d'erreur */
 		if (form.getErreurs().isEmpty()) {
-			ModifierPersonnelCtrl modifPers = new ModifierPersonnelCtrl();
-			AjouterAdresseCtrl ajouterAdr = new AjouterAdresseCtrl();
-			AjouterCommuneCtrl ajouterCommune = new AjouterCommuneCtrl();
 			
 			Personnel pers = null;
 			
@@ -138,11 +135,6 @@ public class ModifPersonnelServlet extends HttpServlet {
 				pers.setListeResponsabilite(form.getListeResponsabilite());
 				pers.setNumeroSS(form.getNumeroSS());
 				
-				/* Positionnement des attributs relatifs à la commune */
-				ajouterCommune.ajoutCommune(form.getAdresse().getCommune());
-				ajouterAdr.ajoutAdresse(form.getAdresse());
-				
-				modifPers.modifierPersonnel(pers);
 				session.removeAttribute("personnel");
 				
 				// Archivage
@@ -156,13 +148,10 @@ public class ModifPersonnelServlet extends HttpServlet {
 				session.setAttribute("modif_personnel", pers);
 				
 				/* On redirige vers la liste des personnels */
-				response.sendRedirect(request.getContextPath() + Pattern.PERSONNEL_LISTER);
+				response.sendRedirect(request.getContextPath() + Pattern.PERSONNEL_VALIDATION_MODIF);
 			} else {
 				this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_MODIFIER).forward(request, response);
 			}
 		}
-		
-		
-		
 	}
 }

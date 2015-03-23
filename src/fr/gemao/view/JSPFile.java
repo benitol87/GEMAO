@@ -68,7 +68,7 @@ public class JSPFile {
 			PERSONNEL_AJOUT = ROOT+REP_PERSONNEL+"ajoutPersonnel.jsp",
 			PERSONNEL_AJOUT2 = ROOT+REP_PERSONNEL+"ajoutPersonnel2.jsp",
 			PERSONNEL_AJOUT3 = ROOT+REP_PERSONNEL+"ajoutPersonnel3.jsp",
-			PERSONNEL_VALIDATION_AJOUT = ROOT+REP_PERSONNEL+"validAjoutPersonnel.jsp",
+			PERSONNEL_VALIDATION_MODIF = ROOT+REP_PERSONNEL+"validModifPersonnel.jsp",
 			PERSONNEL_CONSULTER = ROOT+REP_PERSONNEL+"consulterPersonnel.jsp",
 			PERSONNEL_LISTER = ROOT+REP_PERSONNEL+"listePersonnel.jsp",
 			PERSONNEL_MODIFIER = ROOT+REP_PERSONNEL+"modifPersonnel.jsp",
