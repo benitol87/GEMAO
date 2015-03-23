@@ -49,7 +49,7 @@ public class Prof extends Personnel implements Serializable {
 			List<Diplome> listeDiplome, List<Discipline> listeDiscipline, Contrat contrat, String login,
 			String password, Integer pointsAncien, Profil profil, boolean premiereConnexion, Date dateDebutEnseignement, String numeroSS) {
 		super(personne, listeResponsabilite, listeDiplome,listeDiscipline, contrat, login, password,
-				pointsAncien, profil, premiereConnexion, numeroSS);
+				pointsAncien, profil, premiereConnexion, numeroSS, dateDebutEnseignement);
 		this.dateDebutEnseignement = dateDebutEnseignement;
 	}
 

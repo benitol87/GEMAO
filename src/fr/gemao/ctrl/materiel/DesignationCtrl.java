@@ -40,7 +40,7 @@ public class DesignationCtrl {
 	 * @param libelle
 	 *            le libelle de la designation a supprimer.
 	 */
-	public boolean supprimerDesignation(String libelle) {
+	public static boolean supprimerDesignation(String libelle) {
 		if (libelle == null) {
 			throw new NullPointerException(
 					"Le nom du reparateur ne doit pas etre null");
@@ -69,7 +69,7 @@ public class DesignationCtrl {
 	 * @param designation
 	 *            La designation avec le nouveau libelle
 	 */
-	public boolean modifierDesignationCtrl(Designation designation) {
+	public static boolean modifierDesignationCtrl(Designation designation) {
 		if (designation.getIdDesignation() <= 0) {
 			throw new IllegalArgumentException("Id incorrect");
 		}
@@ -96,7 +96,7 @@ public class DesignationCtrl {
 	 *            id de la designation a recuperer
 	 * @return la designation qui a pour id, idDesignation
 	 */
-	public Designation recupererDesignationCtrl(int idDesignation) {
+	public static Designation recupererDesignationCtrl(int idDesignation) {
 		if (idDesignation <= 0) {
 			throw new IllegalArgumentException("Id invalide");
 		}
@@ -106,7 +106,7 @@ public class DesignationCtrl {
 
 	}
 
-	public List<Designation> recupererToutesDesignations() {
+	public static List<Designation> recupererToutesDesignations() {
 		List<Designation> listeDesignation = new ArrayList<Designation>();
 		DesignationDAO designationDAO = new DesignationDAO(DAOFactory.getInstance());
 		

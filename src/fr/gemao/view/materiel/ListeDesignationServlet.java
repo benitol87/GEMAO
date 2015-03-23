@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.gemao.ctrl.materiel.EtatCtrl;
-import fr.gemao.entity.materiel.Etat;
+import fr.gemao.ctrl.materiel.DesignationCtrl;
+import fr.gemao.entity.materiel.Designation;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
 
-@WebServlet(Pattern.MATERIEL_LISTE_ETAT)
-public class ListeEtatServlet extends HttpServlet {
+@WebServlet(Pattern.MATERIEL_LISTE_DESIGNATION)
+public class ListeDesignationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -26,9 +26,9 @@ public class ListeEtatServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.setAttribute("listEtat",EtatCtrl.getListeEtat());
+		session.setAttribute("listDes",DesignationCtrl.recupererToutesDesignations());
 		this.getServletContext()
-				.getRequestDispatcher(JSPFile.MATERIEL_LISTE_ETAT)
+				.getRequestDispatcher(JSPFile.MATERIEL_LISTE_DESIGNATION)
 				.forward(request, response);
 	}
 
@@ -43,28 +43,28 @@ public class ListeEtatServlet extends HttpServlet {
 
 		if (id == 0) {
 			String lib = new String(request.getParameter("libelle"));
-			Etat etat = new Etat();
-			if (EtatCtrl.ajoutEtat(lib)) {
+			Designation des = new Designation();
+			if (DesignationCtrl.ajoutDesignation(lib)) {
 				request.setAttribute("ajoutOK", true);
-				session.setAttribute("listEtat",
-						EtatCtrl.getListeEtat());
+				session.setAttribute("listDes",
+						DesignationCtrl.recupererToutesDesignations());
 			} else {
 				request.setAttribute("ajoutKO", true);
 			}
 		} else {
 			int id1 = Integer.parseInt(request.getParameter("id"));
-			Etat etat = EtatCtrl.recupererEtat(id1);
-			if (EtatCtrl.supprimerEtat(etat.getLibelleEtat())){
+			Designation des = DesignationCtrl.recupererDesignationCtrl(id1);
+			if (DesignationCtrl.supprimerDesignation(des.getLibelleDesignation())){
 				request.setAttribute("modifOK", true);
-				session.setAttribute("listEtat",
-						EtatCtrl.getListeEtat());
+				session.setAttribute("listDes",
+						DesignationCtrl.recupererToutesDesignations());
 			} else {
 				request.setAttribute("modifKO", true);
 			}
 		}
 
 		this.getServletContext()
-				.getRequestDispatcher(JSPFile.MATERIEL_LISTE_ETAT)
+				.getRequestDispatcher(JSPFile.MATERIEL_LISTE_DESIGNATION)
 				.forward(request, response);
 	}
 
