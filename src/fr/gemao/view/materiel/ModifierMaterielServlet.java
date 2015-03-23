@@ -94,7 +94,12 @@ public class ModifierMaterielServlet extends HttpServlet {
 				MarqueCtrl marquectrl = new MarqueCtrl();
 				
 				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-				String dateAchat = df.format(new Date(mat.getDateAchat().getTime()));
+				String dateAchat;
+				if(mat.getDateAchat()==null){
+					dateAchat = new String("Non renseignée");
+				}else{
+					dateAchat = df.format(new Date(mat.getDateAchat().getTime()));
+				}
 				request.setAttribute("dateAchat", dateAchat);
 
 				session.setAttribute("sessionObjectMateriel", mat);
