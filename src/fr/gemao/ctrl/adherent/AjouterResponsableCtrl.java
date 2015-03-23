@@ -15,19 +15,22 @@ public class AjouterResponsableCtrl {
 	public AjouterResponsableCtrl(){
 	}
 	
+	static String masqueNom = "^[A-Za-z âäàéèëêîïìôöòûüùÿ\\-]+$",
+			masqueTel = "^[0][0-9]{9}$",
+			masqueMail = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
+					+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
+	
 	/**
 	 * Méthode permettant de vérifier la validité des informations d'un responsable
 	 * @param responsable
 	 * @return true si les informations sont valides, false sinon
 	 */
 	public boolean verifierInformations(Responsable responsable){
-		String masque;
 		Pattern pattern;
 		Matcher controler;
 		
 		//Vérification du nom
-		masque = "^[A-Za-z\\-]+$";
-		pattern = Pattern.compile(masque);
+		pattern = Pattern.compile(masqueNom);
 		controler = pattern.matcher(responsable.getNom());
 		if (!controler.matches()) {
 			System.out.println("Le format du nom est invalide...");
@@ -42,8 +45,7 @@ public class AjouterResponsableCtrl {
 		}
 		
 		//Vérification du téléphone
-		masque = "^[0][0-9]{9}$";
-		pattern = Pattern.compile(masque);
+		pattern = Pattern.compile(masqueTel);
 		controler = pattern.matcher(responsable.getTelephone());
 		if (!controler.matches()) {
 			System.out.println("Le format du téléphone est invalide...");
@@ -51,9 +53,7 @@ public class AjouterResponsableCtrl {
 		}
 		
 		//Vérification de l'email
-		masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
-				+ "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
-		pattern = Pattern.compile(masque);
+		pattern = Pattern.compile(masqueMail);
 		if(responsable.getEmail()=="")
 			responsable.setEmail(null);
 		if(responsable.getEmail()!=null){

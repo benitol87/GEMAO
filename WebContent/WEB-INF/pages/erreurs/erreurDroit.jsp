@@ -14,7 +14,7 @@
 <p class='offset text-danger'>Vous ne possédez pas les droits pour accéder à cette page.</p>
 
 <div class="align-center">
-	<a href='<c:url value="<%= Pattern.ACCUEIL %>"/>'><input type='button' value='Accueil'/></a>
+	<a href='<c:url value="<%= Pattern.ACCUEIL %>"/>'>Accueil</a>
 </div>
 	
 <c:import url="/inc/footer.inc.jsp" />

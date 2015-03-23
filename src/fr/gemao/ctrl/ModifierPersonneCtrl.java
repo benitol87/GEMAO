@@ -19,10 +19,8 @@ public class ModifierPersonneCtrl {
 	 * @return l'identifiant de la personne modifiée, -1 si la modification n'a pas pu être réalisée
 	 */
 	public long modifierPersonne(Personne personne){
-		AjouterPersonneCtrl ajoutPersonne = new AjouterPersonneCtrl();
-		
 		//Vérification de la validité des informations
-		if(ajoutPersonne.verifierInformations(personne)){
+		if(AjouterPersonneCtrl.verifierInformations(personne)){
 			Personne pers;
 			
 			DAOFactory co = DAOFactory.getInstance();

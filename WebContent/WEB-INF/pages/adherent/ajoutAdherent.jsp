@@ -24,7 +24,7 @@ autocompletionAdresse("#rue", "#compl");
 <h1>Ajout d'un adhérent</h1>
 
 <c:if test="${errDate}">
-	<p class="offset text-danger">Date de naissance &lt; Date d'inscription &lt;= Date du jour</p>
+	<p class="offset text-danger">La date d'inscription doit être antérieure à aujourd'hui et postérieure à la date de naissance.</p>
 </c:if>
 <form id="ajoutAdherent" action="#" method="post">
 	<fieldset>
@@ -53,7 +53,7 @@ autocompletionAdresse("#rue", "#compl");
 		
 		<div>
 			<label for="famille" class='required'>Famille </label> <input
-				type="text" name="famille" value="" required="required" />
+				type="text" name="famille" value="${ajout_adh_adherent.getFamille().getNomFamille()}" required="required" />
 		</div>
 
 		<div>

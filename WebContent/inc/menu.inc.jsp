@@ -55,6 +55,21 @@
 								<li><a href="<c:url value="<%= Pattern.MATERIEL_AJOUT %>"/>">Créer</a></li>
 								</c:if>
 								<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTER %>"/>">Lister</a></li>
+								<c:if test="${sessionScope.sessionObjectPersonnel.profil.recupererTypeDroit('Matériel') == 'Lecture/écriture' }">
+								<li class="icon icon-arrow-left"><a href="#">Autres</a>
+									<div class="mp-level">
+										<h2>Autres</h2>
+										<a class="mp-back" href="#">Retour</a>
+										<ul>
+											<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTE_CATEGORIE %>"/>">Catégories</a></li>
+											<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTE_ETAT %>"/>">Etats</a></li>
+											<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTE_FOURNISSEUR %>"/>">Fournisseurs</a></li>
+											<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTE_MARQUE %>"/>">Marques</a></li>
+											<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTE_DESIGNATION %>"/>">Designations</a></li>
+										</ul>
+									</div>
+								</li>
+								</c:if>
 							</ul>
 						</div></li>
 					</c:if>

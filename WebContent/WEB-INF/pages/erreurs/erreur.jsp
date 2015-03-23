@@ -13,7 +13,9 @@
 <p class='offset text-danger'><c:out value="${requestScope.resultat }"></c:out> </p>
 
 <div class="align-center">
-	<a href='<c:url value="${requestScope.lienBouton }"/>'><input type='button' value='<c:out value="${requestScope.nomBouton }"/>'/></a>
+	<a class='btn' href='<c:url value="${requestScope.lienBouton }"/>'>
+		<c:out value="${requestScope.nomBouton }"/>
+	</a>
 </div>
 	
 <c:import url="/inc/footer.inc.jsp" />
