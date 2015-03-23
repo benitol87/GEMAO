@@ -37,12 +37,13 @@ public class AdherentDAO extends IDAO<Adherent> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO adherent(idPersonne, idMotifSortie, idResponsable, droitImage,"
+		String sql = "INSERT INTO adherent(idPersonne, idMotifSortie, idResponsable, idFamille, droitImage,"
 				+ "	dateEntree, dateSortie, qf, cotisation, aPaye)"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		// PersonneDAO personneDAO = factory.getPersonneDAO();
 		Integer idMotif = null;
+		Integer idFamille = null;
 		Long idResponsable = null;
 		try {
 			// obj = (Adherent) personneDAO.create(obj);
@@ -52,10 +53,13 @@ public class AdherentDAO extends IDAO<Adherent> {
 			if (obj.getMotif() != null) {
 				idMotif = obj.getAdresse().getIdAdresse();
 			}
+			if (obj.getFamille() != null) {
+				idFamille = obj.getFamille().getIdFamille();
+			}
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
 					sql, false, obj.getIdPersonne(), idMotif, idResponsable,
-					(obj.isDroitImage() ? 1 : 0),
+					idFamille, (obj.isDroitImage() ? 1 : 0),
 					DateUtil.toSqlDate(obj.getDateEntree()),
 					DateUtil.toSqlDate(obj.getDateSortie()), obj.getQf(),
 					obj.getCotisation(), obj.isAPaye());
