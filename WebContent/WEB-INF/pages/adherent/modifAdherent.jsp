@@ -186,6 +186,7 @@ autocompletionAdresse("#rue", "#compl");
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
+		<p>* Champs obligatoires</p>
 		<a href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>"> <input
 			type="button" value="Retour" />
 		</a> <input type="submit" value="Suivant" />
