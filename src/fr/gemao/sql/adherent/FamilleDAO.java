@@ -125,6 +125,31 @@ public class FamilleDAO extends IDAO<Famille> {
 		return liste;
 	}
 
+	public Famille exits(Famille famille) {
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		String sql = "SELECT * from famille where nomFamille = ?;";
+		Famille verif = null;
+		try {
+
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
+					sql, false, famille.getNomFamille());
+			result = requete.executeQuery();
+
+			if (result.first()) {
+				verif = this.map(result);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return verif;
+	}
+
 	@Override
 	protected Famille map(ResultSet result) throws SQLException {
 		return new Famille(result.getInt("idFamille"),
