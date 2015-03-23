@@ -42,7 +42,7 @@
 			<input type="checkbox" name="numSer" id="numSer" onchange="affNumSer()" />
 		</span>
 		<span class="choix">
-			<label for="deplacable">Deplacable</label>
+			<label for="deplacable">Deplaçable</label>
 			<input type="checkbox" name="deplacable" id="deplacable" onchange="affDeplacable()" />
 		</span>
 		<span class="choix">

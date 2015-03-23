@@ -276,3 +276,11 @@ a.text-danger:hover {
 {
 	margin : 1px;
 }
+
+.oblig
+{
+	font-style : italic;
+	font-size : 0.8em;
+	text-align : right;
+	margin-top : 0;
+}
