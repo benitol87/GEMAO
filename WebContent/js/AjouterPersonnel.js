@@ -42,6 +42,11 @@ function ajoutFonction(){
 	tr.id="divFonction"+compteurF;
 	document.getElementById("fonctions").appendChild(tr);
 	document.getElementById("divFonction"+compteurF).firstChild.nextSibling.nextSibling.nextSibling.name="fonction"+compteurF;
+	document.getElementById("divFonction"+compteurF).firstChild.nextSibling.nextSibling.nextSibling.id="fonction"+compteurF;
+	
+	var compteurDec = compteurF-1;
+	var fonction = $('#fonction'+compteurDec+' option:selected').val();
+	$("#fonction"+compteurF +" option[value="+fonction+"]").hide();
 	
 	//Supprime les boutons de l'avant dernier champ
 	$("#divFonction"+(compteurF-1) + " input[type=button]").remove();
@@ -81,6 +86,7 @@ $(function() {
 	ajoutEventRetireFonction();
 	ajoutEventAjoutDiscipline();
 	ajoutEventRetireDiscipline();
+	$('#disciplines').hide();
 });
 
 function ajoutEventAjoutDiplome(){
@@ -121,5 +127,19 @@ function afficherDuree(){
 	else{
 		document.getElementById('duree').setAttribute('hidden', 'hidden');
 	}
-	
 }
+
+function afficherDiscipline(){
+	var estProf = false;
+	for(var i=1; i<= compteurF; i++){
+		if($('#fonction'+i + " option:selected").text() == "Professeur"){
+			estProf = true;
+		}	
+	}
+	if(estProf){
+		$('#disciplines').show();
+	}else{
+		$('#disciplines').hide();
+	}
+}
+
