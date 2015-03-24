@@ -1,6 +1,7 @@
 package fr.gemao.view.personnel;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import fr.gemao.ctrl.AjouterAdresseCtrl;
 import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.AjouterPersonneCtrl;
 import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
+import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
@@ -29,12 +31,16 @@ public class ValidationAjoutPersonnelServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Personnel pers = (Personnel) session.getAttribute("ajout_personnel");
-		
-		request.setAttribute("personnel", pers);
-		
-		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_VALIDATION_AJOUT).forward(request, response);
+		if(request.getParameter("nom") == null){
+			this.getServletContext().getRequestDispatcher(JSPFile.ERREUR_404).forward(request, response);
+		} else {
+			HttpSession session = request.getSession();
+			Personnel pers = (Personnel) session.getAttribute("ajout_personnel");
+			
+			request.setAttribute("personnel", pers);
+			
+			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_VALIDATION_AJOUT).forward(request, response);
+		}
 	}
 
 	/**
@@ -45,30 +51,27 @@ public class ValidationAjoutPersonnelServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Personnel pers = (Personnel) session.getAttribute("ajout_personnel");
 		AjouterPersonneCtrl ajouterPersonneCtrl = new AjouterPersonneCtrl();
+		AjouterPersonnelCtrl ajoutPers = new AjouterPersonnelCtrl();
+		List<Contrat> contrats = pers.getContrat();
 		
 		if (ajouterPersonneCtrl.exist(pers) == null) {
-			AjouterPersonnelCtrl ajoutPers = new AjouterPersonnelCtrl();
-			
+			ajoutPers.ajouterPersonnel(pers);
 			AjouterCommuneCtrl.ajoutCommune(pers.getAdresse().getCommune());
 			AjouterAdresseCtrl.ajoutAdresse(pers.getAdresse());
 			
-			ajoutPers.ajouterPersonnel(pers);
-			//session.setAttribute("ajout_personnel", null);
+			request.setAttribute("contrats", contrats);
+			
+			request.setAttribute(ResultatServlet.ATTR_TITRE_H1, "Confirmation");
+			request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON, "Retour");
+			request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON, Pattern.PERSONNEL_LISTER);
+			request.setAttribute(ResultatServlet.ATTR_RESULTAT, "Le personnel " + pers.getNom() + " " +pers.getPrenom() + " a été créé.");
+
+			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT3).forward(request, response);
 		} else {
 			request.setAttribute("dejaInscrit", false);
 			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_ECHEC_AJOUT).forward(request, response);
 		}
 		
-		session.setAttribute("type", request.getParameter("type"));
-		session.setAttribute("datedeb", request.getParameter("datedeb"));
-		session.setAttribute("datedebEns", request.getParameter("datedebEns"));
-		session.setAttribute("duree", request.getParameter("duree"));
 		
-		request.setAttribute(ResultatServlet.ATTR_TITRE_H1, "Confirmation");
-		request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON, "Retour");
-		request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON, Pattern.PERSONNEL_LISTER);
-		request.setAttribute(ResultatServlet.ATTR_RESULTAT, "Le personnel " + pers.getNom() + " " +pers.getPrenom() + " a été créé.");
-
-		this.getServletContext().getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);
 	}
 }

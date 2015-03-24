@@ -19,8 +19,8 @@
 		<input type="text" name="matiere" value="${discipline.getMatiere().getNomMatiere()}" readonly>
 		<input type="text" name="niveau" value="${discipline.getNiveau().getNomNiveau()}" readonly>
 		<input type="text" name="id" value="${discipline.getIdDiscipline()}" style="display: none">
-		<a class="icon icon-pen" title='Modifier la discipline'></a>
-		<input type="submit" class="btModif" value="Modifier">
+		<a class="icon icon-pen white" title='Modifier la discipline'></a>
+		<input type="submit" class="btModif hidden" value="Modifier">
 	</form>
 </c:forEach>
 <form action="#" method="post" class="offset">

@@ -65,6 +65,10 @@ header .icon, header .icon:hover{
 	margin-right: 10px;
 }
 
+.white{
+	color: white;
+}
+
 #boutonMenu{
 	margin-left: 15%;
 }
@@ -284,4 +288,10 @@ a.text-danger:hover {
 	font-size : 0.8em;
 	text-align : right;
 	margin-top : 0;
+}
+
+.ui-autocomplete { 
+	max-height: 200px; 
+	overflow-y: auto; 
+	overflow-x: hidden;
 }

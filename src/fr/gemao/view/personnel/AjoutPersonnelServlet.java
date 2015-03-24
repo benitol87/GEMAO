@@ -59,6 +59,8 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		request = AutocompletionAdresse
 				.initRequestForAutoCompletionAdresse(request);
 		
+		session.setAttribute("ajout_pers_personnel", null);
+		
 		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT)
 				.forward(request, response);
 		
@@ -90,7 +92,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String civilite = request.getParameter("civilite");
 		String infoComplementaire = request.getParameter("infoComplem");	
-		
+		String membreCA = request.getParameter("membreCA");
 		String numeroSS = Form.getValeurChamp(request, "numeroSS");
 
 		/**
@@ -132,6 +134,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		personnel.setTelPort(telPortable);	
 		personnel.setPassword(Config.params.get(Config.MOT_DE_PASSE));
 		personnel.setLogin(apc.genererLogin(nom));
+		personnel.setMembreCA(Boolean.parseBoolean(membreCA));
 		personnel.setNumeroSS(numeroSS);
 		
 		System.out.println(personnel);

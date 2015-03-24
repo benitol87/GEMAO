@@ -259,20 +259,22 @@ public class ModifierMaterielServlet extends HttpServlet {
 					mat.setObservation(form.getObservation());
 					mat.setEtat(etatctrl.recupererEtat(form.getEtat()));
 
-					matctrl.modifierMateriel(mat);
+					//matctrl.modifierMateriel(mat);
 					session.removeAttribute("sessionObjectMateriel");
 					session.removeAttribute("materiel");
 					session.removeAttribute("listeEtats");
 					session.removeAttribute("listeCat");
 					session.removeAttribute("listeFourn");
 					session.removeAttribute("listeDes");
+					
+					session.setAttribute("materiel", mat);
 				} else {
 					form.setErreur("Modification", "Problème de session");
 				}
 			}
 			if (form.getErreurs().isEmpty()) {
-				response.sendRedirect(request.getContextPath() + VUE_LISTE
-						+ "?modifOk=0");
+				
+				response.sendRedirect(request.getContextPath() + "/ValidationModifierMaterielServlet");
 			} else {
 				form.getErreurs().put("Modification",
 						"Erreur lors de la modification");

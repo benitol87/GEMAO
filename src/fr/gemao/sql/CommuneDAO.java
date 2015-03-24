@@ -122,7 +122,7 @@ public class CommuneDAO extends IDAO<Commune> {
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "SELECT * FROM commune;";
+		String sql = "SELECT * FROM commune order by nom;";
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,

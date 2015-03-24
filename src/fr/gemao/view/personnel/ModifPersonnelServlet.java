@@ -119,6 +119,9 @@ public class ModifPersonnelServlet extends HttpServlet {
 				pers.setListeResponsabilite(form.getListeResponsabilite());
 				pers.setNumeroSS(form.getNumeroSS());
 				
+				String membreCA = request.getParameter("membreCA");
+				pers.setMembreCA(Boolean.parseBoolean(membreCA));
+				
 				session.removeAttribute("personnel");
 				
 				// Archivage
@@ -132,7 +135,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 				session.setAttribute("modif_personnel", pers);
 				
 				/* On redirige vers la liste des personnels */
-				response.sendRedirect(request.getContextPath() + Pattern.PERSONNEL_VALIDATION_MODIF);
+				response.sendRedirect(request.getContextPath() + Pattern.PERSONNEL_LISTER);
 			} else {
 				this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_MODIFIER).forward(request, response);
 			}

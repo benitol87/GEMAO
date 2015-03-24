@@ -39,7 +39,9 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher( JSPFile.PERSONNEL_AJOUT2 ).forward( request, response );
+		if(request.getParameter("nom") == null){
+			this.getServletContext().getRequestDispatcher(JSPFile.ERREUR_404).forward(request, response);
+		}
 	}
 
 	/**
@@ -94,6 +96,7 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 		    listContrat = personnelForm.lireContrats(request);
 		    System.out.println(listContrat);
 		    perso.setContrat(listContrat);
+		    request.setAttribute("contrats", listContrat);
 		    
 		    CalculerDateFinContratCtrl calculerDateFinContratCtrl = new CalculerDateFinContratCtrl();
 		    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -105,8 +108,7 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 				e.printStackTrace();
 			}
 	        
-	        AjouterPersonnelCtrl ajouterPersonnelCtrl = new AjouterPersonnelCtrl();
-	        ajouterPersonnelCtrl.ajouterPersonnel(perso);
+	        session.setAttribute("ajout_personnel", perso);
 	        
 	        // Archivage
 			new ModificationCtrl().ajouterModification(new Modification(

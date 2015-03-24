@@ -46,7 +46,7 @@
 					<label for="duree">Durée : </label> 
 					<input type="number" name="dureeContrat1" id="dureeContrat1" min="1" value="1" /> mois
 				</div>
-				<input type="button" value="+" id="ajoutContrat" /> 
+				<input type="button" style="margin-left:50%" value="+" id="ajoutContrat" /> 
 				<input type="button" value="-" id="retireContrat" />
 			</div>
 		</div>
