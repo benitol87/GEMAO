@@ -139,8 +139,6 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			personnel.setDateNaissance(formatter.parse(dateNaissance));
-			System.out.println("dateNaiss :"+dateNaissance);
-			System.out.println("dateNaiss SQL :"+personnel.getDateNaissance());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
