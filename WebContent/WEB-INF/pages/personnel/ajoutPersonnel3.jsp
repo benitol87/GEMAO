@@ -32,5 +32,6 @@
 </table>
 
 <p class="offset text-danger">Notez bien le mot de passe et le login</p>
+<a class="offset btn" href="<c:url value="<%= Pattern.ACCUEIL %>"/>" >Accueil</a>
 
 <c:import url="/inc/footer.inc.jsp" />

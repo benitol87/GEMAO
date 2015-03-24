@@ -39,8 +39,6 @@ public class PersonnelForm {
 	private static final String CHAMP_NOM = "nom";
 	private static final String CHAMP_PRENOM = "prenom";
 	
-	
-	private static final String CHAMP_IDCONTRAT = "idContrat";
 	private static final String CHAMP_LOGIN = "login";
 	private static final String CHAMP_PASSWORD = "password";
 	private static final String CHAMP_POINTSANCIEN = "pointsAncien";
