@@ -36,10 +36,10 @@ autocompletionFamille("#famille");
 			<label>Civilité</label> <span> <input type="radio"
 				name="civilite" value="F" id="civiliteF"
 				checked="checked" />
-				<label for="civiliteF">Mme</label> <input type="radio"
+				<label for="civiliteF"> Mme </label> <input type="radio"
 				name="civilite" id="civiliteM" value="M"
 				<c:if test="${ajout_adh_adherent.civilite['nameCourt'] == 'M.'}"> checked="checked" </c:if> /><label
-				for="civiliteM">M.</label>
+				for="civiliteM"> M. </label>
 			</span>
 		</div>
 

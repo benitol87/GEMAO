@@ -23,7 +23,6 @@ public class ModifierMaterielFournitureForm {
 
 	/* Variables récupérées BEGIN */
 	private String observation;
-	private int qte;
 
 	/* Variables recupérées END */
 
@@ -47,7 +46,6 @@ public class ModifierMaterielFournitureForm {
 		/* Initialisation du résultat global de la validation. */
 		if (erreurs.isEmpty()) {
 			resultat = "Succès de l'ajout.";
-			qte = Integer.parseInt(getValeurChamp(request, CHAMP_MOBI_QTE));
 			observation = getValeurChamp(request, CHAMP_MOBI_OBS);
 			if(observation == null){
 				observation = new String("");
@@ -55,15 +53,6 @@ public class ModifierMaterielFournitureForm {
 		} else {
 			resultat = "Échec de l'ajout.";
 		}
-	}
-
-	/**
-	 * La quantité de mobilier commandée.
-	 * 
-	 * @return la quantité de mobilier commandée.
-	 */
-	public int getQuantite() {
-		return qte;
 	}
 
 	/**

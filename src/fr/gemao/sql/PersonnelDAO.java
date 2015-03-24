@@ -48,8 +48,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO personnel(idPersonne, idContrat, login, pwd, pointAnciennete, idProfil, numeroSS, dateDebutEnseignement)"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO personnel(idPersonne, login, pwd, pointAnciennete, idProfil, numeroSS, dateDebutEnseignement)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
 		//PersonneDAO personneDAO = factory.getPersonneDAO();
 		
@@ -63,7 +63,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		List<Discipline> listeDiscipline;
 		
 		ContratDAO contratDAO = factory.getContratDAO();
-		Contrat contrat = contratDAO.create(obj.getContrat());
+		List<Contrat> listContrat;
 		
 		Integer idProfil = null;
 		if(obj.getProfil() != null){
@@ -74,7 +74,6 @@ public class PersonnelDAO extends IDAO<Personnel>{
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false,
 					obj.getIdPersonne(),
-					contrat.getIdContrat(),
 					obj.getLogin(),
 					Password.encrypt(obj.getPassword()),
 					obj.getPointsAncien(),
@@ -94,6 +93,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 			listeDiplome = diplomeDAO.addAllDiplomesParPersonnel(obj.getIdPersonne(), obj.getListeDiplomes());
 			obj.setListeDiplomes(listeDiplome);
 			disciplineDAO.addAllDisciplineParPersonnel(obj.getListeDiscipline(), obj.getIdPersonne());
+			listContrat = contratDAO.addAllContratParPersonnel(obj.getContrat(), obj);
+			obj.setContrat(listContrat);
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {
@@ -129,14 +130,13 @@ public class PersonnelDAO extends IDAO<Personnel>{
 			idProfil = obj.getProfil().getIdProfil();
 		}
 		
-		String sql = "UPDATE personnel SET idContrat = ?, login = ?, pwd = ?, pointAnciennete = ?, premiereConnexion = ?,"
+		String sql = "UPDATE personnel SET login = ?, pwd = ?, pointAnciennete = ?, premiereConnexion = ?,"
 				+ "idProfil = ?, numeroSS = ?, dateDebutEnseignement=? "
 				+ "WHERE idPersonne = ?;";
 
 		try {
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, 
-					obj.getContrat().getIdContrat(),
 					obj.getLogin(),
 					Password.encrypt(obj.getPassword()),
 					obj.getPointsAncien(),
@@ -229,14 +229,15 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		ContratDAO contratDAO = factory.getContratDAO();
 		ProfilDAO profilDAO = factory.getProfilDAO();
 		
-		Integer idContrat = NumberUtil.getResultInteger(result, "idContrat"),
-				idProfil = NumberUtil.getResultInteger(result, "idProfil");
+
+		Integer idProfil = NumberUtil.getResultInteger(result, "idProfil");
+		Long idPersonne = result.getLong("idPersonne");
 		
 		Personnel personnel = new Personnel(personneDAO.map(result),
 				responsabiliteDAO.getResponsabilitesParPersonne(result.getLong("idPersonne")),
 				diplomeDAO.getDiplomesParPersonnel(result.getLong("idPersonne")),
-				disciplineDAO.getDisciplineParPersonnel(result.getLong("idPersonne")), idContrat==null?null:contratDAO.get(idContrat),
-				result.getString("login"),
+				disciplineDAO.getDisciplineParPersonnel(result.getLong("idPersonne")),
+				contratDAO.getContratsParPersonne(idPersonne), result.getString("login"),
 				result.getString("pwd"),
 				NumberUtil.getResultInteger(result, "pointAnciennete"),
 				idProfil==null?null:profilDAO.get(idProfil),

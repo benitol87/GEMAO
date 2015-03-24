@@ -18,10 +18,6 @@
 	<p>
 		<span id="gras">Afficher : </span>
 		<span class="choix">
-			<label for="qte">Quantité</label>
-			<input type="checkbox" name="qte" id="qte" onchange="affQte()" />
-		</span>
-		<span class="choix">
 			<label for="dateAchat">Date d'achat</label>
 			<input type="checkbox" name="dateAchat" id="dateAchat" onchange="affDateAchat()" />
 		</span>
@@ -61,7 +57,6 @@
 	<tr>
 		<th>Désignation</th>
 		<th class="listCat">Catégorie</th>
-		<th class="listQte">Quantité</th>
 		<th class="listDateAchat">Date d'achat</th>
 		<th class="listFour">Fournisseur</th>
 		<th class="listMarque">Marque</th>
@@ -78,14 +73,32 @@
 		<tr>
 			<td><c:out value="${mat.designation.libelleDesignation}" /></td>
 			<td class="listCat"><c:out value="${mat.categorie.libelleCat}" /></td>
-			<td class="listQte"><c:out value="${mat.quantite}" /></td>
 			<td class="listDateAchat"><c:out value="${mat.dateAchat}" /></td>
 			<td class="listFour"><c:out value="${mat.fournisseur.nomFournisseur}" /></td>
 			<td class="listMarque"><c:out value="${mat.marque.nomMarque}" /></td>
 			<td class="listEtat"><c:out value="${mat.etat.libelleEtat}" /></td>
 			<td class="listNumSer"><c:out value="${mat.numSerie}" /></td>
-			<td class="listDepl"><c:out value="${mat.deplacable}" /></td>
-			<td class="listOuvLoc"><c:out value="${mat.louable}" /></td>
+			<td class="listDepl">
+				<c:choose>
+					<c:when test="${mat.deplacable==true}">
+						oui
+					</c:when>
+					<c:otherwise>
+						non
+					</c:otherwise>
+				</c:choose>
+			</td>
+			<td class="listOuvLoc">
+				<c:choose>
+					<c:when test="${mat.louable==true}">
+							oui
+					</c:when>
+					<c:otherwise>
+						non
+					</c:otherwise>
+				</c:choose>
+			</td>
+			
 			<td class="listType"><c:out value="${mat.typeMat}" /></td>
 			<td>
 				<a class="icon icon-search" href="<c:url value="<%= Pattern.MATERIEL_CONSULTER %>" />?idMateriel=<c:out value="${mat.idMateriel}" />" title='Afficher les détails'></a>

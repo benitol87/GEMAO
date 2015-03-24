@@ -10,6 +10,6 @@
 
 <script src="<c:url value="/js/modifierAdherent.js"/>"></script>
 <h1>Confirmation</h1>
-<p class="offset text-success">L'adhérent <c:out value="${adherent['prenom']}" /> <c:out value="${adherent['nom']}" /> a été ajouté avec succès.</p>
+<p class="offset text-success">L'adhérent <c:out value="${adherent['prenom']}" /> <c:out value="${adherent['nom']}" /> a bien été ajouté.</p>
 <a class="offset btn" href="<c:url value="<%=Pattern.ACCUEIL%>"/>">Retour</a>
 <c:import url="/inc/footer.inc.jsp" />

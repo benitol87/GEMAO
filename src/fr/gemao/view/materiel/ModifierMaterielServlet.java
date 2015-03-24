@@ -145,11 +145,11 @@ public class ModifierMaterielServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		MaterielForm form = new MaterielForm();
 
-		if (!request.getParameter("nomMarque").equals("")
-				|| !request.getParameter("nomFour").equals("")
-				|| !request.getParameter("nomCat").equals("")
-				|| !request.getParameter("nomDes").equals("")
-				|| !request.getParameter("nomEtat").equals("")) {
+		if (request.getParameter("nomMarque") != null
+				|| request.getParameter("nomFour") != null
+				|| request.getParameter("nomCat") != null
+				|| request.getParameter("nomDes") != null
+				|| request.getParameter("nomEtat") != null) {
 			if (Form.getValeurChamp(request, "nomCat") != null) {
 				try {
 					CategorieCtrl.ajoutCategorie(Form.getValeurChamp(request,
@@ -198,55 +198,6 @@ public class ModifierMaterielServlet extends HttpServlet {
 			/* Récupération de la session depuis la requête */
 			HttpSession session = request.getSession();
 			System.out.print(form.getErreurs());
-
-			// Ajout d'une catégorie, le fait qu'elle ne soit pas vide
-			// a déjà été testé
-			if (Form.getValeurChamp(request, "nomCat") != null) {
-				try {
-					CategorieCtrl.ajoutCategorie(Form.getValeurChamp(request,
-							"nomCat"));
-				} catch (DAOException e) {
-					form.setErreur(ERREUR_AJOUT_CATEGORIE,
-							"La catégorie existe déjà");
-				}
-			}
-
-			if (Form.getValeurChamp(request, "nomDes") != null) {
-				try {
-					DesignationCtrl.ajoutDesignation(Form.getValeurChamp(
-							request, "nomDes"));
-				} catch (DAOException e) {
-					form.setErreur(ERREUR_AJOUT_DESIGNATION,
-							"La designation existe déjà");
-				}
-			}
-
-			if (Form.getValeurChamp(request, "nomFour") != null) {
-				try {
-					FournisseurCtrl.ajoutFournisseur(Form.getValeurChamp(
-							request, "nomFour"));
-				} catch (DAOException e) {
-					form.setErreur(ERREUR_AJOUT_FOURNISSEUR,
-							"Le Fournisseur existe déjà");
-				}
-			}
-
-			if (Form.getValeurChamp(request, "nomEtat") != null) {
-				try {
-					EtatCtrl.ajoutEtat(Form.getValeurChamp(request, "nomEtat"));
-				} catch (DAOException e) {
-					form.setErreur(ERREUR_AJOUT_ETAT, "L'etat existe déjà");
-				}
-			}
-
-			if (Form.getValeurChamp(request, "nomMarque") != null) {
-				try {
-					MarqueCtrl.ajouterMarque(Form.getValeurChamp(request,
-							"nomMarque"));
-				} catch (DAOException e) {
-					form.setErreur(ERREUR_AJOUT_MARQUE, "La marque existe déjà");
-				}
-			}
 
 			List<Categorie> listCat = new ArrayList<Categorie>();
 			listCat = new CategorieDAO(DAOFactory.getInstance()).getAll();
@@ -302,7 +253,6 @@ public class ModifierMaterielServlet extends HttpServlet {
 					mat.setTypeMat(form.getType());
 					mat.setEtat(etatctrl.recupererEtat(form.getEtat()));
 					mat.setMarque(marquectrl.recupererMarque(form.getMarque()));
-					mat.setQuantite(form.getQuantite());
 					mat.setNumSerie(form.getNumserie());
 					mat.setDeplacable(form.getDeplacable());
 					mat.setLouable(form.getLouable());

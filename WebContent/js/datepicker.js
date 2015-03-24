@@ -43,6 +43,12 @@
 
 $(function() {
 	$(".datepicker").each(function(){
-	    $(this).datepicker();
+	    $(this).datepicker({
+	    	changeMonth: true,
+	    	changeYear: true,
+	    	yearRange: "-100:+0"
+	    	});
+	    
+	    $(this).datepicker("option", "showAnim","blind");
 	});
 });

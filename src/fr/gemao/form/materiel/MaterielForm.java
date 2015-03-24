@@ -32,12 +32,7 @@ public class MaterielForm {
 	private static final String CHAMP_INST_LOUABLE = "louable";
 
 	// Partie Mobilier
-	private static final String CHAMP_MOBI_QTE = "quantite";
 	private static final String CHAMP_MOBI_PRIXU = "prixU";
-
-	private static final int VAL_INST = 1;
-	private static final int VAL_MOBI = 2;
-	private static final int VAL_FOUR = 3;
 
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
@@ -62,7 +57,6 @@ public class MaterielForm {
 
 	// variables categorie Mobilier
 	private float prixU;
-	private int qte;
 
 	/* Variables recupérées END */
 
@@ -178,7 +172,6 @@ public class MaterielForm {
 		}
 
 		type = getValeurChamp(request, CHAMP_TYPE);
-		qte = Integer.parseInt(getValeurChamp(request, CHAMP_MOBI_QTE));
 		idMarque = Integer.parseInt(getValeurChamp(request, CHAMP_MARQUE));
 		prixU = Float.parseFloat(getValeurChamp(request, CHAMP_MOBI_PRIXU));
 
@@ -187,13 +180,6 @@ public class MaterielForm {
 			validationType(type);
 		} catch (Exception e) {
 			setErreur(CHAMP_TYPE, e.getMessage());
-		}
-
-		/* Validation du champ quantité */
-		try {
-			validationQuantite(qte);
-		} catch (Exception e) {
-			setErreur(CHAMP_MOBI_QTE, e.getMessage());
 		}
 
 		/* Validation du champ marque */
@@ -339,15 +325,6 @@ public class MaterielForm {
 	}
 
 	/**
-	 * La quantité de mobilier commandée.
-	 * 
-	 * @return la quantité de mobilier commandée.
-	 */
-	public int getQuantite() {
-		return qte;
-	}
-
-	/**
 	 * Retourne la déplacabilité(?) d'un instrument.
 	 * 
 	 * @return vrai si l'instrument est deplacable, faux sinon.
@@ -450,25 +427,6 @@ public class MaterielForm {
 	private void validationPrixUnitaire(float prixU) throws Exception {
 		if (prixU < 0) {
 			throw new Exception("Merci de saisir un prix unitaire valide.");
-		}
-	}
-
-	/**
-	 * Valide la quantite saisie.
-	 */
-	private void validationQuantite(int qte) throws Exception {
-		if (qte <= 0) {
-			throw new Exception("Merci de saisir une quantite valide.");
-		}
-	}
-
-	/**
-	 * Valide la categorie choisie.
-	 */
-	private void validationCategorie(int categorie) throws Exception {
-		if (categorie != VAL_INST && categorie != VAL_MOBI
-				&& categorie != VAL_FOUR) {
-			throw new Exception("Merci de choisir une categorie valide.");
 		}
 	}
 
