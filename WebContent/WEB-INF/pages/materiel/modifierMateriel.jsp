@@ -189,6 +189,7 @@
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
+		<p class="oblig">* Champs obligatoires</p>
 		
 		<input type="button" name="precedent" value="Précédent"
 			onClick="javascript:window.history.go(-1)" /> <input type="submit"
