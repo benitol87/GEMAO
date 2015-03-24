@@ -203,5 +203,4 @@
 			name="valider" value="Valider" />
 	</fieldset>
 </form>
-<script src="<c:url value="/js/ajouterMateriel.js"/>"></script>
 <c:import url="/inc/footer.inc.jsp" />
