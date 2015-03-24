@@ -28,8 +28,8 @@
 		</c:if>
 		
 		<div>
-			<label for="ValeurAch">Valeur d'achat</label> 
-			<input type="text" name="ValeurAch" value="${sessionScope.INFOS['valeurAchat']}"/> 
+			<label for="ValeurAch" class='required'>Valeur d'achat</label> 
+			<input type="text" name="ValeurAch" required autocomplete="off" value="${sessionScope.INFOS['valeurAchat']}"/> 
 			<span class="euro"></span>
 		</div>
 		
@@ -39,8 +39,8 @@
 		</div>
 		
 		<div>
-			<label for="valRea">Valeur de réapprovisionnement</label>
-			<input type="text" name="valRea" value="${sessionScope.INFOS['valeurReap']}"/> 
+			<label for="valRea" class='required'>Valeur de réapprovisionnement</label>
+			<input type="text" name="valRea" required autocomplete="off" value="${sessionScope.INFOS['valeurReap']}"/> 
 			<span class="euro"></span>
 		</div>
 		
@@ -71,8 +71,8 @@
 		</div>
 		
 		<div>
-			<label for="type">Type</label>
-			<input type="text" name="type" value="${sessionScope.INFOS['typeMat']}"/>
+			<label for="type" class='required'>Type</label>
+			<input type="text" name="type" required autocomplete="off" value="${sessionScope.INFOS['typeMat']}"/>
 		</div>
 		
 		<div>
@@ -99,7 +99,7 @@
 		
 		<div>
 			<label for="numSerie">Numéro de série</label>
-			<input type="text" name="numSerie" value="${sessionScope.INFOS['numSerie']}"/>
+			<input type="text" autocomplete="off" name="numSerie" value="${sessionScope.INFOS['numSerie']}"/>
 		</div>
 		
 		<div>
@@ -122,6 +122,7 @@
 	
 	<fieldset class='align-center no-border'>
 		<div>
+			<p class="oblig">* Champs obligatoires</p>
 			<input type="submit" name="valider" value="Valider" />
 		</div>
 	</fieldset>

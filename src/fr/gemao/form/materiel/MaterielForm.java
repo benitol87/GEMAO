@@ -148,13 +148,6 @@ public class MaterielForm {
 		} catch (Exception e) {
 			setErreur(CHAMP_MARQUE, e.getMessage());
 		}
-
-		/* Validation du champ numserie */
-		try {
-			validationNumserie(numserie);
-		} catch (Exception e) {
-			setErreur(CHAMP_INST_NUMSERIE, e.getMessage());
-		}
 		/* Validation du champ valeur de reaprovisionnement */
 		try {
 			valRea = Float
@@ -166,7 +159,6 @@ public class MaterielForm {
 
 		type = getValeurChamp(request, CHAMP_TYPE);
 		idMarque = Integer.parseInt(getValeurChamp(request, CHAMP_MARQUE));
-		prixU = Float.parseFloat(getValeurChamp(request, CHAMP_MOBI_PRIXU));
 
 		/* Validation du champ type. */
 		try {
@@ -180,13 +172,6 @@ public class MaterielForm {
 			validationMarque(idMarque);
 		} catch (Exception e) {
 			setErreur(CHAMP_MARQUE, e.getMessage());
-		}
-
-		/* Validation du champ prix unitaire */
-		try {
-			validationPrixUnitaire(prixU);
-		} catch (Exception e) {
-			setErreur(CHAMP_MOBI_PRIXU, e.getMessage());
 		}
 
 		/* Initialisation du résultat global de la validation. */
