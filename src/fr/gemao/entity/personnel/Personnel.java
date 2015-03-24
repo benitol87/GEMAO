@@ -26,7 +26,7 @@ public class Personnel extends Personne implements Serializable {
 	private List<Responsabilite> listeResponsabilite;
 	private List<Diplome> listeDiplomes;
 	private List<Discipline> listeDisciplines;
-	private Contrat contrat;
+	private List<Contrat> contrat;
 	private String login;
 	private String password;
 	private int pointsAncien;
@@ -80,7 +80,7 @@ public class Personnel extends Personne implements Serializable {
 			String telPort, String email, Civilite civilite,
 			List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, List<Discipline> listeDiscipline,
-			Contrat contrat, String login, String password, int pointsAncien,
+			List<Contrat> contrat, String login, String password, int pointsAncien,
 			Profil profil, boolean premiereConnexion, boolean membreCA,
 			String numeroSS, Date dateEntree) {
 		super(idPersonne, adresse, communeNaiss, nom, prenom, dateNaissance,
@@ -111,7 +111,7 @@ public class Personnel extends Personne implements Serializable {
 	public Personnel(Personne personne,
 			List<Responsabilite> listeResponsabilite,
 			List<Diplome> listeDiplome, List<Discipline> listeDiscipline,
-			Contrat contrat, String login, String password,
+			List<Contrat> contrat, String login, String password,
 			Integer pointsAncien, Profil profil, boolean premiereConnexion,
 			String numeroSS, Date dateEntree) {
 		super(personne);
@@ -147,7 +147,7 @@ public class Personnel extends Personne implements Serializable {
 	 * 
 	 * @return idContrat : l'ID du contrat
 	 */
-	public Contrat getContrat() {
+	public List<Contrat> getContrat() {
 		return contrat;
 	}
 
@@ -206,7 +206,7 @@ public class Personnel extends Personne implements Serializable {
 	 * @param contrat
 	 *            : l'ID du contrat
 	 */
-	public void setContrat(Contrat contrat) {
+	public void setContrat(List<Contrat> contrat) {
 		this.contrat = contrat;
 	}
 
@@ -384,4 +384,5 @@ public class Personnel extends Personne implements Serializable {
 				+ premiereConnexion + ", numeroSS=" + numeroSS
 				+ ", dateEntree=" + dateEntree + "]";
 	}
+
 }
