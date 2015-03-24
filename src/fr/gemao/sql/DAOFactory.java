@@ -111,8 +111,8 @@ public class DAOFactory {
 			config.setPassword(motDePasse);
 			/* Paramétrage de la taille du pool */
 			config.setMinConnectionsPerPartition(5);
-			config.setMaxConnectionsPerPartition(10);
-			config.setPartitionCount(2);
+			config.setMaxConnectionsPerPartition(30);
+			config.setPartitionCount(3);
 			config.setDisableConnectionTracking(true);
 			/*
 			 * Création du pool à partir de la configuration, via l'objet
