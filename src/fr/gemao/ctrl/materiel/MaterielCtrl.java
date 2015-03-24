@@ -40,7 +40,6 @@ public class MaterielCtrl {
 	 * @param valeurReap : la valeur de ré-approvisionnement
 	 * @param deplacable : si le matériel est déplaçable ou non
 	 * @param observation : l'observation
-	 * @param quantite : la quantité
 	 * @param louable : si le matériel est louable ou non
 	 */
 	public static void ajoutMateriel(Etat etat, Categorie categorie, Marque marque, Designation designation,Fournisseur fournisseur, String typeMat, String numSerie, Date dateAchat, float valeurAchat, float valeurReap, boolean deplacable, String observation, int quantite, boolean louable) {

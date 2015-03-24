@@ -3,7 +3,9 @@ package fr.gemao.view.personnel;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,13 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.gemao.ctrl.TypeContratCtrl;
 import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.ctrl.personnel.CalculerDateFinContratCtrl;
+import fr.gemao.entity.administration.Modification;
 import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.entity.personnel.Personnel;
-import fr.gemao.entity.administration.Modification;
+import fr.gemao.form.personnel.PersonnelForm;
 import fr.gemao.util.Password;
 import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
@@ -34,6 +36,7 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.getServletContext().getRequestDispatcher( JSPFile.PERSONNEL_AJOUT2 ).forward( request, response );
 	}
@@ -41,6 +44,7 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 HttpSession session = request.getSession();
 		Personnel perso = (Personnel) session.getAttribute("personnel");
@@ -51,31 +55,46 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 		 * Récupération des données saisies, envoyées en tant que paramètres de
 		 * la requète POST générée à la validation du formulaire
 		 */
-		Integer typeContrat = Integer.valueOf(request.getParameter("type"));
-		String debcontrat = request.getParameter("datedeb");
+//		Integer typeContrat = Integer.valueOf(request.getParameter("type"));
+//		String debcontrat = request.getParameter("datedeb");
 		String debEnsei = request.getParameter("datedebEns");
-	    String duree = request.getParameter("duree");
+//	    String duree = request.getParameter("duree");
 	    
 	    /**
 	     * Création du personnel
 	     */
-	    Contrat contrat = new Contrat();
+//	    Contrat contrat = new Contrat();
+//	    
+//	    CalculerDateFinContratCtrl calculerDateFinContratCtrl = new CalculerDateFinContratCtrl();
+//	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//        try{
+//        	Date dateDeb = formatter.parse(debcontrat);
+//        	Date dateEnsei = formatter.parse(debEnsei);
+//        	contrat.setDateDebut(dateDeb);
+//        	perso.setDateEntree(dateEnsei);
+//        } catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+//        contrat.setDateFin(calculerDateFinContratCtrl.CalculerDateFinContrat(contrat.getDateDebut(), Integer.parseInt(duree)));
+//        TypeContratCtrl typeContratCtrl = new TypeContratCtrl();
+//        contrat.setTypeContrat(typeContratCtrl.recupererTypeContrat(typeContrat));
+//        
+//        perso.setContrat(contrat);
+	    PersonnelForm personnelForm = new PersonnelForm();
+	    List<Contrat> listContrat = new ArrayList<>();
+	    listContrat = personnelForm.lireContrats(request);
+	    System.out.println(listContrat);
+	    perso.setContrat(listContrat);
 	    
 	    CalculerDateFinContratCtrl calculerDateFinContratCtrl = new CalculerDateFinContratCtrl();
 	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        try{
-        	Date dateDeb = formatter.parse(debcontrat);
-        	Date dateEnsei = formatter.parse(debEnsei);
-        	contrat.setDateDebut(dateDeb);
-        	perso.setDateEntree(dateEnsei);
-        } catch (ParseException e) {
+	    Date dateEnsei;
+		try {
+			dateEnsei = formatter.parse(debEnsei);
+			perso.setDateEntree(dateEnsei);
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-        contrat.setDateFin(calculerDateFinContratCtrl.CalculerDateFinContrat(contrat.getDateDebut(), Integer.parseInt(duree)));
-        TypeContratCtrl typeContratCtrl = new TypeContratCtrl();
-        contrat.setTypeContrat(typeContratCtrl.recupererTypeContrat(typeContrat));
-        
-        perso.setContrat(contrat);
         
         AjouterPersonnelCtrl ajouterPersonnelCtrl = new AjouterPersonnelCtrl();
         ajouterPersonnelCtrl.ajouterPersonnel(perso);

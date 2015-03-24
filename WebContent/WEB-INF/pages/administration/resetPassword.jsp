@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="fr.gemao.view.Pattern"%>
 
-<c:set var="titre" value="Administration - Réinitialisation d'un mot de passe" scope="request" />
+<c:set var="titre" value="Réinitialisation d'un mot de passe" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 <c:import url="/inc/header.inc.jsp" />
