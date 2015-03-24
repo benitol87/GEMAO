@@ -78,8 +78,27 @@
 			<td class="listMarque"><c:out value="${mat.marque.nomMarque}" /></td>
 			<td class="listEtat"><c:out value="${mat.etat.libelleEtat}" /></td>
 			<td class="listNumSer"><c:out value="${mat.numSerie}" /></td>
-			<td class="listDepl"><c:out value="${mat.deplacable}" /></td>
-			<td class="listOuvLoc"><c:out value="${mat.louable}" /></td>
+			<td class="listDepl">
+				<c:choose>
+					<c:when test="${mat.deplacable==true}">
+						oui
+					</c:when>
+					<c:otherwise>
+						non
+					</c:otherwise>
+				</c:choose>
+			</td>
+			<td class="listOuvLoc">
+				<c:choose>
+					<c:when test="${mat.louable==true}">
+							oui
+					</c:when>
+					<c:otherwise>
+						non
+					</c:otherwise>
+				</c:choose>
+			</td>
+			
 			<td class="listType"><c:out value="${mat.typeMat}" /></td>
 			<td>
 				<a class="icon icon-search" href="<c:url value="<%= Pattern.MATERIEL_CONSULTER %>" />?idMateriel=<c:out value="${mat.idMateriel}" />" title='Afficher les détails'></a>
