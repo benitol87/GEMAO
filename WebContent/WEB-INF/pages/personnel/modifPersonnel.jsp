@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="fr.gemao.view.Pattern"%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="titre" value="Personnel" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
@@ -13,9 +14,9 @@
 	<fieldset>
 		<legend>Informations personnelles</legend>
 		<div>
-			<label>Civilité</label> <span> 
-				<c:if test="${personnel.civilite['nameCourt'] == 'Mme'}">Madame</c:if>
-				<c:if test="${personnel.civilite['nameCourt'] == 'M.'}">Monsieur</c:if>
+			<label>Civilité</label> <span> <c:if
+					test="${personnel.civilite['nameCourt'] == 'Mme'}">Madame</c:if> <c:if
+					test="${personnel.civilite['nameCourt'] == 'M.'}">Monsieur</c:if>
 			</span>
 		</div>
 		<div>
@@ -72,11 +73,35 @@
 		</div>
 	</fieldset>
 	<fieldset>
-		<legend>Informations professionnelles</legend>
-		<input name="idContrat" type="number" hidden="false" value="${sessionScope.personnel.getContrat().getIdContrat()}" />
-		<input name="pointsAncien" type="number" hidden="true" value="${sessionScope.personnel.getPointsAncien()}" />
-		<input name="password" type="text" hidden="true" value="${sessionScope.personnel.getPassword()}" />
-		<input name="login" type="text" hidden="true" value="${sessionScope.personnel.getLogin()}" />
+		<legend>Informations professionnelles</legend> <input
+			name="pointsAncien" type="number" hidden="true"
+			value="${sessionScope.personnel.getPointsAncien()}" /> <input
+			name="password" type="text" hidden="true"
+			value="${sessionScope.personnel.getPassword()}" /> <input
+			name="login" type="text" hidden="true"
+			value="${sessionScope.personnel.getLogin()}" />
+
+		<div>
+			<table>
+				<tr>
+					<td>Contrat</td>
+					<td>Date de début</td>
+					<td>Date de fin</td>
+					<td>Mettre fin au contrat</td>
+				</tr>
+				<c:forEach items="${contrats}" var="cont">
+					<tr>
+						<td><c:out value="${cont['typeContrat'].libelle}" /></td>
+						<td><fmt:formatDate value="${cont.dateDebut}"
+								pattern="dd/MM/yyyy" /></td>
+						<td><c:if test="${cont['typeContrat'].libelle == 'CDD' }">
+								<fmt:formatDate value="${cont.dateFin}" pattern="dd/MM/yyyy" />
+							</c:if></td>
+						<td><input type="checkbox"></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
 		<div>
 			<label for="diplome">Diplôme : </label>
 			<c:forEach items="${listeDiplome}" var="dipl">
