@@ -1,5 +1,6 @@
 $(function(){
 	$(".icon-pen").on("click",modifDiscipline);
+	$(".btModif").hide();
 });
 
 function modifDiscipline(e){
