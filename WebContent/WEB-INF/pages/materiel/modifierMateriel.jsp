@@ -128,12 +128,6 @@
 			</select> <input type="button" name="ajoutMarque" id="ajoutMarque" value="Créer..." />
 			<p>${form.getErreurs().get("marque")}</p>
 		</div>
-		<div>
-			<label for="quantite">Quantité </label> <input name="quantite"
-				type="number" min="1"
-				value="${sessionScope.sessionObjectMateriel.getQuantite()}" />
-				<p>${form.erreurs['quantite'] }</p>
-		</div>
 		
 
 		<div>

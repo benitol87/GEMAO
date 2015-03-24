@@ -68,10 +68,6 @@
 	<!-- Ajouter situation -->
 	
 	<tr>
-		<td>Quantité : </td>
-		<td>${sessionScope.sessionObjectMateriel.getQuantite()}</td>
-	</tr>
-	<tr>
 		<td>Prix unitaire : </td>
 		<td>${sessionScope.sessionObjectMateriel.getValeurAchat()} <span class="euro"></span></td>
 	</tr>

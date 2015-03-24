@@ -18,10 +18,6 @@
 	<p>
 		<span id="gras">Afficher : </span>
 		<span class="choix">
-			<label for="qte">Quantité</label>
-			<input type="checkbox" name="qte" id="qte" onchange="affQte()" />
-		</span>
-		<span class="choix">
 			<label for="dateAchat">Date d'achat</label>
 			<input type="checkbox" name="dateAchat" id="dateAchat" onchange="affDateAchat()" />
 		</span>
@@ -61,7 +57,6 @@
 	<tr>
 		<th>Désignation</th>
 		<th class="listCat">Catégorie</th>
-		<th class="listQte">Quantité</th>
 		<th class="listDateAchat">Date d'achat</th>
 		<th class="listFour">Fournisseur</th>
 		<th class="listMarque">Marque</th>
@@ -78,7 +73,6 @@
 		<tr>
 			<td><c:out value="${mat.designation.libelleDesignation}" /></td>
 			<td class="listCat"><c:out value="${mat.categorie.libelleCat}" /></td>
-			<td class="listQte"><c:out value="${mat.quantite}" /></td>
 			<td class="listDateAchat"><c:out value="${mat.dateAchat}" /></td>
 			<td class="listFour"><c:out value="${mat.fournisseur.nomFournisseur}" /></td>
 			<td class="listMarque"><c:out value="${mat.marque.nomMarque}" /></td>

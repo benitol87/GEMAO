@@ -29,7 +29,7 @@
 			<input	type="checkbox" name="commune" id="commune" onchange="affCommune()" />
 		</span>
 		<span class="choix">
-			<label for="entree">Date d'entrée</label>
+			<label for="entree">Date de début d'enseignement</label>
 			<input type="checkbox"	name="entree" id="entree" onchange="affEntree()" />
 		</span>
 		<span class="choix">
@@ -48,7 +48,7 @@
 		<th class="listEmail">Email</th>
 		<th class="listCom">Commune</th>
 		<th class="listCom">Code Postal</th>
-		<th class="listEntree">Date d'entrée</th>
+		<th class="listEntree">Date de début d'enseignement</th>
 		<th class="listCA">Membre CA</th>
 		<th>Actions</th>
 	</tr>

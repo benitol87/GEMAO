@@ -27,7 +27,7 @@
 	</tr>
 	<tr>
 		<td>Famille : </td>
-		<td><c:out value="" /></td>
+		<td><c:out value="${adherent.getFamille().getNomFamille()}" /></td>
 	</tr>
 	<tr>
 		<td>Date de naissance : </td>
@@ -153,10 +153,14 @@
 <p class='align-center'>
 	<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_LISTER %>"/>">Retour</a>
 	<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_MODIFIER %>"/><c:out value='?id=${adherent.idPersonne }'/>">Modifier</a>
-	<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_DESINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">Désinscrire</a>
-	<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_REINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">Réinscrire</a>
+	<c:if test="${adherent.getMotif() == null }">
+		<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_DESINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">Désinscrire</a>
+	</c:if>
+	<c:if test="${adherent.getMotif() != null }">
+		<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_REINSCRIRE %>"/><c:out value='?id=${adherent.idPersonne }'/>">Réinscrire</a>
+	</c:if>
 	<c:if test="${!adherent.isAPaye() && adherent.getMotif() == null }">
-	<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_APAYE %>"/><c:out value='?id=${adherent.idPersonne}'/>">A Payé</a> 
+		<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_APAYE %>"/><c:out value='?id=${adherent.idPersonne}'/>">A Payé</a> 
 	</c:if>
 </p>
 
