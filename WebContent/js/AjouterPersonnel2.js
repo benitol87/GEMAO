@@ -68,6 +68,18 @@ function ajoutContrat() {
 			'input')[0].name = "datedeb" + compteurC;
 	document.getElementById("divContrat" + compteurC).getElementsByTagName(
 			'input')[0].id = "datedeb" + compteurC;
+	document.getElementById("divContrat" + compteurC).getElementsByTagName(
+	'input')[0].setAttribute('class', null);
+	
+	for(var i=1; i<=compteurC; i++){
+		$('#datedeb'+i).datepicker({
+	    	changeMonth: true,
+	    	changeYear: true,
+	    	yearRange: "-100:+0"
+	    	});
+	    
+		$('#datedeb'+i).datepicker("option", "showAnim","blind");
+	}
 
 	document.getElementById("divContrat" + compteurC).getElementsByTagName(
 			'input')[1].name = "dureeContrat" + compteurC;
