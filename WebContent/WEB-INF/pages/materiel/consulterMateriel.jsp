@@ -119,6 +119,8 @@
 <p class='align-center'>
 	<a href="<c:url value="<%= Pattern.MATERIEL_LISTER %>" />"><input type="button" value="Retour" />
 	</a>
+	<a href="<c:url value="<%= Pattern.MATERIEL_MODIFIER %>" />?idMateriel=<c:out value="${sessionScope.sessionObjectMateriel.getIdMateriel()}" />"><input type="button" value="Modifier" />
+	</a>
 </p>
 	
 <c:import url="/inc/footer.inc.jsp" />
