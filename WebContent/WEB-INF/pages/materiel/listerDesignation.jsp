@@ -30,5 +30,10 @@
 		</tr>
 	</form>
 </table>
+<fieldset class='align-center no-border'>
+	<div>
+		<p>Nous ne pouvons pas supprimer les designations utilisées.</p>
+	</div>
+</fieldset>
 
 <c:import url="/inc/footer.inc.jsp" />
