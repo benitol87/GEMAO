@@ -135,7 +135,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 				session.setAttribute("modif_personnel", pers);
 				
 				/* On redirige vers la liste des personnels */
-				response.sendRedirect(request.getContextPath() + Pattern.PERSONNEL_VALIDATION_MODIF);
+				response.sendRedirect(request.getContextPath() + Pattern.PERSONNEL_LISTER);
 			} else {
 				this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_MODIFIER).forward(request, response);
 			}
