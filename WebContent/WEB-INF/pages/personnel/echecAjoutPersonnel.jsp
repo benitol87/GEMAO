@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="titre" value="Modification d'un adhérent" scope="request" />
+<c:set var="titre" value="Echec durant l'ajout d'un personnel" scope="request" />
 <%@ page import="fr.gemao.view.Pattern"%>
 <c:import url="/inc/head.inc.jsp" />
 
@@ -9,7 +9,7 @@
 <c:import url="/inc/menu.inc.jsp" />
 
 <script src="<c:url value="/js/modifierAdherent.js"/>"></script>
-<h1>Echec</h1>
+<h1>Echec durant l'ajout d'un personnel</h1>
 <c:choose>
 	<c:when test="${dejaInscrit==true}">
 		<p class="offset text-danger">Le personnel <c:out value="${personnel['nom']}" /> <c:out value="${personnel['prenom']}" /> existe déjà.</p>
