@@ -1,7 +1,6 @@
 package fr.gemao.view.personnel;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -34,6 +33,7 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
@@ -55,16 +55,7 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 				.getCommune().getIdCommune());
 
 		RecupererContratCtrl recupererContratCtrl = new RecupererContratCtrl();
-		Contrat contrat = recupererContratCtrl.recupererContrat(personnel
-				.getContrat().getIdContrat());
-
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		String dateDebutContrat = formatter.format(contrat.getDateDebut());
-
-		String dateFinContrat = null;
-		if (contrat.getDateFin() != null) {
-			dateFinContrat = formatter.format(contrat.getDateFin());
-		}
+		List<Contrat> contrats = personnel.getContrat();
 		
 		List<Responsabilite> listeResponsabilite = personnel.getListeResponsabilite();
 		if(listeResponsabilite.isEmpty()){
@@ -81,9 +72,7 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 		request.setAttribute("personnel", personnel);
 		request.setAttribute("adresse", adresse);
 		request.setAttribute("commune", commune);
-		request.setAttribute("contrat", contrat);
-		request.setAttribute("dateDebutContrat", dateDebutContrat);
-		request.setAttribute("dateFinContrat", dateFinContrat);
+		request.setAttribute("contrats", contrats);
 		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_CONSULTER)
 				.forward(request, response);
 	}
