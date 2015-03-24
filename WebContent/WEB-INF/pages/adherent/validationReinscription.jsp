@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:set var="titre" value="Validation" scope="request" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:import url="/inc/head.inc.jsp" />
 
@@ -27,11 +28,11 @@
 		</div>
 		<div>
 			<span class='text-label'><label for="famille">Famille : </label></span>
-			<c:out value="" />
+			<c:out value="${adherent.getFamille().getNomFamille()}" />
 		</div>
 		<div>
 			<span class='text-label'>Date de naissance : </span>
-			<c:out value="${adherent['dateNaissance']}" />
+			<fmt:formatDate value="${adherent['dateNaissance']}" pattern="dd/MM/yyyy" />
 		</div>
 		<div>
 			<span class='text-label'>Téléphone fixe : </span>
@@ -133,8 +134,8 @@
 	</fieldset>
 </c:if>
 <fieldset class='align-center no-border'>
-	<a href="/GEMAO"><input type="button" value="Annuler" /></a>
-	<input type="submit" value="Valider" />
+	<a href="/GEMAO"><input type="button" class="btn" value="Annuler" /></a>
+	<input type="submit" class="btn" value="Valider" />
 </fieldset>
 </form>
 

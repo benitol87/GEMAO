@@ -36,8 +36,8 @@
 				value="<c:out value="${adherent['prenom']}" />" />
 		</div>
 		<div>
-			<label for="famille" class="required">Famille </label> <input
-				type="text" name="famille" required="required" value="" />
+			<label for="famille" class="required">Famille </label><input
+				type="text" name="famille" required="required" value="${adherent.getFamille().getNomFamille()}" />
 		</div>
 		<div>
 			<label for="dateNaiss" class="required">Date de naissance </label><input
@@ -45,18 +45,18 @@
 				value="<c:out value="${dateNaissance}" />" />
 		</div>
 		<div>
-			<label for="telFixe" class="required">Téléphone fixe </label> <input
+			<label for="telFixe" class="required">Téléphone fixe </label><input
 				type="text" name="telFixe" pattern="[0][1-9][0-9]{8}"
 				required="required" maxlength="10" autocomplete="on"
 				value="<c:out value="${adherent['telFixe']}"/>" />
 		</div>
 		<div>
-			<label for="telPort">Téléphone portable </label> <input type="text"
+			<label for="telPort">Téléphone portable </label><input type="text"
 				name="telPort" pattern="[0][1-9][0-9]{8}" maxlength="10"
 				autocomplete="on" value="<c:out value="${adherent['telPort']}"/>" />
 		</div>
 		<div>
-			<label for="email">E-mail </label> <input type="email" name="email"
+			<label for="email">E-mail </label><input type="email" name="email"
 				autocomplete="on" value="<c:out value="${adherent['email']}"/>" />
 		</div>
 	</fieldset>
@@ -175,7 +175,7 @@
 	<fieldset class='align-center no-border'>
 		<p class="oblig">* Champs obligatoires</p>
 		<a class="btn" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>">Retour</a>
-		<input type="submit" value="Suivant" />
+		<input type="submit" class="btn" value="Suivant" />
 	</fieldset>
 </form>
 <c:import url="/inc/footer.inc.jsp" />

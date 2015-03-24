@@ -127,8 +127,8 @@
 	</fieldset>
 </c:if>
 <fieldset class='align-center no-border'>
-	<a href="<c:url value="<%=Pattern.ADHERENT_LISTER %>"/>"><input type="button" value="Annuler" /></a>
-	<input type="submit" value="Valider" />
+	<a href="<c:url value="<%=Pattern.ADHERENT_LISTER %>"/>"><input type="button" class="btn" value="Annuler" /></a>
+	<input type="submit" class="btn" value="Valider" />
 </fieldset>
 </form>
 

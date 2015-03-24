@@ -28,7 +28,7 @@ public class AutocompletionCommune {
 		List<String> listNom = communeCtrl.getListNomCommune();
 		ArrayList<String> listNomWithCote = new ArrayList<>();
 		for (String nom : listNom) {
-			listNomWithCote.add("'" + nom + "'");
+			listNomWithCote.add('"' + nom + '"');
 		}
 		request.setAttribute("listNomCommune", listNomWithCote);
 		List<Commune> listCommune = communeCtrl.getListCommunes();
@@ -37,7 +37,7 @@ public class AutocompletionCommune {
 			if (dicoNomCommuneCodePostal.length() != 1) {
 				dicoNomCommuneCodePostal += ",";
 			}
-			dicoNomCommuneCodePostal += "'" + c.getNomCommune() + "':"
+			dicoNomCommuneCodePostal += '"' + c.getNomCommune() + '"'+':'
 					+ c.getCodePostal().toString();
 		}
 		dicoNomCommuneCodePostal += "}";

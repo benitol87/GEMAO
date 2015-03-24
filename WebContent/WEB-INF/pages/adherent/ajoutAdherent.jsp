@@ -157,7 +157,7 @@ autocompletionFamille("#famille");
 	</fieldset>
 	<fieldset class='align-center no-border'>
 		<p class="oblig">* Champs obligatoires</p>
-		<input type="submit" value="Suivant" />
+		<input type="submit" class="btn" value="Suivant" />
 	</fieldset>
 </form>
 <c:import url="/inc/footer.inc.jsp" />
