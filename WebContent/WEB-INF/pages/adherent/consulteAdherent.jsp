@@ -27,7 +27,7 @@
 	</tr>
 	<tr>
 		<td>Famille : </td>
-		<td><c:out value="" /></td>
+		<td><c:out value="${adherent.getFamille().getNomFamille()}" /></td>
 	</tr>
 	<tr>
 		<td>Date de naissance : </td>
