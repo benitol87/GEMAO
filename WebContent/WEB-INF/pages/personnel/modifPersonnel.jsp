@@ -97,7 +97,7 @@
 						<td><c:if test="${cont['typeContrat'].libelle == 'CDD' }">
 								<fmt:formatDate value="${cont.dateFin}" pattern="dd/MM/yyyy" />
 							</c:if></td>
-						<td><input type="checkbox"></td>
+						<td><input type="checkbox" name="fincont"></td>
 					</tr>
 				</c:forEach>
 			</table>

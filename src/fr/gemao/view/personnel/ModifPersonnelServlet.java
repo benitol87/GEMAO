@@ -119,6 +119,9 @@ public class ModifPersonnelServlet extends HttpServlet {
 				pers.setListeResponsabilite(form.getListeResponsabilite());
 				pers.setNumeroSS(form.getNumeroSS());
 				
+				String membreCA = request.getParameter("membreCA");
+				pers.setMembreCA(Boolean.parseBoolean(membreCA));
+				
 				session.removeAttribute("personnel");
 				
 				// Archivage
