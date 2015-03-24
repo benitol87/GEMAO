@@ -60,6 +60,7 @@ public class JSPFile {
 			REP_MATERIEL = "materiel/",
 			MATERIEL_AJOUT = ROOT+REP_MATERIEL+"ajoutMateriel.jsp",
 			MATERIEL_VALIDATION_AJOUT = ROOT+REP_MATERIEL+"validationAjoutMateriel.jsp",
+			MATERIEL_VALIDATION_MODIFIER = ROOT+REP_MATERIEL+"validationModificationMateriel.jsp",
 			MATERIEL_CONSULTER = ROOT+REP_MATERIEL+"consulterMateriel.jsp",
 			MATERIEL_LISTER = ROOT+REP_MATERIEL+"listerMateriel.jsp",
 			MATERIEL_MODIFIER = ROOT+REP_MATERIEL+"modifierMateriel.jsp",

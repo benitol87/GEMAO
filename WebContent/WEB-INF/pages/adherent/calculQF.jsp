@@ -26,8 +26,8 @@
 	</fieldset>
 	<fieldset class='align-center no-border'>
 		<p class="oblig">* Champs obligatoires</p>
-		<input type="button" value="Annuler" /> 
-		<input type="submit" value="Valider" />
+		<input type="button" class="btn" value="Annuler" /> 
+		<input type="submit" class="btn" value="Valider" />
 	</fieldset>
 </form>
 <c:if test="${ erreurPers == true }">
