@@ -70,7 +70,8 @@ public class ChangerProfilServlet extends HttpServlet {
 		new ModifierPersonnelCtrl().modifierPersonnel(p);
 		
 		// Redirection
-		response.sendRedirect( request.getContextPath() + Pattern.PERSONNEL_CONSULTER + "?id="+idPersonne );
+		//response.sendRedirect( request.getContextPath() + Pattern.PERSONNEL_CONSULTER + "?id="+idPersonne );
+		response.sendRedirect( request.getContextPath() + Pattern.PERSONNEL_LISTER );
 	}
 
 }
