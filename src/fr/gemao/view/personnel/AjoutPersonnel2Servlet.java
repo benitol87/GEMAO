@@ -18,7 +18,9 @@ import fr.gemao.ctrl.personnel.AjouterPersonnelCtrl;
 import fr.gemao.ctrl.personnel.CalculerDateFinContratCtrl;
 import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.entity.personnel.Personnel;
+import fr.gemao.entity.personnel.TypeContrat;
 import fr.gemao.entity.administration.Modification;
+import fr.gemao.form.util.Form;
 import fr.gemao.util.Password;
 import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
@@ -42,8 +44,12 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		Personnel perso = (Personnel) session.getAttribute("personnel");
+		Integer typeContrat = null;
+		String debcontrat = null;
+		String debEnsei = null;
+		String duree = null;
 		
 		perso.setPassword(Password.generatePassword(10));
 		
@@ -51,47 +57,53 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 		 * Récupération des données saisies, envoyées en tant que paramètres de
 		 * la requète POST générée à la validation du formulaire
 		 */
-		Integer typeContrat = Integer.valueOf(request.getParameter("type"));
-		String debcontrat = request.getParameter("datedeb");
-		String debEnsei = request.getParameter("datedebEns");
-	    String duree = request.getParameter("duree");
-	    
-	    /**
-	     * Création du personnel
-	     */
-	    Contrat contrat = new Contrat();
-	    
-	    CalculerDateFinContratCtrl calculerDateFinContratCtrl = new CalculerDateFinContratCtrl();
-	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        try{
-        	Date dateDeb = formatter.parse(debcontrat);
-        	Date dateEnsei = formatter.parse(debEnsei);
-        	contrat.setDateDebut(dateDeb);
-        	perso.setDateEntree(dateEnsei);
-        } catch (ParseException e) {
-			e.printStackTrace();
-		}
-        contrat.setDateFin(calculerDateFinContratCtrl.CalculerDateFinContrat(contrat.getDateDebut(), Integer.parseInt(duree)));
-        TypeContratCtrl typeContratCtrl = new TypeContratCtrl();
-        contrat.setTypeContrat(typeContratCtrl.recupererTypeContrat(typeContrat));
-        
-        perso.setContrat(contrat);
-        
-        AjouterPersonnelCtrl ajouterPersonnelCtrl = new AjouterPersonnelCtrl();
-        ajouterPersonnelCtrl.ajouterPersonnel(perso);
-        
-        // Archivage
-		new ModificationCtrl().ajouterModification(new Modification(
-				0,
-				(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
-				new Date(),
-				"Ajout personnel : "+perso.getNom()+" "+perso.getPrenom()
-		));
-        
-        /* Transmission à la page JSP en charge de l'affichage des données */
- 		this.getServletContext()
- 				.getRequestDispatcher(JSPFile.PERSONNEL_AJOUT3)
- 				.forward(request, response);
-	}
+		/* Si c'est le premier passage */
+		if (Form.getValeurChamp(request, "type") != null) {
+			typeContrat = Integer.parseInt(Form.getValeurChamp(request, "type"));
+			debcontrat = (String) Form.getValeurChamp(request, "datedeb");
+			debEnsei = (String) Form.getValeurChamp(request, "datedebEns");
+		    duree = (String) Form.getValeurChamp(request, "duree");
 
+	    
+		    /**
+		     * Création du personnel
+		     */
+		    Contrat contrat = new Contrat();
+		    
+		    CalculerDateFinContratCtrl calculerDateFinContratCtrl = new CalculerDateFinContratCtrl();
+		    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	        
+		    try {
+	        	Date dateDeb = formatter.parse(debcontrat);
+	        	Date dateEnsei = formatter.parse(debEnsei);
+	        	contrat.setDateDebut(dateDeb);
+	        	perso.setDateEntree(dateEnsei);
+	        } catch (ParseException e) {
+				e.printStackTrace();
+			}
+	        
+	        contrat.setDateFin(calculerDateFinContratCtrl.CalculerDateFinContrat(contrat.getDateDebut(), Integer.parseInt(duree)));
+	        TypeContratCtrl typeContratCtrl = new TypeContratCtrl();
+	        contrat.setTypeContrat(typeContratCtrl.recupererTypeContrat(typeContrat));
+	        
+	        perso.setContrat(contrat);
+	        
+	        AjouterPersonnelCtrl ajouterPersonnelCtrl = new AjouterPersonnelCtrl();
+	        ajouterPersonnelCtrl.ajouterPersonnel(perso);
+	        
+	        // Archivage
+			new ModificationCtrl().ajouterModification(new Modification(
+					0,
+					(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
+					new Date(),
+					"Ajout personnel : "+perso.getNom()+" "+perso.getPrenom()
+			));
+	        
+	        /* Transmission à la page JSP en charge de l'affichage du récapitulatif */
+			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_VALIDATION_AJOUT).forward(request, response);
+		} else {
+			/* Si c'est le deuxième passage, transmission à la page d'affichage du login/password */
+			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT3).forward(request, response);
+		}
+	}
 }

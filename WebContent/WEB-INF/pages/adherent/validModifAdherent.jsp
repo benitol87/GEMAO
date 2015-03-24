@@ -75,7 +75,7 @@
 	<fieldset>
 		<legend>Disciplines</legend>
 			<c:forEach var="discipline" items="${sessionScope.modif_adh_adherent.getDisciplines()}">
-			<div class='align-center'>${ discipline.getMatiere().getNomMatiere()} - ${discipline.getNiveau().getNomNiveau() }</div>
+				<div class='align-center'>${ discipline.getMatiere().getNomMatiere()} - ${discipline.getNiveau().getNomNiveau() }</div>
 			</c:forEach>		
 	</fieldset>
 	<fieldset>
@@ -90,17 +90,18 @@
 			<span class="euro"></span>
 		</div>
 		<div>
-			<span class='text-label'>Droit à l'image : </span><c:choose>
-							<c:when test="${adherent['droitImage']==true}">Oui</c:when>
-							<c:otherwise>Non</c:otherwise>
-						</c:choose>
-			
+			<span class='text-label'>Droit à l'image : </span>
+			<c:choose>
+				<c:when test="${adherent['droitImage']==true}">Oui</c:when>
+				<c:otherwise>Non</c:otherwise>
+			</c:choose>
 		</div>
 		<div>
-			<span class='text-label'>Membre CA : </span><c:choose>
-							<c:when test="${adherent['membreCA']==true}">Oui</c:when>
-							<c:otherwise>Non</c:otherwise>
-						</c:choose>
+			<span class='text-label'>Membre CA : </span>
+			<c:choose>
+				<c:when test="${adherent['membreCA']==true}">Oui</c:when>
+				<c:otherwise>Non</c:otherwise>
+			</c:choose>
 			
 		</div>
 	</fieldset>

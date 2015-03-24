@@ -34,7 +34,6 @@ public class ValidationModifPersonnelServlet extends HttpServlet {
 		request.setAttribute("personnel", pers);
 		
 		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_VALIDATION_MODIF).forward(request, response);
-
 	}
 
 	/**
@@ -44,7 +43,6 @@ public class ValidationModifPersonnelServlet extends HttpServlet {
 		/* Positionnement des attributs relatifs à la commune */
 		HttpSession session = request.getSession();
 		Personnel pers = (Personnel) session.getAttribute("modif_personnel");
-		
 		
 		ModifierPersonnelCtrl modifPers = new ModifierPersonnelCtrl();
 		
@@ -59,7 +57,6 @@ public class ValidationModifPersonnelServlet extends HttpServlet {
 		request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON, Pattern.PERSONNEL_LISTER);
 		request.setAttribute(ResultatServlet.ATTR_RESULTAT, "Le personnel " + pers.getNom() + " " +pers.getPrenom() + " a été modifié.");
 
-		this.getServletContext().getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);
+		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT3).forward(request, response);
 	}
-
 }

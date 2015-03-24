@@ -40,50 +40,50 @@
 </form>
 
 <table class='tablesorter-blue'>
-<thead>
-	<tr>
-		<th>Nom</th>
-		<th>Prénom</th>
-		<th class="listNaiss">Date de naissance</th>
-		<th class="listEmail">Email</th>
-		<th class="listCom">Commune</th>
-		<th class="listCom">Code Postal</th>
-		<th class="listEntree">Date d'entrée</th>
-		<th class="listCA">Membre CA</th>
-		<th>Actions</th>
-	</tr>
-</thead>
-<tbody>
-	<c:forEach items="${listePersonnels}" var="pers">
+	<thead>
 		<tr>
-			<td><c:out value="${pers['nom']}" /></td>
-			<td><c:out value="${pers['prenom']}" /></td>
-			<td class="listNaiss"><fmt:formatDate
-						value="${pers.getDateNaissance()}" pattern="dd/MM/yyyy" /></td>
-			<td class="listEmail"><c:out value="${pers.getEmail()}" /></td>
-			<td class="listCom"><c:out
-						value="${pers.getAdresse().getCommune().getNomCommune()}" /></td>
-			<td class="listCom"><c:out
-						value="${pers.getAdresse().getCommune().getCodePostal()}" /></td>
-			
-			<td class="listEntree"><fmt:formatDate
-						value="${pers.getDateEntree()}" pattern="dd/MM/yyyy" /></td>
-			<c:choose>
-				<c:when test="${pers.isMembreCA()}">
-					<td class="listCA">Oui</td>
-				</c:when>
-				<c:otherwise>
-					<td class="listCA">Non</td>
-				</c:otherwise>
-			</c:choose>	
-			<td>
-				<a class="icon icon-search" href="<c:url value="<%= Pattern.PERSONNEL_CONSULTER %>" />?id=<c:out value="${pers['idPersonne']}" />" title='Afficher les détails'></a>
-				<a class="icon icon-pen" href="<c:url value="<%= Pattern.PERSONNEL_MODIFIER %>" />?id=<c:out value="${pers['idPersonne']}" />" title='Modifier les informations'></a>
-				<a class="icon icon-key" href="<c:url value="<%= Pattern.ADMINISTRATION_CHANGER_PROFIL %>" />?id=<c:out value="${pers['idPersonne']}" />" title="Modifier le profil dans l'application"></a>
-			</td>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th class="listNaiss">Date de naissance</th>
+			<th class="listEmail">Email</th>
+			<th class="listCom">Commune</th>
+			<th class="listCom">Code Postal</th>
+			<th class="listEntree">Date d'entrée</th>
+			<th class="listCA">Membre CA</th>
+			<th>Actions</th>
 		</tr>
-	</c:forEach>
-</tbody>
+	</thead>
+	<tbody>
+		<c:forEach items="${listePersonnels}" var="pers">
+			<tr>
+				<td><c:out value="${pers['nom']}" /></td>
+				<td><c:out value="${pers['prenom']}" /></td>
+				<td class="listNaiss"><fmt:formatDate
+							value="${pers.getDateNaissance()}" pattern="dd/MM/yyyy" /></td>
+				<td class="listEmail"><c:out value="${pers.getEmail()}" /></td>
+				<td class="listCom"><c:out
+							value="${pers.getAdresse().getCommune().getNomCommune()}" /></td>
+				<td class="listCom"><c:out
+							value="${pers.getAdresse().getCommune().getCodePostal()}" /></td>
+				
+				<td class="listEntree"><fmt:formatDate
+							value="${pers.getDateEntree()}" pattern="dd/MM/yyyy" /></td>
+				<c:choose>
+					<c:when test="${pers.isMembreCA()}">
+						<td class="listCA">Oui</td>
+					</c:when>
+					<c:otherwise>
+						<td class="listCA">Non</td>
+					</c:otherwise>
+				</c:choose>	
+				<td>
+					<a class="icon icon-search" href="<c:url value="<%= Pattern.PERSONNEL_CONSULTER %>" />?id=<c:out value="${pers['idPersonne']}" />" title='Afficher les détails'></a>
+					<a class="icon icon-pen" href="<c:url value="<%= Pattern.PERSONNEL_MODIFIER %>" />?id=<c:out value="${pers['idPersonne']}" />" title='Modifier les informations'></a>
+					<a class="icon icon-key" href="<c:url value="<%= Pattern.ADMINISTRATION_CHANGER_PROFIL %>" />?id=<c:out value="${pers['idPersonne']}" />" title="Modifier le profil dans l'application"></a>
+				</td>
+			</tr>
+		</c:forEach>
+	</tbody>
 </table>
 <div class='align-center'>
 	<a href="<c:url value="<%= Pattern.PERSONNEL_EXPORTER %>"/>" class="btn">Exporter les données</a>
