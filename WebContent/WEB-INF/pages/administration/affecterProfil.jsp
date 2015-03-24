@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="fr.gemao.view.Pattern"%>
 
-<c:set var="titre" value="Liste des disciplines" scope="request" />
+<c:set var="titre" value="Modifier un profil" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 
