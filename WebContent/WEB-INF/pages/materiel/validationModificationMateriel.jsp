@@ -2,13 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="fr.gemao.view.Pattern"%>
 
-<c:set var="titre" value="Materiel" scope="request" />
+<c:set var="titre" value="Récapitulatif de la modification d'un matériel" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
-<h1>Validation d'un matériel</h1>
+<h1>Récapitulatif de la modification d'un matériel</h1>
 <table class='table-col-2'>
 	<caption>Informations générales</caption>
 	<tr>
