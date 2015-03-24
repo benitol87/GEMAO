@@ -112,10 +112,14 @@ autocompletionAdresse("#rue", "#compl");
 	
 	<fieldset>
 		<legend>Informations professionnelles</legend>
-		<div id="CA">
-			<label for="membreCA">Membre du CA :</label>
-			<input type="checkbox" name="membreCA" value="CA"/>
-		</div>
+			<div>
+				<label class='required'>Membre CA </label> <span> <input
+					type="radio" name="membreCA" value="true" checked="checked" /> <label
+					for="membreCA">Oui</label> <input type="radio" name="membreCA"
+					value="false" <c:if test="${ajout_pers_personnel.isMembreCA() == false}"> checked="checked" 
+							</c:if> /> <label for="membreCA">Non</label>
+				</span>
+			</div>
 
 		<div id="diplomes">
 			<div id="divDiplome1">
