@@ -13,8 +13,10 @@
 <div class='offset'>
 	<c:forEach items="${requestScope.listeModules}" var="module">
 		<div>
-			<span>Module <c:out value="${module.nomModule}" /></span> : 
-			<c:out value="${profil.recupererTypeDroit(module.nomModule)}"/>
+			<li>
+				<span>Module <c:out value="${module.nomModule}" /></span> : 
+				<c:out value="${profil.recupererTypeDroit(module.nomModule)}"/>
+			</li>
 		</div>
 	</c:forEach>
 </div>
