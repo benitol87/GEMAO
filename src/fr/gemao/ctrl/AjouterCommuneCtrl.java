@@ -33,7 +33,7 @@ public class AjouterCommuneCtrl {
 		}
 		
 		//Vérification du nom de commune
-		masque = "^[A-Za-z\\- ]+$";
+		masque = "^[A-Za-z âäàéèëêîïìôöòûüùÿ\\-]+$";
 		pattern = Pattern.compile(masque);
 		controler = pattern.matcher(commune.getNomCommune());
 		if (!controler.matches()) {
