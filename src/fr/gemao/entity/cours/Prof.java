@@ -32,7 +32,7 @@ public class Prof extends Personnel implements Serializable {
 			String nom, String prenom, Date dateNaissance, String telFixe,
 			String telPort, String email, Civilite civilite,
 			List<Responsabilite> listeResponsabilite,
-			List<Diplome> listeDiplome,List<Discipline> listeDiscipline, Contrat contrat, String login,
+			List<Diplome> listeDiplome,List<Discipline> listeDiscipline, List<Contrat> contrat, String login,
 			String password, int pointsAncien, Profil profil,
 			boolean premiereConnexion, Date dateDebutEnseignement,
 			boolean membreCA, String numeroSS) {
@@ -46,7 +46,7 @@ public class Prof extends Personnel implements Serializable {
 
 
 	public Prof(Personne personne, List<Responsabilite> listeResponsabilite,
-			List<Diplome> listeDiplome, List<Discipline> listeDiscipline, Contrat contrat, String login,
+			List<Diplome> listeDiplome, List<Discipline> listeDiscipline, List<Contrat> contrat, String login,
 			String password, Integer pointsAncien, Profil profil, boolean premiereConnexion, Date dateDebutEnseignement, String numeroSS) {
 		super(personne, listeResponsabilite, listeDiplome,listeDiscipline, contrat, login, password,
 				pointsAncien, profil, premiereConnexion, numeroSS, dateDebutEnseignement);

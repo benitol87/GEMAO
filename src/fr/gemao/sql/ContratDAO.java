@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.personnel.Contrat;
@@ -30,8 +31,8 @@ public class ContratDAO extends IDAO<Contrat> {
 		PreparedStatement requete = null;
 		ResultSet result = null;
 
-		String sql = "INSERT INTO contrat(idTypeContrat, idMotifFin, dateDebut, dateFin, dateRupture)"
-				+ "VALUES (?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO contrat(idTypeContrat, idPersonne, idMotifFin, dateDebut, dateFin, dateRupture)"
+				+ "VALUES (?, ?, ?, ?, ?, ?);";
 		try {
 			connexion = factory.getConnection();
 			
@@ -110,6 +111,33 @@ public class ContratDAO extends IDAO<Contrat> {
 	@Override
 	public List<Contrat> getAll() {
 		throw new UnsupportedOperationException("Méthode non implémentée.");
+	}
+	
+	public List<Contrat> getContratsParPersonne(Long idPersonnel){
+		List<Contrat> liste = new ArrayList<>();
+		Contrat contrat = null;
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		
+		String sql = "SELECT * FROM contrat Where idPersonne=?;";
+		
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, idPersonnel);
+			result = requete.executeQuery();
+			
+			while (result.next()) {
+				contrat = this.map(result);
+				liste.add(contrat);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return liste;
 	}
 
 	@Override
