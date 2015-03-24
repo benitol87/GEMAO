@@ -1,16 +1,17 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="fr.gemao.view.Pattern"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="titre" value="Consultation d'un membre du personnel"
+<c:set var="titre" value="Validation d'un membre du personnel"
 	scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-<h1>Consultation d'un membre du personnel</h1>
-<form action="#" method="post">
+<h1>Validation d'un membre du personnel</h1>
+<form action="<c:url value="<%=Pattern.PERSONNEL_VALIDATION_AJOUT%>" />" method="post">
 	<table class='table-col-2'>
 		<caption>Informations personnelles</caption>
 		<tr>
@@ -77,7 +78,7 @@
 				<span>N°</span>
 			</td>
 			<td>
-				<c:out value="${adresse['numRue']}"/>
+				<c:out value="${personnel.adresse['numRue']}"/>
 			</td>
 		</tr>
 		<tr>
@@ -85,7 +86,7 @@
 				<span>Rue</span>
 			</td>
 			<td>
-				<c:out value="${adresse['nomRue']}"/>
+				<c:out value="${personnel.adresse['nomRue']}"/>
 			</td>
 		</tr>
 		<tr>
@@ -93,7 +94,7 @@
 				<span>Complément d'adresse</span>
 			</td>
 			<td>
-				<c:out value="${adresse['infoCompl']}"/>
+				<c:out value="${personnel.adresse['infoCompl']}"/>
 			</td>
 		</tr>
 		<tr>
@@ -101,7 +102,7 @@
 				<span>Code postal</span>
 			</td>
 			<td>
-				<c:out value="${commune['codePostal']}"/>
+				<c:out value="${personnel.adresse.commune['codePostal']}"/>
 			</td>
 		</tr>
 		<tr>
@@ -109,57 +110,39 @@
 				<span>Commune</span>
 			</td>
 			<td>
-				<c:out value="${commune['nomCommune']}"/>
+				<c:out value="${personnel.adresse.commune['nomCommune']}"/>
 			</td>
 		</tr>
 	</table>
 	<table class='table-col-2'>
 		<caption>Informations professionnelles</caption>
 		<tr>
-			<td>
-				<span>Contrat : </span>
-			</td>
-			<td>
-				<c:out value="${contrat['typeContrat'].libelle}"/>
-			</td>
+			<td><span>Contrat </span></td>
+			<td>Date de début </td>
+			<td>Date de fin </td>
+		</tr>
+		<c:forEach items="${contrats}" var="cont">
+			<tr>
+				<td><c:out value="${cont['typeContrat'].libelle}" /></td>
+				<td><fmt:formatDate value="${cont.dateDebut}" pattern="dd/MM/yyyy" /></td>
+				<td>
+				<c:if test="${cont['typeContrat'].libelle == 'CDD' }">
+						<fmt:formatDate value="${cont.dateFin}" pattern="dd/MM/yyyy" />
+				</c:if></td>
+			</tr>
+		</c:forEach>
+		<tr><td> </td><td> </td><td> </td></tr>
+		<tr>
+			<td><span>Diplôme :</span></td>
+			<td><c:forEach items="${listeDiplome}" var="dipl">
+					<c:out value="${dipl['nomDiplome']}" />
+				</c:forEach></td>
 		</tr>
 		<tr>
-			<td>
-				<span>Date de début : </span>
-			</td>
-			<td>
-				<c:out value="${dateDebutContrat}"/>
-			</td>
-		</tr>
-		<c:if test="${contrat['typeContrat'].libelle == 'CDD' }">
-		<tr>
-			<td>
-				<span>Date de fin : </span>
-			</td>
-			<td>
-				<c:out value="${dateFinContrat}"/>
-			</td>
-		</tr>
-		</c:if>
-		<tr>
-			<td>
-				<span>Diplôme :</span>
-			</td>
-			<td>
-				<c:forEach items="${listeDiplome}" var="dipl">
-					<c:out value="${dipl['nomDiplome']}"/>
-				</c:forEach>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<span>Responsabilité : </span>
-			</td>
-			<td>
-				<c:forEach items="${listeResponsabilite}" var="resp">
-					<c:out value="${resp['libelle']}"/>
-				</c:forEach>
-			</td>
+			<td><span>Responsabilité : </span></td>
+			<td><c:forEach items="${listeResponsabilite}" var="resp">
+					<c:out value="${resp['libelle']}" />
+				</c:forEach></td>
 		</tr>
 	</table>
 	<table class='table-col-2'>
@@ -182,7 +165,7 @@
 		</tr>
 	</table>
 	<p class='align-center no-border'>
-		<a class="btn" href="<c:url value="<%= Pattern.PERSONNEL_LISTER %>"/>">Retour</a>
+		<a class="btn" href="<c:url value="<%= Pattern.PERSONNEL_LISTER %>"/>">Annuler</a>
 		<input type="submit" value="Valider"/>
 	</p>
 </form>
