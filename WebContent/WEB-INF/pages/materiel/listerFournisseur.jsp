@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="fr.gemao.view.Pattern"%>
 
-<c:set var="titre" value="Liste des etats" scope="request" />
+<c:set var="titre" value="Liste des fournisseurs" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 
@@ -11,13 +11,12 @@
 <script src="<c:url value="/js/listerFournisseur.js"/>"></script>
 
 
-<h1>Liste des Fournisseurs</h1>
-<h2 class="offset">Fournisseur</h2>
+<h1>Liste des fournisseurs</h1>
 <table>
 	<c:forEach var="four" items="${listFour}">
 		<tr>
 			<form action="#" method="post" class="offset">
-				<td><label for="four">${four.Nom}</label></td>
+				<td><label for="four">${four.nomFournisseur}</label></td>
 				<input type="text" name="id" value="${four.idFournisseur}" style="display: none">
 				<td><input type="submit" class="btSuppr" value="Supprimer"></td>
 			</form>
@@ -25,7 +24,7 @@
 	</c:forEach>
 	<form action="#" method="post" class="offset">
 		<tr>
-			<td><input type="text" name="libelle" value="" ></td>
+			<td><input type="text" name="lib" value="" ></td>
 			<input type="text" name="id" value="0" style="display: none">
 			<td><input type="submit" value="Ajouter"></td>
 		</tr>

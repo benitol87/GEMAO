@@ -12,7 +12,6 @@
 
 
 <h1>Liste des désignations</h1>
-<h2 class="offset">Designation</h2>
 <table>
 	<c:forEach var="des" items="${listDes}">
 		<tr>
