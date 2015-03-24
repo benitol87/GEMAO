@@ -56,7 +56,7 @@ public class PersonnelForm {
 	
 	private static final String CHAMP_TYPE_CONTRAT ="type";
 	private static final String CHAMP_DUREE_CONTRAT	= "dureeContrat";
-	private static final String CHAMP_DATE_DEB_CONTRAT = "datebeb";
+	private static final String CHAMP_DATE_DEB_CONTRAT = "datedeb";
 
 	// Informations relatives à la personne
 	private String nom;

@@ -55,10 +55,10 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 		 * Récupération des données saisies, envoyées en tant que paramètres de
 		 * la requète POST générée à la validation du formulaire
 		 */
-		Integer typeContrat = Integer.valueOf(request.getParameter("type"));
-		String debcontrat = request.getParameter("datedeb");
+//		Integer typeContrat = Integer.valueOf(request.getParameter("type"));
+//		String debcontrat = request.getParameter("datedeb");
 		String debEnsei = request.getParameter("datedebEns");
-	    String duree = request.getParameter("duree");
+//	    String duree = request.getParameter("duree");
 	    
 	    /**
 	     * Création du personnel
