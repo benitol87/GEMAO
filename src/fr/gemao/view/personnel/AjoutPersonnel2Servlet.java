@@ -83,6 +83,8 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 	    PersonnelForm personnelForm = new PersonnelForm();
 	    List<Contrat> listContrat = new ArrayList<>();
 	    listContrat = personnelForm.lireContrats(request);
+	    System.out.println(listContrat);
+	    perso.setContrat(listContrat);
 	    
 	    CalculerDateFinContratCtrl calculerDateFinContratCtrl = new CalculerDateFinContratCtrl();
 	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
