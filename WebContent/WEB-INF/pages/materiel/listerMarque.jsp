@@ -11,7 +11,7 @@
 <script src="<c:url value="/js/listerMarque.js"/>"></script>
 
 
-<h1>Liste des Marques</h1>
+<h1>Liste des marques</h1>
 <table>
 	<c:forEach var="marque" items="${listMarque}">
 		<tr>

@@ -5,7 +5,7 @@
 <%@ page buffer="32kb" %>
 <%@ page isErrorPage="true" %>
 
-<c:set var="titre" value="Materiel" scope="request" />
+<c:set var="titre" value="Modification d'un matériel" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 <c:import url="/inc/header.inc.jsp" />
