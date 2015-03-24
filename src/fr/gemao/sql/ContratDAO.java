@@ -14,6 +14,7 @@ import fr.gemao.entity.personnel.TypeContrat;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
 import fr.gemao.sql.util.NumberUtil;
+import fr.gemao.util.Password;
 
 public class ContratDAO extends IDAO<Contrat> {
 
@@ -88,6 +89,45 @@ public class ContratDAO extends IDAO<Contrat> {
 		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
+	@Override
+	public Contrat update(Contrat obj) {
+		if (obj == null) {
+			throw new NullPointerException("Le personnel ne doit pas être null");
+		}
+		
+		Connection connexion = null;
+		PreparedStatement requete = null;
+		ResultSet result = null;
+		
+		Integer idContrat = null;
+		if(obj.getIdContrat() != null){
+			idContrat = obj.getIdContrat();
+		}
+		
+		String sql = "UPDATE contrat SET idContrat = ?, idPersonne = ?, idTypeContrat = ?, idMotifFin = ?,"
+				+ "dateDebut = ?, dateFin = ?, dateRupture = ?;";
+
+		try {
+			connexion = factory.getConnection();
+			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, 
+					obj.getIdContrat(),
+					//idpersonne,
+					obj.getTypeContrat(),
+					obj.getMotifFinContrat(),
+					obj.getDateDebut(),
+					obj.getDateFin(),
+					obj.getDateRupture());
+			requete.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOUtilitaires.fermeturesSilencieuses(result, requete, connexion);
+		}
+
+		return this.get(obj.getIdContrat());
+	}
+	
 	@Override
 	public Contrat get(long id) {
 		Contrat contrat = null;
