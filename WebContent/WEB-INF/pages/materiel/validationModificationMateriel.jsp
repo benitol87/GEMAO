@@ -125,9 +125,9 @@
 			</tr>
 	</table>
 </c:if>	
-<form action="#" method="post">
+<form action="#" method="post" >
 <p class='align-center'>
-	<a href="<c:url value="<%= Pattern.MATERIEL_AJOUT %>" />"><input type="button" value="Retour" />
+	<a href="<c:url value="<%= Pattern.MATERIEL_LISTER %>" />"><input type="button" value="Annuler" />
 	</a>
 	<input type="submit" value="Valider" />
 </p>
