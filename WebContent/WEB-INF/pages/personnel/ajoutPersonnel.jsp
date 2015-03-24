@@ -113,8 +113,8 @@ autocompletionAdresse("#rue", "#compl");
 	<fieldset>
 		<legend>Informations professionnelles</legend>
 		<div id="CA">
-			<label for="CA">Membre du CA :</label>
-			<input type="checkbox" name="CA" value="CA"/>
+			<label for="membreCA">Membre du CA :</label>
+			<input type="checkbox" name="membreCA" value="CA"/>
 		</div>
 
 		<div id="diplomes">

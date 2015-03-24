@@ -65,6 +65,10 @@ header .icon, header .icon:hover{
 	margin-right: 10px;
 }
 
+.white{
+	color: white;
+}
+
 #boutonMenu{
 	margin-left: 15%;
 }

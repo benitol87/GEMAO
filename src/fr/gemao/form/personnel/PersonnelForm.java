@@ -53,10 +53,12 @@ public class PersonnelForm {
 	private static final String CHAMP_TELPORT = "telPort";
 	private static final String CHAMP_EMAIL = "email";
 	private static final String CHAMP_NUMERO_SS = "numeroSS";
+	private static final String CHAMP_MEMBRECA = "membreCA";
 	
 	private static final String CHAMP_TYPE_CONTRAT ="type";
 	private static final String CHAMP_DUREE_CONTRAT	= "dureeContrat";
 	private static final String CHAMP_DATE_DEB_CONTRAT = "datedeb";
+		
 
 	// Informations relatives à la personne
 	private String nom;
@@ -84,6 +86,9 @@ public class PersonnelForm {
 	private String discipline;
 	private String classe;
 
+	//Membre CA
+	private String membreCA;
+	
 	// Inscription
 	private String dateEntree;
 
@@ -191,6 +196,14 @@ public class PersonnelForm {
 		return numeroSS;
 	}
 
+	public String getMembreCA() {
+		return membreCA;
+	}
+	
+	public void setMembreCA(String membreCA) {
+		this.membreCA = membreCA;
+	}
+	
 	public void setNumeroSS(String numeroSS) {
 		this.numeroSS = numeroSS;
 	}
@@ -518,6 +531,7 @@ public class PersonnelForm {
 		telPort = getValeurChamp(request, CHAMP_TELPORT);
 		email = getValeurChamp(request, CHAMP_EMAIL);
 		numeroSS = getValeurChamp(request, CHAMP_NUMERO_SS);
+		membreCA = getValeurChamp(request, CHAMP_MEMBRECA);
 
 		adresse = new Adresse();
 		commune = new Commune();
