@@ -5,7 +5,6 @@
 <c:set var="titre" value="Ajout d'un membre du personnel - Résultat" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
-
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 

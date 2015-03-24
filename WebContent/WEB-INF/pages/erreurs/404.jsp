@@ -8,6 +8,7 @@
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
 
+<h1>Erreur</h1>
 <p class="offset">La page à laquelle vous tentez d'accéder n'existe pas.</p>
 <a class="offset btn" href="<c:url value="<%= Pattern.ACCUEIL %>"/>" >Accueil</a>
 	

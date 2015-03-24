@@ -103,8 +103,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		/**
 		 * Création de l'adresse
 		 */
-		Adresse adrss = new Adresse(null, commune, numrue, nomrue,
-				infoComplementaire);
+		Adresse adrss = new Adresse(null, commune, numrue, nomrue, infoComplementaire);
 		AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
 		ajouterAdresseCtrl.ajoutAdresse(adrss);
 
@@ -137,16 +136,16 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		
 		System.out.println(personnel);
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		
 		try {
 			personnel.setDateNaissance(formatter.parse(dateNaissance));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
 		session.setAttribute("personnel", personnel);
 
 		/* Transmission à la page JSP en charge de l'affichage des données */
-		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT2)
-				.forward(request, response);
+		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT2).forward(request, response);
 	}
-
 }

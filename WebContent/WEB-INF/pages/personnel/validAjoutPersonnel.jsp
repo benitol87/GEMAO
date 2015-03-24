@@ -2,14 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="fr.gemao.view.Pattern"%>
 
-<c:set var="titre" value="Consultation d'un membre du personnel" scope="request" />
+<c:set var="titre" value="Consultation d'un membre du personnel"
+	scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
+
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-
-<h1>Récapitulatif des informations d'un membre du personnel</h1>
-
+<h1>Consultation d'un membre du personnel</h1>
 <form action="#" method="post">
 	<table class='table-col-2'>
 		<caption>Informations personnelles</caption>
@@ -132,14 +132,14 @@
 			</td>
 		</tr>
 		<c:if test="${contrat['typeContrat'].libelle == 'CDD' }">
-			<tr>
-				<td>
-					<span>Date de fin : </span>
-				</td>
-				<td>
-					<c:out value="${dateFinContrat}"/>
-				</td>
-			</tr>
+		<tr>
+			<td>
+				<span>Date de fin : </span>
+			</td>
+			<td>
+				<c:out value="${dateFinContrat}"/>
+			</td>
+		</tr>
 		</c:if>
 		<tr>
 			<td>
