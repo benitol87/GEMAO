@@ -276,3 +276,7 @@ a.text-danger:hover {
 {
 	margin : 1px;
 }
+
+.ui-datepicker table{
+	width:auto;
+}
