@@ -59,7 +59,7 @@ public class MarqueCtrl {
 	 * @param marque
 	 *            la Marque a modifier avec son nouveau nom
 	 */
-	public boolean updateMarque(Marque marque) {
+	public static boolean updateMarque(Marque marque) {
 		if (marque.getIdMarque() <= 0) {
 			throw new IllegalArgumentException("Id invalide");
 		}
@@ -85,7 +85,7 @@ public class MarqueCtrl {
 	 *            id de la marque a recuperer
 	 * @return la marque recuperer grace a son id
 	 */
-	public Marque recupererMarque(int idMarque) {
+	public static Marque recupererMarque(int idMarque) {
 
 		if (idMarque <= 0) {
 			throw new IllegalArgumentException("Id invalide");
@@ -95,7 +95,7 @@ public class MarqueCtrl {
 		return marqueDAO.get(idMarque);
 	}
 
-	public List<Marque> recupererToutesMarques() {
+	public static List<Marque> recupererToutesMarques() {
 		MarqueDAO marqueDAO = new MarqueDAO(DAOFactory.getInstance());
 
 		return marqueDAO.getAll();

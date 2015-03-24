@@ -59,6 +59,7 @@
 	</fieldset>
 </form>
 <p class='align-center no-border'>${form.erreurs['Parametre']}</p>
+<p class='align-center no-border text-success'>${form.resultat}</p>
 
 
 <c:import url="/inc/footer.inc.jsp" />

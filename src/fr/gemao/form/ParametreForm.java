@@ -56,6 +56,10 @@ public class ParametreForm {
 		return resultat;
 	}
 
+	public void setResultat(String resultat) {
+		this.resultat = resultat;
+	}
+
 	public Map<String, String> getErreurs() {
 		return erreurs;
 	}

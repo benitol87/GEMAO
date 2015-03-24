@@ -91,7 +91,7 @@ public class CategorieCtrl {
 	 * @return
 	 * 		la categorie qui corespond a idCategorie
 	 */
-	public Categorie recupererCategorie(int idCategorie){
+	public static Categorie recupererCategorie(int idCategorie){
 		if(idCategorie <=0 ){
 			throw new IllegalArgumentException("id invalide");
 		}
@@ -101,7 +101,7 @@ public class CategorieCtrl {
 		
 	}
 	
-	public List<Categorie> recupererToutesCategories(){
+	public static List<Categorie> recupererToutesCategories(){
 		List<Categorie> listeCategorie = new ArrayList<Categorie>();
 		CategorieDAO categorieDAO = new CategorieDAO(DAOFactory.getInstance());
 		

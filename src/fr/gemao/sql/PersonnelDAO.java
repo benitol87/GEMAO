@@ -48,8 +48,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		Connection connexion = null;
 		PreparedStatement requete = null;
 		ResultSet result = null;
-		String sql = "INSERT INTO personnel(idPersonne, idContrat, login, pwd, pointAnciennete, idProfil, numeroSS)"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO personnel(idPersonne, idContrat, login, pwd, pointAnciennete, idProfil, numeroSS, dateDebutEnseignement)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		
 		//PersonneDAO personneDAO = factory.getPersonneDAO();
 		
@@ -79,7 +79,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 					Password.encrypt(obj.getPassword()),
 					obj.getPointsAncien(),
 					idProfil,
-					obj.getNumeroSS()
+					obj.getNumeroSS(),
+					obj.getDateEntree()
 				);
 			
 			int status = requete.executeUpdate();
@@ -129,7 +130,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		}
 		
 		String sql = "UPDATE personnel SET idContrat = ?, login = ?, pwd = ?, pointAnciennete = ?, premiereConnexion = ?,"
-				+ "idProfil = ?, numeroSS = ? "
+				+ "idProfil = ?, numeroSS = ?, dateDebutEnseignement=? "
 				+ "WHERE idPersonne = ?;";
 
 		try {
@@ -142,6 +143,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 					obj.isPremiereConnexion(),
 					idProfil,
 					obj.getNumeroSS(),
+ obj.getDateEntree(),
 					obj.getIdPersonne());
 			requete.executeUpdate();
 
@@ -239,7 +241,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 				NumberUtil.getResultInteger(result, "pointAnciennete"),
 				idProfil==null?null:profilDAO.get(idProfil),
 				result.getBoolean("premiereConnexion"),
-				result.getString("numeroSS")
+				result.getString("numeroSS"), result
+						.getDate("dateDebutEnseignement")
 		);
 		
 		return personnel;

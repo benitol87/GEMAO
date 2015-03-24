@@ -5,6 +5,7 @@ $(function () {
 	$(".listEntree").css('display','none');
 	$(".listDroitIm").css('display','none');
 	$(".listQF").css('display','none');
+	$(".listCotisation").css('display','none');
 	$(".listCA").css('display','none');
 	$(".listMotif").css('display','none');
 	$(".listAPaye").css('display', 'none');
@@ -34,6 +35,10 @@ function affDroitImage(){
 
 function affQF(){
 	$(".listQF").toggle();
+}
+
+function affCotisation(){
+	$(".listCotisation").toggle();
 }
 
 function affCA(){

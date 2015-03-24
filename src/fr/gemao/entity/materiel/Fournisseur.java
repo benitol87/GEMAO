@@ -46,6 +46,8 @@ public class Fournisseur implements Serializable{
 		this.idFournisseur = idFournisseur;
 		this.nomFournisseur = nomFournisseur;
 	}
+	public Fournisseur() {
+	}
 	public int getIdFournisseur() {
 		return idFournisseur;
 	}

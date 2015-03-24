@@ -34,7 +34,7 @@ public class FournisseurCtrl {
 	 * @param nomFournisseur
 	 *            le nom du fournisseur a supprimer.
 	 */
-	public boolean supprimerEtat(String nomFournisseur) {
+	public static boolean supprimerFournisseur(String nomFournisseur) {
 		if (nomFournisseur == null) {
 			throw new NullPointerException(
 					"Le nom du fournisseur ne doit pas etre null");
@@ -90,7 +90,7 @@ public class FournisseurCtrl {
 	 *            id du fournisseur à récuperer.
 	 * @return le fournisseur correspondant à l'id reçu en parametre.
 	 */
-	public Fournisseur recupererFournisseur(int idFournisseur) {
+	public static Fournisseur recupererFournisseur(int idFournisseur) {
 		if (idFournisseur <= 0) {
 			throw new IllegalArgumentException("idEtat invalide");
 		}
@@ -106,7 +106,7 @@ public class FournisseurCtrl {
 	 * 
 	 * @return la liste des fournisseurs.
 	 */
-	public List<Fournisseur> getListeFournisseur() {
+	public static List<Fournisseur> getListeFournisseur() {
 		FournisseurDAO fournisseurDAO = new FournisseurDAO(
 				DAOFactory.getInstance());
 

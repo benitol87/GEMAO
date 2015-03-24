@@ -36,6 +36,7 @@
 	</fieldset>
 	
 	<fieldset class='align-center no-border'>
+		<p class="oblig">* Champs obligatoires</p>
 		<input type="submit" value="Valider"/>
 	</fieldset>
 </form>

@@ -12,10 +12,12 @@
 
 <c:import url="/js/autocompleteCommune.jsp"/>
 <c:import url="/js/autocompleteAdresse.jsp"/>
+<c:import url="/js/autocompleteFamille.jsp"/>
 
 <script type="text/javascript">
 autocompletionCommuneCodePostal("#commune", "#codePostal");
 autocompletionAdresse("#rue", "#compl");
+autocompletionFamille("#famille");
 </script>
 
 <script src="<c:url value="/js/AjouterAdherent.js"/>"></script>
@@ -53,7 +55,7 @@ autocompletionAdresse("#rue", "#compl");
 		
 		<div>
 			<label for="famille" class='required'>Famille </label> <input
-				type="text" name="famille" value="${ajout_adh_adherent.getFamille().getNomFamille()}" required="required" />
+				type="text" name="famille" id="famille" value="${ajout_adh_adherent.getFamille().getNomFamille()}" required="required" />
 		</div>
 
 		<div>
@@ -154,7 +156,7 @@ autocompletionAdresse("#rue", "#compl");
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
-		<p>* Champs obligatoires</p>
+		<p class="oblig">* Champs obligatoires</p>
 		<input type="submit" value="Suivant" />
 	</fieldset>
 </form>
