@@ -57,7 +57,7 @@ function ajoutContrat() {
 	document.getElementById("contrats").appendChild(tr);
 	
 	document.getElementById("divContrat" + compteurC).getElementsByTagName(
-	'p')[0].innerHTML = "Contrat"+compteurC;
+	'p')[0].innerHTML = "Contrat "+compteurC;
 
 	document.getElementById("divContrat" + compteurC).getElementsByTagName(
 			'select')[0].name = "type" + compteurC;
