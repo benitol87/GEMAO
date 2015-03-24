@@ -9,6 +9,7 @@ import java.util.List;
 
 import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.entity.personnel.MotifFinContrat;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.personnel.TypeContrat;
 import fr.gemao.sql.exception.DAOException;
 import fr.gemao.sql.util.DAOUtilitaires;
@@ -19,9 +20,13 @@ public class ContratDAO extends IDAO<Contrat> {
 	public ContratDAO(DAOFactory factory) {
 		super(factory);
 	}
-
+	
 	@Override
 	public Contrat create(Contrat obj) {
+		throw new UnsupportedOperationException("Vous n'avez tous bonnement pas le droit");
+	}
+
+	public Contrat create(Contrat obj, Long idPersonne) {
 		if (obj == null) {
 			throw new NullPointerException("Le contrat ne doit pas etre null");
 		}
@@ -50,7 +55,7 @@ public class ContratDAO extends IDAO<Contrat> {
 
 			
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, true, idType, idMotif,
+					sql, true, idType, idMotif, idPersonne,
 					obj.getDateDebut(), obj.getDateFin(), obj.getDateRupture());
 
 			int status = requete.executeUpdate();
@@ -139,6 +144,16 @@ public class ContratDAO extends IDAO<Contrat> {
 
 		return liste;
 	}
+	
+	public List<Contrat> addAllContratParPersonnel(List<Contrat> contrats, Personnel personnel){
+		List<Contrat> listRes = new ArrayList<>();
+		Contrat res = null;
+		for(Contrat contrat : contrats){
+			res = this.create(contrat, personnel.getIdPersonne());
+			listRes.add(res);
+		}
+		return listRes;
+	}
 
 	@Override
 	protected Contrat map(ResultSet result) throws SQLException {
@@ -154,5 +169,7 @@ public class ContratDAO extends IDAO<Contrat> {
 		contrat.setTypeContrat(contratDAO.get(result.getInt("idTypeContrat")));
 		return contrat;
 	}
+
+
 
 }

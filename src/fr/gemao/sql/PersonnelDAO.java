@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.gemao.entity.cours.Discipline;
+import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.entity.personnel.Diplome;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.personnel.Responsabilite;
@@ -61,6 +62,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		DisciplineDAO disciplineDAO = factory.getDisciplineDAO();
 		List<Discipline> listeDiscipline;
 		
+		ContratDAO contratDAO = factory.getContratDAO();
+		List<Contrat> listContrat;
 		
 		Integer idProfil = null;
 		if(obj.getProfil() != null){
@@ -90,6 +93,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 			listeDiplome = diplomeDAO.addAllDiplomesParPersonnel(obj.getIdPersonne(), obj.getListeDiplomes());
 			obj.setListeDiplomes(listeDiplome);
 			disciplineDAO.addAllDisciplineParPersonnel(obj.getListeDiscipline(), obj.getIdPersonne());
+			listContrat = contratDAO.addAllContratParPersonnel(obj.getContrat(), obj);
+			obj.setContrat(listContrat);
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {

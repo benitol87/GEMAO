@@ -1,5 +1,7 @@
 package fr.gemao.form.personnel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,13 +11,17 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.gemao.ctrl.RecupererResponsabiliteCtrl;
+import fr.gemao.ctrl.TypeContratCtrl;
 import fr.gemao.ctrl.adherent.RecupererDisciplineCtrl;
+import fr.gemao.ctrl.personnel.CalculerDateFinContratCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
 import fr.gemao.entity.cours.Discipline;
+import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.entity.personnel.Diplome;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.personnel.Responsabilite;
+import fr.gemao.entity.personnel.TypeContrat;
 
 /**
  * Classe de validation du formulaire Personnel
@@ -48,7 +54,9 @@ public class PersonnelForm {
 	private static final String CHAMP_EMAIL = "email";
 	private static final String CHAMP_NUMERO_SS = "numeroSS";
 	
-	
+	private static final String CHAMP_TYPE_CONTRAT ="type";
+	private static final String CHAMP_DUREE_CONTRAT	= "dureeContrat";
+	private static final String CHAMP_DATE_DEB_CONTRAT = "dateDeb";
 
 	// Informations relatives à la personne
 	private String nom;
@@ -433,6 +441,51 @@ public class PersonnelForm {
 			i++;
 		} while (str != null);
 		return list;
+	}
+	
+	/**
+	 * Methode qui récupère la liste des contrat
+	 * @param request
+	 */
+	public List<Contrat> lireContrats(HttpServletRequest request){
+		String type = null;
+		String strdateDeb= null;
+		String duree = null;
+		Contrat contrat;
+		List<Contrat> listContrat = new ArrayList<>();
+		int i = 1;
+
+	    CalculerDateFinContratCtrl calculerDateFinContratCtrl = new CalculerDateFinContratCtrl();
+	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		
+		TypeContratCtrl typeContratCtrl = new TypeContratCtrl();
+		TypeContrat typeContrat = null;
+		Date dateDeb = null;
+		
+		do {
+			type = getValeurChamp(request, CHAMP_TYPE_CONTRAT+i);
+			strdateDeb = getValeurChamp(request, CHAMP_DATE_DEB_CONTRAT+i);
+			duree = getValeurChamp(request, CHAMP_DUREE_CONTRAT+i);
+			
+			contrat = new Contrat();
+			i++;
+			
+			if (type != null && !type.equals("")) {
+				typeContrat = typeContratCtrl.recupererTypeContrat(Integer.parseInt(type));
+				contrat.setTypeContrat(typeContrat);
+				try {
+					dateDeb = formatter.parse(strdateDeb);
+				} catch (ParseException e) {
+					this.setErreur("Date", e.getMessage());
+				}
+				contrat.setDateDebut(dateDeb);
+				contrat.setDateFin(calculerDateFinContratCtrl.CalculerDateFinContrat(contrat.getDateDebut(), Integer.parseInt(duree)));
+				listContrat.add(contrat);
+			}
+			
+		} while(type != null);
+		
+		return listContrat;
 	}
 
 	/**
