@@ -71,20 +71,12 @@ public class MaterielCtrl {
 			throw new IllegalArgumentException("le type doit etre rempli");
 		}
 		
-		if (dateAchat == null) {
-			//throw new NullPointerException("La date d'achat ne doit pas etre null");
-		}
-		
 		if (valeurAchat < 0.0) {
 			throw new IllegalArgumentException("la valeur d'achat ne peut pas etre negative");
 		}
 		
 		if (valeurReap < 0.0) {
 			throw new IllegalArgumentException("la valeur ne peut pas etre negative");
-		}
-		
-		if (quantite < 0) {
-			throw new IllegalArgumentException("La quantité ne peut pas être négative");
 		}
 		
 		Materiel materiel = new Materiel(null, etat, categorie, marque, designation,fournisseur, typeMat, numSerie, dateAchat, valeurAchat, valeurReap, deplacable, observation, quantite, louable);

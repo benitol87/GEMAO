@@ -98,11 +98,6 @@
 		</div>
 		
 		<div>
-			<label for="quantite">Quantité</label>
-			<input type="number" min="1" value="1" name="quantite" id="quantite" value="${sessionScope.INFOS['quantite']}"/>
-		</div>
-		
-		<div>
 			<label for="numSerie">Numéro de série</label>
 			<input type="text" name="numSerie" value="${sessionScope.INFOS['numSerie']}"/>
 		</div>
