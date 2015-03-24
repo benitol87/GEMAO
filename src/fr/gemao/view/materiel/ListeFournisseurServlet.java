@@ -14,9 +14,7 @@ import fr.gemao.entity.materiel.Fournisseur;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
-/**
- * Servlet implementation class ListerDisciplinesServlet
- */
+
 @WebServlet(Pattern.MATERIEL_LISTE_FOURNISSEUR)
 public class ListeFournisseurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,11 +23,10 @@ public class ListeFournisseurServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.setAttribute("listFournisseur",FournisseurCtrl.getListeFournisseur());
+		session.setAttribute("listFour",FournisseurCtrl.getListeFournisseur());
 		this.getServletContext()
 				.getRequestDispatcher(JSPFile.MATERIEL_LISTE_FOURNISSEUR)
 				.forward(request, response);
@@ -39,18 +36,17 @@ public class ListeFournisseurServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		HttpSession session = request.getSession();
 
 		if (id == 0) {
-			String lib = new String(request.getParameter("Nom"));
+			String lib = new String(request.getParameter("lib"));
 			Fournisseur four = new Fournisseur();
 			if (FournisseurCtrl.ajoutFournisseur(lib)) {
 				request.setAttribute("ajoutOK", true);
-				session.setAttribute("listFournisseur",
+				session.setAttribute("listFour",
 						FournisseurCtrl.getListeFournisseur());
 			} else {
 				request.setAttribute("ajoutKO", true);
@@ -60,7 +56,7 @@ public class ListeFournisseurServlet extends HttpServlet {
 			Fournisseur four = FournisseurCtrl.recupererFournisseur(id1);
 			if (FournisseurCtrl.supprimerFournisseur(four.getNomFournisseur())){
 				request.setAttribute("modifOK", true);
-				session.setAttribute("listEtat",
+				session.setAttribute("listFour",
 						FournisseurCtrl.getListeFournisseur());
 			} else {
 				request.setAttribute("modifKO", true);
