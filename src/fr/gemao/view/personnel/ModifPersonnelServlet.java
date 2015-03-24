@@ -1,7 +1,6 @@
 package fr.gemao.view.personnel;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -12,21 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.gemao.ctrl.AjouterAdresseCtrl;
-import fr.gemao.ctrl.AjouterCommuneCtrl;
 import fr.gemao.ctrl.RecupererAdresseCtrl;
 import fr.gemao.ctrl.RecupererCommuneCtrl;
-import fr.gemao.ctrl.RecupererContratCtrl;
 import fr.gemao.ctrl.administration.ModificationCtrl;
-import fr.gemao.ctrl.personnel.ModifierPersonnelCtrl;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
+import fr.gemao.entity.administration.Modification;
 import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.entity.personnel.Diplome;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.entity.personnel.Responsabilite;
-import fr.gemao.entity.administration.Modification;
 import fr.gemao.form.personnel.PersonnelForm;
 import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
@@ -43,6 +38,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 	 * Chargement de la page de modification d'un personnel.
 	 * Un paramètre doit être envoyé au doGet pour récupérer la personne concernée par les modifications.
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
@@ -64,18 +60,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 			RecupererCommuneCtrl recupererCommuneCtrl = new RecupererCommuneCtrl();
 			Commune commune = recupererCommuneCtrl.recupererCommune(adresse.getCommune().getIdCommune());
 
-			RecupererContratCtrl recupererContratCtrl = new RecupererContratCtrl();
-			Contrat contrat = recupererContratCtrl.recupererContrat(personnel.getContrat().getIdContrat());
-
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			String dateDebutContrat = formatter.format(contrat.getDateDebut());
-
-			String dateFinContrat = null;
-			
-			/* Si la date de fin du contrat n'est pas null */
-			if (contrat.getDateFin() != null) {
-				dateFinContrat = formatter.format(contrat.getDateFin());
-			}
+			List<Contrat> contrats = personnel.getContrat();
 			
 			List<Responsabilite> listeResponsabilite = personnel.getListeResponsabilite();
 			
@@ -97,9 +82,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 			session.setAttribute("personnel", personnel);
 			session.setAttribute("adresse", adresse);
 			session.setAttribute("commune", commune);
-			session.setAttribute("contrat", contrat);
-			session.setAttribute("dateDebutContrat", dateDebutContrat);
-			session.setAttribute("dateFinContrat", dateFinContrat);
+			session.setAttribute("contrats", contrats);
 			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_MODIFIER).forward(request, response);
 		}
 	}
@@ -107,6 +90,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PersonnelForm form = new PersonnelForm();
 		
