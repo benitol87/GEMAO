@@ -24,11 +24,16 @@
 	</c:forEach>
 	<form action="#" method="post" class="offset">
 		<tr>
-			<td><input type="text" name="lib" value="" ></td>
+			<td><input type="text" required name="lib" value="" ></td>
 			<input type="text" name="id" value="0" style="display: none">
 			<td><input type="submit" value="Ajouter"></td>
 		</tr>
 	</form>
 </table>
+<fieldset class='align-center no-border'>
+	<div>
+		<p>Nous ne pouvons pas supprimer les Fournisseurs utilisées.</p>
+	</div>
+</fieldset>
 
 <c:import url="/inc/footer.inc.jsp" />

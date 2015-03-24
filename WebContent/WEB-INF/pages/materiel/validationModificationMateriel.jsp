@@ -34,7 +34,7 @@
 					Non renseignée
 				</c:when>
 				<c:otherwise>
-					materiel.getDateAchat()
+					${materiel.getDateAchat()}
 				</c:otherwise>
 			</c:choose>
 			</td>

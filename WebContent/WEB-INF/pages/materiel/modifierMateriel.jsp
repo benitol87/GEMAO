@@ -42,9 +42,9 @@
 		</div>
 
 		<div>
-			<label for="valeurAch">Valeur d'achat </label> <input type="text"
-				id="valeurAch" name="valeurAch"
-				value="${sessionScope.sessionObjectMateriel.getValeurAchat()}" />
+			<label for="valeurAch" class='required'>Valeur d'achat </label> <input type="text"
+				id="valeurAch" name="valeurAch" required autocomplete="off"
+				required autocomplete="off" value="${sessionScope.sessionObjectMateriel.getValeurAchat()}" />
 				<span class="euro"></span>
 				<p>${form.getErreurs().get("valeurAch")}</p>
 		</div>
@@ -57,9 +57,9 @@
 
 
 		<div>
-			<label for="valRea">Valeur de réapprovisionnement </label> <input
-				type="text" name="valRea"
-				value="${sessionScope.sessionObjectMateriel.getValeurReap()}" /> <span
+			<label for="valRea" class='required'>Valeur de réapprovisionnement </label> <input
+				type="text" name="valRea" required autocomplete="off"
+				required autocomplete="off" value="${sessionScope.sessionObjectMateriel.getValeurReap()}" /> <span
 				class="euro"></span>
 				<p>${form.getErreurs().get("valRea")}</p>
 		</div>
@@ -98,8 +98,8 @@
 		</div>
 
 		<div>
-			<label for="type">Type </label> <input type="text" id="type"
-				name="type"
+			<label for="type" class='required'>Type </label> <input type="text" id="type"
+				name="type" required autocomplete="off"
 				value="${sessionScope.sessionObjectMateriel.getTypeMat()}" />
 				<p>${form.getErreurs().get("type")}</p>
 		</div>
@@ -131,16 +131,8 @@
 		
 
 		<div>
-			<label for="prixU">Prix unitaire </label> <input name="prixU"
-				type="text"
-				value="${sessionScope.sessionObjectMateriel.getValeurAchat()}" />
-				<span class="euro"></span>
-				<p>${form.getErreurs().get("prixU")}</p>
-		</div>
-
-		<div>
 			<label for="numSerieResult">Numéro de série </label> <input
-				name="numSerie" type="text"
+				name="numSerie" type="text" autocomplete="off"
 				value="${sessionScope.sessionObjectMateriel.getNumSerie()}" />
 				<p>${form.getErreurs().get("numSerie")}</p>
 		</div>
@@ -197,6 +189,7 @@
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
+		<p class="oblig">* Champs obligatoires</p>
 		
 		<input type="button" name="precedent" value="Précédent"
 			onClick="javascript:window.history.go(-1)" /> <input type="submit"

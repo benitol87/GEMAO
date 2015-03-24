@@ -131,10 +131,6 @@ public class MaterielCtrl {
 			throw new IllegalArgumentException("le type doit etre rempli");
 		}
 		
-		if (materiel.getDateAchat() == null) {
-			throw new NullPointerException("La date d'achat ne doit pas etre null");
-		}
-		
 		if (materiel.getValeurAchat() < 0.0) {
 			throw new IllegalArgumentException("la valeur d'achat ne peut pas etre negative");
 		}
