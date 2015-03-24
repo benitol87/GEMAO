@@ -116,7 +116,7 @@ public class ValidationReinscriptionServlet extends HttpServlet {
 			request.setAttribute(ResultatServlet.ATTR_TITRE_H1, "Confirmation");
 			request.setAttribute(ResultatServlet.ATTR_RESULTAT, "L'adhérent "
 					+ adherent.getNom() + " " + adherent.getPrenom()
-					+ " à été reinscrit");
+					+ " a bien été réinscrit.");
 			request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON,
 					Pattern.ADHERENT_LISTER);
 			request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON,

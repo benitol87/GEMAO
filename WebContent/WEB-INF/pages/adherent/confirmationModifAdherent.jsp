@@ -15,7 +15,7 @@
 	L'adhérent
 	<c:out value="${adherent['nom']}" />
 	<c:out value="${adherent['prenom']}" />
-	a bien été modifié
+	a bien été modifié.
 </p>
 <a class="offset btn" href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>">Retour</a>
 

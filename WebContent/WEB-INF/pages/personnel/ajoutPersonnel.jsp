@@ -76,8 +76,8 @@ autocompletionAdresse("#rue", "#compl");
 		</div>
 		
 		<div>
-			<label for="numeroSS">Numéro de sécurité sociale </label>
-			<input type="text" name="numeroSS" autocomplete="on" maxlength="15"/>
+			<label for="numeroSS" class="required">Numéro de sécurité sociale </label>
+			<input type="text" name="numeroSS" required autocomplete="on" maxlength="15"/>
 		</div>
 	</fieldset>
 	
@@ -154,6 +154,7 @@ autocompletionAdresse("#rue", "#compl");
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
+		<p class="oblig">* Champs obligatoires</p>
 		<input type="submit" value="Suivant"/>
 	</fieldset>
 </form>
