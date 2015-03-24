@@ -16,13 +16,13 @@
 		a maintenant le
 		<c:choose>
 			<c:when test="${params.getQf_min() > adherent.getQf()}">
-				<td class="listQF">Quotient 3</td>
+				<td class="listQF">Quotient 3.</td>
 			</c:when>
 			<c:when test="${params.getQf_max() > adherent.getQf()}">
-				<td class="listQF">Quotient 2</td>
+				<td class="listQF">Quotient 2.</td>
 			</c:when>
 			<c:otherwise>
-				<td class="listQF">Quotient 1</td>
+				<td class="listQF">Quotient 1.</td>
 			</c:otherwise>
 		</c:choose>
 		.</p>
