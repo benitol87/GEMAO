@@ -224,8 +224,8 @@ public class PersonnelDAO extends IDAO<Personnel>{
 		ContratDAO contratDAO = factory.getContratDAO();
 		ProfilDAO profilDAO = factory.getProfilDAO();
 		
-		Integer idContrat = NumberUtil.getResultInteger(result, "idContrat"),
-				idProfil = NumberUtil.getResultInteger(result, "idProfil");
+
+		Integer idProfil = NumberUtil.getResultInteger(result, "idProfil");
 		Long idPersonne = result.getLong("idPersonne");
 		
 		Personnel personnel = new Personnel(personneDAO.map(result),
