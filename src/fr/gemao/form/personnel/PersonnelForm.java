@@ -503,7 +503,6 @@ public class PersonnelForm {
 		listeResponsabilite = lireResponsabilites(request);
 		listeDiplomes = lireDiplomes(request);
 
-		idContrat = Integer.parseInt(getValeurChamp(request, CHAMP_IDCONTRAT));
 		nom = getValeurChamp(request, CHAMP_NOM);
 		prenom = getValeurChamp(request, CHAMP_PRENOM);
 		login = getValeurChamp(request, CHAMP_LOGIN);
@@ -531,13 +530,6 @@ public class PersonnelForm {
 		commune.setNomCommune(ville);
 
 		adresse.setCommune(commune);
-
-		/* Validation de l'ID du contrat */
-		try {
-			validationIdContrat(idContrat);
-		} catch (Exception e) {
-			setErreur(CHAMP_IDCONTRAT, e.getMessage());
-		}
 
 		/* Validation du login */
 		try {
