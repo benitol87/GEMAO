@@ -105,8 +105,7 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 				e.printStackTrace();
 			}
 	        
-	        AjouterPersonnelCtrl ajouterPersonnelCtrl = new AjouterPersonnelCtrl();
-	        ajouterPersonnelCtrl.ajouterPersonnel(perso);
+	        session.setAttribute("ajout_personnel", perso);
 	        
 	        // Archivage
 			new ModificationCtrl().ajouterModification(new Modification(
