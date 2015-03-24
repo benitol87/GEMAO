@@ -45,7 +45,8 @@ $(function() {
 	$(".datepicker").each(function(){
 	    $(this).datepicker({
 	    	changeMonth: true,
-	    	changeYear: true
+	    	changeYear: true,
+	    	yearRange: "-100:+0"
 	    	});
 	    
 	    $(this).datepicker("option", "showAnim","blind");
