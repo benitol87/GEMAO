@@ -3,7 +3,7 @@
 <%@ page import="fr.gemao.view.Pattern"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="titre" value="GEMAO - Liste des modifications" scope="request" />
+<c:set var="titre" value="Liste des modifications" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 
