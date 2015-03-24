@@ -12,7 +12,6 @@
 
 
 <h1>Liste des Marques</h1>
-<h2 class="offset">Marque</h2>
 <table>
 	<c:forEach var="marque" items="${listMarque}">
 		<tr>
