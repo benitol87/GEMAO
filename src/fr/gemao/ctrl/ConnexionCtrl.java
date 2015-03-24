@@ -35,7 +35,7 @@ public class ConnexionCtrl {
 
 		if (!passwdIdentique) {
 			throw new IllegalArgumentException(
-					"Le mot de passe n'est pas valide");
+					"Mot de passe invalide...");
 		}
 
 		return personnel;

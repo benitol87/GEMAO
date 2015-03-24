@@ -63,12 +63,11 @@
 	</fieldset>
 	
 	<fieldset class='align-center no-border'>
+		<p class="oblig">* Champs obligatoires</p>
 		<a href="<c:url value="<%= Pattern.ADMINISTRATION_LISTER_PROFIL %>" />"><input type="button" value="Retour" /></a>
 		<input type="submit" value="Valider"/>
 	</fieldset>
 </form>
-	
-	
 	
 	
 	</c:otherwise>
