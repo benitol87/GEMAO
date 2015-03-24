@@ -39,7 +39,7 @@
 	
 	<fieldset class='align-center no-border'>
 		<a class='btn' href="<c:url value="<%=Pattern.ADHERENT_LISTER%>"/>">Retour</a>
-		<input type="submit" value="Valider" id="valider"/>
+		<input type="submit" class="btn" value="Valider" id="valider"/>
 	</fieldset>
 </form>
 
