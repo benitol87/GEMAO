@@ -55,7 +55,7 @@ public class ContratDAO extends IDAO<Contrat> {
 
 			
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion,
-					sql, true, idType, idMotif, idPersonne,
+					sql, true, idType, idPersonne, idMotif,
 					obj.getDateDebut(), obj.getDateFin(), obj.getDateRupture());
 
 			int status = requete.executeUpdate();

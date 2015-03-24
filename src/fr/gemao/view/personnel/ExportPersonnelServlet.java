@@ -54,16 +54,15 @@ public class ExportPersonnelServlet extends HttpServlet {
 		map.put("Membre CA", new ArrayList<String>());
 		
 		// Informations liées au membre du personnel
-		map.put("Contrat", new ArrayList<String>());
+		/*map.put("Contrat", new ArrayList<String>());
 		map.put("Date début contrat", new ArrayList<String>());
 		map.put("Date échéance contrat", new ArrayList<String>());
 		map.put("Date rupture contrat", new ArrayList<String>());
-		map.put("Motif rupture contrat", new ArrayList<String>());
+		map.put("Motif rupture contrat", new ArrayList<String>());*/
 		map.put("Profil", new ArrayList<String>());
 		map.put("Login", new ArrayList<String>());
 		map.put("Numéro sécurité sociale", new ArrayList<String>());
-		// TODO
-		//map.put("Date début enseignement", new ArrayList<String>());
+		map.put("Date début enseignement", new ArrayList<String>());
 
 		
 		RecupererPersonnelCtrl ctrl = new RecupererPersonnelCtrl();
@@ -115,7 +114,7 @@ public class ExportPersonnelServlet extends HttpServlet {
 			listeDonnees.add(p.isMembreCA()?"Oui":"Non");
 			
 			// Informations sur le membre du personnel
-			listeDonnees = (List<String>) map.get("Contrat");
+			/*listeDonnees = (List<String>) map.get("Contrat");
 			listeDonnees.add(p.getContrat().getTypeContrat().getLibelle()+"");
 			
 			listeDonnees = (List<String>) map.get("Date début contrat");
@@ -137,7 +136,7 @@ public class ExportPersonnelServlet extends HttpServlet {
 			if(p.getContrat().getMotifFinContrat() != null)
 				listeDonnees.add(p.getContrat().getMotifFinContrat().getLibelle()+"");
 			else
-				listeDonnees.add(" ");
+				listeDonnees.add(" ");*/
 			
 			listeDonnees = (List<String>) map.get("Profil");
 			if(p.getProfil() != null)
@@ -148,8 +147,8 @@ public class ExportPersonnelServlet extends HttpServlet {
 			listeDonnees = (List<String>) map.get("Login");
 			listeDonnees.add(p.getLogin()+"");
 			
-			listeDonnees = (List<String>) map.get("Contrat");
-			listeDonnees.add(p.getContrat().getTypeContrat().getLibelle()+"");
+			/*listeDonnees = (List<String>) map.get("Contrat");
+			listeDonnees.add(p.getContrat().getTypeContrat().getLibelle()+"");*/
 			
 			listeDonnees = (List<String>) map.get("Numéro sécurité sociale");
 			if(p.getNumeroSS() != null)
@@ -157,12 +156,11 @@ public class ExportPersonnelServlet extends HttpServlet {
 			else
 				listeDonnees.add(" ");
 			
-			// TODO
-			/*listeDonnees = (List<String>) map.get("Date début enseignement");
-			if(p.get != null)
-				listeDonnees.add(new SimpleDateFormat("dd/MM/yyyy").format(p.getContrat().getDateRupture()));
+			listeDonnees = (List<String>) map.get("Date début enseignement");
+			if(p.getDateEntree() != null)
+				listeDonnees.add(new SimpleDateFormat("dd/MM/yyyy").format(p.getDateEntree()));
 			else
-				listeDonnees.add(" ");*/
+				listeDonnees.add(" ");
 		}
 		
 		String path = request.getSession().getServletContext().getRealPath("/")

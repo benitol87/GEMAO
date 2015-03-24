@@ -55,10 +55,10 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 		 * Récupération des données saisies, envoyées en tant que paramètres de
 		 * la requète POST générée à la validation du formulaire
 		 */
-		Integer typeContrat = Integer.valueOf(request.getParameter("type"));
-		String debcontrat = request.getParameter("datedeb");
+//		Integer typeContrat = Integer.valueOf(request.getParameter("type"));
+//		String debcontrat = request.getParameter("datedeb");
 		String debEnsei = request.getParameter("datedebEns");
-	    String duree = request.getParameter("duree");
+//	    String duree = request.getParameter("duree");
 	    
 	    /**
 	     * Création du personnel
@@ -83,6 +83,8 @@ public class AjoutPersonnel2Servlet extends HttpServlet {
 	    PersonnelForm personnelForm = new PersonnelForm();
 	    List<Contrat> listContrat = new ArrayList<>();
 	    listContrat = personnelForm.lireContrats(request);
+	    System.out.println(listContrat);
+	    perso.setContrat(listContrat);
 	    
 	    CalculerDateFinContratCtrl calculerDateFinContratCtrl = new CalculerDateFinContratCtrl();
 	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

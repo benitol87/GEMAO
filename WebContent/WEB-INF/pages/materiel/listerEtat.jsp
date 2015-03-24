@@ -12,7 +12,6 @@
 
 
 <h1>Liste des états</h1>
-<h2 class="offset">Etat</h2>
 <table>
 	<c:forEach var="etat" items="${listEtat}">
 		<tr>
