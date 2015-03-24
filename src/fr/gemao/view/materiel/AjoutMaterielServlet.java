@@ -48,8 +48,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 	private static String ERREUR_AJOUT_MARQUE = "erreurMarque";
 	private static String ERREUR_AJOUT_ETAT = "erreurEtat";
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Categorie> listCat = new ArrayList<Categorie>();
 		listCat = new CategorieDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute("LISTE_CATEGORIE", listCat);
@@ -230,8 +229,7 @@ public class AjoutMaterielServlet extends HttpServlet {
 
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			try {
-				materiel.setDateAchat(new java.sql.Date(formatter.parse(
-						dateAchat).getTime()));
+				materiel.setDateAchat(new java.sql.Date(formatter.parse(dateAchat).getTime()));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}

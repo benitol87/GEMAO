@@ -26,16 +26,17 @@ public class ValidationModifierMaterielServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Materiel materiel = (Materiel) session.getAttribute("materiel");
-
-		request.setAttribute("materiel", materiel);
-
-		this.getServletContext()
-				.getRequestDispatcher(JSPFile.MATERIEL_VALIDATION_MODIFIER)
-				.forward(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("materiel") == null){
+			this.getServletContext().getRequestDispatcher(JSPFile.ERREUR_404).forward(request, response);
+		} else {
+			HttpSession session = request.getSession();
+			Materiel materiel = (Materiel) session.getAttribute("materiel");
+	
+			request.setAttribute("materiel", materiel);
+	
+			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_VALIDATION_MODIFIER).forward(request, response);
+		}
 	}
 
 	/**
@@ -55,5 +56,4 @@ public class ValidationModifierMaterielServlet extends HttpServlet {
 		
 		this.getServletContext().getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);
 	}
-
 }

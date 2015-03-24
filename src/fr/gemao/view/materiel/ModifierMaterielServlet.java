@@ -55,9 +55,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 	 * envoyé pour le doGet (l'id correspond a celui du materiel a modifier.
 	 */
 	@Override
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Categorie> listCate = new ArrayList<Categorie>();
 		listCate = new CategorieDAO(DAOFactory.getInstance()).getAll();
 		request.setAttribute("LISTE_CATEGORIE", listCate);
@@ -166,7 +164,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 							request, "nomDes"));
 				} catch (DAOException e) {
 					form.setErreur(ERREUR_AJOUT_DESIGNATION,
-							"La designation existe déjà");
+							"La désignation existe déjà");
 				}
 			}
 
@@ -176,7 +174,7 @@ public class ModifierMaterielServlet extends HttpServlet {
 							request, "nomFour"));
 				} catch (DAOException e) {
 					form.setErreur(ERREUR_AJOUT_FOURNISSEUR,
-							"Le Fournisseur existe déjà");
+							"Le fournisseur existe déjà");
 				}
 			}
 
