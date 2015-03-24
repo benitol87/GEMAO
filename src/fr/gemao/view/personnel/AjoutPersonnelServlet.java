@@ -44,9 +44,7 @@ public class AjoutPersonnelServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
 		ResponsabiliteDAO responsabiliteDAO = DAOFactory.getInstance().getResponsabiliteDAO();
@@ -54,17 +52,12 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		session.setAttribute("listResponsabilites", responsabilites);
 		session.setAttribute("listDiscipline", RecupererDisciplineCtrl.recupererAllDiscipline());
 		
-		request = AutocompletionCommune
-				.initRequestForAutoCompletionCommune(request);
-		request = AutocompletionAdresse
-				.initRequestForAutoCompletionAdresse(request);
+		request = AutocompletionCommune.initRequestForAutoCompletionCommune(request);
+		request = AutocompletionAdresse.initRequestForAutoCompletionAdresse(request);
 		
 		session.setAttribute("ajout_pers_personnel", null);
 		
-		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT)
-				.forward(request, response);
-		
-		
+		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_AJOUT).forward(request, response);	
 	}
 
 	/**

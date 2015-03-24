@@ -40,14 +40,11 @@ public class ModifPersonnelServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
-		
 		
 		/* Si le paramètre id est null */
 		if(request.getParameter("id") == null){
 			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_LISTER).forward(request, response);
-			
 		/* Sinon */
 		} else {
 			long id = Long.parseLong(request.getParameter("id"));

@@ -28,12 +28,16 @@ public class ValidationModifPersonnelServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Personnel pers = (Personnel) session.getAttribute("modif_personnel");
-		
-		request.setAttribute("personnel", pers);
-		
-		this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_VALIDATION_MODIF).forward(request, response);
+		if(request.getParameter("nom") == null){
+			this.getServletContext().getRequestDispatcher(JSPFile.ERREUR_404).forward(request, response);
+		} else {
+			HttpSession session = request.getSession();
+			Personnel pers = (Personnel) session.getAttribute("modif_personnel");
+			
+			request.setAttribute("personnel", pers);
+			
+			this.getServletContext().getRequestDispatcher(JSPFile.PERSONNEL_VALIDATION_MODIF).forward(request, response);
+		}
 	}
 
 	/**
