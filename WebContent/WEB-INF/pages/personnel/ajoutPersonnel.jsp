@@ -14,7 +14,7 @@
 
 <script type="text/javascript">
 autocompletionCommuneCodePostal("#commune", "#codePostal");
-autocompletionCommuneCodePostal("#communenaiss", "#codePostalnaiss");
+autocompletionCommuneCodePostal("#communenaiss", "#CodePostalnaiss");
 autocompletionAdresse("#rue", "#compl");
 </script>
 

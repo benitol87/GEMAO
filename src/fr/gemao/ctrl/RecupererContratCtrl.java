@@ -16,17 +16,17 @@ public class RecupererContratCtrl {
 	}
 	
 	/**
-	 * Méthode permettant de récupérer un contrat selon son identifiant
+	 * Méthode permettant de récupérer la liste des contrats selon l'identifiant de la personne
 	 * @param id
-	 * @return le contrat dont l'identifiant est idContrat, null si le contrat n'existe pas
+	 * @return liste des contrat
 	 */
-	public Contrat recupererContrat(int idContrat){
+	public List<Contrat> recupererContrats(long idPersonne){
 		DAOFactory co = DAOFactory.getInstance();
 		ContratDAO contratDAO = co.getContratDAO();
 		
-		Contrat contrat = contratDAO.get(idContrat);
+		List<Contrat>contrats = contratDAO.getContratsParPersonne(idPersonne);
 		
-		return contrat;		
+		return contrats;		
 	}
 	
 	/**
