@@ -112,13 +112,6 @@ public class MaterielForm {
 			setErreur(CHAMP_VALACH, e.getMessage());
 		}
 
-		/* Validation de la date d'achat. */
-		try {
-			validationDateAchat(dateAch);
-		} catch (Exception e) {
-			setErreur(CHAMP_DATEACH, e.getMessage());
-		}
-
 		/* Validation du champ deplacable. */
 		try {
 			validationDeplacable(deplac);
@@ -360,7 +353,7 @@ public class MaterielForm {
 					"Merci de choisir une valeur valide pour deplacable.");
 		} else {
 			if (!deplac.equals("oui") && !deplac.equals("non")) {
-				throw new Exception("Merci de saisir une date d'achat valide.");
+				throw new Exception("Merci de choisir une valeur valide pour deplacable.");
 			}
 		}
 	}
@@ -371,10 +364,10 @@ public class MaterielForm {
 	private void validationLouable(String loua) throws Exception {
 		if (loua == null) {
 			throw new Exception(
-					"Merci de choisir une valeur valide pour deplacable.");
+					"Merci de choisir une valeur valide pour louable.");
 		} else {
 			if (!loua.equals("oui") && !loua.equals("non")) {
-				throw new Exception("Merci de saisir une date d'achat valide.");
+				throw new Exception("Merci de choisir une valeur valide pour louable.");
 			}
 		}
 	}
@@ -387,19 +380,6 @@ public class MaterielForm {
 		if (valRea2 < 0) {
 			throw new Exception(
 					"Merci de saisir une valeur de reapprovisionnement valide");
-		}
-	}
-
-	/**
-	 * Valide la date d'achat saisie.
-	 */
-	private void validationDateAchat(String dateAch) throws Exception {
-		if (dateAch == null) {
-			throw new Exception("Merci de saisir une date d'achat valide.");
-		} else {
-			if (dateAch.equals("")) {
-				throw new Exception("Merci de saisir une date d'achat valide.");
-			}
 		}
 	}
 

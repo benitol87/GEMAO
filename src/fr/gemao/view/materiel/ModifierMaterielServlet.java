@@ -235,13 +235,16 @@ public class ModifierMaterielServlet extends HttpServlet {
 					mat.setCategorie(catctrl.recupererCategorie(form
 							.getCategorie()));
 					mat.setValeurAchat(form.getValAch());
-					SimpleDateFormat formatter = new SimpleDateFormat(
-							"dd/MM/yyyy");
-					try {
-						mat.setDateAchat(new java.sql.Date(formatter.parse(
-								form.getDateAch()).getTime()));
-					} catch (ParseException e) {
-						e.printStackTrace();
+
+					if (form.getDateAch() != null) {
+						SimpleDateFormat formatter = new SimpleDateFormat(
+								"dd/MM/yyyy");
+						try {
+							mat.setDateAchat(new java.sql.Date(formatter.parse(
+									form.getDateAch()).getTime()));
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
 					}
 					mat.setValeurReap(form.getValRea());
 
@@ -259,22 +262,23 @@ public class ModifierMaterielServlet extends HttpServlet {
 					mat.setObservation(form.getObservation());
 					mat.setEtat(etatctrl.recupererEtat(form.getEtat()));
 
-					//matctrl.modifierMateriel(mat);
+					// matctrl.modifierMateriel(mat);
 					session.removeAttribute("sessionObjectMateriel");
 					session.removeAttribute("materiel");
 					session.removeAttribute("listeEtats");
 					session.removeAttribute("listeCat");
 					session.removeAttribute("listeFourn");
 					session.removeAttribute("listeDes");
-					
+
 					session.setAttribute("materiel", mat);
 				} else {
 					form.setErreur("Modification", "Problème de session");
 				}
 			}
 			if (form.getErreurs().isEmpty()) {
-				
-				response.sendRedirect(request.getContextPath() + "/ValidationModifierMaterielServlet");
+
+				response.sendRedirect(request.getContextPath()
+						+ "/ValidationModifierMaterielServlet");
 			} else {
 				form.getErreurs().put("Modification",
 						"Erreur lors de la modification");
