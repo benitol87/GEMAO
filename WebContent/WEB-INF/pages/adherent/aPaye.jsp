@@ -32,7 +32,7 @@
 	</form>
 </c:if>
 <c:if test="${confirmation}">
-	<p class="offset">
+	<p class="offset text-success">
 	Le paiement de l'adhérent 
 	<c:out value="${adherent['nom']}" />
 	<c:out value="${adherent['prenom']}" />
