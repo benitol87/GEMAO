@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="titre" value="Modification d'un adhérent" scope="request" />
+<c:set var="titre" value="Ajout d'un adhérent" scope="request" />
 <%@ page import="fr.gemao.view.Pattern"%>
 <c:import url="/inc/head.inc.jsp" />
 
