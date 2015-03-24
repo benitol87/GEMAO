@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="fr.gemao.view.Pattern"%>
@@ -35,7 +34,7 @@
 			<div id="divContrat1">
 				<p>Contrat 1</p>
 				<label for="type">Type de contrat : </label> 
-				<select name="type" id="type1" onChange="afficherDuree()">
+				<select name="type1" id="type1" onChange="afficherDuree()">
 					<option value="1">CDI</option>
 					<option value="2">CDD</option>
 					<option value="4">CTT</option>
