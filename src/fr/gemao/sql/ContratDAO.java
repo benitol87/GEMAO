@@ -89,7 +89,7 @@ public class ContratDAO extends IDAO<Contrat> {
 		throw new UnsupportedOperationException("Méthode non implémentée.");
 	}
 
-	@Override
+/*	@Override
 	public Contrat update(Contrat obj) {
 		if (obj == null) {
 			throw new NullPointerException("Le personnel ne doit pas être null");
@@ -127,7 +127,7 @@ public class ContratDAO extends IDAO<Contrat> {
 
 		return this.get(obj.getIdContrat());
 	}
-	
+	*/
 	@Override
 	public Contrat get(long id) {
 		Contrat contrat = null;

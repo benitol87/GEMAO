@@ -87,7 +87,7 @@
 					<td>Contrat</td>
 					<td>Date de début</td>
 					<td>Date de fin</td>
-					<td>Mettre fin au contrat</td>
+					<!-- <td>Mettre fin au contrat</td> -->
 				</tr>
 				<c:forEach items="${contrats}" var="cont">
 					<tr>
@@ -97,7 +97,7 @@
 						<td><c:if test="${cont['typeContrat'].libelle == 'CDD' }">
 								<fmt:formatDate value="${cont.dateFin}" pattern="dd/MM/yyyy" />
 							</c:if></td>
-						<td><input type="checkbox" name="fincont"></td>
+						<!-- <td><input type="checkbox" name="fincont"></td> -->
 					</tr>
 				</c:forEach>
 			</table>
