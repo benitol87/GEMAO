@@ -10,7 +10,7 @@
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
-<h1>Validation d'un membre du personnel</h1>
+<h1>Récapitulatif des informations d'un membre du personnel</h1>
 <form action="<c:url value="<%=Pattern.PERSONNEL_VALIDATION_AJOUT%>" />" method="post">
 	<table class='table-col-2'>
 		<caption>Informations personnelles</caption>
