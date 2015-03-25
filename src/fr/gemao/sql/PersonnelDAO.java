@@ -138,7 +138,7 @@ public class PersonnelDAO extends IDAO<Personnel>{
 			connexion = factory.getConnection();
 			requete = DAOUtilitaires.initialisationRequetePreparee(connexion, sql, false, 
 					obj.getLogin(),
-					Password.encrypt(obj.getPassword()),
+					obj.getPassword(),
 					obj.getPointsAncien(),
 					obj.isPremiereConnexion(),
 					idProfil,

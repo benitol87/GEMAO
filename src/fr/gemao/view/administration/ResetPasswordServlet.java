@@ -100,12 +100,16 @@ public class ResetPasswordServlet extends HttpServlet {
 				request.setAttribute(CHAMP_ID_PERSONNEL, Form.getValeurChamp(request, CHAMP_ID_PERSONNEL));
 			} else {
 				// Modification du mot de passe
+				
 				personne.setPassword(Password.generatePassword());
+				String mdp = personne.getPassword();
 				if(!changerMdpCtrl.changerMotDePasse(personne)){
 					request.setAttribute(ATTR_ERREUR, "Un problème est survenu lors du changement de mot de passe.");
 					request.setAttribute(ATTR_LISTE_PERSONNEL, listePersonnel);
 					request.setAttribute(CHAMP_ID_PERSONNEL, Form.getValeurChamp(request, CHAMP_ID_PERSONNEL));
 				}
+				// Mot de passe non crypté pour affichage
+				personne.setPassword(mdp);
 			}
 		}
 		
