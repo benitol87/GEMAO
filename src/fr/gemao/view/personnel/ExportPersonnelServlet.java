@@ -61,7 +61,6 @@ public class ExportPersonnelServlet extends HttpServlet {
 		map.put("Motif rupture contrat", new ArrayList<String>());*/
 		map.put("Profil", new ArrayList<String>());
 		map.put("Login", new ArrayList<String>());
-		map.put("Numéro sécurité sociale", new ArrayList<String>());
 		map.put("Date début enseignement", new ArrayList<String>());
 
 		
@@ -150,11 +149,6 @@ public class ExportPersonnelServlet extends HttpServlet {
 			/*listeDonnees = (List<String>) map.get("Contrat");
 			listeDonnees.add(p.getContrat().getTypeContrat().getLibelle()+"");*/
 			
-			listeDonnees = (List<String>) map.get("Numéro sécurité sociale");
-			if(p.getNumeroSS() != null)
-				listeDonnees.add(p.getNumeroSS());
-			else
-				listeDonnees.add(" ");
 			
 			listeDonnees = (List<String>) map.get("Date début enseignement");
 			if(p.getDateEntree() != null)
