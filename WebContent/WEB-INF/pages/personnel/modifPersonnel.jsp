@@ -109,7 +109,6 @@
 				<c:forEach items="${listeDiplome}" var="dipl">
 					<tr><td><c:out value="${dipl['nomDiplome']}" /></td><td></td></tr>
 				</c:forEach>
-			</tr>
 		</table>
 		</div>
 
