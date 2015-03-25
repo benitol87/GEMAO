@@ -64,11 +64,11 @@
 				value="${sessionScope.personnel.adresse.infoCompl}" />
 		</div>
 		<div>
-			<label for="ville">Commune</label> <input type="text" name="ville"
+			<label for="ville">Commune *</label> <input type="text" name="ville"
 				value="${commune['nomCommune']}" required/>
 		</div>
 		<div>
-			<label for="code">Code postal</label> <input type="text" name="code"
+			<label for="code">Code postal *</label> <input type="text" name="code"
 				value="${commune['codePostal']}" required/>
 		</div>
 	</fieldset>
@@ -122,7 +122,7 @@
 						<td>
 						<c:if test="${resp.libelle == 'Professeur' }">
 							<c:forEach items="${listeDiscipline}" var="disp">
-								-<c:out value="${disp.matiere.nomMatiere}" />
+								- <c:out value="${disp.matiere.nomMatiere}" />
 								<c:out value="${disp.niveau.nomNiveau}" />
 								<br>
 							</c:forEach>
