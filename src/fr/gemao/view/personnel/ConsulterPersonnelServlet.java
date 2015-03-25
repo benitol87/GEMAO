@@ -15,6 +15,7 @@ import fr.gemao.ctrl.RecupererContratCtrl;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
 import fr.gemao.entity.Adresse;
 import fr.gemao.entity.Commune;
+import fr.gemao.entity.cours.Discipline;
 import fr.gemao.entity.personnel.Contrat;
 import fr.gemao.entity.personnel.Diplome;
 import fr.gemao.entity.personnel.Personnel;
@@ -56,6 +57,7 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 
 		RecupererContratCtrl recupererContratCtrl = new RecupererContratCtrl();
 		List<Contrat> contrats = personnel.getContrat();
+		List<Discipline> listeDisciplines = personnel.getListeDiscipline();
 		
 		List<Responsabilite> listeResponsabilite = personnel.getListeResponsabilite();
 		if(listeResponsabilite.isEmpty()){
@@ -69,6 +71,7 @@ public class ConsulterPersonnelServlet extends HttpServlet {
 
 		request.setAttribute("listeDiplome", listeDiplome);
 		request.setAttribute("listeResponsabilite", listeResponsabilite);
+		request.setAttribute("listeDiscipline", listeDisciplines);
 		request.setAttribute("personnel", personnel);
 		request.setAttribute("adresse", adresse);
 		request.setAttribute("commune", commune);

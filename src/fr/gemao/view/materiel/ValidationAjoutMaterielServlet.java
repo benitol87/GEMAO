@@ -27,13 +27,15 @@ public class ValidationAjoutMaterielServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("materiel") == null){
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("materiel") == null){
 			this.getServletContext().getRequestDispatcher(JSPFile.ERREUR_404).forward(request, response);
 		} else {
-			HttpSession session = request.getSession();
 			Materiel materiel = (Materiel) session.getAttribute("materiel");
 	
 			request.setAttribute("materiel", materiel);
+			
 	
 			this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_VALIDATION_AJOUT).forward(request, response);
 		}
@@ -60,7 +62,7 @@ public class ValidationAjoutMaterielServlet extends HttpServlet {
 		request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON, "Retour");
 		request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON, Pattern.MATERIEL_LISTER);
 		request.setAttribute(ResultatServlet.ATTR_RESULTAT, "Le materiel "+ materiel.getDesignation().getLibelleDesignation() + " a été créé.");
-		
+		session.removeAttribute("materiel");
 		this.getServletContext().getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);
 	}
 

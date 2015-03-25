@@ -3,14 +3,15 @@
 <%@ page import="fr.gemao.view.Pattern"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="titre" value="Consultation d'un membre du personnel"
-	scope="request" />
+<c:set var="titre" value="Consultation d'un membre du personnel" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 
 <c:import url="/inc/header.inc.jsp" />
 <c:import url="/inc/menu.inc.jsp" />
+
 <h1>Consultation d'un membre du personnel</h1>
+
 <table class='table-col-2'>
 	<caption>Informations personnelles</caption>
 	<tr>
@@ -88,13 +89,27 @@
 		<td><c:forEach items="${listeDiplome}" var="dipl">
 				<c:out value="${dipl['nomDiplome']}" />
 			</c:forEach></td>
+			<td></td>
 	</tr>
 	<tr>
-		<td><span>Responsabilité : </span></td>
-		<td><c:forEach items="${listeResponsabilite}" var="resp">
-				<c:out value="${resp['libelle']}" />
-			</c:forEach></td>
-	</tr>
+			<td><span>Responsabilité : </span></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<c:forEach items="${listeResponsabilite}" var="resp">
+			<tr>
+				<td><c:out value="${resp.libelle}" /> <td>
+					<c:if
+						test="${resp.libelle == 'Professeur' }">
+						<c:forEach items="${listeDiscipline}" var="disp">
+								-<c:out value="${disp.matiere.nomMatiere}" />
+							<c:out value="${disp.niveau.nomNiveau}" />
+							<br>
+						</c:forEach></c:if></td>
+				</td>
+				<td></td>
+			</tr>
+		</c:forEach>
 </table>
 <table class='table-col-2'>
 	<caption>Informations liées à l'application</caption>
