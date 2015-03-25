@@ -148,10 +148,9 @@ autocompletionFamille("#famille");
 		</div>
 		<div>
 			<label class='required'>Membre CA </label> <span> <input
-				type="radio" name="membreCA" value="true" checked="checked" /> <label
+				type="radio" name="membreCA" value="true"/> <label
 				for="membreCA">Oui</label> <input type="radio" name="membreCA"
-				value="false" <c:if test="${ajout_adh_adherent.isMembreCA() == false}"> checked="checked" 
-						</c:if> /> <label for="membreCA">Non</label>
+				value="false" checked="checked" /> <label for="membreCA">Non</label>
 			</span>
 		</div>
 	</fieldset>
