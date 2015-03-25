@@ -32,7 +32,7 @@
 </table>
 <fieldset class='align-center no-border'>
 	<div>
-		<p>Nous ne pouvons pas supprimer les etats utilisées.</p>
+		<p>Nous ne pouvons pas supprimer les etats utilisés.</p>
 		<c:if test="${!empty modifKO}">
 			<p style="color: red">Erreur : <c:out value="${err}" /></p>
 		</c:if>

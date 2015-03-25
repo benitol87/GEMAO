@@ -94,6 +94,13 @@ public class AjoutMaterielServlet extends HttpServlet {
 		if (nombre != null)
 			infoMat.setValeurReap(Float.parseFloat(nombre));
 
+		infoMat.setCategorie(CategorieCtrl.recupererCategorie( Integer.parseInt(Form.getValeurChamp(request, "categorie"))));
+		infoMat.setDesignation(DesignationCtrl.recupererDesignationCtrl( Integer.parseInt(Form.getValeurChamp(request, "designation"))));
+		infoMat.setEtat(EtatCtrl.recupererEtat( Integer.parseInt(Form.getValeurChamp(request, "etat"))));
+		infoMat.setMarque(MarqueCtrl.recupererMarque( Integer.parseInt(Form.getValeurChamp(request, "marque"))));
+		infoMat.setFournisseur(FournisseurCtrl.recupererFournisseur( Integer.parseInt(Form.getValeurChamp(request, "fournisseur"))));
+		String date =new String(request.getParameter("dateAch"));
+		session.setAttribute("date", date);
 		infoMat.setObservation(Form.getValeurChamp(request, "observation"));
 		infoMat.setNumSerie(Form.getValeurChamp(request, "numSerie"));
 		session.setAttribute("INFOS", infoMat);

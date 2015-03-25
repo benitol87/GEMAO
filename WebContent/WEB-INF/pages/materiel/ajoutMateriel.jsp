@@ -16,7 +16,7 @@
 			<label for="categorie">Catégorie</label>
 			 <select name="categorie" id="categorie">
 				<c:forEach var="cat" items="${requestScope['LISTE_CATEGORIE']}">	
-					<option value="${cat.getIdCategorie()}">${cat.getLibelleCat()}</option>
+					<option value="${cat.getIdCategorie()}" <c:if test="${INFOS.getCategorie().getIdCategorie()==cat.getIdCategorie()}">selected</c:if>>${cat.getLibelleCat()}</option>
 				</c:forEach>
 			</select>
 	
@@ -35,7 +35,7 @@
 		
 		<div>
 			<label for="dateAch">Date d'acquisition</label> 
-			<input type="text" name="dateAch" class="datepicker" value="${sessionScope.INFOS['dateAchat']}"/> 
+			<input type="text" name="dateAch" class="datepicker" value="${date}"/> 
 		</div>
 		
 		<div>
@@ -48,7 +48,7 @@
 			<label for="fournisseur">Fournisseur</label> 
 			<select name="fournisseur" id="fournisseur">
 				<c:forEach var="fourn" items="${requestScope['LISTE_FOURNISSEUR']}">
-					<option value="${fourn.getIdFournisseur()}">${fourn.getNomFournisseur()}</option>
+					<option value="${fourn.getIdFournisseur()}" <c:if test="${INFOS.getFournisseur().getIdFournisseur()==fourn.getIdFournisseur()}">selected</c:if>>${fourn.getNomFournisseur()}</option>
 				</c:forEach>
 			</select>
 			<input type="button" name="ajoutFour" id="ajoutFour" value="Créer..." />
@@ -63,7 +63,7 @@
 				
 			<select name="designation" id="designation">
 				<c:forEach var="des" items="${requestScope['LISTE_DESIGNATION']}">
-					<option value="${des.getIdDesignation()}">${des.getLibelleDesignation()}</option>
+					<option value="${des.getIdDesignation()}" <c:if test="${INFOS.getDesignation().getIdDesignation()==des.getIdDesignation()}">selected</c:if>>${des.getLibelleDesignation()}</option>
 				</c:forEach>
 			</select>
 			<input type="button" name="ajoutDes" id="ajoutDes" value="Créer..." />
@@ -79,7 +79,7 @@
 			<label for="etat">Etat</label>
 			<select name="etat" id="etat">
 				<c:forEach var="etat" items="${requestScope['LISTE_ETAT']}">
-					<option value="${etat.getIdEtat()}">${etat.getLibelleEtat()}</option>
+					<option value="${etat.getIdEtat()}" <c:if test="${INFOS.getEtat().getIdEtat()==etat.getIdEtat()}">selected</c:if>>${etat.getLibelleEtat()}</option>
 				</c:forEach>
 			</select>
 			<input type="button" name="ajoutEtat" id="ajoutEtat" value="Créer..." />
@@ -90,7 +90,7 @@
 			<label for="marque">Marque</label>
 			<select name="marque" id="marque">
 				<c:forEach var="marque" items="${requestScope['LISTE_MARQUE']}">
-					<option value="${marque.getIdMarque()}">${marque.getNomMarque()}</option>
+					<option value="${marque.getIdMarque()}" <c:if test="${INFOS.getMarque().getIdMarque()==marque.getIdMarque()}">selected</c:if>>${marque.getNomMarque()}</option>
 				</c:forEach>
 			</select>
 			<input type="button" name="ajoutMarque" id="ajoutMarque" value="Créer..." />
