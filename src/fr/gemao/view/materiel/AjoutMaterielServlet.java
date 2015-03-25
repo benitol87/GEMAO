@@ -238,29 +238,9 @@ public class AjoutMaterielServlet extends HttpServlet {
 			MarqueDAO marqDAO = new MarqueDAO(DAOFactory.getInstance());
 			materiel.setMarque(marqDAO.get(Long.parseLong(marque)));
 			
-			
 			session.setAttribute("materiel", materiel);
 			response.sendRedirect(request.getContextPath() + "/ValidationAjoutMaterielServlet");
 			
-			/*		MaterielCtrl.ajoutMateriel(materiel.getEtat(),
-					materiel.getCategorie(), materiel.getMarque(),
-					materiel.getDesignation(), materiel.getFournisseur(),
-					materiel.getTypeMat(), materiel.getNumSerie(),
-					materiel.getDateAchat(), materiel.getValeurAchat(),
-					materiel.getValeurReap(), materiel.isDeplacable(),
-					materiel.getObservation(), Integer.parseInt(quantite),
-					materiel.isLouable());*/
-			
-			// Archivage
-			/*new ModificationCtrl().ajouterModification(new Modification(
-					0,
-					(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
-					new Date(),
-					"Ajout matériel : "+materiel.getDesignation().getLibelleDesignation()
-			));
-			session.removeAttribute("INFOS");
-			*/
-			//response.sendRedirect(request.getContextPath() + VUE_LISTE + "?ajoutOk=0");
 			
 		} else {
 			request.setAttribute("form", form);
