@@ -29,7 +29,7 @@ public class ModifierPersonnelCtrl {
 		AjouterPersonnelCtrl ajoutPersonnel = new AjouterPersonnelCtrl();
 		
 		//Vérification de la validité des informations
-		if (ajoutPersonnel.verifierInformations(personnel)) {
+		//if (ajoutPersonnel.verifierInformations(personnel)) {
 			Personne pers;
 			
 			DAOFactory co = DAOFactory.getInstance();
@@ -51,9 +51,9 @@ public class ModifierPersonnelCtrl {
 			} else {
 				throw new IllegalArgumentException("Le personnel n'existe pas dans la base...");
 			}
-		} else {
+		//} else {
 			//System.out.println("Les informations du personnel ne sont pas valides...");
-			return -1;
-		}
+		//	return -1;
+		//}
 	}
 }
