@@ -13,6 +13,7 @@ import fr.gemao.ctrl.ChangerMotDePasseCtrl;
 import fr.gemao.ctrl.personnel.ModifierPersonnelCtrl;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.form.ChangerMotDePasseForm;
+import fr.gemao.util.Password;
 
 /**
  * Servlet implementation class ChangerMotDePasseServlet
@@ -53,7 +54,7 @@ public class ChangerMotDePasseServlet extends HttpServlet {
 					form.setErreur(ChangerMotDePasseForm.ERREUR_NOUVEAUX_MDP, "Un problème est intervenu lors de la modification du mot de passe.");
 				} else {
 					personneConnectee.setPremiereConnexion(false);
-					personneConnectee.setPassword(form.getNouveauMotDePasse());
+					personneConnectee.setPassword(Password.encrypt(form.getNouveauMotDePasse()));
 					new ModifierPersonnelCtrl().modifierPersonnel(personneConnectee);
 				}
 			} else {

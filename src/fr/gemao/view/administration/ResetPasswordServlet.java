@@ -102,6 +102,7 @@ public class ResetPasswordServlet extends HttpServlet {
 				// Modification du mot de passe
 				
 				personne.setPassword(Password.generatePassword());
+				personne.setPremiereConnexion(true);
 				String mdp = personne.getPassword();
 				if(!changerMdpCtrl.changerMotDePasse(personne)){
 					request.setAttribute(ATTR_ERREUR, "Un problème est survenu lors du changement de mot de passe.");

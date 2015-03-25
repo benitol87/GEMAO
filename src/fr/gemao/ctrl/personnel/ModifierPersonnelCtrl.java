@@ -27,7 +27,6 @@ public class ModifierPersonnelCtrl {
 	 * @param personnel : le personnel modifié
 	 */
 	public long modifierPersonnel(Personnel personnel) {
-		personnel.setPassword(Password.encrypt(personnel.getPassword()));
 		//Vérification de la validité des informations
 		//if (ajoutPersonnel.verifierInformations(personnel)) {
 			Personne pers;
