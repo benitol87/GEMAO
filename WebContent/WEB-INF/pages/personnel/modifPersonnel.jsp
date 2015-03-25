@@ -73,8 +73,8 @@
 		</div>
 	</fieldset>
 	<fieldset>
-		<legend>Informations professionnelles</legend> <input
-			name="pointsAncien" type="number" hidden="true"
+		<legend>Informations professionnelles</legend>
+		<input name="pointsAncien" type="number" hidden="true"
 			value="${sessionScope.personnel.getPointsAncien()}" /> <input
 			name="password" type="text" hidden="true"
 			value="${sessionScope.personnel.getPassword()}" /> <input
@@ -103,19 +103,23 @@
 			</table>
 		</div>
 		<div>
-			<label for="diplome">Diplôme : </label>
-			<c:forEach items="${listeDiplome}" var="dipl">
-				<c:out value="${dipl['nomDiplome']}" />
-			</c:forEach>
+		<table>
+			<tr><td>Diplôme </td><td></td></tr>
+			
+				<c:forEach items="${listeDiplome}" var="dipl">
+					<tr><td><c:out value="${dipl['nomDiplome']}" /></td><td></td></tr>
+				</c:forEach>
+			</tr>
+		</table>
 		</div>
 
 		<div>
-			<label for="fonction">Fonction : </label>
-			<c:forEach items="${listeResponsabilite}" var="resp">
-			<tr>
-				<td>
-					<c:out value="${resp.libelle}"/>
-					<td>
+			<table>
+			<tr><td>Fonction </td><td></td><td></td></tr>
+				<c:forEach items="${listeResponsabilite}" var="resp">
+					<tr>
+						<td><c:out value="${resp.libelle}" /> </td>
+						<td>
 						<c:if test="${resp.libelle == 'Professeur' }">
 							<c:forEach items="${listeDiscipline}" var="disp">
 								-<c:out value="${disp.matiere.nomMatiere}" />
@@ -123,11 +127,11 @@
 								<br>
 							</c:forEach>
 						</c:if>
-					</td>
-				</td>
-				<td></td>
-			</tr>
-		</c:forEach>
+						</td>
+						<td></td>
+					</tr>
+				</c:forEach>
+			</table>
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>
