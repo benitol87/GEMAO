@@ -75,7 +75,7 @@ public class EtatDAO extends IDAO<Etat> {
 			stat.execute("DELETE FROM etat WHERE idEtat = " + obj.getIdEtat()
 					+ ";");
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("Suppression impossible");
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(stat, connexion);
 		}

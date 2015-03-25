@@ -14,7 +14,6 @@ import fr.gemao.entity.materiel.Categorie;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
-
 @WebServlet(Pattern.MATERIEL_LISTE_CATEGORIE)
 public class ListeCategorieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +25,8 @@ public class ListeCategorieServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.setAttribute("listCat",CategorieCtrl.recupererToutesCategories());
+		session.setAttribute("listCat",
+				CategorieCtrl.recupererToutesCategories());
 		this.getServletContext()
 				.getRequestDispatcher(JSPFile.MATERIEL_LISTE_CATEGORIE)
 				.forward(request, response);
@@ -52,14 +52,20 @@ public class ListeCategorieServlet extends HttpServlet {
 				request.setAttribute("ajoutKO", true);
 			}
 		} else {
-			int id1 = Integer.parseInt(request.getParameter("id"));
-			Categorie cat = CategorieCtrl.recupererCategorie(id1);
-			if (CategorieCtrl.supprimerCategorie(cat.getLibelleCat())){
-				request.setAttribute("modifOK", true);
-				session.setAttribute("listCat",
-						CategorieCtrl.recupererToutesCategories());
-			} else {
+
+			try {
+				int id1 = Integer.parseInt(request.getParameter("id"));
+				Categorie cat = CategorieCtrl.recupererCategorie(id1);
+				if (CategorieCtrl.supprimerCategorie(cat.getLibelleCat())) {
+					request.setAttribute("modifOK", true);
+					session.setAttribute("listCat",
+							CategorieCtrl.recupererToutesCategories());
+				} else {
+					request.setAttribute("modifKO", true);
+				}
+			} catch (Exception e) {
 				request.setAttribute("modifKO", true);
+				request.setAttribute("err", e.getMessage());
 			}
 		}
 
@@ -67,5 +73,4 @@ public class ListeCategorieServlet extends HttpServlet {
 				.getRequestDispatcher(JSPFile.MATERIEL_LISTE_CATEGORIE)
 				.forward(request, response);
 	}
-
 }

@@ -22,17 +22,22 @@ public class ListeDesignationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.setAttribute("listDes", DesignationCtrl.recupererToutesDesignations());
-		this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_LISTE_DESIGNATION).forward(request, response);
+		session.setAttribute("listDes",
+				DesignationCtrl.recupererToutesDesignations());
+		this.getServletContext()
+				.getRequestDispatcher(JSPFile.MATERIEL_LISTE_DESIGNATION)
+				.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		HttpSession session = request.getSession();
 
@@ -41,21 +46,31 @@ public class ListeDesignationServlet extends HttpServlet {
 			Designation des = new Designation();
 			if (DesignationCtrl.ajoutDesignation(lib)) {
 				request.setAttribute("ajoutOK", true);
-				session.setAttribute("listDes", DesignationCtrl.recupererToutesDesignations());
+				session.setAttribute("listDes",
+						DesignationCtrl.recupererToutesDesignations());
 			} else {
 				request.setAttribute("ajoutKO", true);
 			}
 		} else {
-			int id1 = Integer.parseInt(request.getParameter("id"));
-			Designation des = DesignationCtrl.recupererDesignationCtrl(id1);
-			if (DesignationCtrl.supprimerDesignation(des.getLibelleDesignation())) {
-				request.setAttribute("modifOK", true);
-				session.setAttribute("listDes", DesignationCtrl.recupererToutesDesignations());
-			} else {
+			try {
+				int id1 = Integer.parseInt(request.getParameter("id"));
+				Designation des = DesignationCtrl.recupererDesignationCtrl(id1);
+				if (DesignationCtrl.supprimerDesignation(des
+						.getLibelleDesignation())) {
+					request.setAttribute("modifOK", true);
+					session.setAttribute("listDes",
+							DesignationCtrl.recupererToutesDesignations());
+				} else {
+					request.setAttribute("modifKO", true);
+				}
+			} catch (Exception e) {
 				request.setAttribute("modifKO", true);
+				request.setAttribute("err", e.getMessage());
 			}
 		}
 
-		this.getServletContext().getRequestDispatcher(JSPFile.MATERIEL_LISTE_DESIGNATION).forward(request, response);
+		this.getServletContext()
+				.getRequestDispatcher(JSPFile.MATERIEL_LISTE_DESIGNATION)
+				.forward(request, response);
 	}
 }
