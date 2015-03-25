@@ -54,7 +54,7 @@ public class ReinitAPayeServlet extends HttpServlet {
 			request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON, Pattern.ADHERENT_LISTER);
 			request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON, "Retour à la liste");
 			request.setAttribute(ResultatServlet.ATTR_TITRE_H1, "Confirmation");
-			request.setAttribute(ResultatServlet.ATTR_RESULTAT, "L'adhérent est maintenant enregistrer comme n'ayant pas payé");
+			request.setAttribute(ResultatServlet.ATTR_RESULTAT, "La confirmation de paiement de l'adhérent a été annulée.");
 
 			// On envoie vers la page jsp
 			request.getRequestDispatcher(JSPFile.RESULTAT)
