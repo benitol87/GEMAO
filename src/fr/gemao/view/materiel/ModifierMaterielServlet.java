@@ -148,10 +148,20 @@ public class ModifierMaterielServlet extends HttpServlet {
 				|| request.getParameter("nomCat") != null
 				|| request.getParameter("nomDes") != null
 				|| request.getParameter("nomEtat") != null) {
+			HttpSession session = request.getSession();
+			MaterielCtrl matctrl = new MaterielCtrl();
+			EtatCtrl etatctrl = new EtatCtrl();
+			CategorieCtrl catctrl = new CategorieCtrl();
+			FournisseurCtrl fournctrl = new FournisseurCtrl();
+			DesignationCtrl desctrl = new DesignationCtrl();
+			MarqueCtrl marquectrl = new MarqueCtrl();
 			if (Form.getValeurChamp(request, "nomCat") != null) {
 				try {
 					CategorieCtrl.ajoutCategorie(Form.getValeurChamp(request,
 							"nomCat"));
+					List<Categorie> listCat = catctrl.recupererToutesCategories();
+					listCat.remove(((Materiel) session.getAttribute("sessionObjectMateriel")).getCategorie());
+					session.setAttribute("listeCat", listCat);
 				} catch (DAOException e) {
 					form.setErreur(ERREUR_AJOUT_CATEGORIE,
 							"La catégorie existe déjà");
@@ -162,6 +172,10 @@ public class ModifierMaterielServlet extends HttpServlet {
 				try {
 					DesignationCtrl.ajoutDesignation(Form.getValeurChamp(
 							request, "nomDes"));
+					List<Designation> listDes = desctrl
+							.recupererToutesDesignations();
+					listDes.remove(((Materiel) session.getAttribute("sessionObjectMateriel")).getDesignation());
+					session.setAttribute("listeDes", listDes);
 				} catch (DAOException e) {
 					form.setErreur(ERREUR_AJOUT_DESIGNATION,
 							"La désignation existe déjà");
@@ -172,6 +186,9 @@ public class ModifierMaterielServlet extends HttpServlet {
 				try {
 					FournisseurCtrl.ajoutFournisseur(Form.getValeurChamp(
 							request, "nomFour"));
+					List<Fournisseur> listFourn = fournctrl.getListeFournisseur();
+					listFourn.remove(((Materiel) session.getAttribute("sessionObjectMateriel")).getFournisseur());
+					session.setAttribute("listeFourn", listFourn);
 				} catch (DAOException e) {
 					form.setErreur(ERREUR_AJOUT_FOURNISSEUR,
 							"Le fournisseur existe déjà");
@@ -181,11 +198,29 @@ public class ModifierMaterielServlet extends HttpServlet {
 			if (Form.getValeurChamp(request, "nomEtat") != null) {
 				try {
 					EtatCtrl.ajoutEtat(Form.getValeurChamp(request, "nomEtat"));
+					List<Etat> listEtats = etatctrl.getListeEtat();
+					listEtats.remove(((Materiel) session.getAttribute("sessionObjectMateriel")).getEtat());
+					session.setAttribute("listeEtats", listEtats);
 				} catch (DAOException e) {
 					form.setErreur(ERREUR_AJOUT_ETAT, "L'etat existe déjà");
 				}
 			}
-
+			
+			if (Form.getValeurChamp(request, "nomMarque") != null) {
+				try {
+					MarqueCtrl.ajouterMarque(Form.getValeurChamp(request,
+							"nomMarque"));
+					List<Marque> listMarque = marquectrl.recupererToutesMarques();
+					listMarque.remove(((Materiel) session.getAttribute("sessionObjectMateriel")).getMarque());
+					session.setAttribute("listeMarque", listMarque);
+				} catch (DAOException e) {
+					form.setErreur(ERREUR_AJOUT_MARQUE,
+							"La catégorie existe déjà");
+				}
+			}
+			
+			request.setAttribute("form", form);
+			
 			this.getServletContext()
 					.getRequestDispatcher(JSPFile.MATERIEL_MODIFIER)
 					.forward(request, response);
