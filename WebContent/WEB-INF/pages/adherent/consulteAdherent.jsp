@@ -162,6 +162,9 @@
 	<c:if test="${!adherent.isAPaye() && adherent.getMotif() == null }">
 		<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_APAYE %>"/><c:out value='?id=${adherent.idPersonne}'/>">A Payé</a> 
 	</c:if>
+	<c:if test="${adherent.isAPaye() && adherent.getMotif() == null }">
+		<a class='btn' href="<c:url value="<%= Pattern.ADHERENT_REINIT_APAYE %>"/><c:out value='?id=${adherent.idPersonne}'/>">Annuler Paiement</a> 
+	</c:if>
 </p>
 
 <c:import url="/inc/footer.inc.jsp" />

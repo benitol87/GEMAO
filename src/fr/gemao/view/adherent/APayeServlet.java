@@ -1,6 +1,7 @@
 package fr.gemao.view.adherent;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import fr.gemao.ctrl.adherent.ModifierAdherentCtrl;
 import fr.gemao.ctrl.adherent.RecupererAdherentCtrl;
+import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.entity.adherent.Adherent;
+import fr.gemao.entity.administration.Modification;
+import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.form.util.Form;
+import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -68,6 +73,12 @@ public class APayeServlet extends HttpServlet {
 		adherent.setAPaye(true);
 
 		ModifierAdherentCtrl.modifierAdherent(adherent);
+		
+		new ModificationCtrl().ajouterModification(new Modification(0,
+				(Personnel) session
+						.getAttribute(ConnexionServlet.ATT_SESSION_USER),
+				new Date(), "A Payé adhérent : " + adherent.getNom() + " "
+						+ adherent.getPrenom()));
 
 		req.setAttribute(CHAMP_ADHERENT, adherent);
 		req.setAttribute(CHAMP_CONFIRAMTION, true);
