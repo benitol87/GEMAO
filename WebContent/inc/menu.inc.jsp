@@ -65,7 +65,7 @@
 											<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTE_ETAT %>"/>">Etats</a></li>
 											<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTE_FOURNISSEUR %>"/>">Fournisseurs</a></li>
 											<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTE_MARQUE %>"/>">Marques</a></li>
-											<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTE_DESIGNATION %>"/>">Designations</a></li>
+											<li><a href="<c:url value="<%= Pattern.MATERIEL_LISTE_DESIGNATION %>"/>">Désignations</a></li>
 										</ul>
 									</div>
 								</li>
