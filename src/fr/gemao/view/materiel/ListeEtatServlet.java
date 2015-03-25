@@ -14,7 +14,6 @@ import fr.gemao.entity.materiel.Etat;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
-
 @WebServlet(Pattern.MATERIEL_LISTE_ETAT)
 public class ListeEtatServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +25,7 @@ public class ListeEtatServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.setAttribute("listEtat",EtatCtrl.getListeEtat());
+		session.setAttribute("listEtat", EtatCtrl.getListeEtat());
 		this.getServletContext()
 				.getRequestDispatcher(JSPFile.MATERIEL_LISTE_ETAT)
 				.forward(request, response);
@@ -46,20 +45,23 @@ public class ListeEtatServlet extends HttpServlet {
 			Etat etat = new Etat();
 			if (EtatCtrl.ajoutEtat(lib)) {
 				request.setAttribute("ajoutOK", true);
-				session.setAttribute("listEtat",
-						EtatCtrl.getListeEtat());
+				session.setAttribute("listEtat", EtatCtrl.getListeEtat());
 			} else {
 				request.setAttribute("ajoutKO", true);
 			}
 		} else {
-			int id1 = Integer.parseInt(request.getParameter("id"));
-			Etat etat = EtatCtrl.recupererEtat(id1);
-			if (EtatCtrl.supprimerEtat(etat.getLibelleEtat())){
-				request.setAttribute("modifOK", true);
-				session.setAttribute("listEtat",
-						EtatCtrl.getListeEtat());
-			} else {
+			try {
+				int id1 = Integer.parseInt(request.getParameter("id"));
+				Etat etat = EtatCtrl.recupererEtat(id1);
+				if (EtatCtrl.supprimerEtat(etat.getLibelleEtat())) {
+					request.setAttribute("modifOK", true);
+					session.setAttribute("listEtat", EtatCtrl.getListeEtat());
+				} else {
+					request.setAttribute("modifKO", true);
+				}
+			} catch (Exception e) {
 				request.setAttribute("modifKO", true);
+				request.setAttribute("err", e.getMessage());
 			}
 		}
 

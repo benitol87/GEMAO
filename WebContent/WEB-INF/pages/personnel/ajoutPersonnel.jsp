@@ -114,9 +114,9 @@ autocompletionAdresse("#rue", "#compl");
 		<legend>Informations professionnelles</legend>
 			<div>
 				<label class='required'>Membre CA </label> <span> <input
-					type="radio" name="membreCA" value="true" checked="checked" /> <label
+					type="radio" name="membreCA" value="true" /> <label
 					for="membreCA">Oui</label> <input type="radio" name="membreCA"
-					value="false" <c:if test="${ajout_pers_personnel.isMembreCA() == false}"> checked="checked" 
+					value="false" checked="checked" <c:if test="${ajout_pers_personnel.isMembreCA() == false}"> checked="checked" 
 							</c:if> /> <label for="membreCA">Non</label>
 				</span>
 			</div>

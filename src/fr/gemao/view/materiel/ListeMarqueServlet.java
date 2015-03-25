@@ -14,7 +14,6 @@ import fr.gemao.entity.materiel.Marque;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
-
 @WebServlet(Pattern.MATERIEL_LISTE_MARQUE)
 public class ListeMarqueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +25,7 @@ public class ListeMarqueServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.setAttribute("listMarque",MarqueCtrl.recupererToutesMarques());
+		session.setAttribute("listMarque", MarqueCtrl.recupererToutesMarques());
 		this.getServletContext()
 				.getRequestDispatcher(JSPFile.MATERIEL_LISTE_MARQUE)
 				.forward(request, response);
@@ -52,14 +51,19 @@ public class ListeMarqueServlet extends HttpServlet {
 				request.setAttribute("ajoutKO", true);
 			}
 		} else {
-			int id1 = Integer.parseInt(request.getParameter("id"));
-			Marque marque = MarqueCtrl.recupererMarque(id1);
-			if (MarqueCtrl.supprimerMarque(marque.getNomMarque())){
-				request.setAttribute("modifOK", true);
-				session.setAttribute("listMarque",
-						MarqueCtrl.recupererToutesMarques());
-			} else {
+			try {
+				int id1 = Integer.parseInt(request.getParameter("id"));
+				Marque marque = MarqueCtrl.recupererMarque(id1);
+				if (MarqueCtrl.supprimerMarque(marque.getNomMarque())) {
+					request.setAttribute("modifOK", true);
+					session.setAttribute("listMarque",
+							MarqueCtrl.recupererToutesMarques());
+				} else {
+					request.setAttribute("modifKO", true);
+				}
+			} catch (Exception e) {
 				request.setAttribute("modifKO", true);
+				request.setAttribute("err", e.getMessage());
 			}
 		}
 

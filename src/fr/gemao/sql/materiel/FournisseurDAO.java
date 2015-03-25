@@ -79,7 +79,7 @@ public class FournisseurDAO extends IDAO<Fournisseur> {
 			stat.execute("DELETE FROM fournisseur WHERE idFournisseur = "
 					+ obj.getIdFournisseur() + ";");
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("Suppression impossible");
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(stat, connexion);
 		}

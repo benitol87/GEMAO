@@ -81,7 +81,7 @@ public class CategorieDAO extends IDAO<Categorie> {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("Suppression impossible");
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(result, stat, connexion);
 		}

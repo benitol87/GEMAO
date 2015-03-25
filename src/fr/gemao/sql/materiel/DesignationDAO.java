@@ -73,7 +73,7 @@ public class DesignationDAO extends IDAO<Designation> {
 			stat.execute("DELETE FROM designation WHERE idDesignation = "
 					+ obj.getIdDesignation() + ";");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DAOException("Suppression impossible");
 		} finally {
 			DAOUtilitaires.fermeturesSilencieuses(stat, connect);
 		}
