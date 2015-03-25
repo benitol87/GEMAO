@@ -25,7 +25,7 @@
 				<td class="listQF">Quotient 1.</td>
 			</c:otherwise>
 		</c:choose>
-		.</p>
+		</p>
 </c:if>
 <c:if test="${modifOK == false}">
 	<p class="offset text-danger">Erreur lors de la modification.</p>
