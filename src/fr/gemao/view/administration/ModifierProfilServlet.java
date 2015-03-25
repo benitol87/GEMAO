@@ -3,6 +3,7 @@ package fr.gemao.view.administration;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.ctrl.administration.ProfilsCtrl;
 import fr.gemao.entity.administration.Droit;
+import fr.gemao.entity.administration.Modification;
 import fr.gemao.entity.administration.Module;
 import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.administration.TypeDroit;
@@ -109,6 +112,13 @@ public class ModifierProfilServlet extends HttpServlet {
 			request.setAttribute(ResultatServlet.ATTR_NOM_BOUTON, "Retour");
 			request.setAttribute(ResultatServlet.ATTR_TITRE_H1, "Résultat de la modification");
 			request.setAttribute(ResultatServlet.ATTR_RESULTAT, "La modification a bien été effectuée.");
+			// Archivage de la modification
+			new ModificationCtrl().ajouterModification(new Modification(
+					0,
+					(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
+					new Date(),
+					"Modification profil : "+profil.getNomProfil()
+			));
 			request.getRequestDispatcher(JSPFile.RESULTAT).forward(request, response);
 		} else {
 			// Erreur modification

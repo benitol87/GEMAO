@@ -77,7 +77,7 @@ public class APayeServlet extends HttpServlet {
 		new ModificationCtrl().ajouterModification(new Modification(0,
 				(Personnel) session
 						.getAttribute(ConnexionServlet.ATT_SESSION_USER),
-				new Date(), "A Payé adhérent : " + adherent.getNom() + " "
+				new Date(), "Confirmation paiement adhérent : " + adherent.getNom() + " "
 						+ adherent.getPrenom()));
 
 		req.setAttribute(CHAMP_ADHERENT, adherent);

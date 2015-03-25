@@ -1,18 +1,24 @@
 package fr.gemao.view.administration;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import fr.gemao.ctrl.administration.ModificationCtrl;
 import fr.gemao.ctrl.administration.ProfilsCtrl;
 import fr.gemao.ctrl.personnel.ModifierPersonnelCtrl;
 import fr.gemao.ctrl.personnel.RecupererPersonnelCtrl;
+import fr.gemao.entity.administration.Modification;
+import fr.gemao.entity.administration.Profil;
 import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.form.util.Form;
+import fr.gemao.view.ConnexionServlet;
 import fr.gemao.view.JSPFile;
 import fr.gemao.view.Pattern;
 
@@ -60,7 +66,17 @@ public class ChangerProfilServlet extends HttpServlet {
 		
 		// Si un profil est sélectionné
 		if(idProfil!=null){
-			p.setProfil(new ProfilsCtrl().getProfil(Integer.parseInt(idProfil)));			
+			p.setProfil(new ProfilsCtrl().getProfil(Integer.parseInt(idProfil)));
+			// Archivage de la modification
+			HttpSession session = request.getSession();
+			ProfilsCtrl profilctrl = new ProfilsCtrl();
+			Profil profil = profilctrl.getProfil(Integer.parseInt(idProfil));
+			new ModificationCtrl().ajouterModification(new Modification(
+					0,
+					(Personnel) session.getAttribute(ConnexionServlet.ATT_SESSION_USER),
+					new Date(),
+					"Changement profil de "+p.getLogin()+" : "+profil.getNomProfil()
+			));
 		} else {
 			// Sinon si on souhaite n'affecter aucun profil à cette personne
 			p.setProfil(null);

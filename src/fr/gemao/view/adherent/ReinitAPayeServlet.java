@@ -48,7 +48,7 @@ public class ReinitAPayeServlet extends HttpServlet {
 			new ModificationCtrl().ajouterModification(new Modification(0,
 					(Personnel) session
 							.getAttribute(ConnexionServlet.ATT_SESSION_USER),
-					new Date(), "Reinitialisation Payement adhérent : " + adherent.getNom() + " "
+					new Date(), "Annuler confirmation paiement adhérent : " + adherent.getNom() + " "
 							+ adherent.getPrenom()));
 			
 			request.setAttribute(ResultatServlet.ATTR_LIEN_BOUTON, Pattern.ADHERENT_LISTER);
