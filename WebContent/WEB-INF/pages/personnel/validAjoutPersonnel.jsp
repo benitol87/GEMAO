@@ -3,9 +3,7 @@
 <%@ page import="fr.gemao.view.Pattern"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="titre"
-	value="Récapitulatif des informations d'un membre du personnel"
-	scope="request" />
+<c:set var="titre" value="Récapitulatif des informations d'un membre du personnel" scope="request" />
 
 <c:import url="/inc/head.inc.jsp" />
 
@@ -14,8 +12,7 @@
 
 <h1>Récapitulatif des informations d'un membre du personnel</h1>
 
-<form action="<c:url value="<%=Pattern.PERSONNEL_VALIDATION_AJOUT%>" />"
-	method="post">
+<form action="<c:url value="<%=Pattern.PERSONNEL_VALIDATION_AJOUT%>" />" method="post">
 	<table class='table-col-2'>
 		<caption>Informations personnelles</caption>
 		<tr>
@@ -82,8 +79,7 @@
 		<c:forEach items="${contrats}" var="cont">
 			<tr>
 				<td><c:out value="${cont['typeContrat'].libelle}" /></td>
-				<td><fmt:formatDate value="${cont.dateDebut}"
-						pattern="dd/MM/yyyy" /></td>
+				<td><fmt:formatDate value="${cont.dateDebut}" pattern="dd/MM/yyyy" /></td>
 				<td><c:if test="${cont['typeContrat'].libelle == 'CDD' }">
 						<fmt:formatDate value="${cont.dateFin}" pattern="dd/MM/yyyy" />
 					</c:if></td>
