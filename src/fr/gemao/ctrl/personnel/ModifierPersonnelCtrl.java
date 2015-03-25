@@ -5,6 +5,7 @@ import fr.gemao.entity.personnel.Personnel;
 import fr.gemao.sql.DAOFactory;
 import fr.gemao.sql.PersonneDAO;
 import fr.gemao.sql.PersonnelDAO;
+import fr.gemao.util.Password;
 
 /**
  * La classe ModifierPersonnelCtrl permet de contrôler la modification d'un personnel.
@@ -26,8 +27,7 @@ public class ModifierPersonnelCtrl {
 	 * @param personnel : le personnel modifié
 	 */
 	public long modifierPersonnel(Personnel personnel) {
-		AjouterPersonnelCtrl ajoutPersonnel = new AjouterPersonnelCtrl();
-		
+		personnel.setPassword(Password.encrypt(personnel.getPassword()));
 		//Vérification de la validité des informations
 		//if (ajoutPersonnel.verifierInformations(personnel)) {
 			Personne pers;

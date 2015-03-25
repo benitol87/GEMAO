@@ -34,7 +34,7 @@ public class ChangerMotDePasseCtrl {
 	
 	public boolean changerMotDePasse(String login, String nouveauMotDePasse){
 		Personnel personnel = personnelDAO.getLoginParPersonnel(login);
-		personnel.setPassword(nouveauMotDePasse);
+		personnel.setPassword(Password.encrypt(nouveauMotDePasse));
 		
 		return personnelDAO.update(personnel)!=null;
 	}
@@ -46,6 +46,7 @@ public class ChangerMotDePasseCtrl {
 	 * @return
 	 */
 	public boolean changerMotDePasse(Personnel personnel){
+		personnel.setPassword(Password.encrypt(personnel.getPassword()));
 		return personnelDAO.update(personnel)!=null;
 	}
 }

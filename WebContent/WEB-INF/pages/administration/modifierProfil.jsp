@@ -36,7 +36,6 @@
 			<c:forEach items="${listeModules}" var="module">
 			
 				<c:set var="typeDroit" value="${profil.recupererTypeDroit(module.nomModule)}" scope="request" />
-				
 				<li>
 					<div>Module <c:out value="${module.nomModule }"/></div>
 					<span>
