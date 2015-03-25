@@ -38,7 +38,7 @@ public class ExportMaterielServlet extends HttpServlet {
 		Map<String,Object> map = new LinkedHashMap<String, Object>();
 		
 		// Initialisation de la map
-		map.put("ID Matériel", new ArrayList<String>());
+		map.put("Numéro IMMO", new ArrayList<String>());
 		map.put("Etat", new ArrayList<String>());
 		map.put("Quantité", new ArrayList<String>());
 		map.put("Catégorie", new ArrayList<String>());
@@ -60,8 +60,8 @@ public class ExportMaterielServlet extends HttpServlet {
 		List<String> listeDonnees;
 		
 		for(Materiel m : listeMateriel){
-			listeDonnees = (List<String>) map.get("ID Matériel");
-			listeDonnees.add(m.getIdMateriel()+"");
+			listeDonnees = (List<String>) map.get("Numéro IMMO");
+			listeDonnees.add("ANA-"+m.getIdMateriel()+"");
 			
 			listeDonnees = (List<String>) map.get("Etat");
 			listeDonnees.add(m.getEtat().getLibelleEtat()+"");

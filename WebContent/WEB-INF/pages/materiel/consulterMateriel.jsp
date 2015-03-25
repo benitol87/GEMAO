@@ -12,6 +12,10 @@
 <table class='table-col-2'>
 	<caption>Informations générales</caption>
 	<tr>
+		<td>Numéro IMMO : </td>
+		<td>ANA-${sessionScope.sessionObjectMateriel.getIdMateriel()}</td>
+	</tr>
+	<tr>
 		<td>Catégorie : </td> 
 		<td>${sessionScope.sessionObjectMateriel.getCategorie().getLibelleCat()}</td>
 

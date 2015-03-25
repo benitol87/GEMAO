@@ -55,6 +55,7 @@
 <table class='tablesorter-blue'>
 <thead>
 	<tr>
+		<th>Numéro IMMO</th>
 		<th>Désignation</th>
 		<th class="listCat">Catégorie</th>
 		<th class="listDateAchat">Date d'achat</th>
@@ -71,6 +72,7 @@
 <tbody>
 	<c:forEach items="${listeMateriels}" var="mat">
 		<tr>
+			<td>ANA-${mat.idMateriel}</td>
 			<td><c:out value="${mat.designation.libelleDesignation}" /></td>
 			<td class="listCat"><c:out value="${mat.categorie.libelleCat}" /></td>
 			<td class="listDateAchat"><c:out value="${mat.dateAchat}" /></td>
