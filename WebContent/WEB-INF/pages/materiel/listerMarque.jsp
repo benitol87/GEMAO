@@ -33,6 +33,9 @@
 <fieldset class='align-center no-border'>
 	<div>
 		<p>Nous ne pouvons pas supprimer les marques utilisées.</p>
+		<c:if test="${!empty modifKO}">
+			<p style="color: red">Erreur : <c:out value="${err}" /></p>
+		</c:if>
 	</div>
 </fieldset>
 

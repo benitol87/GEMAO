@@ -80,7 +80,7 @@ public class MarqueDAO extends IDAO<Marque> {
 			stat.execute("DELETE FROM MARQUE WHERE idMarque = "
 					+ obj.getIdMarque() + ";");
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			throw new DAOException("Suppression impossible");
 		} finally {
 			if (stat != null) {
 				try {
