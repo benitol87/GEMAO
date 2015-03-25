@@ -91,17 +91,23 @@ public class AjoutPersonnelServlet extends HttpServlet {
 		/**
 		 * Création de la commune
 		 */
-		AjouterCommuneCtrl ajouterCommuneCtrl = new AjouterCommuneCtrl();
+		new AjouterCommuneCtrl();
 		Commune commune = new Commune(null, Integer.parseInt(codePostal), ville, false);
-		ajouterCommuneCtrl.ajoutCommune(commune);
+		AjouterCommuneCtrl.ajoutCommune(commune);
 		
 		/**
 		 * Création de l'adresse
 		 */
-		Adresse adrss = new Adresse(null, commune, numrue, nomrue, infoComplementaire);
-		AjouterAdresseCtrl ajouterAdresseCtrl = new AjouterAdresseCtrl();
-		ajouterAdresseCtrl.ajoutAdresse(adrss);
-
+		Adresse adrss = new Adresse();
+		adrss.setNumRue(numrue);
+		adrss.setNomRue(nomrue);
+		adrss.setInfoCompl(infoComplementaire);	
+		adrss.setCommune(commune);
+		
+		new AjouterAdresseCtrl();
+		AjouterAdresseCtrl.ajoutAdresse(adrss);
+		
+		
 		Personnel personnel = new Personnel();
 		personnel.setAdresse(adrss);
 		if(civilite.equals("Monsieur")){

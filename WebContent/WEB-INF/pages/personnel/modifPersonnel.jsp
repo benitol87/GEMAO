@@ -112,8 +112,22 @@
 		<div>
 			<label for="fonction">Fonction : </label>
 			<c:forEach items="${listeResponsabilite}" var="resp">
-				<c:out value="${resp['libelle']}" />
-			</c:forEach>
+			<tr>
+				<td>
+					<c:out value="${resp.libelle}"/>
+					<td>
+						<c:if test="${resp.libelle == 'Professeur' }">
+							<c:forEach items="${listeDiscipline}" var="disp">
+								-<c:out value="${disp.matiere.nomMatiere}" />
+								<c:out value="${disp.niveau.nomNiveau}" />
+								<br>
+							</c:forEach>
+						</c:if>
+					</td>
+				</td>
+				<td></td>
+			</tr>
+		</c:forEach>
 		</div>
 	</fieldset>
 	<fieldset class='align-center no-border'>

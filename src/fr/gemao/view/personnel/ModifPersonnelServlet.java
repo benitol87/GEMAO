@@ -89,7 +89,7 @@ public class ModifPersonnelServlet extends HttpServlet {
 			/* Positionnement des attributs */
 			session.setAttribute("listeDiplome", listeDiplome);
 			session.setAttribute("listeResponsabilite", listeResponsabilite);
-			session.setAttribute("listDiscipline", listeDiscipline);
+			session.setAttribute("listeDiscipline", listeDiscipline);
 			session.setAttribute("personnel", personnel);
 			session.setAttribute("adresse", adresse);
 			session.setAttribute("commune", commune);
