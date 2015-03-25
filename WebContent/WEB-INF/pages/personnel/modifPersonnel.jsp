@@ -20,17 +20,17 @@
 			</span>
 		</div>
 		<div>
-			<label for="nom">Nom</label> <input type="text" name="nom"
-				value="${sessionScope.personnel['nom']}" />
+			<label for="nom">Nom *</label> <input type="text" name="nom"
+				value="${sessionScope.personnel['nom']}" required/>
 		</div>
 		<div>
-			<label for="prenom">Prénom</label> <input type="text" name="prenom"
-				value="${sessionScope.personnel['prenom']}" />
+			<label for="prenom">Prénom *</label> <input type="text" name="prenom"
+				value="${sessionScope.personnel['prenom']}" required/>
 		</div>
 		<div>
-			<label for="telFixe">Téléphone fixe</label> <input type="text"
+			<label for="telFixe">Téléphone fixe *</label> <input type="text"
 				name="telFixe" value="${sessionScope.personnel['telFixe']}"
-				pattern="[0][0-9]{9}" />
+				pattern="[0][0-9]{9}" required/>
 		</div>
 		<div>
 			<label for="telPort">Téléphone portable</label> <input type="text"
@@ -42,9 +42,9 @@
 				value="${sessionScope.personnel['email']}" />
 		</div>
 		<div>
-			<label for="numeroSS">Numéro de sécurité sociale </label> <input
+			<label for="numeroSS">Numéro de sécurité sociale *</label> <input
 				type="text" name="numeroSS"
-				value="${sessionScope.personnel['numeroSS']}" maxlength="15" />
+				value="${sessionScope.personnel['numeroSS']}" maxlength="15" required/>
 		</div>
 
 	</fieldset>
@@ -55,8 +55,8 @@
 				value="${sessionScope.personnel.adresse.numRue}" />
 		</div>
 		<div>
-			<label for="nomRue">Rue</label> <input type="text" name="nomRue"
-				value="${sessionScope.personnel.adresse.nomRue}" />
+			<label for="nomRue">Rue *</label> <input type="text" name="nomRue"
+				value="${sessionScope.personnel.adresse.nomRue}" required/>
 		</div>
 		<div>
 			<label for="infoCompl">Complément d'adresse</label> <input
@@ -65,11 +65,11 @@
 		</div>
 		<div>
 			<label for="ville">Commune</label> <input type="text" name="ville"
-				value="${commune['nomCommune']}" />
+				value="${commune['nomCommune']}" required/>
 		</div>
 		<div>
 			<label for="code">Code postal</label> <input type="text" name="code"
-				value="${commune['codePostal']}" />
+				value="${commune['codePostal']}" required/>
 		</div>
 	</fieldset>
 	<fieldset>
