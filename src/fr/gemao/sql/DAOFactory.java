@@ -110,9 +110,9 @@ public class DAOFactory {
 			config.setUsername(nomUtilisateur);
 			config.setPassword(motDePasse);
 			/* Paramétrage de la taille du pool */
-			config.setMinConnectionsPerPartition(5);
-			config.setMaxConnectionsPerPartition(30);
-			config.setPartitionCount(3);
+			config.setMinConnectionsPerPartition(5); //Nombre minimale de connection par partition
+			config.setMaxConnectionsPerPartition(30); //Nombre de commnection max par partition
+			config.setPartitionCount(3); // Nonbre de partition
 			config.setDisableConnectionTracking(true);
 			/*
 			 * Création du pool à partir de la configuration, via l'objet
@@ -133,9 +133,20 @@ public class DAOFactory {
 		return connectionPool.getConnection();
 	}
 	
+	/**
+	 * Retourne le pool de connection
+	 * @return pool de connection
+	 */
 	public static BoneCP getConnectionPool(){
 		return connectionPool;
 	}
+	
+	/* Toutes les fonctions qui suivent retournent un Objet DAO associé à
+	 * une classe Entity.
+	 * Exemple getAdherentDAO retourne un AdherentDAO,
+	 * 	il permet de faire le CRUD sur la base pour l'objet Adhérent.
+	 * Chaque DAO hérite de IDAO.
+	 */
 
 	public AdherentDAO getAdherentDAO() {
 		return new AdherentDAO(this);
