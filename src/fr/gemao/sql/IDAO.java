@@ -7,59 +7,76 @@ import java.util.List;
 public abstract class IDAO<T> {
 	protected DAOFactory factory = null;
 
-	public IDAO(DAOFactory factory){
+	/**
+	 * Constructeur
+	 * 
+	 * @param factory
+	 *            : objet renvoyé par la méthode DAOFactory.getInstance()
+	 */
+	public IDAO(DAOFactory factory) {
 		this.factory = factory;
 	}
 
 	/**
-	 * M�thode d'insertion d'objet.
+	 * Méthode d'insertion d'un objet dans une table.
+	 * 
 	 * @param obj
-	 * 		Objet � ins�rer.
-	 * @return l'objet ins�r� ou null s'il n'est pas trouv� apr�s l'insertion.
-	 * @throws IllegalArgumentException si l'objet existe d�j�.
+	 *            Objet à insérer.
+	 * @return l'objet inséré ou null s'il n'est pas trouvé après l'insertion.
+	 * @throws DAOException
+	 *             si l'objet existe déjà.
 	 */
 	public abstract T create(T obj);
 
 	/**
-	 * M�thode de suppression d'objet.
+	 * Méthode de suppression d'objet.
+	 * 
 	 * @param obj
-	 * 		Objet � supprimer.
-	 * @throws IllegalArgumentException si l'objet n'existe pas.
+	 *            Objet à supprimer.
+	 * @throws DAOException
+	 *             si l'objet n'existe pas.
 	 */
 	public abstract void delete(T obj);
 
 	/**
-	 * M��thode de mise � jour d'un objet.
+	 * Méthode de mise à jour d'un objet.
+	 * 
 	 * @param obj
-	 * 		Objet � mettre � jour.
-	 * @return l'objet updat� ou null s'il n'est pas trouv� apr�s la mise � jour.
+	 *            Objet à mettre à jour.
+	 * @return l'objet mis à jour ou null s'il n'est pas trouvé après la mise à
+	 *         jour.
 	 */
 	public abstract T update(T obj);
 
 	/**
-	 * M�thode de recherche d'un objet.
+	 * Méthode de recherche d'un objet. Retourne une instance d'un objet dans la
+	 * base à partir de son identifiant.
+	 * 
 	 * @param id
-	 * 		identifiant de l'objet � rechercher.
-	 * @return l'objet correspondant � l'identifiant ou null si l'objet n'xiste pas.
+	 *            identifiant de l'objet à rechercher.
+	 * @return l'objet correspondant à l'identifiant ou null si l'objet n'xiste
+	 *         pas.
 	 */
 	public abstract T get(long id);
-	
+
 	/**
-	 * M�thode de recherche de toutes les lignes.
+	 * Méthode de recherche de toutes les lignes d'une table de la base.
+	 * 
 	 * @return la liste de tous les objets.
 	 */
 	public abstract List<T> getAll();
-	
+
 	/**
 	 * Simple méthode utilitaire permettant de faire la correspondance (le
-	 * mapping) entre une ligne issue de la table des T (un
-	 * ResultSet) et un bean T.
+	 * mapping) entre une ligne issue de la table des T (un ResultSet) et un
+	 * bean T. Cette méthode place les résultats d'une requête de type SELECT
+	 * dans un objet et renvoie cet objet.
 	 * 
 	 * @param result
-	 * 		Le résultat d'une requête.
+	 *            Le résultat d'une requête.
 	 * 
-	 * @return L'Objet mapper.
-	 * @throws SQLException 
+	 * @return L'objet mappé
+	 * @throws SQLException
 	 **/
 	protected abstract T map(ResultSet result) throws SQLException;
 }

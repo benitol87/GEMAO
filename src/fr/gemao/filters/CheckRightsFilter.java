@@ -74,7 +74,7 @@ public class CheckRightsFilter implements Filter {
 			String[] partiesModule = tab[2].split("-");
 			String nomModule = partiesModule[0];
 			
-			// Problèmes d'accents.equal et d'encodage
+			// Problèmes d'accents et d'encodage des uri
 			if(nomModule.equals("Adherent")){
 				nomModule = "Adhérent";
 			}
