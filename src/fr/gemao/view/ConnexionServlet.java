@@ -37,25 +37,23 @@ public class ConnexionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* Préparation de l'objet formulaire */
+		//Préparation de l'objet formulaire
         ConnexionForm form = new ConnexionForm();
 
-        /* Traitement de la requête et récupération du bean en résultant */
-        Personnel personnel = form.connecterPersonnel( request );
+        //Traitement de la requête et récupération du bean en résultant
+        Personnel personnel = form.testerDonneesFormulaires( request );
 
-        /* Récupération de la session depuis la requête */
+        //Récupération de la session depuis la requête
         HttpSession session = request.getSession();
 
 
-		/**
-		 * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
-		 * Utilisateur à la session, sinon suppression du bean de la session.
-		 */
+		//Si aucune erreur de validation n'a eu lieu, alors on teste le mot de passe
 		if (form.getErreurs().isEmpty()) {
 			ConnexionCtrl connexionCtrl = new ConnexionCtrl();
 			try {
 				personnel = connexionCtrl.controlerPersonnel(form.getLogin(), form.getMotDePasse());
 			} catch (Exception e) {
+				// Erreur lors de la connexion
 				form.setErreur("Connexion", e.getMessage());
 				personnel = new Personnel();
 				personnel.setLogin(form.getLogin());
@@ -63,10 +61,13 @@ public class ConnexionServlet extends HttpServlet {
 		}
 		
 		if (form.getErreurs().isEmpty()) {
+			// On place en session un objet contenant les informations sur la personne connectée
 			session.setAttribute(ATT_SESSION_USER, personnel);
+			
 			// L'utilisateur voit la redirection
 			response.sendRedirect(request.getContextPath() + Pattern.ACCUEIL);
 		} else {
+			// Retour à la page de connexion
 			request.setAttribute(ATT_FORM, form);
 			request.setAttribute(ATT_USER, personnel);
 			this.getServletContext().getRequestDispatcher(JSPFile.CONNEXION)

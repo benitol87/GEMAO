@@ -25,7 +25,7 @@ public class ConnexionForm {
 		return erreurs;
 	}
 
-	public Personnel connecterPersonnel(HttpServletRequest request) {
+	public Personnel testerDonneesFormulaires(HttpServletRequest request) {
 		/* Récupération des champs du formulaire */
 		login = getValeurChamp(request, CHAMP_LOGIN);
 		motDePasse = getValeurChamp(request, CHAMP_PASS);
